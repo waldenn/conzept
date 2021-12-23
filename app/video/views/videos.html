@@ -1,0 +1,10 @@
+<div ng-repeat="video in videos" class="large-4 medium-6 columns">
+  <a ng-href="{{getLink(video)}}" class="toogles-video">
+    <h3><span>{{video.snippet.title}}</span></h3>
+    <img ng-src="{{video.snippet.thumbnails.high.url}}" />
+    <div class="duration">{{formatDuration(video.contentDetails.duration)}}</div>
+    <div class="rating">
+      <div class="like" style="width: {{averageRating(video.statistics.likeCount, video.statistics.dislikeCount)}}%;"></div>
+    </div>
+  </a>
+</div>

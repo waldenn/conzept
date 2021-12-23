@@ -1,0 +1,87 @@
+{
+  "cover": { 
+    "title": "Zodiac",
+    "text": "History of the zodiac",
+    "url": "https://conze.pt/app/wikipedia/?t=zodiac&l=en",
+    "author": "J.P.",
+    "date": "2021-03-24T09:31:05.214Z"
+  },
+  
+  "chapters": [
+    {
+      "title": "intro",
+      "text": "What is the Zodiac?",
+
+      "slides": [
+        { 
+          "title": "Horologio",
+          "text": "The Horologio is a Latin book on the system of the zodiac, published in 1533",
+          "url": "https://conze.pt/app/iiif/#?manifest=https%3A%2F%2Fiiif.archivelab.org%2Fiiif%2Fhorologiographia00muns%2Fmanifest.json&c=&m=&s=&cv=7"
+        },
+
+        { 
+          "title": "Zodiac on Wikipedia",
+          "text": "The zodiac is divided into twelve signs, each occupying 30° of celestial longitude and roughly corresponding to the constellations: Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces.",
+          "url": "https://conze.pt/app/wikipedia/?t=zodiac&l=en"
+        },
+
+        { 
+          "title": "Zodiac in modern astronomy",
+          "text": "The use of the zodiac as a means to determine astronomical measurement remained the main method for defining celestial positions by Western astronomers until the Renaissance, at which time preference moved to the equatorial coordinate system, which measures astronomical positions by right ascension and declination rather than the ecliptic-based definitions of celestial longitude and celestial latitude.",
+          "url": "https://conze.pt/app/wikipedia/?t=zodiac#in_modern_astronomy__"
+        },
+
+        { 
+          "title": "Chinese Zodiac",
+          "text": "In Chinese astrology the animal signs assigned by year represent how others perceive you or how you present yourself. It is a common misconception that the animals assigned by year are the only signs, and many Western descriptions of Chinese astrology draw solely on this system. In fact, there are also animal signs assigned by month (called inner animals), by day and hours (called secret animals). The Earth is all 12 signs, 5 seasons.",
+          "url": "https://conze.pt/app/wikipedia/?t=Chinese%20zodiac&l=en&voice=en-GB&qid=Q1976204#4"
+        },
+
+        { 
+          "title": "Zodiac on Wikicommons",
+          "text": "Here are some images relating to the Zodiac",
+          "url": "https://commons.m.wikimedia.org/wiki/Zodiac?uselang=en"
+        }
+
+      ]
+    },
+    {
+      "title": "history",
+      "text": "...",
+
+      "slides": [
+
+        { 
+          "title": "The Origin and History of the Constellations",
+          "text": "Here is a snippet from a video on the origin of the constellations",
+          "url": "https://conze.pt/app/video/#/view/nZm-QaKqS-Y/2:30/2:50"
+        },
+
+        { 
+          "title": "Clock dial example",
+          "text": "Clock dial example of the Cathedrale Saint Jean in Lyon",
+          "url": "https://conze.pt/app/iiif/#?c=&m=&s=&cv=&manifest=https://conze.pt/app/response/iiif-manifest?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F1%2F1d%2FCathedrale_Saint_Jean_Lyon_Astronomical_clock_dial_B.jpg%26notes%3DCathedrale%2520Saint%2520Jean%2520Lyon%2520Astronomical%2520clock%2520dial%2520B"
+        }
+
+      ]
+    
+    },
+    {
+      "title": "references",
+      "text": "here are some references for further study",
+
+      "slides": [
+
+        { 
+          "title": "Babylonian and Indian Astronomy",
+          "text": "Did the Indian and Babylonian astronomy evolve in isolation, was theremutual influence, or was one dependent on the other?",
+          "url": "https://arxiv.org/pdf/physics/0301078.pdf#page=10"
+        }
+
+      ]
+    
+    }
+
+  ]
+
+}

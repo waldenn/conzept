@@ -1,0 +1,106 @@
+<style>
+div.snakbox {
+	border-top:1px dotted #999;
+}
+div.snakbox:first-of-type {
+	border-top:none;
+}
+.property_column {
+	min-width:10rem;
+	max-width:10rem;
+	margin-right:0.5rem;
+}
+.value_column {
+	flex-grow:1;
+}
+td.property_column_qualifiers {
+	white-space:nowrap;
+	margin-right:0.5rem;
+}
+div.qualifiers {
+	margin-left:1rem;
+	font-size:9pt;
+}
+div.qualifiers td {
+	padding:1px;
+}
+div.reference_snaks_prop {
+}
+div.reference_snaks_list {
+}
+li.list-group-item {
+	padding:5px;
+	padding-top:0px;
+}
+li.list-group-item:first-of-type {
+	border-top:none;
+}
+li.list-group-item:last-of-type {
+	border-bottom:none;
+}
+div.property_list table.table {
+	margin-bottom:0px;
+}
+</style>
+
+<template id='property-list-template'>
+<div v-if='Object.values(props).length>0' class="card property_list">
+	<div class="card-header bg-light">
+		<span :tt='tt'></span>
+	</div>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+			<li v-for='prop in props' class="list-group-item" style='display:flex'>
+				<div class='property_column'>
+					<wd-link :item='prop'></wd-link>
+					<div v-if='prop_collapsible[prop]'>
+						<a href="#" class="badge badge-pill badge-light" @click.prevent='toggle(prop)'>
+							<span v-if='prop_collapsed[prop]'>
+								Show all {{i.getClaimsForProperty(prop).length}}
+							</span>
+							<span v-else>
+								Hide
+							</span>
+						</a>
+					</div>
+				</div>
+				<div class='value_column' :style='prop_collapsed[prop]?"max-height:15rem;overflow:auto;":""'>
+					<div v-for='claim in i.getClaimsForProperty(prop)' class='snakbox'>
+						<claim :claim='claim'></claim>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</template>
+
+
+<script>
+'use strict';
+
+Vue.component ( 'property-list' , {
+	props : [ 'q' , 'props' , 'tt' ] ,
+	data : function () { return { i:{} , prop_collapsed:{} , prop_collapsible:{} } } ,
+    created : function () {
+    	let me = this ;
+    	me.i = wd.getItem(me.q) ;
+    	if ( typeof me.i == 'undefined' ) {
+    		console.log ( "property-list can't find item "+me.q+" for props "+JSON.stringify(me.props)) ;
+    		return ;
+    	}
+    	$.each ( me.props , function ( dummy , prop ) {
+    		Vue.set(me.prop_collapsible, prop, me.i.getClaimsForProperty(prop).length > 10 );
+    		Vue.set(me.prop_collapsed, prop, me.prop_collapsible[prop] ); // Collapse by default, if possible
+    	} ) ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+    	toggle : function ( prop ) {
+    		Vue.set(this.prop_collapsed, prop, !this.prop_collapsed[prop]);
+    	}
+    },
+	template : '#property-list-template'
+} ) ;
+</script>

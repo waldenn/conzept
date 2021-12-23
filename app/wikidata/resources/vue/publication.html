@@ -1,0 +1,88 @@
+<template id='publication-template'>
+<div v-if='loaded'>
+	<div v-if='typeof i=="undefined"'><i>Can't find publication "{{item}}"</i></div>
+	<div v-else style='display:flex;flex-direction:column'>
+		<div style='font-weight:bold'>
+			<a class='scholia' target='_blank' :href='"https://scholia.toolforge.org/scholia/work/"+item'>{{i.getLabel()}}</a>
+		</div>
+		<div>
+			<span v-for='(a,pos) in authors'>
+				<span v-if='pos>0'>, </span>
+				<span v-if='typeof a.q!="undefined"'>
+					<a :href='"https://scholia.toolforge.org/scholia/author/"+a.q' target='_blank' class='scholia'>
+						<wd-link :item='a.q' as_text='1'></wd-link>
+					</a>
+				</span>
+				<span v-if='typeof a.label!="undefined"'>{{a.label}}</span>
+			</span>
+			<span v-if='et_al'><i>, et al.</i></span>
+		</div>
+		<div>
+			<span v-if='journal_q!=""'>
+				<i>
+					<a :href='"https://scholia.toolforge.org/scholia/venue/"+journal_q' class='scholia' target='_blank'>
+						<wd-link :item='journal_q' as_text='1'></wd-link>
+					</a>
+				</i>
+			</span>
+			<span v-if='i.hasClaims("P478")'>vol {{i.getFirstStringForProperty("P478")}}</span>
+			<span v-if='i.hasClaims("P433")'>&nbsp;issue {{i.getFirstStringForProperty("P433")}}</span>
+			<span v-if='i.hasClaims("P304")'>, {{i.getFirstStringForProperty("P304")}}</span>
+			<span v-if='i.hasClaims("P577")'>, 
+				<wd-date :tv='(i.getClaimsForProperty("P577",true))[0].mainsnak.datavalue.value'></wd-date>
+			</span>
+			
+		</div>
+		<div v-for='prop in meta_props'>
+			<div v-if='i.hasClaims(prop)' style='display:flex;flex-direction:row'>
+				<div><wd-link :item='prop' as_text='1'></wd-link>:&nbsp;</div>
+				<div v-for='v in i.getStringsForProperty(prop)'>
+					<a class='external' target="_blank" :href='"https://www.ncbi.nlm.nih.gov/pubmed/?term="+v'>{{v}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<script>
+'use strict';
+
+// REQUIRES GLOBAL wd VARIABLE!!!
+
+Vue.component ( 'publication' , {
+	template : '#publication-template' ,
+	props : [ 'item' , 'num_authors' ] ,
+	data : function () { return { loaded:false , i:{} , meta_props:["P698","P356"] , authors:[] , journal_q:'' , et_al:false , max_authors_before_et_al:2 } } ,
+	created : function () {
+		var me = this ;
+		me.journal_q = '' ;
+		if ( typeof me.num_authors != 'undefined' ) me.max_authors_before_et_al = me.num_authors * 1 ;
+		wd.getItemBatch ( [me.item] , function () {
+			me.i = wd.getItem ( me.item ) ;
+			let cnt = 1 ;
+			if ( typeof me.i != 'undefined' ) {
+				if ( me.i.hasClaims("P1433") ) me.journal_q = (me.i.getClaimItemsForProperty("P1433",true))[0] ;
+				$.each ( me.i.getClaimsForProperty("P2093") , function ( dummy , claim ) {
+					let pos = (((claim.qualifiers||{}).P1545||[])[0]||{}) ;
+					if ( typeof pos=='undefined' ) pos = cnt++ ;
+					else pos = pos.datavalue.value * 1 ;
+					me.authors[pos-1] = { label:claim.mainsnak.datavalue.value } ;
+				} ) ;
+				$.each ( me.i.getClaimsForProperty("P50") , function ( dummy , claim ) {
+					let pos = (((claim.qualifiers||{}).P1545||[])[0]||{}) ;
+					if ( typeof pos=='undefined' ) pos = cnt++ ;
+					else pos = pos.datavalue.value * 1 ;
+					me.authors[pos-1] = { q:claim.mainsnak.datavalue.value.id } ;
+				} ) ;
+				while ( me.authors.length > me.max_authors_before_et_al ) {
+					me.authors.pop() ;
+					me.et_al = true ;
+				}
+			}
+			me.loaded = true ;
+		} ) ;
+	}
+} ) ;
+
+</script>

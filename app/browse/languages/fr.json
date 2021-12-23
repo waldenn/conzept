@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Thibaut120094",
+			"Verdy p",
+			"Wladek92"
+		]
+	},
+	"itemCount": "Il y a {{PLURAL:$1|un élément qui correspond|$1 éléments qui correspondent}} à cette description.",
+	"classPlaceholder": "Entrez une classe",
+	"browse": "Ou parcourez l’une des classes suivantes :",
+	"noFiltersDefined": "Aucun filtre n’est défini pour cette classe.",
+	"addFilter": "Ajouter un filtre",
+	"viewQuery": "Afficher la requête SPARQL",
+	"noItems": "Aucun élément ne correspond à cette description.",
+	"displayItemsError": "La tentative d’affichage de la liste des éléments a pris trop de temps ; essayez d’ajouter d’autres filtres.",
+	"gettingValues": "Obtention des valeurs pour le filtre $1 en cours...",
+	"noAdditionalValues": "Il n’y a aucune valeur supplémentaire pour le filtre $1.",
+	"filterError": "Essayer d’obtenir des valeurs a pris trop de temps pour le filtre $1.",
+	"filterTimeout": "(Obtenir un ensemble complet de valeurs pour le filtre $1 a pris trop de temps ; à la place, voici un ensemble éventuellement incomplet).",
+	"selectValue": "Sélectionnez une valeur pour $1 :",
+	"selectAdditionalValue": "Sélectionnez une valeur supplémentaire pour $1 :",
+	"noValue": "Aucune valeur",
+	"changeClassNote": "(Remarque : si vous changez de classe, vous perdrez l’ensemble actuel des filtres.)",
+	"specificClass": "Passer à une classe plus spécifique :",
+	"generalClass": "Passer à une classe plus générale :",
+	"viewList": "Afficher la liste des éléments",
+	"results": "({{PLURAL:$1|un résultat|$1 résultats}})",
+	"applyLinkedFilter": "Appliquer le filtre sur $1",
+	"chooseLinkedFilter": "Choisissez un filtre parmi l’une des classes suivantes :"
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link rel=icon href=./favicon.ico>
+    <title>conzept present</title>
+    <link href=./css/annona.css rel=preload as=style>
+    <link href=./js/annona.js rel=preload as=script>
+    <link href=./css/annona.css rel=stylesheet>
+
+    <!-- conzept resources -->
+    CONZEPT_COMMON_HTML_INCLUDE
+
+    <link rel="stylesheet" href="./css/main.css?0.45.20">
+
+  </head>
+  <body>
+    <noscript><strong>We're sorry but iiif-annotation doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
+    <div id=app></div>
+    <script src=./js/annona.js></script>
+
+    <script id="config" type="application/json" >
+      {
+        "autorun_onload": false,
+        "autorun_interval": 10,
+        "hide_toolbar": false,
+        "fullpage": true,
+        "hide_annocontrols": true,
+        "mapmarker": "<svg height='18' width='18'><circle cx='9' cy='9' r='5' stroke='black' stroke-width='3' fill='lightblue' /></svg>",
+        "fit": "fill",
+        "panorzoom": "pan",
+        "toggleoverlay": true,
+        "textposition": "right",
+        "tts": "en",
+        "hide_tags": true
+      }
+    </script>
+    <!--iiif-storyboard annotationurl="https://dnoneill.github.io/annotate/annotations/wh234bz9013-0001-list.json" styling=""></iiif-storyboard-->
+
+    <script src=./js/main.js></script>
+
+  </body>
+</html>

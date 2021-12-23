@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="Flag_of_Sultanate_of_Siak_Sri_Indrapura.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   version="1.1"
+   id="svg2"
+   height="331.875"
+   width="500">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:window-height="745"
+     inkscape:window-width="1366"
+     showgrid="false"
+     inkscape:current-layer="g4262"
+     inkscape:document-units="px"
+     inkscape:cy="58.670375"
+     inkscape:cx="356.57778"
+     inkscape:zoom="1"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-260.30142,-480.74954)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       id="g3005">
+      <g
+         id="g4016" />
+      <g
+         id="g4262"
+         transform="matrix(0.55357247,0,0,0.55355066,186.70318,248.61518)">
+        <rect
+           y="420.89136"
+           x="134.21823"
+           height="597.46637"
+           width="901.4212"
+           id="rect4177"
+           style="fill:#f7e017;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+        <rect
+           y="820.35522"
+           x="133.68211"
+           height="198.53862"
+           width="902.49341"
+           id="rect4177-4"
+           style="fill:#078930;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+        <rect
+           y="419.35522"
+           x="132.95142"
+           height="198.53862"
+           width="902.49341"
+           id="rect4177-4-4"
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+      </g>
+    </g>
+  </g>
+</svg>

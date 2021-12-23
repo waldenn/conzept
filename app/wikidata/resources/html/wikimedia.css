@@ -1,0 +1,81 @@
+/*
+Trying to use some colours and fonts from the WikimediaUI Style Guide:
+https://wikimedia.github.io/WikimediaUI-Style-Guide/visual-style_colors.html
+*/
+body {
+	font-family:Lato,Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--font-family-sans-serif:Lato,Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--font-family-serif:Charter,Verdana,"Times New Roman";
+}
+
+a { color:#36c; }
+a.external { color:#00af89; }
+a.scholia { color:#59955C; }
+a.wikidata { color:#2a4b8d; }
+
+h1,h2,h3,h4,h5,h6,h7,h8,h9 {
+	font-family:Charter,Verdana,Times New Roman;
+}
+
+.btn , .btn-group , nav { font-family:Lato,Arial; }
+.btn-primary { background-color:#36c !important; }
+.btn-success { color:#14866d !important; }
+.btn-danger { color:#b32424 !important; }
+.btn-outline-primary { color:#36c !important; border-color:#36c !important; }
+.btn-outline-success { color:#14866d !important; border-color:#14866d !important; }
+.btn-outline-danger { color:#b32424 !important; border-color:#b32424 !important; }
+.text-success { color:#14866d !important; }
+
+.bg-success { background-color:#00af89 !important; }
+.bg-info { background-color:#36c !important; }
+.bg-warning { background-color:#fc3 !important; }
+.bg-danger { background-color:#d33 !important; }
+
+/*input[type=text],input[type=url],input[type=tel],input[type=number],input[type=color],input[type=email] {*/
+input[type=text] {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #c8ccd1;
+	margin-left: 2px;
+	margin-right: 2px;
+	border-radius:0;
+}
+
+input[type=text]:focus {
+	border-bottom-color:#2a4b8d;
+	box-shadow:none;
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+	body {
+		background: black;
+		color: #ddd;
+	}
+	a {
+		color:#2764db;
+	}
+	a.wikidata {
+		color:#4c82ec;
+	}
+	input[type=text],textarea {
+		background: black;
+		color: #ddd;
+		border-color: #ddd;
+	}
+	.bg-success,.bg-info,.bg-warning,.bg-danger {
+		color:black;
+	}
+	.btn-primary,.btn-waring,.btn-danger,.btn-success {
+		color:black !important;
+	}
+	img {
+		opacity: .75;
+		transition: opacity .5s ease-in-out;
+	}
+	img:hover {
+		opacity: 1;
+	}
+}
+*/

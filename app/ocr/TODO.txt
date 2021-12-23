@@ -1,0 +1,3 @@
+TODO:
+
+- upgrade tesseract: https://github.com/naptha/tesseract.js

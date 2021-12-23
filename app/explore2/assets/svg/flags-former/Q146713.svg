@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 6 3">
+<path d="M0,0H6V3H0z" fill="#007a3d"/>
+<path d="M0,0H6V2H0z" fill="#fff"/>
+<path d="M0,0H6V1H0z" fill="#000"/>
+<g fill="#ce1126">
+<path d="M3,0H0V2z" transform="rotate(30)"/>
+<path d="M0,1V3H3z" transform="rotate(-30,0,3)"/>
+</g>
+</svg>

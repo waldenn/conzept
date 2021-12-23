@@ -1,0 +1,130 @@
+body {
+  font-size: 1.1em !important;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+  width: 95% !important;
+}
+
+/*
+th[role=columnheader]:not(.no-sort) {
+  cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+  content: '';
+  float: right;
+  margin-top: 7px;
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #404040 transparent;
+  visibility: hidden;
+  opacity: 0;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+  border-bottom: none;
+  border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+  visibility: visible;
+  opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+*/
+
+@media (max-width: 768px){
+
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 85% !important;
+  }
+
+}
+
+.row {
+  margin-left: initial !important;
+}
+
+#primary_items_table {
+  margin-top: 1em;
+  margin-bottom: 6em;
+}
+
+.table th, .table td {
+  border-top: none;
+  padding: 0em !important;
+  vertical-align: initial;
+}
+
+tr a {
+  color: black !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  width: 100%;
+  padding: 0.3em 0.3em;
+}
+
+/*
+tr:hover, tr:active, tr a:focus {
+  background: #f9e2e2;
+}
+*/
+.vco-storyjs {
+  background-color: #fbfaf9;
+}
+
+.vco-timeline .vco-navigation .timenav-background .timenav-interval-background {
+  background-color: #fbfaf9;
+}
+
+.numcell {
+	font-family:courier;
+	font-size:9pt;
+	text-align:right !important;
+}
+
+.pager {
+	max-height:20px;
+}
+
+.highlight td {
+  font-weight: bold;
+  /* background-color: #cfe6d0; */
+}
+
+.itemtablerow:focus-within {
+  background: #f3cccd !important;
+}
+
+.itemtablerow:hover, .highlight td:hover {
+  background: #f3cccd !important;
+}
+
+.table-condensed th, .table-condensed td {
+  padding: 0em !important;
+}
+
+.itemtablerow.highlight {
+  outline: 1px solid black;
+  border-radius: 0.1em;
+  /* border: 2px solid #000000ab; */
+}
+
+tr.itemtablerow {
+  border-left: none !important;
+}
+
+/*
+table {
+  border-collapse: unset !important;
+}
+*/

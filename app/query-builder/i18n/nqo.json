@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aboubacar.banamoridou.toure",
+			"Lancine.kounfantoh.fofana"
+		]
+	},
+	"query-builder-heading": "ߥߞߌߕߘߊ ߢߎߡߍߛߎ߲ ߡߞߊ߬ߛߌ߬ߟߌ",
+	"query-builder-query-heading": "ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ",
+	"query-builder-settings-heading": "ߟߊ߬ߓߍ߲߬ߢߐ߲߰ߡߦߊ߬ߘߊ",
+	"query-builder-find-all-items": "ߝߌ߬ߛߌ ߟߎ߬ ߓߍ߯ ߟߊߘߍ߬ߣߍ߲ ߛߐ߬ߘߐ߲߬...",
+	"query-builder-run-query": "ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ ߓߟߏߦߊ߫",
+	"query-builder-input-value-label": "ߡߐ߬ߟߐ߲",
+	"query-builder-input-value-placeholder": "ߡߐ߬ߟߐ߲ ߘߏ߫ ߟߊߘߏ߲߬",
+	"query-builder-property-lookup-label": "ߘߎ߲߬ߘߎ߲߬ߡߊ߬ߦߊ",
+	"query-builder-property-lookup-placeholder": "ߘߎ߲߬ߘߎ߲߬ߡߊ߬ߦߊ ߘߏ߫ ߟߊߘߏ߲߬",
+	"query-builder-property-lookup-no-match-found": "ߓߍ߲߬ߢߐ߲߰ߡߊ߬ ߛߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬",
+	"query-builder-property-lookup-limited-support-tag": "ߞߐߡߊߓߌ߲ߓߌ߲ ߘߊ߲߭",
+	"query-builder-property-lookup-limited-support-note": "ߘߎ߲߬ߘߎ߲߬ߡߊ߬ߦߊ ߞߐߡߊߓߌ߲ߓߌ߲ߣߍ߲ ߘߊ߲߬ߡߊ ߕߴߛߋ߫ ߛߍ߲ߛߍ߲߫ ߠߊ߫ ߞߊ߬ ߓߍ߲߬ ߡߐ߬ߟߐ߲ ߡߊ߬",
+	"query-builder-result-link-text": "ߡߞߊ߬ߛߌ߬ߟߌ ߦߌ߬ߘߊ߫ ߡߞߊ߬ߛߌ߬ߟߌ߬ ߓߊ߯ߙߘߊ ߞߣߐ߫",
+	"query-builder-result-placeholder": "ߞߐߝߟߌ ߡߍ߲ ߠߎ߫ ߦߌ߬ߘߊ߬ߕߐ߫ ߦߊ߲߬",
+	"query-builder-result-header": "ߞߐߝߟߌ ߟߎ߬",
+	"query-builder-result-error-missing-property": "ߤߊߞߍ߬ߕߏ߬ ߸ ߌ ߦߋ߫ ߘߎ߲߬ߘߎ߬ߡߊ߬ߦߊ ߘߏ߫ ߡߊߡߌ߬ߘߊ߬",
+	"query-builder-result-error-missing-value": "ߡߐ߬ߟߐ߲ ߘߏ߫ ߟߊߘߏ߲߬ ߖߊ߰ߣߌ߲߫",
+	"query-builder-add-condition": "ߛߙߊߕߌ ߝߙߊ߬",
+	"query-builder-value-type-relation-dropdown-matching": "ߦߋ߫ ߦߋ߲߬",
+	"query-builder-value-type-relation-dropdown-without": "ߕߍ߫ ߦߋ߲߬",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "ߡߐ߬ߟߐ߲ ߞߍ߫ ߘߴߊ߬ ߛߎ߯ - ߎ - ߛߎ߯ ߘߌ߫",
+	"query-builder-reference-relation-label": "ߦߙߌߡߊߛߦߋ ߟߎ߬",
+	"query-builder-reference-relation-dropdown-with": "ߊ߬ ߣߌ߫ ߦߙߌߡߊߛߦߋ ߟߎ߬ ߘߐߙߐ߲߫",
+	"query-builder-reference-relation-dropdown-without": "ߊ߬ ߣߌ߫ ߦߙߌߡߊߛߦߋ ߟߎ߬ ߘߐߙߐ߲߫ ߕߍ߫",
+	"query-builder-reference-relation-dropdown-regardless": "ߊ߬ ߣߌ߫ ߦߙߌߡߊߛߦߋ ߟߎ߬ ߣߴߊ߬ߟߎ߫ ߕߍ߫",
+	"query-builder-delete-condition": "ߛߙߊߕߌ ߖߐ߬ߛߌ߬",
+	"query-builder-condition-placeholder": "ߛߙߊߕߌ ߡߊߞߊ߬ߝߏ߬ ߞߊ߬ ߡߞߊ߬ߛߌ߬ߟߌ߬ ߞߎߘߊ߫ ߘߊߡߌ߬ߘߊ߬",
+	"query-builder-condition-relation-toggle-and": "ߣߌ߫",
+	"query-builder-condition-relation-toggle-or": "ߥߟߊ߫",
+	"query-builder-limit-number-results-description": "ߞߐߝߟߌ ߟߎ߬ ߝߙߍߕߍ ߘߊ߲߭ ߧߋ߫",
+	"query-builder-limit-number-placeholder": "ߝߙߍߕߍ ߘߏ߫ ߟߊߘߏ߲߬",
+	"query-builder-limit-number-screenreader-label": "ߞߐߝߟߌ ߟߎ߬ ߝߙߍߕߍ ߘߐ߫ ߓߟߋ߬ߓߟߋ߬ߓߊ",
+	"query-builder-negation-option-label-with": "ߊ߬ ߣߌ߫",
+	"query-builder-negation-option-label-without": "ߕߍ߫"
+}

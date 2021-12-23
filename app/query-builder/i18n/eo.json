@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Javiero",
+			"Wierzbowski"
+		]
+	},
+	"query-builder-input-value-label": "Valoro",
+	"query-builder-input-value-placeholder": "Eniru valoron",
+	"query-builder-property-lookup-label": "Atributo",
+	"query-builder-property-lookup-no-match-found": "Neniu matĉo estis trovita",
+	"query-builder-property-lookup-limited-support-tag": "Limigita subteno",
+	"query-builder-result-placeholder": "Rezultoj estos montrita ĉi tie",
+	"query-builder-result-error-missing-value": "Bonvolu eniru valoron",
+	"query-builder-add-condition": "Aldoni kondiĉon",
+	"query-builder-value-type-relation-dropdown-matching": "Komparado",
+	"query-builder-value-type-relation-dropdown-without": "Sen",
+	"query-builder-reference-relation-label": "Referencoj",
+	"query-builder-condition-relation-toggle-and": "kaj",
+	"query-builder-condition-relation-toggle-or": "aŭ"
+}

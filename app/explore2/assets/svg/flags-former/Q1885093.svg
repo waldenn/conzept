@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216">
+<path d="M0,0H360V216H0" fill="#fe0000"/>
+<path d="M-1,0H361V144H-1" fill="#fff"/>
+<path d="M0,0H360V72H0" fill="#090"/>
+<circle cx="172" cy="108" r="27"/>
+<circle cx="182" cy="108" r="22" fill="#fff"/>
+<path d="M195,90 216,112 186,106 214,94 199,120"/>
+</svg>

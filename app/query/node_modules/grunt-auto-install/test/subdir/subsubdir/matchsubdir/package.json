@@ -1,0 +1,9 @@
+{
+  "name": "grunt-auto-install-test",
+  "dependencies": {
+    "moment": "*"
+  },
+  "devDependencies": {
+    "requirejs": "*"
+  }
+}

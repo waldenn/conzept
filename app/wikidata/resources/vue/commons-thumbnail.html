@@ -1,0 +1,83 @@
+<template id='commons-thumbnail-template'>
+	<span v-if='loading'><i>...</i></span>
+    <span v-else-if='loaded'>
+        <span v-if='img.imageinfo[0].mediatype=="AUDIO"'>
+            <audio preload="metadata" controls :style='getElementStyle()'>
+                <source :src='img.imageinfo[0].url' :type="img.imageinfo[0].mime" />
+                Your browser doesn't support the HTML audio tag. Be sad.
+            </audio>
+        </span>
+        <span v-else-if='img.imageinfo[0].mediatype=="VIDEO"'>
+            <video preload="metadata" controls :style='getElementStyle()'>
+                <source :src='img.imageinfo[0].url' :type="img.imageinfo[0].mime" />
+                Your browser doesn't support the HTML audio tag. Be sad.
+            </video>
+        </span>
+    	<a v-else-if='img.imageinfo[0].mediatype=="BITMAP" || img.imageinfo[0].mediatype=="DRAWING"' target='_blank' :href='img.imageinfo[0].descriptionurl' :title='img.title.replace(/^.+?:/,"")'>
+    		<img :src='img.imageinfo[0].thumburl' border=0 :width='img.imageinfo[0].thumbwidth' :height='img.imageinfo[0].thumbheight' class="wiki_thumbnail" />
+    	</a>
+        <span v-else>
+            <i>Don't know how to show a {{img.imageinfo[0].mediatype}}</i>
+        </span>
+    </span>
+	<span v-else><i>Could not find {{filename}}</i></span>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'commons-thumbnail' , {
+	props : [ 'filename' , 'width' , 'height' , 'api' ] ,
+	data : function () { return { loading:true , loaded:false , img:{} , api_url:'https://commons.wikimedia.org/w/api.php' } } ,
+    created : function () {
+        this.checkAndLoadFilename() ;
+    } ,
+    methods : {
+        checkAndLoadFilename : function () {
+            let me = this ;
+            if ( typeof me.filename == 'undefined' ) {
+                me.loading = false ;
+                me.loaded = false ;
+                return ;
+            }
+            if ( typeof me.api != 'undefined' ) me.api_url = me.api ; // Manual override
+            $.getJSON ( me.api_url+'?callback=?' , {
+                action:'query',
+                prop:'imageinfo',
+                iiprop:'url|mediatype|mime|size',
+                iiurlwidth:me.width,
+                iiurlheight:(me.height||me.width),
+                titles:'File:'+me.filename,
+                format:'json'
+            } , function ( d ) {
+                $.each ( d.query.pages , function ( k , v ) {
+                    if ( k == -1 ) return ;
+                    me.img = v ;
+                    me.loaded = true ;
+                } ) ;
+    //          console.log ( JSON.parse(JSON.stringify(me.img)) ) ;
+                me.loading = false ;
+            } ) ;
+        } ,
+        getElementStyle : function () {
+            let me = this ;
+            let parts = [] ;
+            parts.push ( "width:"+me.getWidth()+"px" ) ;
+            return parts.join(';') ;
+        } ,
+        getWidth : function () {
+            let me = this ;
+            if ( typeof me.width == 'undefined' ) return 300 ;
+            if ( !me.loaded ) return me.width ;
+            // TODO max width vs. real thumb width?
+            return me.width ;
+        }
+    },
+    watch : {
+        filename : function () {
+            this.checkAndLoadFilename() ;
+        }
+    } ,
+	template : '#commons-thumbnail-template'
+} ) ;
+</script>

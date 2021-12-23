@@ -1,0 +1,10 @@
+body {
+
+  font-family: 'Quicksand';
+
+  /* font-size: 15px; */  /* IMPORTANT BASE VALUE --> MATCH WITH MAIN CSS */
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bikarhêner"
+		]
+	},
+	"itemCount": "{{PLURAL:$1|Yek hêmanekê heye ê ku bi vê danasînê re li hev tê|$1 hêman hene ên ku bi vê danasînê re li hev tên}}.",
+	"classPlaceholder": "Sinifê têkeve",
+	"browse": "An, çav bi yek ji van sinifên bixe:",
+	"noFiltersDefined": "Ti parzûnekê nehatiye danîn ji bo vê sinifê.",
+	"addFilter": "Parzûnekê tevlî bike",
+	"viewQuery": "Jêpirsîna SPARQLê bibîne",
+	"noItems": "Ti hêmaneke bi vê danasînê re li hev nehat",
+	"displayItemsError": "Hewla ji bo nîşandana lîsteya hêmanan pir dirêj girt; ji kerema xwe zêdetir parzûnan tevlî bike.",
+	"gettingValues": "Nirxên ji bo parzûna $1 tîne ...",
+	"noAdditionalValues": "Nirxên zêdetir tine ye ji bo parzûna $1.",
+	"filterError": "Ceribandina anîna nirxan wextekê pir dirêj girt ji bo parzûna $1.",
+	"filterTimeout": "(Anîna seta nirxan a temamî ji bo parzûna $1 wexteke pir dirêj girt; vayê muhtemelen seta netemam li vir e.)",
+	"selectValue": "Nirxekê bibijêre ji bo $1:",
+	"selectAdditionalValue": "Nirxeke zêdek bibijêre ji bo $1:",
+	"noValue": "Nirx tine",
+	"changeClassNote": "(Not: Ger tu sinifê biguherînî, tu yê seta parzûnên vêga winda bikî.)",
+	"specificClass": "Biguherîne û bike sinifeke zêdetir spesîfîk:",
+	"generalClass": "Biguherîne û bike sinifeke giştîtir:",
+	"viewList": "Lîsteya hêmanan bibîne",
+	"results": "({{PLURAL:$1|1 encam}})",
+	"applyLinkedFilter": "Parzûnê li ser $1 tetbîq bike",
+	"chooseLinkedFilter": "Parzûnekê bibijêre ji yek sinifên li jêr:"
+}

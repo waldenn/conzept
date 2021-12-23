@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html><head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title tt="toolname"></title>
+<link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://tools-static.wmflabs.org/magnustools/resources/html/wikimedia.css">
+<link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet/1.5.1/leaflet.css">
+
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/vue/2.6.10/vue.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/vue-router/3.0.6/vue-router.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
+<script src="https://tools-static.wmflabs.org/tooltranslate/tt.js"></script>
+<script src="https://tools-static.wmflabs.org/magnustools/resources/js/wikidata.js"></script>
+<script src="https://tools-static.wmflabs.org/magnustools/resources/vue/shared.js"></script>
+
+</style>
+
+</head>
+
+<body>
+	<div id='app' class='container'>
+		<router-view :key="$route.path"><i tt='loading'></i></router-view>
+	</div>
+</body>
+
+<script src="vue.js"></script>
+
+</html>

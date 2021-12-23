@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="271.000000pt"
+   height="217.000000pt"
+   viewBox="0 0 271.000000 217.000000"
+   preserveAspectRatio="xMidYMid meet"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Flag_of_Bantam.svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="736"
+     inkscape:window-height="480"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="0.87004608"
+     inkscape:cx="168.17771"
+     inkscape:cy="135.625"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata4">
+Created by potrace 1.11, written by Peter Selinger 2001-2013
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <rect
+     style="fill:#fedc00;fill-opacity:1;stroke:none"
+     id="rect2989"
+     width="271"
+     height="217"
+     x="4.102621e-016"
+     y="-7.6293945e-006" />
+  <g
+     transform="translate(0.000000,217.000000) scale(0.100000,-0.100000)"
+     fill="#000000"
+     stroke="none"
+     id="g6"
+     style="fill:#ffffff;fill-opacity:1">
+    <path
+       d="M442 1964 c-17 -12 -22 -25 -22 -60 0 -60 33 -92 98 -96 44 -3 49 -7 109 -78 35 -41 63 -78 63 -83 0 -4 -10 -12 -22 -18 -32 -14 -88 -107 -88 -145 0 -37 27 -64 63 -64 28 0 47 24 47 59 0 20 55 62 81 60 8 0 45 -63 83 -139 49 -98 90 -164 137 -222 57 -68 66 -84 56 -97 -7 -8 -39 -48 -73 -88 -40 -48 -84 -121 -130 -212 -38 -77 -75 -140 -83 -140 -26 -2 -81 40 -81 60 0 36 -19 59 -49 59 -35 0 -61 -28 -61 -66 0 -36 57 -129 88 -143 12 -6 22 -14 22 -18 0 -5 -28 -42 -63 -83 -60 -71 -65 -75 -109 -78 -65 -4 -98 -36 -98 -96 0 -58 23 -76 101 -76 l56 0 67 74 c37 40 79 91 93 112 61 93 85 103 127 53 30 -36 32 -46 10 -70 -26 -29 -9 -59 32 -59 56 0 84 38 84 113 0 56 -2 62 -40 99 l-39 40 36 56 c93 146 112 172 182 244 l74 77 28 -43 c16 -23 55 -66 86 -95 32 -29 101 -94 153 -144 53 -51 129 -117 168 -147 40 -30 99 -76 130 -101 76 -62 228 -133 317 -148 39 -7 104 -21 147 -32 42 -10 79 -19 82 -19 3 0 6 91 6 203 l0 202 -87 18 c-164 33 -184 39 -251 77 -37 22 -89 51 -116 66 -27 14 -71 40 -97 58 -26 17 -77 49 -114 71 -117 70 -239 151 -257 172 -17 19 -17 20 5 40 20 18 157 107 265 172 24 14 65 40 91 57 26 18 70 44 97 58 27 15 79 44 116 66 67 38 87 44 251 77 l87 18 0 202 c0 112 -3 203 -6 203 -3 0 -40 -9 -82 -19 -43 -11 -108 -25 -147 -32 -89 -15 -241 -86 -317 -148 -31 -25 -90 -71 -130 -101 -124 -95 -418 -380 -418 -407 0 -26 -120 97 -173 176 -24 36 -60 92 -80 123 l-36 56 39 40 c38 37 40 43 40 99 0 75 -28 113 -84 113 -41 0 -58 -30 -32 -59 22 -24 20 -34 -10 -70 -42 -50 -66 -40 -127 53 -14 21 -56 72 -93 112 l-67 74 -56 0 c-35 0 -65 -6 -79 -16z"
+       id="path8"
+       style="fill:#ffffff;fill-opacity:1" />
+  </g>
+</svg>

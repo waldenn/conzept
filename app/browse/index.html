@@ -1,0 +1,191 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+
+    <!-- conzept resources -->
+    <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+    <script src="src/conzept.js"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <style>
+      .topnav {
+          display: none;
+      }
+
+      a {
+        color: black;
+        font-weight: bold;
+        padding: 0.13em;
+      }
+
+      a:hover {
+        background: #f3abad6e;
+      }
+
+      .filter-box {
+        border: 1px solid #04040440;
+      }
+
+      div.pager-arrows a {
+        font-size: 200% !important;
+        padding: 0.2em 1em;
+        border-radius: 0.2em;
+      }
+
+      .filter-box span {
+        display: block;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <top-nav
+            @change-page="updatePage"
+            @change-language="changeLanguage"
+            :website-text="siteText"
+            :fallback-text="fallbackSiteText">
+        </top-nav>
+
+        <div class="container">
+            <class-filter
+                @change-page="updatePage"
+                @change-class="updateClassValue"
+                v-if="view == 'class-filter'"
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :class-value="classValue"
+                :class-label="classLabel">
+            </class-filter>
+
+            <view-all-items
+                @change-page="updatePage"
+                @remove-filter="removeFilter"
+                @remove-range="removeRange"
+                @remove-quantity="removeQuantity"
+                @update-filter="updateFilter"
+                v-if="view =='view-all-items'"
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :total-values="totalValues"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :key="allItemscomponentKey"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities"
+                :format="format">
+            </view-all-items>
+
+            <filters-view 
+                @change-page="updatePage"
+                @update-filter="updateFilter"
+                @remove-filter="removeFilter"
+                @remove-range="removeRange"
+                @remove-quantity="removeQuantity"  
+                v-if="view =='filters'"
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :total-values="totalValues"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities">
+            </filters-view>
+
+            <filter-values 
+                @change-page="updatePage"
+                @apply-filter="applyFilter"
+                @apply-range="applyRange" 
+                @apply-quantity="applyQuantityRange" 
+                @update-filter="updateFilter"
+                @update-secondary="updateSecondaryFilter"
+                @update-class="updateClassValue"
+                @remove-filter="removeFilter"
+                @remove-range="removeRange"
+                @remove-quantity="removeQuantity"            
+                v-if="view =='filter-values'" 
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :key="filterscomponentKey"
+                :total-values="totalValues"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :current-filter="currentFilter"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities"
+                :format="format">
+            </filter-values>
+
+            <secondary-filters 
+                @change-page="updatePage"
+                @apply-secondary-filter="applySecondaryFilter"
+                @apply-secondary-range="applySecondaryRange" 
+                @apply-secondary-quantity="applySecondaryQuantityRange" 
+                @remove-filter="removeFilter"
+                @remove-range="removeRange"
+                @remove-quantity="removeQuantity"            
+                v-if="view =='secondary-filter-values'" 
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :key="filterscomponentKey"
+                :total-values="totalValues"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :current-filter="currentFilter"
+                :secondary-filter="secondaryFilter"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities"
+                :format="format">
+            </secondary-filters>
+
+            <subclass-view
+                @change-page="updatePage"
+                @update-class="updateClassValue"
+                v-if="view =='subclass'" 
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities">
+            </subclass-view>
+
+            <superclass-view
+                @change-page="updatePage"
+                @update-class="updateClassValue"
+                v-if="view =='superclass'" 
+                :website-text="siteText"
+                :fallback-text="fallbackSiteText"
+                :class-label="classLabel"
+                :class-value="classValue"
+                :applied-filters="appliedFilters"
+                :applied-ranges="appliedRanges"
+                :applied-quantities="appliedQuantities">
+            </superclass-view>
+        </div>
+    </div>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/axios.min.js"></script>
+    <script src="./config.js"></script>
+    <script src="src/index.js"></script>
+    <script src="src/components/topnav.js"></script>
+    <script src="src/components/header.js"></script>
+    <script src="src/components/class.js"></script>
+    <script src="src/components/view-all-items.js"></script>
+    <script src="src/components/filters-view.js"></script>
+    <script src="src/components/filter-values.js"></script>
+    <script src="src/components/secondary-filter-values.js"></script>
+    <script src="src/components/subclass.js"></script>
+    <script src="src/components/superclass.js"></script>
+
+    <script src="src/app.js"></script>
+</body>
+
+</html>

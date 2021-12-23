@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8" />
+	<title>CLDR Plural Rule Evaluator</title>
+	<meta name="author" content="Santhosh Thottingal" />
+	<!-- Libs -->
+	<script src="../libs/jquery.js"></script>
+</head>
+
+<body>
+	<pre/>
+	<script type="text/javascript">
+	$.ajax({
+		type: 'GET',
+		url: '../plurals.xml',
+		dataType: 'xml'
+	}).done(parse);
+
+	function parse(xmlDoc) {
+		var pluralRules, i, locales, plurals,
+			j, k, rule, result;
+
+		result = {
+			pluralRules: {}
+		};
+		pluralRules = xmlDoc.getElementsByTagName('pluralRules');
+		for (i = 0; i < pluralRules.length; i++) {
+			locales = pluralRules[i].getAttribute('locales').split(' ');
+			for (j = 0; j < locales.length; j++) {
+				result.pluralRules[locales[j]] = {};
+				plurals = pluralRules[i].getElementsByTagName('pluralRule');
+				if (plurals.length === 1) {
+					// they are just the  'other' rules
+					result.pluralRules[locales[j]] = undefined;
+				}
+				for (k = 0; k < plurals.length - 1; k++) {
+					rule = plurals[k].textContent;
+					rule = rule.split('@')[0].trim();
+					result.pluralRules[locales[j]][plurals[k].getAttribute('count')] = rule;
+				}
+				if (rule === 'n = 1' || rule === 'i = 1 and v = 0') {
+					// default rules
+					result.pluralRules[locales[j]] = undefined;
+				}
+			}
+		}
+		sortedResult = {
+			pluralRules: {}
+		};
+		var keys = Object.keys(result.pluralRules);
+		keys.sort();
+		for (i = 0; i < keys.length; i++) {
+			sortedResult.pluralRules[keys[i]] = result.pluralRules[keys[i]]
+		}
+		$('pre').text(JSON.stringify(sortedResult, undefined, '\t').replace(/"/g,'\''));
+	}
+	</script>
+
+</body>
+
+</html>

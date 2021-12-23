@@ -1,0 +1,124 @@
+<style>
+span.snak_description {
+	color:#999;
+	font-size:9pt;
+}
+</style>
+
+<template id='snak-template'>
+<span class='snak'>
+	<span v-if='snak.datatype=="wikibase-item"'>
+		<reasonator-link :item='snak.datavalue.value.id'></reasonator-link>
+		<span v-if='typeof nodesc=="undefined"' class='snak_description'>
+			{{getDescription()}}
+		</span>
+	</span>
+	<span v-else-if='snak.datatype=="time"'>
+		{{renderTime()}}
+		<span v-if='snak.datavalue.value.calendarmodel!="http://www.wikidata.org/entity/Q1985727"'>
+			<reasonator-link :item='snak.datavalue.value.calendarmodel.replace(/^.+\//,"")'></reasonator-link>
+		</span>
+	</span>
+	<span v-else-if='snak.datatype=="string"'>
+		{{snak.datavalue.value}}
+	</span>
+	<span v-else-if='snak.datatype=="monolingualtext"'>
+		{{snak.datavalue.value.text}}
+		<small>
+			[{{snak.datavalue.value.language}}]
+		</small>
+	</span>
+	<span v-else-if='snak.datatype=="globe-coordinate"'>
+		<div v-if='snak.datavalue.value.globe=="http://www.wikidata.org/entity/Q2"'>
+			<coordinates :snak='snak' submaps='2'></coordinates>
+		</div>
+		<div v-else>
+			<div>
+				{{snak.datavalue.value.latitude}}/{{snak.datavalue.value.longitude}}
+				[<wd-link :item='snak.datavalue.value.globe'></wd-link>]
+			</div>
+		</div>
+	</span>
+	<span v-else-if='snak.datatype=="quantity"'>
+		{{prettyNumber(snak.datavalue.value.amount*1)}}
+		<span v-if='typeof snak.datavalue.value.unit!="undefined" && snak.datavalue.value.unit!="1"'>
+			<reasonator-link :item='snak.datavalue.value.unit.replace(/^.+\//,"")'></reasonator-link>
+		</span>
+	</span>
+	<span v-else-if='snak.datatype=="external-id"'>
+		<span v-if='wd.getItem(snak.property).hasClaims(prop_map.formatter_url)'>
+			<a :href='wd.getItem(snak.property).getFirstStringForProperty(prop_map.formatter_url).replace(/\$1/,encodeURIComponent(snak.datavalue.value))' class='external' target='_blank'>
+				{{snak.datavalue.value.replace(/_/g,' ')}}
+			</a>
+		</span>
+		<span v-else>
+			{{snak.datavalue.value.replace(/_/g,' ')}}
+		</span>
+	</span>
+	<span v-else-if='snak.datatype=="commonsMedia"'>
+		<commons-thumbnail :filename='snak.datavalue.value'></commons-thumbnail>
+	</span>
+	<span v-else-if='snak.datatype=="coordinate"'>
+		{{snak.datavalue.value.latitude}}/{{snak.datavalue.value.longitude}}
+	</span>
+	<span v-else-if='snak.datatype=="wikibase-property"'>
+		<reasonator-link :item='snak.datavalue.value.id'></reasonator-link>
+		<span v-if='typeof nodesc=="undefined"' class='snak_description'>
+			{{getDescription()}}
+		</span>
+	</span>
+	<span v-else-if='snak.datatype=="url"'>
+		<a :href='snak.datavalue.value' class='external' target='_blank'>
+			{{snak.datavalue.value.replace(/^https{0,1}:\/\//,'').replace(/\/.*$/,'')}}
+		</a>
+	</span>
+	<span v-else>
+		Unknown: {{snak}}
+	</span>
+</span>
+</template>
+
+
+<script>
+'use strict';
+
+Vue.component ( 'snak' , {
+	props : [ 'snak' , 'nodesc' ] ,
+	data : function () { return {} } ,
+    created : function () {
+    	let me = this ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+    	getDescription : function () {
+    		let i = wd.getItem(this.snak.datavalue.value.id) ;
+    		if ( typeof i == 'undefined' ) return '' ;
+    		return i.getDesc() ;
+    	} ,
+    	prettyNumber : function ( nStr ) {
+			nStr = ''+nStr;
+			let x = nStr.split('.');
+			let x1 = x[0];
+			let x2 = x.length > 1 ? '.' + x[1] : '';
+			let rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			}
+			return x1 + x2;
+		} ,
+    	renderTime : function () {
+    		let t = this.snak.datavalue.value.time ;
+    		let prec = this.snak.datavalue.value.precision ;
+    		let post = /^\-/.test(t) ? ' BCE' : '' ;
+    		t = t.replace ( /^[+-]/ , '' ) ;
+    		if ( prec < 9 ) t = t.replace ( /^(\d+)-.*$/ , '$1' ) + '[' + prec + ']' ;
+    		else if ( prec == 9 ) t = t.replace ( /^(\d+)-.*$/ , '$1' )  ;
+    		else if ( prec == 10 ) t = t.replace ( /^(\d+-\d+)-.*$/ , '$1' )  ;
+    		else if ( prec == 11 ) t = t.replace ( /^(\d+-\d+-\d+)T.*$/ , '$1' )  ;
+    		return t + post ;
+    	}
+    },
+	template : '#snak-template'
+} ) ;
+</script>

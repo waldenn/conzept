@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga",
+			"WikiPhoenix"
+		]
+	},
+	"itemCount": "Det finns {{PLURAL:$1|ett|$1}} objekt som matchar den här beskrivningen.",
+	"classPlaceholder": "Skriv in klass",
+	"browse": "Eller, bläddra bland följande klasser:",
+	"noFiltersDefined": "Inget filter har definierats för den här klassen.",
+	"addFilter": "Lägg till ett filter",
+	"viewQuery": "Visa SPARQL-sökning",
+	"noItems": "Inge objekt matchar den här beskrivningen.",
+	"displayItemsError": "Försök att visa listan över objekt tog för lång tid; överväg att lägga till fler filter.",
+	"gettingValues": "Hämtar värden för filter $1...",
+	"noAdditionalValues": "Det finns inte ytterligare värden för filter $1...",
+	"filterError": "Försök att hämta värden tog för lång tid för filter $1.",
+	"filterTimeout": "(Hämtningen av en fullständig uppsättning värden för filter $1 tog för lång tid; istället följer här en kanske ofullständig uppsättning.)",
+	"selectValue": "Välj ett värde för $1:",
+	"selectAdditionalValue": "Välj ett ytterligare värde för $1:",
+	"noValue": "Inget värde",
+	"changeClassNote": "(Obs: har du ändrat klassen, kommer du förlora uppsättningen filter.)",
+	"specificClass": "Ändra till en mer specifik klass:",
+	"generalClass": "Ändra till en mer allmän klass:",
+	"viewList": "Visa lista över objekt",
+	"results": "({{PLURAL:$1|1 resultat|$1 resultat}})",
+	"applyLinkedFilter": "Tillämpa filter på $1",
+	"chooseLinkedFilter": "Välj ett filter från en av följande klasser:"
+}

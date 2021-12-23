@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Universal Viewer Examples</title>
+    <link rel="icon" href="uv/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="uv-av/uv.css">
+    <script type="text/javascript" src="https://unpkg.com/@edsilv/utils@0.2.6/dist/Utils.js"></script>
+    <script type="text/javascript" src="uv-av/lib/offline.js"></script>
+    <script type="text/javascript" src="uv-av/helpers.js"></script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 20px;
+        }
+
+        #uv {
+            width: 924px;
+            height: 668px;
+        }
+
+        #options {
+            padding: 20px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="uv" class="uv"></div>
+
+    <div id="options">
+        <select id="manifestSelect"></select>
+        <input id="manifest" type="text" value="" />
+        <a id="setManifestButton" class="button" href="#">Set</a>
+    </div>
+
+    <script type="text/javascript">
+
+        var uv, manifest, urlDataProvider;
+
+        window.addEventListener('uvLoaded', function(e) { 
+
+            urlDataProvider = new UV.URLDataProvider();
+
+            loadManifests(function() {
+                setSelectedManifest();
+                setupUV();
+            });
+
+        }, false);
+
+        function setupUV() {
+
+            var data = {
+                root: './uv-av',
+                iiifResourceUri: manifest,
+                configUri: 'examples-config.json',
+                collectionIndex: Number(urlDataProvider.get('c', 0)),
+                manifestIndex: Number(urlDataProvider.get('m', 0)),
+                sequenceIndex: Number(urlDataProvider.get('s', 0)),
+                canvasIndex: Number(urlDataProvider.get('cv', 0)),
+                rotation: Number(urlDataProvider.get('r', 0)),
+                xywh: urlDataProvider.get('xywh', '')
+            };
+
+            uv = createUV('#uv', data, urlDataProvider);
+
+            uv.on('created', function() {
+                Utils.Urls.setHashParameter('manifest', manifest);
+            });
+        }
+
+        function loadManifests(cb) {
+
+            // load manifests
+            $.getJSON('av.json', function(manifests) {
+
+                var $manifestSelect = $('#manifestSelect');
+
+                for (var i = 0; i < manifests.collections.length; i++) {
+                    var collection = manifests.collections[i];
+
+                    if (collection.visible === false) {
+                        continue;
+                    }
+
+                    $manifestSelect.append('<optgroup label="' + collection.label + '">');
+
+                    for (var j = 0; j < collection.manifests.length; j++) {
+                        var manifest = collection.manifests[j];
+
+                        if (manifest.visible !== false) {
+                            $manifestSelect.append('<option value="' + manifest['@id'] + '">' + manifest.label + '</option>');
+                        }
+                    }
+
+                    $manifestSelect.append('</optgroup>');      
+                }
+
+                cb();
+            });
+        }
+
+        function setSelectedManifest() {
+
+            manifest = Utils.Urls.getHashParameter('manifest');
+
+            if (manifest) {
+                $('#manifestSelect').val(manifest);
+            } else {
+                var options = $('#manifestSelect option');
+
+                if (options.length) {
+                    manifest = options[0].value;
+                }
+            }
+
+            $('#manifest').val(manifest);
+        }
+
+        $('#manifestSelect').on('change', function() {
+            $('#manifest').val($('#manifestSelect option:selected').val());
+        });
+
+        $('#setManifestButton').on('click', function() {
+            manifest = $('#manifest').val();
+
+            uv.set({
+                iiifResourceUri: manifest,
+                collectionIndex: 0,
+                manifestIndex: 0,
+                sequenceIndex: 0,
+                canvasIndex: 0
+            });
+        });
+
+    </script>
+
+    <!-- Put at the bottom of the page to ensure that the uvLoaded event isn't fired before a listener is registered -->
+    <script type="text/javascript" src="uv-av/uv.js"></script>
+
+</body>
+</html>

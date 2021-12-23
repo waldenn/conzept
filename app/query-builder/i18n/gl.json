@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maria zaos"
+		]
+	},
+	"query-builder-heading": "Xerador de consulta simple",
+	"query-builder-intro-text": "O Xerador de consultas de Wikidata proporciona unha interface visual para construír unha consulta sinxela en Wikidata. É ideal para usuarios con pouca ou ningunha experiencia en [1$ SPARQL], unha poderosa linguaxe de consulta. O xerador de consultas non ofrece a totalidade das funcións SPARQL, mais sempre pode abrir a súa consulta no Servizo de Consulta, onde podes ver, editar ou expandir usando a ligazón que aparece por riba dos resultados. [2$ As súas suxestións son benvidas].",
+	"query-builder-find-all-items": "Atopar todos os elementos...",
+	"query-builder-run-query": "Executar a consulta",
+	"query-builder-input-value-label": "Valor",
+	"query-builder-input-value-placeholder": "Introducir un valor",
+	"query-builder-item-value-lookup-no-match-found": "Non se atoparon coincidencias",
+	"query-builder-property-lookup-label": "Propiedade",
+	"query-builder-property-lookup-placeholder": "Introducir unha propiedade",
+	"query-builder-property-lookup-no-match-found": "Non se atoparon coincidencias",
+	"query-builder-result-link-text": "Amosar a consulta no Servizo de Consultas",
+	"query-builder-result-placeholder": "Os resultados serán mostrados aquí",
+	"query-builder-result-header": "Resultados",
+	"query-builder-result-error-incomplete-form": "Un ou máis os campos están baleiros. Por favor, complete a consulta ou seleccione un tipo de campo acaído.",
+	"query-builder-result-error-missing-property": "Por favor, seleccione unha propiedade",
+	"query-builder-result-error-missing-value": "Por favor, introduza un valor",
+	"query-builder-add-condition": "Engada unha condición",
+	"query-builder-value-type-relation-dropdown-matching": "Emparellando",
+	"query-builder-value-type-relation-dropdown-without": "Sen",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "calquera que sexa o seu valor",
+	"query-builder-reference-relation-label": "Referencias",
+	"query-builder-reference-relation-dropdown-with": "Só con referencias",
+	"query-builder-reference-relation-dropdown-without": "Só sen referencias",
+	"query-builder-reference-relation-dropdown-regardless": "Con e sen referencias",
+	"query-builder-delete-condition": "Eliminar a condición",
+	"query-builder-condition-placeholder": "Engadir unha condición para comezar a construír unha consulta",
+	"query-builder-condition-relation-toggle-and": "e",
+	"query-builder-condition-relation-toggle-or": "ou",
+	"query-builder-limit-number-results-description": "Limitar o número de resultados a",
+	"query-builder-limit-number-placeholder": "Introducir un número",
+	"query-builder-limit-number-screenreader-label": "Número máximo de resultados",
+	"query-builder-label-opt-out": "Amosar os IDs no canto das etiquetas (pode evitar o \"timeout\")",
+	"query-builder-negation-option-label-with": "Con",
+	"query-builder-negation-option-label-without": "Sen"
+}

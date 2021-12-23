@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="500"
+   height="342"
+   id="svg6734"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="ZZ1.svg">
+  <metadata
+     id="metadata11">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1004"
+     id="namedview9"
+     showgrid="false"
+     inkscape:zoom="0.76315789"
+     inkscape:cx="250"
+     inkscape:cy="171"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer 1" />
+  <defs
+     id="defs6736" />
+  <g
+     transform="translate(-90,-127.0765)"
+     id="layer1">
+    <g
+       transform="translate(90,127.0765)"
+       style="fill-rule:evenodd"
+       id="Layer 1">
+      <rect
+         width="500"
+         height="228"
+         x="0"
+         y="0"
+         style="fill:#000000"
+         id="rect5" />
+      <path
+         d="M 321.49201,206.3216 L 350.64568,178.5562 L 318.71547,192.4389 L 342.31606,159.12041 L 310.38584,170.22658 L 324.26855,136.90809 L 293.7266,153.56733 L 302.05622,120.24885 L 274.29082,143.84944 L 275.67909,110.53096 L 260.40812,139.68463 L 250.69023,106.36615 L 239.58407,139.68463 L 224.3131,110.53096 L 225.70137,143.84944 L 199.32423,120.24885 L 206.26559,153.56733 L 175.72364,136.90809 L 190.99461,170.22658 L 159.0644,159.12041 L 182.66499,192.4389 L 149.34651,179.94447 L 178.50018,206.3216 L 321.49201,206.3216 z "
+         style="fill:#ffd400;fill-opacity:1"
+         id="path9" />
+      <rect
+         width="500"
+         height="114"
+         x="0"
+         y="228"
+         style="fill:#009a3f;fill-opacity:1"
+         id="rect13" />
+    </g>
+  </g>
+</svg>

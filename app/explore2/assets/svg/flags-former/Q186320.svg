@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500" height="300">
+<rect width="500" height="300" x="0" y ="150" style="fill:#fcc300" />
+<rect width="500" height="150" x="0" y ="0" style="fill:#e2001a" />
+</svg>

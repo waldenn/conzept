@@ -1,0 +1,250 @@
+<style>
+ul.typeahead_search_results {
+	position:absolute;
+	width:25rem;
+	box-shadow:5px 5px 5px #AAA;
+	z-index:5;
+}
+input.typeahead_search_results_query {
+	display:inline;
+	width:auto;
+}
+li.typeahead_search_results_row {
+	cursor:pointer;
+	line-height:1rem;
+	display:flex;
+	flex-direction:row;
+}
+li.typeahead_search_results_row:hover {
+	background-color:#7BA7E1;
+}
+li.typeahead_search_results_row_marked {
+	background-color:#7BA7E1;
+}
+div.typeahead_search_results_query_overlay {
+	position:absolute;
+	width:30rem;
+	text-align:right;
+	z-index:5;
+	margin-top:1rem;
+	padding-right:0.2rem;
+	color:#AAA;
+	font-family:Courier;
+	pointer-events:none;
+}
+</style>
+
+<template id='typeahead-search-template'>
+<div :q='q' style='display:inline-block;'>
+	<form class='form'>
+		<div style='white-space:nowrap;'>
+			<div style='display:inline'>
+				<div class='typeahead_search_results_query_overlay'>{{q}}</div>
+				<input type='text' ref='search' class='form-control typeahead_search_results_query' v-model='query' @keyup='onKeyRelease' @keyup.esc='onKeyEscape' @keyup.up='onKeyUp' @keyup.down='onKeyDown' @keyup.enter='onKeyEnter' autofocus />
+			</div>
+			<button class='btn btn-outline-primary' @click.prevent='doSearch'>🔍</button>
+		</div>
+		<ul class="mt-1 list-group typeahead_search_results" v-if='is_search_done'>
+			<li v-if='results.length==0' class='list-group-item'>
+				<i>Nothing found</i>
+			</li>
+			<li v-for='r in results' class='list-group-item typeahead_search_results_row'>
+				<div @click.prevent='onSelectResult(r)' style='flex-grow:1'>
+					<div><b>{{r.label}}</b></div>
+					<div>{{r.description}}</div>
+				</div>
+				<div>
+					<a class='wikidata' target='_blank' :href='r.url'>
+						<small>[{{r.id}}]</small>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</form>
+</div>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'typeahead-search' , {
+	template : '#typeahead-search-template' ,
+	props : [ 'type' , 'fulltext' , 'initial' , 'language' , 'limit' , 'noinitialsearch' , 'initial_q' ] ,
+	data : function () { return { query:'' , last_query:'' , results:[] , q:'' , is_search_running:false , is_search_done:false , timeout:'' , key_select_position:-1 , last_emit:'' } } ,
+	created : function () {
+		var me = this ;
+		if ( typeof me.initial != 'undefined' && $.trim(me.initial) != '' ) {
+			me.query = $.trim(me.initial) ;
+			if ( !me.noinitialsearch ) me.doSearch () ;
+		} else if ( typeof me.initial_q != 'undefined' && $.trim(me.initial_q) != '' ) {
+			me.q = me.initial_q ;
+//			me.last_emit = me.q ; // ?
+			wd.getItemBatch ( [me.initial_q] , function () {
+				let i = wd.getItem ( me.initial_q ) ;
+				if ( typeof i == 'undefined' ) return ;
+				me.last_query = $.trim(i.getLabel(me.getLanguage())) ;
+				me.query = me.last_query ;
+			} ) ;
+		}
+	} ,
+	mounted : function () {
+		this.$refs.search.focus();
+		if (typeof tt!='undefined') tt.updateInterface(this.$el) ;
+	} ,
+    updated : function () { if (typeof tt!='undefined') tt.updateInterface(this.$el) } ,
+	methods : {
+		clearLastSearch : function () {
+			var me = this ;
+			me.is_search_done = false ;
+			me.is_search_running = true ;
+			me.key_select_position = -1 ;
+			me.highlightKeySelect() ;
+		} ,
+		doSearch : function () {
+			var me = this ;
+			let query = $.trim(me.query) ;
+			if ( query == '' ) return me.clearLastSearch() ;
+			if ( query == me.last_query ) return ;
+			me.last_query = query ;
+			$('#working').show() ;
+			me.clearLastSearch() ;
+
+			me.results = [] ;
+
+			let language = me.getLanguage() ;
+
+			if ( me.fulltext ) {
+
+				$.getJSON ( 'https://www.wikidata.org/w/api.php?callback=?' , {
+					action:'query',
+					list:'search',
+					srnamespace:(me.type=='property'?120:0), // TODO lexemes'n'stuff
+					srlimit:(me.limit||10),
+					srsearch:query,
+					format:'json'
+				} , function ( d ) {
+					let to_load = [] ;
+					$.each ( d.query.search , function ( k , v ) {
+						to_load.push ( v.title ) ;
+					} ) ;
+					me.loadSearchResultItems(to_load);
+				} ) ;
+
+			} else {
+
+				$.getJSON ( 'https://www.wikidata.org/w/api.php?callback=?' , {
+					action:'wbsearchentities',
+					language:language,
+					type:(me.type||'item'),
+					limit:(me.limit||10),
+					search:query,
+					format:'json'
+				} , function ( d ) {
+					let to_load = [] ;
+					$.each ( d.search , function ( k , v ) {
+						to_load.push ( v.title ) ;
+					} ) ;
+					me.loadSearchResultItems(to_load);
+				} ) ;
+
+			}
+		} ,
+		loadSearchResultItems : function ( to_load ) {
+			let me = this ;
+			let language = me.getLanguage() ;
+			$.each ( to_load , function ( dummy , q ) {
+				me.results.push ( { id:q } ) ;
+			} ) ;
+
+			wd.getItemBatch ( to_load , function () {
+				$.each ( me.results , function ( k , v ) {
+					let i = wd.getItem ( v.id ) ;
+					if ( typeof i == 'undefined' ) return ;
+					me.results[k].label = i.getLabel(language) ;
+					me.results[k].description = i.getDesc(language) ;
+					me.results[k].url = i.getURL() ;
+					me.results[k].entity = i ;
+				} ) ;
+				me.processResults() ;
+			} ) ;
+		} ,
+		getLanguage : function () {
+			return this.language||tt.language ;
+		} ,
+		processResults : function () {
+			var me = this ;
+//console.log ( JSON.parse(JSON.stringify(me.results)) ) ;
+			$('#working').hide() ;
+			me.is_search_done = true ;
+			me.is_search_running = false ;
+		} ,
+		onSelectResult : function ( r ) {
+			if ( typeof r == 'undefined' ) return ;
+			this.last_query = r.label ;
+			this.query = r.label ;
+			this.q = r.id ;
+			this.is_search_done = false ;
+			if ( this.last_emit != this.q ) {
+				this.$emit('setq',this.q) ;
+				this.last_emit = this.q ;
+			}
+			this.results = [] ;
+		} ,
+		onKeyUp : function () {
+			var me = this ;
+			if ( !me.is_search_done ) return ;
+			me.key_select_position-- ;
+			if ( me.key_select_position < 0 ) me.key_select_position = 0 ;
+			me.highlightKeySelect() ;
+		} ,
+		onKeyDown : function () {
+			var me = this ;
+			if ( !me.is_search_done ) {
+				me.last_query = '' ;
+				return me.doSearch() ;
+			}
+			me.key_select_position++ ;
+			if ( me.key_select_position >= me.results.length ) me.key_select_position = me.results.length-1 ;
+			me.highlightKeySelect() ;
+		} ,
+		highlightKeySelect : function () {
+			var me = this ;
+			$(me.$el).find('li.typeahead_search_results_row_marked').removeClass('typeahead_search_results_row_marked');
+			if ( me.key_select_position < 0 ) return ;
+			$($(me.$el).find('li.typeahead_search_results_row').get(me.key_select_position)).addClass('typeahead_search_results_row_marked');
+		} ,
+		onKeyRelease : function () {
+			var me = this ;
+			if ( me.fulltext ) return ; // No fulltext search on key change
+			clearTimeout ( me.timeout ) ;
+			me.timeout = setTimeout ( function () { me.doSearch() } , 200 ) ;
+		} ,
+		onKeyEnter : function () {
+			var me = this ;
+			if ( me.key_select_position >=0 ) me.onSelectResult ( me.results[me.key_select_position] ) ;
+			else me.doSearch() ;
+		} ,
+		onKeyEscape : function () {
+			this.is_search_done = false ;
+			this.key_select_position = -1 ;
+			this.highlightKeySelect() ;
+			this.$emit('cancel') ;
+		} ,
+	} ,
+	watch : {
+		initial_q : function ( new_q , old_q ) {
+			var me = this ;
+			wd.getItemBatch ( [ new_q ] , function () {
+				let i = wd.getItem ( new_q ) ;
+				let r = {
+					id : new_q ,
+					label : (typeof i=='undefined'?new_q:i.getLabel(me.getLanguage()))
+				}
+				me.onSelectResult ( r ) ;
+			} ) ;
+		}
+	}
+} ) ;
+
+
+</script>

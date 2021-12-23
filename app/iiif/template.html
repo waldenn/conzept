@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="http://html5-templates.com/" />
+    <title>Example page for Universal Player</title>
+    <meta name="description" content="Simple HTML5 Page layout template with header, footer, sidebar etc.">
+	<link rel="stylesheet" href="template-style.css">
+	<link rel="stylesheet" type="text/css" href="uv/uv.css">
+    <script src="uv/lib/offline.js"></script>
+    <script src="uv/helpers.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://rawgit.com/edsilv/utils/master/dist/utils.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<div id="logo">Logo area</div>
+		<nav>  
+			<ul>
+				<li><a href="/">Home</a>
+				<li><a href="#">Sounds</a>
+				<li><a href="#">Menu item</a>
+				<li><a href="#">Menu item</a>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<strong>An example of where the Universal player could sit in the page.</strong>
+	</section>
+	<section id="pageContent">
+		
+		<img id="poster" width="200" />
+		<button id="play">Play</button>
+		<button id="pause">Pause</button>
+
+		<div id="viewer" class="viewer expandable">
+			<div id="uv" class="uv"></div>
+            <!-- <iframe id="uv" class="expandable" allowfullscreen frameborder="0" allowtransparency="true"></iframe> -->
+            <!-- <br><button id="expando" class="expand">expand</button> -->
+        </div>
+		
+		<main role="main">
+			<article>
+				<h2>Sound file title</h2>
+				<p>Lorem ipsum dolor sit amet, nonumes voluptatum mel ea, cu case ceteros cum. Novum commodo malorum vix ut. Dolores consequuntur in ius, sale electram dissentiunt quo te. Cu duo omnes invidunt, eos eu mucius fabellas. Stet facilis ius te, quando voluptatibus eos in. Ad vix mundi alterum, integre urbanitas intellegam vix in.</p>
+			</article>
+			<article>
+				<h2>Illud mollis moderatius</h2>
+				<p>Eum facete intellegat ei, ut mazim melius usu. Has elit simul primis ne, regione minimum id cum. Sea deleniti dissentiet ea. Illud mollis moderatius ut per, at qui ubique populo. Eum ad cibo legimus, vim ei quidam fastidii.</p>
+			</article>
+		</main>
+		<aside>
+			<div>Another sound file</div>
+			<div>Another sound file</div>
+			<div>Another sound file</div>
+		</aside>
+		
+	</section>
+	
+	
+	<footer>
+		<div class="viewer">Placeholder for Universal viewer at bottom of the page</div>
+		<p>&copy; You can copy and edit and publish this template but please leave a link to our website | <a href="http://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a></p>
+	</footer>
+
+    <script type="text/javascript">
+
+		var uv, $uv, urlDataProvider, manifest;
+
+		window.addEventListener('uvLoaded', function (e) {
+
+			$uv = $('#uv');
+
+			urlDataProvider = new UV.URLDataProvider();
+
+			var data = {
+				root: './uv',
+				configUri: 'template-config.json',
+				collectionIndex: Number(urlDataProvider.get('c', 0)),
+				manifestIndex: Number(urlDataProvider.get('m', 0)),
+				sequenceIndex: Number(urlDataProvider.get('s', 0)),
+				canvasIndex: Number(urlDataProvider.get('cv', 0)),
+				rotation: Number(urlDataProvider.get('r', 0)),
+				xywh: urlDataProvider.get('xywh', ''),
+				rangeId: urlDataProvider.get('rid', ''),
+				locales: [
+					{
+						name: 'en-GB'
+					}
+				]
+			};
+
+			uv = createUV('#uv', data, urlDataProvider);
+
+			uv.on('created', function() {
+				Utils.Urls.setHashParameter('manifest', manifest);
+
+				// poster image
+				var posterimage = uv.extension.helper.getPosterImage();
+				$('#poster').prop('src', posterimage);
+			});
+
+			// are there uv hash parameters?
+			manifest = Utils.Urls.getHashParameter('manifest');
+
+			if (manifest) {
+				uv.set(Object.assign(data, {
+					iiifResourceUri: manifest
+				}));
+			}
+
+		}, false);
+
+		$('#play').on('click', function() {
+			uv.extension.centerPanel.avcomponent.play();
+		});
+
+		$('#pause').on('click', function() {
+			uv.extension.centerPanel.avcomponent.pause();
+		});
+
+		/*
+        $(function() {
+
+			var isLocalhost = document.location.href.indexOf('localhost') !== -1;
+			var $uv = $('#uv');
+			var $viewer = $('#viewer');
+
+            var uvurl = (isLocalhost) ? '/examples/uv/uv.html#?' : '/uv/uv.html#?';
+            // are there uv hash parameters?
+            var manifest = Utils.Urls.getHashParameter('manifest');
+            var rangeId = Utils.Urls.getHashParameter('rid');
+
+            if (manifest) {
+                uvurl += 'manifest=' + manifest;
+
+                if (rangeId) {
+                    uvurl += '&rid=' + rangeId;
+				}
+				
+				uvurl += '&config=' + ((isLocalhost) ? '/examples/template-config.json' : '/template-config.json');
+
+				// $uv.on('load', function() {
+				// 	$uv.contents().find('head')
+				// 	.append($('<style>  .uv{ background-color: transparent !important; } .canvas-container{ background-color: transparent !important; }  </style>'));
+				// });
+
+				$uv.prop('src', uvurl);
+            }
+
+            $('#expando').on('click', function() {
+
+				if ($('#expando').hasClass('expand')) {
+					$('.expandable').each(function() {
+						$(this).animate({height: '640px'}, 600, function() {
+							$('#expando').removeClass('expand').addClass('collapse');
+							$('#expando').text('collapse');
+						});
+					});
+				} else {
+					$('.expandable').each(function() {
+						$(this).animate({height: '220px'}, 600, function() {
+							$('#expando').removeClass('collapse').addClass('expand');
+							$('#expando').text('expand');
+						});
+					});
+				}
+			});
+
+			function resize() {
+				var width = $viewer.width();
+				var height = $viewer.height();
+				$uv.width(width);
+				$uv.height(height);
+			}
+
+			$(window).on('resize' ,function() {
+				resize();
+			});
+
+			resize();
+		});
+		*/
+
+	</script>
+	
+	<script src="uv/uv.js"></script>
+
+</body>
+
+</html>

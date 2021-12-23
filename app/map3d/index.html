@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>conzept 3D terrain map</title>
+        <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0">
+        <!--link rel="stylesheet" href="index_files/autoComplete.css"-->
+        <link type="text/css" href="./css/main.css?v0.10" rel="stylesheet">
+
+        <!-- conzept resources -->
+        <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+    </head>
+
+    <body>
+        <div style="position: absolute; width: 100%; height: 100%;" id="container"><div style="position: relative; height: 100%; overflow: hidden;"><div id="container" style="font-size: 14px; color: rgb(255, 255, 255); position: absolute; inset: 0px;"><div style="width: 100%; height: 100%; touch-action: none;"><div style="position: relative; width: 100%; height: 100%;" tabindex="0"><canvas width="1920" height="941" style="width: 1920px; height: 941px;"></canvas></div></div><div class="credits" style="position: absolute; bottom: 0px; right: 0px; padding: 1px 4px; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; text-align: right; text-transform: none; color: white; background: rgba(255, 255, 255, 0.1) none repeat scroll 0% 0%;"><p style="color: white; font-size: 6pt; margin: 0px;">Data: <undefined><span>©<a style="color: white; font-size: 6pt; margin: 0; text-decoration: underline;" href="https://www.nasadem.xyz/">nasadem.XYZ</a></span><span> </span></undefined><undefined><span><a style="color: white; font-size: 6pt; margin: 0; text-decoration: underline;" href="https://www.maptiler.com/copyright/">Maptiler</a> <a style="color: white; font-size: 6pt; margin: 0; text-decoration: underline;" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span><span> </span></undefined></p></div><div style="position: absolute; top: 6px; right: 8px;" class="engine-controls"><div><button class="b1 fa fa-minus" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;"></button><button class="b1 fa fa-plus" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;"></button></div><div><button class="" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;">2D</button><button class="" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;">3D</button></div><div><button class="b1 fas fa-rotate-redo" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;"></button><button class="b1 fas fa-undo" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;"></button></div></div><div style="position: absolute; top: initial; bottom: 15px; right: 8px;" class="engine-controls bottom"><div><button class="b1 fa fa-location-arrow" style="border: 1px solid white; margin: 4px; color: white; width: 36px; height: 36px; line-height: 32px; text-align: center; padding: 0px; border-radius: 18px; background-color: rgb(51, 53, 66); outline: currentcolor none medium; transition: background-color 0.5s ease 0s; cursor: pointer;"></button></div></div><div class="compass" style="position: absolute; top: 9px; left: 11px; padding: 3px 13px; border: 1px solid white; border-radius: 34px; background-color: rgb(51, 53, 66); transform: rotate(-0.35rad) translateZ(0px);"><div style="border-bottom: 14px solid rgb(179, 51, 48); border-left: 4px solid transparent; border-right: 4px solid transparent;"></div><div style="border-top: 14px solid rgb(204, 204, 204); border-left: 4px solid transparent; border-right: 4px solid transparent;"></div></div><div class="powered-by" style="position: absolute; padding: 11px 8px; bottom: 0px; opacity: 0.9; user-select: none;"><a href="https://github.com/felixpalmer/procedural-gl-js" target="_blank" style="background-image: url(&quot;data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect x='34.32' y='1.52' width='57.03' height='57.03' fill='%23fff'/&gt;&lt;rect x='34.32' y='69.96' width='28.52' height='28.52' fill='%23fff'/&gt;&lt;rect x='8.65' y='69.96' width='14.26' height='14.26' fill='%23fff'/&gt;&lt;rect x='15.78' y='51.43' width='7.13' height='7.13' fill='%23fff'/&gt;&lt;/svg&gt;&quot;); background-repeat: no-repeat; display: block; height: 40px; width: 40px;"></a></div></div></div></div>
+    <input id="autoComplete" tabindex="1" type="text" placeholder="Enter location"><ul id="autoComplete_list"></ul>
+    
+    <script src="js/procedural-gl.min.js"></script>
+    <div style="position: absolute; left: -999px; top: -999px; display: none;"><i class="fa fa-minus"></i></div>
+
+    <script src="./js/main.js?v0.10"></script>
+    <script src="./js/autoComplete.js"></script>
+
+    <script>
+        new autoComplete({
+            selector: '#autoComplete', 
+            data: {                              // Data src [Array, Function, Async] | (REQUIRED)
+                src: async () => {
+                    // API key token
+                    const token = "dc9c385baded4ad6880a37a1afcef871";
+                    // User search query
+                    const query = document.querySelector("#autoComplete").value;
+                    // Fetch External Data Source
+                    const source = await fetch( `https://api.opencagedata.com/geocode/v1/json?q=${query}&key=${token}` );
+                    // Format data into JSON
+                    const data = await source.json();
+                    // Return Fetched data
+                    return data.results;
+                },
+                key: ["formatted"],
+                cache: false
+            },
+			placeHolder: "Enter location",
+			selector: "#autoComplete",
+			threshold: 3,
+			debounce: 200,
+			searchEngine: "loose",
+			highlight: true,
+			maxResults: 5,
+			resultsList: {
+				render: true,
+				container: source => {
+					source.setAttribute("id", "autoComplete_list");
+				},
+				destination: document.querySelector("#autoComplete"),
+				position: "afterend",
+				element: "ul"
+			},
+			resultItem: {
+				content: (data, source) => {
+					source.innerHTML = data.match;
+				},
+				element: "li"
+			},
+			noResults: () => {
+				const result = document.createElement("li");
+				result.setAttribute("class", "no_result");
+				result.setAttribute("tabindex", "1");
+				result.innerHTML = "No Results";
+				document.querySelector("#autoComplete_list").appendChild(result);
+			},
+			onSelection: feedback => {
+				const geometry = feedback.selection.value.geometry;
+				document.querySelector("#autoComplete").value = "";
+				Procedural.displayLocation( {
+					longitude: geometry.lng, latitude: geometry.lat
+				} );
+            }
+        });
+    </script>
+
+</body></html>

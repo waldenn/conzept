@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"itemCount": "有 {{PLURAL:$1|1|$1}} 個項目符合此描述。",
+	"classPlaceholder": "輸入分類",
+	"browse": "或是瀏覽以下任一分類：",
+	"noFiltersDefined": "沒有被定義用於此分類的篩選。",
+	"addFilter": "添加篩選",
+	"viewQuery": "查看 SPARQL 查詢",
+	"noItems": "沒有符合此描述的項目。",
+	"displayItemsError": "嘗試顯示出的項目清單花費了太多時間，請考慮添加更多篩選。",
+	"gettingValues": "正在取得用於篩選$1的值…",
+	"noAdditionalValues": "沒有用於篩選$1的額外職。",
+	"filterError": "嘗試取得用於篩選$1的值花費了太多時間。",
+	"filterTimeout": "（取得篩選$1的完整值花費了太多時間；反過來說，這或許是不完整的集合。）",
+	"selectValue": "選擇一個用於$1的值：",
+	"selectAdditionalValue": "選擇一個用於$1的額外值：",
+	"noValue": "沒有值",
+	"changeClassNote": "（註：如果您更改分類，您會失去目前的篩選集合。）",
+	"specificClass": "更改成更具體的分類：",
+	"generalClass": "更改成更通用的分類：",
+	"viewList": "查看項目清單",
+	"results": "({{PLURAL:$1|1 個結果|$1 個結果}})",
+	"applyLinkedFilter": "在$1套用篩選",
+	"chooseLinkedFilter": "從以下類別挑選出一個篩選："
+}

@@ -1,0 +1,166 @@
+<template id='hierarchy-template'>
+<div>
+	<div v-if='loading'>
+		<i :tt='tt'></i>
+	</div>
+	<div v-else-if='!has_results'>
+		<i>No results</i>
+	</div>
+	<div v-else-if='loaded'>
+
+		<div class="card property_list">
+			<div class="card-header bg-light">
+				<div v-if='collapsible' style='float:right'>
+					<a href="#" class="badge badge-pill badge-light" @click.prevent='collapsed=!collapsed'>
+						<span v-if='collapsed'>
+							Show all {{items.length}}
+						</span>
+						<span v-else>
+							Hide
+						</span>
+					</a>
+				</div>
+				<span :tt='tt'></span>
+			</div>
+			<div class="card-body">
+				<div :style='collapsed?"max-height:15rem;overflow:auto;":""'>
+					<ul class="list-group list-group-flush">
+						<li v-for='item in items' class="list-group-item">
+							<reasonator-link :item='item'></reasonator-link>
+							<span class='snak_description'>{{getDescription(item)}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div v-else>
+		<i>Hierarchy for {{prop}} did not load.</i>
+	</div>
+</div>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'hierarchy' , {
+	props : [ 'i' , 'prop' , 'tt' ] ,
+	data : function () { return { loading:true , loaded:false , has_results:false , items:[] , collapsible:false , collapsed:false } } ,
+    created : function () {
+    	let me = this ;
+    	let sparql_query = 'SELECT DISTINCT ?item WHERE { wd:'+me.i.getID()+' wdt:'+me.prop+'* ?item }' ;
+    	me.loading = true ;
+    	me.loaded = false ;
+    	me.has_results = false ;
+    	me.collapsible = false ;
+    	me.collapsed = false ;
+    	wd.loadSPARQLitems ( sparql_query , function ( items ) {
+    		me.loaded = true ;
+    		if ( items.length < 2 ) {
+	    		me.loading = false ;
+	    		return ;
+    		}
+			wd.getItemBatch ( items , function () {
+				let tree = me.findLongestPath ( { start:me.i.getID() , props:[me.prop] } ) ;
+				me.items = tree.reverse() ;
+	    		me.loading = false ;
+				if ( tree.length == 0 ) return ;
+				if ( me.items.length > 10 ) {
+					me.collapsible = true ;
+					me.collapsed = true ;
+				}
+				me.has_results = true ;
+			} ) ;
+    	} ) ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+
+    	getDescription : function ( item ) {
+    		let i = wd.getItem ( item ) ;
+    		if ( typeof i == 'undefined' ) return '' ;
+    		return i.getDesc() ;
+    	} ,
+
+    	/**
+		 * In a graph of items linked by properties, finds the longest path from a give item to a root item.
+		 * @param {hash} o - Hash with keys "start" (start item ID) and "props" (array of property IDs).
+		 * @returns {array} List of item IDs, starting with the "o.start" item, ending with the root item.
+		 */
+		findLongestPath : function ( o ) {
+			var self = this ;
+			var props = [] ;
+			$.each ( o.props , function ( dummy , p ) { props.push ( 'P'+(p+'').replace(/\D/g,'') ) } ) ;
+			
+			var tree = {} ;
+			
+			function preset ( qs ) {
+				$.each ( qs , function ( dummy , q ) {
+					var new_q = [] ;
+					if ( undefined !== tree[q] ) return ;
+					tree[q] = [] ;
+					$.each ( props , function ( dummy , p ) {
+						if ( 'undefined' == typeof wd.getItem(q) ) return ;
+						var by_rank = { normal:[] , preferred:[] , deprecated:[] } ;
+						var claims = wd.getItem(q).getClaimsForProperty ( p ) ;
+						$.each ( claims , function ( dummy , c ) {
+							var qx = wd.getItem(q).getClaimTargetItemID ( c ) ;
+							if ( qx === undefined ) return ;
+							by_rank[c.rank||'normal'].push ( qx ) ;
+						} ) ;
+						
+						var to_process = by_rank.preferred ;
+						if ( to_process.length == 0 ) to_process = by_rank.normal ;
+						
+						$.each ( to_process , function ( dummy , qx ) {
+							if ( -1 != $.inArray ( qx , new_q ) ) return ;
+							new_q.push ( qx ) ;
+							tree[q].push ( qx ) ;
+						} ) ;
+
+					} ) ;
+					preset ( new_q ) ;
+				} ) ;
+			}
+			
+			preset ( [ o.start ] ) ;
+		
+			function iterate ( qs ) {
+				var nqs = [] ;
+				$.each ( qs , function ( dummy , i ) {
+					var sub_q = [] ;
+					$.each ( tree[i.q] , function ( dummy2 , v ) {
+						if ( -1 != $.inArray ( v , i.hist ) ) return ;
+						sub_q.push ( v ) ;
+					} ) ;
+					
+					$.each ( sub_q , function ( k , v ) {
+						var nh = i.hist.slice() ;
+						nh.push ( v ) ;
+						nqs.push ( { q:v , hist: nh } ) ;
+					} ) ;
+					
+				} ) ;
+				
+				if ( nqs.length > 0 ) {
+					qs = [] ;
+					return iterate ( nqs ) ;
+				} else {
+					var longest = [] ;
+					$.each ( qs , function ( dummy , i ) {
+						if ( i.hist.length > longest.length ) longest = i.hist ;
+					} ) ;
+					return longest ;
+				}
+				
+			}
+			
+			var ret = iterate ( [ { q:o.start , hist:[o.start] } ] ) ;
+			return ret ;
+		} ,
+    },
+	template : '#hierarchy-template'
+} ) ;
+</script>

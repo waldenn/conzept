@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi"
+		]
+	},
+	"itemCount": "Nê izahatiya {{PLURAL:$1|zeypê jew unsur esto|zeypê $1 unsuri estê }}.",
+	"classPlaceholder": "Sınıf cı kerê",
+	"browse": "Yana çım berzê sınıfanê cêrênan:",
+	"noFiltersDefined": "Qandê na sınıf parzun nêsılasneyayo.",
+	"addFilter": "Parzûnê cı kerê",
+	"viewQuery": "Persê SPARQL bıvinê",
+	"noItems": "Gorey nê izahati unsur çıniyo",
+	"displayItemsError": "Cerbnayışê mısnayışê listey obcey zef derg ramıto; Dehana zaf parzun dekedışi bıfıkıriyê.",
+	"gettingValues": "Qandê parzunê $1 erci gêrênê...",
+	"noAdditionalValues": "Qandê parzunê $1 erco zêde çıniyo.",
+	"filterError": "Qandê parzunê $1 gırotışê erca zaf derg ramıto.",
+	"filterTimeout": "(Qandê parzunê $1 yew tam kumey erci gırotış zaf derg ramıt; heruna neyi, tiya de mara ke kumeya kemi eata.)",
+	"selectValue": "Qandê $1 ercê weçinê:",
+	"selectAdditionalValue": "Qandê $1 zêde jew ercê weçinê:",
+	"noValue": "Erc çıniyo",
+	"changeClassNote": "(Not: eke sınıfe bıvırnê se, gruba parzunê mewcudi kenê vıni)",
+	"specificClass": "Ravêrê zêde jew sınıfa spesifik:",
+	"generalClass": "Ravêrê ju sınıfa umumi:",
+	"viewList": "Listey unsura bıvinê",
+	"results": "({{PLURAL:$1|1 netice|$1 neticeyi}})"
+}

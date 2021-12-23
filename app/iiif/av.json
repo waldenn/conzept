@@ -1,0 +1,76 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "http://universalviewer.io/manifests.json",
+    "@type": "sc:Collection",
+    "collections": [
+      {
+        "@context": "http://iiif.io/api/presentation/2/context.json",
+        "@id": "http://universalviewer.io/manifests.json",
+        "@type": "sc:Collection",
+        "label": "AV",
+        "visible": true,
+        "manifests": [
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/bl/01_gapless_audio.json",
+            "@type": "sc:Manifest",
+            "label": "Gapless audio playback",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/bl/02_gapless_video.json",
+            "@type": "sc:Manifest",
+            "label": "Gapless audio playback",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/bl/03_synchronised_video.json",
+            "@type": "sc:Manifest",
+            "label": "Synchronised video example",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/bl/04_synchronised_av.json",
+            "@type": "sc:Manifest",
+            "label": "Synchronised video example",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/bl/05_synchronised_av_text.json",
+            "@type": "sc:Manifest",
+            "label": "Video synchronised with gapless audio, text",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/iiif/fire.json",
+            "@type": "sc:Manifest",
+            "label": "Fire",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/iiif/mahler-symphony.json",
+            "@type": "sc:Manifest",
+            "label": "Symphony no. 3 - Mahler, Gustav, 1860-1911",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/iiif/lunchroom-manners.json",
+            "@type": "sc:Manifest",
+            "label": "Lunchroom manners",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/iiif/02.json",
+            "@type": "sc:Manifest",
+            "label": "Temporal Fragment of a Canvas",
+            "visible": true
+          },
+          {
+            "@id": "https://iiif-commons.github.io/iiif-av-component/examples/data/iiif/16.json",
+            "@type": "sc:Manifest",
+            "label": "One video file, segments of file associated with different canvases",
+            "visible": true
+          }
+        ]
+      }
+    ]
+  }

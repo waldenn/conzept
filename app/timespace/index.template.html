@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html id="page">
+<head>
+
+  <meta name="robots" content="nofollow">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="stylesheet" href="timespace_files/css/bootstrap.css">
+
+  <!-- conzept resources -->
+  CONZEPT_COMMON_HTML_INCLUDE
+
+  <script>
+    // keyboard control
+    $(document).keydown(function(event) {
+
+      let key = (event.keyCode ? event.keyCode : event.which);
+
+      //console.log( event, key );
+
+      if ( key == '70' ){ // "f"
+
+        document.toggleFullscreen();
+
+      }
+
+    });
+  </script>
+
+
+  <link rel="stylesheet" href="/app/explore2/dist/css/various/sortable.css?v=1.03">
+
+  <link rel="stylesheet" type="text/css" href="timespace_files/css/main.css?v=1.03">
+
+  <style type="text/css">
+
+    tr.itemtablerow {
+      border-left:5px solid white;
+    }
+    div.topic_image {
+      float:right;
+    }
+
+    .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+      width: 90%;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif !important;
+      background-color: #fbfaf9;
+    }
+
+    .vco-storyjs h3 {
+      font-weight: bold;
+    }
+
+    .vco-navigation {
+      height: 300px;
+    }
+
+    .olControlAttribution {
+      bottom: 0.5em !important;
+    }
+
+  </style>
+
+  <script src="/app/explore2/libs/TinyGesture.js"></script>
+
+  <script src="/app/explore2/libs/sortable.js"></script>
+
+  <script src="timespace_files/bootstrap.js"></script>
+  <script src="timespace_files/OpenLayers.js"></script>
+  <script src="timespace_files/storyjs-embed.js"></script>
+
+  <script src="timespace_files/common.js?v=1.03"></script>
+  <script src="timespace_files/wikidata.js?v=1.03"></script>
+  <script src="timespace_files/main.js?v=1.03"></script>
+
+  <script>
+    if ( detectMobile() === true ){
+      setupSwipe( 'page' );
+    }
+
+    setupAppKeyboardNavigation()
+  </script>
+
+</head>
+
+<body>
+
+  <div id="main_content" class="container">
+
+  <div class="row">
+  <div id='dummy'>
+  <p>
+  This experimental tool can show tempo-spatial information from Wikidata. It will use all items that are "part of" another item.
+  </p>
+  <p>Example: <a href='?q=Q46083&title=The Franco-Prussian War&subtitle=Major battles'>The Franco-Prussian War</a></p>
+  </div>
+  <div id='loading' style="display:none;float:right;background-color:red;color:white;padding:2px">Loading...</div>
+  <div id='timeline'></div>
+  <div id="mapdiv" style='height:400px'></div>
+  <div id='map_comment'></div>
+  <div id='primary_items_table'></div>
+  </div>
+
+  </div>
+
+  <a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>
+
+</body></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>Widee!!</title>
+<meta name="robots" content="nofollow" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Reasonator_logo_proposal.png/16px-Reasonator_logo_proposal.png">
+<link rel="stylesheet" type="text/css" href="resources/js/map/theme/default/style.css" />
+<link rel="stylesheet" type="text/css" href="resources/js/jquery/jquery.cluetip.css" />
+<link rel="stylesheet" type="text/css" href="./main.css" />
+-->
+<link href="/magnustools/resources/dist3/css/bootstrap.min.css" rel="stylesheet">
+
+<!--<link href="/magnustools/resources/dist3/css/bootstrap-theme.min.css" rel="stylesheet">-->
+
+<script type="text/javascript" src="/magnustools/resources/js/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/magnustools/resources/dist3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/magnustools/resources/js/wikidata.js"></script>
+<script type="text/javascript" src="./static.js"></script>
+<script type="text/javascript" src="./main.js"></script>
+
+
+
+<!--
+<link rel="stylesheet" type="text/css" href="/magnustools/resources/css/common.css">
+<script type="text/javascript" src="/magnustools/resources/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="/magnustools/resources/js/jquery/jquery.cluetip.min.js"></script>
+<script type="text/javascript" src="/magnustools/resources/js/jquery/jquery.ba-hashchange.min.js"></script>
+<script type="text/javascript" src="/magnustools/resources/TimelineJS/build/js/storyjs-embed.js"></script>
+<script type="text/javascript" src="/wikidata-todo/autodesc.js"></script>
+<script type="text/javascript" src="./reasonator_types.js"></script>
+<script type="text/javascript" src="./auto_long_desc.js"></script>
+<script type="text/javascript" src="/magnustools/resources/js/common.js"></script>
+-->
+
+
+<style>
+<!-- See https://github.com/mrmrs/colors -->
+
+#all_statements {
+/*	-moz-column-count:2;
+	-webkit-column-count:2;
+	column-count:2;*/
+}
+span.alias {
+	margin-right:5px;
+	padding:1px;
+	border:1px solid #EEE;
+}
+div.heading {
+	display:inline-block;
+	margin-right:20px;
+}
+div.heading_container2 {
+	display:inline-block;
+	margin-right:20px;
+}
+div.heading_container2 {
+	display:inline-block;
+}
+div.property_container {
+	border-left:10px solid #0074D9;
+	margin-bottom:2px;
+/*	margin:2px;
+	padding:2px;
+	width:100%;*/
+}
+div.property_box {
+/*	margin:2px;
+	padding:2px;
+	display:inline-block;
+	vertical-align:top;
+	min-width:190px;
+	max-width:190px;
+	overflow:auto;*/
+}
+div.statement_list_container {
+/*	display:inline-block;
+	margin:0px;
+	padding:2px;
+	width:370px;*/
+}
+div.statement_container {
+	border-top:1px dotted #0074D9;
+}
+div.statement_container:first-child {
+	border-top:none;
+}
+div.statement_container:hover {
+	background-color:#DDD;
+}
+div.statement_value {
+	padding:2px;
+}
+div.statement_value_inner {
+	display:inline-block;
+	width:100%;
+/*	max-width:900px;
+	min-width:900px;*/
+}
+div.edit_statement_container {
+	display:inline-block;
+	margin:1px;
+}
+
+
+
+div.qualifier_container {
+	font-size:80%;
+	border-left:2px solid #2ECC00;
+}
+div.qualifier_prop {
+/*	display:inline-block;
+	max-width:80px;
+	min-width:80px;
+	margin-right:10px;*/
+}
+div.qualifier_value {
+/*	display:inline-block;*/
+}
+
+div.reference_container {
+	font-size:80%;
+	border-left:2px solid #FFDC00;
+}
+div.reference_prop {
+/*	display:inline-block;
+	max-width:80px;
+	min-width:80px;
+	margin-right:10px;*/
+}
+div.reference_value {
+/*	display:inline-block;*/
+}
+
+
+#files {
+	display:none;
+	margin-bottom:5px;
+	padding:3px;
+}
+
+
+
+a.internal {
+	font-family:Verdana;
+}
+a.edit_link {
+	color:#86BCFF;
+}
+a.wikidata {
+	color:#001F3F;
+}
+a.external {
+	color:#3D9970;
+}
+span.string {
+	font-family:Courier;
+}
+span.time {
+	font-family:Courier;
+}
+span.quantity {
+	font-family:Courier;
+}
+span.coord {
+	font-family:Courier;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class='navbar navbar-default center' role='navigation'>
+<div class='container-fluid'>
+<div class='navbar-header'>
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+<a class='navbar-brand' href='#'>WIkiData External Editor</a>
+</div>
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class='navbar-inner'>
+<ul class="nav navbar-nav">
+<li>
+<label><input type='checkbox' id='show_sources' value='1' /> Sources</label><br/>
+<label><input type='checkbox' id='show_qualifiers' value='1' checked /> Qualifiers</label>
+</li>
+<li>
+<label><input type='checkbox' id='show_files' value='1' /> Files</label><br/>
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+</nav>
+
+
+
+<div class="container" id='main'>
+</div>
+
+
+<div class="container" style='margin-top:20px;'>
+	<div id='row lead col-md-16'>
+	This is an alternative interface to browse and edit Wikidata. For editing (double-click to the right of the claim to edit), you need to allow <a target='_blank' href='/widar'>WiDaR</a> to edit on your behalf.
+	Please test it <b>only</b> on the <a href='#q=Q4115189'>sandbox item</a>!
+	</div>
+</div>
+
+</body>
+</html>

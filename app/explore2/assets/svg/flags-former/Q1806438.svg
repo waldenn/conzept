@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xml:space="preserve"
+   width="1024px"
+   height="512px"
+   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd"
+   viewBox="0 0 1024 512"
+   id="svg4312"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="Flag_of_the_State_of_Las_Bela.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"><metadata
+   id="metadata4332"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+   inkscape:window-height="664"
+   inkscape:window-width="640"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   guidetolerance="10.0"
+   gridtolerance="10.0"
+   objecttolerance="10.0"
+   borderopacity="1.0"
+   bordercolor="#666666"
+   pagecolor="#ffffff"
+   id="base"
+   showgrid="false"
+   inkscape:zoom="0.26660156"
+   inkscape:cx="929.34646"
+   inkscape:cy="195.62621"
+   inkscape:window-x="382"
+   inkscape:window-y="35"
+   inkscape:current-layer="svg4312" />
+ <defs
+   id="defs4314"><inkscape:perspective
+   sodipodi:type="inkscape:persp3d"
+   inkscape:vp_x="0 : 256 : 1"
+   inkscape:vp_y="0 : 1000 : 0"
+   inkscape:vp_z="1024 : 256 : 1"
+   inkscape:persp3d-origin="512 : 170.66667 : 1"
+   id="perspective4334" />
+  <style
+   type="text/css"
+   id="style4316">
+   
+    .fil1 {fill:#000000}
+    .fil2 {fill:#FF0000}
+    .fil0 {fill:#FFFFFF}
+    .fil3 {fill:#00C000}
+   
+  </style>
+ 
+  
+  
+  
+  
+  
+  
+ </defs>
+ <rect
+   style="fill:#ffffff"
+   id="rect4319"
+   height="533"
+   width="1024"
+   y="-7"
+   x="0"
+   class="fil0" /><rect
+   style="fill:#000000"
+   id="rect4321"
+   height="398"
+   width="1024"
+   y="-14"
+   x="0"
+   class="fil1" /><rect
+   style="fill:#da251d;fill-opacity:1"
+   id="rect4323"
+   height="259"
+   width="1024"
+   y="-3"
+   x="0"
+   class="fil2" /><rect
+   style="fill:#1eb53a;fill-opacity:1"
+   id="rect4325"
+   height="134"
+   width="1024"
+   y="-6"
+   x="0"
+   class="fil3" /><path
+   style="fill:#ffffff"
+   id="path4327"
+   d="M 919,183 C 904,225 864,256 817,256 C 758,256 709,208 709,149 C 709,89 758,41 817,41 C 823,41 829,42 835,43 C 784,44 743,86 743,137 C 743,188 785,230 837,230 C 872,230 902,211 919,183 z"
+   class="fil0" /><path
+   style="fill:#ffffff"
+   id="path4329"
+   d="M 884,61 L 904,83 L 932,70 L 917,96 L 938,118 L 908,113 L 894,139 L 890,109 L 860,104 L 888,91 L 884,61 z"
+   class="fil0" />
+</svg>

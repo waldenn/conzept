@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>wordmap</title>
+
+    <!-- conzept resources -->
+    <link  href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link  href="/app/explore2/dist/css/conzept/common.css" rel="stylesheet">
+    <script src="/app/explore2/dist/core/utils.js"></script>
+    <script src="/app/explore2/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- conzept fullscreen -->
+    <a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="./libs/d3.v4.min.js"></script>
+    <script src="./libs/topojson.v1.min.js"></script>
+    <script src="./libs/d3fc.js"></script>
+
+    <script src="./libs/mathsfunctions.js"></script>
+    <script src="./libs/rxjs.umd.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="searchBox" class="header" style="display:none;">
+      <table> <tr> <input id="search" type="text" placeholder="Search";/> <i id="searchsubmit" class="fa fa-search" ></i> </tr> </table>
+    </div>
+
+    <div id="svgdiv"/>
+
+    <script type="text/javascript" src="main.js"></script>
+
+  </body>
+</html>

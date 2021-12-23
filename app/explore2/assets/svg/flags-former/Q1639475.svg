@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="847px"
+   height="497px"
+   viewBox="0 0 847 497"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="flag of the mr.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.8548729"
+     inkscape:cx="117.44765"
+     inkscape:cy="466.5866"
+     inkscape:document-units="px"
+     inkscape:current-layer="g845"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <defs
+     id="defs5300" />
+  <metadata
+     id="metadata5303">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <rect
+       y="-0.12905024"
+       width="847.36963"
+       height="497"
+       id="rect815"
+       x="1.2688016"
+       style="fill:#ffffff;stroke-width:0.90967548" />
+    <g
+       id="g823"
+       transform="matrix(0.82750943,0,0,1,0.44125328,-1.1290742)"
+       inkscape:export-filename="/home/arslan/Downloads/flagmountrep.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         x="1.000005"
+         y="286"
+         width="1024"
+         height="71"
+         id="rect817"
+         style="fill:#176d24;fill-opacity:1" />
+      <rect
+         x="1.000005"
+         y="143"
+         width="1024"
+         height="71"
+         id="rect819"
+         style="fill:#176d24;fill-opacity:1" />
+      <rect
+         y="1"
+         width="1024"
+         height="71"
+         id="rect821"
+         x="1"
+         style="fill:#176d24;fill-opacity:1" />
+      <rect
+         x="1.000005"
+         y="427"
+         width="1024"
+         height="71"
+         id="rect817-3"
+         style="fill:#176d24;fill-opacity:1" />
+    </g>
+    <g
+       id="g845"
+       transform="matrix(1,0,0,1.0069787,1.2687933,-1.1360542)">
+      <rect
+         width="328.53659"
+         height="211.27789"
+         id="rect825"
+         x="0"
+         y="1"
+         style="fill:#1370bd;stroke-width:0.77356941" />
+      <polygon
+         points="324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 319.494,207.897 "
+         id="polygon841-2"
+         transform="matrix(0,-0.88478143,0.94331294,0,52.077319,394.25936)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 319.494,207.897 324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 "
+         id="polygon841-2-9"
+         transform="matrix(0,-0.88478143,0.94331294,0,1.5265526,355.8346)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 319.494,207.897 "
+         id="polygon841-2-9-1"
+         transform="matrix(0,-0.88478143,0.94331294,0,4.6323523,434.17516)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="319.494,207.897 324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 "
+         id="polygon841-2-9-2"
+         transform="matrix(0,-0.88478143,0.94331294,0,-63.074056,356.45145)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="301.691,207.897 319.494,207.897 324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 "
+         id="polygon841-2-9-7"
+         transform="matrix(0,-0.88478143,0.94331294,0,-126.43234,356.45145)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 319.494,207.897 324.995,190.968 330.497,207.897 348.299,207.897 333.897,218.361 339.397,235.293 "
+         id="polygon841-2-9-7-0"
+         transform="matrix(0,-0.88478143,0.94331294,0,-124.9314,435.87314)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+      <polygon
+         points="333.897,218.361 339.397,235.293 324.995,224.83 310.594,235.293 316.093,218.361 301.691,207.897 319.494,207.897 324.995,190.968 330.497,207.897 348.299,207.897 "
+         id="polygon841-2-9-7-9"
+         transform="matrix(0,-0.88478143,0.94331294,0,-61.210576,434.17516)"
+         style="opacity:1;fill:#efe032;fill-opacity:1" />
+    </g>
+  </g>
+</svg>

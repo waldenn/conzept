@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jordiventura96",
+			"Mguix"
+		]
+	},
+	"query-builder-heading": "Generador de consultes de Wikidata",
+	"query-builder-query-heading": "Consulta",
+	"query-builder-settings-heading": "Paràmetres",
+	"query-builder-find-all-items": "Trobar tots els  elements...",
+	"query-builder-run-query": "Executa la consulta",
+	"query-builder-input-value-label": "Valor",
+	"query-builder-input-value-placeholder": "Entrar un valor",
+	"query-builder-property-lookup-label": "Propietat",
+	"query-builder-property-lookup-placeholder": "Entrar una propietat",
+	"query-builder-property-lookup-no-match-found": "No s'ha trobat cap coincidència",
+	"query-builder-property-lookup-limited-support-tag": "suport limitat",
+	"query-builder-property-lookup-limited-support-note": "Les propietats amb suport limitat no es poden filtrar per valor",
+	"query-builder-result-placeholder": "Els resultats es mostraran aquí",
+	"query-builder-result-error-empty-form": "Sembla que el constructor de consultes estava buit, primer introduïu una consulta vàlida i després torneu-ho a provar.",
+	"query-builder-result-error-incomplete-form": "Un o més camps estan buits.  Si us plau completeu la consulta o seleccioneu un tipus de camp d'ajust.",
+	"query-builder-result-error-missing-property": "Si us plau seleccionar una propietat",
+	"query-builder-result-error-missing-value": "Introduïu un valor",
+	"query-builder-add-condition": "Afegir una condició",
+	"query-builder-value-type-relation-dropdown-matching": "aparellant",
+	"query-builder-value-type-relation-dropdown-without": "sense",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "independentment del valor"
+}

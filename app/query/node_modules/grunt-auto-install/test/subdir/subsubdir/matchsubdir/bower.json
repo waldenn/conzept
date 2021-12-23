@@ -1,0 +1,10 @@
+{
+  "name": "grunt-auto-install-test",
+  "private": true,
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.7"
+  }
+}

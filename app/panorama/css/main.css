@@ -1,0 +1,24 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  font-family: 'Quicksand';
+}
+
+a:link, a:visited{
+  color: #bdc3c7;
+}
+
+#title {
+  position: fixed;
+  top: 25px;
+  left: 50px;
+  z-index: 9999;
+  color: black;
+  font-weight: bold;
+  background: #fbfaf9c9;
+  padding: 0px 0.3em;
+  border-radius: 0.3em;
+}

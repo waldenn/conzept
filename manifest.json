@@ -1,0 +1,44 @@
+{
+  "theme_color": "#fbfaf9",
+  "background_color": "#fbfaf9",
+  "display": "fullscreen",
+  "scope": "/explore",
+  "start_url": "/explore",
+  "id": "conzept_encyclopedia",
+  "name": "Conzept Encyclopedia",
+  "short_name": "Conzept Encyclopedia",
+  "orientation" : "any",
+  "description": "Conzept is an encyclopedia for the 21st century. A modern topic-exploration tool based on Wikipedia, Wikidata, Open Library and many other information sources.",
+  "icons": [
+    {     
+        "src": "/assets/icons/logo.svg",
+        "sizes": "any",
+        "type": "image/svg+xml",
+        "purpose": "any"
+    },
+    {
+        "src": "/assets/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "monochrome"
+    },
+    {
+        "src": "/assets/icons/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png",
+        "purpose": "monochrome"
+    },
+    {
+        "src": "/assets/icons/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png",
+        "purpose": "monochrome"
+    },
+    {
+        "src": "/assets/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "monochrome"
+    }
+  ]
+}

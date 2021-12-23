@@ -1,0 +1,31 @@
+language: node_js
+
+node_js:
+  - "6"
+  - "5"
+  - "4"
+
+branches:
+  except:
+    - /^v[0-9]/  # ignore building release tags
+
+after_success:
+  - npm run-script jshint
+  - codeclimate-test-reporter < .coverage/lcov.info
+
+before_deploy:
+  - npm shrinkwrap
+
+deploy:
+  provider: npm
+  on:
+    branch: master
+    node: "6"
+  api_key:
+    secure: TwzlQobNk7BHW7ECkK0MbIMHI1sAS4BhZEKWFAS6XB8Ig/s8SlWjpqEVWPjv8I1VsL4Pv5c02OTvKTrKgA0nMKUcx4CCw2rF7+7SFCQoiTfhwk2GLo4y0cXxldCLvbO1HnEYMs/YFVVmqBTMuffAizwL726BYaaH7l1aa3miF6w=
+  email:
+    secure: jbuTd1xf/BG3i6e3NvTEMr+Hm9qntfSMS6AJF+nBbeigmKQRZqiaG7hC5vdn9NQ/Fz7b+5086MEdxJ6/FImPzF7GF6qLxtRTun0GeaDs6q75mnpFukNJq9/3eayh8hNHjhiiKiu4eg8v1VBA6v7hZ4hZMY0PXPc9hyOksfzTQAk=
+
+addons:
+  code_climate:
+    repo_token: 9fa850087ebd65087f3754648c7d55647685cf583fa55b27474bcc76695c1e56

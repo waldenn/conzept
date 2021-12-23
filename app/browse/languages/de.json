@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"DraconicDark",
+			"Pittigrilli"
+		]
+	},
+	"itemCount": "Es gibt {{PLURAL:$1|einen Datenobjekt, auf den diese Beschreibung zutrifft|$1 Datenobjekte, die dieser Beschreibung entsprechen}}.",
+	"classPlaceholder": "Klasse eingeben",
+	"browse": "Oder durchsuche eine der folgenden Klassen:",
+	"noFiltersDefined": "Für diese Klasse ist kein Filter definiert.",
+	"addFilter": "Einen Filter hinzufügen",
+	"viewQuery": "SPARQL-Abfrage anzeigen",
+	"noItems": "Kein Datenobjekt entspricht dieser Beschreibung.",
+	"displayItemsError": "Der Versuch, die Liste der Datenobjekte anzuzeigen, dauerte zu lange; bitte erwäge daher, weitere Filter hinzuzufügen.",
+	"noAdditionalValues": "Es gibt keine zusätzlichen Werte für den Filter $1.",
+	"selectValue": "Wähle einen Wert für $1 aus:",
+	"selectAdditionalValue": "Wähle einen zusätzlichen Wert für $1:",
+	"noValue": "Kein Wert",
+	"specificClass": "Wechsle zu einer spezifischeren Klasse:",
+	"viewList": "Betrachte eine Liste der Objekte"
+}

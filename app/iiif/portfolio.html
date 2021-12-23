@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D PORTFOLIO</title>
+    <link rel="stylesheet" type="text/css" href="uv/uv.css">
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
+    <script type="text/javascript" src="https://unpkg.com/iiif-gallery/dist/iiifgallery.js"></script>
+    <script type="text/javascript" src="uv/lib/offline.js"></script>
+    <script type="text/javascript" src="uv/helpers.js"></script>
+</head>
+
+<body>
+
+    <nav>
+        <h1>3D PORTFOLIO</h1>
+    </nav>
+
+    <main>
+
+        <div id="uv" class="uv"></div>
+
+        <!-- <iiif-gallery manifest="https://sophiedixon.github.io/3d-portfolio/collection/index.json"></iiif-gallery> -->
+
+    </main>
+
+    <script type="text/javascript">
+
+        var uv, $uv, urlDataProvider, manifest;
+
+        window.addEventListener('uvLoaded', function (e) {
+
+            $uv = $('#uv');
+
+            urlDataProvider = new UV.URLDataProvider();
+
+            var data = {
+                root: './uv',
+                iiifResourceUri: 'https://sophiedixon.github.io/3d-portfolio/collection/animal_skull/index.json',
+                configUri: 'portfolio-config.json',
+                collectionIndex: Number(urlDataProvider.get('c', 0)),
+                manifestIndex: Number(urlDataProvider.get('m', 0)),
+                sequenceIndex: Number(urlDataProvider.get('s', 0)),
+                canvasIndex: Number(urlDataProvider.get('cv', 0)),
+                rotation: Number(urlDataProvider.get('r', 0)),
+                xywh: urlDataProvider.get('xywh', ''),
+                locales: [
+                    {
+                        name: 'en-GB'
+                    }
+                ]
+            };
+
+            uv = createUV('#uv', data, urlDataProvider);
+
+            // uv.set({
+            //     root: './uv',
+            //     iiifResourceUri: 'https://sophiedixon.github.io/3d-portfolio/collection/animal_skull/index.json',
+            //     configUri: 'portfolio-config.json',
+            //     collectionIndex: 0,
+            //     manifestIndex: 0,
+            //     sequenceIndex: 0,
+            //     canvasIndex: 0,
+            //     locales: [
+            //         {
+            //             name: 'en-GB'
+            //         }
+            //     ]
+            // });
+
+            // uv.on('created', function() {
+            //     Utils.Urls.setHashParameter('manifest', manifest);
+            // });
+
+            // const iiifGallery = document.querySelector('iiif-gallery');
+
+            // iiifGallery.addEventListener('onSelectManifest', function (evt) {
+            //     manifest = evt.detail.id;
+            //     openManifest();
+            // });
+
+            // iiifGallery.addEventListener('onSelectCollection', function (evt) {
+            //     manifest = evt.detail.id;
+            //     openManifest();
+            // });
+
+            // are there uv hash parameters?
+            // manifest = Utils.Urls.getHashParameter('manifest');
+
+            // if (manifest) {
+            //     openManifest();
+            // }
+
+            //manifest = 'https://sophiedixon.github.io/3d-portfolio/collection/animal_skull/index.json';
+            //openManifest();
+
+        }, false);
+
+    </script>
+
+    <script src="uv/uv.js"></script>
+</body>
+
+</html>

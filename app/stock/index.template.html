@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>conzept : stock price</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <base target="_self">
+
+  <link rel='stylesheet' href='./libs/bootstrap.min.css'>
+
+  <!-- conzept resources -->
+  CONZEPT_COMMON_HTML_INCLUDE
+
+  <script>
+    // keyboard control
+    $(document).keydown(function(event) {
+
+      let key = (event.keyCode ? event.keyCode : event.which);
+
+      //console.log( event, key );
+
+      if ( key == '70' ){ // "f"
+
+        document.toggleFullscreen();
+
+      }
+
+    });
+  </script>
+
+  <link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body>
+<!-- partial:index.partial.html -->
+<div ng-app="stockPriceWidget" ng-controller="MainCtrl as c">
+  <div class="container" ng-show="c.dataSet">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header">
+          <h1><strong ng-bind="c.symbol"></strong>
+            <small ng-bind="c.company"></small>
+            <small ng-bind="c.place"></small>
+            <h2 ng-bind="c.currentClosingPrice + ' '">
+              <h3 ng-bind="c.currency"></h3>
+              &nbsp;&nbsp;<h3 ng-class="{loss : c.gainLoss < 0, gain : c.gainLoss > 0}" ng-bind="c.gainLoss > 0 ? '+' + c.gainLoss : c.gainLoss"></h3>
+              &nbsp;&nbsp; <h3 ng-class="{loss : c.gainLoss < 0, gain : c.gainLoss > 0}" ng-bind="c.perc"></h3>
+            </h2>
+          </h1>
+          <div class="btn-group btn-group-xs" role="group" id="dateButtonGroup" aria-label="...">
+            <button type="button" class="btn btn-default" ng-click="c.setDataRange(5)">5 days</button>
+            <button type="button" class="btn btn-default" ng-click="c.setDataRange(10)">10 days</button>
+            <button type="button" class="btn btn-default" ng-click="c.setDataRange(30)">1 month</button>
+            <button type="button" class="btn btn-default" ng-click="c.setDataRange(90)">3 months</button>
+            <button type="button" class="btn btn-default" ng-click="c.setDataRange(182)">6 months</button>
+            <!--button type="button" class="btn btn-default" ng-click="c.setDataRange(365)">12 months</button-->
+            <!--button type="button" class="btn btn-default" ng-click="c.setDataRange(730)">2 years</button-->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <canvas id="myChart" width="600px" height="440px"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+
+<script src='./libs/moment.js'></script>
+
+<script src="./libs/chart.js@2.9.3.js"></script>
+<script src="./libs/hammerjs@2.0.8.js"></script>
+<script src="./libs/chartjs-plugin-zoom@0.7.7.js"></script>
+
+<script src='./libs/angular.js'></script>
+<script src='./libs/bootstrap.min.js'></script>
+<script  src="./main.js"></script>
+
+</body>
+</html>

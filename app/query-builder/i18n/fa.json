@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ladsgroup",
+			"Reza koulivand",
+			"Reza1615"
+		]
+	},
+	"query-builder-heading": "سازنده پرس‌وجوی ساده",
+	"query-builder-find-all-items": "یافتن همه آیتم‌هایی که...",
+	"query-builder-run-query": "اجرای پرس و جو",
+	"query-builder-input-value-label": "مقدار",
+	"query-builder-input-value-placeholder": "یک مقدار وارد کنید",
+	"query-builder-item-value-lookup-no-match-found": "هیچ نتیجه‌ای یافت نشد",
+	"query-builder-property-lookup-label": "خصوصیت",
+	"query-builder-property-lookup-placeholder": "یک خصوصیت وارد کنید",
+	"query-builder-property-lookup-no-match-found": "هیچ نتیجه‌ای یافت نشد",
+	"query-builder-property-lookup-limited-support-tag": "پشتیبانی محدود",
+	"query-builder-property-lookup-limited-support-note": "ویژگی‌های پشتیبانی محدود را نمی توان با مقدار فیلتر کرد",
+	"query-builder-result-link-text": "نمایش پرسمان در سرویس پرسمان",
+	"query-builder-result-placeholder": "نتایج در اینجا نمایش داده خواهند شد",
+	"query-builder-result-header": "نتایج",
+	"query-builder-result-error-empty-form": "به نظر می‌رسد که سازنده پرس‌وجو خالی است. لطفا یک پرس‌وجوی معتبر وارد کنید و دوباره تلاش کنید.",
+	"query-builder-result-error-incomplete-form": "یک یا چند ورودی خالی هستند. لطفا پرس‌وجو را کامل کنید یا یک نوع ورودی صحیح انتخاب کنید.",
+	"query-builder-result-error-missing-property": "لطفاً یک خصوصیت انتخاب کنید",
+	"query-builder-result-error-missing-value": "لطفا یک مقدار وارد کنید",
+	"query-builder-add-condition": "افزودن شرایط",
+	"query-builder-value-type-relation-dropdown-matching": "منطبق کردن",
+	"query-builder-value-type-relation-dropdown-without": "بدون",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "بدون توجه به مقدار",
+	"query-builder-reference-relation-label": "منابع",
+	"query-builder-reference-relation-dropdown-with": "فقط با منابع",
+	"query-builder-reference-relation-dropdown-without": "فقط بدون منبع",
+	"query-builder-reference-relation-dropdown-regardless": "بدون توجه به داشتن منبع",
+	"query-builder-delete-condition": "حذف شرط",
+	"query-builder-condition-relation-toggle-and": "و",
+	"query-builder-condition-relation-toggle-or": "یا",
+	"query-builder-limit-number-results-description": "محدود کردن تعداد نتایج به",
+	"query-builder-limit-number-placeholder": "یک عدد وارد کنید",
+	"query-builder-limit-number-screenreader-label": "حداکثر تعداد نتایج",
+	"query-builder-negation-option-label-with": "با",
+	"query-builder-negation-option-label-without": "بدون"
+}

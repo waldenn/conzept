@@ -1,0 +1,81 @@
+<style>
+div.thumbnail_map {
+	width:250px;
+	height:200px;
+	margin:5px;
+}
+</style>
+
+<template id='mini-map-template'>
+<div :id='map_id'>
+</div>
+</template>
+
+<template id='coordinates-template'>
+<div>
+	<div v-if='snak.datatype!="globe-coordinate"'>
+		This is not a coordinate, but a {{snak.datatype}}!
+	</div>
+	<div v-else-if='snak.datavalue.value.globe=="http://www.wikidata.org/entity/Q2"'>
+		<div style='display:flex'>
+			<mini-map class='thumbnail_map' :lat='snak.datavalue.value.latitude' :lon='snak.datavalue.value.longitude' zoom='3'></mini-map>
+			<mini-map class='thumbnail_map' :lat='snak.datavalue.value.latitude' :lon='snak.datavalue.value.longitude' zoom='6'></mini-map>
+			<mini-map v-if='num_submaps==3' class='thumbnail_map' :lat='snak.datavalue.value.latitude' :lon='snak.datavalue.value.longitude' zoom='10'></mini-map>
+		</div>
+		<div>
+			<a :href='getGeohackURL()' class='external' target='_blank'>GeoHack</a> |
+			<a :href='"https://tools.wmflabs.org/wikishootme/#lat="+snak.datavalue.value.latitude+"&lng="+snak.datavalue.value.longitude+"&zoom=13"' class='external' target='_blank'>WikiShootMe</a> |
+			<tt>{{snak.datavalue.value.latitude}}/{{snak.datavalue.value.longitude}}</tt>
+		</div>
+	</div>
+	<div v-else>
+		This item has coordinates on <wd-link :item='snak.datavalue.value.globe.replace(/^.+\//,"")'></wd-link>.
+	</div>
+</div>
+</template>
+
+
+<script>
+'use strict';
+
+var mini_map_counter = 0 ;
+
+Vue.component ( 'mini-map' , {
+	props : [ 'lat' , 'lon' , 'zoom' ] ,
+	data : function () { return { tile_layer:{name:'OSM (WMF)',url:'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' , map_id:'' } } } ,
+	created : function () {
+		mini_map_counter++ ;
+		this.map_id = 'mini_map_' + mini_map_counter ;
+	} ,
+	mounted : function () {
+		let me = this ;
+    	let pos = [me.lat, me.lon] ;
+    	let map = L.map(me.map_id).setView(pos, me.zoom);
+		L.tileLayer(me.tile_layer.url, me.tile_layer).addTo(map);
+		L.marker(pos).addTo(map) ;
+	},
+	template : '#mini-map-template'
+} ) ;
+
+Vue.component ( 'coordinates' , {
+	props : [ 'snak' , 'submaps' ] ,
+	data : function () { return { num_submaps:3 } } ,
+    created : function () {
+    	if ( typeof this.submaps != 'undefined' ) this.num_submaps = this.submaps*1 ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () {
+    	tt.updateInterface(this.$el) ;
+    } ,
+    methods : {
+    	getGeohackURL : function () {
+    		let lat = this.snak.datavalue.value.latitude ;
+    		let lon = this.snak.datavalue.value.longitude ;
+    		let ns = lat < 0 ? (-lat)+'_S' : lat+'_N' ;
+    		let ew = lon < 0 ? (-lon)+'_W' : lon+'_E' ;
+    		return 'https://tools.wmflabs.org/geohack/geohack.php?params=' + ns + '_' + ew ;
+    	}
+    },
+	template : '#coordinates-template'
+} ) ;
+</script>

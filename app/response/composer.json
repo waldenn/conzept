@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dimabdc/php-fast-simple-html-dom-parser": "^1.4"
+    }
+}

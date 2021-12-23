@@ -1,0 +1,48 @@
+<template id='map-preview-template'>
+<div :id='id' class="map_preview">
+</div>
+</template>
+
+
+<script>
+'use strict';
+
+var mapcounter = 0 ;
+
+Vue.component ( 'map-preview' , {
+    props : [ 'lat','lon','zoom' ] ,
+    data : function () { return {} } ,
+    created : function () {
+        mapcounter++ ;
+        this.id = "map_preview_" + mapcounter ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) } ,
+    mounted : function () {
+        tt.updateInterface(this.$el) ;
+        this.generate_map();
+    } ,
+    methods : {
+        generate_map : function () {
+            let me = this ;
+    
+            var style = 'osm-intl';
+            var server = 'https://maps.wikimedia.org/';
+            
+            // Create a map
+            var map = L.map(me.id).setView([me.lat*1,me.lon*1], me.zoom*1);
+
+            // Add a map layer
+            L.tileLayer(server + style + '/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                //id: o.id+'-01',
+                //attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            }).addTo(map);
+            
+            //L.marker([o.lat*1, o.lon*1]).addTo(map);
+
+        } ,    
+    },
+    template : '#map-preview-template'
+} ) ;
+
+</script>

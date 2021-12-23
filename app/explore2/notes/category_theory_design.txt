@@ -1,0 +1,71 @@
+background theory:
+  - https://boris-marinov.github.io/category-theory-illustrated/
+  - https://www.quantamagazine.org/with-category-theory-mathematics-escapes-from-equality-20191010/
+  - https://arxiv.org/pdf/math/0608040v1.pdf
+  - true object-oriented application-design: https://gilbane.com/artpdf/GR1.6.pdf
+
+LoC API:
+  - manuscripts?: https://www.loc.gov/audio/?q=civil%20war&fo=json
+  - audio?: https://www.loc.gov/audio/?q=civil%20war&fo=json
+  - DONE: images: https://www.loc.gov/photos/?q=indian&fo=json
+
+category theory uses:
+ - abstraction
+ - composition
+ - identification
+
+conzept categories:
+
+  [x] means that programmatic-access is implemented
+
+  - category of all objects in conzept (topics, very large finite set)
+
+    - functions operating on the TOPIC LIST:
+      - f: [x] render-list        (triggered after a new search)
+      - f: [x] remove-list        (triggered before a new search)
+      - f: [x] append-more-topics (triggered when end-of-list is reached - and there are more topics available)
+      - f: [ ] ?remove-topic
+      - f: [ ] ?sort-topics (from different data-sources?) by some data-attribute (not yet implemented), like:
+                - relevance (default, which is the index-position)
+                - title, 
+                - ... 
+      - f: [ ] ?filter-topics by some data-attribute (not yet implemented), like:
+                - mainclass
+                - subclass
+                - ...
+      - f: [x] view-wikipedia-article   (triggered upon a click, and once after a new search)
+      - f: [ ] ... (various relevant meta-data and action-buttons)
+
+    - category of TOPIC SECTIONS (ordered in a tree)
+      - functions operating on this category:
+        - [x] f: unfold section tree (and its parents)
+        - [ ] f: fold section tree
+        - [ ] f: go to section (needs unique-id on each section-detail)
+        - [ ] f: order main-sections (based on a user-defined / JSON-defined order)
+        - [ ] f: hide sections (based on a user-defined / JSON-defined list)
+
+      - category of TOPIC FUNCTIONS
+        - functions operating on this category:
+          - [x] f: explore-this-topic
+          - [x] f: view-its-wikipedia-article
+          - [x] f: view-wikidata-qids
+          - [x] f: view-constructed-URL
+          - [x] f: view-constructed-URLs
+          - [x] f: add-to-compare
+          - [x] f: bookmark-this-topic
+          - [x] f: fetch-multi-value-content (many variants)
+          - [x] f: fetch-category-tree-content (many variants)
+          - [ ] f: ...
+
+  - add unique topic-class from a hash based on title-string
+    - add parameter "ti" (topic index)
+  - add unique function-id from the field-id
+    - add parameter "fi" (function index)
+  - then we can:
+    - search for a field-id within a topic-class,
+    - scroll to the function-button,
+    - trigger a click on the button
+
+  - sidebar-related programmatic actions (and can these be triggered by a link?):
+    - play the default-presentation on "Vincent van Gogh"
+    - show the inline-archive-audio list for "Bach"

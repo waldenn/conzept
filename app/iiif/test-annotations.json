@@ -1,0 +1,802 @@
+[
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a2h0r885,2553,282,46",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "gediegenen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c2#xywh=885,2553,282,46"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a4h1r909,3067,339,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c4#xywh=909,3067,339,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a4h2r1367,3068,342,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c4#xywh=1367,3068,342,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a5h3r789,197,376,44",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "vergangener"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c5#xywh=789,197,376,44"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a5h4r2082,534,172,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generationen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c5#xywh=2082,534,172,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a6h5r141,404,308,35",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "vergangener"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c6#xywh=141,404,308,35"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a6h6r1409,568,274,39",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c6#xywh=1409,568,274,39"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a6h7r1554,683,331,40",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generationen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c6#xywh=1554,683,331,40"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a8h8r915,2971,224,60",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "eigenen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c8#xywh=915,2971,224,60"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a8h9r1921,3041,337,62",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c8#xywh=1921,3041,337,62"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a9h10r271,175,559,67",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Kindergeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c9#xywh=271,175,559,67"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a9h11r1982,2867,307,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Ausgangsgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c9#xywh=1982,2867,307,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a10h12r1334,152,339,52",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c10#xywh=1334,152,339,52"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a10h13r533,2908,538,65",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration?"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c10#xywh=533,2908,538,65"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a11h14r650,243,754,65",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommengeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c11#xywh=650,243,754,65"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a11h15r300,602,339,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c11#xywh=300,602,339,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a12h16r963,248,255,62",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Genetik,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c12#xywh=963,248,255,62"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a12h17r145,3025,377,44",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "vergangener"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c12#xywh=145,3025,377,44"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a14h18r999,1334,355,58",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c14#xywh=999,1334,355,58"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a14h19r2107,1332,179,48",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Filialgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c14#xywh=2107,1332,179,48"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a14h20r356,1479,466,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c14#xywh=356,1479,466,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a14h21r1531,2924,754,63",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommengeneration^"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c14#xywh=1531,2924,754,63"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h22r118,783,520,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=118,783,520,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h23r1955,780,299,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-2-Gene-"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=1955,780,299,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h24r127,1513,507,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "(F-2-)Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=127,1513,507,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h25r2089,1515,171,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=2089,1515,171,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h26r1265,1586,867,63",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Mischlings-(F-3-)Generation,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=1265,1586,867,63"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h27r677,1945,466,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-2-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=677,1945,466,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h28r930,2090,465,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-2-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=930,2090,465,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h29r515,2307,466,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=515,2307,466,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h30r942,2450,737,63",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommengeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=942,2450,737,63"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a15h31r642,2523,504,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c15#xywh=642,2523,504,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h32r2101,342,196,52",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=2101,342,196,52"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h33r1105,1157,737,62",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommengeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=1105,1157,737,62"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h34r1202,1953,504,63",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=1202,1953,504,63"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h35r166,2097,465,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-2-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=166,2097,465,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h36r975,2600,655,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Mischlingsgeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=975,2600,655,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h37r170,2818,339,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=170,2818,339,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a16h38r1544,2889,631,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Ausgangsgeneration,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c16#xywh=1544,2889,631,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a17h39r1786,1693,465,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c17#xywh=1786,1693,465,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a18h40r717,883,503,64",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Enkelgeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c18#xywh=717,883,503,64"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a18h41r531,1174,411,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generationen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c18#xywh=531,1174,411,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a19h42r87,168,323,62",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c19#xywh=87,168,323,62"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a22h43r314,1477,222,59",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c22#xywh=314,1477,222,59"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a22h44r423,2642,336,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c22#xywh=423,2642,336,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a24h45r621,513,339,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c24#xywh=621,513,339,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a24h46r1189,2551,488,60",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c24#xywh=1189,2551,488,60"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a24h47r583,2843,470,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c24#xywh=583,2843,470,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a24h48r195,2915,471,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-2-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c24#xywh=195,2915,471,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h49r834,470,773,59",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Stammeltern-Generation,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=834,470,773,59"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h50r1770,469,428,56",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "P-Generation,"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=1770,469,428,56"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h51r964,759,777,53",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommen-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=964,759,777,53"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h52r1952,1059,150,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=1952,1059,150,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h53r567,1495,464,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "F-l-Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=567,1495,464,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a25h54r476,2725,151,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c25#xywh=476,2725,151,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a26h55r1603,1720,203,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Genen."
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c26#xywh=1603,1720,203,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a27h56r117,431,222,54",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c27#xywh=117,431,222,54"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a27h57r1633,1392,339,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c27#xywh=1633,1392,339,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a28h58r1431,416,740,63",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Nachkommengeneration"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c28#xywh=1431,416,740,63"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a28h59r757,1786,150,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c28#xywh=757,1786,150,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a28h60r408,1930,337,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c28#xywh=408,1930,337,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a28h61r2036,1999,149,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c28#xywh=2036,1999,149,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a29h62r738,1145,149,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c29#xywh=738,1145,149,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a29h63r1431,1293,148,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c29#xywh=1431,1293,148,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a29h64r1797,1798,149,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c29#xywh=1797,1798,149,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a29h65r1180,2373,147,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c29#xywh=1180,2373,147,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a29h66r291,2664,148,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c29#xywh=291,2664,148,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a30h67r971,1316,338,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c30#xywh=971,1316,338,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a30h68r1359,2040,151,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c30#xywh=1359,2040,151,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a30h69r2023,3123,192,52",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Genen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c30#xywh=2023,3123,192,52"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a31h70r214,632,147,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c31#xywh=214,632,147,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a31h71r1785,1923,149,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c31#xywh=1785,1923,149,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a31h72r106,2222,145,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c31#xywh=106,2222,145,50"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a31h73r242,3134,127,38",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c31#xywh=242,3134,127,38"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a32h74r909,886,148,49",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c32#xywh=909,886,148,49"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a32h75r1471,1764,151,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c32#xywh=1471,1764,151,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a32h76r1681,2199,150,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Gene"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c32#xywh=1681,2199,150,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a33h77r845,692,337,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c33#xywh=845,692,337,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a33h78r1320,695,358,51",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Generation:"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c33#xywh=1320,695,358,51"
+  },
+  {
+    "@id": "https://wellcomelibrary.org/iiif/b18035723/annos/searchResults/a33h79r101,1270,184,50",
+    "@type": "oa:Annotation",
+    "motivation": "sc:painting",
+    "resource": {
+      "@type": "cnt:ContentAsText",
+      "chars": "Genen"
+    },
+    "on": "https://wellcomelibrary.org/iiif/b18035723/canvas/c33#xywh=101,1270,184,50"
+  }
+]

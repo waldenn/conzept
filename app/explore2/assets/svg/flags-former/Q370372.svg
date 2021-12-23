@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   x="0"
+   y="0"
+   width="450"
+   height="300"
+   id="svg378"
+   sodipodi:version="0.32"
+   sodipodi:docname="Flag_of_Libya_(1951).svg"
+   sodipodi:docbase="C:\flags"
+   inkscape:version="0.46"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata9">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     id="base"
+     inkscape:zoom="1"
+     inkscape:cx="225"
+     inkscape:cy="150"
+     inkscape:window-width="847"
+     inkscape:window-height="669"
+     inkscape:window-x="397"
+     inkscape:window-y="77"
+     inkscape:current-layer="svg378"
+     height="500px"
+     width="1000px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     showgrid="false" />
+  <defs
+     id="defs380" />
+  <g
+     id="g2404"
+     transform="translate(-275,-100)">
+    <rect
+       y="100"
+       x="275"
+       height="300"
+       width="450"
+       id="rect2143"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.38290977;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       transform="translate(-77.356489,24.999876)"
+       id="g2398">
+      <path
+         id="path670"
+         d="M 676.03114,204.11833 C 676.03114,204.11833 676.03114,204.11833 676.03114,204.11833"
+         style="font-size:12px;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.42698946pt" />
+      <path
+         transform="matrix(0.4185276,0,0,0.4113924,542.69978,41.668778)"
+         sodipodi:ry="182.30783"
+         sodipodi:rx="182.30783"
+         sodipodi:cy="445.6362"
+         sodipodi:cx="-3.9347081"
+         d="M 178.37312,445.6362 A 182.30783,182.30783 0 1 1 -186.24254,445.6362 A 182.30783,182.30783 0 1 1 178.37312,445.6362 z"
+         id="path614"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:fill-cmyk="(0 0.9 0.8 0.05)"
+         transform="matrix(0.8311524,0,0,0.8169792,634.25042,96.659402)"
+         sodipodi:ry="80.005608"
+         sodipodi:rx="80.005592"
+         sodipodi:cy="157.0914"
+         sodipodi:cx="-95.744408"
+         d="M -15.738815,157.0914 A 80.005592,80.005608 0 1 1 -175.75,157.0914 A 80.005592,80.005608 0 1 1 -15.738815,157.0914 z"
+         id="path615"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         id="path563"
+         d="M 629.72403,176.48392 L 628.86839,215.00388 L 592.93117,224.7603 L 628.35497,237.37579 L 627.4993,272.69968 L 650.60159,245.11368 L 685.51139,257.22453 L 665.31837,227.61937 L 689.96084,198.18303 L 652.14178,208.61172 L 629.72403,176.48392 z"
+         style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke-width:1pt" />
+    </g>
+  </g>
+</svg>

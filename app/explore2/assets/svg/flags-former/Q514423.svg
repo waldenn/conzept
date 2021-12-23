@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg>
+<svg 
+	version="1.1" 
+	baseProfile="full" 
+	xmlns:ev="http://www.w3.org/2001/xml-events" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns="http://www.w3.org/2000/svg" 
+  id="Flag of the Parthenopaean Republic"
+  width="900" height="600">
+	<rect height="600" width="300" x="0" y="0" style="fill:#133fd3" />
+	<rect height="600" width="300" x="300" y="0" style="fill:#ffc700" />
+	<rect height="600" width="300" x="600" y="0" style="fill:#ef0f00" />
+</svg>

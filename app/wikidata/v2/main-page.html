@@ -1,0 +1,46 @@
+<style>
+div.card-header {
+    padding:5px;
+}
+</style>
+
+<template id='main-page-template'>
+	<div>
+		<tool-navbar>
+                <template slot='right'>
+                        <widar></widar>
+                </template>
+        </tool-navbar>
+        <div v-if='typeof q=="undefined"'>
+            <span tt='intro'>
+            </span>
+            <ul>
+                <li><reasonator-link item='Q42'></reasonator-link></li>
+                <li><reasonator-link item='Q350'></reasonator-link></li>
+                <li><reasonator-link item='Q4504'></reasonator-link></li>
+                <li><reasonator-link item='P131'></reasonator-link></li>
+            </ul>
+            <hr/>
+            <a href='https://bitbucket.org/magnusmanske/reasonator/src/c0d90424cb88eb47961ea7b3dc633a01092193b3/public_html/v2/?at=master' target='_blank' class='external'>Code</a>
+        </div>
+        <div v-else>
+        	<classifier :q='q'></classifier>
+        </div>
+	</div>
+</template>
+
+<script>
+'use strict';
+
+let MainPage = Vue.extend ( {
+        props : ['q'] ,
+        data : function () { return {} } ,
+        created : function () {
+        } ,
+        updated : function () { tt.updateInterface(this.$el) ; } ,
+        mounted : function () { tt.updateInterface(this.$el) ; } ,
+        methods : {
+        },
+        template:'#main-page-template'
+    } ) ;
+</script>

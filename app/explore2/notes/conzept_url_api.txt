@@ -1,0 +1,140 @@
+ - BUGs:
+  - wrong pane focus rendering for non-wikipedia raw-queries:
+    -> go to a a split-pane 
+    -> then submit a raw-query
+    -> wrong pane focus
+  - possible solution: allow the submit to set the "current pane" focus
+
+                          SIDEBAR                 PANE1                                                     PANE2
+
+https://conze.pt/explore  /Peyron   ?l=en         &t=wikipedia &i=21492627 &u=https://...  &c=foo,bar,baz   &t2=wikipedia   i2=21492628 &u2=https://..  &c2=foo
+                /<service>/<query>  ?l=<language> &t=<type>    &i=<index>  &u=<uri>        &c=<custom-data  &t2=<type-mode> i2=<index>  &u2=<uri>       &c2=<type-mode-custom-data>
+
+
+core parameters:
+
+  <query> (used for the sidebar results)
+    STRING: literal-query: (any string not beginning with a "?" character)
+    default: ''
+
+  <l> (global active language)
+    STRING: 2 or 3 letter iso-language-code
+    default: 'en'
+
+  <t> | <t2>
+    STRING: action-type
+    default: 'wikipedia'
+
+  <i> | <i2>
+    STRING: wikidata "Q identifier"
+    default: ''
+
+  <u> | <u2>
+    SERIALIZED URI STRING: to pass a URI
+    default: ''
+
+  <c> | <c2>
+    SERIALIZED OBJECT: to pass any custom data structure
+    default: ''
+
+other parameters:
+
+  <f>
+    STRING: detail-fragment-identifier (used for opening sidebar detail-elements)
+    default: ''
+
+  <m>
+    COMMA-SEPARATED-LIST of line marks (potential future use: referrals to any other conzept persistent indexes)
+    default: ''
+
+  <d>
+    BOOLEAN: direct-wikipedia-title toggle
+    default: 'false' (note: only shown as parameter when set to 'true')
+
+  <s>
+    BOOLEAN: sidebar visibility toggle
+    default: 'true'
+
+  <v>
+    SYMBOL: "desktop" or "mobile" view-mode request
+    default: (depends on device type, but can be overruled)
+
+  wikipedia-qid?<h> (TODO)
+    STRING: 2 or 3 letter iso-language-code of the i18n human-language interface
+    default: 'en' (note: only shown as parameter when set)
+
+-------------
+
+app integration:
+
+  essential types:
+
+    - wikipedia     (requires a title)
+    - wikipedia-qid (requires a Qid)
+    - link
+    - link-split    (only for p0)
+    - url           (not used for any pane, only for opening new tabs, TODO: prevent the useless URL updating)
+    - articles      (only for p0)
+    - random        (special case)
+
+    - other types (mostly doing some external-content-control-complexity):
+      [ NOTE: push these into a mv-list OR into their own app if thats is possible! ]
+      - wander (could this be turned into a 'link' type?)
+      - dates, [m]
+      - nearby ( -> place into a mv-list? to research: detect if map is already being show, and then just send a postMessage)
+      - map (cluster map with a deeper integration, move to a seperate "link" app?)
+
+-------------
+
+issues:
+
+  - how to allow the Explore-app to update content in the:
+
+    - main-window / sidebar (p0)
+
+    - single-content pane (p1)
+
+    - dual-content pane (ps1 / ps2)
+      - both panes      
+      - render to ps1 
+      - render to ps2
+
+  - how to allow the "caller-app" to render content in the:
+    - sidebar             (rarely used, type = "articles")
+    - "same pane"         ( <-- getCurrentPane() )
+    - single-content pane
+    - dual-content pane
+      - both panes      
+      - render to pane1 
+      - render to pane2
+
+    - TODOs:
+
+      - build the new URL
+        - how to update the URL correctly (so that it can be reloaded)?
+          - update global parameters
+          - update p1 parameters
+          - update p2 parameters
+
+      - how to handle backwards / forwards browser paging correctly?
+
+      - how to handle URL-hashes within Wikipedia articles?
+        - passing-in the hash via the URL-fragment
+        - fold the citation-blocks when 
+        - unfold the citation-blocks when needed
+        - using the hash --> go to Wikipedia target
+        - setting the hash --> modify the URL fragment
+
+-------------
+
+human analogy
+
+  * skeleton: URL API
+  * nervous system: event-signals within a pub/sub messaging-system
+  * input: electrical energy, declarative application data, various user-input
+  * hands (production tools): personal thoughts / emotion-intuition / memory / goals-mission
+  * output and feedback: interactive infotainment rendering for humans
+  * memory: local storage of bookmarks and notes (future: server-side storage + auth)
+  * virtues: peaceful / kind / relaxed interface, flexible & courageous web-app approach
+  * organs: invisible functions and embedded-systems that support the whole application
+  * legs: user-experience journey

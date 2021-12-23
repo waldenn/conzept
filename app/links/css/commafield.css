@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+.commafield {
+  display: flex;
+  flex-wrap: wrap;
+
+  overflow: hidden;
+  height: 33px;
+  padding: 3px;
+  margin: 0;
+
+  /* font-family: "Helvetica Neue", Helvetica, sans-serif; */
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+.commafield input {
+  font-size: 1em;
+
+  /* Kill default styles */
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+
+  /* Layout */
+  margin: 2px 5px 3px 0;
+  padding: 0 5px;
+  flex: 2;
+  height: 85%;
+}
+
+.item {
+  float: left;
+
+  background-color: rgba(204, 230, 249, 0.6);
+  font-size: 1em;
+
+  padding: 1px 5px 2px 5px;
+  margin: 2px 5px 3px 0;
+
+  flex: 0 1 auto;
+  height: 85%;
+  line-height: 130%;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s ease-in-out;
+}
+
+.item::after {
+  /* Font styles */
+  font-size: 90%;
+  line-height: 90%;
+  color: #ec725d;
+
+  /* Add a close button */
+  font-family: Ionicons;
+  content: "\00a0\f12a";
+
+  /* Allow animating the unfurl of the close button */
+  transition: max-width 0.3s ease-in-out;
+  overflow: hidden;
+  display: inline-block;
+  max-width: 0;
+}
+.item:hover {
+  background-color: rgba(255, 200, 200, 0.6);
+}
+.item:hover::after {
+  max-width: 15px; /* Animate the x unfurling. */
+}

@@ -1,0 +1,2153 @@
+/* quicksand-regular - latin-ext_latin */
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.svg#Quicksand') format('svg'); /* Legacy iOS */
+}
+
+/* quicksand-500 - latin-ext_latin */
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.svg#Quicksand') format('svg'); /* Legacy iOS */
+}
+
+/*
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/catamaran/v8/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5bjdu2ui.woff2) format('woff2');
+  src: url( '/fonts/catamaran/catamaran-tamil-400.woff2' ) format('woff2');
+  unicode-range: U+0964-0965, U+0B82-0BFA, U+200C-200D, U+20B9, U+25CC;
+}
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url( '/fonts/catamaran/catamaran-latin-ext-400.woff2' ) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Catamaran';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url( '/fonts/catamaran/catamaran-latin-400.woff2' ) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*/
+
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url( '/fonts/crimson/CrimsonText-Regular.woff2' ) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+pre {
+  font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+  font-size: smaller;
+  line-height: 1.5rem;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  width: max-content;
+  /* background: #8080803d; */
+  background-color: rgba(204,204,204,.16);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0),0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+sup {
+  line-height: 100%;
+}
+
+#loader {
+  position: absolute;
+  left: 20%;
+  bottom: 10%;
+  width: 70px;
+  height: 70px;
+  box-shadow: none;
+}
+
+/* wikipedia preview styling */
+.wikipediapreview-header-wordmark:before {
+  content: "" !important;
+}
+
+.wikipediapreview-header-wordmark {
+  background-image: none !important;
+}
+
+.wikipediapreview-body p {
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+/* Wikipedia syntax highlighting codes */
+.mw-highlight .kd {
+  color: #008000;
+  font-weight: bold;
+}
+
+.mw-highlight .c1 {
+  color: #408080;
+  font-style: italic;
+}
+
+.mw-highlight .s2 {
+    color: #BA2121;
+}
+
+/* end of Wikipedia highlight codes */
+
+.mwe-math-fallback-image-inline.enlargable {
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+}
+
+.mwe-math-fallback-image-inline, .mwe-math-fallback-image-display {
+  width: unset !important;
+  height: unset !important;
+}
+
+.mwe-math-fallback-image-display, .mwe-math-mathml-display {
+  margin-left: 1.6rem !important;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+#coordinates {
+  display: none;
+}
+
+.legend {
+  text-align: left;
+  padding-left: 1.2rem;
+}
+
+/* common.css hack fixes */
+
+/*
+#fullscreenToggle {
+  top: calc( 50% - 1.7em) !important;
+  font-size: 80% !important;
+}
+
+#minimizeLeftPanesToggle {
+  top: calc( 50% + 2.3em) !important;
+}
+*/
+
+.wikitable > tr > th, .wikitable > * > tr > th {
+  background-color: #eaecf0;
+  text-align: center;
+}
+.wikitable > tr > th, .wikitable > tr > td, .wikitable > * > tr > th, .wikitable > * > tr > td {
+  border: 1px solid #adb5be82;
+  padding: 0.2rem 0.4rem;
+}
+
+.wikitable > tr > th, .wikitable > tr > td, .wikitable > * > tr > th, .wikitable > * > tr > td {
+  border: 1px solid #a2a9b1;
+  padding: 0.2rem 0.4rem;
+}
+.wikitable {
+  color: #202122;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  /* TODO: verify this works well in all cases
+     this may be a better solution (which does not break "display" accessibility): https://stackoverflow.com/a/63751092
+  */
+  display: block;
+  overflow-x: scroll;
+
+  /*
+  display: table;
+  width: 100%;
+  */
+}
+
+/* language-local table styling */
+
+.hintergrundfarbe5 { /* german */
+  background-color: #eaecf0;
+}
+
+/*
+.wikitable {
+  border: 1px solid #0000005c;
+  margin: 1rem;
+}
+*/
+
+/* .floatright issues:
+ *    not good here: https://conze.pt/explore/List%20of%20skeletal%20muscles%20of%20the%20human%20body?l=en&t=wikipedia&s=false
+ *    TODO: look for places where it IS needed.
+ * /
+
+/*
+.floatright {
+  float: right;
+}
+*/
+
+/* useful test cases: 
+ *  - https://conze.pt/explore/BACH%20motif?l=en&t=wikipedia&s=false
+ */
+.thumbimage, .thumbinner /*, .tsingle*/ {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.trow .tsingle {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.thumb.tright {
+  float: right;
+  max-width: 60% !important;
+  width: 40%;
+  margin: 0.7rem 1rem 0rem 0.7rem;
+  clear: both;
+}
+
+.thumb.tright .model-media figure {
+  float: none !important;
+}
+
+/* TODO: research if we can make all the "float left elements" float right instead */
+.quotebox.floatleft, .quotebox.floatright {
+  float: right;
+  max-width: 60% !important;
+  width: 40% !important;
+  margin: 1rem !important;
+}
+
+/*
+.sinottico {
+  float: right;
+  padding: 1rem;
+}
+*/
+
+/* citation error message */
+.cs1-visible-error {
+  display: none;
+}
+
+.mw-parser-output .id-lock-free a, .mw-parser-output .citation .cs1-lock-free a {
+  background: none;
+}
+
+div.reflist {
+  /*
+  margin-left: 1rem;
+  */
+}
+
+div.reflist dd {
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  /* font-style: oblique; */
+  /* font-size: smaller; */
+  margin: .8rem 1.5rem .5rem !important;
+  padding-left: 0.8rem !important;
+  padding: 0 .75rem !important;
+  border: solid #009ee0 !important;
+  border-width: 0 0 0 1px !important;
+}
+
+blockquote, .poem, .templatequote { /* p.sid ~ dl > dd */
+  font-family: 'Crimson Text', 'Times New Roman', serif !important;
+  font-weight: bolder;
+  font-size: 102%;
+  /* font-style: oblique; */
+}
+
+.templatequote {
+  /*overflow: revert;*/
+  margin: revert;
+  overflow: unset !important;
+}
+
+.poem {
+  font-weight: bold;
+  margin: .8rem 1.5rem .5rem !important;
+  margin-left: 0.8rem !important;
+  padding: 0 .75rem !important;
+}
+
+blockquote .poem {
+  margin-left: 0rem;
+  border: none;
+}
+
+/* collapsable ToC for mobile */
+
+/*
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsable-content {
+  padding: 0 0px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+*/
+
+#wikipedia {
+  color: black;
+  max-width: 100vw !important;
+  margin: auto !important;
+  margin-top: 0.1vh !important;
+  padding: 3px !important;
+
+  position:relative;
+  z-index:1;
+
+  /*
+  width:100vh;
+  width:400px;
+  height:400px;
+  */
+  overflow:scroll;
+  overflow-x: hidden !important;
+}
+
+*:focus {
+  outline: none;
+  border: 1px solid black;
+}
+
+body {
+
+  font-size: 15px; /* IMPORTANT BASE VALUE --> MATCH WITH MAIN CSS */ 
+
+  /*font-family: 'Overlock', cursive; */
+  /*font-family: 'Athiti', sans-serif; */
+  /*font-family: 'K2D', sans-serif; */
+  /*font-family: 'Pontano Sans', sans-serif;*/
+  /*font-family: 'IBM Plex Sans Condensed';*/
+  font-family: 'Quicksand';
+
+  /*
+  font-weight: 300; 
+  font-weight: 350 !important;
+  line-height: 110%;
+  */
+  overflow-x: hidden !important;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.wallpaper {
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center
+
+}
+
+/*
+#bg-wallpaper {
+  background-image: url("https://en.wikipedia.org/wiki/en:Special:Filepath/East_Yorkshire_Regiment_Cap_Badge.jpg?width=700");
+
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+*/
+
+/* webcomponent */
+midi-player {
+  width: 100%;
+}
+
+.metadata.audiolinkinfo {
+  display: none;
+}
+
+/* audio fragment container */
+.media-block {
+  clear: both;
+  float: right;
+  max-width: 60% !important;
+  width: 40%;
+  margin: 0.7rem 1rem 0rem 0.7rem;
+  border: none !important;
+  font-size: smaller;
+  border-bottom: 1px solid #0006 !important;
+}
+
+.haudio {
+  margin-bottom: 1rem;
+}
+
+.selfreference {
+  display: none;
+}
+
+.media-block .mbox-text hr {
+  display: none;
+}
+
+.media-block .mbox-image {
+  display: none;
+}
+
+.thumbinner .mediaContainer {
+  width: 100% !important;
+}
+
+.media-block .mediaContainer {
+  width: 100% !important;
+  margin: 0.7rem 0rem;
+}
+
+audio {
+  border-radius: 0.4rem;
+}
+
+.media-block audio {
+  width: 100% !important;
+  margin-bottom: 0.2rem;
+}
+
+.media-block .mbox-text.plainlist {
+  line-height: 160% !important;
+}
+
+audio::-webkit-media-controls-mute-button, audio::-moz-media-controls-mute-button, audio::-ms-media-controls-mute-button, audio::media-controls-mute-button {
+  display: none !important;
+}
+
+audio::-webkit-media-controls-volume-slider, audio::-moz-media-controls-volume-slider, audio::-ms-media-controls-volume-slider, audio::media-controls-volume-slider {
+  display: none !important;
+}
+
+audio {
+  width: 100%;
+}
+
+.inline-audio {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+}
+
+
+/* top menu buttons */
+#wikipedia-menu .dropbtn:hover {
+  background: #ee6e7396;
+}
+
+.section-title-button:hover {
+  background: #ee6e7396;
+}
+
+.section-title-button:active{
+  color: #57bee9;
+}
+
+.section-title-button:focus{
+  color: #57bee9;
+}
+
+.section-title-button {
+  font-size: small;
+  float: right;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  /* color: #00000078; */
+}
+
+span.tts-buttons button {
+  color: #00000078;
+}
+
+span.tts-buttons {
+  display: none;
+  position: fixed;
+  right: 80px;
+  bottom: 23px;
+  z-index: 996;
+}
+
+/* icon for table graph */
+
+details.graph {
+  clear: both;
+  margin-left: 1rem;
+}
+
+/* openseadragon zoom for LC */
+
+/*
+#loader-openseadragon {
+  z-index: 9999999;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+*/
+
+/* lightbox */
+
+#lcl_window {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#lcl_elem_wrap {
+  background-size: contain !important;
+}
+
+.lcl_tn_hidden.lcl_outer_cmd:not(.lcl_fullscreen_mode) #lcl_window {
+  margin-bottom: 0px !important;
+}
+
+#lcl_descr {
+  font-size: inherit;
+  line-height: 1rem;
+}
+
+.lcl_minimal #lcl_txt * {
+  color: white !important;
+  font-size: larger;
+}
+
+/* GBIF map web component */
+
+gbif-map {
+  width: 100%;
+}
+
+/* gallery */
+
+  /*
+  li.gallerybox, li.gallerybox div {
+    width: 30% !important;
+  }
+  */
+
+  ul.mw-gallery-packed, ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover {
+    text-align: center;
+  }
+
+  ul.gallery {
+    margin: 2px;
+    margin-left: -2rem
+    padding-top: 1rem;
+    max-width: 85% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(6em,1fr));
+    grid-gap: 1rem 9rem;
+  }
+
+  .gallerybox {
+    float: left;
+    width: 200px;
+    padding: 5px;
+    border: 2px solid transparent;
+    border-radius: 0.4rem;
+    list-style: none;
+    
+  }
+
+  li.gallerycaption {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    word-wrap: break-word;
+  }
+
+  div.gallerytext {
+    /* overflow: hidden; */
+    font-size: 94%;
+    padding: 2px 4px;
+    word-wrap: break-word;
+    min-width: 150px;
+  }
+
+  .gallerytext p {
+    width: 80%;
+    padding: 0 0 0 10%;
+    margin-top: 0px;
+    font-size: smaller;
+  }
+
+  .mw-parser-output .tmulti .thumbcaption {
+    font-size: smaller;
+  }
+
+  .thumbcaption {
+    padding-left: 1.2rem;
+    padding-right: 0.2rem;
+  }
+
+  /* TODO: improve accessability + usability */
+  .elem.underline:active, .elem.underline:focus-within {
+    outline: none;
+    border: none;
+  }
+
+  a.elem:focus, a.elem:hover {
+    border: none;
+    outline: #ee8585 solid 5px !important;
+    display: block;
+  }
+
+  .infobox a.elem:focus, .infobox a.elem:hover {
+    outline: #ee8585 solid 5px !important;
+    outline: none !important;
+  }
+
+  .infobox img.enlargable:hover {
+    outline: #ee8585 solid 5px !important;
+    /* box-sizing: border-box !important; */
+  }
+
+  .gallerybox a.elem:focus {
+    border: none;
+    outline: none;
+  }
+
+  .gallerybox a.elem:hover, .gallerybox a.elem::focus-within {
+    border: 2px solid #ee6e7380;
+    border-radius: 2rem;
+  }
+
+  .gallery a.elem:focus {
+    border: none;
+    outline: none;
+  }
+
+  .gallery a.elem:hover, .gallery a.elem::focus-within {
+    border: 2px solid #ee6e7380;
+    border-radius: 2rem;
+  }
+
+  .gallerybox figure {
+    margin: auto;
+    padding: 0.5rem;
+  }
+
+  .thumb figure {
+    margin: auto;
+    padding: 0.2rem;
+  }
+
+  /* old gallery styling */
+
+  /*
+  div.gallery::before {
+    content: "";
+    clear: both;
+  }
+
+  div.gallery::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  div.gallery-column {
+    float: left;
+    width: 200px;
+    padding: 5px;
+    border: 2px solid transparent;
+    border-radius: 0.4rem;
+  }
+
+  a.elem.underline:focus {
+    border: none;
+    outline: none;
+  }
+
+  div.gallery-column:hover, div.gallery-column:focus-within {
+    border: 2px solid #ee6e7380;
+    border-radius: 2rem;
+  }
+
+  div.gallery img {
+    width: 100%;
+    height: 200px;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  div.gallery-caption {
+    padding: 15px;
+    text-align: center;
+  }
+  */
+
+
+/* should this _always_ be hidden? */
+.post-content.footer-content {
+  display: none;
+}
+
+/* "see more" styling */
+
+.hatnote::before, .bandeau-cell:before, .hauptartikel:before, div[role=note]:before  { /* TODO design a proper fix for multi-lingual hatnote-styling support */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  /* font-size: 1rem; */
+  color: #6a6a6a;
+  margin-right: 0.5rem;
+  content: "\f05a";
+}
+
+.hatnote, .bandeau-cell, .hauptartikel, div[role=note] {  /* TODO design a proper fix for multi-lingual hatnote-styling support */
+  margin-left: 1rem;
+  padding-left: 0em !important;
+  font-size: 0.95rem;
+  font-style: normal !important;
+  /* margin-bottom: 0.5rem; */
+}
+
+.hauptartikel i, div[role=note] i {
+  font-style: normal !important;
+}
+
+.hauptartikel-pfeil, div[role=note] img {
+  display: none;
+}
+
+.main_template_container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.main_template_info {
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  background: #2d9b3936 !important;
+  /* background: #d3d3d369 !important; */
+  display: inline-block;
+  border-radius: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  /* margin-left: 1rem; */
+  font-weight: bolder;
+  font-size: 0.9rem;
+}
+
+.infobox map {
+  display: inline-block;
+}
+
+p:first-of-type:first-letter {
+  font-size: 130%;
+}
+
+.text {
+  hyphens: auto;
+  text-align: justify;
+  text-justify: inter-word;
+  /*
+  */
+}
+
+/*
+.text:first-of-type:first-letter {
+  font-size: 1.4rem;
+}
+*/
+
+/* Portal & Book  pages cleanup */
+
+.hlist.noprint {
+  display: none;
+}
+
+.cloaked-element {
+  display: none !important;
+}
+
+.header-container.header-chrome {
+  display: none;
+}
+
+#mw-mf-page-left {
+  display: none !important;
+}
+
+#siteNotice {
+  display: none !important;
+}
+
+#portals-browsebar {
+  display: none;
+}
+
+.box-Warning.plainlinks.ombox.ombox-content {
+  display: none;
+}
+
+/* Portal & Book  pages cleanup */
+
+.hlist.noprint {
+  display: none;
+}
+
+.cloaked-element {
+  display: none !important;
+}
+
+.header-container.header-chrome {
+  display: none;
+}
+
+#mw-mf-page-left {
+  display: none !important;
+}
+
+#siteNotice {
+  display: none !important;
+}
+
+#portals-browsebar {
+  display: none;
+}
+
+.box-Warning.plainlinks.ombox.ombox-content {
+  display: none;
+}
+
+.ombox.noprint {
+  display: none;
+}
+
+.license {
+  display: none;
+}
+
+.footer-places.hlist.hlist-separated {
+  display: none;
+}
+
+.printfooter {
+  display: none;
+}
+
+.last-modifier-tagline {
+  display: none;
+}
+
+.catheadline ul {
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 0.5rem;
+  padding: 0.02rem;
+  /* padding: 0.1rem 0.5rem 0.1rem 0.5rem; */
+  /* margin-bottom: 0.1rem; */
+  list-style: none;
+  line-height: 2rem;
+
+  /*
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  */
+}
+
+.catheadline a {
+  text-decoration: none !important;
+}
+
+.catheadline a {
+  text-decoration: none !important;
+  display: block;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.reflist-block {
+  padding-top: 1rem;
+}
+
+.reference {
+  font-family: Crimson Text;
+  padding-left: 0.10rem;
+}
+
+.reference-list {
+  font-size: small;
+}
+
+.reference-item {
+  margin-bottom: 1.1rem;
+}
+
+ol.references > li {
+  font-size: medium;
+  margin-bottom: 1.1rem;
+}
+
+h2.map-gbif {
+  margin-bottom: 0.5rem;
+}
+
+div.mw-parser-output > dl > dt {
+  font-weight: bold;
+}
+
+/*
+div#background {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: url(https://wikischool.org/_media/jung_red_book_mandala_1917.jpg) 0 0 no-repeat fixed !important;
+  background-size:contain;
+  z-index: -200;
+}
+*/
+
+.categories {
+  /*
+  border: 1px solid gray !important;
+  padding: 1vw;
+ */
+}
+
+.catheader {
+  /* margin-bottom: -20px !important; */
+}
+
+
+.highlight {
+  background-color: #f2c6c7;
+  padding: 0.22rem;
+}
+
+/* article-language switcher ULS */
+
+/*
+.grid.uls-menu.uls-narrow.uls-mobile {
+}
+*/
+
+.uls-menu {
+  margin-top: 80px !important;
+}
+
+.uls-narrow {
+  min-width: 250px;
+}
+
+.grid.uls-menu.uls-mobile.uls-wide {
+  border: 1px solid black;
+}
+
+.uls-lcd-region-title {
+  font-size: 1.20rem !important;
+  font-weight: 600;
+  padding-bottom: .07rem;
+  border-bottom: 1px solid #009ee0;
+}
+
+.uls-language-block a {
+  font-size: 0.9rem !important;
+}
+
+.uls-filterinput {
+  width: 100% !important;
+}
+
+.uls-language-block > ul > li {
+}
+
+.uls-filterinput.uls-languagefilter.languagefilter {
+  font-family: inherit !important;
+  font-family: fontAwesome !important;
+}
+
+.uls-narrow.grid .row {
+  min-width: 150px;
+  width: 100% !important;
+}
+
+.uls-language-block > ul > li:hover {
+  background-color: #ee6e7340 !important;
+}
+
+.dropbtn.uls-trigger {
+  font-family: inherit;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.hlist dd, .hlist dt, .hlist li {
+  margin: 0;
+  display: inline;
+}
+
+.hlist dd:after, .hlist dt:after, .hlist li:after {
+  content: " · ";
+  font-weight: bold;
+}
+
+.hlist dd:after, .hlist dt:after, .hlist li:last-child:after {
+  content: "";
+}
+
+/* routemap https://conze.pt/explore/C%20(New%20York%20City%20Subway%20service) */
+
+table.RMinline {
+  display: none; /* TOFIX: improve styling, needs removal of figure + img styling first */ 
+}
+
+/*
+.mw-parser-output table.routemap {
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+  background: transparent;
+  white-space: nowrap;
+  line-height: 1.2;
+  margin: auto;
+}
+
+.mw-parser-output table.routemap .RMl {
+  text-align: right;
+}
+
+.mw-parser-output table.routemap .RMl1 {
+  padding: 0 3px;
+  text-align: left;
+}
+
+.mw-parser-output .RMir > div {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    height: 20px;
+    min-height: 20px;
+}
+.mw-parser-output table.routemap > tbody > tr > td, .mw-parser-output table.RMcollapse > tbody > tr > td, .mw-parser-output table.RMreplace > tbody > tr > td {
+    text-align: center;
+}
+
+.mw-parser-output table.routemap > tbody > tr > td, .mw-parser-output table.RMcollapse > tbody > tr > td, .mw-parser-output table.RMreplace > tbody > tr > td {
+  padding: 0;
+  width: auto;
+  vertical-align: middle;
+  text-align: center;
+}
+*/
+
+/* table */
+
+/*
+table {
+  border-collapse: collapse;
+}
+
+.tableFloatingHeaderOriginal {
+  background-color: #d5dae2;
+}
+
+td, th {
+  text-align: left;
+  border: 1px solid #0000005c;
+  padding: 0.2rem;
+}
+
+td figure {
+  float: left;
+}
+
+td:nth-child(1) {  
+  padding-left: 0.2rem; 
+}
+
+
+thead tr:first-child td {
+  font-weight: 600;
+  font-size: smaller;
+  line-height: 1.3rem;
+  text-align: center;
+  background: rgba(123, 142, 171, 0.3);
+}
+
+tr:hover { 
+  background-color: #8dafdb26 !important;
+}
+
+table:not(.infobox):not(.clade) tr:nth-child(even){
+  background-color: #d7d7d733;
+}
+
+
+table.infobox tr:nth-child(2n+3){
+  background-color: #d7d7d733;
+}
+
+table th {
+  text-align: left;
+}
+
+thead td {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+table.table {
+  display: block;
+  clear: both;
+  overflow-x: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 1px !important;
+}
+
+tbody {
+  vertical-align: middle;
+  text-align: center;
+}
+*/
+
+.vertical-navbox {
+  border-radius: 1rem;
+}
+
+table.infobox {
+
+  max-width: 100% !important;
+  table-layout: fixed;
+  overflow-x: auto;
+  border: 1px solid #0000001a;
+  border-collapse: separate;
+  border-spacing: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05),0 6px 20px 0 rgba(0, 0, 0, 0.14);
+  border: 1px solid #0000005c !important;
+
+  line-height: 1.5em;
+
+  /* border-radius: 1rem; */
+}
+
+
+.infobox {
+  border: 1px solid #a2a9b1;
+  border-spacing: 3px;
+  background-color: #f8f9fa;
+  color: black;
+  margin: 0.5rem 0 0.5rem 1rem;
+  /* margin: 0 0 2rem 2rem;*/
+  padding: 0.6rem;
+  float: right;
+  clear: right;
+  font-size: 88%;
+  line-height: 1.5rem;
+
+  width: 400px !important;
+  max-width: 400px !important;
+
+}
+
+/* FR-language fix */
+.infobox .entete {
+  font-weight: bold;
+  text-align: center;
+}
+
+.infobox th[scope="row"] {
+  width: 8em !important;
+}
+
+.wikitable.plainrowheaders th[scope="row"] {
+  font-weight: normal;
+  text-align: left;
+}
+
+.mw-parser-output .legend {
+  page-break-inside: avoid;
+  break-inside: avoid-column;
+}
+
+/* IT-language fix */
+.sinottico_testata * {
+  text-align: center !important;
+}
+
+.infobox .mediaContainer {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.4rem;
+}
+
+figcaption .mediaContainer {
+  width: 100% !important;
+}
+
+figcaption audio {
+  width: 100% !important;
+}
+
+figcaption li {
+  float: left !important;
+  margin-left: 1em !important;
+}
+
+.infobox .infobox-above, .infobox .infobox-title, .infobox caption {
+  text-align: center;
+}
+
+.infobox .infobox-header, .infobox .infobox-subheader, .infobox .infobox-image, .infobox .infobox-full-data, .infobox .infobox-below {
+  text-align: center;
+}
+
+.hlist dl, .hlist ol, .hlist ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* TODO: verify this is correct everywhere! cause example:
+   https://conze.pt/explore/Europese%20rivierkreeft?l=nl&t=wikipedia */
+table.infobox {
+  table-layout: initial !important;
+}
+
+table.sidebar {
+  width: 400px !important;
+  max-width: 400px !important;
+}
+
+.sidebar-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-image a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-image a:hover, .sidebar-image a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+table.sidebar * {
+  text-align: center;
+}
+
+.sidebar tr:first-of-type, .sidebar-title-with-pretitle, .sidebar-heading {
+  text-align: center !important;
+}
+*/
+
+.infobox td, .infobox th {
+  vertical-align: top;
+  text-align: left;
+}
+
+.infobox td[colspan="2"] figure {
+  max-width: 100% !important;
+  margin: auto;
+}
+
+/*
+.infobox tr th {
+  vertical-align: top;
+  text-align: center;
+}
+*/
+
+/*
+.infobox th {
+  border: none !important;
+}
+
+.infobox td {
+  min-width: 130px;
+  text-align: left;
+  border: none !important;
+}
+
+.infobox td:nth-child(1) {
+  font-weight: bold;
+  font-size: smaller;
+  text-align: center;
+}
+*/
+
+/*
+.infobox td:first-of-type {
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.infobox th:first-of-type {
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+*/
+
+.infobox td, .infobox th {
+  vertical-align: top;
+}
+
+/*
+.infobox.geography td, .infobox.geography th {
+  border-top: 1px solid #a2a9b1;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+}
+*/
+
+.plainlist ol, .plainlist ul {
+  line-height: inherit;
+  list-style: none none;
+  padding-left: 0rem; /* TODO: verify this works better in all cases */
+}
+
+.hlist, .hlist-separated ul {
+  padding-left: 0rem; /* TODO: verify this works better in all cases */
+}
+
+/*
+.infobox tr:first-child td:nth-child(2):not([colspan="1"]) {
+  display:none;
+}
+*/
+
+.navbox {
+  border: 1px solid black;
+  padding: 0.2rem;
+  margin: 1rem;
+}
+
+#article-banner {
+  width: 99%;
+  margin-bottom: -50px;
+}
+
+h1, h2, h3 {
+  letter-spacing: normal !important;
+}
+
+h2.article-title {
+  clear: none !important;
+  margin-top: 0.5rem !important;
+}
+
+h3, h4 {
+  border-bottom: solid 1px #000000a3;
+}
+
+::selection {
+  background: #fef4ad;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  /* font-family: 'Catamaran', sans-serif !important; */
+  clear: both;
+}
+
+h1, h2 {
+
+  margin-top: 0rem;
+  margin-bottom: 0.2rem;
+  padding-top: 1.1rem; 
+  padding-bottom: 0.4rem;
+  line-height: 1rem;
+
+  /*
+  margin-top: 0.36rem;
+  margin-bottom: 0.2rem;
+  padding-top: 0.2rem; 
+  padding-bottom: 0.08rem;
+  line-height: 1rem;
+  */
+}
+
+h2, h3, h4, h5, h6 {
+
+  margin-top: 0rem;
+  margin-bottom: 0.2rem;
+
+  /*
+  margin-bottom: 0.8rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.01rem;
+  line-height: 0.1rem;
+  */
+}
+
+.paragraph {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h1, h2 {
+  border-bottom: 2px solid #009ee0a6;
+  /* border-bottom: 1px solid #009ee0; */
+}
+
+a {
+  text-decoration: none;
+}
+
+a.underline {
+  text-decoration: underline;
+  text-decoration-color: rgb(84, 84, 84);
+}
+
+a.underline.link {
+  font-weight: 450;
+}
+
+a {
+  color: inherit;
+  /*
+  text-decoration: underline;
+  text-decoration-color: #0000004d;
+  text-decoration: underline rgba(175, 175, 175, 1.00);
+  */
+}
+
+a.link {
+  font-weight: 450 !important;
+  text-decoration: underline !important;
+  /* font-weight: 400; */
+  /* text-decoration: none; */
+  /*text-decoration-color: rgba(175,175,175,0);*/
+}
+
+.templatequote a {
+  font-weight: inherit !important;
+}
+
+.link[title^="User:"] {
+  background-color: #cfe6d0 !important;
+  padding: 0em 0.3rem;
+  border-radius: 0.2rem;
+}
+
+li.notts a {
+  text-decoration: none !important;
+}
+
+.link.referrals {
+  background: none !important;
+}
+
+.missing-link {
+  color: #ee0b0bd1;
+}
+
+a.underline.missing-link {
+  text-decoration-color: rgb(242, 130, 182);
+}
+
+a:hover:not(.elem), a:focus:not(.elem) {
+  /* background: #f3e2e6 !important; */
+  background: #ee6e735c !important;
+  border:none;
+  outline:none;
+}
+
+/*
+a:visited {
+  color: green !important;
+}
+*/
+
+a.link:visited {
+  color: green !important;
+}
+
+/* ULS hover fix */
+a.autonym:hover {
+  background: none !important;
+}
+
+/*
+ul {
+  list-style-type: square;
+}
+*/
+
+ul.foldercats li {
+  list-style-type: none;
+}
+
+ul.foldercats li a {
+  text-decoration: none !important;
+}
+
+.foldercats.subs {
+  margin-left: -25px; /* FIXME? */
+}
+
+video {
+  border-radius: 0.2rem;
+}
+
+video:focus {
+  border: none !important;
+}
+
+/* FIXME: minifying the CSS is wrongly removing the spaces between ".mw-parser-output img" */
+img:not(.mw-parser-output img), .inline-video {
+  width: 100%;
+  max-height: 750px;
+  margin: 0.7vh 1vh 1vh 1vh; 
+  /* margin: 0.7rem 0.1rem 0.1rem 0.1rem; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.enlargable:hover {
+  cursor: nesw-resize;
+}
+
+figure {
+  max-width: 60% !important;
+  width: 40%;
+  float: right;
+  margin: 0.7rem 1rem 0rem 0.7rem;
+  clear: both;
+  padding-left: 15px;
+  position: relative;
+}
+
+.infobox figure, .wikitable figure {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.tmulti figure, .gallery figure {
+  max-width: 100% !important;
+  width: 90%;
+  float: none;
+  margin: auto;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.model-media {
+  width: 60vw;
+  height: 40vw;
+}
+
+.model-view {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: sticky;
+  /* background-color: transparent; */
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+}
+
+.model-title {
+  /* background-color: #cac7c754; */
+  position: absolute;
+  transform: translate( 0.5em, 0.5em);
+  border-radius: 0.2rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  font-size: small;
+  font-weight: bold;
+  position: absolute;
+  bottom: 1rem;
+  width: 94%;
+  color: white;
+  /* border: 1px solid #00000061; */
+}
+
+.model-view-button {
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #00000069;
+  padding: 0.2rem 0.4rem;
+  z-index: 500;
+  position: absolute;
+}
+
+
+.model-view-button:hover {
+  border: 1px solid #d65459bf;
+  background: #d6545917;
+  color: white;
+}
+
+#model-view-ar-button {
+  top: 1rem;
+  right: 3rem;
+}
+
+#model-view-fullscreen-button {
+  top: 1rem;
+  right: 1rem;
+  
+}
+
+.thumb.tmulti {
+  float: right !important;
+}
+
+.copyright {
+  position: absolute;
+  color: #ffffff8c;
+  top: 1.5rem;
+  right: 1rem;
+  font-size: 0.3rem;
+}
+
+figcaption {
+  margin: 0rem 0rem 1.5rem 1rem;
+  text-align: center;
+  display: block;
+  font-size: smaller;
+  border-bottom: 1px solid #0006;
+  width: 99%;
+  margin: 0.2rem auto 2rem auto;
+}
+
+.enlargable {
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.15rem 0.15rem gray);
+  border-radius: 0.2rem;
+
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+table .enlargable {
+  filter: none !important;
+}
+
+
+/* ToC */
+
+.js-toc {
+  /*font-family: 'Quicksand';*/
+  /*font-family: 'Catamaran', sans-serif !important;*/
+  /*font-size: 1.2rem !important;
+  line-height: 1.6rem !important;*/
+  font-size: 110% !important;
+  line-height: 120% !important;
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+  display: block;
+  clear: both;
+  content: " ";
+  height: 20px;
+  /* margin-top: -60px; */
+  visibility: hidden;
+}
+
+h1::before, h2::before {
+  margin-bottom: 14px;
+}
+
+h3::before, h4::before, h5::before, h6::before {
+  margin-bottom: 24px;
+}
+
+.toc{
+  overflow-y:auto;
+}
+
+.toc>.toc-list{
+  overflow:hidden;
+  position:relative;
+}
+
+.toc > .toc-list li{
+  list-style:none;
+}
+
+.toc-list-item {
+  list-style-type: none;
+}
+
+.toc-list-item.is-active-li {
+  background: rgba(204,204,204,0.4);
+  /* background: #ee6e7333; */
+  /* background-color:#c9d55366; */
+}
+
+.toc-link.node-name--H1 {
+  /*font-weight: 600;*/
+}
+
+.toc-link.node-name--H2, .toc-link.node-name--H3, .toc-link.node-name--H4, .toc-link.node-name--H5 {
+  display: list-itrem;
+  /* list-style-type: none; */
+  list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAg0lEQVQImV2OsQ0DIRAE719yIXc9WN8BTdAIguQSJJKPCHAVVEJGSkxED+vAEtJ701lphlT1DCGglAJ67qAYI5gZzAznHFprr43nnB9jDJgZIgJrLdZa733ovUNEICJgZqjqTzHGmNd1beC9h6qeRESUUtrOnDOI6Hhk3feNWut/LX0BxvlBf33uzMgAAAAASUVORK5CYII=");
+  list-style-position: inside;
+  text-indent: -0.4rem;
+}
+
+.toc-link.node-name--H3 {
+  text-indent: -1rem;
+  padding-left: 1rem;
+
+}
+
+.toc-link.node-name--H4 {
+  text-indent: -1rem;
+  padding-left: 1rem;
+
+}
+
+.toc-list{
+  margin:0;
+  padding-left: 0.5rem;
+}
+
+aside.js-toc > .toc-list{
+  margin:0;
+  padding-left: 0.1rem;
+}
+
+a.toc-link{
+  /* color:currentColor; */
+  font-size: 95%;
+  display: inline-block;
+  height:110%;
+  width: 95%;
+  outline: none;
+  padding-left: 10px;
+}
+.is-collapsible{
+  max-height:1000px;
+  overflow:hidden;
+  transition:all 300ms ease-in-out;
+}
+.is-collapsed{
+  max-height:0
+}
+.is-position-fixed{
+  position:fixed !important;
+  top:0
+}
+
+.is-active-link{
+  /* font-weight:700; */
+}
+
+.toc-link::before{
+  background-color:#EEE;
+  content:' ';
+  display:inline-block;
+  height:inherit;
+  left:0;
+  margin-top:-1px;
+  position:absolute;
+  width:2px;
+}
+.is-active-link::before{
+}
+
+html {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#wikipedia-menu {
+  float: right;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+/* dropdown button */
+ /* Dropdown Button */
+.dropbtn {
+  background-color: inherit;
+  color: black;
+  padding: 0.5rem;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border: 1px solid transparent;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: inherit;
+  color: inherit;
+}
+
+.dropbtn:focus {
+  border: 1px solid black;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  background: #fbfaf9;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  /* background-color: #ddd */
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;} 
+
+/* sidenav toc */
+
+aside {
+  height: 99%;
+  width: 20%;
+  max-width: 400px;
+  position: fixed;
+  scrollbar-width: none; /* experimental!! */
+  /* transform: translate3d(0,0,0); */ /* iOS hack */
+  z-index: 1;
+  top: 0;
+  left: -2px;
+  padding-top: 20px;
+  padding-left: 1.2rem;
+  background-color: inherit;
+  /*overflow-x:hidden;*/
+  /*overflow-y:hidden;*/
+  /* overflow-y:auto; */ /* FIXME */
+  -webkit-overflow-scrolling:touch;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+aside::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+aside a {
+  /* padding: 6px 8px 6px 16px; */
+  text-decoration: none !important;
+  font-size: smaller;
+  /* overflow-x: hidden; */
+  /* color: #818181; */
+  display: inline;
+  padding: 5px;
+}
+
+aside a:hover {
+  /* color: #f1f1f1; */
+}
+
+aside li {
+  margin-bottom: 0.1rrem !important;
+}
+
+main.explore {
+  visibility: hidden;
+  line-height: 150%;
+  font-size: 100%;
+  width: 78%;
+  max-width: 1100px;
+  margin-left: 22%;
+  padding: 0px 0px;
+  overflow-y: hidden;
+  overflow-x: hidden !important;
+}
+
+#legalnotice {
+  color: #2f2c2c;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+#legalnotice a {
+  text-decoration: underline !important;
+}
+
+/* Chart.js  */
+@keyframes chartjs-render-animation {
+  from { opacity: 0.99; }
+  to { opacity: 1; }
+}
+
+.chartjs-render-monitor {
+  animation: chartjs-render-animation 0.001s;
+}
+
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink {
+  position: absolute;
+  direction: ltr;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.chartjs-size-monitor-expand > div {
+  position: absolute;
+  width: 1000000px;
+  height: 1000000px;
+  left: 0;
+  top: 0;
+}
+
+.chartjs-size-monitor-shrink > div {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  left: 0;
+  top: 0;
+}
+
+/* citation lock-icon is rendered overlapping */
+.mw-parser-output .id-lock-limited a, .mw-parser-output .id-lock-registration a, .mw-parser-output .citation .cs1-lock-limited a, .mw-parser-output .citation .cs1-lock-registration a {
+  display:none;
+}
+
+/* MEDIA BREAKPOINTS wikipedia-iframe */
+
+/*
+@media screen and (max-width: 1400px) {
+
+  main.explore {
+    width: 78%;
+  }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+  main.explore {
+    padding-left: 5px;
+  }
+
+}
+*/
+
+@media screen and (max-width: 800px) {
+
+  h2.article-title {
+    margin-top: 2rem !important;
+  }
+
+  /*
+  main.explore > h1:first-of-type {
+    margin-top: 2rem !important;
+  }
+  */
+
+  figure {
+    margin-right: 1rem;
+    width: 90%;
+  }
+
+  img.enlargable {
+    width: 100%;
+  }
+
+  .infobox {
+    margin: 0 0 0.2rem 1.2rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 100%;
+    padding-top: 0.4rem;
+    clear: both;
+  }
+
+  aside {
+    display: none;
+  }
+
+  #legalnotice {
+    font-size: small;
+    line-height: 100%;
+  }
+
+  main.explore {
+    margin: auto;
+    width: 95%;
+  }
+
+  #wikipedia {
+    margin: 0px;
+    width: 95% !important;
+  }
+
+  #wikipedia-menu {
+    margin-right: 2vw;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    /* float: left; */
+  }
+
+  .grid.uls-menu.uls-narrow.uls-mobile {
+    left: auto !important;
+    right: auto !important;
+  }
+
+  .tts-buttons {
+    right: calc( 100% / 4 ) !important;
+    bottom: 60px !important;
+  }
+
+  .tts-buttons button {
+    font-size: 1.5rem;
+  }
+
+  .dropbtn {
+    padding: 0.4rem;
+  }
+
+  summary {
+    /* font-size: 1.5rem; */
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+
+  #loader {
+    bottom: 15%;
+  }
+
+  table.infobox, table.wikitable {
+    width: 100% !important;
+  }
+
+  table.sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  figure {
+    max-width: 40% !important;
+  }
+
+  .infobox figure {
+    max-width: 100% !important;
+  }
+
+  .uls-wide {
+    left: 1rem !important;
+  }
+
+  .uls-trigger {
+    padding-left: 2px !important;
+  }
+
+}
+
+@media screen and (min-width: 1400px) {
+  main.explore {
+    /* font-size: 25px; */
+  }
+
+  #wikipedia {
+    /* margin-left: 10px !important; */
+  }
+}
+
+@media screen and (min-width: 1900px) {
+
+  /*
+  main.explore {
+    font-size: 1.1rem !important;
+  }
+  */
+
+  #wikipedia {
+    margin-left: 22px !important;
+  }
+}

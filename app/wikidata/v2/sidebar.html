@@ -1,0 +1,158 @@
+<style>
+div.sidebar {
+	margin-left:1rem;
+	width: 18rem;
+	margin-top:0.5rem;
+}
+div.sidebar table.table {
+	margin-bottom:0px;
+}
+div.sidebar td {
+	border:none;
+}
+div.sidebar td {
+	margin:0px;
+	padding:1px;
+	font-size:9pt;
+}
+div.sidebar tbody:nth-child(odd) {
+/*	background: #e5e5e5;*/
+}
+div.sidebar div.card {
+	margin-top:1rem;
+}
+div.sidebar div.card-body {
+	padding:0.2rem;
+}
+div.sidebar div.image_container {
+	text-align:center;
+	margin-bottom:0.5rem;
+}
+span.sidebar_snak_wrapper {
+	display:inline-block;
+	width:12rem;
+	margin-bottom:1px;
+}
+</style>
+
+<template id='sidebar-template'>
+    <div class='sidebar'>
+
+    	<div v-if='loaded'>
+
+    		<div v-for='p in config.image_propmap'>
+    			<div v-if='i.hasClaims(p)' class='image_container'>
+	   				<commons-thumbnail :filename='i.getFirstStringForProperty(p)' width='260'></commons-thumbnail>
+	   			</div>
+	   		</div>
+
+	   		<div v-for='part,key in parts'>
+		        <div v-if='part[1].length>0' class="card">
+		        	<div class="card-header bg-light" :tt='part[0]'></div>
+		        	<div class="card-body">
+						<table class='table table-condensed'>
+							<tbody v-for='p in part[1]'>
+								<tr v-for='(claim,num) in i.getClaimsForProperty(p)'>
+									<td v-if='num==0' :rowspan='i.getClaimsForProperty(p).length'>
+										<wd-link :item='p'></wd-link>
+									</td>
+									<td>
+										<span class="sidebar_snak_wrapper">
+											<snak :snak='claim.mainsnak' nodesc='1'></snak>
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+	        </div>
+
+	        <div v-if='Object.values(sitelinks).length>0' class="card">
+	        	<div class="card-header bg-light" tt='wikimedia_projects'></div>
+	        	<div class="card-body">
+					<table class='table table-condensed'>
+						<tbody v-for='sl in sitelinks'>
+							<tr>
+								<td>
+									{{sl.site}}
+								</td>
+								<td>
+									<a :href='getSiteLink(sl)' class='wikimedia' target='_blank'>
+										{{sl.title}}
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+	        </div>
+	    </div>
+	    <div v-else>
+	    	<i tt='loading'></i>
+	    </div>
+
+    </div>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'sidebar' , {
+	props : [ 'q' ] ,
+	data : function () { return { i:{} , all_props:[] , loaded:false , sitelinks:[] , parts:{
+		'key_props':['key_data',[]] ,
+		'wm_props':['wikimedia',[]] ,
+		'external_id_props':['external_sources',[]] ,
+	} } } ,
+    created : function () {
+    	let me = this ;
+    	me.i = wd.getItem(me.q) ;
+    	if ( typeof me.i == 'undefined' ) {
+    		console.log ( "Couldn't get item "+q) ;
+    		return ;
+    	}
+
+    	me.sitelinks = me.i.getWikiLinks() ;
+
+    	me.all_props = me.i.getPropertyList() ;
+    	me.parts.external_id_props[1] = me.all_props.filter ( (p) => wd.getItem(p).getDataytpe()=='external-id' ) .sort ( me.sort_by_label );
+    	let url_props = me.all_props.filter ( (p) => wd.getItem(p).getDataytpe()=='url' && $.inArray(p,Object.values(config.wikimedia))==-1 ) .sort ( me.sort_by_label );
+    	me.parts.wm_props[1] = me.all_props.filter ( (p) => $.inArray(p,Object.values(config.wikimedia))>=0 ) .sort ( me.sort_by_label );
+
+    	me.parts.key_props[1] = me.all_props.filter ( (p) => wd.getItem(p).getDataytpe()=='string' ) ;
+    	me.parts.key_props[1] = me.parts.key_props[1].filter ( (p) => $.inArray(p,Object.values(config.wikimedia))==-1 ) ;
+    	me.parts.key_props[1] = me.parts.key_props[1].filter ( (p) => $.inArray(p,Object.values(config.prop_map))==-1 ) ;
+    	me.parts.key_props[1] = me.parts.key_props[1].sort ( me.sort_by_label );
+    	me.parts.key_props[1] = me.parts.key_props[1].concat(url_props) ;
+
+    	me.loaded = true ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+    	sort_by_label : function ( a , b ) {
+    		var label_a = wd.getItem(a).getLabel().toLowerCase() ;
+    		var label_b = wd.getItem(b).getLabel().toLowerCase() ;
+    		if ( label_a < label_b ) return -1 ;
+    		if ( label_a > label_b ) return 1 ;
+    		return 0 ;
+    	} ,
+    	getSiteLink : function ( sl ) {
+    		let url = '' ;
+    		let m = sl.site.match ( /^(.+)(wik.+)$/ ) ;
+    		if ( m === null ) {
+    			console.log ( "Can't find server for "+sl.site ) ;
+    			return '' ;
+    		}
+    		if ( sl.site == 'commonswiki' ) url = 'commons.wikimedia.org/wiki/' ;
+    		else if ( sl.site == 'metawiki' ) url = 'meta.wikimedia.org/wiki/' ;
+    		else if ( m[2] == 'wiki' ) url = m[1] + '.wikipedia.org/wiki/' ;
+    		else if ( m[1] == 'wikidata' ) url = 'www.wikidata.org/wiki/' ;
+    		else url = m[1] + '.' + m[2] + '.org/wiki/' ;
+    		return "https://" + url + encodeURIComponent(sl.title);
+    	}
+    },
+	template : '#sidebar-template'
+} ) ;
+</script>

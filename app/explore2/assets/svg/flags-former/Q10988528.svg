@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="899.99994"
+   height="600"
+   id="Flag of Eastern Turkestan"
+   version="1.0"
+   viewBox="0 0 360 240"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="Flag_of_the_Second_East_Turkestan_Republic.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata27">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs25" />
+  <sodipodi:namedview
+     inkscape:window-height="750"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="281.66136"
+     inkscape:cy="248.70662"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:current-layer="Flag of Eastern Turkestan"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <rect
+     style="fill:#559ee2"
+     y="-2.2379556e-05"
+     x="1.4536983e-16"
+     id="rect5"
+     height="240.00003"
+     width="360.00003" />
+  <path
+     sodipodi:type="star"
+     style="fill:#559ee2;fill-opacity:1;stroke:#ffffff;stroke-width:1.2842958;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path3186"
+     sodipodi:sides="5"
+     sodipodi:cx="145.28571"
+     sodipodi:cy="65.785713"
+     sodipodi:r1="9"
+     sodipodi:r2="3.4200001"
+     sodipodi:arg1="1.5707963"
+     sodipodi:arg2="2.1991149"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 145.28571,74.785713 L 143.27548,68.552551 L 136.7262,68.566866 L 142.03309,64.728875 L 139.99564,58.50456 L 145.28571,62.365713 L 150.57577,58.50456 L 148.53832,64.728875 L 153.84521,68.566866 L 147.29593,68.552551 L 145.28571,74.785713 z"
+     transform="matrix(3.1145475,0,0,3.1145475,-304.67367,-127.84216)"
+     inkscape:transform-center-y="-21.985697" />
+  <path
+     style="fill:#559ee2;fill-opacity:1;stroke:#ffffff;stroke-width:4.00000048;stroke-linecap:round;stroke-linejoin:round;marker-start:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path2395"
+     d="M 172.74544,55.687187 C 202.05949,52.403924 229.92412,69.219182 240.68247,96.684642 C 251.44087,124.15013 242.41047,155.41728 218.66534,172.91769 C 194.92019,190.4181 162.38118,189.78798 139.33141,171.38135 C 116.28165,152.9748 108.46854,121.38137 120.28227,94.353063 C 114.57951,115.74456 123.00784,138.40504 141.30342,150.87057 C 159.59903,163.33614 183.77199,162.88837 201.59335,149.75384 C 219.41471,136.61931 226.99815,113.66234 220.50715,92.496621 C 214.01619,71.330994 194.86633,56.572398 172.74544,55.687187" />
+</svg>

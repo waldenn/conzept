@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sahaj Khandelwal",
+			"Yaron Koren"
+		]
+	},
+	"itemCount": "Number of items displayed above the results in all pages except home and about pages.\n\nParameters:\n* $1 - a number or '1 million +'",
+	"classPlaceholder": "Placeholder for the search field on home page",
+	"browse": "Statement below the search field on home page",
+	"noFiltersDefined": "Displayed on items page when no properties are defined for the class.E.g.:Blood(Q7873)",
+	"addFilter": "Link to add filters. Displayed on items page when more than 40 properties are defined for a class.",
+	"viewQuery": "Link to Wikidata Query Service present at the bottom of all pages.",
+	"noItems": "Displayed on items page when no items are found for the given class and applied filters. E.g.:Blood(Q7873)",
+	"displayItemsError": "This is an error message which is displayed on items page when a SPARQL query times out and returns no data.",
+	"gettingValues": "Text displayed on every page while data is being fetched. \n\nParameters:\n* $1 - filter name. E.g: Getting values for filter genre ...",
+	"noAdditionalValues": "Message displayed on filter values page if no more values exists for a filter.",
+	"filterError": "Error displayed on filter values page when getting filters for a class times out or throws some error. \n\nParameters:\n* $1 - filter name,like genre",
+	"filterTimeout": "Note displayed on filter values page when fallback results are given due to timeout of SPARQL query.\n\nParameters:\n* $1 - filter name,like genre",
+	"selectValue": "Message to select a value for a filter, displayed on filter values page.\n\nParameters:\n* $1 - filter name,like genre",
+	"selectAdditionalValue": "Message to select more than one values for a filter, displayed on filter values page. \n\nParameters:\n* $1 - filter name,like genre",
+	"noValue": "Predefined value for a filter to signify no data exists for that filter. Present on filter values page.",
+	"changeClassNote": "Warning given on subclass and superclass pages to the user.",
+	"specificClass": "Message on subclass page",
+	"generalClass": "Message on superclass page",
+	"viewList": "Link to return to items page present on subclass, superclass and filters page",
+	"results": "Number of results displayed alongside every value on filter values page.\n\nParameters:\n* $1 - a number",
+	"applyLinkedFilter": "Text displayed on filter values page for additional linked filters.\n\nParameters:\n* $1 - filter name,like genre",
+	"chooseLinkedFilter": "Message displayed when linked filter dropdown is open."
+}

@@ -1,0 +1,107 @@
+<style>
+div.wd_hovercard {
+	position:absolute;
+	z-index:1001;
+	overflow:auto;
+}
+div.wd_hovercard_description {
+	color:#999;
+	font-size:10pt;
+	line-height:1rem;
+}
+div.wd_hovercard div.card-body {
+	padding:5px;
+}
+</style>
+
+<template id='wd-hovercard-template'>
+<span @mouseover='onHover' @mouseout='onLeave'>
+	<span v-if='loaded'>
+		<span class='wd_hovercard_slot'><slot></slot></span>
+		<div v-if='show_card' class='card wd_hovercard'>
+			<div class="card-body">
+				<div style='display:flex'>
+					<div style='width:250px;'>
+						<div><b>{{i.getLabel()}}</b></div>
+						<div><wd-link :item='item' :label='item'></wd-link></div>
+						<div class='wd_hovercard_description'>
+							{{(i.getDesc()||'')}}
+						</div>
+					</div>
+					<div v-if='i.hasClaims(config.image_propmap.image)'>
+						<commons-thumbnail :filename='i.getFirstStringForProperty(config.image_propmap.image)' width='150'></commons-thumbnail>
+					</div>
+					<div v-if='typeof coordinates.latitude!="undefined"'>
+						<mini-map style='width:250px;height:150px;margin:3px;' :lat='coordinates.latitude' :lon='coordinates.longitude' zoom='4'></mini-map>
+					</div>
+				</div>
+			</div>
+		</div>
+	</span>
+	<span v-else>
+		<slot></slot>
+	</span>
+</span>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'wd-hovercard' , {
+	props : [ 'item' ] ,
+	data : function () { return { loaded:false , i:{} , show_card:false , interval:'' , show_card_delay_ms:600 , coordinates:{} } } ,
+    created : function () {
+    	let me = this ;
+    	me.loaded = false ;
+    	me.show_card = false ;
+    	me.coordinates = {} ;
+    	me.clearInterval() ;
+    	wd.getItemBatch ( [me.item] , function () {
+    		me.i = wd.getItem(me.item) ;
+    		if ( typeof me.i == 'undefined' ) return ;
+    		if ( me.i.hasClaims(config.prop_map.coordinates) ) {
+    			me.coordinates = me.i.getClaimsForProperty(config.prop_map.coordinates)[0].mainsnak.datavalue.value ;
+    		}
+    		me.loaded = true ;
+    	} ) ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+    	onHover : function () {
+    		this.clearInterval() ;
+    		this.interval = setInterval ( this.onShowCard , this.show_card_delay_ms ) ;
+    	} ,
+    	onShowCard : function () {
+    		this.clearInterval() ;
+    		let hc = $($(this.$el).find('div.wd_hovercard_slot')) ;
+    		let off = $(this.$el).offset() ;
+    		let window_top = $(window).scrollTop() ;
+    		
+//    		console.log ( (off.top-window_top) , $(window).height()/2 ) ;
+
+    		if ( (off.top-window_top) < $(window).height()/2 ) {
+	    		hc.css({top:off.top}) ;
+	    	} else { // FIX THIS!
+	    		hc.css({top:off.top-150}) ;
+	    	}
+    		hc.css({left:off.left}) ;
+    		this.show_card = true ;
+    	} ,
+    	onLeave : function () {
+    		let me = this ;
+    		me.clearInterval() ;
+    		me.interval = setInterval ( function () {
+    			me.clearInterval() ;
+    			me.show_card = false ;
+    		} , 200 ) ;
+    	} ,
+    	clearInterval : function () {
+    		if ( this.interval == '' ) return ;
+    		clearInterval ( this.interval ) ;
+    		this.interval = '' ;
+    	}
+    },
+	template : '#wd-hovercard-template'
+} ) ;
+</script>

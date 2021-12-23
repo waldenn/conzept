@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.44"
+   width="389.03046"
+   height="216.57422"
+   version="1.0"
+   sodipodi:docbase="C:\Documents and Settings\Owner\My Documents\My Pictures"
+   sodipodi:docname="Bahawalpur.svg">
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     inkscape:window-height="808"
+     inkscape:window-width="1152"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="2"
+     inkscape:cx="216.1119"
+     inkscape:cy="106.93746"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:current-layer="svg2" />
+  <rect
+     style="opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect1877"
+     width="389.02158"
+     height="216.57173"
+     x="0.00127447"
+     y="0.00121611" />
+  <path
+     sodipodi:type="arc"
+     style="opacity:1;fill:white;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     id="path1873"
+     sodipodi:cx="-5.1564989"
+     sodipodi:cy="97.400528"
+     sodipodi:rx="55.575596"
+     sodipodi:ry="55.575596"
+     d="M 50.419097 97.400528 A 55.575596 55.575596 0 1 1  -60.732095,97.400528 A 55.575596 55.575596 0 1 1  50.419097 97.400528 z"
+     transform="matrix(0.969072,0,0,0.97165,74.8975,12.35817)" />
+  <path
+     sodipodi:type="arc"
+     style="opacity:1;fill:black;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     id="path1875"
+     sodipodi:cx="117.59682"
+     sodipodi:cy="123.61273"
+     sodipodi:rx="49.129974"
+     sodipodi:ry="45.119362"
+     d="M 166.72679 123.61273 A 49.129974 45.119362 0 1 1  68.466843,123.61273 A 49.129974 45.119362 0 1 1  166.72679 123.61273 z"
+     transform="matrix(1,0,0,1.079365,-32.94303,-26.56916)" />
+  <path
+     style="fill:red;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 0.00390625,1.4596514e-015 L 389.03045,1.4596514e-015 L 389.03045,73.461868 L 134.78969,73.336322 L 0.00390625,1.4596514e-015 z "
+     id="rect1881"
+     sodipodi:nodetypes="ccccc" />
+  <path
+     style="fill:#009e2a;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 134.88577,143.22252 L 389.03045,142.66313 L 389.03045,216.57422 L 0,216.57422 L 134.88577,143.22252 z "
+     id="rect1883"
+     sodipodi:nodetypes="ccccc" />
+  <rect
+     style="opacity:1;fill:yellow;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect2770"
+     width="253.81433"
+     height="69.863388"
+     x="135.21614"
+     y="73.336884" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:white;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linejoin:miter;stroke-opacity:1"
+     id="path1879"
+     sodipodi:sides="5"
+     sodipodi:cx="89.665787"
+     sodipodi:cy="82.217506"
+     sodipodi:r1="20.741058"
+     sodipodi:r2="7.9282746"
+     sodipodi:arg1="1.0019485"
+     sodipodi:arg2="1.630267"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="M 100.8382,99.692308 L 89.194565,90.131765 L 76.498729,98.243113 L 81.993264,84.214988 L 70.355684,74.647075 L 85.395129,75.537759 L 90.898545,61.513115 L 94.698898,76.091714 L 109.73778,76.991921 L 97.047078,85.111306 L 100.8382,99.692308 z "
+     transform="matrix(1.021074,0.287514,-0.287236,1.022062,39.81208,-3.3436)" />
+</svg>

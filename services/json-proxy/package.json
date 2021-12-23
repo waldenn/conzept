@@ -1,0 +1,59 @@
+{
+  "name": "json-proxy",
+  "version": "0.9.3",
+  "description": "Grunt plugin / CLI utility / Express middleware to proxy API requests to remote servers without CORS or JSONP.",
+  "keywords": [
+    "utility",
+    "proxy",
+    "json proxy",
+    "api proxy",
+    "grunt",
+    "gruntplugin",
+    "grunt proxy",
+    "connect proxy",
+    "connect proxy",
+    "express proxy",
+    "middleware"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "steve-jansen"
+  },
+  "homepage": "https://github.com/steve-jansen/json-proxy",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/steve-jansen/json-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/steve-jansen/json-proxy/issues",
+    "email": "stevejansen_github@icloud.com"
+  },
+  "main": "./index.js",
+  "bin": {
+    "json-proxy": "./bin/json-proxy"
+  },
+  "engine": "node >= 0.10.x",
+  "dependencies": {
+    "http-proxy": "~1.15.0",
+    "colors": "~1.1.0",
+    "optimist": "~0.6.1",
+    "express": "~4.14.0",
+    "morgan": "~1.7.0"
+  },
+  "devDependencies": {
+    "istanbul": "~0.4.5",
+    "mocha": "~3.1.2",
+    "tmp": "~0.0.25",
+    "nock": "~9.0.0",
+    "portfinder": "~1.0.9",
+    "async": "~2.1.0",
+    "request": "~2.76.0",
+    "jshint": "~2.9.4",
+    "codeclimate-test-reporter": "~0.4.0"
+  },
+  "scripts": {
+    "jshint": "node node_modules/.bin/jshint lib/*  --show-non-errors",
+    "test": "node node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha --dir ./.coverage -- --recursive ./spec/*.js --reporter spec",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=9fa850087ebd65087f3754648c7d55647685cf583fa55b27474bcc76695c1e56 node node_modules/.bin/codeclimate < .coverage/lcov.info"
+  }
+}

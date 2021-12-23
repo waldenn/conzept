@@ -1,0 +1,15 @@
+body {
+  background: transparent !important;
+}
+
+.pk_btn.filename {
+  float: right;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .pk_btn.filename {
+    display: none;
+  }
+
+}

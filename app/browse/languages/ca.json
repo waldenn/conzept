@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mguix"
+		]
+	},
+	"itemCount": "Hi {{PLURAL:$1|ha un element que coincideix|han $1 elements que coincideixen}} amb aquesta descripció.",
+	"classPlaceholder": "Enter class",
+	"browse": "O, navegueu per qualsevol de les classes següents:",
+	"noFiltersDefined": "No s'ha definit cap filtre per aquesta classe.",
+	"addFilter": "Afegir un filtre",
+	"viewQuery": "Visualitza la consulta SPARQL",
+	"noItems": "Cap element coincideix amb aquesta descripció.",
+	"displayItemsError": "L'intent de mostrar la llista d'elements triga massa; considera afegir més filtres.",
+	"gettingValues": "S'estan obtenint els valors del filtre $1 ...",
+	"noAdditionalValues": "No hi ha valors addicionals per al filtre $1.",
+	"filterError": "El filtre $1 triga massa intentant obtenir valors.",
+	"filterTimeout": "(Obtenir un conjunt complet de valors per al filtre $1 va trigar massa, en canvi, aquí hi ha un conjunt possiblement incomplet).",
+	"selectValue": "Seleccioneu un valor per a $1:",
+	"selectAdditionalValue": "Seleccioneu un valor addicional per a $1:",
+	"noValue": "Sense valor",
+	"changeClassNote": "(Nota: si canvies la classe, perdràs el conjunt actual de filtres.)",
+	"specificClass": "Canvia a una classe més específica:",
+	"generalClass": "Canvia a una classe més general:",
+	"viewList": "Mostra la llista d'elements",
+	"results": "({{PLURAL:$1|1 resultat|$1 resultats}})"
+}

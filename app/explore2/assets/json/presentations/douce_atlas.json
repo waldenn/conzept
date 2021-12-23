@@ -1,0 +1,50 @@
+{
+  "cover": { 
+    "title": "Douce Atlas",
+    "text": "History of the Douce%20Atlas",
+    "url": "https://conze.pt/app/wikipedia/?t=Douce%20Atlas&l=en"
+  },
+  
+  "chapters": [
+    {
+      "title": "intro",
+      "text": "What is the Douce Atlas?",
+
+      "slides": [
+        { 
+          "title": "IIIF Atlas image-collection-link",
+          "text": "The Douce Atlas is an early 15th-century nautical atlas by an anonymous Italian cartographer, currently held by the Bodleian Library in Oxford, UK.",
+          "url": "https://conze.pt/app/iiif/#?c=&m=&s=&cv=4&xywh=-319%2C-1163%2C5699%2C2879&manifest=https%3A%2F%2Fiiif.bodleian.ox.ac.uk%2Fiiif%2Fmanifest%2Fa85ee2fa-6a0e-4bd7-80a8-852380552be4.json"
+        },
+        { 
+          "title": "Douce Atlas wikipedia-link",
+          "text": "bla bla",
+          "url": "https://conze.pt/app/wikipedia/?t=Douce%20Atlas&l=en"
+        },
+        { 
+          "title": "video-link",
+          "text": "bla bla",
+          "url": "https://conze.pt/app/video/#/view/GgpzmmQwDx8"
+        }
+      
+      ]
+    },
+    {
+      "title": "references",
+      "text": "other links",
+
+      "slides": [
+
+        { 
+          "title": "external site",
+          "text": "bla bla",
+          "url": "https://google.com?q=Douce%20Atlas"
+        }
+
+      ]
+    
+    }
+
+  ]
+
+}

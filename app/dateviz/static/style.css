@@ -1,0 +1,170 @@
+body{
+  font-family: 'Quicksand', sans-serif !important;
+  overflow-x: hidden;
+  background: #fbfaf9;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.15em;
+  font-weight: bold;
+  color: black;
+}
+
+a:hover {
+  background-color: black;
+  background: #ee6e735c;
+}
+
+.match {
+  background: #ffa50045;
+}
+
+.indent {
+  margin: 0.1em 0 0.7em 1em;
+  font-size: smaller;
+}
+
+.foo {
+  margin-bottom: 0.1em;
+}
+
+#mytitle{
+  font-size: 150%;
+  text-align: center;
+}
+
+#mysubtitle{
+  font-size: 125%;
+  text-align: center;
+}
+
+#centeredText{
+  text-align: center;
+}
+
+#loadingText{
+  color: grey;
+  text-align: center;
+}
+
+#greyText{
+  color: grey;
+}
+
+#container{
+  display: none;
+}
+
+#headerText{
+  margin-left: 70px;
+}
+
+#wordForm{
+  display:inline;
+}
+
+#inputspan{
+  float: left;
+}
+
+#title{
+  visibility: hidden;
+  float: right;
+  text-align: right;
+  margin-right: 80px;
+}
+
+#wordText{
+  font-variant:small-caps;
+  font-size: 110%;
+  font-weight: bold;
+}
+
+#bookText{
+  margin-left: 70px;
+}
+
+#context{
+/*  height:900px;*/
+  overflow:hidden;
+}
+
+#year{
+  font-size: 120%;
+  margin-bottom: 10px;  
+}
+
+#footerInfo{
+  text-align: center;
+  display: none;
+}
+
+.right{
+  float: right;
+}
+
+.dropDown{
+  text-transform: capitalize;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.bar:hover {
+  fill: orangered;
+}
+
+.unbar {
+  fill: #fbfaf9;
+}
+
+.unbar:hover {
+  fill: lightgrey
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 3px;
+  background: rgba(255, 173, 0, 0.8); /* same orange, slightly transparent */
+  color: black; /* text */
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(255, 173, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.blacklink{  -webkit-user-select: none; /* Chrome/Safari */        
+  font-size: 100%;
+}
+
+.ui-widget {
+  font-family: georgia !important;
+  font-size: 1em !important;
+}

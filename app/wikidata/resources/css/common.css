@@ -1,0 +1,9 @@
+.numcell {
+	font-family:courier;
+	font-size:9pt;
+	text-align:right !important;
+}
+
+.pager {
+	max-height:20px;
+}

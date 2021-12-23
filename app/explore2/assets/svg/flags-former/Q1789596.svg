@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="644px" height="534px" viewBox="0 0 644 534" enable-background="new 0 0 644 534" xml:space="preserve">
+<g>
+	<path fill="#FFFFFF" d="M0,0v267v267h313c0,0,187-1,329-267C500,1,313,0,313,0H0z"/>
+	<rect y="107" fill="#AF252F" width="107" height="106"/>
+	<rect y="320" fill="#AF252F" width="107" height="106"/>
+	<rect x="107" y="0" fill="#AF252F" width="107" height="107"/>
+	<rect x="107" y="213" fill="#AF252F" width="107" height="107"/>
+	<rect x="107" y="426" fill="#AF252F" width="107" height="108"/>
+	<path fill="#AF252F" d="M428,426H321v107.467c16.391-1.628,56.54-8.257,107-35.196V426z"/>
+	<rect x="214" y="107" fill="#AF252F" width="107" height="106"/>
+	<rect x="214" y="320" fill="#AF252F" width="107" height="106"/>
+	<path fill="#AF252F" d="M321,0.531V107h107V35.728C377.54,8.79,337.391,2.161,321,0.531z"/>
+	<rect x="321" y="213" fill="#AF252F" width="107" height="107"/>
+	<path fill="#AF252F" d="M524.516,107H428v106h107v-95.567C531.498,113.847,528.002,110.37,524.516,107z"/>
+	<path fill="#AF252F" d="M535,320H428v106h97.544c3.146-3.059,6.299-6.2,9.456-9.434V320z"/>
+	<path fill="#AF252F" d="M642,267c-10.343-19.375-20.926-37.334-31.657-54H535v107h75.988C621.499,303.615,631.863,285.986,642,267z
+		"/>
+</g>
+</svg>

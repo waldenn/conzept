@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saederup92"
+		]
+	},
+	"query-builder-input-value-label": "Værdi",
+	"query-builder-input-value-placeholder": "Indtast en værdi",
+	"query-builder-property-lookup-label": "Egenskab",
+	"query-builder-result-error-missing-property": "Vælg venligst en egenskab",
+	"query-builder-result-error-missing-value": "Indtast venligst en værdi",
+	"query-builder-value-type-relation-dropdown-without": "uden",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "uanset værdien",
+	"query-builder-value-type-relation-dropdown-less-than-quantity": "mindre end",
+	"query-builder-value-type-relation-dropdown-more-than-quantity": "mere end",
+	"query-builder-value-type-relation-dropdown-less-than-date": "før",
+	"query-builder-value-type-relation-dropdown-more-than-date": "efter",
+	"query-builder-condition-relation-toggle-and": "og",
+	"query-builder-condition-relation-toggle-or": "eller",
+	"query-builder-negation-option-label-with": "Med",
+	"query-builder-negation-option-label-without": "Uden",
+	"query-builder-quantity-value-number-input-placeholder": "Angiv et tal",
+	"query-builder-footer-view-source": "Vis kilde",
+	"query-builder-footer-about-us": "Om os",
+	"query-builder-date-input-value-label": "Værdi"
+}

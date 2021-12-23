@@ -1,0 +1,95 @@
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  /*
+  background: inherit;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color:#000;
+  */
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  /*text-align: center; */
+  /* font-size: 18px; */
+  /* background: #fff; */
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  /* overflow-y: scroll; */
+}
+
+iframe {
+  /* pointer-events: none; */
+}
+
+.swiper-pagination-bullet {
+  width: 2.5em;
+  height: 2.5em;
+  border: 2px solid #fbfaf9;
+}
+
+/*
+.sticky {
+  position: fixed !important;
+  width: 100%;
+}
+*/
+
+.noselect {
+  width: 98%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding-top: 0.1em;
+}
+
+#tabs-swipe-demo {
+  left: -1.5em;
+}
+
+#results .entry {
+  width: 96%;
+}
+
+.uls-mobile.uls-menu {
+  left: 5px !important;
+}
+
+.row.uls-language-list.uls-lcd.uls-lcd--no-quicklist {
+  height: 60vh;
+}
+
+.main-container {
+  /* margin-top: 110px; */
+}
+
+.medialinks {
+  font-size: 160%;
+}
+
+.summary-link {
+  font-size: 120%;
+}

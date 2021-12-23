@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html><head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Wikidata in vue.js</title>
+
+<link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://www.wikidata.org/w/load.php?debug=false&lang=en&modules=ext.echo.badgeicons%7Cext.echo.styles.alert%2Cbadge%7Cext.math.styles%7Cext.uls.pt%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikidata-org.badges%7Cext.wikimediaBadges%7Cjquery.wikibase.statementview.RankSelector.styles%7Cjquery.wikibase.toolbar.styles%7Cjquery.wikibase.toolbarbutton.styles%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cskins.vector.styles%7Cwikibase.common&only=styles&skin=vector">
+<link rel="stylesheet" href="https://www.wikidata.org/w/load.php?debug=false&lang=en&modules=jquery.ui.core.styles&only=styles&skin=vector">
+<!--<link rel="stylesheet" href="https://www.wikidata.org/w/load.php?debug=false&lang=en&modules=site.styles&only=styles&skin=vector">-->
+<link rel="stylesheet" href="mw.css">
+
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/vue/2.2.1/vue.min.js"></script>
+<script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/vue-router/2.3.0/vue-router.min.js"></script>
+<script src="https://tools-static.wmflabs.org/magnustools/resources/js/vue/wikidata.js"></script>
+<!--<script src="https://tools-static.wmflabs.org/tooltranslate/tt.js"></script>-->
+
+<style>
+#app {
+	max-width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#app2 {
+	margin-left:-180px;
+}
+span.small_item_id {
+	color:#999999;
+	font-size:8pt;
+}
+</style>
+
+</head>
+
+<body class='mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject skin-vector action-view wb-entitypage wb-itempage'>
+
+<div id='app'>
+<div id='app2'>
+<router-view></router-view>
+</div>
+</div>
+
+</body>
+
+<!-- BEGIN TEMPLATES FOR VUE COMPONENTS -->
+
+<template id='main-page-template'>
+<div>
+<h1>Main demo page</h1>
+<p>Try <router-link to='/item/Q42'>Douglas Adams</router-link></p>
+</div>
+</template>
+
+<template id='wikidata-link-template'>
+<span>
+<router-link :to='"/item/"+item'><span :title='"Language: "+getItem(item).getLabel()[1]'>{{getItem(item).getLabel()[0]}}</span></router-link>
+</span>
+</template>
+
+<template id='item-label-template'>
+<span>
+<wikidata-link v-if='linked' :item='item'></wikidata-link>
+<span v-else :title='"Language: "+getItem(item).getLabel()[1]'>{{getItem(item).getLabel()[0]}}</span>
+<span v-if='small' class='small_item_id'>{{item}}</span>
+</span>
+</template>
+
+<template id='item-description-template'>
+<span :title='"Language: "+getItem(item).getDescription()[1]'>
+{{getItem(item).getDescription()[0]}}
+</span>
+</template>
+
+<template id='string-value-template'>
+<span v-if='(typeof mainsnak != "undefined" && typeof mainsnak.datavalue != "undefined")'>
+<span v-if='mainsnak.datatype == "monolingualtext"'>{{mainsnak.datavalue.value.text}} ({{mainsnak.datavalue.value.language}})</span>
+<span v-else=''>{{mainsnak.datavalue.value}}</span>
+</span>
+</template>
+
+
+<template id='external-id-value-template'>
+<span>
+<span v-if='getItem(mainsnak.property).getStringValues("P1630").length>0'>
+	<a class='wb-external-id' :href='getItem(mainsnak.property).getStringValues("P1630")[0].replace(/\$1/g,encodeURIComponent(mainsnak.datavalue.value))'>
+		<string-value :mainsnak='mainsnak'/>
+	</a>
+</span>
+<span v-else><string-value :mainsnak='mainsnak'/></span>
+</span>
+</template>
+
+
+<template id='wb-item-value-template'>
+<item-label :item='mainsnak.datavalue.value.id' :linked='1' :small='1' />
+</template>
+
+<template id='time-value-template'>
+<span>
+{{render()}}
+</span>
+</template>
+
+<template id='coordinate-value-template'>
+<a :href='render()' class='external'>{{mainsnak.datavalue.value.latitude}}/{{mainsnak.datavalue.value.longitude}}</a>
+</template>
+
+<template id='quantity-value-template'>
+<span>
+{{render()}}
+</span>
+</template>
+
+
+<template id='reference-group-template'>
+<div :class='{ "wikibase-referenceview":true , "listview-item":true , "wb-edit":editing }'>
+	<div class='wikibase-referenceview-heading'>
+		<div v-if='editing' class="wikibase-removetoolbar wikibase-toolbar-item wikibase-toolbar wikibase-removetoolbar-container wikibase-toolbar-container">
+			<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-remove">
+				<a href="#" title="" @click.prevent='removeReferenceGroup'><span class="wb-icon"></span>remove</a>
+			</span>
+		</div>
+	</div>
+	<div class='wikibase-referenceview-listview'>
+		<div v-for='reference_prop in group["snaks-order"]' class='wikibase-snaklistview'>
+			<div v-for='(snak,num) in group.snaks[reference_prop]' class='wikibase-snaklistview-listview'>
+				<div class='wikibase-snakview'>
+					<div class='wikibase-snakview-property-container'>
+						<div class='wikibase-snakview-property'>
+							<item-label :item='snak.property' :linked='1' :small='1' />
+						</div>
+					</div>
+					<snakview-value :mainsnak='snak' :editing='editing' :statement='statement'></snakview-value>
+					<div v-if='editing' class="wikibase-removetoolbar wikibase-toolbar-item wikibase-toolbar wikibase-removetoolbar-container wikibase-toolbar-container"><!-- TODO: Refactor this with qualifiers code -->
+						<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-remove">
+							<a href="#" title="" @click.prevent='removeReference(reference_prop,num)'><span class="wb-icon"></span>remove</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div v-if='editing' class="wikibase-addtoolbar wikibase-toolbar-item wikibase-toolbar wikibase-addtoolbar-container wikibase-toolbar-container">
+		<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-add">
+			<a href="#" title="" @click.prevent='addReference'><span class="wb-icon"></span>add reference</a>
+		</span>
+	</div>
+</div>
+</template>
+
+<template id='references-template'>
+<div class='wikibase-statementview-references-container'>
+	<div class='wikibase-statementview-references-heading'>
+		<a @click.prevent='collapsed=!collapsed' :class='{ "ui-toggler":true , "ui-toggler-toggle":true , "ui-toggler-toggle-collapsed":(collapsed&&!editing) }'>
+			<span :class='{"ui-icon":true , "ui-toggler-icon":true , "ui-icon-triangle-1-s":true , "ui-toggler-icon3dtrans":true }' style='display:inline-block'></span>
+			<span class='ui-toggler-label'>{{getReferenceCount()}} references</span>
+		</a>
+	</div>
+	<div v-if='(editing||!collapsed)' class='wikibase-statementview-references wikibase-initially-collapsed'>
+		<div class='wikibase-listview'>
+			<reference-group v-for='(group,num) in (statement.references||{})' :group='group' :groupnum='num' :statement='statement' :editing='editing'/>
+		</div>
+		<div class='wikibase-addtoolbar wikibase-toolbar-item wikibase-toolbar wikibase-addtoolbar-container wikibase-toolbar-container'>
+			<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-add">
+				<a href="#" title="" @click.prevent='addReference'><span class="wb-icon"></span>add reference</a>
+			</span>
+		</div>
+	</div>
+</div>
+</template>
+
+<template id='qualifiers-template'>
+<div v-if='typeof statement.qualifiers!="undefined"' class='wikibase-statementview-qualifiers'>
+	<div class='wikibase-listview'>
+		<div v-for='qualifier_prop in statement["qualifiers-order"]' class='wikibase-snaklistview'>
+			<div v-for='(qualifier,num) in statement.qualifiers[qualifier_prop]' class='wikibase-snaklistview-listview'>
+				<div class='wikibase-snakview'>
+					<div class='wikibase-snakview-property-container'>
+						<div class='wikibase-snakview-property'>
+							<item-label :item='qualifier.property' :linked='1' :small='1' />
+						</div>
+					</div>
+					<snakview-value :mainsnak='qualifier' :editing='editing' :statement='statement'></snakview-value>
+					<div v-if='editing' class="wikibase-removetoolbar wikibase-toolbar-item wikibase-toolbar wikibase-removetoolbar-container wikibase-toolbar-container">
+						<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-remove">
+							<a href="#" title="" @click.prevent='removeQualifier(qualifier_prop,num)'><span class="wb-icon"></span>remove</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div v-if='editing' class="wikibase-addtoolbar wikibase-toolbar-item wikibase-toolbar wikibase-addtoolbar-container wikibase-toolbar-container">
+		<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-add">
+			<a href="#" title="" @click.prevent='addQualifier'><span class="wb-icon"></span>add qualifier</a>
+		</span>
+	</div>
+</div>
+</template>
+
+
+<template id='edit-string-value-template'>
+<div class='valueview-value'>
+	<textarea @keyup='keyUp' class="valueview-input ui-suggester-input" style="height: 21px; overflow: hidden; resize: none;">{{mainsnak.datavalue.value}}</textarea>
+</div>
+</template>
+
+
+<template id='edit-wbitem-value-template'>
+<div class='valueview-value'>
+	<textarea @focus='getsFocus' @blur='lostFocus' @keyup='keyUp' class="valueview-input ui-suggester-input" style="height: 21px; overflow: hidden; resize: none;">{{current_value.title}}</textarea>
+	<dropdown-list v-if='(has_focus && changed)' :list='list'></dropdown-list>
+</div>
+</template>
+
+<template id='dropdown-list-template'>
+<ul v-if='list.length>0' class="ui-ooMenu ui-widget ui-widget-content ui-suggester-list ui-entityselector-list" dir="ltr" style="width: auto; height: auto; overflow-y: visible; z-index: 1; min-width: 415px;"> <!-- top: 334px; left: 438px;  -->
+<li v-for='e in list' class="ui-ooMenu-item" dir="auto">
+	<a tabindex="-1" :href='"//www.wikidata.org/wiki/"+e.item'>
+		<span class="ui-entityselector-itemcontent">
+			<span class="ui-entityselector-label">{{e.title}}</span>
+			<span class="ui-entityselector-description">{{e.text}}</span>
+<!--			<span class="ui-entityselector-description autodesc-entityselector-description" style="background-color:#DBEBFF;padding:2px">Letter, part of Latin script</span>-->
+		</span>
+	</a>
+</li>
+</ul>
+</template>
+
+
+
+<template id='snakview-value-template'>
+<div class='wikibase-snakview-value-container'>
+	<div v-if='editing' class='wikibase-snakview-typeselector'>
+<!--		<span class="ui-state-default wikibase-snaktypeselector" aria-disabled="false"><span class="ui-icon ui-icon-snaktypeselector" title="custom value"></span></span>-->
+	</div>
+	<div v-if='editing' class='wikibase-snakview-value wikibase-snakview-variation-valuesnak'>
+		<div class="valueview valueview-ineditmode" aria-disabled="false">
+
+			<div v-if='mainsnak.datatype=="external-id"'><edit-string-value :mainsnak='mainsnak' :main='main' :statement='statement'/></div>
+			<div v-else-if='mainsnak.datatype=="url"'><edit-string-value :mainsnak='mainsnak' :main='main' :statement='statement'/></div>
+			<div v-else-if='mainsnak.datatype=="string"'><edit-string-value :mainsnak='mainsnak' :main='main' :statement='statement'/></div>
+			<div v-else-if='mainsnak.datatype=="commonsMedia"'><edit-string-value :mainsnak='mainsnak' :main='main' :statement='statement'/></div>
+			<div v-else-if='mainsnak.datatype=="wikibase-item"'><edit-wbitem-value :mainsnak='mainsnak' :main='main' :statement='statement'/></div>
+			<div v-else>CAN'T EDIT {{mainsnak.datatype}} YET!</div>
+
+
+<!--			<div class="valueview-value valueview-expert-wikibaseitem">
+				<textarea class="valueview-expert-wikibaseitem-input valueview-input ui-suggester-input ui-entityselector-input" dir="ltr" style="height: 21px; overflow: hidden; resize: none;"></textarea>
+			</div>-->
+		</div>
+	</div>
+	<div v-else class='wikibase-snakview-value wikibase-snakview-variation-valuesnak'>
+		<div v-if='mainsnak.datatype=="external-id"'><external-id-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="string"'><string-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="commonsMedia"'>
+			<a :href='"https://commons.wikimedia.org/wiki/File:"+encodeURIComponent(mainsnak.datavalue.value.replace(/ /g,"_"))' class='extiw'><string-value :mainsnak='mainsnak'/></a>
+			<div class="card" style="width: 5rem;display:inline-block;text-align:center">
+				<a :href='"https://commons.wikimedia.org/wiki/File:"+encodeURIComponent(mainsnak.datavalue.value.replace(/ /g,"_"))'>
+					<img class="card-img-top" :src='"https://commons.wikimedia.org/wiki/Special:Redirect/file/"+encodeURIComponent(mainsnak.datavalue.value.replace(/ /g,"_"))+"?width=32px"' :alt='mainsnak.datavalue.value' border=0 style='max-height:50px;max-width:100px;' />
+				</a>
+			</div>
+		</div>
+		<div v-else-if='mainsnak.datatype=="monolingualtext"'><string-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="url"'><a :href='mainsnak.datavalue.value' class='external free'><string-value :mainsnak='mainsnak'/></a></div>
+		<div v-else-if='mainsnak.datatype=="wikibase-item"'><wb-item-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="time"'><time-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="globe-coordinate"'><coordinate-value :mainsnak='mainsnak'/></div>
+		<div v-else-if='mainsnak.datatype=="quantity"'><quantity-value :mainsnak='mainsnak'/></div>
+		<div v-else>OTHER: {{mainsnak.datatype}}</div>
+	</div>
+</div>
+</template>
+
+
+
+<template id='statement-template'>
+<div :class='{ "wikibase-statementview":true , "wb-normal":!editing , "wb-edit":editing , "listview-item":true , "wikibase-toolbar-item":true }'>
+	<div class='wikibase-statementview-rankselector'>
+		<div class="wikibase-rankselector ui-state-disabled">
+			<span :class='"ui-icon ui-icon-rankselector wikibase-rankselector-"+statement.rank' :title='statement.rank+" rank"'></span>
+		</div>
+	</div>
+	<div class='wikibase-statementview-mainsnak-container'>
+		<div class='wikibase-statementview-mainsnak'>
+			<div :class='{ "wikibase-snakview":true , "wb-edit":editing }'>
+				<div class="wikibase-snakview-property-container"><div class="wikibase-snakview-property" dir="auto"></div></div> <!-- Not sure what this is; copied from MediaWiki -->
+				<snakview-value :mainsnak='statement.mainsnak' :editing='editing' :main='1' :statement='statement'></snakview-value>
+			</div>
+		</div>
+		<qualifiers :statement='statement' :editing='editing'></qualifiers>
+	</div>
+	<span v-if='editing' class="wikibase-toolbar-container wikibase-edittoolbar-container wikibase-edittoolbar-ineditmode" aria-disabled="false"><!-- EDIT MODE -->
+		<span class="wikibase-toolbar wikibase-toolbar-item wikibase-toolbar-container" aria-disabled="false">
+			<span :id='"save-button-"+statement.id' :class='{ "wikibase-toolbarbutton":true , "wikibase-toolbar-item":true , "wikibase-toolbar-button":true , "wikibase-toolbar-button-save":true , "wikibase-toolbarbutton-disabled":!(statement.changed) , "ui-state-disabled":!(statement.changed)}' aria-disabled="true">
+				<a href="#" title="" tabindex="-1"><span class="wb-icon"></span>save</a>
+			</span>
+			<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-remove" aria-disabled="false">
+				<a href="#" title="" @click.prevent='removeStatement'><span class="wb-icon"></span>remove</a>
+			</span>
+			<span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-cancel" aria-disabled="false">
+				<a href="#" title="" @click.prevent='cancelEditStatement'><span class="wb-icon"></span>cancel</a>
+			</span>
+		</span>
+		<span class="wb-help-field-hint wikibase-toolbar-item wikibase-wbtooltip" original-title="Enter a value corresponding to the property named &quot;image&quot;. If the property has no designated value or the actual value is not known, you can choose an alternative value type by clicking the icon before the input box." aria-disabled="false">&nbsp;</span>
+	</span>
+	<span v-else class='wikibase-toolbar-container wikibase-edittoolbar-container'><!-- VIEW MODE -->
+		<span class='wikibase-toolbar wikibase-toolbar-item wikibase-toolbar-container'>
+			<span class='wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-edit'>
+				<a href="#" title="" @click.prevent='editStatement'><span class="wb-icon"></span>edit</a>
+			</span>
+		</span>
+	</span>
+
+	<references :statement='statement' :editing='editing'/>
+</div>
+</template>
+
+<template id='statements-template'>
+<div v-if='(typeof statements != "undefined" && statements.length>0)' class='wikibase-statementgroupview listview-item'>
+<div :class='{ "wikibase-statementgroupview-property":true , "wb-edit":editing }'>
+<div class='wikibase-statementgroupview-property-label'><item-label :item='getProperty()' :linked='1' :small='1' /></div>
+</div>
+<div class='wikibase-statementlistview'>
+<div class='wikibase-statementlistview-listview'><statement v-for='statement in statements' :statement='statement' :item='item' /></div>
+<span class='wikibase-toolbar-container'><!--TODO--></span>
+<span class='wikibase-toolbar-wrapper'>
+	<div class='wikibase-addtoolbar wikibase-toolbar-item wikibase-toolbar wikibase-addtoolbar-container wikibase-toolbar-container'>
+		<span class='wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-add'>
+			<a href="#" title="Add a new value" @click.prevent='addNewStatement'><span class="wb-icon"></span>add</a>
+		</span>
+	</div>
+</span>
+</div>
+</div>
+</template>
+
+<template id='item-aliases-template'>
+<ul v-if='(hasItem(item) && getItem(item).getAliases().length>0)' class='wikibase-entitytermsview-aliases'>
+<li v-for='alias in getItem(item).getAliases()' class='wikibase-entitytermsview-aliases-alias'>{{alias}}</li>
+</ul>
+</template>
+
+<template id='item-page-template'>
+<div>
+<div v-if='loaded' id='content' class='mw-body' role='main'>
+	<a id="top"></a><!-- Copied from MW-->
+	<div class="mw-indicators mw-body-content"></div><!-- Copied from MW-->
+	<h1 id='firstHeading' class='firstHeading'>
+		<span class='wikibase-title'>
+			<span class='wikibase-title-label'><item-label :item='item'></item-label></span>
+			<span class='wikibase-title-id'>({{item}})</span>
+		</span>
+	</h1>
+	<div id='bodyContent' class='mw-body-content'>
+		<div id='mw-content-text' class='mw-content-ltr'>
+			<div class='wikibase-entityview wb-item'>
+				<div class='wikibase-entityview-main'>
+					<div class='wikibase-entitytermsview wikibase-toolbar-item'>
+						<div class='wikibase-entitytermsview-heading'>
+							<div class='wikibase-entitytermsview-heading-description '><item-description :item='item'/></div>
+							<div class='wikibase-entitytermsview-heading-aliases '><item-aliases :item='item'/></div>
+						</div>
+						<span class='wikibase-toolbar-container wikibase-edittoolbar-container'><!--TODO--></span>
+						<div class='wikibase-entitytermsview-entitytermsforlanguagelistview-toggler ui-toggler ui-toggler-toggle ui-state-default ui-toggler-toggle-collapsed'><!--TODO--></div>
+						<div class='wikibase-entitytermsview-entitytermsforlanguagelistview wikibase-initially-collapsed'><!--TODO--></div>
+					</div>
+					<div id='toc'><!--TODO--></div>
+					<div v-for='sl in statements'>
+						<h2 class='wb-section-heading section-heading wikibase-statements'>{{sl.label}}</h2>
+						<div class='wikibase-statementgrouplistview'>
+							<statements v-for='s in sl.list' :statements='s' :item='item'></statements>
+						</div>
+					</div>
+				</div><!--wikibase-entityview-main-->
+			</div><!--wikibase-entityview wb-item-->
+		</div><!--mw-content-text-->
+		<div class="visualClear"></div>
+		<div><hr/>This is a demo for Wikidata, made with <a href='https://vuejs.org/'>vue.js</a>. <a href='https://bitbucket.org/magnusmanske/reasonator/src/dcddab64e01524ae6a30894c12483e4de867fc57/public_html/vuejs_demo/?at=master'>Code</a>.</div>
+	</div><!--bodyContent-->
+</div>
+<div v-else><i>Loading item...</i></div>
+</div>
+</div>
+</template>
+
+<!-- END TEMPLATES FOR VUE COMPONENTS -->
+
+<script src="index_vue.js"></script>
+
+</html>

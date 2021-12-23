@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600.00262"
+   height="300.30499"
+   id="svg2408"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="Flag of Fadhli.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2410">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2416" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="284.4252"
+     inkscape:cy="150.15249"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="712"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4" />
+  <metadata
+     id="metadata2413">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-57.141567,-125.06683)">
+    <rect
+       width="600"
+       height="100"
+       id="rect2389"
+       style="fill:#241c1c"
+       x="57.144192"
+       y="125.06683" />
+    <rect
+       width="600"
+       height="100"
+       id="rect2386"
+       x="57.144131"
+       y="225.06682"
+       style="fill:#0cc800" />
+    <rect
+       width="600"
+       height="100"
+       id="rect2391"
+       style="fill:#0099f1;fill-opacity:1"
+       x="57.141567"
+       y="325.37183" />
+    <path
+       style="fill:#ffffff"
+       class="fil4"
+       d="M 383.14415,240.71255 L 391.52326,266.68773 L 419.17425,266.68773 L 397.38861,283.44591 L 405.76768,309.42109 L 383.14415,293.50082 L 360.52062,309.42109 L 369.73763,283.44591 L 347.11405,266.68773 L 374.76508,266.68773 L 383.14415,240.71255 z"
+       id="path2471" />
+    <path
+       id="path2165"
+       d="M 380.07647,387.47488 C 405.73536,380.93238 431.04552,363.7865 445.53171,343.13375 C 449.65506,337.25506 448.11919,337.58917 440.60185,344.20618 C 431.46436,352.24943 420.70364,358.36953 408.49137,362.46903 C 359.35982,378.96198 304.65804,349.22914 291.51422,298.88685 C 287.79192,284.63029 287.74508,265.78033 291.39648,251.50359 C 295.4666,235.58952 302.56095,223.39479 315.13321,210.70144 C 334.13149,191.52031 358.25016,182.09405 384.81645,183.46725 C 405.72548,184.54805 425.10595,192.38475 440.60185,206.02483 C 448.11919,212.64185 449.65506,212.97602 445.53171,207.09733 C 431.12709,186.56074 406.23537,169.64078 380.07647,162.60454 C 364.72578,158.47552 337.22174,158.47124 321.94485,162.59551 C 281.27486,173.57511 249.43372,205.41623 238.45414,246.08624 C 234.33118,261.35818 234.33434,288.86446 238.46085,304.21783 C 244.6019,327.06709 260.2353,351.43877 277.58562,365.21127 C 293.35975,377.73274 314.58149,387.17568 333.37735,390.0368 C 345.73246,391.91751 367.29184,390.73472 380.07647,387.47488 z"
+       style="fill:#ffffff"
+       sodipodi:nodetypes="csssssssssssssssc" />
+  </g>
+</svg>

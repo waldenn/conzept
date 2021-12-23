@@ -1,0 +1,110 @@
+html, body {
+  font-family: 'Quicksand', sans-serif !important;
+  background: #fbfaf9;
+}
+
+/*
+.far, .fas, .fab {
+}
+*/
+
+#center_on_me {
+  z-index: 1000;
+  position: absolute;
+  top: 0.38em !important;
+  left: 0.2em;
+}
+
+#tile_wrapper {
+  z-index: 1000;
+  position: absolute;
+  top: 0.5em;
+  left: 5em;
+  width: max-content;
+}
+
+.popup_section .far, .popup_section .fas, .popup_section .fab {
+  font-size: 1.6em;
+  padding: 0.4em; 
+}
+
+.popup_section a:hover {
+  color: #ee6e73d4;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.description {
+  font-size: 0.9em;
+}
+
+#top {
+  width: 280px !important;
+}
+
+.navbar {
+  background: transparent !important;
+}
+
+.leaflet-top {
+  top: 0em !important;
+  left: 0.5em !important;
+}
+
+.leaflet-top .leaflet-control {
+  /* margin-left: 93vw !important; */
+  top: 5em;
+}
+
+.leaflet-right {
+  right: 10em !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 10000 !important;
+}
+
+.pull-xs-left {
+  margin-left: 1em !important;
+}
+
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  min-width: max-content;
+}
+
+div.popup_section, div.popup_coords {
+  border-top: none !important;
+}
+
+div.popup_section {
+  display: inline;
+}
+
+.thumb img {
+  border-radius: 0.4em;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: transparent;
+}
+
+.dropdown-item {
+  padding: 3px 5px !important;
+}
+
+.leaflet-right .leaflet-control {
+  float: left !important;
+  top: 0em !important;
+  left: 12.2em !important;
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+  width: 2.4rem !important;
+  height: 2.4rem !important;
+}
+
+.leaflet-left .leaflet-control {
+  margin-left: 0px !important;
+}

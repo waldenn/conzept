@@ -1,0 +1,20 @@
+{
+  "name": "conzept-wikipedia",
+  "version": "0.4.1",
+  "description": "Conzept Wikipedia",
+  "main": "wikipedia_main.js",
+  "scripts": {
+    "build": "esbuild src/* --outdir=dist --minify --sourcemap && esbuild css/* --outdir=dist/css --minify --sourcemap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wikipedia",
+    "interface"
+  ],
+  "author": "Jama Poulsen",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@google/model-viewer": "^1.9.2",
+    "tocbot": "^4.17.0"
+  }
+}

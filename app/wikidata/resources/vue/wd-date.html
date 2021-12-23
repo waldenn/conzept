@@ -1,0 +1,19 @@
+<template id='wd-date-template'>
+	<span>
+		<span v-if='tv.precision==11'>{{tv.time.replace(/^[+]{0,1}(\d+-\d+-\d+).*$/,'$1')}}</span>
+		<span v-else-if='tv.precision==10'>{{tv.time.replace(/^[+]{0,1}(\d+-\d+).*$/,'$1')}}</span>
+		<span v-else-if='tv.precision==9'>{{tv.time.replace(/^[+]{0,1}(\d+).*$/,'$1')}}</span>
+		<span v-else-if='tv.precision==8'>{{tv.time.replace(/^[+]{0,1}(\d+)\d.*$/,'$1')}}0s</span>
+		<span v-else-if='tv.precision==7'>{{tv.time.replace(/^[+]{0,1}(\d+)\d\d.*$/,'$1')}}00s</span>
+		<span v-else>{{tv.time}}/{{tv.precision}}</span>
+	</span>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'wd-date' , {
+	template : '#wd-date-template' ,
+	props : [ 'tv' ] ,
+} ) ;
+</script>

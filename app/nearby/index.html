@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html><head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+  <!-- conzept resources -->
+  <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+  <link rel="stylesheet" href="./css/main.css?v1.00" type="text/css"/>
+
+  <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/tether/1.3.4/css/tether.min.css">
+  <link rel="stylesheet" href="./leaflet/leaflet.css">
+  <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet-contextmenu/1.4.0/leaflet.contextmenu.min.css">
+  <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./main_v3.css">
+  <!--<link rel="stylesheet" type="text/css" href="https://tools-static.wmflabs.org/magnustools/resources/css/common.css">-->
+
+  <title tt='toolname'></title>
+  <!--script src='https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/3.1.0/jquery.min.js'></script-->
+  <script src='https://tools-static.wmflabs.org/cdnjs/ajax/libs/tether/1.3.4/js/tether.min.js'></script>
+  <script src='https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.0.0-alpha.3/js/bootstrap.min.js'></script>
+  <script src='https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet/1.2.0/leaflet.js'></script>
+  <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet-contextmenu/1.4.0/leaflet.contextmenu.min.js"></script>
+  <script src="https://tools-static.wmflabs.org/magnustools/resources/js/common.js"></script>
+  <script src="https://tools-static.wmflabs.org/magnustools/resources/js/md5.js"></script>
+  <script src="https://tools-static.wmflabs.org/magnustools/resources/js/wikidata.js"></script>
+  <script src="https://tools-static.wmflabs.org/tooltranslate/tt.js"></script>
+  <script src="./main_v3.js?v1.00"></script>
+  <script src="./wsm_comm.js"></script>
+
+
+<script type='text/javascript'>
+$(document).ready ( function () {
+	wikishootme.init() ;
+} ) ;
+
+{
+var m = window.location.href.match(/\?(.+)$/) ;
+if ( m != null  ) {
+	var url = '/wikishootme/#' + m[1].replace(/\#/,'&') ;
+	window.location.href = url ;
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<!--div id='top'>
+<nav class="navbar navbar-light bg-faded">
+
+<ul class="nav navbar-nav">
+	<li class="nav-item"><button id='center_on_me' class='btn btn-secondary' tt_title='go_to_my_position'><i class="fa fa-compass" style='font-size:24pt' aria-hidden="true"></i></button></li>
+	<li class="nav-item" id='dropdownUploadsLi'>
+		<div class="dropdown" style='display:inline'>
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownUploads" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+		  <div class="dropdown-menu dropdown-menu-left" id='upload_list' style='margin-top:1em'></div>
+		</div>
+	</li>
+	<li class="nav-item" id="geo_error" style='font-size:7pt'></li>
+	<li class="nav-item"><button id='update' class='btn btn-info' tt='update'></button></li>
+	<li class="nav-item"><div id='busy' tt_title='updating'><i class="fa fa-spinner" style='font-size:24pt' aria-hidden="true"></i></div></li>
+</ul>
+
+</nav>
+</div-->
+
+<button id='center_on_me' class='btn btn-secondary' tt_title='go_to_my_position'><i class="fa fa-compass" style='font-size:24pt' aria-hidden="true"></i></button>
+<div id='tile_wrapper' class='dropdown-item'></div>
+
+<!--div class='pull-xs-left'>
+  <div class="dropdown" style='display:inline'>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-bars" style='font-size:16pt' aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-left" style='margin-top:1em'>
+    <div id='interface_language_wrapper' class='dropdown-item'></div>
+      <a class="dropdown-item" href="#" target='_blank' id='wdfist' tt='wdfist' tt_title='wdfist_hint'></a>
+      <a class="dropdown-item" href="#" target='_blank' id='flickr' tt='flickr' tt_title='flickr_hint'></a>
+      <a class="dropdown-item" href="#" target='_blank' id='sparql_filter_button'><span tt='sparql_filter_dialog'></span><span id='is_using_filter'>&nbsp;<i class="fa fa-check" aria-hidden="true"></i></span></a>
+      <a class="dropdown-item"  href='https://meta.wikimedia.org/wiki/WikiShootMe' target='_blank' tt='about'></a>
+    </div>
+  </div>
+</div-->
+
+<div id='map'></div>
+
+<div id='sparql_filter_dialog' class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" tt='sparql_filter_dialog'></h4>
+      </div>
+      <div class="modal-body">
+
+        <div style='margin-top:10px;margin-bottom:10px' tt='sparql_filter_desc'></div>
+        
+        <div>
+        <form id='sparql_simple_form' class='form form-inline'>
+        <div class="row">
+        <div class="col-lg-12">
+			<div class="input-group">
+			<input type='text' id='sparql_filter_p31' class='form-control' tt_placeholder='ph_p31' />
+			<span class="input-group-btn"><input type='submit' class='btn btn-secondary' tt_value='use_p31' /></span>
+			</div>
+		</div>
+		</div>
+        </form>
+        </div>
+        
+        <div class="card" style='margin-top:10px'>
+			<pre>SELECT ?q { /*...*/</pre>
+			<textarea id='sparql_filter_query' style='width:100%' rows=5 tt_placeholder='sparql_filter_query_hint'></textarea>
+			<pre>}</pre>
+		</div>
+		
+		<div>
+		<label><input type='checkbox' id='worldwide' value='1' /> <span tt='worldwide'></span></label>
+		</div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" tt='close'></button>
+        <button type="button" id='sparql_filter_clear' class="btn btn-danger" tt='clear_filter'></button>
+        <button type="button" id='sparql_filter_use' class="btn btn-primary" tt='use_filter'></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id='search_dialog' class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" tt='search_title'></h4>
+      </div>
+      <div class="modal-body">
+        
+        <div>
+        <form id='search_form' class='form form-inline'>
+        <div class="row">
+        <div class="col-lg-12">
+			<div class="input-group">
+			<input type='text' id='search_query' class='form-control' />
+			<span class="input-group-btn"><input type='submit' class='btn btn-primary' tt_value='search' /></span>
+			</div>
+		</div>
+		</div>
+        </form>
+        </div>
+        
+        <div class="card" id='search_results' style='display:none'>
+		<ul class="list-group list-group-flush" id='search_results_list'></ul>
+		</div>
+        
+      </div>
+<!--      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>-->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div class="modal fade hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" tt="performing_action"></h4>
+			</div>
+			<div class="modal-body">
+				<progress class="progress progress-striped progress-animated" value="100" max="100"></progress>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

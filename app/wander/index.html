@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>conzept video wander</title>
+
+    <!-- conzept resources -->
+    <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+    <script src="/app/wander/js/jquery.tubular.1.0.js"></script>
+
+    <link rel="stylesheet" href="/app/wander/css/main.css"></link>
+
+  </head>
+  <body>
+
+    <div id="wrapper">
+
+      <span id="video-controls" class="black-65"><br />
+        <a href="#" class="tubular-fullscreen" title="fullscreen toggle" onclick="document.toggleFullscreen()"><i class="fas fa-compress"></i></a>
+        <a href="#" class="tubular-play-toggle" title="play / pause"><i class="fas fa-play"></i></a>
+        <a href="#" class="tubular-mute" title="audio toggle"><i class="fas fa-volume-up"></i></a>
+        <a href="#" class="tubular-play-next" title="view next video"><i class="fas fa-step-forward"></i></a>
+        <a href="#" class="tubular-goto-youtube" title="view on YouTube"><i class="fas fa-external-link-alt"></i></a>
+        &nbsp;&nbsp;<span id="video-title" style=""></span>
+      </span>
+
+      <span style="display:none;">
+        <a href="#" class="tubular-play"><i class="fas fa-play"></i></a>
+        <a href="#" class="tubular-pause"><i class="fas fa-pause"></i></a>
+        <!--audio controls autoplay="autoplay" src="http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrbris_mf_p"></audio-->
+      </span>
+
+    </div>
+
+    <script src="/app/wander/js/main.js?version=0.3.10"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+{
+    "wikibase_api":"https://www.wikidata.org/w/api.php",
+    "wikibase_page_url":"https://www.wikidata.org/wiki/",
+    "sparql_server_url":"https://query.wikidata.org/sparql",
+    "sections":{
+        "main":"main_properties",
+        "location":"location",
+        "taxon":"taxon",
+        "person":"person"
+    },
+    "hierarchies":["P279","P171","P131"],
+    "add2remaining":["P225"],
+    "prop_map": {
+        "formatter_url": "P1630",
+        "wikivoyage_banner": "P948",
+        "taxon_name":"P225",
+        "coordinates": "P625"
+    },
+    "image_propmap": {
+        "image": "P18",
+        "film_poster": "P3383",
+        "grave_picture": "P1442",
+        "video":"P10",
+        "pronunciation_audio":"P443",
+        "audio":"P51",
+        "voice_recording":"P990",
+        "spoken_text":"P989",
+        "signature": "P109",
+        "logo": "P154",
+        "flag": "P41",
+        "coat_of_arms": "P94",
+        "seal_image": "P158",
+        "shield_image": "P4004",
+        "range_map": "P181",
+        "map": "P242",
+        "distribution_map": "P1846",
+        "nighttime_view": "P3451",
+        "sectional_view": "P2713"
+    },
+    "wikimedia":{
+        "commons_category":"P373",
+        "commons_gallery":"P935",
+        "wikidata_project":"P4570",
+        "main_portal":"P1151",
+        "portal_topic":"P1204",
+        "cat_alumni":"P3876",
+        "cat_topic":"P910",
+        "cat_list":"P1754",
+        "cat_combines":"P971",
+        "cat_buried":"P1791",
+        "cat_basin":"P1200",
+        "cat_template":"P4329",
+        "cat_main_topic":"P301",
+        "cat_born":"P1464",
+        "cat_related_list":"P1753",
+        "cat_iucn":"P814",
+        "cat_died":"P1465",
+        "cat_assoc":"P1792",
+        "cat_award":"P2517",
+        "cat_films":"P1740",
+        "cat_employees":"P4195",
+        "cat_commons_maps":"P3722",
+        "cat_wikitribune":"P4973"
+    },
+    "main":{
+        "instance_of":"P31",
+        "subclass_of":"P279",
+        "part_of":"P361",
+        "occupation":"P106",
+        "official_name":"P1448",
+        "native_label":"P1705"
+    },
+    "location":{
+        "country":"P17",
+        "loc_admin":"P131",
+        "capital_of":"P1376",
+        "sister_city":"P190",
+        "shared_border":"P47",
+        "area":"P2046",
+        "elevation":"P2044"
+    },
+    "person":{
+        "sex":"P21",
+        "born":"P569",
+        "born_in":"P19",
+        "died":"P570",
+        "died_in":"P20",
+        "father":"P22",
+        "stepparent":"P3448",
+        "mother":"P25",
+        "sibling":"P3373",
+        "child":"P40"
+    } ,
+    "taxon":{
+        "taxon_rank":"P105",
+        "parent_taxon":"P171",
+        "taxon_name":"P225",
+        "iucn":"P141"
+    },
+    "_todo": {
+        "place_name_sign": "P1766",
+        "commemorative_plaque_image": "P1801",
+        "collage_image": "P2716",
+        "icon": "P2910",
+        "photosphere_image": "P4640",
+        "panorama_view": "P4291"
+    }
+}

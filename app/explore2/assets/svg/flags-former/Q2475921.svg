@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   width="800" height="480" viewBox="0 0 1200 720">
+  <metadata><rdf:RDF><cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Flag of Mongolia</dc:title>
+  </cc:Work></rdf:RDF></metadata>
+<path fill="#dc171c" d="M1161.6,720H900V681.6H1161.6L1200,700.8Z
+M1161.6,379.2H900V340.8H1161.6L1200,360Z
+M1161.6,38.4H900V0H1161.6L1200,19.2Z"/>
+<rect fill="#fbea0f" width="960" height="720"/>
+<rect fill="#dc171c" x="36" y="38.4" width="883.2" height="643.2"/>
+<g transform="translate(240,17.717)scale(0.3,0.3)" fill="#fbea0f">
+<g transform="scale(5)"><circle cx="160" cy="164" r="44"/>
+<circle cx="160" cy="144" r="48" fill="#dc171c"/><circle cx="160" cy="152" r="32"/>
+<path d="M140,92a20,20 0 0,0 40,0c0-8-5-9-5-12 0-3,3-7-3-12 3,5-2,6-2,11 0,5,2,5,2,9a4,4 0 0,1-8,0c0-4,4-8,4-14 0-6-1-8-4-13-3-5-8-9-4-13-6,2-3,10-3,15 0,5-4,8-4,14 0,6,3,7,3,11a4,4 0 0,1-8,0c0-4,2-4,2-9 0-5-5-6-2-11-6,5-3,9-3,12 0,3-5,4-5,12Z"/>
+<rect x="72" y="216" width="40" height="192"/>
+<rect x="208" y="216" width="40" height="192"/>
+<rect x="120" y="248" width="80" height="16"/>
+<rect x="120" y="360" width="80" height="16"/>
+<path d="M120,216H200L160,240ZM120,384H200L160,408Z"/></g>
+<g stroke="#dc171c" stroke-width="16"><circle cx="800" cy="1560" r="212"/>
+<path fill="none" d="M800,1348A106,106 0 0,1 800,1560A106,106 0 0,0 800,1772"/></g>
+<circle cx="800" cy="1454" r="40" fill="#dc171c"/>
+<circle cx="800" cy="1666" r="40" fill="#dc171c"/></g></svg>

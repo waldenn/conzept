@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bikarhêner",
+			"Biyolojiyabikurdi"
+		]
+	},
+	"query-builder-run-query": "jêpirsînê bixebitîne.",
+	"query-builder-input-value-placeholder": "Nirxek lê zêde bike",
+	"query-builder-property-lookup-placeholder": "Taybeytmendiyek lê zêde bike",
+	"query-builder-property-lookup-limited-support-tag": "desteka sinordar",
+	"query-builder-property-lookup-limited-support-note": "Taybetmendiyên bi desteka sinordar li gor nirxê nikare bênê parzûnkirin",
+	"query-builder-result-placeholder": "Encam wê li vir bên nîşankirin",
+	"query-builder-result-error-incomplete-form": "Yek an jî zêdetir qad vala ye. Ji kerema xwe jêpirsînê temam ke an jî cora qadek guncav bibijêre.",
+	"query-builder-result-error-missing-property": "Ji kerema xwe taybetmendiyek bibijêre",
+	"query-builder-result-error-missing-value": "Ji kerema xwe nîrxek lê zêde bike"
+}

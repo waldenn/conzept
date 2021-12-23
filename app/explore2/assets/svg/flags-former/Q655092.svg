@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400" overflow="visible" enable-background="new 0 0 600 400" xml:space="preserve">
+<rect fill="#00CC00" width="600" height="400"/>
+<rect fill="#FFFFFF" width="400" height="400" x="200" />
+<rect fill="#FF0000" width="200" height="400" x="400" />
+</svg>

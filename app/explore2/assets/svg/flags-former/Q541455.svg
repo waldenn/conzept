@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2328" height="672">
+	<g transform="translate(1208) scale(22.4)">
+		<clipPath id="t">
+			<path d="M25,15 h25 v15 z v15 h-25 z h-25 v-15 z v-15 h25 z"/>
+		</clipPath>
+		<clipPath id="s">
+			<path d="M0,0 v30 h50 v-30 z"/>
+		</clipPath>
+		<g clip-path="url(#s)">
+			<path d="M0,0 v30 h50 v-30 z" fill="#00247d"/>
+			<path d="M0,0 L50,30 M50,0 L0,30" stroke="#fff" stroke-width="6"/>
+			<path d="M0,0 L50,30 M50,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
+			<path d="M25,0 v30 M0,15 h50" stroke="#fff" stroke-width="10"/>
+			<path d="M25,0 v30 M0,15 h50" stroke="#cf142b" stroke-width="6"/>
+		</g>
+	</g>
+	<rect width="1008" height="672" fill="#00672b"/>
+	<circle cx="448" cy="336" r="168" fill="#fff"/>
+	<circle cx="485" cy="336" r="142" fill="#00672b"/>
+	<polygon id="star" points="448,222 472.686981,297.978714 408.055626,251.021286 487.944374,251.021286 423.313019,297.978714" fill="#fff"/>
+	<use xlink:href="#star" transform="rotate(90 574,336) translate(126,72)"/>
+	<use xlink:href="#star" transform="rotate(180 448,408) translate(0,144)"/>
+</svg>

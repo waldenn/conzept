@@ -1,0 +1,6 @@
+{
+  "name": "PHP Simple Web Scraper",
+  "description": "A PHP application that runs on Heroku, which dumps web site outputs including JavaScript generated contents.",
+  "repository": "https://github.com/michaeluno/php-simple-web-scraper",
+  "keywords": ["heroku", "scraper", "php", "phantomjs", "crowler", "proxy", "web" ],
+}

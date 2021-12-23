@@ -1,0 +1,52 @@
+concept usage modes
+-------------------
+
+INITIAL PHASE:
+
+  - string search
+
+  - structured search (via a SPARQL web-client)
+
+  - random drop
+    - topic (very broad)
+    - randomized "most popular article (from last month)"
+    - artist + artwork (narrow)
+    - composer + music file (narrow)
+    - TO EXPLORE: user-defined topic-class
+    - ...
+
+  - content link
+    - news page (dynamic)
+    - top XYZ pages (static) (TO EXPLORE: dynamically generated top-pages)
+
+  - world-analog input:
+    - image         -> OCR + named-entity detection (currently disabled)
+    - image         -> bird detection (currently disabled)
+    - GPS position  -> TODO: ...
+
+  - TO RESEARCH: offline-mode content viewing
+
+RESULT PHASE:
+
+  - read / listen topic
+  - deeplinks from the topic-card (topic properties, topic category, 3rd-party links)
+  - explore topic --> triggers: string search
+  - topical overviews
+    - eg. for events --> timespace tool
+    - eg. anatomy hierarchy tool
+  - TO IMPROVE: --> similar topics
+  - TO EXPLORE: triggers into structured-queries 
+  - TO EXPLORE: topic presentations
+  - TO EXPLORE: recommendations based on:
+    - user defined topics
+    - user defined tags
+    - bookmarks
+    - page visit history (including time spend on page)
+    - ...
+
+JOURNEY RECALL:
+
+  - browser bookmarks
+  - conzept bookmarks
+  - TOFIX: conzept URL-history navigation
+  - TO EXPLORE: note-taking integration

@@ -1,0 +1,47 @@
+<template id='tool-navbar-template'>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+			<li class="nav-item" style='margin-right:10px;'>
+				<div class="btn-group" style='margin-top:9px;'>
+					<a href='#/' class="btn btn-light" tt='toolname'></a>
+				</div>
+			</li>
+
+			<li class="nav-item active">
+				<div id='tooltranslate_wrapper'></div>
+			</li>
+
+			<slot name='left'></slot>
+
+	    </ul>
+
+	    <slot name='right'></slot>
+
+	    <a style="margin:0px;padding:0px;margin-top:4px;margin-left:10px;" href="/" target='_blank'>
+	    	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Toolforge_logo.svg/32px-Toolforge_logo.svg.png" tt_title="wmf_powered" border="0" width="32px">
+	    </a>
+
+	  </div>
+	</nav>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'tool-navbar' , {
+	template : '#tool-navbar-template' ,
+	mounted : function () {
+		if ( typeof tt != 'undefined' ) {
+			tt.updateInterface($(this.$el)) ;
+			tt.addILdropdown ( '#tooltranslate_wrapper' ) ;
+		}
+	}
+} ) ;
+</script>

@@ -1,0 +1,72 @@
+<style>
+div.references {
+	font-size:9pt;
+}
+</style>
+
+<template id='claim-template'>
+<div>
+	<div v-if='typeof claim.references!="undefined"' style='float:right;font-size:8pt;'>
+		[<a href='#' @click.prevent='show_references=!show_references'>
+			<span v-if='show_references'>Hide</span>
+			<span v-else>Show</span>
+			references
+		</a>]
+	</div>
+
+	<snak :snak='claim.mainsnak'></snak>
+
+	<div v-if='typeof claim.qualifiers!="undefined"' class='qualifiers'>
+		<table class='table table-condensed'>
+			<tbody>
+				<tr v-for='(snaks,qualifier_prop) in claim.qualifiers'>
+					<td class='property_column_qualifiers'>
+						<wd-link :item='qualifier_prop'></wd-link>
+					</td>
+					<td style='width:100%'>
+						<snak v-for='snak in snaks' :snak='snak' nodesc='1'></snak>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div v-if='show_references' class='references'>
+		<ul class='list-group'>
+			<li v-for='reference_group in claim.references' class="list-group-item">
+				<ul class='list-group'>
+					<li v-for='(snaks,snak_prop) in reference_group.snaks' style='display:flex'>
+						<div class='reference_snaks_prop'>
+							<wd-link :item='snak_prop'></wd-link>
+						</div>
+						<div class='reference_snaks_list'>
+							<ul class='list-group'>
+								<li v-for='snak in snaks' class="list-group-item">
+									<snak :snak='snak' nodesc='1'></snak>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+</template>
+
+
+
+<script>
+'use strict';
+
+Vue.component ( 'claim' , {
+	props : [ 'claim' ] ,
+	data : function () { return { show_references:false } } ,
+    created : function () {} ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+    },
+	template : '#claim-template'
+} ) ;
+</script>

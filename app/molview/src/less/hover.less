@@ -1,0 +1,154 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "form";
+@import (reference) "autocomplete";
+
+/*
+form
+*/
+.input-wrapper > button:hover
+{
+	color: @highlight;
+}
+
+/* input:not([disabled])[type="text"]:hover + .input-focus
+{
+	background: @foreground-less;
+}
+
+.input:hover
+{
+	border-color: @foreground;
+} */
+
+.btn:hover
+{
+	.form-box-hover;
+}
+
+.close-btn:hover, .dialog-close-btn:hover
+{
+	color: #f50;
+}
+
+/*
+menu
+*/
+.dropdown-toggle:hover
+{
+	background-color: @light2 !important;
+	border-color: @contrast !important;
+}
+
+.menu-item > a:not(.disabled):hover
+{
+	background-color: @light2;
+}
+
+#layout-menu > a:hover
+{
+	opacity: 0.9;
+	background-color: @light2;
+}
+
+.menu-item > a.radio:hover:before, .menu-item > a.check:hover:before
+{
+	color: @foreground-light;
+}
+
+/*
+sketcher
+*/
+.tool-button:not(.tool-button-disabled):hover
+{
+	background-color: @light3;
+}
+
+#chem-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):hover
+{
+	border-right: 3px solid @foreground-less;
+	width: 37px;
+}
+
+#elem-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):hover
+{
+	border-left: 3px solid @foreground-less;
+	width: 37px;
+}
+
+#edit-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):hover
+{
+	border-bottom: 3px solid @foreground-less;
+	height: 37px;
+}
+
+/*
+periodictable
+*/
+.pt-element:hover
+{
+	background: @light2;
+}
+
+/*
+help
+*/
+.expandable-title:hover
+{
+	background: @light2;
+}
+
+/*
+search
+*/
+.search-result-title:hover, .search-result-pubchem:hover > .search-result-title
+{
+	color: @linkcolor;
+}
+
+.search-result-title:hover > span, .search-result-pubchem:hover > .search-result-title > span
+{
+	border-bottom: 2px solid;
+}
+
+.load-more:hover
+{
+	background: @light;
+}
+
+.load-more:hover
+{
+	border-color: @contrast;
+}
+
+/*
+autocomplete
+*/
+.autocomplete-item:hover
+{
+	.autocomplete-item-hover;
+}
+
+/*
+messages
+*/
+.message-close-btn:hover
+{
+	background: rgba(0, 0, 0, 0.4);
+}

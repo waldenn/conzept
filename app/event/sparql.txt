@@ -1,0 +1,74 @@
+SELECT DISTINCT ?entity ?entityLabel ?value ?description WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "LANG". }
+  
+  #Query for tbe birth dates
+  {?entity wdt:P569 "replace_date"^^xsd:dateTime;
+           p:P569/psv:P569 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime. #We have to retrieve the date again in case there is two dates recorded.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer. #We want to have a day precision.
+   ?entity schema:description ?description.
+    FILTER ( lang(?description) = "LANG" )
+    BIND("birth" AS ?value).}
+  
+  #Query for the death dates
+  UNION {?entity wdt:P570 "replace_date"^^xsd:dateTime;
+           p:P570/psv:P570 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description.
+    FILTER ( lang(?description) = "LANG" )
+    BIND("death" AS ?value).}
+  
+  #Query for the inception dates
+  UNION {?entity wdt:P571 "replace_date"^^xsd:dateTime;
+                 p:P571/psv:P571 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description;
+                 wdt:P31 ?type;
+    FILTER ( lang(?description) = "LANG" )
+    BIND("inception" AS ?value).}
+  
+  #Query for the discovery dates
+  UNION {?entity wdt:P575 "replace_date"^^xsd:dateTime;
+                 p:P575/psv:P575 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description;
+                 wdt:P31 ?type;
+    FILTER ( lang(?description) = "LANG" )
+         BIND("discovery" AS ?value).}
+  
+  #Query for the disparition dates
+  UNION {?entity wdt:P576 "replace_date"^^xsd:dateTime;
+                 p:P576/psv:P576 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description;
+                 wdt:P31 ?type;
+    FILTER ( lang(?description) = "LANG" )
+         BIND("disparition" AS ?value).}
+  
+  #Query for the publication dates
+  UNION {?entity wdt:P577 "replace_date"^^xsd:dateTime;
+                 wdt:P31 ?type.
+         FILTER ( ?type not in ( wd:Q13442814 ) ).
+         ?entity p:P577/psv:P577 ?date_node.
+         
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description.
+    FILTER ( lang(?description) = "LANG" )
+         BIND("publication_date" AS ?value).}
+  
+  #Query for the first performance dates
+  UNION {?entity wdt:P1191 "replace_date"^^xsd:dateTime;
+                 p:P1191/psv:P1191 ?date_node.
+   ?date_node wikibase:timeValue "replace_date"^^xsd:dateTime.
+   ?date_node wikibase:timePrecision "11"^^xsd:integer.
+   ?entity schema:description ?description;
+                 wdt:P31 ?type;
+    FILTER ( lang(?description) = "LANG" )
+         BIND("first_performance" AS ?value).}
+}
+LIMIT 500

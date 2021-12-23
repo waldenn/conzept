@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>OSM Buildings</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    .control {
+      position: absolute;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .control.tilt {
+      top: 0;
+    }
+
+    .control.rotation {
+      top: 45px;
+    }
+
+    .control.zoom {
+      top: 90px;
+    }
+
+    .control.zoom button{
+      font-weight: normal;
+    }
+
+    .control button {
+      width: 30px;
+      height: 30px;
+      margin: 15px 0 0 15px;
+      border: 1px solid #999999;
+      background: #ffffff;
+      opacity: 0.6;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #666666;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .control button:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- conzept resources -->
+  <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+  <link rel="stylesheet" href="OSMBuildings.css">
+
+  <script src="OSMBuildings.js"></script>
+</head>
+
+<body>
+<div id="map"></div>
+
+<div class="control tilt">
+  <button class="dec">&#8601;</button>
+  <button class="inc">&#8599;</button>
+</div>
+
+<div class="control rotation">
+  <button class="inc">&#8630;</button>
+  <button class="dec">&#8631;</button>
+</div>
+
+<div class="control zoom">
+  <button class="dec">-</button>
+  <button class="inc">+</button>
+</div>
+
+<script>
+  const osmb = new OSMBuildings({
+    container: 'map',
+    zoom: 16,
+    minZoom: 16,
+    maxZoom: 19,
+    position: { latitude: 52.52000, longitude: 13.41000 },
+    state: true, // stores map position/rotation in url
+    attribution: '© 3D <a href="https://osmbuildings.org/copyright/">OSM Buildings</a>'
+  });
+
+  osmb.addMapTiles(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //'https://api.mapbox.com/styles/v1/osmbuildings/cjt9gq35s09051fo7urho3m0f/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib3NtYnVpbGRpbmdzIiwiYSI6IjNldU0tNDAifQ.c5EU_3V8b87xO24tuWil0w',
+    {
+      attribution: '© Data <a href="https://openstreetmap.org/copyright/">OpenStreetMap</a> · © Map <a href="https://mapbox.com/">Mapbox</a>'
+    }
+  );
+
+  osmb.addGeoJSONTiles('https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
+
+  osmb.addOBJ(`${location.protocol}//${location.hostname}/${location.pathname}../data/Fernsehturm.obj`, { latitude:52.52000, longitude:13.41000 }, { id:'Fernsehturm', scale:2, color:'#ff0000', altitude:0, rotation:51 });
+
+
+  //***************************************************************************
+
+  // on pointer up
+  osmb.on('pointerup', e => {
+    // if none, remove any previous selection and return
+    if (!e.features) {
+      osmb.highlight(feature => {});
+      return;
+    }
+
+    // store id's from seleted items...
+    const featureIDList = e.features.map(feature => feature.id);
+
+    // ...then is is faster: set highlight color for matching features
+    osmb.highlight(feature => {
+      if (featureIDList.indexOf(feature.id) > -1) {
+        return '#ffffff';
+      }
+    });
+  });
+
+  //***************************************************************************
+
+  const controlButtons = document.querySelectorAll('.control button');
+
+  controlButtons.forEach(button => {
+    button.addEventListener('click', e => {
+      const parentClassList = button.parentNode.classList;
+      const direction = button.classList.contains('inc') ? 1 : -1;
+      let increment, property;
+
+      if (parentClassList.contains('tilt')) {
+        property = 'Tilt';
+        increment = direction*10;
+      }
+      if (parentClassList.contains('rotation')) {
+        property = 'Rotation';
+        increment = direction*10;
+      }
+      if (parentClassList.contains('zoom')) {
+        property = 'Zoom';
+        increment = direction*1;
+      }
+      if (property) {
+        osmb['set'+ property](osmb['get'+ property]()+increment);
+      }
+    });
+  });
+</script>
+
+
+<!-- CONZEPT PATCH -->
+<script>
+  document.toggleFullscreen = function() {
+
+    if (screenfull.enabled) {
+
+      screenfull.toggle();
+
+    }
+
+    return 0;
+
+  };
+
+  // keyboard control
+  $(document).keydown(function(event) {
+
+    let key = (event.keyCode ? event.keyCode : event.which);
+
+    //console.log( event, key );
+
+    if ( key == '70' ){ // "f"
+
+      document.toggleFullscreen();
+
+    }
+
+  });
+</script>
+</body>
+</html>

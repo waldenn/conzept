@@ -1,0 +1,1266 @@
+// © Copyright 2019-2021 J. Poulsen. All Rights Reserved.
+
+'use strict';
+
+// wikibase library
+window.wbk = WBK({
+  instance: 'https://www.wikidata.org',
+  sparqlEndpoint: 'https://query.wikidata.org/sparql'
+})
+
+let current_pane  = '';
+let parentref     = '';
+
+// main app state
+const explore = {
+
+  host          : CONZEPT_HOSTNAME,
+  base          : CONZEPT_WEB_BASE,
+  version       : CONZEPT_VERSION,
+
+  title     		: getParameterByName('t') || '',
+  language     	: getParameterByName('l') || 'en',
+  lang3         : getParameterByName('lang3') || '',  // used for the Open Library book-link
+  language_direction : getParameterByName('dir') || '',
+  voice_code   	: getParameterByName('voice') || '',  // used for TTS
+  voice_rate   	: '1',                                // used for TTS
+  voice_pitch  	: '1',                                // used for TTS
+  hash         	: location.hash.substring(1) || '',
+	qid						: getParameterByName('qid') || '',    // global identifier
+	embedded			: getParameterByName('embedded') || '', // signals to open links its local iframe
+
+  languages     : [],
+
+  firstVisit    : true,
+
+	// could we read these from storage?
+  locale       	: getParameterByName('locale') || 'en',
+  fontsize     	: getParameterByName('fs') || '19',
+  font1        	: getParameterByName('font') || 'Quicksand',
+  darkmode     	: getParameterByName('darkmode') || false,
+  //linkpreview  	: getParameterByName('lp') || false,
+  isMobile     	: getParameterByName('mobile') || detectMobile(),
+
+	db						: undefined, // persistent client-side storage using immortalDB
+
+	locales				: [ 'ceb', 'en', 'es', 'de', 'fr', 'hi', 'ja', 'nl', 'pt', 'ru'],
+  banana				: undefined,
+  banana_native	: undefined,
+
+  language_script : '',       // see: https://www.w3.org/International/questions/qa-scripts.en#examples
+  language_name : '',
+  language_prev :  '', // previous language 2-letter-code
+  langcode3     : undefined,
+  langcode_librivox : undefined,
+  lang_category : undefined,
+  lang_catre1   : undefined, // localized "Category:" replace
+  lang_catre2   : undefined, // localized "Category:3A" replace
+  lang_portal   : undefined,
+  lang_porre1   : undefined, // localized "Portal:" replace
+  lang_book     : undefined,
+  lang_bookre   : undefined,
+  lang_talk     : undefined,
+  lang_talkre   : undefined,
+
+  isSafari      : detectSafari(),
+  isChrome      : detectChrome(),
+  isFirefox     : detectFirefox(),
+
+  wp_languages  : wp_languages,
+
+	tts_enabled		: true,
+	synth 				: window.speechSynthesis,
+	synth_paused	: false,
+	tts_removals	: 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
+  autospeak     : getParameterByName('autospeak') || false,
+
+  keyboard_ctrl_pressed : false,
+
+}
+
+$( document ).ready( function() {
+
+  current_pane = getCurrentPane();
+
+  setupAppKeyboardNavigation();
+
+  setupAutoStopAudio();
+
+  if ( explore.language_direction === '' ){ // double-check that this is not an RTL-language (note: hack for second-content-pane calls)
+
+    if ( [ 'ar', 'arz', 'bal', 'bgn', 'ckb', 'fa', 'khw', 'ps', 'sd', 'ur', 'he', 'yi', 'arc', 'dv' ].includes( explore.language ) ){
+
+      explore.language_direction = 'rtl';
+
+    }
+
+  }
+
+  if ( explore.locale === 'simple' ){
+    explore.locale = 'en';
+  }
+
+  // uppercase-first letter (this makes the API language search work correctly)
+  explore.title = explore.title.charAt(0).toUpperCase() + explore.title.slice(1);
+
+  if ( explore.isMobile && explore.isChrome ){ // TTS not working on Chrome mobile?
+    explore.tts_enabled = false;
+  }
+
+  if ( explore.isMobile ){
+    setupSwipe( 'wikipedia-content' );
+  }
+
+  (async () => {
+
+    explore.db = ImmortalDB.ImmortalDB;
+
+    if ( explore.voice_code === '' ){
+
+      explore.voice_code = await explore.db.get('voice_code_selected');
+      explore.voice_code = ( explore.voice_code === null || explore.voice_code === undefined ) ? '' : explore.voice_code;
+
+    }
+
+    if ( !valid( getParameterByName('darkmode') ) ){ // no darkmode-param was set, so check the local DB
+
+      explore.darkmode = await explore.db.get('darkmode');
+      explore.darkmode = ( explore.darkmode === null || explore.darkmode === 'false' ) ? false : true;
+
+      if ( valid( explore.darkmode ) ){
+
+        $('body').addClass( 'dark' );
+
+      }
+
+    }
+
+
+		explore.lang3 = getLangCode3( explore.language );
+
+    const voice_rate_user = await explore.db.get('voice_rate');
+
+    if ( isNumeric( voice_rate_user ) ){
+
+      explore.voice_rate = voice_rate_user;
+
+    }
+
+    const voice_pitch_user = await explore.db.get('voice_pitch');
+
+    if ( isNumeric( voice_pitch_user ) ){
+
+      explore.voice_pitch = voice_pitch_user;
+
+    }
+
+    // set font
+		explore.font1 = await explore.db.get('font1');
+
+		if ( explore.font1 !== 'Quicksand' ){ // custom font
+
+      if ( ! valid( explore.font1 ) ){
+
+        explore.font1 = 'Quicksand';
+
+      }
+
+			$('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
+			$( '#fontlink' ).replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
+
+			$( 'body').css( 'fontFamily', explore.font1 , '');
+
+		}
+		else { // standard font
+
+			$( '#fontlink').replaceWith( '<link id=fontlink />' );
+
+		}
+
+		// set link-previews
+		explore.linkpreview = await explore.db.get('linkpreview');
+
+    explore.fontsize = await explore.db.get('fontsize'); // TODO: also correctly handle invalid fontsize returns here
+    $( 'body' ).css('fontSize', explore.fontsize + 'px' );
+
+		// i18n engine: https://github.com/wikimedia/banana-i18n
+		// set default locale and locale-fallback, we will set the true user-locale later.
+		explore.banana        = new Banana( explore.locale, { finalFallback: 'en' } ); // used for the UI interface
+		explore.banana_native = new Banana( explore.locale, { finalFallback: 'en' } ); // allows for translating to the native-content language
+		updateLocaleNative();
+
+    if ( explore.qid === '-1' ){ // don't use a non-valid qid
+      explore.qid = '';
+    }
+
+		//console.log( 'title:', explore.title, '| language:', explore.language, '| hash:', explore.hash, '| qid:', explore.qid, '| locale:', explore.locale, '| font1:', explore.font1 );
+
+    window.addEventListener("message", receiveMessage, false);
+
+    // MIME-type hack: https://stackoverflow.com/questions/2618959/not-well-formed-warning-when-loading-client-side-json-in-firefox-via-jquery-aj
+    $.ajaxSetup({beforeSend: function(xhr){ if (xhr.overrideMimeType) { xhr.overrideMimeType("application/json"); } } });
+
+    if ( explore.title === '' && explore.qid === '' ){
+
+      return 0; // do nothing
+
+    }
+    else { // we have a title or qid
+
+      if ( explore.qid !== '' ){ // we have a qid
+
+				if ( !explore.qid.startsWith('Q') ){ // add 'Q' if its missing
+
+					explore.qid = 'Q' + explore.qid;
+
+ 				}
+
+        getWikidata( explore.qid )
+
+      }
+      else {
+
+        // get all the languages for this wikipedia-article
+        // see: https://www.mediawiki.org/wiki/API:Langlinks
+        const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( explore.title ) + '&prop=langlinks&lllimit=500&format=json';
+
+        //console.log( url );
+
+        $.ajax({
+          url: url,
+          dataType: "jsonp",
+
+          success: function( ll ) {
+
+            //console.log( ll );
+
+            if ( typeof ll === undefined || typeof ll === 'undefined' ){
+              // do nothing
+            }
+            else {
+
+              if ( typeof ll.query.pages[ Object.keys( ll.query.pages)[0] ] === undefined ){
+
+                // do nothing
+
+              }
+              else {
+
+                // for each entry in "langlinks": add an object with: <iso2> : <name>
+                let languages = {};
+
+                $.each( ll.query.pages[ Object.keys( ll.query.pages)[0] ].langlinks, function( k, lang_item ){
+
+                  //console.log( lang_item['*'] );
+                  languages[ lang_item[ 'lang' ] ] = lang_item['*'];  
+
+                });
+
+                //console.log( languages );
+
+                explore.languages = encodeURIComponent( JSON.stringify( languages ) );
+
+                renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', '', '', false, '' );
+
+              }
+
+            }
+
+          },
+
+        });
+
+      }
+
+    }
+
+	})();
+
+	// keyboard control
+	$(document).keydown(function(event) {
+
+		let key = (event.keyCode ? event.keyCode : event.which);
+
+		//console.log( event, key );
+
+		if ( key == '70' ){ // "f"
+
+			document.toggleFullscreen();
+
+		}
+
+	});
+
+});
+
+function getWikidata( qid ){
+
+  const wikidata_url = window.wbk.getEntities({
+    ids: [ qid ],
+    redirections: false,
+  })
+
+  //wbk.simplify.claims( entity.claims, { keepQualifiers: true })
+
+  // get wikidata json
+  fetch( wikidata_url )
+
+    .then( response => response.json() )
+    .then( window.wbk.parse.wd.entities )
+    //.then( data => window.wbk.simplify.entities(data.entities, { keepQualifiers: true } ))
+    .then( entities => {
+
+			let item = { qid : qid };
+
+			//console.log( 'single item: ', item, entities[ item.qid ] );
+
+			// detect the relevant wikidata-data and put this info into the item
+			setWikidata( item, entities[ item.qid ], true, current_pane, afterSetWikidata ); // TODO: use target_pane?
+
+  }) // end of qid entitie processing
+
+}
+
+
+function afterSetWikidata( item ){
+
+  explore.languages = item.languages;
+
+	if ( valid( item.title ) ){
+
+		explore.title = item.title;
+
+    let gbif_id = '';
+    let banner  = '';
+
+    if ( valid( item.gbif_id ) ){ gbif_id = item.gbif_id; }
+    if ( valid( item.page_banner ) ){  banner = item.page_banner; }
+
+		renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', item.qid, gbif_id, false, banner );
+
+	}
+	else { // no wikipedia article for this Qid, so just show the wikidata-page
+
+		window.location.href = '../wikidata/?q=' + explore.qid + '&lang=' + explore.language;
+
+	}
+
+}
+
+function updateLocaleNative(){
+
+  let l = explore.language;
+
+  if ( l === 'simple' ){
+
+    l = 'en';
+
+  }
+
+  explore.banana_native.setLocale( l );
+
+  if ( explore.locales.includes( l ) ){
+
+    fetch('../explore2/assets/i18n/conzept-' + l + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
+
+      explore.banana_native.load( messages, l );
+
+    });
+
+  }
+
+}
+
+
+function getTitleFromQid( qid ){
+
+  //fetchWikidata( [ qid ], '' );
+
+}
+
+
+function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, allow_recheck, banner ){
+
+  //console.log( 'gbif_id: ', gbif_id );
+
+  let doc = {};
+
+  doc.title = '';
+  doc.html  = '';
+
+  $.ajax({
+
+    // see: https://stackoverflow.com/questions/21211037/how-can-i-make-the-wikipedia-api-normalize-and-redirect-without-knowing-the-exac/22339407
+    // https://en.wikipedia.org/w/api.php?action=parse&page=Apaloderma%20vittatum&prop=text&formatversion=2&format=json&redirects=
+    // https://en.wikipedia.org/w/api.php?action=query&prop=revisions%7Cpageprops&rvprop=content&maxlag=5&rvslots=main&origin=*&format=json&redirects=true&titles=Apaloderma_vittatum
+
+    url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=parse&page=' + encodeURIComponent( title ) + '&prop=text&formatversion=2&format=json&redirects=',
+
+    dataType: "jsonp",
+
+    success: function( res ) {
+
+      if ( res === null ){ res = undefined; } // avoid using "null" values
+
+      // hack to fix 'undefined' language when going back to the explore-homepage
+      // TODO: research if we should/could do this fallback earlier?
+      if ( explore.language === undefined || explore.language === 'undefined' ){
+        explore.language = window.language = 'en';
+      }
+
+      if ( title.startsWith( explore.lang_category + ':' ) ){ // category page
+
+        // get all content ( preface text, subcategories, included pages)
+        //
+        // https://www.mediawiki.org/wiki/API:Categorymembers
+        // https://www.mediawiki.org/wiki/API:Categories
+        // https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Flamenco&cmlimit=10
+
+        $.ajax({
+
+          url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
+          //url: 'https://' + lang +'.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=' + title + '&cmlimit=10',
+          dataType: "jsonp",
+
+          data: {
+            'action': "query",
+            'format': "json",
+            'list' : 'categorymembers',
+            'cmlimit': 300,
+            'cmtitle': decodeURIComponent( title ),
+            'cmnamespace': '0|14|100',
+            // prop=categories
+          },
+
+          success: function( pages ) {
+
+            renderWikipediaHTML( title, lang, hash_, doc, 'category', pages.query.categorymembers, '', languages, tag, qid, gbif_id, banner );
+
+          },
+
+          error: function( data ) {
+            console.log('Category JSON fetch error: ' + errorMessage);
+          },
+
+          //timeout: 3000,
+
+        });
+
+      }
+      else { // standard page
+
+        // 1) check if there is a category with the same name as the article-title (lowercased)
+        $.ajax({
+
+          url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
+          dataType: "jsonp",
+          data: {
+            'action': "query",
+            'format': "json",
+            'list' : 'categorymembers',
+            'cmlimit': 300,
+            'cmtitle': decodeURIComponent( explore.lang_category + ':' + title ),
+            'cmnamespace': '0|14',
+            //'cmnamespace': '0|14|100',
+            // prop=categories
+          },
+
+          success: function( pages ) {
+
+            if ( typeof pages.query === undefined || typeof pages.query === 'undefined' ){
+
+              console.log('warning: no pages.query results found');
+
+							// FIXME: 
+              //tryFallbackToQid();
+
+            }
+            else {
+
+              // 2) if so: get subcategories, main-category and main-category-articles (aka related articles)
+              
+              // check res.query.redirects[0].to
+              if ( typeof res.query === undefined || typeof res.query === 'undefined' ){
+              }
+              else {
+
+                if ( typeof res.query.redirects[0].to === undefined ){
+                  // no redirect for this title
+                }
+                else { // found redirect
+
+                  doc.title = res.query.redirects[0].to || '';
+
+                }
+
+              }
+
+              if ( typeof res.parse === undefined || typeof res.parse === 'undefined' ){
+              }
+              else {
+
+                if ( typeof res.parse.title === undefined ){
+                  // no direct title found
+                }
+                else { // found title
+
+                  doc.title = res.parse.title;
+
+                  //console.log('direct title: ', doc.title );
+                }
+
+              }
+
+              if ( title == doc.title || allow_recheck === false ){
+
+                if ( typeof res.parse === undefined || typeof res.parse === 'undefined' ){ // article does not exist in this language-Wikipedia
+
+                  //console.log('no article found...: ', explore.language, explore.title );
+
+                  window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
+
+                  $('#loader').hide();
+
+                  return 1;
+
+                }
+
+                doc.html = res.parse.text;
+
+                if ( doc === undefined ){
+
+                  explore.noWikipediaContentYet = true;
+
+                  //tryFallbackToQid();
+
+                  //return 1;
+                }
+                else {
+
+                  explore.noWikipediaContentYet = false;
+
+                  renderWikipediaHTML( doc.title, lang, hash_, doc, 'standard-with-category', pages.query.categorymembers, '', languages, tag, qid, gbif_id, banner )
+
+                }
+
+              }
+              else { // if "title" is different from "doc.title()"
+
+                console.log('Hmmm... redirect found: fetch wikidata for it: ', doc.title, title );
+								return 0;
+
+              }
+
+            }
+
+          },
+
+          error: function(data) {
+
+						console.log('error fetching wikipedia data');
+
+          },
+
+        });
+      }
+
+    },
+
+  });
+
+}
+
+function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_html, languages, tag, qid, gbif_id, banner ){
+
+  const source_page       = 'https://' + lang + '.wikipedia.org/wiki/' + title;
+  const contributors_page = 'https://' + lang + '.wikipedia.org/w/index.php?title=' + title + '&action=history';
+
+	const language_display = ( explore.isMobile ) ? lang : getNamefromLangCode2( explore.language ); // show the shorter ISO2 language-name on mobile
+
+  //console.log( 'renderWikipediaHTML: ', title, lang, hash_, doc, type, cat_members, raw_html, languages, tag, qid, gbif_id );
+
+  // grab the whole HTML string of this article
+  let html_ = '<body id="wikipedia-content"><h2 class="article-title">' + title + '</h2> <!--catheadline-->' + doc.html + '</body>';
+
+  let catheadline = '<div class="catheadline"><ul class="notts">';
+
+  // FIXME
+  //console.log( cat_members  );
+
+  // https://en.wikipedia.org/w/api.php?action=query&format=json&titles=Janelle%20Mon%C3%A1e&prop=categories
+  let c = [];
+  const cat_url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&format=json&titles=' + encodeURIComponent( title ) + '&prop=categories';
+
+  $.ajax({
+
+    url: cat_url,
+    dataType: "jsonp",
+
+    success: function( res ) {
+
+      if ( typeof res.query.pages === undefined || typeof res.query.pages === 'undefined' ){
+        // do nothing
+      }
+      else {
+
+        //if ( typeof res.query.pages[ Object.keys( res.query.pages)[0] ].categories === undefined || typeof res.query.pages[ Object.keys( res.query.pages)[0] ].categories === 'undefined' ){
+          // do nothing
+        //}
+        //else {
+
+          //console.log ( res.query.pages[ Object.keys( res.query.pages)[0] ].categories ) ;
+
+          if ( !valid( res.query.pages ) ){
+
+            //console.log('hmm.. no categories found');
+            //console.log( res.query.pages );
+
+          }
+          else {
+
+            if ( valid( Object.keys( res.query.pages)[0] ) ){
+
+              if ( valid( res.query.pages[ Object.keys( res.query.pages)[0] ].categories ) ){
+
+                c = res.query.pages[ Object.keys( res.query.pages)[0] ].categories.map( a => a.title );
+
+              }
+
+            }
+
+          }
+
+        //}
+
+      }
+      
+      //const c = doc.categories(); // categories _of_ the article ( NOT the child categories or pages)
+
+      //console.log( 'categories: ', c)
+
+      let own_cats = '';
+      let j = 0;
+
+      for ( let i = 0; i < c.length; ++i) {
+
+        const own_cat = encodeURIComponent( c[i] ) ;
+        //const own_cat = explore.lang_category + '%3A' + encodeURIComponent( c[i] ) ;
+
+        let t =  c[i].replace( explore.lang_catre1, '');
+
+        //if ( explore.lang_category + ':'  + title === own_cat )
+        if ( title === own_cat ){
+          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><b>  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
+          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '"><b>  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
+        }
+        else {
+          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '">  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '">  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+        }
+
+        // collect first 3 categories for display under page title 
+        if ( j < 3 ){
+
+          //console.log( own_cat );
+
+          // TODO: can we put these strings somewhere into the 'en' language object (and also register the start or end matching mode?)
+          // skip uninteresting cats
+          if (
+
+                // multi-lingual start
+                own_cat.startsWith( explore.lang_category + '%3AWikipedia') ||
+                own_cat.startsWith( explore.lang_category + '%3ACS1') ||
+                own_cat.startsWith( explore.lang_category + '%3A!') || // see eg.: https://conze.pt/explore/Trogon?l=pt&t=wikipedia&s=true&i=945088
+                own_cat.startsWith( explore.lang_category + '%3APages%20') ||
+                own_cat.startsWith( explore.lang_category + '%3AWebarchive%20') ||
+                own_cat.startsWith( explore.lang_category + '%3ACite%20') ||
+                own_cat.startsWith( explore.lang_category + '%3ATemplate%20') ||
+
+                // multi-lingual end
+                own_cat.endsWith('%20errors') ||
+                own_cat.endsWith('%20Wikidata') ||
+                own_cat.endsWith('%20categories') ||
+                own_cat.endsWith('%20pages') ||
+                own_cat.endsWith('uncertain') ||
+
+                // english start
+                own_cat.startsWith( explore.lang_category + '%3AAll%20') ||
+                own_cat.startsWith( explore.lang_category + '%3AArticles%20') ||
+                own_cat.startsWith( explore.lang_category + '%3ABurials%20at') ||
+                own_cat.startsWith( explore.lang_category + '%3ABurials%20in') ||
+                own_cat.startsWith( explore.lang_category + '%3APeople%20from') ||
+                own_cat.startsWith( explore.lang_category + '%3AGood%20articles') ||
+                own_cat.startsWith( explore.lang_category + '%3AAC%20with%20') ||
+                own_cat.startsWith( explore.lang_category + '%3AUse%20') ||
+
+                // english end
+                own_cat.endsWith('births') ||
+                own_cat.endsWith('deaths') ||
+                own_cat.endsWith('alumni') ||
+                own_cat.endsWith('people') ||
+
+                // french start
+                // ? constrain to 'fr' language?
+                // TODO: encode all explore.lang_category first, as they may contain non-ascii characters
+                own_cat.startsWith( 'Cat%C3%A9gorie%3AArticle%20') ||
+                own_cat.startsWith( 'Cat%C3%A9gorie%3APage%20') ||
+                own_cat.startsWith( 'Cat%C3%A9gorie%3APortail%3A')
+                //own_cat.startsWith( explore.lang_category + '%3AArticle%20') ||
+                //own_cat.startsWith( 'Catégorie%3AArticle%20')
+
+            ){
+            // do nothing
+          }
+          else {
+            j += 1;
+            // remove upto ':' from category name
+            //const own_cat_ = own_cat.substring( own_cat.indexOf(":") + 1 );
+            catheadline += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><span class="icon"><i class="far fa-folder-open fa-xs"></i></span>&nbsp; ' + t + '</a></li>';
+          }
+
+        }
+
+        //console.log( catheadline );
+
+      }
+
+      catheadline += '</ul></div>';
+
+      // dont show catheadline if there are no entries
+      const test_ = catheadline.match(/<ul class="notts"><\/ul>/g);
+
+      if ( test_ !== null ){
+        if ( test_.length > 0 ){
+          catheadline = '';
+        }
+      }
+
+      // remove catheadline if it has no entries
+      if ( catheadline.length < 33 ){
+        catheadline = '';
+      }
+
+      let inner_cats = '';
+      let inner_pages = '';
+      let cathtml = '';
+      let catparents_title = 'super';
+
+      let main_title = '<h1>' + decodeURIComponent( title ) +  '</h1>';
+
+      if ( type === 'portal' ){
+        main_title = '';
+        catheadline = ''; // dont show catheadline on category-pages
+      }
+      else if ( type === 'book' ){
+        main_title = '';
+        catheadline = ''; // dont show catheadline on category-pages
+      }
+      else if ( type === 'category' ){
+
+        main_title = '<h2> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + decodeURIComponent( title.replace( explore.lang_catre1 , '') ) +  '</h2>';
+
+        catparents_title = '';
+
+        const catpattern = '^' + explore.lang_category + ':';
+        const catre = new RegExp( catpattern, "g" );
+
+        for ( let i = 0; i < cat_members.length; ++i) {
+
+          if ( cat_members[i].ns === 14 ){ // sub-categories namespace
+
+            const t = cat_members[i].title.replace( explore.lang_catre1, '');
+
+            inner_cats += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '"> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+
+          }
+          else { // non-category-page
+
+            const t = decodeURIComponent( title.replace( explore.lang_catre2 , '' ) );
+
+            if ( t === cat_members[i].title ){
+
+              inner_pages += '<li class="notts"><a class="link catlinks" href="' +  encodeURIComponent( cat_members[i].title ) + '"><b>' + cat_members[i].title + '</b></a></li>';
+
+            }
+            else {
+
+              inner_pages += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '">' + cat_members[i].title + '</a></li>';
+
+            }
+          }
+
+        }
+
+        if ( own_cats !== '' ){ // supercats
+          cathtml += '<div class="catheadline"><ul class="notts">' + own_cats + '</ul></div>';
+        }
+
+        if ( inner_cats !== '' ){ // subcats
+          cathtml += '<h3 class="catheader">sub </h3><ul class="foldercats subs notts">' + inner_cats + '</ul>';
+        }
+
+        if ( inner_pages !== '' ){ // related pages
+          cathtml += '<h3 class="catheader">pages</h3><ul class="notts">' + inner_pages + '</ul>'; 
+
+        }
+
+      }
+      else if ( type === 'standard-with-category' ){
+
+        if ( typeof gbif_id === undefined || typeof gbif_id === 'undefined' || gbif_id === '' || gbif_id === true || gbif_id === false ){
+          // do nothing
+        }
+        else {
+          cathtml += renderEmbeddedGbifMap( gbif_id, title );
+        }
+
+        catparents_title = 'super';
+
+        for ( let i = 0; i < cat_members.length; ++i) {
+
+          if ( cat_members[i].ns === 14 ){ // sub-categories namespace
+
+            const t = cat_members[i].title.replace( explore.lang_catre1 , '');
+
+            inner_cats += '<li class="notts"><a class="link catlink" href="' + cat_members[i].title + '"> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+
+          }
+          else {
+
+            const t = decodeURIComponent( title.replace(/Category%3A/, '' ) );
+
+            if ( t === cat_members[i].title ){
+              inner_pages += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '"><b>' + cat_members[i].title + '</b></a></li>';
+            }
+            else {
+              inner_pages += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '">' + cat_members[i].title + '</a></li>';
+            }
+
+          }
+
+        }
+
+        // FIXME: ideally we use the plural name for "Category" here instead of the singular (add another column for this word?)
+        const cat_plural = ( explore.language === 'en') ? 'Categories' : explore.lang_category;
+
+        cathtml += '<div class="section"> <h2 class="catheader">' + cat_plural + '</h2>';
+
+        if ( own_cats !== '' ){ // super categories
+          cathtml +=  '<h3 class="catheader">super</h3>' + '<div class="categories"><div class="catheadline"><ul class="foldercats">' + own_cats + '</ul></div></div>';
+        }
+
+        if ( inner_cats !== '' ){ // sub categories
+          cathtml += '<h3 class="catheader">sub </h3><ul class="foldercats subs">' + inner_cats + '</ul>';
+        }
+
+        if ( inner_pages !== '' ){ // related pages
+          cathtml += '<h3 class="catheader">pages</h3><ul>' + inner_pages + '</ul>';
+        }
+
+        cathtml += '</div>';
+
+        html_ = html_.replace(/<\!--catheadline-->/, catheadline );
+
+      }
+
+      const darkclass = ( explore.darkmode ) ? 'dark' : '';
+
+      raw_html = raw_html
+                  .replace(/\/wiki\//g, '/explore/')
+                  ;
+
+      html_ = html_.replace(/\/wiki\//g, '/explore/')
+                .replace(/listaref/g, 'listaref reflist')
+                .replace(/references-small/g, 'references-small reflist')
+                //.replace(/<ol class="references">/g, '<ol class="references reflist">') // correct in all cases? no. how to fix this?
+                .replace(/infobox_v2/g, 'infobox')
+                .replace(/infobox_v3/g, 'infobox')
+                .replace(/"tright"/g, '"tright infobox"') // TODO: verify there are no unintended effects from this!
+                .replace(/infocaseta/g, 'infobox infocaseta') // french: table legend
+                .replace(/legende-bloc/g, 'legend legende-bloc') // french: table legend
+                //.replace(/<img /g, '<img loading="lazy" ') // lazy image loading
+                ;
+
+      let fontlink_html = '<link id="fontlink" />';
+
+      if ( explore.font1 !== 'Quicksand' ){ // only add font-link for alternative fonts
+        fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
+      }
+
+      let banner_html = '';
+
+      if ( typeof banner === undefined || typeof banner === 'undefined' ){
+        // do nothing
+      }
+      else {
+
+        if ( banner !== '' ){
+
+          banner_html = '<img id="article-banner" class="no-enlarge" src="' + banner + '"></img>';
+
+        }
+
+      }
+
+      let talk_page_button = '<span id="gotoTalkPage"><button onclick="gotoTalkPage()" onauxclick="gotoTalkPage( true )" class="dropbtn" tabIndex="0" title="go to talk-page" aria-label="go to talk-page"><span class="icon"><i class="far fa-comments"></i></span></button></span> ';
+
+      if ( title.startsWith( explore.lang_talk + ':' ) ){ // already on a talk page
+
+        // replace talk button with the Wikipedia-article button
+        talk_page_button = '<span id="gotoArticle"><button onclick="gotoArticle()" onauxclick="gotoArticle( true )" class="dropbtn" tabIndex="0" title="go to article" aria-label="go to article"><span class="icon"><i class="fas fa-align-justify"></i></span></button></span> ';
+
+      }
+
+      html_ = html_.replace(/<body id="wikipedia-content">/, fontlink_html +
+
+        '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>' +
+        // TODO: move all JS variables into one object and put that object stringified into the iframe data-fields attribute
+        '<script> let language = "' + lang + '"; let locale =  "' + explore.locale + '"; let title =  "' + title + '"; let qid =  "' + explore.qid + '"; let languages =  "' + languages + '"; let font1 =  "' + explore.font1 + '"; let darkmode = ' + explore.darkmode + '; </script>' +
+        '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=5.0">' +
+        '<style>html{visibility: hidden;opacity:0;}</style>' +
+        '<aside class="js-toc"> </aside>' +
+        '<main class="explore" role="main">' +
+          '<div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="../explore2/assets/images/loading.gif"/></div>' +
+          '<div id="wikipedia-menu">' +
+            '<span id="exploreTopic"><button onclick="goExplore()" onauxclick="goExplore(true)" class="dropbtn" tabIndex="0" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span> ' +
+
+            '<span id="newTab"><button onclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" onauxclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" class="dropbtn" tabIndex="0" title="open in new tab"><span class="icon"><i class="fas fa-external-link-alt"></i></span></button></span>' +
+            talk_page_button +
+            '<span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" tabIndex="0" title="go to video" aria-label="go to video"><span class="icon"><i class="fas fa-video"></i></span></button></span> ' +
+            '<span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" tabIndex="0" title="go to images" aria-label="go to images"><span class="icon"><i class="far fa-images"></i></span></button></span> ' +
+            '<span id="gotoBooks"><button onclick="gotoBooks()"  onauxclick="gotoBooks( true )" class="dropbtn" tabIndex="0" title="go to books" aria-label="go to books"><span class="icon"><i class="fab fa-mizuni"></i></span></button></span> ' +
+            '<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fas fa-plus"></i></span></button></span> ' +
+            '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to wikipedia"><span class="icon"><i class="fab fa-wikipedia-w"></i></span></button></span> ' +
+            '<span id="otherLanguage"><button onclick="showWikipediaLanguages()" class="dropbtn active uls-trigger" tabIndex="0" title="article in other languages"> '  + language_display + '</button></span>' +
+
+          '</div>' +
+
+          banner_html
+
+      );
+
+      $( 'body#wikipedia-content' ).html(
+				html_ + 
+        '<base target="_parent" />' + 
+
+        '<script type="text/javascript" src="../wikipedia/dist/transform.js?' + explore.version + '"></script>' +
+
+        raw_html +
+
+        cathtml +
+
+        '<script src="../explore2/dist/webcomponent/gbif-map.js?' + explore.version + '" type="module"></script>' +
+        '<script src="../explore2/libs/sortable.js"></script>' +
+
+        '<br/><div id="legalnotice">This page is based on a <a target="_blank_" href="' + source_page + '">Wikipedia</a> article written by <a href="' + contributors_page + '">contributors</a>. The text is available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license; additional terms may apply. Images, videos and audio are available under their respective licenses.</div>' + 
+        '</main><br/><br/><br/>'
+
+      );
+
+			// on mobile hide some buttons
+			if ( explore.isMobile ){
+				$( '#gotoImages' ).hide();
+				$( '#gotoBooks' ).hide();
+				$( '#addToCompare' ).hide();
+			}
+
+			if ( explore.isFirefox ){ // pause() does nothing with Firefox on Linux (what about Firefox on Windows?), so hide the pause-button
+				$('#pauseButton').hide();
+			}
+
+			/*
+      $( explore.baseframe ).attr({"data-title": title });
+      $( explore.baseframe ).attr({"data-language": explore.language });
+      $( explore.baseframe ).attr({"data-hash": hash_ });
+      $( explore.baseframe ).attr({"data-font1": explore.font1 });
+			*/
+
+    },
+
+  });
+
+}
+
+document.toggleFullscreen = function() {
+
+  if ( screenfull.enabled ) {
+
+    screenfull.toggle();
+
+  }
+
+  return 0;
+
+};
+
+function getLangCode3( lang2 ){
+
+  let lang3 = undefined;
+
+  for ( const [ code , langobj ] of Object.entries( explore.wp_languages )) {
+
+    if ( lang2 === code ){
+
+      lang3 = langobj.iso3;
+
+			//console.log( langobj, lang3 );
+
+      // TODO DRY this code
+      explore.language_script = langobj.script;
+      explore.language_name = langobj.name;
+
+      if ( explore.voice_code.startsWith( explore.language ) ){
+        // do nothing
+      }
+      else {
+
+        explore.voice_code = langobj.voice || 'en-GB';
+
+      }
+
+      explore.langcode_librivox = langobj.librivox || 1;
+      //setLanguageDirection(); // FIXME?
+
+      // "Category" regexes
+      explore.lang_category = langobj.namespaces.category;
+
+      // TODO handle RTL-scripts like Arab for category-matching
+
+      if ( explore.language_direction === 'rtl' ){
+
+        //console.log('using RTL-direction for category matching');
+
+        const c1 = ':' + explore.lang_category + '$';
+        explore.lang_catre1 = new RegExp( c1, "g" );
+
+        const c2 = '%3A' + explore.lang_category + '$';
+        explore.lang_catre2 = new RegExp( c2, "g" );
+
+        explore.lang_portal = langobj.namespaces.portal;
+        const p1 = ':' + explore.lang_portal + '$';
+        explore.lang_porre1 = new RegExp( p1, "g" );
+
+        explore.lang_talk = langobj.namespaces.talk;
+        const t1 = ':' + explore.lang_talk + '$';
+        explore.lang_talkre = new RegExp( t1, "g" );
+
+        //const t1 = ':' + explore.lang_talk + '$';
+        //explore.lang_talkre = new RegExp( t1, "g" );
+
+      }
+      else {
+
+        const c1 = '^' + explore.lang_category + ':';
+        explore.lang_catre1 = new RegExp( c1, "g" );
+
+        const c2 = '^' + explore.lang_category + '%3A';
+        explore.lang_catre2 = new RegExp( c2, "g" );
+
+        explore.lang_portal = langobj.namespaces.portal;
+        const p1 = '^' + explore.lang_portal + ':';
+        explore.lang_porre1 = new RegExp( p1, "g" );
+
+        explore.lang_book = langobj.namespaces.book; // TODO
+        const b1 = '^' + explore.lang_book + ':';
+        explore.lang_bookre = new RegExp( b1, "g" );
+
+        explore.lang_talk = langobj.namespaces.talk;
+        const t1 = '^' + explore.lang_talk + ':';
+        explore.lang_talkre = new RegExp( t1, "g" );
+
+      }
+
+      break;
+    } 
+
+  }
+
+  return lang3;
+
+}
+
+function getNamefromLangCode2( lang2 ){
+
+  let name = '';
+
+  if ( explore.wp_languages.hasOwnProperty( lang2 ) ){
+
+    name = explore.wp_languages[ lang2 ].namelocal;
+
+  }
+
+  return name;
+
+}
+
+function detectMobile(){
+
+  if ( getParameterByName('v') === 'mobile' ){ // force mobile view from URL param
+    return true;
+  }
+  else if ( getParameterByName('v') === 'desktop' ){ // force desktop view from URL param
+    return false;
+  }
+  else {
+    return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|Mobile/i.test(navigator.userAgent) );
+  }
+
+}
+
+function receiveMessage(event){
+
+	//console.log('receiveMessage() called: ', event.data.data );
+
+  if ( event.data.event_id === 'set-value' ){
+
+	  //console.log( 'set-value: ', event.data.data[0], event.data.data[1] );
+    explore[ event.data.data[0] ] = event.data.data[1];
+
+  }
+  else if ( event.data.event_id === 'pause-speaking' ){ // signal from main-app to pause any speech
+
+    pauseSpeaking();
+
+  }
+  else if ( event.data.event_id === 'resume-speaking' ){ // signal from main-app to resume any speech
+
+    resumeSpeaking();
+
+  }
+  else if ( event.data.event_id === 'stop-speaking' ){ // signal from main-app to stop any speech
+
+    console.log('wikipedia app: stop speaking');
+
+    stopSpeaking();
+
+  }
+
+}
+
+function showWikipediaLanguages() {
+  //console.log('opening article ULS menu');
+  //console.log( explore.languages );
+}
+
+function renderEmbeddedGbifMap( id, title ){
+
+    //console.log( id, title );
+
+    const height = explore.isMobile ? '300px' : '500px';
+
+    const html = '<div class="section"><h2 class="map-gbif">' + explore.banana_native.i18n('app-title-occurence') + '</h2><gbif-map style="resize: both; overflow: auto; width:100%;height:' + height + ';" gbif-id="'+ id +'" gbif-title="'+ title + '" gbif-language="'+ explore.language +'" gbif-style="scaled.circles" center-latitude="30.0" center-longitude="13.6" controls ></gbif-map>';
+
+    return html;
+
+}
+
+function pauseSpeaking(){
+
+  console.log('speaking paused');
+  explore.synth_paused = true;
+  explore.synth.pause();
+
+}
+
+function stopSpeaking(){
+
+	explore.synth.cancel();
+
+}
+
+function cleanText( text ){
+
+  if ( typeof text === undefined || typeof text === 'undefined' ){
+
+    return '';
+
+  }
+  else {
+
+    text = text.replace(/(\r\n|\n|\r|'|"|`|\(|\)|\[|\])/gm, '');
+
+    while (text != (text = text.replace(/\{[^\{\}]*\}/gm, ''))); // remove math-element-noise
+    //.replace(/ {displaystyle.*?} /gm, '');
+
+    //console.log( text );
+
+    return text;
+
+  }
+
+}
+
+function resumeSpeaking(){
+
+  explore.synth_paused = false;
+  explore.synth.resume();
+
+}
+
+function startSpeaking( text ){
+
+  parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
+
+  if ( explore.synth_paused ){
+
+    resumeSpeaking();
+
+    return 0;
+
+  }
+  else if ( explore.synth.speaking ){ // something else is currently speaking
+
+    if ( explore.firstVisit === true ){ // but dont stop it upon first visit
+
+      console.log( 'dont speak: other speaker active upon first visit');
+      explore.firstVisit = false;
+      return 0;
+
+    }
+
+    //console.log('already speaking, so cancelling first');
+    stopSpeaking();
+
+    // TODO: is it possible to restart speaking immediately after this, without a user-click?
+
+  }
+
+  explore.synth_paused = false;
+
+  //console.log( text );
+
+	if ( typeof text === undefined || typeof text === 'undefined' || text === '' ){ // speak full article
+
+    text  = $('.mw-parser-output h2, h3, h4, h5, h6, p:not(table p), ul:not(table ul), li:not(table li), dl, dd').clone()
+          .find( explore.tts_removals ).remove()
+          .end().text()
+
+    //console.log( text );
+
+    text = $('h2:first').text() + text;
+
+	}
+	else { // speak article section
+
+	}
+
+  text = cleanText( text );
+
+	//console.log( text );
+
+  let utterance   = new SpeechSynthesisUtterance( text );
+
+	utterance.lang  = explore.voice_code;
+	utterance.rate  = explore.voice_rate;
+	utterance.pitch = explore.voice_pitch;
+
+	if ( explore.synth.speaking ){
+		// do nothing, already speaking
+	}
+	else {
+		explore.synth.speak( utterance );
+	}
+
+  parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
+
+}

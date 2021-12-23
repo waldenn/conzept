@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.47 r22583"
+   width="900"
+   height="600"
+   version="1.0"
+   sodipodi:docname="Flag_of_the_Kingdom_of_Kongo.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     inkscape:window-height="725"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="0.42166667"
+     inkscape:cx="450"
+     inkscape:cy="151.72524"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:current-layer="svg2"
+     inkscape:window-maximized="1" />
+  <path
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+     d="M 0,0 900,0 900,600 0,600 0,0 z"
+     id="rect2382" />
+  <path
+     style="fill:#db0101;fill-opacity:1"
+     d="M 216.21875,58.375 C 196.36489,59.023803 158.33008,75.057539 181,99.625 L 392.15625,298.40625 181,497.75 c -23.40121,25.35996 17.89588,41.61122 37.09375,41.25 19.19788,-0.36122 26.7492,-5.2199 38,-14.84375 11.23103,-9.60694 129.35294,-114.92904 194.34375,-172.6875 64.99387,57.76125 183.0823,163.08128 194.3125,172.6875 11.2508,9.62385 18.80213,14.48253 38,14.84375 19.19788,0.36122 60.49497,-15.89004 37.09375,-41.25 L 508.6875,298.96875 719.84375,99.625 C 743.24496,74.26504 701.94787,58.01378 682.75,58.375 c -19.19787,0.36122 -26.7492,5.2199 -38,14.84375 C 633.5198,82.82497 515.43136,188.145 450.4375,245.90625 385.44671,188.14779 267.32478,82.82569 256.09375,73.21875 c -11.2508,-9.62385 -18.80213,-14.48253 -38,-14.84375 -0.59993,-0.01129 -1.23455,-0.02093 -1.875,0 z"
+     id="path2819"
+     sodipodi:nodetypes="ccccsscsscccsscssc" />
+</svg>

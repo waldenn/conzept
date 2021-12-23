@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="672">
+	<rect width="1008" height="672" fill="#00672b"/>
+	<circle cx="448" cy="336" r="168" fill="#fff"/>
+	<circle cx="485" cy="336" r="142" fill="#00672b"/>
+	<g id="star" transform="translate(448,264)" fill="#fff">
+		<g id="c">
+			<path id="t" d="M 0,-42 V 0 H 21" transform="rotate(18 0,-42)"/>
+			<use xlink:href="#t" transform="scale(-1,1)"/>
+		</g>
+		<use xlink:href="#c" transform="rotate(72)"/>
+		<use xlink:href="#c" transform="rotate(144)"/>
+		<use xlink:href="#c" transform="rotate(216)"/>
+		<use xlink:href="#c" transform="rotate(288)"/>
+	</g>
+	<use xlink:href="#star" y="144" transform="rotate(180 448,408)"/>
+	<use xlink:href="#star" transform="rotate(60 448,408) rotate(30 448,264)"/>
+</svg>

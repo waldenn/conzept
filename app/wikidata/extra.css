@@ -1,0 +1,154 @@
+body {
+  background: #fbfaf9;
+  font-family: 'Quicksand', sans-serif !important;
+  overflow: none;
+  /*
+  width:100vw;
+  */
+  margin:0;
+  padding:0;
+}
+
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free";
+  color: #000;
+}
+
+.navbar-nav > li {
+  float: right !important;
+}
+
+#language_select, #find {
+  margin: 1em;
+}
+
+#images_google, #images_flickr {
+  display: none;
+}
+
+/* conzept-related menu buttons */
+
+#wikipedia-menu {
+  float: right;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.dropbtn {
+  background-color: inherit;
+  color: black;
+  padding: 1em;
+  font-size: larger;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#wikipedia-menu .dropbtn:hover {
+  background: #ee6e7396;
+}
+.dropbtn:hover, .dropbtn:focus {
+  background-color: inherit;
+  color: inherit;
+}
+
+table.sidebar-table td, table.sidebar-table th {
+  padding: 0.3em;
+}
+
+.sitelinks {
+  max-height: 500px !important;
+}
+
+
+
+
+/* dark mode styling */
+
+body.dark #main_content {
+  background-color: rgba(204,204,204,.16);
+  box-shadow: none !important;
+}
+
+body.dark #main_title_label {
+  color: white;
+}
+
+body.dark .panel {
+  border: none;
+}
+
+body.dark .sidebar {
+  background: #303030 !important;
+  border: none;
+}
+
+body.dark::-webkit-scrollbar {
+  background: #303030 !important;
+}
+
+/*
+body.dark * {
+  scrollbar-color: #303030 !important;
+}
+*/
+
+body.dark .table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #121212cc;
+}
+
+body.dark tr {
+  background: #121212de;
+}
+
+body.dark .panel-info > .panel-heading {
+  color: #31708f;
+  background-color: #254e62;
+  border-color: #31708f;
+}
+
+body.dark .container-fluid {
+  background: #254e62;
+}
+
+body.dark input {
+  color: black;
+  font-weight: bold;
+}
+
+body.dark .navbar {
+  border: none;
+}
+
+body.dark li div, body.dark h4, body.dark #languageDialogLabel {
+  background: transparent !important;
+  color: white;
+}
+
+body.dark li div a:hover{
+  background: #f3a8ab63 !important;
+}
+
+body.dark .modal-header, body.dark .modal-body {
+  background: #121212de !important;
+  color: white;
+}
+
+body.dark i {
+  color: white !important;
+}
+
+body.dark .table > tbody > tr > td, body.dark .table > tbody > tr > th, body.dark .table > tfoot > tr > td, body.dark .table > tfoot > tr > th, body.dark .table > thead > tr > td, body.dark .table > thead > tr > th {
+  border-top: 1px solid #ddd0;
+}
+
+body.dark .table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dddddd61;
+}
+
+body.dark span.inline_desc {
+  color: #82c2d6;
+}

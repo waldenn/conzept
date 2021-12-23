@@ -1,0 +1,236 @@
+From 92f6d05d309bd908703350571009fa2595fb5db0 Mon Sep 17 00:00:00 2001
+From: Santhosh Thottingal <santhosh.thottingal@gmail.com>
+Date: Thu, 19 Jul 2018 12:03:09 +0530
+Subject: [PATCH 1/1] Remove String.prototype overriding
+
+It was a wrong design.
+String.locale and String.prototype.toLocaleString removed
+---
+ demo/js/demo.js    |  10 ++---
+ package.json       |   2 +-
+ src/jquery.i18n.js | 103 +++++++++++++++++++++------------------------
+ 3 files changed, 53 insertions(+), 62 deletions(-)
+
+diff --git a/demo/js/demo.js b/demo/js/demo.js
+index 03fe4f4..a35d1de 100644
+--- a/demo/js/demo.js
++++ b/demo/js/demo.js
+@@ -2,8 +2,8 @@ function updateText() {
+ 	'use strict';
+ 	var i18n = $.i18n(), language, person, kittens, message, gender;
+ 
+-	message = '$1 has $2 {{plural:$2|kitten|kittens}}. '
+-		+ '{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
++	message = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
++		'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+ 	language = $( '.language option:selected' ).val();
+ 	person = $( '.person option:selected' ).text();
+ 	gender = $( '.person option:selected' ).val();
+@@ -11,16 +11,16 @@ function updateText() {
+ 
+ 	i18n.locale = language;
+ 	i18n.load( 'i18n/demo-' + i18n.locale + '.json', i18n.locale ).done(
+-		function() {
++		function () {
+ 			var personName = $.i18n( person ), localizedMessage = $.i18n( message, personName,
+ 				kittens, gender );
+-			$( '.result' ).text( localizedMessage ).prop( 'title', message.toLocaleString() );
++			$( '.result' ).text( localizedMessage ).prop( 'title', i18n.localize( message ) );
+ 		} );
+ }
+ // Enable debug
+ $.i18n.debug = true;
+ 
+-$( document ).ready( function( $ ) {
++$( document ).ready( function ( $ ) {
+ 	'use strict';
+ 	updateText();
+ 	$( '.kittens, .person, .language' ).on( 'change keyup', updateText );
+diff --git a/package.json b/package.json
+index c4f977b..733a762 100644
+--- a/package.json
++++ b/package.json
+@@ -26,7 +26,7 @@
+     "grunt-contrib-connect": "1.0.1",
+     "grunt-contrib-qunit": "1.2.0",
+     "grunt-contrib-watch": "1.0.0",
+-    "eslint-config-wikimedia": "0.3.0",
++    "eslint-config-wikimedia": "0.6.0",
+     "grunt-eslint": "19.0.0"
+   },
+   "repository": {
+diff --git a/src/jquery.i18n.js b/src/jquery.i18n.js
+index b04ff8a..ef2fcc2 100644
+--- a/src/jquery.i18n.js
++++ b/src/jquery.i18n.js
+@@ -16,7 +16,7 @@
+ ( function ( $ ) {
+ 	'use strict';
+ 
+-	var nav, I18N,
++	var I18N,
+ 		slice = Array.prototype.slice;
+ 	/**
+ 	 * @constructor
+@@ -30,64 +30,52 @@
+ 		this.locale = this.options.locale;
+ 		this.messageStore = this.options.messageStore;
+ 		this.languages = {};
+-
+-		this.init();
+ 	};
+ 
+ 	I18N.prototype = {
+ 		/**
+-		 * Initialize by loading locales and setting up
+-		 * String.prototype.toLocaleString and String.locale.
++		 * Localize a given messageKey to a locale.
++		 * @param {String} messageKey
++		 * @return {String} Localized message
+ 		 */
+-		init: function () {
+-			var i18n = this;
+-
+-			// Set locale of String environment
+-			String.locale = i18n.locale;
+-
+-			// Override String.localeString method
+-			// FIXME: This is a mistake. We should not modify String.prototype
+-			/* eslint-disable no-extend-native */
+-			String.prototype.toLocaleString = function () {
+-				var localeParts, localePartIndex, value, locale, fallbackIndex,
+-					tryingLocale, message;
++		localize: function ( messageKey ) {
++			var localeParts, localePartIndex, locale, fallbackIndex,
++				tryingLocale, message;
+ 
+-				value = this.valueOf();
+-				locale = i18n.locale;
+-				fallbackIndex = 0;
++			locale = this.locale;
++			fallbackIndex = 0;
+ 
+-				while ( locale ) {
+-					// Iterate through locales starting at most-specific until
+-					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
+-					localeParts = locale.split( '-' );
+-					localePartIndex = localeParts.length;
++			while ( locale ) {
++				// Iterate through locales starting at most-specific until
++				// localization is found. As in fi-Latn-FI, fi-Latn and fi.
++				localeParts = locale.split( '-' );
++				localePartIndex = localeParts.length;
+ 
+-					do {
+-						tryingLocale = localeParts.slice( 0, localePartIndex ).join( '-' );
+-						message = i18n.messageStore.get( tryingLocale, value );
++				do {
++					tryingLocale = localeParts.slice( 0, localePartIndex ).join( '-' );
++					message = this.messageStore.get( tryingLocale, messageKey );
+ 
+-						if ( message ) {
+-							return message;
+-						}
+-
+-						localePartIndex--;
+-					} while ( localePartIndex );
+-
+-					if ( locale === 'en' ) {
+-						break;
++					if ( message ) {
++						return message;
+ 					}
+ 
+-					locale = ( $.i18n.fallbacks[ i18n.locale ] &&
+-						$.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
+-						i18n.options.fallbackLocale;
+-					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale + ' (' + value + ')' );
++					localePartIndex--;
++				} while ( localePartIndex );
+ 
+-					fallbackIndex++;
++				if ( locale === 'en' ) {
++					break;
+ 				}
+ 
+-				// key not found
+-				return '';
+-			};
++				locale = ( $.i18n.fallbacks[ this.locale ] &&
++						$.i18n.fallbacks[ this.locale ][ fallbackIndex ] ) ||
++						this.options.fallbackLocale;
++				$.i18n.log( 'Trying fallback locale for ' + this.locale + ': ' + locale + ' (' + messageKey + ')' );
++
++				fallbackIndex++;
++			}
++
++			// key not found
++			return '';
+ 		},
+ 
+ 		/*
+@@ -173,7 +161,7 @@
+ 		 * @return {string}
+ 		 */
+ 		parse: function ( key, parameters ) {
+-			var message = key.toLocaleString();
++			var message = this.localize( key );
+ 			// FIXME: This changes the state of the I18N object,
+ 			// should probably not change the 'this.parser' but just
+ 			// pass it to the parser.
+@@ -207,7 +195,7 @@
+ 		// NOTE: It should only change language for this one call.
+ 		// Then cache instances of I18N somewhere.
+ 		if ( options && options.locale && i18n && i18n.locale !== options.locale ) {
+-			String.locale = i18n.locale = options.locale;
++			i18n.locale = options.locale;
+ 		}
+ 
+ 		if ( !i18n ) {
+@@ -236,7 +224,7 @@
+ 			i18n = new I18N();
+ 			$.data( document, 'i18n', i18n );
+ 		}
+-		String.locale = i18n.locale;
++
+ 		return this.each( function () {
+ 			var $this = $( this ),
+ 				messageKey = $this.data( 'i18n' ),
+@@ -262,15 +250,18 @@
+ 		} );
+ 	};
+ 
+-	String.locale = String.locale || $( 'html' ).attr( 'lang' );
++	function getDefaultLocale() {
++		var nav, locale = $( 'html' ).attr( 'lang' );
+ 
+-	if ( !String.locale ) {
+-		if ( typeof window.navigator !== undefined ) {
+-			nav = window.navigator;
+-			String.locale = nav.language || nav.userLanguage || '';
+-		} else {
+-			String.locale = '';
++		if ( !locale ) {
++			if ( typeof window.navigator !== undefined ) {
++				nav = window.navigator;
++				locale = nav.language || nav.userLanguage || '';
++			} else {
++				locale = '';
++			}
+ 		}
++		return locale;
+ 	}
+ 
+ 	$.i18n.languages = {};
+@@ -294,7 +285,7 @@
+ 	};
+ 	/* Static members */
+ 	I18N.defaults = {
+-		locale: String.locale,
++		locale: getDefaultLocale(),
+ 		fallbackLocale: 'en',
+ 		parser: $.i18n.parser,
+ 		messageStore: $.i18n.messageStore
+-- 
+2.17.1
+

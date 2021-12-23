@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"MuratTheTurkish"
+		]
+	},
+	"itemCount": "Bu açıklamayla {{PLURAL:$1|eşleşen bir öğe var|eşleşen $1 öğe var}}.",
+	"classPlaceholder": "Sınıf girin",
+	"browse": "Veya aşağıdaki sınıflardan herhangi birine göz atın:",
+	"noFiltersDefined": "Bu sınıf için filtre tanımlanmadı.",
+	"addFilter": "Filtre ekle",
+	"viewQuery": "SPARQL sorgusunu gör",
+	"noItems": "Bu tanımla eşleşen öğe yok.",
+	"displayItemsError": "Öğelerin listesini görüntüleme denemesi çok uzun sürdü; lütfen daha fazla filtre eklemeyi düşünün.",
+	"gettingValues": "$1 filtresi için değerler alınıyor ...",
+	"noAdditionalValues": "$1 filtresi için ek değer yok.",
+	"filterError": "$1 filtresi için değerleri almaya çalışmak çok uzun sürdü.",
+	"filterTimeout": "($1 filtresi için tam bir değer kümesi almak çok uzun sürdü; bunun yerine, burada muhtemelen eksik bir küme var.)",
+	"selectValue": "$1 için bir değer seçin:",
+	"selectAdditionalValue": "$1 için ek bir değer seçin:",
+	"noValue": "Değer yok",
+	"changeClassNote": "(Not: Sınıfı değiştirirseniz, mevcut filtre grubunu kaybedersiniz.)",
+	"specificClass": "Daha spesifik bir sınıfa geçin:",
+	"generalClass": "Daha genel bir sınıfa geçin:",
+	"viewList": "Öğe listesini gör",
+	"results": "({{PLURAL:$1|1 sonuç|$1 sonuç}})",
+	"applyLinkedFilter": "$1 üzerinde filtreyi uygulayın",
+	"chooseLinkedFilter": "Aşağıdaki sınıflardan birinden bir filtre seçin:"
+}

@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"Jesusmc"
+		]
+	},
+	"itemCount": "Hay {{PLURAL: $1|un elemento que coincide con|$1 elementos que coinciden con}} esta descripción.",
+	"classPlaceholder": "Introduce clase",
+	"browse": "O explora cualquiera de las siguientes clases:",
+	"noFiltersDefined": "No se define ningún filtro para esta clase.",
+	"addFilter": "Añadir un filtro",
+	"viewQuery": "Ver consulta SPARQL",
+	"noItems": "Ningún artículo coincide con esta descripción.",
+	"displayItemsError": "El intento de mostrar la lista de elementos tomó demasiado tiempo; por favor considera agregar más filtros.",
+	"gettingValues": "Obtener valores para el filtro $1",
+	"noAdditionalValues": "No hay valores adicionales para el filtro $1.",
+	"filterError": "Intentando obtener valores tomó demasiado tiempo para el filtro $1",
+	"filterTimeout": "(Obtener un conjunto completo de valores para el filtro $1 tomó demasiado tiempo; en cambio, aquí hay un conjunto posiblemente incompleto).",
+	"selectValue": "Seleccionar un valor para $1",
+	"selectAdditionalValue": "Seleccionar un valor adicional para $1:",
+	"noValue": "Sin valor",
+	"changeClassNote": "(Nota: si cambias la clase, perderá el conjunto actual de filtros).",
+	"specificClass": "Cambiar a una clase más específica:",
+	"generalClass": "Cambiar a una clase más general:",
+	"viewList": "Ver lista de elementos",
+	"results": "({{PLURAL:$1|1 resultado|$1 resultados}})"
+}

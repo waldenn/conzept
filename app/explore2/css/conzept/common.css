@@ -1,0 +1,85 @@
+@font-face {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot);
+  src: local(""), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot?#iefix) format("embedded-opentype"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2) format("woff2"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff) format("woff"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.ttf) format("truetype"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.svg#Quicksand) format("svg");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot);
+  src: local(""), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot?#iefix) format("embedded-opentype"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2) format("woff2"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff) format("woff"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.ttf) format("truetype"), url(/fonts/quicksand/quicksand-v20-latin-ext_latin-500.svg#Quicksand) format("svg");
+  font-display: swap;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+#fullscreenToggle { 
+  font-size: 0.9em;
+  position: fixed; 
+  left: 0.1em; 
+  top: calc( 50% - 2.3em); 
+  z-index: 9999; 
+  color: black;
+} 
+
+body.dark #fullscreenToggle, body.dark #scrollToTop, body.dark #sidebarToggle {
+  color: white;
+}
+
+#fullscreenToggle:hover { 
+  cursor: nesw-resize;
+}
+
+#minimizeLeftPanesToggle { 
+  position: fixed; 
+  padding-left: 0.2em;
+  top: calc( 50% + 2.0em); 
+  z-index: 9999; 
+  color: black;
+}
+
+#minimizeLeftPanesToggle:hover { 
+  cursor: w-resize;
+}
+
+#queryTitle {
+  position: fixed;
+  top: 25px;
+  left: 50px;
+  z-index: 9999;
+  color: black;
+  font-weight: bold;
+  background: #fbfaf9c9;
+  padding: 0px 0.3em;
+  border-radius: 0.3em;
+}
+
+/* allow the user to resize the inline-iframe height */
+.resizer {
+  display:flex;
+  margin:0;
+  padding:0;
+  resize:vertical;
+  overflow:hidden
+}
+
+.resizer > .resized {
+  flex-grow:1;
+  margin:0;
+  padding:0;
+  border:0
+}
+
+@media (prefers-reduced-motion) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,327 @@
+<style>
+div.search_result_row {
+	display:flex;
+	flex-direction:row;
+	align-items:stretch;
+	border-top:1px solid #DDD;
+	margin-top:2px;
+	padding-top:2px;
+}
+div.search_result_row:first-of-type {
+	border-top:none;
+}
+</style>
+
+<template id='main-template'>
+<div class='container'>
+	<tool-navbar>
+		<template slot='right'>
+			<widar></widar>
+		</template>		
+	</tool-navbar>
+	<!--div class='row mt-2 ml-2 mr-2' style='justify-content:center;'>
+		<div v-if='!wsm.is_logged_in'>
+			<form method='post' :action='api_v3' target='_blank'>
+				<input type='hidden' name='action' value='authorize' />
+				<button type='submit' class='btn btn-primary' tt='authorize'></button>
+			</form>
+		</div>
+	</div-->
+	<div class='row mt-2 ml-2 mr-2' v-if='to_upload>0'>
+		Uploading {{to_upload}} files
+	</div>
+	<div class='row mt-2 ml-2 mr-2' style='display:flex;flex-direction:column;'>
+		<div>
+			<form class='form form-inline'>
+				<div class='input-group input-group-lg' style='width:100%'>
+					<input id='query_string' type='text' class='form-control' v-model='query_string' @keyup='queryStringWasUpdated' tt_placeholder='query_string' autofocus style='width:100%' />
+				</div>
+			</form>
+		</div>
+		<div v-if='navigator.geolocation'>
+			<label>
+				<input type='checkbox' v-model='use_geolocation' @change='changeMode' />
+				<span>Use your current location instead</span>
+			</label>
+			<i>{{geo_msg}}</i>
+		</div>
+		<div v-if='!use_geolocation && searching'>SEARCHING...</div>
+		<div v-else-if='!use_geolocation && query_string==""'></div>
+		<div v-else-if='!use_geolocation && search_results.length==0'>No results found.</div>
+		<div v-else style='display:flex;flex-direction:column'>
+			<div v-for='r in search_results' class='search_result_row' :key='"result_"+r.id'>
+				<div style='flex-grow: 1'>
+					<div>
+						<b>{{r.i.getLabel()}}</b>
+						<br/><small>[<wd-link :item='r.id' :label='r.id'></wd-link>]</small>
+						<span v-if='typeof r.dist!="undefined"'>
+							{{r.dist}}km |
+							<a target='_blank' class='external' :href='getCoordsURL(r)'>
+								{{r.coords[1]}}/{{r.coords[0]}}
+							</a>
+						</span>
+					</div>
+					<div v-if='r.description!=""'><i>{{r.description}}</i></div>
+				</div>
+				<div style='width:64px;height:64px;text-align:center;vertical-align:middle'>
+					<div v-if='r.i.hasClaims("P18")'>
+						<img :src='getIconURL(r.i.getFirstStringForProperty("P18"))' />
+					</div>
+					<div v-else-if='r.status=="uploaded"' style='border:2px solid green'>
+						<img :src='getIconURL(r.new_file_name)' border=0 />
+					</div>
+					<div v-else-if='r.status=="uploading"'>
+						<img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Ajax_loader_metal_512.gif' width='64px' />
+					</div>
+					<div v-else-if='r.status=="failed"' style='border:2px solid red'>
+						<img :src='getIconURL("Feedbin-Icon-error.svg")' border=0 />
+					</div>
+					<div v-else-if='!wsm.is_logged_in'>
+						<img :src='getIconURL("Missing image icon with camera and upload arrow.svg")' border=0 tt_title='not_logged_in' />
+					</div>
+					<div v-else>
+						<form method='post' enctype='multipart/form-data' :action='api_v3' class='form form-inline' target='_blank' :id='"form_"+r.id'>
+							<label style='cursor:pointer' tt_title='upload'>
+								<img :src='getIconURL("Missing image icon with camera and upload arrow.svg")' border=0 />
+								<input name="file" type="file" accept="image/*;capture=camera" @change='uploadFile(r)' style="display: none;">
+							</label>
+							<input type='hidden' name='action' :value='upload_mode' />
+							<input type='hidden' name='q' :value='r.id' />
+							<input type='hidden' name='tool_hashtag' value='wikishootme/picturethis' />
+							<input type='hidden' name='wpDestFile' :value='getNewFileName(r)' />
+							<input type='hidden' name='wpUploadDescription' :value='getNewFileDescription(r)' />
+							<input type='submit' style='display:none' name='wpUpload' value='UPLOAD FILE' />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+
+<script>
+'use strict';
+
+var uploadMixin = Vue.mixin({
+	data : function () { return {
+		api_v3 : 'https://wikishootme.toolforge.org/api_v3.php' ,
+		wsm : {
+			is_logged_in:false,
+			userinfo:{}
+		} ,
+		to_upload : 0 ,
+		upload_queue : []
+		}
+	} ,
+	methods : {
+		getWSM : function ( params , callback ) {
+			var me = this ;
+			$.getJSON ( me.api_v3+'?callback=?' , params , callback ) ;
+		} ,
+		checkLoginWSM : function ( callback ) {
+			var me = this ;
+			me.getWSM ( {
+				action:'check'
+			} , function ( d ) {
+				if ( typeof d.result.error != 'undefined' ) {
+					me.wsm.is_logged_in = false ;
+				} else {
+					me.wsm.is_logged_in = true ;
+					me.wsm.userinfo = d.result.query.userinfo ;
+				}
+				callback() ;
+			} ) ;
+		} ,
+		addUpload : function ( u ) {
+			var me = this ;
+			me.upload_queue.push ( u ) ;
+			me.to_upload++ ;
+			me.uploadNext() ;
+		} ,
+		uploadNext : function () {
+			var me = this ;
+			if ( me.upload_queue.length == 0 ) return ;
+
+			// Check if already uploading
+			var i ;
+			var is_uploading = false ;
+			$.each ( me.upload_queue , function ( k , v ) {
+				if ( v.r.status == 'uploading' ) is_uploading = true ;
+				else if ( v.r.status != "uploaded" && v.r.status != "failed" && typeof i == 'undefined' ) i = k ;
+			} ) ;
+			if ( is_uploading ) return ;
+			if ( typeof i == 'undefined' ) return ; // All done
+
+			// Prepare upload
+			var o = me.upload_queue[i] ;
+			o.r.status = 'uploading' ;
+
+			// Uploading new file
+			var opts = {
+				url: me.api_v3,
+				data: o.data,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType:'json',
+				type: 'POST',
+				success: function(d){
+					me.upload_delay = 100 ; // Reset delay
+					if ( d.status == 'OK' ) {
+						o.r.status = "uploaded" ;
+						o.r.new_file_name = d.new_file_name ;
+					} else {
+						o.r.status = "failed" ;
+					}
+					me.to_upload-- ;
+
+					// Logging
+					//$.getJSON ( 'https://tools.wmflabs.org/magnustools/logger.php?tool=picturethis&method=file uploaded&callback=?' , function(j){} ) ;
+				} ,
+				error : function () {
+					console.log ( "ERROR" ) ;
+					me.upload_delay += 1000 ; // Wait 1 second more after each error
+					if ( me.upload_delay > 10000 ) me.upload_delay = 10000 ; // Max 10 seconds
+				}
+			};
+/*
+			if(o.data.fake) {
+				// Make sure no text encoding stuff is done by xhr
+				opts.xhr = function() { var xhr = jQuery.ajaxSettings.xhr(); xhr.send = xhr.sendAsBinary; return xhr; }
+				opts.contentType = "multipart/form-data; boundary="+o.data.boundary;
+				opts.data = o.data.toString();
+			}
+*/
+			$.ajax(opts)
+			.then ( function () {
+				setTimeout ( function () { me.uploadNext() } , me.upload_delay ) ;
+			} ) ;
+
+		} ,
+	}
+} ) ;
+
+
+let MainPage = Vue.extend ( {
+	mixins: [uploadMixin] ,
+	props : [ 'query' ] ,
+	data : function () { return { query_string:'' , timeout:'' , last_query_string:'' , search_results:[] , searching:false , upload_mode:'upload' , use_geolocation:false , geo_msg:'' , bad_p31:[
+		"Q13442814","Q18761202","Q4167410","Q11266439","Q4167836","Q101352","Q12308941","Q11879590"
+		//,"Q3305213"
+	] } } ,
+	created : function () {
+		var me = this ;
+		if( window.FormData !== undefined ) me.upload_mode = 'upload_background' ;
+		me.checkLoginWSM( function () {
+			if ( typeof me.query != 'undefined' ) me.query_string = me.query ;
+			me.queryStringWasUpdated () ;
+		} ) ;
+	} ,
+	mounted : function () {
+		$('#query_string').focus() ;
+	} ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+	methods : {
+		queryStringWasUpdated : function () {
+			var me = this ;
+			clearTimeout ( me.timeout ) ;
+			me.timeout = setTimeout ( me.runSearch , 500 ) ;
+		} ,
+		runSearch : function () {
+			var me = this ;
+			let query_string = me.query_string.replace(/_/g,' ') ;
+			if ( query_string == '' ) {
+				me.search_results = [] ;
+				return ;
+			}
+			if ( query_string == me.last_query_string ) return ;
+			me.last_query_string = query_string ;
+			me.searching = true ;
+			me.search_results = [] ;
+			me.use_geolocation = false ;
+			me.$router.push(query_string) ;
+			$.getJSON ( 'https://www.wikidata.org/w/api.php?callback=?' , {
+				action:'wbsearchentities',
+				search:query_string ,
+				language:tt.language ,
+				type:'item' ,
+				limit:50,
+				format:'json'
+			} , me.showResults ) ;
+		} ,
+		showResults : function ( d ) {
+			var me = this ;
+			let to_load = [] ;
+			$.each ( d.search , function ( dummy , r ) { to_load.push ( r.id ) } ) ;
+			wd.getItemBatch ( to_load , function () {
+				$.each ( d.search , function ( k , r ) { r.i = wd.getItem ( r.id ) } ) ;
+				d.search = d.search.filter ( r => typeof r.i != 'undefined' ) ;
+				$.each ( me.bad_p31 , function ( dummy , q ) {
+					d.search = d.search.filter ( r => !r.i.hasClaimItemLink('P31',q) ) ;
+				} )
+				$.each ( d.search , function ( dummy , r ) {
+					r.description = r.i.getDesc() ;
+				} ) ;
+				me.search_results = d.search ;
+				me.searching = false ;
+			} ) ;
+		} ,
+		getIconURL : function ( file ) {
+			return "https://commons.wikimedia.org/wiki/Special:Redirect/file/"+encodeURIComponent(file)+"?width=64&height=64" ;
+		} ,
+		getNewFileName : function ( r ) {
+			return r.i.getLabel()+'.jpg' ;
+		} ,
+		getNewFileDescription : function ( r ) {
+			return "{{Information\n|description=" + r.i.getDesc() + "\n|source={{self-made}}\n|author=~~~\n}}\n{{CC-BY-SA-3.0}}" ;
+		} ,
+		getCoordsURL : function ( r ) {
+			return "https://wikishootme.toolforge.org/#lat="+r.coords[1]+"&lng="+r.coords[0]+"&zoom=16" ;
+		} ,
+		changeMode : function () {
+			var me = this ;
+			if ( !me.use_geolocation ) return ;
+			me.geo_msg = tt.t('checking_location') ;
+			me.search_results = [] ;
+			me.searching = true ;
+			me.$router.push('') ;
+			navigator.geolocation.getCurrentPosition(function(d){
+				let sparql = 'SELECT ?place ?coordinate_location ?dist WHERE { SERVICE wikibase:around { ?place wdt:P625 ?coordinate_location. bd:serviceParam wikibase:center "Point(' + d.coords.longitude + ' ' + d.coords.latitude + ')"^^geo:wktLiteral . bd:serviceParam wikibase:radius "1". bd:serviceParam wikibase:distance ?dist. } } ORDER BY ?dist LIMIT 50' ;
+				me.geo_msg = tt.t('finding_nearby_objects') ;
+				wd.loadSPARQL ( sparql , function ( d ) {
+					me.geo_msg = '' ;
+					let results = { search:[] } ;
+					$.each ( d.results.bindings , function ( dummy , b ) {
+						let q = wd.itemFromBinding(b.place) ;
+						let coords = b.coordinate_location.value.replace(/^.+\(/,'').replace(/\)$/,'').split(' ') ;
+						let o = {
+							description:'',
+							id:q,
+							dist:b.dist.value*1,
+							coords:coords
+						} ;
+						results.search.push ( o ) ;
+					} ) ;
+					me.searching = false ;
+					me.showResults ( results ) ;
+				} , function () {
+					me.geo_msg = tt.t('cannot_determine_location') ;
+					me.use_geolocation = false ;
+					me.searching = false ;
+				} ) ;
+			});
+		} ,
+		uploadFile : function ( r ) {
+			var me = this ;
+			let form = $('#form_'+r.id) ;
+			let u = { data : new FormData($(form)[0]), r:r } ;
+			r.status = "waiting" ;
+			me.addUpload ( u ) ;
+		}
+	} ,
+	template : '#main-template'
+} ) ;
+
+</script>

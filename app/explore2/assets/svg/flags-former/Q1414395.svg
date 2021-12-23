@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   width="747" height="500">
+  <metadata><rdf:RDF><cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Flag of South Moluccas</dc:title>
+  </cc:Work></rdf:RDF></metadata>
+  <rect width="747" height="500" style="fill:#ce1126"/>
+  <rect width="83" height="500" style="fill:#003884"/>
+  <rect x="83" width="83" height="500" fill="white"/>
+  <rect x="166" width="83" height="500" style="fill:#007a4d"/>
+</svg>

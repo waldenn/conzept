@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="1163" height="482" viewBox="0 0 1163 482" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Mogadishu area flag according to 1576 Portuguese map.</title>
+<path fill="#cc0000" d="M3,241
+V2
+L1157,241Z"/>
+<path fill="#ffcc00" d="M3,241
+V480
+L1157,241Z"/>
+<path fill="#ffffff" d="M294.776,344.416
+C270.463,364.817,239.739,376,208,376
+C133.442,376,73,315.558,73,241
+C73,166.442,133.442,106,208,106
+C239.739,106,270.463,117.183,294.776,137.584
+C282.758,133.228,270.073,131,257.291,131
+C196.54,131,147.291,180.249,147.291,241
+C147.291,301.751,196.54,351,257.291,351
+C270.073,351,282.759,348.772,294.776,344.416Z"/>
+</svg>

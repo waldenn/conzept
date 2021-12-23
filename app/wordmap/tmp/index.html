@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>wordmap</title>
+    <!--link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./../explore2/css/fontawesome/css/all.min.css">
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+    <link rel="icon" href="wikidata_wordmap.png">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://unpkg.com/d3fc@14.0.1"></script>
+    <script src="./libs/mathsfunctions.js"></script>
+    <script src="./libs/rxjs.umd.min.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.5.3/rxjs.umd.min.js"></script-->
+  </head>
+
+  <body>
+    <div id="searchBox" class="header">
+      <table>
+	<!--tr>
+	  <span style="font-size:2em;"><b>WOR(L)DMAP</b></span>
+	</tr-->
+	<!--tr>
+	  <i id="question" class="fa fa-question-circle fa-2x" style="color: red;" aria-hidden="true"></i>
+	</tr-->
+	<tr>
+	  <input style="font-family:Cairo;" id="search" type="text" placeholder="Search";/>
+	  <i id="searchsubmit" class="fa fa-search" ></i>
+	</tr>
+      </table>
+    </div>
+    <div id="svgdiv"/>
+    <!--footer style="color:white;">
+	  This visualization was built using <a href="https://d3js.org/" target="_blank">d3.js</a> with data extracted from <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>. Source code available on <a href="https://github.com/esterpantaleo/wikidata_wordmap" target="_blank">Github<a>. Contact: <a href="https://esterpantaleo.github.io" target="_blank">Ester Pantaleo</a>.
+	</footer-->
+
+<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>

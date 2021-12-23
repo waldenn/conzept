@@ -1,0 +1,267 @@
+<!doctype html>
+<html class="stickyfooter" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="nw520" name="author" />
+<meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport" />
+
+  <title>conzept compare</title>
+  <link rel="stylesheet" href="data/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="data/components/tooltipster/4.0/css/tooltipster.bundle.min.css" />
+  <link rel="stylesheet" href="data/components/tooltipster/4.0/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-light.min.css" />
+
+  <!-- conzept resources -->
+  <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+  <link rel="stylesheet" href="data/css/style.css" />
+
+</head>
+
+<body>
+
+<div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="donttouch" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#" style="text-decoration:none;">conzept compare</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarToggler">
+		<ul class="nav navbar-nav">
+			<!--li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navitem-tools" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Wikidata tools</a>
+				<div class="dropdown-menu" aria-labelledby="navitem-tools">
+					<a class="dropdown-item" href="https://muekoeff.github.io/wikiosmerged/" rel="noopener">WikiOSMerged</a>
+					<a class="dropdown-item" href="https://muekoeff.github.io/wikirsolve/" rel="noopener">WikiRsolve</a>
+				</div>
+			</li-->
+			<li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-settings"><i class="fas fa-cog"></i></a> </li>
+			<li class="nav-item" style="display: none;"> <a class="nav-link" href="#fullscreen" title="fullscreen"><i class="fas fa-expand"></i></a> </li>
+			<li class="nav-item"> <a class="nav-link" href='#' onclick="removeAllColumns()" title="clear all topics"><i class="fas fa-trash"></i></a> </li>
+		</ul>
+	</div>
+</nav>
+<main class="container">
+	<div id="rowTable" style="display:none;">
+		<div class="row">
+			<textarea id="commands" class="form-control" rows="5"></textarea>
+		</div>
+		<br />
+		<div class="row" style="display:flex">
+			<button id="button-parse" class="btn btn-primary" disabled>Go</button>
+			<div style="align-items:center;display:flex;margin-left:2em">
+				<p style="margin:0">Please enter one ID per line. The first one will be used as reference</p>
+			</div>
+			<div style="flex:1;text-align:right">
+				<div class="btn-group" role="group">
+					<a id="button-permalink" class="btn btn-secondary disabled" href="#" title="Create sharable permalink" data-toggle="modal" data-target="#modal-permalink">🔗</a>
+					<a id="button-settings" class="btn btn-secondary" href="#" title="Open settings" data-toggle="modal" data-target="#modal-settings">⚙️</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="rowTable" style="margin-top:1.5em">
+		<div class="row" style="align-items:flex-end;display:flex">
+			<!--h3 style="flex-grow:1">Data</h3-->
+			<!--a href="#toggle_wdid">Display Wikidata IDs</a-->
+		</div>
+		<div class="row">
+			<div id="table-container">
+				<a id="table-closefullscreen" href="#fullscreen">&times;</a>
+				<table id="table-output" class="table table-striped" role="grid">
+					<thead>
+						<tr role="row">
+							<th scope="col">Items</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="5">No data</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</main>
+<!--footer class="footer">
+	<div class="container text-right">
+		<span class="text-muted">
+			<a href="https://github.com/muekoeff/wikicompare" target="_blank" rel="noopener">source</a>
+		</span>
+	</div>
+</footer-->
+
+<div class="modal fade" id="modal-permalink" tabindex="-1" role="dialog" aria-labelledby="modal-permalink-label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-permalink-label">Create sharable permalink</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-settings" role="grid">
+					<tbody>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-label">Display name</label></th>
+							<td colspan="2">
+								<input id="permalink-label" class="form-control" type="text" checked />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-includeditems">Include current items</label></th>
+							<td colspan="2">
+								<input id="permalink-includeditems" class="form-control" type="checkbox" checked />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-filterproperties">Filter displayed properties</label></th>
+							<td colspan="2">
+								<input id="permalink-filterproperties" class="form-control" type="checkbox" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-displayedproperties">Displayed properties</label></th>
+							<td colspan="2">
+								<select id="permalink-displayedproperties" multiple></select>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-queryonloaded">Load data as soon as page is loaded</label></th>
+							<td colspan="2">
+								<input id="permalink-queryonloaded" class="form-control" type="checkbox" checked />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-fullscreen">Activate fullscreen mode</label></th>
+							<td colspan="2">
+								<input id="permalink-fullscreen" class="form-control" type="checkbox" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="permalink-settings">Apply current settings</label></th>
+							<td colspan="2">
+								<input id="permalink-settings" class="form-control" type="checkbox" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="form-group">
+					<label for="permalink-output">Sharable permalink</label>
+					<div style="display:flex">
+						<input id="permalink-output" class="form-control" type="text" readonly style="flex:1" />
+						<a id="button-permalink-open" class="btn btn-primary" href="#"  style="margin-left:.25em">Open</a>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal-settings" tabindex="-1" role="dialog" aria-labelledby="modal-settings-label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-settings-label">Advanced Settings</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table" role="grid">
+					<tbody>
+						<tr>
+							<th scope="row" colspan="2"><label for="setting-language-label">Label language</label></th>
+							<td colspan="2">
+								<input id="setting-language-label" class="form-control custom-select" type="text" list="languages" value="en" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="setting-ui-displaylangalias">Displayed languages for aliases</label></th>
+							<td colspan="2">
+								<input id="setting-ui-displaylangalias" class="form-control custom-select" type="text" list="languages" /><br/>
+								<small>(Separated by commas, leave empty to display all)</small>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" colspan="2"><label for="setting-ui-displaylangdescription">Displayed languages for descriptions</label></th>
+							<td colspan="2">
+								<input id="setting-ui-displaylangdescription" class="form-control custom-select" type="text" list="languages" /><br/>
+								<small>(Separated by commas, leave empty to display all)</small>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="setting-ui-displayimages">Display images</label></th>
+							<td>
+								<input id="setting-ui-displayimages" class="form-control" type="checkbox" />
+							</td>
+							<th scope="row"><label for="setting-ui-collapsesitelinks">Pre-collapse sitelinks</label></th>
+							<td>
+								<input id="setting-ui-collapsesitelinks" class="form-control" type="checkbox" checked />
+							</td>
+							
+						</tr>
+						<tr>
+							<th scope="row"><label for="setting-ui-stickyheaderrow">Sticky header row</label></th>
+							<td>
+								<input id="setting-ui-stickyheaderrow" class="form-control" type="checkbox" checked />
+							</td>
+							<th scope="row"><label for="setting-ui-collapsedescriptions">Pre-collapse descriptions</label></th>
+							<td>
+								<input id="setting-ui-collapsedescriptions" class="form-control" type="checkbox" checked />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="setting-ui-stickyheadercolumn">Sticky header column</label></th>
+							<td>
+								<input id="setting-ui-stickyheadercolumn" class="form-control" type="checkbox" checked />
+							</td>
+							<th scope="row"><label for="setting-ui-collapsealiases">Pre-collapse aliases</label></th>
+							<td>
+								<input id="setting-ui-collapsealiases" class="form-control" type="checkbox" checked />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="setting-ui-visitedlinks">Make visited links purple</label></th>
+							<td>
+								<input id="setting-ui-visitedlinks" class="form-control" type="checkbox" checked />
+							</td>
+							<th scope="row"><label for="setting-ui-displaywdid">Display Wikidata IDs rather than labels</label></th>
+							<td>
+								<input id="setting-ui-displaywdid" class="form-control" type="checkbox" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<datalist id="languages"></datalist>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group" role="group">
+					<button id="button-settings-geturl" type="button" class="btn btn-primary">Get URL</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="data/components/tooltipster/4.0/js/tooltipster.bundle.min.js"></script>
+<script src="data/js/utils.js"></script>
+<script src="data/js/requestQueue.js"></script>
+
+
+<link rel="stylesheet" href="../explore2/libs/lc/css/lc_lightbox.min.css" /> <!-- TODO -->
+<link rel="stylesheet" href="../explore2/libs/lc/skins/minimal.css" />
+<script src="../explore2/libs/lc/js/lc_lightbox.lite.js"></script>
+<script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js" async></script>
+<script src="../explore2/dist/webcomponent/gbif-map.js" type="module"></script>
+
+<script src="data/js/script.js"></script>
+</body>
+</html>

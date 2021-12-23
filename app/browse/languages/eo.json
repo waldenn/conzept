@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Javiero"
+		]
+	},
+	"itemCount": "Tie {{PLURAL:$1|is one item that matches|are $1 items that match}} ĉi tiu priskribo.",
+	"classPlaceholder": "Eniru klason",
+	"browse": "Aŭ foliumu iujn el la sekvaj klasoj:",
+	"noFiltersDefined": "Neniu filtrilo estas difinita por ĉi tiu klaso.",
+	"addFilter": "Aldoni filtrilon",
+	"gettingValues": "Akirante valorojn por filtrilo $1 ...",
+	"noAdditionalValues": "Ne estas aldonaj valoroj por la filtrilo $1.",
+	"selectValue": "Elektu valoron por $1:",
+	"selectAdditionalValue": "Elektu suplementan valoron por $1:",
+	"noValue": "Neniu valoro",
+	"changeClassNote": "(Noto: se vi ŝanĝas la klason, vi perdos la nunan aron de filtriloj.)",
+	"specificClass": "Ŝanĝi al pli specifa klaso:",
+	"generalClass": "Ŝanĝi al pli ĝenerala klaso:",
+	"viewList": "Vidi liston de eroj",
+	"results": "({{PLURAL:$1|1 result|$1 results}})"
+}

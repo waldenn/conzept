@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+-->
+
+<title>---!</title>
+
+<link href="/magnustools/resources/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/magnustools/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/magnustools/resources/css/common.css">
+<link rel="stylesheet" type="text/css" href="./wsm.css" />
+  
+<script type="text/javascript" src="/magnustools/resources/js/jquery/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="/magnustools/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./geo.js"></script>
+<script type="text/javascript" src="./wsm.js"></script>
+</head>
+
+<body>
+
+<div id="menubar" class="navbar navbar-static-top">
+	<div class="navbar-inner">
+		<div class="container">
+	
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</a>
+		
+			<a id='toolname' class="brand" href="?">Wiki ShootMe!</a>
+		
+<!--		
+			<ul id="toolbar-right" class="nav pull-right">
+				<li><a href='/magnustools'>Tools</a></li>
+				<li><a href='//toolserver.org/~magnus'>Olde tools</a></li>
+				<li><a href="//bitbucket.org/magnusmanske">Git</a></li>
+				<li><a id='discuss_link'>Discuss</a></li>
+				<li><a style='margin:0px;padding:0px;margin-top:4px' href="/"><img src='//wikitech.wikimedia.org/w/images/c/cf/Labslogo_thumb.png' title='Powered by Wikimedia Labs' border=0 width='32px' /></a></li>
+			</ul>
+-->
+		
+		</div>
+	</div>
+</div>
+
+<div id="main_content" class="container-fluid"><div class="row-fluid">
+	<div class="span12" style="margin-bottom:20px;margin-top:10px;">
+
+<p>Traveling cool places? Have a camera? Find places nearby that have articles on Wikipedia but no images yet, and see <b><i>your</i></b> pictures beautify an article or two!</p>
+
+<div id='geomessage'></div>
+<table style='border-bottom:1px solid #AAAAAA;padding-bottom:2px'>
+<tr><th>Site</th><td colspan='2'><input id='language' type='text' class='span3' />.wikipedia</td></tr>
+<tr>
+<th rowspan='2'>Coordinates</th>
+<td><input id='lat' type='text' class='span9' /></td><td>Latitude</td></tr>
+<tr><td><input id='lon' type='text' class='span9' /></td><td>Longitude</td></tr>
+<tr><th>Radius</th><td><input id='dist' type='number' class='span9' value='' /></td><td>km</td></tr>
+<tr><th>Article</th><td><input id='coord_article' type='text' class='span9' value='' /></td><td><i>Fill in to use coordinates of this article instead!</i></td></tr>
+<tr><th></th><td><input type='button' class='btn btn-primary' value='Go!' onclick='run()' /></td></tr>
+</table>
+
+<div id='loading' style='color:white;background:red;padding:2px;display:none'><span id='loading-text'></span> <img src="ajax-loader.gif" /></div>
+
+<div id='results'>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

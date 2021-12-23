@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="1200"
+   height="720"
+   viewBox="-60,-36 120,72"
+   id="svg29"
+   sodipodi:docname="Flag_of_Togo_(1957-1958).svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata33">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview31"
+     showgrid="false"
+     inkscape:zoom="0.34176828"
+     inkscape:cx="1474.0379"
+     inkscape:cy="507.71564"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg29" />
+  <defs
+     id="defs15">
+    <g
+       fill="#fff"
+       id="star"
+       transform="rotate(18) scale(9)">
+      <g
+         id="c">
+        <path
+           id="t"
+           d="M -1,0 h 1 v -0.5"
+           transform="rotate(18 -1,0)" />
+        <use
+           xlink:href="#t"
+           transform="scale(1,-1)"
+           id="use3" />
+      </g>
+      <use
+         xlink:href="#c"
+         transform="rotate(72)"
+         id="use6" />
+      <use
+         xlink:href="#c"
+         transform="rotate(144)"
+         id="use8" />
+      <use
+         xlink:href="#c"
+         transform="rotate(216)"
+         id="use10" />
+      <use
+         xlink:href="#c"
+         transform="rotate(288)"
+         id="use12" />
+    </g>
+  </defs>
+  <rect
+     x="-60"
+     y="-36"
+     width="120"
+     height="72"
+     fill="#006A3E"
+     id="rect17" />
+  <use
+     xlink:href="#star"
+     transform="translate(-45,23)"
+     id="use19" />
+  <use
+     xlink:href="#star"
+     transform="translate(45,-23)"
+     id="use21" />
+  <rect
+     x="-60"
+     y="-36"
+     width="30"
+     height="20"
+     fill="#fff"
+     id="rect23" />
+  <rect
+     x="-60"
+     y="-36"
+     width="10"
+     height="20"
+     fill="#002395"
+     id="rect25"
+     style="fill:#002654;fill-opacity:1" />
+  <rect
+     x="-40"
+     y="-36"
+     width="10"
+     height="20"
+     fill="#ED2939"
+     id="rect27"
+     style="fill:#ce1126;fill-opacity:1" />
+</svg>

@@ -1,0 +1,14 @@
+{
+    "require": {
+        "ext-mbstring": "*",
+        "jonnyw/php-phantomjs": "4.*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ]
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:odm="http://product.corel.com/CGS/11/cddns/" xml:space="preserve" width="1023px" height="682px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd"
+     viewBox="0 0 1024 682">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil3 {fill:#FFFFFF}
+    .fil2 {fill:#008000}
+    .fil1 {fill:#0091FF}
+    .fil0 {fill:#FF0000}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer 1">
+  <rect class="fil0" x="-50" y="211" width="1168" height="261"/>
+  <rect class="fil1" x="-49" y="-44" width="1162" height="272"/>
+  <rect class="fil2" x="-54" y="455" width="1164" height="248"/>
+  <circle class="fil3" cx="881" cy="110" r="80"/>
+  <circle class="fil1" cx="906" cy="83" r="73"/>
+  <path class="fil3" d="M894 27l24 28 33 -14 -19 31 24 28 -36 -9 -19 31 -3 -36 -35 -9 34 -14 -3 -36zm12 14m29 7m7 8m2 30m-6 9m-27 11m-11 -2m-19 -23m-1 -11m16 -25"/>
+ </g>
+</svg>

@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tofeiku"
+		]
+	},
+	"query-builder-heading": "Pembina Pertanyaan Mudah",
+	"query-builder-intro-text": "Pembina Pertanyaan Wikidata menyediakan antara muka visual untuk membina pertanyaan Wikidata yang mudah. Ia paling sesuai untuk pengguna dengan sedikit pengalaman atau tiada langsung dalam [$1 SPARQL], bahasa pertanyaan yang berkuasa. Pembina Pertanyaan tidak menawarkan kefungsian penuh SPARQL, tetapi anada boleh selalu membuka pertanyaan anda di Perkhidmatan Pertanyaan, yang anda boleh lihat, sunting atau kembangkannya melalui pautan di atas hasil. [$2 Maklum balas dialu-alukan di sini].",
+	"query-builder-query-heading": "Pertanyaan",
+	"query-builder-settings-heading": "Tetapan",
+	"query-builder-find-all-items": "Cari semua butir...",
+	"query-builder-run-query": "Jalankan pertanyaan",
+	"query-builder-input-value-label": "Nilai",
+	"query-builder-input-value-placeholder": "Masukkan nilai",
+	"query-builder-item-value-lookup-no-match-found": "Tiada padanan dijumpai",
+	"query-builder-property-lookup-label": "Sifat",
+	"query-builder-property-lookup-placeholder": "Masukkan sifat",
+	"query-builder-property-lookup-no-match-found": "Tiada padanan dijumpai",
+	"query-builder-property-lookup-limited-support-tag": "sokongan terhad",
+	"query-builder-property-lookup-limited-support-note": "Sifat dengan sokongan terhad tidak boleh ditapis dengan nilai",
+	"query-builder-result-link-text": "Tunjukkan pertanyaan dalam Perkhidmatan Pertanyaan",
+	"query-builder-result-placeholder": "Hasil akan dipaparkan di sini",
+	"query-builder-result-header": "Hasil",
+	"query-builder-result-error-empty-form": "Nampaknya Pembina Pertanyaan masih kosong, sila masukkan pertanyaan sah dahulu, kemudian cuba jalankannya lagi.",
+	"query-builder-result-error-incomplete-form": "Satu atau lebih medan masih kosong. Sila lengkapkan pertanyaan atau pilih jenis medan yang sesuai.",
+	"query-builder-result-error-missing-property": "Sila pilih sifat",
+	"query-builder-result-error-missing-value": "Sila masukkan nilai",
+	"query-builder-add-condition": "Tambahkan syarat",
+	"query-builder-value-type-relation-dropdown-matching": "memadankan",
+	"query-builder-value-type-relation-dropdown-without": "tanpa",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "tanpa mengira nilai",
+	"query-builder-delete-condition": "Hapuskan syarat",
+	"query-builder-condition-placeholder": "Tambahkan syarat untuk mulakan membina pertanyaan",
+	"query-builder-condition-relation-toggle-and": "dan",
+	"query-builder-condition-relation-toggle-or": "atau",
+	"query-builder-limit-number-results-description": "Hadkan bilangan hasil kepada",
+	"query-builder-limit-number-placeholder": "Masukkan nombor",
+	"query-builder-limit-number-screenreader-label": "Bilangan maksimum hasil",
+	"query-builder-label-opt-out": "Tunjukkan ID selain daripada label (boleh mencegah masa rehat)",
+	"query-builder-include-subclasses": "Masukkan nilai daripada subkelas nilai ini",
+	"query-builder-negation-option-label-with": "Dengan",
+	"query-builder-negation-option-label-without": "Tanpa"
+}

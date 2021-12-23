@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 24 16">
+  <path fill="#0039a6" d="M0 0h24v16H0z"/>
+  <path style="isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1;marker:none" d="M3.99962 2.03272l.44113 1.35772 1.42758-.00083-1.15495.8391.44193 1.35745-1.15493-.83913-1.15445.83978.44117-1.3577-1.15542-.83845 1.42758.00003zM8 0v16h16V0z" color="#000" overflow="visible" fill="#fff" paint-order="markers stroke fill"/>
+  <path fill="#d72b1f" d="M24 16H0V8h24"/>
+</svg>

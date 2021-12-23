@@ -1,0 +1,139 @@
+html, body {
+  padding:0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  background-color: #fbfaf9c9;
+  font-family: 'Quicksand';
+  font-size: 15px;
+}
+
+img#input {
+  padding-top: 0em;
+  max-width: 50vw;
+  display: block;
+}
+
+#output a {
+  color: black;
+  text-decoration: underline;
+}
+
+#ocr_status {
+  margin: 0rem 0rem 0.5rem 0rem;
+}
+
+a:hover, a:focus {
+  background: #ee6e735c;
+  border: none;
+  outline: none;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}
+
+#box {
+    border: 2px solid black;
+    width: max-content;
+    padding: 1em;
+    margin-left: 1rem;
+    border-radius: 0.3em;
+}
+
+#output {
+  padding: 1rem;
+  margin: 0.2rem;
+  line-height: 1.8rem;
+  font-size: 1.2rem;
+}
+
+#fileElementId {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#submit {
+    width: 250px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+h1 {
+  margin-left: 1rem;
+}
+
+h2 {
+    background-color: #f2f2f2;
+    overflow: hidden;
+    color: black;
+    font-size: 0.95em;
+    padding:0;
+    margin:0;
+} 
+
+h3 {
+    color: black;
+    font-size: 0.75em;
+}
+
+h5 {
+    color: black;
+    font-size: 0.8em;
+}
+
+textarea {
+    width: 800px;
+    height: 200px;
+}
+
+#instructions {
+   padding: 8px;
+}
+
+#clear {
+    clear: both;
+}
+
+.btn {
+    font-size: 12px;
+}
+
+.forms {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+.input {
+    width: 600px;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="648"
+   height="432"
+   viewBox="0 0 324 216">
+<clipPath id="rect">
+<rect width="324" height="216"/>
+</clipPath>
+
+<rect width="324" height="216" fill="#fff"/>
+<path d="M 0,-5 L 324,221" stroke="#f00" stroke-width="70" clip-path="url(#rect)"/>
+
+</svg>

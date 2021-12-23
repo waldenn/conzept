@@ -1,0 +1,107 @@
+RewriteEngine on
+
+RedirectMatch 403 ^/services
+
+RewriteRule ^$                        /explore? [R=301,L]
+RewriteRule ^/$                       /explore? [R=301,L]
+
+RewriteRule ^explore(.*)#(.*)         /app/explore2/index.php?$1#$2 [L]
+RewriteRule ^explore(.*)              /app/explore2/index.php?$1 [QSA,L]
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# TODO review this setting
+Options -Indexes
+
+# remove ETag headers
+FileETag none
+
+# HTTP BYTE RANGE header
+Header set Accept-Ranges bytes
+
+### SECURITY HEADERS ###
+
+# CORS
+Header set Access-Control-Allow-Origin: *
+
+# X-FRAME
+#Header set X-Frame-Options SAMEORIGIN
+#Header append X-Frame-Options "ALLOW-FROM https://wikidata.org/"  
+#Header append X-Frame-Options "ALLOW-FROM https://archive.org/"
+#Header append X-Frame-Options "ALLOW-FROM https://wikischool.org/"
+#Header append X-Frame-Options "ALLOW-FROM https://art.wikidata.link"
+
+# CSP
+# see: https://ole.michelsen.dk/blog/secure-your-website-with-content-security-policy.html
+
+#Header set Content-Security-Policy "default-src 'self' *; script-src 'self' *;  img-src 'self' data: *; font-src 'self' *; frame-src 'self' blob *: ; worker-src 'self' blob *: ; "
+
+Header set Content-Security-Policy "default-src 'self' * https://nli.wmflabs.org https://makg.org https://api.plos.org https://commons.m.wikimedia.org https://*.twitter.com https://www.searchculture.gr https://srtm3.openglobus.org https://wikishootme.toolforge.org https://console.re https://*.metmuseum.org https://iiif.archivelab.org https://*.si.edu https://*.wikiquote.org https://*.wikisource.org https://*.crossref.org https://*.wikinews.org https://scholar-qa.archive.org https://code.jquery.com https://iptv-org.github.io https://musicbrainz.org https://query.wikidata.org https://youtube.com https://www.youtube.com https://cdnjs.cloudflare.com https://*.gbif.org https://media.streamone.net https://cdnjs.cloudflare.com  https://code.ionicframework.com https://d3js.org https://api.github.com https://data.jsdelivr.com https://*.jsdelivr.net https://*.wmflabs.org https://www.ebi.ac.uk https://*.who.int https://geocode.xyz https://imslp.eu https://*.geonames.org https://*.api.radio-browser.info https://cdn.plyr.io https://www.populationpyramid.net https://etytree-virtuoso.wmflabs.org https://*.openglobus.org https://openglobus.org https://*.tile.openstreetmap.org https://tile.openstreetmap.org https://*.creativecommons.org https://www.reddit.com https://*.github.io https://*.bootstrapcdn.com https://twinery.org https://wikischool.org https://art.wikidata.link https://cdnjs.cloudflare.com https://imslp.org https://*.wikimedia.org https://www.gbif.org https://www.wikidata.org https://donorbox.org https://freesound.org https://sdk.scdn.co https://api.soundcloud.com https://openartbrowser.org https://tools.wmflabs.org https://query.wikidata.org https://cdn.rawgit.com https://cdn.jsdelivr.net https://showmystreet.com/ https://randomstreetview.com https://www.zygotebody.com https://www.cultureunplugged.com https://archive.org https://openlibrary.org https://translate.googleapis.com https://translate.google.com https://anonyk.com https://fluiddata.com https://www.stitcher.com https://cdn-web.tunein.com https://secure.geonames.org https://*.archive.org https://www.googleapis.com https://www.youtube.com https://*.wikipedia.org https://*.wikimedia.org https://www.wikiwand.com https://export.arxiv.org https://api.spotify.com https://api.datamuse.com https://p.scdn.co https://cdn.aframe.io https://use.fontawesome.com https://aframe.io/ https://api.mapbox.com https://earth3.openglobus.org blob: data: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://nli.wmflabs.org https://makg.org https://api.plos.org https://cdn.syndication.twimg.com https://platform.twitter.com https://www.searchculture.gr https://autodesc.toolforge.org https://wikishootme.toolforge.org https://*.si.edu https://*.wikiquote.org https://*.wikisource.org https://*.crossref.org https://*.wikinews.org https://scholar-qa.archive.org https://api.currentsapi.services https://iptv-org.github.io https://musicbrainz.org https://*.youtube.com https://magnustools.toolforge.org https://tools.wmflabs.org https://commons.wikimedia.org https://taginfo.openstreetmap.org https://nominatim.openstreetmap.org https://wikimedia.org https://d3js.org https://cdn.rawgit.com https://*.jsdelivr.net https://nl1.api.radio-browser.info https://tools-static.wmflabs.org https://stackpath.bootstrapcdn.com https://wikischool.org https://code.jquery.com https://www.wikidata.org https://aframe.io https://cdn.rawgit.com https://translate.google.com https://translate.googleapis.com https://s.ytimg.com https://www.youtube.com/iframe_api https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com https://*.wikipedia.org https://jsconsole.com https://archive.org/advancedsearch.php https://doaj.org/api/ https://export.arxiv.org https://d3js.org https://www.googleapis.com https://unpkg.com/ https://ucarecdn.com blob: ; style-src 'self' https://*.twimg.com https://*.twitter.com https://code.jquery.com https://wikishootme.toolforge.org https://code.ionicframework.com http://fonts.googleapis.com https://unpkg.com https://tools-static.wmflabs.org https://*.bootstrapcdn.com https://bootswatch.com  https://archive.org https://translate.googleapis.com https://fonts.googleapis.com https://cdn.rawgit.com https://cdnjs.cloudflare.com/ https://maxcdn.bootstrapcdn.com https://use.fontawesome.com 'unsafe-inline'; img-src 'self' blob: data: https://i.ytimg.com *; font-src 'self' blob: data:  https://cdnjs.cloudflare.com https://tools-static.wmflabs.org https://code.ionicframework.com https://fonts.gstatic.com https://use.fontawesome.com https://maxcdn.bootstrapcdn.com ; frame-src 'self' * https://twinery.org https://wikischool.org https://openlibrary.org https://tunein.com https://searx.dk/ https://searx.me/ https://toogl.es/ https://www.webcamgalore.com https://www.bing.com https://*.m.wikipedia.org https://*.wikipedia.org https://earth.google.com https://www.internet-radio.com https://www.w3newspapers.com https://www.youtube.com https://youtube.com https://api.gdeltproject.org https://p.scdn.co blob: ; worker-src 'self' blob: ; "
+
+# HSTS
+Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+
+# X-XSS
+Header set X-XSS-Protection "1; mode=block" 
+
+# X-Content
+Header set X-Content-Type-Options "nosniff"
+
+# https://github.com/w3c/webappsec-permissions-policy/blob/main/features.md
+Header always set Permissions-Policy "interest-cohort=()"
+
+#Header always set Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
+
+# TYPES FONTS
+AddType font/woff                     .woff
+AddType font/woff2                    .woff2
+AddType font/opentype                 .otf
+AddType font/truetype                 .ttf
+AddType application/vnd.ms-fontobject .eot
+
+# TYPES OTHER
+AddType 'text/html; charset=UTF-8'        .html
+AddType 'text/javascript; charset=UTF-8'  .js
+AddType 'text/javascript; charset=UTF-8'  .mjs
+AddType 'text/css; charset=UTF-8'         .css
+AddType text/cache-manifest               .manifest
+AddType application/json                  .json
+AddType image/x-icon                      .ico
+AddType image/svg+xml                     .svg .svgz 
+AddType image/png                         .png
+AddType image/jpg                         .jpg
+AddType image/gif                         .gif
+AddType 'text/php; charset=UTF-8'         .php
+AddType video/ogg                         .ogv
+AddType video/mp4                         .mp4
+AddType video/webm                        .webm
+
+# CACHE CONTROL
+ExpiresActive on
+ExpiresByType font/woff                     "access plus 1 year"
+ExpiresByType font/woff2                    "access plus 1 year"
+ExpiresByType font/truetype                 "access plus 1 year"
+ExpiresByType font/opentype                 "access plus 1 year"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+ExpiresByType image/x-icon                  "access plus 1 month"
+ExpiresByType image/png                     "access plus 1 month"
+ExpiresByType image/jpg                     "access plus 1 month"
+ExpiresByType image/gif                     "access plus 1 month"
+ExpiresByType image/svg+xml                 "access plus 1 month"
+ExpiresByType text/css                      "access plus 1 month"
+ExpiresByType application/javascript        "access plus 1 month"  
+ExpiresByType text/javascript               "access plus 1 month"  
+ExpiresByType application/json              "access plus 1 month" 
+
+# varied-encoding indication
+<IfModule mod_headers.c>
+  <FilesMatch ".(js|css|json|xml|php|gz|html)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
+
+# COMPRESSION
+<ifModule mod_deflate.c>
+ AddOutputFilterByType DEFLATE text/text text/html text/php text/plain text/xml text/css text/javascript application/json image/png image/jpg image/gif image/svg+xml image/x-icon font/truetype font/woff font/woff2 font/opentype font/truetype 
+</ifModule>

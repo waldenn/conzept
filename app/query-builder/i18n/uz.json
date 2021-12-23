@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jamshiduralovofficial"
+		]
+	},
+	"query-builder-heading": "Sodda Query Builder",
+	"query-builder-find-all-items": "Barcha qismlarni topish...",
+	"query-builder-run-query": "So'rovni ishga tushurish",
+	"query-builder-input-value-label": "Qiymat",
+	"query-builder-input-value-placeholder": "Biron qiymat kiriting",
+	"query-builder-property-lookup-label": "Mulk",
+	"query-builder-property-lookup-placeholder": "Mulkni kiriting",
+	"query-builder-property-lookup-no-match-found": "Biror mos narsa topilmadi",
+	"query-builder-result-placeholder": "Natijalar shu yerda aks ettiriladi",
+	"query-builder-result-error-empty-form": "Query Builder bo'sh edi, iltimos, avval yaroqli so'rovni kiriting, keyin qayta ishga tushiring.",
+	"query-builder-result-error-incomplete-form": "Bir yoki bir nechta maydon bo'sh. Iltimos, so'rovni to'ldiring yoki mos maydon turini tanlang.",
+	"query-builder-result-error-missing-property": "Iltimos, mulkni tanlang",
+	"query-builder-result-error-missing-value": "Iltimos, biron qiymat kiriting"
+}

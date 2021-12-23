@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs><path style="fill:#FFFFFF" id="St" d="M0,-100L58.77852523,80.90169944L-95.10565163,-30.90169944H95.10565163L-58.77852523,80.90169944Z"/></defs>
+<rect style="fill:#DA2D1C" width="900" height="500"/>
+<rect style="fill:#2042A1" width="400" height="250"/>
+<g transform="translate(200,125)scale(0.825,0.825)"><use transform="scale(0.95,0.95)" xlink:href="#St"/>
+<g id="Sm" transform="translate(0,96)scale(0.4,0.4)"><use xlink:href="#St"/></g>
+<use transform="rotate(72)" xlink:href="#Sm"/>
+<use transform="rotate(144)" xlink:href="#Sm"/>
+<use transform="rotate(216)" xlink:href="#Sm"/>
+<use transform="rotate(288)" xlink:href="#Sm"/></g></svg>

@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu",
+			"Kareyac"
+		]
+	},
+	"itemCount": "Há {{PLURAL:$1|um elemento que corresponde|$1 elementos que correspondem}} a esta descrição.",
+	"classPlaceholder": "Introduza a classe",
+	"browse": "Ou, navegue pelas seguintes classes:",
+	"noFiltersDefined": "Não há nenhum filtro definido para esta classe.",
+	"addFilter": "Acrescentar um filtro",
+	"viewQuery": "Ver a consulta SPARQL",
+	"noItems": "Nenhum dos elementos corresponde a esta descrição.",
+	"displayItemsError": "A tentativa de apresentar a lista de elementos demorou demasiado tempo; tente adicionar mais filtros.",
+	"gettingValues": "A obter valores para o filtro $1 ...",
+	"noAdditionalValues": "Não há valores adicionais para o filtro $1.",
+	"filterError": "A tentativa de obter valores demorou demasiado para o filtro $1.",
+	"filterTimeout": "(Obter um conjunto completo de valores para o filtro $1 demorou demasiado tempo; tem aqui um outro conjunto, possivelmente incompleto.)",
+	"selectValue": "Selecionar um valor para $1:",
+	"selectAdditionalValue": "Selecionar um valor adicional para $1:",
+	"noValue": "Nenhum valor",
+	"changeClassNote": "(Nota: se alterar a classe, perderá o conjunto atual de filtros.)",
+	"specificClass": "Mudar para uma classe mais específica:",
+	"generalClass": "Mudar para uma classe mais geral:",
+	"viewList": "Ver lista de elementos",
+	"results": "({{PLURAL:$1|1 resultado|$1 resultados}})"
+}

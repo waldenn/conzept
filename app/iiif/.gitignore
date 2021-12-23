@@ -1,0 +1,5 @@
+.idea
+.dat
+Thumbs.db
+*.map
+npm-debug.log

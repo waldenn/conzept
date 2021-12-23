@@ -1,0 +1,97 @@
+<div ng-show="video">
+  <div ng-show="showSidebar" class="sidebar large-3 medium-4 columns">
+    <div class="row">
+      <div class="medium-2 columns">
+
+        <script>
+          var goBack = function(){
+
+            if (window.parent != window.top) { // embedded iframe
+
+              console.log('iframe parent name: ', window.parent );
+              console.log('iframe window name: ', window.name );
+
+              // FIXME
+              window.history.back();
+
+              //document.getElementById('infoframe').contentWindow.document.getElementById('videoframe').contentWindow.window.history.back()
+
+              // FIXME
+              //  - also handle splitframe2 video playback
+              //  - also handle geo app video playback
+
+              // window.infoframe.videoframe
+              // window.infoframeSplit2.videoframe
+            }
+            else {
+              //console.log('in global window');
+              window.history.back();
+            }
+
+          }
+        </script>
+
+        <a title="go back" class="toggle-menu" onclick="goBack();"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></a>
+        <!--a title="go home" class="hide-for-small back-menu" href="#/"><i class="fa fa-home"></i></a>
+        <a title="toggle sidebar" class="hide-for-small toggle-menu" ng-click="showsidebar = false"><i class="fa fa-expand"></i></a-->
+        &nbsp; &nbsp;
+      </div>
+      <div class="medium-10 columns">
+        <form class="search-form" ng-submit="location.path('/search/' + query)">
+          <input ng-model="query" type="text" placeholder="search...">
+          <button class="button small expand" title="search"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <dl class="hide-for-small tabs">
+      <dd ng-class="{active: !showRelated}"><a href="" ng-click="showRelated = false" title="info"><i class="fas fa-info-circle"></i></a></dd>
+      <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()" title="related"><i class="fas fa-layer-group"></i></a></dd>
+    </dl>
+    <div class="meta" ng-show="!showRelated">
+      <h3><a id="title" title="View on YouTube" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
+      <div class="rating">
+        <div class="like" style="width: {{averageRating(video.statistics.likeCount, video.statistics.dislikeCount)}}%;"></div>
+      </div>
+      <ul>
+        <li><i class="fa fa-user"></i>&nbsp;&nbsp;<a href="#/user/{{video.snippet.channelId}}">{{video.snippet.channelTitle}}</a></li>
+        <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{video.statistics.viewCount | number:0}} views</li>
+        <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{video.snippet.publishedAt | date}}</li>
+      </ul>
+      <p class="hide-for-small description" ng-bind-html="video.snippet.description | htmlify"></p>
+    </div>
+    <div class="related" ng-show="showRelated">
+      <div ng-include src="'views/videos.html'"></div>
+    </div>
+  </div>
+  <div class="columns" ng-class="{'large-9 medium-8': showSidebar, 'medium-12': !showSidebar}">
+    <div class="expanded-info" ng-click="showSidebar = true" ng-show="!showSidebar">
+      <a class="icon" title="Go back" onclick="window.history.back();"><i class="far fa-arrow-alt-circle-left"></i></a>
+      <a class="icon" title="Go home" href="#/"><i class="fa fa-home"></i></a>
+      <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="fa fa-expand"></i></a>
+      <h3><a title="View on YouTube" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
+    </div>
+    <div ng-show="!video.restricted && !video.deleted" class="flex-video widescreen">
+      <div id="player"></div>
+    </div>
+      <div class="restricted">
+          <div ng-show="video.restricted">
+              <h3>Embedding is disabled for this video, so we can't play it here. ☹<br /><br /><a title="View on YouTube" target="_blank" href="https://youtube.com/watch?v={{video.id}}&toogles=0">Watch it on YouTube &raquo;</a></h3>
+              <!--img src="https://i.ytimg.com/vi/5Ba9_jaN7EA/hqdefault.jpg" /-->
+              <!--img src="http://i.imgur.com/nlmzGJ7.gif" /-->
+          </div>
+          <div ng-show="video.deleted">
+              <h3>Sorry, this video has been deleted or marked private.</h3>
+              <!--img src="http://i.imgur.com/rMwJsyP.gif" /-->
+          </div>
+      </div>
+  </div>
+</div>
+
+<div ng-show="!video" class="video-broken">
+    <div class="video-broken-inner">
+        <h1>Aw, bummer.<br /><br />
+            YouTube doesn't have this video anymore.<br /><br />
+            <a href="/#/browse">&#9825; Toogles</a>
+        </h1>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+body {
+    padding: 20px;
+    background: #EEE;
+}
+
+header {
+    padding: 20px 0 20px 0;
+}
+
+.button{
+    background-color: #14a4c3;
+}
+
+.button:hover, .button:focus {
+    background-color: #14a4c3;
+}
+
+#dragndrop{
+    margin: 0 0 0 20px;
+}
+
+#dragndrop img{
+    width: 34px;
+    height: 30px;
+}
+
+.config-name{
+    font-size: 20px;
+}
+
+#editPnl #json{
+    margin: 10px 0 0 0;
+    width: 640px;
+    height: 480px;
+}
+
+#editPnl .panel{
+    background: #EEE;
+}
+
+#editPnl .row{
+    margin: 0;
+}
+
+#saveBtn, #resetBtn{
+    margin-left: 10px;
+}
+
+footer {
+    padding: 20px 0 20px 0;
+    width: 924px;
+}
+
+.hide {
+    display: none;
+}
+
+hr {
+    border: solid #9a9a9a;
+    border-width: 1px 0 0;
+}

@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daud I.F. Argana",
+			"Naufal06"
+		]
+	},
+	"query-builder-heading": "Pembangun Kueri Wikidata",
+	"query-builder-find-all-items": "Cari semua butir...",
+	"query-builder-run-query": "Jalankan kueri",
+	"query-builder-input-value-label": "Nilai",
+	"query-builder-input-value-placeholder": "Masukkan sebuah nilai",
+	"query-builder-property-lookup-label": "Atribut",
+	"query-builder-property-lookup-placeholder": "Masukkan sebuah atribut",
+	"query-builder-property-lookup-no-match-found": "Tidak ditemukan atribut yang cocok",
+	"query-builder-property-lookup-limited-support-tag": "dukungan terbatas",
+	"query-builder-property-lookup-limited-support-note": "Atribut dengan dukungan terbatas tidak bisa disaring berdasarkan nilai",
+	"query-builder-result-placeholder": "Hasilnya akan ditampilkan di sini",
+	"query-builder-result-error-empty-form": "Kelihatannya Pembangun Kueri masih kosong, tolong masukkan kueri yang valid terlebih dahulu, lalu coba jalankan lagi.",
+	"query-builder-result-error-incomplete-form": "Satu atau lebih isian masih kosong. Tolong lengkapi kueri atau pilih tipe isian yang sesuai.",
+	"query-builder-result-error-missing-property": "Tolong pilih sebuah atribut",
+	"query-builder-result-error-missing-value": "Tolong masukkan sebuah nilai",
+	"query-builder-add-condition": "Tambahkan kondisi",
+	"query-builder-value-type-relation-dropdown-matching": "cocok dengan",
+	"query-builder-value-type-relation-dropdown-without": "tanpa",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "tidak memperhatikan nilai"
+}

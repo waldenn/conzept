@@ -1,0 +1,8 @@
+- sync git with master 
+- replace paths in public/index.html
+- replace statsv-URL in source with ""
+- fix "i18n" path in source code (temporary fix in place for now)
+- ...
+- npm run build
+  - remove /app/search
+  - copy build-files into /app/search

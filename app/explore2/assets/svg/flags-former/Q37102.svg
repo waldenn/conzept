@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   id="Flag of the Republic of the Rif (Morocco)"
+   width="900" height="600" viewBox="0 0 600 400">
+  <metadata><rdf:RDF><cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+  </cc:Work></rdf:RDF></metadata>
+  <rect width="600" height="400" style="fill:#c1272d"/>
+  <g transform="translate(15.23809,5.7142653)scale(0.952381)">
+    <path d="M299,29L124,204 299,379 474,204 299,29z" style="fill:#ffffff"/>
+    <path d="M349,168L359,186 380,186 369,205 380,223 359,223 349,241 338,223 317,223 328,205 317,186 338,186 349,168z"
+      style="fill:#006233"/>
+    <path d="M326,267C317,271 307,273 297,273C258,273 226,241 226,201C226,162 258,130 297,130C307,130 317,132 326,136C325,136 325,136 324,136C288,136 258,165 258,201C258,237 288,267 324,267C325,267 325,267 326,267z"
+      style="fill:#006233"/>
+  </g>
+</svg>

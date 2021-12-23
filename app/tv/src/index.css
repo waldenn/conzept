@@ -1,0 +1,118 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-family-sans-serif: 'Manrope', sans-serif;
+}
+
+html {
+  margin: 0;
+  color: white;
+  background: black;
+}
+
+body {
+  background: black;
+  font-family: var(--font-family-sans-serif) !important;
+}
+
+aside {
+  display: flex;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+aside {
+  z-index: 1;
+}
+
+iframe {
+  width: 100vw;
+  height: 100vh;
+}
+
+a:hover,
+a:focus {
+  cursor: pointer;
+}
+
+.bg-black {
+  background: black;
+}
+
+.app {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.input {
+  width: 50vw;
+}
+
+.menu {
+  height: 2.375rem;
+}
+
+.card:hover,
+.card:focus {
+  cursor: pointer;
+}
+
+.modal-title {
+  line-height: 1;
+}
+
+.modal-dialog,
+.modal-content {
+  height: 80vh;
+}
+
+.modal-body {
+  overflow-y: scroll;
+}
+
+.modal-header {
+  min-height: 4rem;
+}
+
+.close {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.close span {
+  color: white;
+}
+
+.banner {
+  background: transparent no-repeat
+    url('https://images.unsplash.com/photo-1500658374795-49d41946e9cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60')
+    center center/cover;
+  position: relative;
+}
+
+.banner__text {
+  position: relative;
+  z-index: 1;
+}
+
+.banner::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 0;
+}

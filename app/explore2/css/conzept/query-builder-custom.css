@@ -1,0 +1,123 @@
+/*
+html, body, p, div, span, button, input, a, h1, h2, h3, h4, h5 {
+  font-family: 'Quicksand', sans-serif !important;
+  text-transform: lowercase !important;
+}
+
+body {
+  background: #fbfaf9;
+}
+
+.fa, .far, .fas {
+  font-family: "Font Awesome 5 Free";
+}
+
+#title {
+  padding: 0.1em 1em;
+}
+*/
+
+
+.querybuilder *::placeholder {
+  color: black !important;
+  text-transform: lowercase !important;
+}
+
+.querybuilder main {
+  padding-top: 0em !important;
+  padding-left: 0em !important;
+  padding-right: 0em !important;
+}
+
+.querybuilder__query-title, .querybuilder__query-subtitle, .querybuilder__setting-header, .querybuilder__heading,
+.querybuilder__description, .querybuilder__label-optout, .query-builder__footer, .querybuilder-result, .querybuilder__sharable-link,
+.querybuilder__settings, .query-condition-references.query-condition__references, .querybuilder-include-subclasses
+{
+  display: none;
+  padding-block: 0em !important;
+}
+
+.query-condition__remove {
+  position: initial !important;
+}
+
+.query-condition__value-type-dropdown {
+  margin-top: 0.5em !important;
+}
+
+.querybuilder__add-condition {
+  padding-top: 1em;
+}
+
+.querybuilder__condition-wrapper {
+  border: none;
+  padding-top: 1em;
+}
+
+.query-condition {
+  background-color: #cfe6d0 !important;
+  border-radius: 0.5em !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.19);
+}
+
+.wikit-Lookup__label-wrapper, .wikit-TextInput__label-wrapper {
+  display: none !important;
+}
+
+.wikit.wikit-ToggleButtonGroup.negationToggle.query-condition__toggle-button-group {
+  display: none;
+}
+
+.querybuilder__add-condition {
+  float: right;
+}
+
+.querybuilder__run {
+  margin-top: 1em;
+  margin-left: 0.5em;
+}
+
+.querybuilder__condition-group .wikit-Lookup__label-wrapper {
+  text-transform: lowercase;
+}
+
+.querybuilder__condition-wrapper.querybuilder__condition-wrapper--first {
+  margin-bottom: 1em;
+}
+
+.querybuilder__add-condition {
+  margin-top: -1em;
+}
+
+/* wikit styles */
+
+.wikit-Dropdown__select.wikit, .wikit .wikit-Dropdown__select {
+  background-color: #cfe6d0;
+}
+
+.wikit-Dropdown__select.wikit:hover, .wikit .wikit-Dropdown__select:hover {
+  background-color: #fff;
+}
+
+.wikit-Dropdown__placeholder.wikit, .wikit-Dropdown__selectedOption.wikit, .wikit .wikit-Dropdown__placeholder, .wikit .wikit-Dropdown__selectedOption {
+  font-weight: normal !important;
+}
+
+.wikit-Input {
+  padding-left: 0.3em !important;
+}
+
+.wikit.wikit-ToggleButtonGroup.conditionRelationToggle.querybuilder__condition-relation-toggle {
+  margin-left: 1em;
+}
+
+
+
+
+@media only screen and (max-width: 900px) {
+
+  .querybuilder__add-condition {
+    margin-bottom: 0.5em;
+  }
+
+}

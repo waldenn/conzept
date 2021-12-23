@@ -1,0 +1,83 @@
+/* == GLOBAL STYLES == */
+*,
+*::before,
+*::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: opacity 0.5s ease-out;
+}
+
+.fa, .far, .fas {
+  font-family: "Font Awesome 5 Free";
+}
+
+/*
+#fullscreenToggle {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 9999;
+}
+*/
+
+canvas {
+  background: #fbfaf9;
+}
+
+body.dark canvas {
+  background: #121212;
+  color: #fff !important;
+}
+
+p {
+  font-weight: 300;
+}
+
+p, h1, button {
+  color: #555; /* Slightly less harsh than a black */
+}
+
+.icon {
+  font-size: 20px;
+  color: #333 !important; /* No idea why !important is necessary, but it is. */
+}
+
+code {
+  background-color: #eee;
+  padding: 1px 5px;
+}
+
+button[type=button]:active {
+  background-color: #f0f0f0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* == HELPER CLASSES == */
+
+/* Class for making semitransparent elements with a blur behind them */
+.transparent-blur {
+  background-color: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* == Class for making divs strech the full screen == */
+.fullscreen {
+  /* Same size as window */
+  width: 100vw;
+  height: 100vh;
+
+  /* No space from top corner */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}

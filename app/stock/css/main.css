@@ -1,0 +1,49 @@
+/* @import url('https://fonts.googleapis.com/css?family=Mina|Open+Sans'); */
+
+body {
+  font-family: Quicksand;
+  font-size: 18px;
+  background: #fbfaf9;
+}
+
+canvas {
+  max-height: 70vh;
+}
+
+.page-header {
+  /*font-family: 'Mina', sans-serif;*/
+  padding-bottom: 9px;
+  margin: 10px 0 10px;
+  border-bottom: none;
+}
+
+#dateButtonGroup {
+  position: relative;
+  left: 20px;
+  display: block;
+  padding-top: 20px;
+}
+
+h1, h2, h3, h4 {
+  display: inline;
+  border-bottom: none;
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+  display: inline;
+  border-bottom: none;
+}
+
+h1 {
+  display: block;
+}
+
+.loss {
+  color: red;
+}
+
+.gain {
+  color: green;
+}
+
+

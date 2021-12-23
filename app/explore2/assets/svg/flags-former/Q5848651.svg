@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="450" height="300" id="svg2">
+  <defs id="defs22"/>
+  <rect width="450" height="300" x="0" y="0" id="yellow" style="fill:#f7d117"/>
+  <rect width="450" height="200" x="0" y="100" id="blue" style="fill:#0033ab"/>
+  <rect width="450" height="100" x="0" y="200" id="red" style="fill:#cf142b"/>
+  <path d="M 217.33256,161.80202 L 220.21088,152.80232 L 212.59108,147.215 L 222.03976,147.17139 L 224.99895,138.19797 L 227.96023,147.17072 L 237.40892,147.21212 L 229.79042,152.8012 L 232.67083,161.80023 L 225.00105,156.28173 L 217.33256,161.80202 z" id="path3932" style="fill:#ffffff"/>
+  <use transform="translate(0,-27.80202)" id="use2390" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+  <use transform="matrix(1,0,0,-1,0,328.19797)" id="use2392" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+  <use transform="translate(29,-18.500005)" id="use2394" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+  <use transform="translate(29,14.499995)" id="use2396" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+  <use transform="translate(-28.762666,-18.500005)" id="use2398" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+  <use transform="translate(-29,14.499995)" id="use2400" x="0" y="0" width="450" height="300" xlink:href="#path3932"/>
+</svg>

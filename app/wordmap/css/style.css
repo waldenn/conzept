@@ -1,0 +1,141 @@
+body, html {
+    -webkit-overflow-scrolling : touch !important;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+body {
+  font-family: 'Quicksand';
+  font-size: 14px;
+  background: #1D1E33;
+}
+
+.header {
+    padding: 1em;
+    position: fixed;
+    color: #bfd7e4;
+    font-size: 1.5em;
+    text-shadow: 0.2em 0.2em #1D1E33;
+    border-radius: 6px;
+    letter-spacing: 0.2em;
+}
+
+.ocean {
+    fill: #bfd7e4;
+}
+
+.land {
+    fill: #e0b78f;
+    stroke: gray;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.land:hover {
+    fill: #d18f53;
+}
+
+#search {
+    font-size: 1.8em;
+    border-radius: 6px;
+    font-family: Cairo;
+    box-shadow: 1em;
+}
+
+#searchsubmit {
+    position: relative;
+    left: -1.5em;
+    top: 0.1em;
+    color: #7B7B7B;
+    cursor: pointer;
+    width: 0;
+    font-size: 2em;
+}
+
+.place,
+.place-label {
+    fill: #444;
+}
+
+circle {
+    fill: none;
+}
+
+text {
+    font-size: 1em;
+    font-width: bold;
+    pointer-events: none;
+}
+
+.label rect {
+    fill: transparent;
+}
+
+#question {
+    cursor: pointer;
+}
+
+div.questiontooltip {
+    color: #1D1E33;
+    background: red;
+    border-radius: 6px;
+    box-shadow: 0.5em 0.5em 0.5em 0.5em #1D1E33;
+    padding: .2em;
+    opacity: 1;
+    position: absolute;
+    font-size: 2em;
+    text-align: left;
+}
+
+div.tooltip {
+    color: red; 
+    background: white; 
+    border-radius: 6px; 
+    box-shadow: 0.5em 0.5em 0.5em 0.5em #1D1E33; 
+    padding: .2em;
+    opacity: 1; 
+    position: absolute;
+    font-size: 2em;
+    text-align: left;
+}
+
+div.starttooltip {
+    color: black;
+    background: transparent;
+    border-radius: 6px;
+    padding: .8em;
+    opacity: 1;
+    position: absolute;
+    font-size: 2em;
+    text-align: left;
+    width: 10em;
+    text-shadow: 0.1em 0.1em white;
+}
+
+.hidden {
+    display: none;
+}
+
+.messagenotfound {
+    font-size: 3em;
+    text-anchor: middle;
+}
+
+a {
+    color: blue;
+}
+
+/*
+#fullscreenToggle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+}
+
+#fullscreenIcon {
+  font-size: 1.4em;
+}
+*/

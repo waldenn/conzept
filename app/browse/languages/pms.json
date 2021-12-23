@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Borichèt"
+		]
+	},
+	"itemCount": "A-i é {{PLURAL:$1|un element ch'a corëspond|$1 element ch'a corëspondo}} a sa descrission.",
+	"classPlaceholder": "Anserì na classa",
+	"browse": "O përcore un-a dle classe sì-dapress:",
+	"noFiltersDefined": "Gnun filtr a l'é definèi për costa classa.",
+	"addFilter": "Gionté un filtr",
+	"viewQuery": "Smon-e l'arcesta SPARQL",
+	"noItems": "Gnun element a corëspond a sa descrision.",
+	"displayItemsError": "Ël tentativ dë smon-e la lista dj'element a l'ha pijà tròp temp; ch'a sërca ëd gionté d'àutri filtr.",
+	"gettingValues": "Oteniment dij valor për ël filtr $1 an cors ...",
+	"noAdditionalValues": "A-i é gnun valor adissional për ël filtr $1.",
+	"filterError": "Ël tentativ d'oten-e dij valor për ël filtr $1 a l'ha pijà tròp temp.",
+	"filterTimeout": "(L'oteniment ëd n'ansem ëd valor complet për ël filtr $1 a l'ha pijà tròp temp; al pòst, valà n'ansem peul desse incomplet.)",
+	"selectValue": "Selessioné un valor për $1:",
+	"selectAdditionalValue": "Selessioné un valor adissional për $1:",
+	"noValue": "Gnun valor",
+	"changeClassNote": "(Nòta: s'a cangia 'd classa, a perdrà l'ansem atual ëd filtr.)",
+	"specificClass": "Passé a na classa pi spessìfica:",
+	"generalClass": "Passé a na classa pi general:",
+	"viewList": "Smon-e la lista d'element",
+	"results": "({{PLURAL:$1|1 arzultà|$1 arzultà}})",
+	"applyLinkedFilter": "Apliché ël filtr su $1",
+	"chooseLinkedFilter": "Serne un filtr da un-a dle classe sì-sota:"
+}

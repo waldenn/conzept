@@ -1,0 +1,130 @@
+<style>
+.alias_container {
+    font-size:9pt;
+    max-height:6rem;
+    overflow:auto;
+}
+.alias {
+    color:#999;
+    padding-left:2px;
+    border-left:1px solid #999;
+}
+.alias:first-of-type {
+    border-left:none;
+    padding-left:0px;
+}
+div.main_body {
+    display:flex;height:100%;
+}
+div.main_body div.card-body {
+    padding:2px;
+}
+div.main_body div.card {
+    margin-bottom:0.5em;
+}
+h1 small {
+    font-size:66%;
+}
+</style>
+
+<template id='classifier-template'>
+<div style='margin:0.05rem'>
+	<div v-if='loading'><i tt='loading'></i></div>
+	<div v-else-if='loaded'>
+
+        <div class='main_body'>
+            <div style='flex-grow:1'>
+                <div style='flex-direction:row;height:100%'>
+                    <div v-if='i.hasClaims(prop_map.wikivoyage_banner)'>
+                        <commons-thumbnail :filename='i.getFirstStringForProperty(prop_map.wikivoyage_banner)' width='830'></commons-thumbnail>
+                    </div>
+                    <div>
+                        <div><h1>{{i.getLabel()}} <span style='font-size:50%'><tt><wd-link :item='q' :label='q'></wd-link></tt></span></h1></div>
+                        <div class='alias_container'>
+                            <span v-for='alias in i.getAliases()' class='alias'>
+                                {{alias}}
+                            </span>
+                        </div>
+                        <div>{{i.getDesc()}}</div>
+                    </div>
+                    <div v-if='i.hasClaims(prop_map.coordinates)'>
+                        <coordinates :snak='i.getClaimsForProperty(prop_map.coordinates)[0].mainsnak'></coordinates>
+                    </div>
+                    <div v-for='prop in (config.hierarchies||[])'> <!--  v-if='typeof config.sparql_server_url!="undefined"' -->
+                        <hierarchy v-if='i.hasClaims(prop)' :tt='"hierarchy_"+prop.toLowerCase()' :i='i' :prop='prop'></hierarchy>
+                    </div>
+                    <div style='flex-grow:1'>
+                        <property-list v-for='section in sections' :q='q' :props='section.data' :tt='section.tt'></property-list>
+                        <property-list :q='q' :props='remaining_props' tt='other_properties'></property-list>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <sidebar :q='q'></sidebar>
+            </div>
+        </div>
+
+	</div>
+	<div v-else>FAILED TO LOAD {{q}}!</div>
+</div>
+</template>
+
+<script>
+'use strict';
+
+Vue.component ( 'classifier' , {
+	props : [ 'q' ] ,
+	data : function () { return { loading:true , loaded:false , i:{} , remaining_props:{} , sections:{} } } ,
+    created : function () {
+    	let me = this ;
+
+        wd.getItemBatch ( [ me.q ] , function() {
+            me.i = wd.getItem ( me.q ) ;
+            if ( typeof me.i == 'undefined' ) return ; // TODO error message
+            let props = me.i.getPropertyList() ;
+            let to_load = props ;
+            $.each ( props , function ( dummy , prop ) {
+                let targets = me.i.getClaimItemsForProperty ( prop , true ) ;
+                $.each ( targets , function ( k , v ) { to_load.push(v) } ) ;
+            } ) ;
+            wd.getItemBatch ( to_load , function () {
+                me.remaining_props = me.getRemainingProps() ;
+                me.sections = {} ;
+                $.each ( config.sections , function ( section , section_tt ) {
+                    me.sections[section] = {} ;
+                    me.sections[section].tt = section_tt ;
+                    me.sections[section].data = Object.values(me.remaining_props).filter ( (p) => $.inArray(p,Object.values(config[section]))>=0 ) ;
+                } ) ;
+                $.each ( me.sections , function ( section_id , section ) {
+                    $.each ( section.data , function ( k , v ) { delete me.remaining_props[v] } ) ;
+                } ) ;
+                me.loaded = true ;
+                me.loading = false ;
+            } ) ;
+        } ) ;
+    } ,
+    updated : function () { tt.updateInterface(this.$el) ; } ,
+    mounted : function () { tt.updateInterface(this.$el) ; } ,
+    methods : {
+        getRemainingProps : function () {
+            let me = this ;
+            let remaining = {} ;
+            $.each ( me.i.getPropertyList() , function ( k , p ) {
+                if ( wd.getItem(p).getDataytpe()=='external-id' ) return ;
+                if ( wd.getItem(p).getDataytpe()=='url' ) return ;
+                if ( wd.getItem(p).getDataytpe()=='string' ) return ;
+                remaining[p] = p ;
+            } ) ;
+            $.each ( prop_map , function ( k , v ) { delete remaining[v] } ) ;
+            $.each ( config.image_propmap , function ( k , v ) { delete remaining[v] } ) ;
+            $.each ( config.wikimedia , function ( k , v ) { delete remaining[v] } ) ;
+            $.each ( config.add2remaining , function ( k , prop ) {
+                if ( !me.i.hasClaims(prop) ) return ;
+                remaining[prop] = prop ;
+            } ) ;
+            return remaining ;
+        }
+    },
+	template : '#classifier-template'
+} ) ;
+</script>

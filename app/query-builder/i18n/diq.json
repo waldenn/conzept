@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi"
+		]
+	},
+	"query-builder-heading": "Basit Pers Vıraştoğ",
+	"query-builder-intro-text": "Wikidata Pers Vıraştoğ, qandê rehat pers kerdışê Wikidata vıraştışi rê destegê verrıy dano. Heqê zıwanê persayışê [$1 SPARQL]i de merdımo kı tay zano yana qet nêzano inan rê idealo. Pers Vıraştoğ şıma rê tam maneya xısusiyetê xo pêroyın nêdano, lakin neticeya tım xeta persi sera şıma şenê neticeya bıasenê, bıvırnê u hera kerê. [$2 Vatışanê şıma tiya ra pawem ].",
+	"query-builder-find-all-items": "Unsura pêroyın bıvênê...",
+	"query-builder-run-query": "Persayışi akarfiye",
+	"query-builder-input-value-label": "Erc",
+	"query-builder-input-value-placeholder": "Ercê dekere",
+	"query-builder-item-value-lookup-no-match-found": "Theba nêvineya",
+	"query-builder-property-lookup-label": "Xısusiyet",
+	"query-builder-property-lookup-placeholder": "Xısusiyetê dekere",
+	"query-builder-property-lookup-no-match-found": "Theba nêvineya",
+	"query-builder-property-lookup-limited-support-tag": "Paştiya lımitın",
+	"query-builder-property-lookup-limited-support-note": "Xısusiyetê ke wayırê paştiya limitıni gorey erci parzûn nêbenê",
+	"query-builder-result-placeholder": "Neticey do tiya de bımocneyê",
+	"query-builder-result-header": "Neticeyi",
+	"query-builder-result-error-empty-form": "Wuni aseno ke vıraştoğê persi vengo, kerem kerê vêri ravêrde yew pers cı kerê, dıma reyna akarfınayışi bıcerrebnê",
+	"query-builder-result-error-incomplete-form": "Yew yana zêde ca vengo. Kerem kerê persi temam kerê yana ravêrde yew tewrê vayi weçinê",
+	"query-builder-result-error-missing-property": "Yew xısusiyetê weçinê",
+	"query-builder-result-error-missing-value": "Yew ercê weçinê",
+	"query-builder-add-condition": "Şert dekerê",
+	"query-builder-value-type-relation-dropdown-matching": "hewliye",
+	"query-builder-value-type-relation-dropdown-without": "bê",
+	"query-builder-value-type-relation-dropdown-regardless-of-value": "Erc çend beno se",
+	"query-builder-delete-condition": "Şerti bıesternê",
+	"query-builder-condition-placeholder": "Serkewtena persi rê jew şert dekerê",
+	"query-builder-limit-number-results-description": "Amorê neticeya bıkemeynê",
+	"query-builder-limit-number-placeholder": "Jew amor cıkerê",
+	"query-builder-limit-number-screenreader-label": "Maksimum amarê neticeyan",
+	"query-builder-label-opt-out": "Heruna etiketan kamiya bıasenê (ternayışê demi ver kewno)",
+	"query-builder-include-subclasses": "Bınê rêzanê nê erci ra ercan daxil kerê",
+	"query-builder-negation-option-label-with": "pê",
+	"query-builder-negation-option-label-without": "bê"
+}

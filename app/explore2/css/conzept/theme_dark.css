@@ -1,0 +1,396 @@
+/*
+body.dark * {
+  color: #ffffffd1;
+}
+*/
+
+/*
+body.dark pre {
+  background: #8080803d;
+}
+*/
+
+body.dark summary:focus {
+  /* background: #f3a8ab1f; */
+  /* color: #f009; */
+}
+
+body.dark .category.main {
+  border-color: white;
+}
+
+body.dark li.resizer {
+  border: 1px solid #d4d4d4;
+}
+
+body.dark .sticky-title {
+  background: #121212;
+}
+
+body.dark ul.multi-value li {
+  background-color: #76e67b54;
+  color: white;
+}
+
+details.multi-value[open] .multi-value .subtext, .topic details.multi-value[open] i {
+  border-bottom: none;
+}
+
+body.dark i.oma {
+  filter: invert(100%);
+}
+
+body.dark i.oma .subtext {
+  filter: invert(100%);
+}
+
+body.dark .results {
+  color: white;
+}
+
+body.dark .missing-link {
+  color: #ee0b0bd1;
+}
+
+body.dark a.underline.missing-link {
+  text-decoration-color: rgb(242, 130, 182);
+}
+
+body.dark #minimizeLeftPanesToggle {
+  color: #ffffffd1;
+}
+
+body.dark #fullscreenToggle {
+  color: #ffffffd1;
+}
+
+body.dark ::selection {
+  background: #8c8558;
+}
+
+body.dark .blink {
+  color: #ff2323;
+}
+
+body.dark .more-label {
+  color: #ffffffd1;
+}
+
+body.dark .swiper-container {
+  background: #121212;
+  color: #ffffffd1;
+}
+
+body.dark .moreactions {
+  color: #ffffffd1;
+}
+
+body.dark .highlight, body.dark li em, body.dark .mv-extra-desc > .searchmatch > em {
+  background-color: #bf565638;
+  font-style: normal;
+}
+
+body.dark .topic-class {
+
+  border-color: #ffffffd1;
+
+}
+
+
+/*
+body.dark .highlight, body.dark mark {
+  background-color: #5b2a2cb3;
+}
+*/
+
+body.dark select.browser-default { /* TODO: also style the "option" elements */
+  background: #121212;
+  color: #ffffffd1;
+}
+
+body.dark .font-select .fs-drop {
+  background: #121212;
+  color: #ffffffd1;
+}
+
+body.dark .font-select > span {
+  background: #121212;
+  color: #ffffffd1;
+}
+
+body.dark .ui-widget-content {
+  border: 1px solid #ffffffd1;
+  background: #121212;
+  color: #ffffffd1;
+}
+
+body.dark .main-container {
+  background: #121212;
+}
+
+body.dark .select-dropdown.dropdown-trigger {
+  color: #ffffffd1;
+}
+
+body.dark .dropdown-content li > a, body.dark .dropdown-content li > span {
+  color: #ffffffd1;
+  background: #121212;
+}
+
+body.dark .dropdown-content li > a:hover, body.dark .dropdown-content li > span:hover {
+  color: #ffffffd1;
+  background: #e97374;
+}
+
+body.dark #fullscreenToggle, body.dark #scrollToTop, body.dark #sidebarToggle {
+  color: #ffffffd1;
+}
+
+  /*
+body.dark .ui-menu .ui-state-active, .ui-menu-item-wrapper:hover {
+  border-color: black;
+  color: #ffffffd1;
+  background-color: #5b2a2c;
+  color: #ffffffd1;
+  border-color: #121212;
+
+
+}
+
+body.dark .ui-menu .ui-menu-item {
+  background: #fbfaf9;
+}
+  */
+
+body.dark .grid.uls-menu.uls-mobile.uls-wide {
+  border: 1px solid #ffffffd1;
+  background: #121212;
+}
+
+body.dark .uls-search {
+  background: #121212 !important;
+  border-bottom: none;
+}
+
+body.dark .uls-languagefilter {
+  color: #ffffffd1;
+}
+
+
+body.dark .uls-lcd-region-title {
+  color: #ffffffd1;
+}
+
+body.dark .uls-lcd {
+  background-color: #121212 !important;
+  color: #ffffffd1;
+}
+
+body.dark .uls-language-block a {
+  color: #ffffffd1;
+}
+
+body.dark .uls-language-block > ul > li:hover {
+  background-color: #d938704d;
+}
+
+body.dark .topic-description {
+  color: #94ec9e;
+  font-weight: normal;
+}
+
+body.dark a.summary-link, body.dark a.no-focus-outline {
+  color: white !important;
+  /* color: #6d2b2f !important; */
+}
+
+body.dark summary {
+  color: #ffffffd1;
+}
+body.dark summary:hover {
+  color: #ee6e73cc;
+}
+
+body.dark .media-subgroup {
+  color: #617bcc;
+}
+
+body.dark .sticky {
+  background: #121212;
+}
+
+/* FIXME: sidebar-table not dark: https://conze.pt/explore/Mathematics?l=en&t=wikipedia&s=true */
+body.dark .mw-parser-output .sidebar {
+  background: #121212 !important;
+}
+
+body.dark .sidebar {
+  background: #121212 !important;
+}
+
+body.dark #sidebar {
+  background: #121212;
+  color: #ffffffd1 !important;
+}
+body.dark .tabs .tab a {
+  color: #ffffffd1;
+}
+
+body.dark #doc {
+  background: #121212;
+}
+
+body.dark .waves-effect.waves-light.btn-small.submitSearch {
+  border: 1px solid white;
+}
+
+body.dark .btn-large.submitSearch:hover, body.dark .btn-small.submitSearch:hover, body.dark .btn.submitSearch:hover {
+  background-color: #ee6e73a3;
+}
+body.dark .submitSearch {
+  color: #ffffffd1;
+  background-color: #121212;
+}
+body.dark #clearSearch {
+  background: #121212;
+}
+
+body.dark #srsearch {
+  color: #ffffffd1;
+}
+
+body.dark #srsearch::placeholder {
+  color: rgba(232, 230, 230, 0.59);
+}
+
+body.dark #srsearch:active, body.dark #srsearch:focus {
+  border-bottom: 1px solid #ffffffd1;
+  box-shadow: none;
+}
+
+
+/* ambient music player */
+
+  body.dark #plList li:hover {
+    background-color: rgb(91, 42, 44);
+  }
+
+  body.dark .plSel, body.dark .plSel:hover {
+    color: #fcf6f6;
+  }
+
+/* ----------------- */
+
+body.dark .subtext {
+  background: initial;
+}
+
+body.dark .multi-value .subtext,
+body.dark .topic summary.multi-value i {
+  border-bottom: 1px solid #ffffffd1;
+}
+
+body.dark .articles.active .subtext, body.dark .articles:focus .subtext, body.dark .articles:hover .subtext {
+  background: #121212 !important;
+}
+
+body.dark .topic {
+  color: #ffffffd1;
+}
+
+body.dark #results a, body.dark a.article-title {
+  color: #ffffffd1;
+}
+
+body.dark .entry {
+  border: 1px solid #121212;
+}
+body.dark .entry.active {
+  border: 1px solid #ee6e73;
+  background-color: inherit;
+}
+
+body.dark .articles:focus, body.dark .articles:hover {
+  border: 1px solid #ee6e73;
+  background-color: #121212 !important;
+}
+
+body.dark .date:hover {
+  border: 1px solid #ee6e73;
+}
+
+body.dark .date-title {
+  border: none !important;
+  color: #fff !important;
+  font-weight: normal;
+}
+
+body.dark .splitter_panel .vsplitter {
+  background-color: #272222;
+}
+
+body.dark a {
+  color: #ffffffd1;
+}
+body.dark a:link {
+  color: #ffffffd1;
+}
+
+body.dark div.summary {
+  color: #ffffffd1;
+}
+
+body.dark .medialinks a:hover {
+  color: #ee6e73cc !important;
+}
+
+body.dark .medialinks .fa, body.dark .medialinks .fab, body.dark .medialinks .far, body.dark .medialinks .fas {
+  font-size: 100%;
+}
+
+body.dark .tabs .tab a.active, body.dark .tabs .tab a:hover, body.dark span.catbutton:hover {
+  color: #ee6e73 !important;
+}
+
+body.dark #tabs-swipe-demo {
+  box-shadow: 0 4px 4px -4px #a2a0a05c;
+}
+
+body.dark img.nl:hover {
+  filter: none !important;
+}
+
+body.dark img.allow-invert {
+  filter: invert();
+}
+
+body.dark label {
+  color: #ffffffd1;
+}
+
+body.dark input[type=range] {
+  border: 1px solid #121212;
+}
+
+body.dark .jqtree-element.jqtree_common:hover {
+  background: #b27676b3 !important;
+}
+
+body.dark ul.jqtree-tree .jqtree-toggler.jqtree-toggler-right {
+  color: #ffffffd1;
+}
+
+body.dark .block-style ul.jqtree-tree .jqtree-element {
+  background-color: rgba(46, 45, 45, 0.95);
+}
+
+body.dark .block-style ul.jqtree-tree li.jqtree-selected > .jqtree-element {
+  background: #b27676b3 !important;
+}
+body.dark .block-style ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
+  background: #b27676b3 !important;
+}
+
+body.dark ul.jqtree-tree .jqtree-title {
+  color: #ffffffd1;
+}

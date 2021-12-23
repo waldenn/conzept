@@ -1,0 +1,7 @@
+body {
+  font-family: 'Quicksand';
+}
+
+.og-popup-content-wrapper, .og-popup-tip {
+  background: #fbfaf9 !important;
+}

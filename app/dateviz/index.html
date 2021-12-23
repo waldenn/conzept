@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+<title>conzept: timeline of words in books</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="static/style.css">
+<!--link rel="shortcut icon" href="static/glogo.jpg"/-->
+
+  <!-- conzept resources -->
+  <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.002" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.002"></script><script src="/app/explore2/dist/core/utils.js?v0.50.002"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+</head>
+<body>
+	<!--h1 id = 'mytitle'>Experimental Book Vizualization</h1-->
+	<!--div id = 'mysubtitle'>of things in sentences with dates... <a href="https://blog.archive.org/2016/02/09/how-will-we-explore-books-in-the-21st-century/">blog post</a> | <a href="faqs.html">FAQs and bugs</a></div-->
+
+	<h2 id = 'loadingText'>
+		<br>
+		<br>
+		<br>
+		Initializing graph...
+	</h2>
+	<div id = 'container'>
+		<div id = 'headerText'>
+			<div id = 'controls'>
+				
+				<div id = 'inputspan'>
+					Words:
+					<input id="autocomplete"/> <br/>
+					<!--span id = "greyText">Examples:
+					  <a href="?q=Gregorian+Calendar">Gregorian Calendar</a>,
+					  <a href="?q=Ghana">Ghana</a>,
+					  <a href="?q=Joan+of+Arc">Joan of Arc</a>,
+					  <a href="?q=Harriet+Tubman">Harriet Tubman</a></span-->
+				</div>
+				<div id = "title">
+					<span id = "wordNum"></span> book matches <span id = "wordText"></span> <br/> <small>(82,000 books indexed)</small>
+				</div>
+			</div>
+		</div>
+		<div id = 'graph'></div>
+	</div>
+	<div id = 'footer'>
+		<div id = 'bookText'>
+			<div id = 'year'></div>
+			<div id = 'context'><br><br><br><br><br></div>
+		</div>
+	</div>
+	<div id = 'footerInfo'>
+		<div id = 'faq'>
+		</div>
+	</br>
+<!--		<div id = 'links'>
+			Thank you to <a class= "blacklink" href="https://github.com/1wheel/whalewords">whalewords</a>!
+		</div>
+-->
+	</div>
+
+</body>
+
+<!--
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.7.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+-->
+
+<script src="static/d3.v3.min.js" charset="utf-8"></script>
+<script src="static/d3.tip.js"></script>
+<link rel="stylesheet" href="static/jquery-ui.css">
+<script src="static/jquery-ui.js"></script>
+<script src="static/graph.js"></script>

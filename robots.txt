@@ -1,0 +1,8 @@
+#User-agent: *
+#Disallow: /explore/*?*
+#Disallow: /app/*
+#Disallow: /assets/*
+#Disallow: /fonts/*
+#Disallow: /json/*
+
+#Sitemap: 

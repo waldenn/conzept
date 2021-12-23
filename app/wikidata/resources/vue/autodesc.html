@@ -1,0 +1,94 @@
+<style>
+.autodesc_result_text {
+}
+.autodesc_manual_text {
+	color:#AAA;
+}
+</style>
+
+<template id='autodesc-template'>
+<span :key='key'>
+	<span v-if='loaded'>
+		<span v-if='data.result!=""'>
+			<span class='autodesc_result_text'>{{data.result.replace(/<.*?>/g,'')}}</span>
+			<span v-if='add_manual' class='autodesc_manual_text'>; {{data.manual_description}}</span>
+		</span>
+		<span v-else class='autodesc_manual_text'>{{data.manual_description}}</span>
+	</span>
+	<span v-else-if='error_message!=""'><i>{{error_message}}</i></span>
+	<span v-else>...</span>
+</span>
+</template>
+
+<script>
+'use strict';
+
+var autodesc = {
+	loading : {} ,
+	cache : {}
+} ;
+
+Vue.component ( 'autodesc' , {
+	props : [ 'item' , 'mode' , 'language' , 'add_manual' , 'highlight' ] ,
+	data : function () { return { loaded:false , data:{} , error_message:'' , key:'' } } ,
+	created : function () {
+		this.loadDescription() ;
+	} ,
+	/*
+	updated : function () {
+		let me = this ;
+		me.$nextTick(function () {
+			$(me.$el).find('span.autodesc_result_text').each(function(x){me.do_highlight($(x))});
+			$(me.$el).find('span.manual_description').each(function(x){me.do_highlight($(x))});
+		});
+	} ,
+	*/
+	methods : {
+		do_highlight : function (element) {
+			console.log(element.text());
+		} ,
+		loadDescription : function () {
+			var me = this ;
+			me.key = me.item+"|"+(me.mode||'short')+"|"+(me.language||'en') ;
+			if ( typeof autodesc.cache[me.key] != 'undefined' ) {
+				me.data = autodesc.cache[me.key] ;
+				me.loaded = true ;
+				return ;
+			}
+			if ( typeof autodesc.loading[me.key] != 'undefined' && autodesc.loading[me.key] ) {
+				setTimeout ( function () { me.loadDescription() } , 100 ) ;
+				return ;
+			}
+			autodesc.loading[me.key] = true ;
+
+			me.loaded = false ;
+			me.error_message = '' ;
+			let params = {
+				q:me.item,
+				mode:(me.mode==''?'short':me.mode) ,
+	//			lang:(me.language||'en') ,
+				links:'text',
+				format:'json'
+			} ;
+			if ( typeof me.language != 'undefined' ) params.lang = me.language ;
+			else if ( typeof tt != 'undefined' ) params.lang = tt.language ;
+			$.getJSON ( 'https://autodesc.toolforge.org/?callback=?' , params , function ( d ) {
+				me.data = d ;
+				autodesc.cache[me.key] = d ;
+	//			console.log ( JSON.parse(JSON.stringify(d)) ) ;
+				me.loaded = true ;
+				/*
+				me.$nextTick(function () {
+					console.log("tick");
+				});
+				*/
+			} )
+			.always ( function () { autodesc.loading[me.key] = false } )
+			.fail ( function () {
+				me.error_message = 'Could not load description for '+me.item ;
+			} ) ;
+		}
+	} ,
+	template : '#autodesc-template'
+} ) ;
+</script>

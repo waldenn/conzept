@@ -1,0 +1,305 @@
+{
+ "currentVersion": 10.41,
+ "id": 19,
+ "name": "Plant Hardiness Zones 1976-2005",
+ "type": "Feature Layer",
+ "description": "Plant hardiness zones are based on the average annual extreme minimum temperatures from 1976 to 2005. All temperature ranges are measured in degrees Fahrenheit (F).",
+ "geometryType": "esriGeometryPolygon",
+ "copyrightText": "https://data-clf.opendata.arcgis.com/datasets/8330f0e4cefa40248254e33361f9a6bb_19",
+ "parentLayer": {
+  "id": 315,
+  "name": "Plant Hardiness"
+ },
+ "subLayers": [],
+ "minScale": 0,
+ "maxScale": 0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "zone",
+   "field2": null,
+   "field3": null,
+   "fieldDelimiter": ", ",
+   "defaultSymbol": null,
+   "defaultLabel": null,
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       115,
+       223,
+       255,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "5b",
+     "label": "5b (Min Temp: -15 to -10 F)",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       112,
+       171,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "6a",
+     "label": "6a (Min Temp: -10 to -5 F)",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       125,
+       204,
+       98,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "6b",
+     "label": "6b (Min Temp: -5 to 0 F)",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       204,
+       232,
+       133,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "7a",
+     "label": "7a (Min Temp: 0 to 5 F)",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       204,
+       247,
+       179,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "7b",
+     "label": "7b (Min Temp: 5 to 10 F)",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       245,
+       245,
+       122,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "8a",
+     "label": "8a (Min Temp: 10 to 15 F)",
+     "description": ""
+    }
+   ]
+  },
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "defaultVisibility": true,
+ "extent": {
+  "xmin": -8848524.8337,
+  "ymin": 4570302.344300002,
+  "xmax": -8354272.976199999,
+  "ymax": 4825776.019900002,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "displayField": "STATEFP",
+ "typeIdField": null,
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "Shape",
+   "type": "esriFieldTypeGeometry",
+   "alias": "Shape",
+   "domain": null
+  },
+  {
+   "name": "STATEFP",
+   "type": "esriFieldTypeString",
+   "alias": "STATEFP",
+   "length": 2,
+   "domain": null
+  },
+  {
+   "name": "state",
+   "type": "esriFieldTypeString",
+   "alias": "state",
+   "length": 80,
+   "domain": null
+  },
+  {
+   "name": "temp",
+   "type": "esriFieldTypeInteger",
+   "alias": "temp",
+   "domain": null
+  },
+  {
+   "name": "zone",
+   "type": "esriFieldTypeString",
+   "alias": "zone",
+   "length": 15,
+   "domain": null
+  },
+  {
+   "name": "Range",
+   "type": "esriFieldTypeString",
+   "alias": "Range",
+   "length": 50,
+   "domain": null
+  },
+  {
+   "name": "Shape_Leng",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Leng",
+   "domain": null
+  },
+  {
+   "name": "Shape_Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Length",
+   "domain": null
+  },
+  {
+   "name": "Shape_Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Area",
+   "domain": null
+  }
+ ],
+ "indexes": [
+  {
+   "name": "FDO_OBJECTID",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "FDO_Shape",
+   "fields": "Shape",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  }
+ ],
+ "relationships": [],
+ "canModifyLayer": false,
+ "canScaleSymbols": false,
+ "hasLabels": false,
+ "capabilities": "Map,Query,Data",
+ "maxRecordCount": 1000,
+ "supportsStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, AMF, geoJSON",
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsPagination": true,
+  "supportsTrueCurve": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true
+ }
+}

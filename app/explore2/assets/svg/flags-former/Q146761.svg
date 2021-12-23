@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 120 80" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs><g id="3">
+<g id="2">
+<polygon id="1" points="0,0 0,1 .5,1" transform="translate(0 -1) rotate(18)"/>
+<use xlink:href="#1" transform="scale(-1 1)"/>
+</g>
+<use xlink:href="#2" transform="rotate(72)"/>
+<use xlink:href="#2" transform="rotate(-72)"/>
+<use xlink:href="#2" transform="rotate(144)"/>
+<use xlink:href="#2" transform="rotate(-144)"/>
+</g></defs>
+<rect fill="#e30a17" width="120" height="80"/>
+<circle fill="#fff" cx="40" cy="40" r="20"/>
+<circle fill="#e30a17" cx="45" cy="40" r="16"/>
+<use xlink:href="#3" fill="#fff" transform="translate(66.9 40) scale(10) rotate(54)"/>
+<use xlink:href="#3" fill="#e30a17" transform="translate(66.9 40) scale(7) rotate(54)"/>
+</svg>

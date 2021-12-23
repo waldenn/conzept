@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="500">
+	<rect width="750" height="500" fill="#da121a"/>
+	<path d="M 40,35 H 710 V 465 H 40 z L 710,465 M 710,35 L 40,465 M 375,35 V 465 M 40,250 H 710" fill="none" stroke="#000" stroke-width="18"/>
+	<path d="M 40,35 H 710 V 465 H 40 z L 710,465 M 710,35 L 40,465 M 375,35 V 465 M 40,250 H 710" fill="none" stroke="#fcdd09" stroke-width="16"/>
+	<g fill="#fcdd09" stroke="#000" stroke-width="1">
+		<circle cx="375" cy="250" r="26.25" fill="#008f4c"/>
+		<circle cx="40" cy="35" r="26.25"/>
+		<circle cx="207.5" cy="35" r="26.25"/>
+		<circle cx="375" cy="35" r="26.25"/>
+		<circle cx="542.5" cy="35" r="26.25"/>
+		<circle cx="710" cy="35" r="26.25"/>
+		<circle cx="710" cy="142.5" r="26.25"/>
+		<circle cx="710" cy="250" r="26.25"/>
+		<circle cx="710" cy="357.5" r="26.25"/>
+		<circle cx="710" cy="465" r="26.25"/>
+		<circle cx="542.5" cy="465" r="26.25"/>
+		<circle cx="375" cy="465" r="26.25"/>
+		<circle cx="207.5" cy="465" r="26.25"/>
+		<circle cx="40" cy="465" r="26.25"/>
+		<circle cx="40" cy="357.5" r="26.25"/>
+		<circle cx="40" cy="250" r="26.25"/>
+		<circle cx="40" cy="142.5" r="26.25"/>
+		<circle cx="168.7685" cy="120.7005" r="26.25"/>
+		<circle cx="277.3323" cy="187.3706" r="26.25"/>
+		<circle cx="375" cy="142.5" r="26.25"/>
+		<circle cx="581.2315" cy="120.7005" r="26.25"/>
+		<circle cx="472.6677" cy="187.3706" r="26.25"/>
+		<circle cx="375" cy="357.5" r="26.25"/>
+		<circle cx="581.2315" cy="379.2995" r="26.25"/>
+		<circle cx="472.6677" cy="312.6294" r="26.25"/>
+		<circle cx="207.5" cy="250" r="26.25"/>
+		<circle cx="168.7685" cy="379.2995" r="26.25"/>
+		<circle cx="277.3323" cy="312.6294" r="26.25"/>
+		<circle cx="542.5" cy="250" r="26.25"/>
+	</g>
+</svg>

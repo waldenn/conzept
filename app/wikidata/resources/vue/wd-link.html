@@ -1,0 +1,66 @@
+<script src="https://tools-static.wmflabs.org/magnustools/resources/js/wikidata.js"></script>
+
+<template id='wd-link-template'>
+	<span v-if='item=="LAST"'>
+		LAST
+	</span>
+	<span v-else-if='typeof item!="undefined"'>
+		<span v-if='as_text'>{{use_label}}</span>
+		<a v-else :href='url' target='_blank' class='wikidata'>
+			{{use_label}}
+		</a>
+		<small v-if='smallq'>[{{getItemID()}}]</small>
+	</span>
+</template>
+
+<script>
+'use strict';
+
+let wd_link_wd = new WikiData() ;
+let wd_link_base = 'https://www.wikidata.org/wiki/' ;
+let wd_ns_prefixes = {
+	'Q': '',
+	'P': 'Property:',
+	'L': 'Lexeme:'
+};
+
+Vue.component ( 'wd-link' , {
+	template : '#wd-link-template' ,
+	props : [ 'item' , 'wd' , 'label' , 'as_text' , 'smallq' , 'language' ] ,
+	data : function () { return { use_label:'' , wikidata:{} , url:'' } } ,
+	created : function () {
+		let me = this ;
+		if ( typeof me.wd == 'undefined' ) me.wikidata = wd_link_wd ;
+		else me.wikidata = me.wd ;
+
+		if ( typeof me.item == 'undefined' || me.item == '' ) return ;
+		me.use_label = me.getItemID() ;
+		me.url = wd_link_base + me.getItemTitle() ;
+		if ( typeof me.label != 'undefined' && me.label != '' ) {
+			me.use_label = me.label ;
+			return ;
+		}
+//if ( typeof me.wikidata.getItem ( me.getItemID() ) == 'undefined' ) console.log ( "LOADING " + me.getItemID() ) ;
+		me.wikidata.getItemBatch ( [me.getItemID()] , function () {
+			let i = me.wikidata.getItem ( me.getItemID() ) ;
+			if ( typeof i == 'undefined' ) return ;
+			if ( typeof me.language == 'undefined' ) me.use_label = i.getLabel () ;
+			else me.use_label = i.getLabel ( me.language ) ;
+		} ) ;
+	} ,
+	methods : {
+		getItemID : function () {
+			let me = this ;
+			if ( typeof me.item == 'undefined' ) return '' ;
+			if ( /^\d+$/.test(''+me.item) ) return 'Q'+me.item ;
+			return me.item.toUpperCase() ;
+		} ,
+		getItemTitle : function () {
+			let me = this ;
+			let id = me.getItemID() ;
+			let ns_prefix = wd_ns_prefixes[id[0]] || '' ;
+			return ns_prefix + id.replace('-', '#') ;
+		}
+	}
+} ) ;
+</script>

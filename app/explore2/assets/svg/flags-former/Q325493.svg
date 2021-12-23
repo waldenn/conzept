@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1785.0575"
+   height="1229.7062"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Flag_of_Abkhazia_(GE).svg">
+  <defs
+     id="defs4">
+    <g
+       id="smallcross">
+      <clipPath
+         id="vclip">
+        <path
+           id="path2991"
+           d="m -109,104 a 104,104 0 0 0 0,-208 h 218 a 104,104 0 0 0 0,208 z"
+           inkscape:connector-curvature="0" />
+      </clipPath>
+      <path
+         clip-path="url(#vclip)"
+         d="M -55,74 A 55,55 0 0 1 55,74 V -74 a 55,55 0 0 1 -110,0 z"
+         id="varm"
+         inkscape:connector-curvature="0" />
+      <use
+         id="use2994"
+         transform="matrix(0,1,-1,0,0,0)"
+         xlink:href="#varm"
+         x="0"
+         y="0"
+         width="744.09448"
+         height="1052.3622" />
+    </g>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.175"
+     inkscape:cx="234.81919"
+     inkscape:cy="539.85356"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:bbox-nodes="true">
+    <sodipodi:guide
+       position="895.10876,524.02021"
+       orientation="1,0"
+       id="guide4547"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-347.82474,-396.67203)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3036"
+       width="1785.0575"
+       height="1229.7062"
+       x="347.82474"
+       y="396.672" />
+    <path
+       style="fill:#00672a;fill-opacity:1;stroke:none"
+       d="M 1785.0566 781.32031 L 1336.6699 1229.707 L 1595.6934 1229.707 C 1658.8059 1166.6702 1720.6233 1104.9347 1785.0566 1040.5625 L 1785.0566 781.32031 z "
+       transform="translate(347.82474,396.67203)"
+       id="rect4549" />
+    <g
+       id="g833"
+       transform="matrix(13.883781,13.883781,-13.883781,13.883781,-4439.3417,-4624.3977)">
+      <path
+         style="fill:#00672a;fill-opacity:1;stroke-width:32.39805603"
+         d="M 1087.3809 0 L 45.095703 1042.2852 L 175.2207 1170.1582 C 175.2207 1170.1582 842.68561 503.96666 1346.8262 0 L 1087.3809 0 z "
+         transform="matrix(0.03601324,-0.03601324,0.03601324,0.03601324,353.22641,8.4236164)"
+         id="path3834" />
+      <path
+         style="fill:#00672a;fill-opacity:1;stroke-width:32.39805603"
+         d="M 1580.3789 0 L 350.67188 1229.707 L 608.99414 1229.707 C 872.38151 966.7703 1404.1608 435.80387 1785.0566 54.765625 L 1785.0566 0 L 1580.3789 0 z "
+         transform="matrix(0.03601324,-0.03601324,0.03601324,0.03601324,353.22641,8.4236164)"
+         id="path3836" />
+      <path
+         style="fill:#00672a;fill-opacity:1;stroke-width:32.39805603"
+         d="M 1785.0566 288.32227 L 843.67188 1229.707 L 1102.375 1229.707 C 1311.1039 1021.2816 1556.7631 775.91409 1785.0566 547.73047 L 1785.0566 288.32227 z "
+         transform="matrix(0.03601324,-0.03601324,0.03601324,0.03601324,353.22641,8.4236164)"
+         id="path3842" />
+    </g>
+    <rect
+       y="396.67203"
+       x="347.82474"
+       height="1229.7062"
+       width="895.10773"
+       id="rect4538"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.70812756" />
+    <g
+       id="g3017"
+       transform="matrix(19.634631,0,0,19.634631,-6628.2076,574.94748)">
+      <use
+         id="use3004"
+         transform="matrix(0.23271634,0,0,0.23271634,364.49527,4.4413271)"
+         xlink:href="#smallcross"
+         style="fill:#bf0101;fill-opacity:1"
+         x="0"
+         y="0"
+         width="1"
+         height="1" />
+      <use
+         height="1"
+         width="1"
+         y="0"
+         x="0"
+         style="fill:#bf0101;fill-opacity:1"
+         xlink:href="#smallcross"
+         transform="matrix(0.23271634,0,0,0.23271634,391.16195,4.4413271)"
+         id="use3806" />
+      <use
+         id="use3810"
+         transform="matrix(0.23271634,0,0,0.23271634,391.16195,40.441327)"
+         xlink:href="#smallcross"
+         style="fill:#bf0101;fill-opacity:1"
+         x="0"
+         y="0"
+         width="1"
+         height="1" />
+    </g>
+    <path
+       sodipodi:nodetypes="cccccccccccc"
+       id="path3818"
+       style="fill:#bf0101;stroke-width:19.6346302;fill-opacity:1"
+       d="m 347.93006,1102.358 h 347.70595 v 525.2654 H 878.06844 V 1102.358 H 1242.9335 V 919.92553 H 878.06844 V 394.94796 H 695.63601 V 919.92553 H 347.34574"
+       inkscape:connector-curvature="0" />
+    <use
+       id="use3824"
+       transform="matrix(4.5692995,0,0,4.5692995,528.52253,1368.998)"
+       xlink:href="#smallcross"
+       style="fill:#bf0101;fill-opacity:1"
+       x="0"
+       y="0"
+       width="1"
+       height="1" />
+  </g>
+</svg>

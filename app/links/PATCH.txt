@@ -1,0 +1,92 @@
+4a5
+> let firstAction = true;
+7a9,28
+> 
+> 	if (params.edges.length > 0) {// if some edge is selected
+> 
+> 
+>     let connected_nodes = network.getConnectedNodes( params.edges[0] );
+>     //console.log( connected_nodes );
+> 
+>     if ( window.location !== window.parent.location ) { // embedded in an iframe
+> 
+>       var title = connected_nodes[0] + ' ' + connected_nodes[1];
+>       title = title.replace(/\{\}/g, '');
+> 
+>       window.parent.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia-side', title: title, hash: '', language: '', qid: '' } }, '*');
+> 
+>     }
+> 
+>     firstAction = false;
+> 
+> 	}
+> 
+8a30
+> 
+10c32,57
+<     expandNode(page);
+---
+> 
+>     //console.log( page, params );
+> 
+> 
+>     // FIXME: when not embedded: TypeError: nodes.get(...) is nullmain_functions.js:61:23
+>     expandNode( title );
+>     firstAction = false;
+> 
+>     if ( window.location !== window.parent.location ) { // embedded in an iframe
+> 
+>       var title = page || '';
+> 
+>       //console.log( title, getParameterByName('t') );
+> 
+>       if ( firstAction && encodeURIComponent( getParameterByName('t') ) === title ){
+>         // dp nothing: this page should already be shown
+>       }
+>       else {
+> 
+>         title = title.replace(/\{\}/g, '');
+>         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia-side', title: title, hash: '', language: '', qid: '' } }, '*');
+>       }
+> 
+>     }
+> 
+> 
+25c72,73
+< function openPageEvent(params) {
+---
+> function onDoubleClick(params) {
+> 
+27,30c75,95
+<     const nodeid = params.nodes[0];
+<     const page = encodeURIComponent(unwrap(nodes.get(nodeid).label));
+<     const url = `http://en.wikipedia.org/wiki/${page}`;
+<     window.open(url, '_blank');
+---
+> 
+>     const id = params.nodes[0];
+> 
+>     /*
+>     // Find the edges which connect these nodes
+>     var removed_edges = edges.getIds({
+>       filter: function(item) {
+>         return ( id.indexOf(item.to)   !== -1) ||
+>                ( id.indexOf(item.from) !== -1);
+>         }
+>       });
+> 
+>     // Remove the found edges
+>     edges.remove( removed_edges);
+>     */
+> 
+>     //nodes.remove( id );
+> 
+>     //const page = encodeURIComponent(unwrap(nodes.get( id ).label));
+>     //const url = 'http://' + window.language + `.wikipedia.org/wiki/${page}`;
+>     //window.open(url, '_blank');
+45,46c110,111
+<   // Bind double-click to open page
+<   network.on('doubleClick', openPageEvent);
+---
+>   // Bind double-click
+>   //network.on('doubleClick', onDoubleClick);

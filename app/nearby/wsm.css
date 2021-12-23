@@ -1,0 +1,22 @@
+@media screen {
+
+.description {
+	font-size:80%;
+}
+
+}
+
+@media screen and (max-device-width: 480px){
+/*--- iPhone only CSS here ---*/
+
+body {
+	-webkit-text-size-adjust:none;
+	font-family:Helvetica, Arial, Verdana, sans-serif;
+	padding:5px;
+}
+
+.description {
+	font-size:66%;
+}
+  
+}

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"itemCount": "Há {{PLURAL:$1|é um item que corresponde|são $1 itens que correspondem}} a esta descrição.",
+	"classPlaceholder": "Entrar na classe",
+	"browse": "Ou navegue em qualquer uma das seguintes classes:",
+	"noFiltersDefined": "Nenhum filtro está definido para esta classe.",
+	"addFilter": "Acrescentar um filtro",
+	"viewQuery": "Ver consulta SPARQL",
+	"noItems": "Nenhum item corresponde a esta descrição.",
+	"displayItemsError": "A tentativa de exibir a lista de itens demorou muito; considere adicionar mais filtros.",
+	"gettingValues": "Obtendo valores para o filtro $1 ...",
+	"noAdditionalValues": "Não há valores adicionais para o filtro $1.",
+	"filterError": "A tentativa de obter valores demorou muito para o filtro $1.",
+	"filterTimeout": "(Obter um conjunto completo de valores para o filtro $1 demorou muito; em vez disso, aqui está um conjunto possivelmente incompleto.)",
+	"selectValue": "Selecione um valor para $1:",
+	"selectAdditionalValue": "Selecione um valor adicional para $1:",
+	"noValue": "Nenhum valor",
+	"changeClassNote": "(Observação: se você alterar a classe, perderá o conjunto atual de filtros.)",
+	"specificClass": "Mudar para uma classe mais específica:",
+	"generalClass": "Mudar para uma classe mais geral:",
+	"viewList": "Ver lista de itens",
+	"results": "({{PLURAL:$1|1 resultado|$1 resultados}})",
+	"applyLinkedFilter": "Aplicar filtro em $1",
+	"chooseLinkedFilter": "Escolha um filtro de uma das seguintes classes:"
+}

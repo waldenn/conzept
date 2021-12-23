@@ -1,0 +1,41 @@
+#wrapper {
+    max-width: inherit;
+}
+
+.awesomplete {
+    width: 100%;
+}
+
+.intro {
+    max-width: 600px;
+    display: block;
+}
+
+.menu-bar {
+    padding: 0;
+    margin-top: 6rem;
+}
+
+.form section {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: baseline;
+}
+
+.form section > * {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+#app[v-cloak] > * {
+    display: none;
+}
+
+#app[v-cloak]:before {
+    content: "Loading...";
+    font-size: 20px;
+}
+
+.text-link {
+    cursor: pointer;
+}
