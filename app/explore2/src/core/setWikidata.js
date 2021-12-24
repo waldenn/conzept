@@ -604,6 +604,15 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
         if ( item.tags[0] === '' ){ // no class set so far
 
+          item.tags[0] = 'location';
+
+        }
+
+      }
+      else {
+
+        if ( item.tags[0] === '' ){ // no class set so far
+
           item.tags[0] = 'natural-concept';
           item.tags[1] = 'geographical-structure';
 

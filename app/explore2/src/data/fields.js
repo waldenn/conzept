@@ -2335,20 +2335,31 @@ var conzept_fields = {
   rank: 10,
 },
 
-/* FIXME: needs fix from website admin
 'ipfs_search' : {
   create_condition: true,
   title: 'IPFS search',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://ipfs-search.com/search?q=${title_quoted}',
+  url: 'https://ipfs-search.com/#/search?q=${title_quoted}&page=1',
   icon: 'fas fa-cube',
   text: 'IPFS',
   section: 'web',
-  rank: 6,
+  rank: 6.1,
 },
-*/
+
+'ipse' : {
+  create_condition: true,
+  title: 'IPSE - IPFS search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.ipse.io/search?wd=${title_quoted}',
+  icon: 'fas fa-cube',
+  text: 'IPSE',
+  section: 'web',
+  rank: 6.2,
+},
 
 'alexa_rank_country' : {
   create_condition: '${ valid( item.iso2 ) }',
@@ -2399,7 +2410,7 @@ var conzept_fields = {
   icon: 'fab fa-searchengin',
   text: 'Metaphor',
   section: 'web',
-  rank: 6,
+  rank: 7,
 },
 
 'millionshort' : {
