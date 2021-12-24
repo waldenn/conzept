@@ -6,4 +6,6 @@ Conzept allows you to explore any of the millions of topics on Wikipedia from ma
 
 Conzept also has an uniquely integrated user-interface, which gives you a single well-designed view of all this information (in any of the 300+ Wikipedia languages), with less cognitive load.
 
+The project documention (user guide, setup, etc.) can be found [here](https://conze.pt/guide).
+
 This project has been funded by the [NLnet Foundation](https://nlnet.nl/project/Conzept/) (backed by the [NGI4eu](https://www.ngi.eu/) and [EU Council](https://www.consilium.europa.eu/en/european-council/) vision and funds). Thank you for this support! 
