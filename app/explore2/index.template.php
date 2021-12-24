@@ -670,7 +670,7 @@ $settings_html = '
 
             <details class="" closed>
               <summary><span id="app-menu-credits"></span></summary>
-                  Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="guide: start" aria-label="docs"><u>integrated software</u></i></a>.<br/>
+                  Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="software integrations" aria-label="docs"><u>integrated software</u></i></a>.<br/>
 
                   This project has been funded by the <a href="https://nlnet.nl/project/Conzept/" target="_blank"><u>NLnet Foundation</u></a> (backed by the <a href="https://www.ngi.eu" target="_blank" title="organization"><u>NGI4eu</u></a> and EU Council vision and funds). Thank you for this support!
             </details>

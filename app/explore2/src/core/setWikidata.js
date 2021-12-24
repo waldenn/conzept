@@ -35,7 +35,6 @@ function checkTag( item, level, name ){
 
 }
 
-
 function addItemCountries( item, prop, former ){
 
   if ( former ){ // check for former-countries instead
@@ -548,6 +547,12 @@ function setWikidata( item, wd, single, target_pane, callback ){
   if ( valid( item.instances ) ){ // we have "instance of" values
 
     if ( item.instances.some( function( nr ) { return indicators.person.value.includes( nr  )  } ) ) {
+
+      //if ( item.tags[0] === '' ){ // no class set so far
+
+        item.tags[0] = 'person';
+
+      //}
 
       // country name of citizenship
       if ( valid( wd.claims.P27 ) ){
