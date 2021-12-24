@@ -1,5 +1,7 @@
 # Conzept encyclopedia
 
+<a href="https://conze.pt"><img src="http://conze.pt/assets/screenshot_001.webp" align="center" height="600px" width="" ></a>
+
 Conzept is an attempt to create an **encyclopedia for the 21st century**. A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the Global Biodiversity Information Facility and many other information sources. A semantic web app build for fun, education and research.
 
 Conzept allows you to explore any of the millions of topics on Wikipedia from many different angles - such as science, art, digital books and education - both as a defined semantic entity ("a thing") as well as a string. Client-side topic-classification in addition allows for a fast, higher-level logic throughout the whole user experience.
