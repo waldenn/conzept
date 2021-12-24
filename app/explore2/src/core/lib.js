@@ -3946,7 +3946,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
         '<span id="app-social-icons">' + 
           '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fab fa-twitter"></i></a> &nbsp;' + 
-          '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept/issues" title="GitHub issues" news" aria-label="GitHub issues"><i class="fab fa-github"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository"><i class="fab fa-github"></i></a> &nbsp;' + 
         '</span>' + 
       '</p>' + 
     
