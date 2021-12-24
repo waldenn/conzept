@@ -5221,6 +5221,19 @@ var conzept_fields = {
   rank: [1200],
 },
 
+'sacred_text_archive_search' : {
+  create_condition: true,
+  title: 'Internet Sacred Text Archive search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.google.com/search?q=site:sacred-texts.com+${title_quoted}&hl=${explore.language}',
+  icon: 'fas fa-gopuram',
+  text: 'ISTA',
+  section: ['library-religion'],
+  rank: [2000],
+},
+
 // TODO: 
 //  Guru Granth Sahib – Sikhism:
 //    http://www.srigranth.org/servlet/gurbani.gurbani?Action=Search&Param=english (no https!)
