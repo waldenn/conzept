@@ -648,9 +648,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/docs/guide" target="infoframe" title="guide: start" aria-label="docs"><i class="fas fa-book fa-2x"></i></a></li>
-                  <!--li> &nbsp; - <a href="https://conze.pt/docs/guide#basics" target="infoframe" title="guide: basics functions" aria-label="docs">basic functions</a></li>
-                  <li> &nbsp; - <a href="https://conze.pt/docs/guide#gbif" target="infoframe" title="guide: GBIF integration" aria-label="docs">organism info</a></li-->
+                  <li> &nbsp; <a href="https://conze.pt/guide" target="infoframe" title="guide: start" aria-label="docs"><i class="fas fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 
@@ -672,9 +670,9 @@ $settings_html = '
 
             <details class="" closed>
               <summary><span id="app-menu-credits"></span></summary>
-                <ul>
-                  <li>&nbsp; (todo: list used software projects, licenses, etc.)</li>
-                </ul>
+                  Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="guide: start" aria-label="docs"><u>integrated software</u></i></a>.<br/>
+
+                  This project has been funded by the <a href="https://nlnet.nl/project/Conzept/" target="_blank"><u>NLnet Foundation</u></a> (backed by the <a href="https://www.ngi.eu" target="_blank" title="organization"><u>NGI4eu</u></a> and EU Council vision and funds). Thank you for this support!
             </details>
 
             <details class="" closed>
@@ -684,8 +682,7 @@ $settings_html = '
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news">Twitter</a></li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept/issues" aria-label="Github issues">GitHub issues</a></li>
-                  <li>&nbsp; &nbsp; © 1999-2021 <span id="app-menu-all-rights-reserved"></span></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="Github">GitHub</a></li>
                 </ul>
             </details>
 
