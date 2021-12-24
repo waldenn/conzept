@@ -1,10 +1,8 @@
 # Conzept encyclopedia
 
-Conzept is an attempt to create an **encyclopedia for the 21st century**. A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the Global Biodiversity Information Facility and many other information sources. A semantic web app build for fun, education and research.
+Conzept is an attempt to create an **encyclopedia for the 21st century**. A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the Global Biodiversity Information Facility and many other information sources. A semantic web app build for fun, education and research. 
 
-Conzept is free software licensed under the [GNU GPL v3 license](LICENSE).
-
-The project documention can be found [here](https://conze.pt/guide).
+Conzept is free software licensed under the [GNU GPL v3 license](LICENSE). The project documention can be found [here](https://conze.pt/guide).
 
 This project has been funded by the [NLnet Foundation](https://nlnet.nl/project/Conzept/) (backed by the [NGI4eu](https://www.ngi.eu/) and [EU Council](https://www.consilium.europa.eu/en/european-council/) vision and funds). Thank you for this support! 
 
