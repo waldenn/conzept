@@ -1631,9 +1631,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   }
 
-  if (  valid( item.lat ) &&
-        ( tags[0] === 'location' || tags[0] === 'organization' )
-    ){
+  if (  valid( item.lat ) && ( tags[0] === 'location' || tags[0] === 'organization' )){
 
     hide_quizzes  = 'display:block;';
 
