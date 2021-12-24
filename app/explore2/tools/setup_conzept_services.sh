@@ -31,7 +31,7 @@ then
    {
       \"proxy\": {
         \"forward\": {
-          \"/video/(.*)\": \"https://www.googleapis.com/youtube/v3/\$1&key=YOUR_YOUTUBE_API_KEY\",
+          \"/video/(.*)\": \"https://www.googleapis.com/youtube/v3/\$1&key=$CONZEPT_YOUTUBE_API_KEY\",
           \"/scholar/(.*)\": \"https://scholar-qa.archive.org/search/?q=lang%3A\$1\"
         },
         \"headers\": {
