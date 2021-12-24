@@ -286,7 +286,7 @@ blockquote {
 blockquote, .poem, .templatequote { /* p.sid ~ dl > dd */
   font-family: 'Crimson Text', 'Times New Roman', serif !important;
   font-weight: bolder;
-  font-size: 102%;
+  font-size: 1.2rem%;
   /* font-style: oblique; */
 }
 
