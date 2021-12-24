@@ -73,7 +73,7 @@ function addItemCountries( item, prop, former ){
           qid   : country_qid,
           name  : country_name,
           iso2  : '',
-					flag 	: '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><img title="' + country_name + '" class="flag-icon" src="' + explore.base + '/app/explore2/flags-former/' + country_qid + '.svg"></img></a>',
+					flag 	: '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><img title="' + country_name + '" class="flag-icon" src="' + explore.base + '/app/explore2/assets/svg/flags-former/' + country_qid + '.svg"></img></a>',
 
         });
 
