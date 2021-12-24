@@ -160,12 +160,12 @@ $sticky_html = '
       <li class="tab col s3  topics-button" title="topics"><a id="tab-head-topics" href="#swipe-2" aria-label="topics tab"><i class="fa fa-th-large"></i></a></li>
       <li class="tab col s3" title="topics"><a id="tab-head-concepts" class="active" href="#swipe-3" aria-label="topics tab"><i class="fas fa-stream"></i></a></li>
       <li class="tab col s3" style="display:none;" title="lists"><a id="tab-head-lists" href="#swipe-4" aria-label="lists tab"><i class="fas fa-list-ul"></i></a></li>
-      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#swipe-5" aria-label="bookmarks tab"><i class="far fa-clipboard"></i></a></li>
+      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#swipe-5" aria-label="bookmarks tab"><i class="far fa-bookmark"></i></a></li>
       <li class="tab col s3" title="tools"><a id="tab-head-tools" href="#swipe-7" aria-label="tools tab"><i class="fas fa-wrench"></i></a></li>
       <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#swipe-1" aria-label="settings tab"><i class="fas fa-cog"></i></a></li>
       <li class="tab col s3" title="help"><a id="tab-head-help" href="#swipe-6" aria-label="help tab"><i class="fas fa-question"></i></a></li>
       <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fas fa-expand-arrows-alt" title="toggle fullscreen (main app)"></i></a></li>
-      <li class="tab col s3 global-action" id="add-bookmark" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="bookmark this page"><a id="add-bookmark" style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="addBookmark(event, &quot;clicked&quot; )"><i id="bookmarkIcon" class="far fa-bookmark" title="bookmark current URL"></i></a></li>
+      <!--li class="tab col s3 global-action" id="add-bookmark" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="bookmark this page"><a id="add-bookmark" style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="addBookmark(event, &quot;clicked&quot; )"><i id="bookmarkIcon" class="far fa-bookmark" title="bookmark current URL"></i></a></li-->
     </ul>
 
   </div>
