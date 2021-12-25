@@ -103,9 +103,12 @@ function addItemCountries( item, prop, former ){
 
         }
 
+        /*
         if ( !valid( item.country_name ) ){
-          console.log( 'missing country name: ', item.country_qid );
+          console.log( 'missing country name: ', item.country_qid, item.country_name );
+          console.log( countries[ country_qid ] );
         }
+        */
 
         const args = {
           id        : '000',

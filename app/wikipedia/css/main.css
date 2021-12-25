@@ -455,6 +455,11 @@ audio {
   border-radius: 0.4rem;
 }
 
+audio:focus, #mwe_player_0:focus {
+  outline: none !important;
+  border: none !important;
+}
+
 .media-block audio {
   width: 100% !important;
   margin-bottom: 0.2rem;

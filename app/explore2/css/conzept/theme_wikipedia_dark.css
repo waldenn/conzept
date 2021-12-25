@@ -96,30 +96,21 @@ body.dark .tableFloatingHeaderOriginal {
   background-color: #5b7193;
 }
 
-/*
-body.dark tr:hover {
-  background-color: #4d627d9c !important;
-}
-
-body.dark .infobox * {
-  color: white !important;
-}
-
-body.dark table.infobox {
-  background: #121212 !important;
-  color: #ffffffd9 !important;
-  border: 1px solid #ffffffd9 !important;
-}
-*/
-
-body.dark .infobox * {
+body.dark .infobox *, body.dark table.sidebar *, .NavFrame * {
   color: black !important;
 }
 
-body.dark table.infobox {
-  background: #121212 !important;
-  color: #ffffffd9 !important;
-  border: 1px solid #ffffffd9 !important;
+/*
+body.dark table.infobox * {
+
+  color: white !important;
+  background: black !important;
+
+}
+*/
+
+body.dark th.sidebar-heading {
+  color: white !important;
 }
 
 /*
@@ -205,6 +196,31 @@ body.dark midi-player {
   color: black;
   filter: invert(90%);
 }
+
+body.dark table {
+  overflow: clip;
+}
+
+body.dark table * {
+  color: black !important;
+  background: white !important;
+}
+
+body.dark .infobox {
+  background-color: white !important;
+}
+
+/*
+body.dark table * {
+  color: white !important;
+  background: black !important;
+}
+
+
+body.dark .infobox {
+  background-color: black !important;
+}
+*/
 
 /* FIXME style default browser media-player background */
 /*
