@@ -2,8 +2,10 @@
 
 async function setTags( item, tags ){
 
-  if ( !valid( tags ) || tags.length === 0 ){
+  if ( ! Array.isArray( tags ) || tags.length === 0 ){
+
     return;
+
   }
   else { // we have some tags
 

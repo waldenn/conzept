@@ -795,8 +795,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     hide_legal  = 'display:block;';
   }
 
-  //console.log( title_, tags[0] );
-
   if ( tags[0] === 'organism' ||
        tags[0] === 'substance' ||
        tags[0] === 'natural-type' ||
