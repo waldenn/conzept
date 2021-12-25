@@ -1725,6 +1725,7 @@ ul.ui-autocomplete {
 
 .ui-menu .ui-state-active, .ui-menu-item-wrapper:hover {
   background: #ee6e735c; 
+  color: black;
   /* border-color: black; */
 }
 

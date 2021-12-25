@@ -100,7 +100,21 @@ body.dark .tableFloatingHeaderOriginal {
 body.dark tr:hover {
   background-color: #4d627d9c !important;
 }
+
+body.dark .infobox * {
+  color: white !important;
+}
+
+body.dark table.infobox {
+  background: #121212 !important;
+  color: #ffffffd9 !important;
+  border: 1px solid #ffffffd9 !important;
+}
 */
+
+body.dark .infobox * {
+  color: black !important;
+}
 
 body.dark table.infobox {
   background: #121212 !important;
