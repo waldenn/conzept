@@ -77,6 +77,10 @@ body.dark #fullscreenToggle, body.dark #scrollToTop, body.dark #sidebarToggle {
   border:0
 }
 
+.uls-trigger {
+  background: none !important;
+}
+
 @media (prefers-reduced-motion) {
   *, *::before, *::after {
     animation: none !important;
