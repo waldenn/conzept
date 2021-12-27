@@ -6290,7 +6290,8 @@ async function handleClick ( args ) {
   if ( valid( explore.keyboard_ctrl_pressed ) ){ // trigger onauxclick-code
 
     if ( ! valid( event ) ){
-      console.log( 'undefined event: ', args );
+      console.log( 'undefined event: ', args, explore.keyboard_ctrl_pressed  );
+
       return 0;
     }
 
@@ -7482,17 +7483,27 @@ function renderLanguageDirection(){
   //console.log('script direction: ', explore.language_script , explore.language_direction,  explore.language );
 
   if ( explore.language_direction === 'rtl' ){
+
     updateValueInPanes( 'rtl', true );
+
   }
+
+  $('body').removeClass( [ 'ltr', 'rtl'] ); // reset
+  $('body').addClass( explore.language_direction );
 
   // TODO: also set the direction in any explore-split-frame
   if ( explore.windowName === 'infoframeSplit2' ){ // request from secondary content iframe
+
+    $('#infoframeSplit2').contents().find('body').addClass( explore.language_direction );
     $('#infoframeSplit2').contents().find('main').css({ 'direction' : explore.language_direction  });
     $('#infoframeSplit2').contents().find('aside').css({ 'direction' : explore.language_direction  });
+
   }
   else {
 
     $( 'body').css({ 'direction' : explore.language_direction });
+
+    $( explore.baseframe ).contents().find('body').addClass( explore.language_direction );
 
     // FIXME this is not yet working
     $( explore.baseframe ).contents().find('main').css({ 'direction' : explore.language_direction });

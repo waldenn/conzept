@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 conzept.env
 dist
+assets/json/covers/*

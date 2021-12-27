@@ -49,6 +49,12 @@ body.dark #fullscreenToggle, body.dark #scrollToTop, body.dark #sidebarToggle {
   cursor: w-resize;
 }
 
+/*
+#minimizeLeftPanesToggle {
+  direction: initial !important;
+}
+*/
+
 #queryTitle {
   position: fixed;
   top: 25px;

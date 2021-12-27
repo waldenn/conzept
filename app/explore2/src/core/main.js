@@ -80,7 +80,7 @@ const explore = {
   // see also:
   //  https://stats.wikimedia.org/#/all-projects/reading/page-views-by-country/normal|table|last-month|~total|monthly
   //  https://wikirank.net/
-  locales             : [ 'ceb', 'en', 'es', 'de', 'fr', 'hi', 'ja', 'nl', 'pt', 'ru', 'sv', 'zh' ],
+  locales             : [ 'ar', 'ceb', 'en', 'es', 'de', 'fr', 'hi', 'ja', 'nl', 'pt', 'ru', 'sv', 'zh' ],
 
   banana              : undefined,  // i18n engine for UI
   banana_native       : undefined,  // i18n engine for native-wikipedia-content elements

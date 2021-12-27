@@ -1,4 +1,4 @@
-const CONZEPT_VERSION = "0.50.002";
+const CONZEPT_VERSION = "0.50.007";
 const CONZEPT_WEB_BASE = "";
-const CONZEPT_HOSTNAME = "dev.conze.pt";
-const CONZEPT_TRACKER_HTML = "";
+const CONZEPT_CORS_PROXY_WHITELIST = "upload.wikimedia.org, commons.wikimedia.org, commons.m.wikimedia.org, maps.wikimedia.org";
+const CONZEPT_HOSTNAME = "conze.pt";

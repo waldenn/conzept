@@ -92,6 +92,10 @@ body.dark .uls-filterinput.uls-languagefilter.languagefilter {
 
 /* table */
 
+body.dark table.toccolours { /* example: https://conze.pt/app/wikipedia/?t=Franse Revolutie&l=nl&voice=nl-NL&qid=Q6534 */
+  border: 1px solid white;
+}
+
 body.dark .tableFloatingHeaderOriginal {
   background-color: #5b7193;
 }
@@ -107,13 +111,11 @@ body.dark table.infobox * {
   background: black !important;
 
 }
-*/
 
 body.dark th.sidebar-heading {
   color: white !important;
 }
 
-/*
 body.dark table tr:nth-child(even){
   background-color: #f2f2f21a;
 }
@@ -137,6 +139,11 @@ body.dark .link:focus {
   background: #ee6e735c !important;
   border:none;
   outline:none;
+}
+
+body.dark *:focus {
+  outline: 1px solid white;
+  border: none;
 }
 
 body.dark a.elem:focus, body.dark a.elem:hover {
@@ -197,9 +204,11 @@ body.dark midi-player {
   filter: invert(90%);
 }
 
+/*
 body.dark table {
   overflow: clip;
 }
+*/
 
 body.dark table * {
   color: black !important;
@@ -210,19 +219,56 @@ body.dark .infobox {
   background-color: white !important;
 }
 
-/*
-body.dark table * {
-  color: white !important;
-  background: black !important;
+body.dark blockquote, body.dark .poem, body.dark .templatequote {
+  font-weight: normal;
 }
 
+/* dark table / infobox testing */
+
+body.dark table, body.dark table * {
+  color: white !important;
+  background: #484848 !important;
+}
 
 body.dark .infobox {
-  background-color: black !important;
+  background-color: #484848 !important;
 }
-*/
+
+body.dark .infobox *, body.dark table.sidebar *, .NavFrame * {
+  color: white !important;
+  background: transparent !important;
+}
+
+body.dark .infobox {
+  background-color: transparent !important;
+}
+
+body.dark .mw-parser-output .sidebar {
+  background: transparent !important;
+}
+
+body.dark .mw-parser-output .navbox {
+  background: transparent !important;
+}
+
+body.dark table, body.dark table * {
+  background: transparent !important;
+}
+
+body.dark .mw-parser-output tr + tr > .navbox-abovebelow, body.dark .mw-parser-output tr + tr > .navbox-group, body.dark .mw-parser-output tr + tr > .navbox-image, body.dark .mw-parser-output tr + tr > .navbox-list {
+  border-top: 2px solid #8f8f8f !important;
+}
+
+body.dark .mw-parser-output .navbox-list {
+  border-color: #8f8f8f !important;
+}
+
+body.dark table.infobox {
+  border: 1px solid #8f8f8f !important;
+}
 
 /* FIXME style default browser media-player background */
+
 /*
 body.dark audio::-webkit-media-controls-panel, body.dark video::-webkit-media-controls-panel {
   background-color: #ee6e7361;
