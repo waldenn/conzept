@@ -5864,7 +5864,7 @@ var conzept_fields = {
   icon: 'fas fa-video',
   text: 'YouTube channel',
   section: ['media-video','main'],
-  rank: [10,10],
+  rank: [19, 19],
 },
 
 'videolectures' : {
@@ -10023,6 +10023,19 @@ var conzept_fields = {
   rank: 301,
 },
 
+'linkedin_search' : {
+  create_condition: true,
+  title: 'LinkedIn name search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.linkedin.com/pub/dir?firstName=${title_}&lastName=',
+  icon: 'fab fa-linkedin',
+  text: 'LinkedIn',
+  section: 'news-social',
+  rank: 305,
+},
+
 'british_library_search' : {
   create_condition: true,
   title: 'British library',
@@ -11487,6 +11500,19 @@ var conzept_fields = {
   text: 'Vimeo',
   section: 'media-video',
   rank: 110,
+},
+
+'bitchute' : {
+  create_condition: true,
+  title: 'ButChute',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.bitchute.com/search/?query=${title_quoted}&kind=video',
+  icon: 'fas fa-video',
+  text: 'BitChute',
+  section: 'media-video',
+  rank: 115,
 },
 
 // TODO: add aother search index: https://sepiasearch.org/search?search=${title_}
@@ -13168,7 +13194,7 @@ var conzept_fields = {
   icon: 'far fa-file-alt',
   text: 'article inline',
   section: 'main',
-  rank: 20,
+  rank: 18,
 },
 
 /*

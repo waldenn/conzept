@@ -62,6 +62,10 @@
   padding-right: 0.5rem;
 }
 
+body.rtl .topic-tts-buttons {
+  text-align: left;
+}
+
 .topic-tts-buttons i {
   margin-left: 1rem;
   filter: opacity(0.6);
@@ -118,6 +122,11 @@ li.id.noKids, li.size.noKids {
   .category {
     margin-left: 1rem;
     /*overflow-x: scroll;*/
+  }
+
+  /* TODO: make rtl work for categories */
+  body.rtl .category {
+    direction: ltr;
   }
 
   div.category h6 {
@@ -523,6 +532,11 @@ details.multi-value:focus {
 span.nobreak {
   white-space: nowrap;
   position: relative;
+  float: none,
+}
+
+body.rtl span.nobreak {
+  float: right,
 }
 
 .main-container {
@@ -585,9 +599,10 @@ span.nobreak {
   display: inline-block !important;
   white-space: nowrap;
   margin-left: 3%;
-  border: 1px solid black;
-  padding: 0.15rem;
-  border-radius: 0.2rem;
+  border: 1px solid transparent !important;
+  padding: 0.15rem 0.3rem !important;
+  border-radius: .3rem;
+  background: rgba(159, 177, 219, 0.35)
 }
 
 .topic a {
@@ -1841,6 +1856,10 @@ ul.ui-autocomplete {
   max-width: 15ch;
 }
 
+body.rtl .uls-trigger {
+  float: none;
+}
+
 .uls-lcd {
   background-color: #fbfaf9;
   width: 80vw !important;
@@ -1945,6 +1964,10 @@ summary:hover {
   display: inline;
   float: right;
   padding-left: 0.9rem;
+}
+
+body.rtl .summary-thumb {
+  float: left;
 }
 
 /*
