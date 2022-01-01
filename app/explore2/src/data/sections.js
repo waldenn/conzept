@@ -1,37 +1,37 @@
 const sections = {
 
-  'main': {
-    'icon'  : '',
-  },
+'main': {
+  'icon'  : '',
+},
 
-  'meta': {
-    'icon'  : '',
-  },
+'meta': {
+  'icon'  : '',
+},
 
-  'media': {
-    'icon'  : '',
+'media': {
+  'icon'  : '',
 
-		'sub'		: {
+  'sub'		: {
 
-			'media-video': {
-				'icon' : '',
-			},
+    'media-video': {
+      'icon' : 'fas fa-video',
+    },
 
-			'media-image': {
-				'icon' : '',
-			},
+    'media-image': {
+      'icon' : 'far fa-images',
+    },
 
-			'media-audio': {
-				'icon' : '',
-			},
+    'media-audio': {
+      'icon' : 'fas fa-volume-up',
+    },
 
-			'media-software': {
-				'icon' : '',
-			},
-
+    'media-software': {
+      'icon' : 'far fa-window-restore',
     },
 
   },
+
+},
 
 
   'library': {

@@ -2259,7 +2259,11 @@ async function updateValueInPanes( name, value ){
 
   }
 
-  iframeEl.contentWindow.postMessage( { event_id: 'set-value', data: [ name, value ] }, '*' );
+  if ( valid( iframeEl ) ){
+
+    iframeEl.contentWindow.postMessage( { event_id: 'set-value', data: [ name, value ] }, '*' );
+
+  }
 
 }
 
@@ -3937,16 +3941,13 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   $( '#results' ).html( 
     '<div class="intro-box">' +
-      '<img alt="library photo" style="width: 100%; border-radius:0.2em;" src="' + explore.base + '/app/explore2/assets/images/front.jpg">' +
+      '<img title="Boston Public Library" alt="Boston Public Library" style="width: 100%; border-radius:0.2em;" src="' + explore.base + '/app/explore2/assets/images/front.jpg">' +
 
       '<p>' + 
-        '<span id="app-guide-welcome-text">' + 
-          'Conzept is an attempt to create an encyclopedia for the 21st century. A modern topic-exploration tool based on Wikipedia, Wikidata, Open Library, GBIF, YouTube and other information sources. You can read more about this project in the user guide. <br><br> Enjoy your explorations! If you experience an issue, please submit it an issue or send a tweet.' +
-        '</span> &nbsp;' + 
-
+        '<span id="app-guide-welcome-text"></span> &nbsp;' + 
         '<span id="app-social-icons">' + 
-          '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fab fa-twitter"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository"><i class="fab fa-github"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fab fa-twitter"></i></a> &nbsp;' + 
         '</span>' + 
       '</p>' + 
     
@@ -4076,7 +4077,8 @@ async function setPopularCover() {
   }
 
   let date          = new Date();
-  let year          = date.getFullYear();
+  let year          = '2021';
+  //let year        = date.getFullYear();
   let day_of_month  = date.getDate();
 
   let month         = ''; 

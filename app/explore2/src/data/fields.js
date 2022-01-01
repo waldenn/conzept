@@ -2068,7 +2068,7 @@ var conzept_fields = {
 */
 
 'defining_formula' : {
-  create_trigger: 'setTags( item, [ "meta-concept", "mathematics" ] )',
+  //create_trigger: 'setTags( item, [ "meta-concept", "mathematics" ] )',
   title: 'defining formula',
   prop: '2534',
   type: 'symbol-string',
