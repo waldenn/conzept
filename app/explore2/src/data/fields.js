@@ -11741,19 +11741,6 @@ var conzept_fields = {
 },
 */
 
-'arxiv' : {
-  create_condition: true,
-  title: 'arXiv',
-  prop: '',
-  type: 'url',
-  mv: false,
-  url: 'https://arxiv.org/search/?query=${title_quoted}&searchtype=all&source=header',
-  icon: 'fas fa-subscript',
-  text: 'arXiv',
-  section: ['science-open-journals'],
-  rank: [21],
-},
-
 'pubmed' : {
   create_condition: true,
   title: 'PubMed',
@@ -13501,9 +13488,20 @@ var conzept_fields = {
   rank: [30, 3170],
 },
 
-
-/*`
 'arxiv' : {
+  create_condition: true,
+  title: 'arXiv',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://arxiv.org/search/?query=${title_quoted}&searchtype=all&source=header',
+  icon: 'fas fa-subscript',
+  text: 'arXiv',
+  section: ['science-open-journals'],
+  rank: [21],
+},
+
+'arxiv_search' : {
   // TODO: if we can limit "true" to science-topics, we can show this button in the main list
   value: 'arxiv:${item.title}:true',
   title: 'arXiv science',
@@ -13511,13 +13509,11 @@ var conzept_fields = {
   type: 'rest-json',
   mv: true,
   url: '',
-  //icon: 'far fa-newspaper',
   icon: 'fas fa-subscript',
   text: 'arXiv',
-  section: '',
-  rank: 1,
+  section: 'science-search-tools',
+  rank: 29,
 },
-*/
 
 'archive_scholar' : {
   value: 'archive-scholar:${item.title}:true',
