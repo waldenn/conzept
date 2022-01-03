@@ -4770,7 +4770,7 @@ async function insertMultiValues( args ){
           }
 					else if ( args.list.startsWith('arxiv:') ){
 
-            fetchArxiv( args, args.list );
+            fetchArxiv( args, null, 1, 'relevancy' );
 
           }
 					else if ( args.list.startsWith('gdelt-news:') ){
