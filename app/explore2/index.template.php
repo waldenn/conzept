@@ -59,6 +59,16 @@ if ( $viewMode == '' ){ // no view mode set yet
 
 }
 
+$locales = array_map('trim', explode(',', 'CONZEPT_LOCALES' ));
+
+$locale_options_html = '';
+
+foreach ($locales as &$loc) {
+
+  $locale_options_html .= '<option value="' . $loc . '">' . $loc . '</option>';
+
+}
+
 $main_css = '
   <link rel="stylesheet" href="../app/explore2/dist/css/various/materialize.min.css" type="text/css">
   <link rel="stylesheet" href="../app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14" type="text/css">
@@ -315,22 +325,11 @@ $settings_html = '
 
                   <label style="display:inline; font-size: larger;" for="locale"><span id="app-menu-locale"></span>: &nbsp;</label>
                   <select id="locale" width="20px" style="top: 0px !important;">
-                    <option value="">select locale</option>
-                    <option value="ceb">ceb</option>
-                    <option value="en">en</option>
-                    <option value="es">es</option>
-                    <option value="de">de</option>
-                    <option value="fr">fr</option>
-                    <option value="hi">hi</option>
-                    <option value="ja">ja</option>
-                    <option value="nl">nl</option>
-                    <option value="pt">pt</option>
-                    <option value="ru">ru</option>
-                    <option value="sv">sv</option>
-                    <option value="zh">zh</option>
-                  </select>
+                    <option value="">select locale</option>' .
+                    $locale_options_html .
+                  '</select>
 
-                </div>
+               </div>
 
               </div>
 

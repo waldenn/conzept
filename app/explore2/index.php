@@ -5,7 +5,6 @@ require_once 'php/Mobile_Detect.php';
 $detect       = new Mobile_Detect;
 $user_agent   = getenv("HTTP_USER_AGENT");
 
-$app_version  = '_0.50.002_';
 $viewMode     = '';
 $font         = 'Quicksand';
 $ua_string    = '';
@@ -60,6 +59,16 @@ if ( $viewMode == '' ){ // no view mode set yet
 
 }
 
+$locales = array_map('trim', explode(',', 'ar, ceb, en, es, de, fr, hi, ja, nl, pt, ru, sv, zh' ));
+
+$locale_options_html = '';
+
+foreach ($locales as &$loc) {
+
+  $locale_options_html .= '<option value="' . $loc . '">' . $loc . '</option>';
+
+}
+
 $main_css = '
   <link rel="stylesheet" href="../app/explore2/dist/css/various/materialize.min.css" type="text/css">
   <link rel="stylesheet" href="../app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14" type="text/css">
@@ -78,61 +87,64 @@ $main_css = '
   <link rel="stylesheet" href="../app/explore2/dist/css/various/flag-icon.min.css" type="text/css">
 
   <!-- Conzept CSS -->
-  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.50.002" type="text/css">
-  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.50.002"  type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.50.002"  type="text/css">
+  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.50.009" type="text/css">
+  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.50.009"  type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.50.009"  type="text/css">
 ';
 
 $main_script = '
   <!-- jQuery dependent scripts -->
-  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.50.002"></script>
+  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.50.009"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.utils.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.lcd.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.languagefilter.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.core.js"></script>
-  <script src="../app/explore2/libs/jquery.fontselect.js?v0.50.002"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
+  <script src="../app/explore2/libs/jquery.fontselect.js?v0.50.009"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
   <script src="../app/explore2/node_modules/jqtree/tree.jquery.js"></script>
   <script src="../app/explore2/node_modules/select2/dist/js/select2.min.js"></script>
-  <script src="../app/explore2/node_modules/jqtree/tree.jquery.js?v0.50.002"></script>
-  <script src="../app/explore2/libs/materialize.min.js?v0.50.002"></script> <!-- no NPM-package -->
+  <script src="../app/explore2/node_modules/jqtree/tree.jquery.js?v0.50.009"></script>
+  <script src="../app/explore2/libs/materialize.min.js?v0.50.009"></script> <!-- no NPM-package -->
   <script src="../app/explore2/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.50.002"></script>
+  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.50.009"></script>
 
   <!-- non-jQuery dependent scripts -->
-  <script src="../app/explore2/libs/splitter.js?v0.50.002"></script> <!-- contains some custom code modifications -->
-  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.50.002"></script>
-  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.50.002"></script>
+  <script src="../app/explore2/libs/splitter.js?v0.50.009"></script> <!-- contains some custom code modifications -->
+  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.50.009"></script>
+  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.50.009"></script>
   <script src="../app/explore2/node_modules/banana-i18n/dist/banana-i18n.js"></script>
-  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.50.002"></script>
+  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.50.009"></script>
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
 
   <!-- Conzept data scripts -->
-  <script src="../app/explore2/dist/data/fields.js?v0.50.002"></script>
+  <script src="../app/explore2/dist/data/fields.js?v0.50.009"></script>
   <script src="../app/explore2/dist/data/iso2_codes.js"></script>
-  <script src="../app/explore2/dist/data/languages.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/indicators.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/countries.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/former_countries.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/tags.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/chains.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/cover_data.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/osm_tags.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/playlist.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/sections.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/data/sections_init.js?v0.50.002"></script>
+  <script src="../app/explore2/dist/data/languages.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/indicators.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/countries.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/former_countries.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/tags.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/chains.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/cover_data.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/osm_tags.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/playlist.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/sections.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/data/sections_init.js?v0.50.009"></script>
 
   <!-- Conzept core scripts -->
-  <script src="../app/explore2/dist/core/env.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/utils.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/setWikidata.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/createItemHtml.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/fetch_lib.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/fetches.js?v0.50.002"></script>
-  <script src="../app/explore2/dist/core/lib.js?v0.50.002"></script> <!-- Conzept app core library -->
-  <script src="../app/explore2/dist/core/main.js?v0.50.002"></script> <!-- Conzept app entry point -->
+  <script src="../app/explore2/dist/core/env.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/utils.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/setWikidata.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/createItemHtml.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/fetch_lib.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/fetches.js?v0.50.009"></script>
+  <script src="../app/explore2/dist/core/lib.js?v0.50.009"></script> <!-- Conzept app core library -->
+  <script src="../app/explore2/dist/core/main.js?v0.50.009"></script> <!-- Conzept app entry point -->
+
+  <!-- tracker -->
+  <script type="text/javascript"> window._paq = []; var u = "//conze.pt/stats/"; window._paq.push(["setCookieDomain", "*.conzept.org"]); window._paq.push(["trackPageView"]); window._paq.push(["enableLinkTracking"]); window._paq.push(["enableHeartBeatTimer", 30]); window._paq.push(["setTrackerUrl", u+"p.php?"]); window._paq.push(["setSiteId", "2"]); window._paq.push(["trackEvent", "Explore", "app"]); var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s); </script>
 ';
 
 $sticky_html = '
@@ -158,12 +170,12 @@ $sticky_html = '
       <li class="tab col s3  topics-button" title="topics"><a id="tab-head-topics" href="#swipe-2" aria-label="topics tab"><i class="fa fa-th-large"></i></a></li>
       <li class="tab col s3" title="topics"><a id="tab-head-concepts" class="active" href="#swipe-3" aria-label="topics tab"><i class="fas fa-stream"></i></a></li>
       <li class="tab col s3" style="display:none;" title="lists"><a id="tab-head-lists" href="#swipe-4" aria-label="lists tab"><i class="fas fa-list-ul"></i></a></li>
-      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#swipe-5" aria-label="bookmarks tab"><i class="far fa-clipboard"></i></a></li>
+      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#swipe-5" aria-label="bookmarks tab"><i class="far fa-bookmark"></i></a></li>
       <li class="tab col s3" title="tools"><a id="tab-head-tools" href="#swipe-7" aria-label="tools tab"><i class="fas fa-wrench"></i></a></li>
       <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#swipe-1" aria-label="settings tab"><i class="fas fa-cog"></i></a></li>
       <li class="tab col s3" title="help"><a id="tab-head-help" href="#swipe-6" aria-label="help tab"><i class="fas fa-question"></i></a></li>
       <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fas fa-expand-arrows-alt" title="toggle fullscreen (main app)"></i></a></li>
-      <li class="tab col s3 global-action" id="add-bookmark" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="bookmark this page"><a id="add-bookmark" style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="addBookmark(event, &quot;clicked&quot; )"><i id="bookmarkIcon" class="far fa-bookmark" title="bookmark current URL"></i></a></li>
+      <!--li class="tab col s3 global-action" id="add-bookmark" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="bookmark this page"><a id="add-bookmark" style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="addBookmark(event, &quot;clicked&quot; )"><i id="bookmarkIcon" class="far fa-bookmark" title="bookmark current URL"></i></a></li-->
     </ul>
 
   </div>
@@ -313,22 +325,11 @@ $settings_html = '
 
                   <label style="display:inline; font-size: larger;" for="locale"><span id="app-menu-locale"></span>: &nbsp;</label>
                   <select id="locale" width="20px" style="top: 0px !important;">
-                    <option value="">select locale</option>
-                    <option value="ceb">ceb</option>
-                    <option value="en">en</option>
-                    <option value="es">es</option>
-                    <option value="de">de</option>
-                    <option value="fr">fr</option>
-                    <option value="hi">hi</option>
-                    <option value="ja">ja</option>
-                    <option value="nl">nl</option>
-                    <option value="pt">pt</option>
-                    <option value="ru">ru</option>
-                    <option value="sv">sv</option>
-                    <option value="zh">zh</option>
-                  </select>
+                    <option value="">select locale</option>' .
+                    $locale_options_html .
+                  '</select>
 
-                </div>
+               </div>
 
               </div>
 
@@ -646,9 +647,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/docs/guide" target="infoframe" title="guide: start" aria-label="docs"><i class="fas fa-book fa-2x"></i></a></li>
-                  <!--li> &nbsp; - <a href="https://conze.pt/docs/guide#basics" target="infoframe" title="guide: basics functions" aria-label="docs">basic functions</a></li>
-                  <li> &nbsp; - <a href="https://conze.pt/docs/guide#gbif" target="infoframe" title="guide: GBIF integration" aria-label="docs">organism info</a></li-->
+                  <li> &nbsp; <a href="https://conze.pt/guide" target="infoframe" title="guide" aria-label="docs"><i class="fas fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 
@@ -670,20 +669,19 @@ $settings_html = '
 
             <details class="" closed>
               <summary><span id="app-menu-credits"></span></summary>
-                <ul>
-                  <li>&nbsp; (todo: list used software projects, licenses, etc.)</li>
-                </ul>
+                  Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="software integrations" aria-label="docs"><u>integrated software</u></i></a>.<br/>
+
+                  Conzept has received funding through the <a href="https://nlnet.nl/project/Conzept/" target="_blank"><u>NLnet Foundation</u></a> (backed by the <a href="https://www.ngi.eu" target="_blank" title="organization"><u>NGI4eu</u></a> and EU Council vision and funds). Thank you for this support!
             </details>
 
             <details class="" closed>
               <summary><span id="app-menu-about"></span></span></summary>
                 <ul>
-                  <li>&nbsp; <span id="app-menu-version"></span>: v0.50.002</li>
+                  <li>&nbsp; <span id="app-menu-version"></span>: v0.50.009</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news">Twitter</a></li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept-issues" aria-label="Github issues">GitHub issues</a></li>
-                  <li>&nbsp; &nbsp; © 1999-2021 <span id="app-menu-all-rights-reserved"></span></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="Github">GitHub</a></li>
                 </ul>
             </details>
 
@@ -726,7 +724,7 @@ echo '
 
     <meta charset="utf-8" />
 
-    <link rel="manifest" href="/manifest.json?v0.50.002">
+    <link rel="manifest" href="/manifest.json?v0.50.009">
 
     <!-- title -->
     <title>conzept encyclopedia</title>
@@ -790,13 +788,13 @@ if ( $viewMode == 'mobile' ){
   // iOS Safari style-fixes
   if ( strstr($ua_string, " AppleWebKit/") && strstr($ua_string, " Safari/") && !strstr($ua_string, " CriOS") ){
 
-      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.50.002">';
+      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.50.009">';
 
   };
 
   echo '
     <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css">
-    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.50.002">
+    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.50.009">
   </head>
 
   <body class="mobile">
@@ -825,7 +823,7 @@ if ( $viewMode == 'mobile' ){
 
     </div>
 
-    <script src="../app/explore2/libs/swiper.min.js?v0.50.002"></script>
+    <script src="../app/explore2/libs/swiper.min.js?v0.50.009"></script>
 
     ' . $main_css . '
     ' . $main_script . '

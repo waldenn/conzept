@@ -4098,6 +4098,8 @@ async function setPopularCover() {
 
   }
 
+  month = '12';
+
   // FIXME looks like something sets the language to 'eng' at times, research what is causing this.
   if ( explore.language === 'eng' ){
     explore.language = 'en'; // or use: getLangCode2( lang3 )
