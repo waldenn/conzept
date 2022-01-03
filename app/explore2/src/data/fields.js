@@ -602,6 +602,18 @@ var conzept_fields = {
   rank: 1,
 },
 
+'sparql_endpoint_url' : {
+  render_condition: false,
+  title: 'SPARQL Endpoint URL',
+  prop: '5305',
+  type: 'symbol-string',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 // see also:
 // 	https://partridgejiang.github.io/Kekule.js/
 // 	wikidata: CC(=O)OC1=CC=CC=C1C(=O)O
@@ -4036,6 +4048,20 @@ var conzept_fields = {
   text: 'manufact',
   section: ['business', 'main'],
   rank: [100, 2060],
+},
+
+'sparql_explorer' : {
+  title: 'SPARQL Endpoint Explorer',
+  create_condition: 'valid( item.sparql_endpoint_url )',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
+
+  icon: 'fas fa-project-diagram',
+  text: 'sparql explorer',
+  section: ['meta', 'science-datasets-topical', 'main'],
+  rank: [ 49, 69, 63 ],
 },
 
 'subclass_of' : {
