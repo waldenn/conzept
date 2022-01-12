@@ -152,6 +152,7 @@ li.id.noKids, li.size.noKids {
 
   .catmore.multi-value li {
     width: min-content !important;
+    overflow-y: hidden;
   }
 
   .catmore.multi-value a {
@@ -271,7 +272,7 @@ li {
 }
 
 ul.multi-value li {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
   font-weight: bold;
   list-style: none !important;
   line-height: 1.4rem;

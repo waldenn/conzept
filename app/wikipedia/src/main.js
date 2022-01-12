@@ -27,7 +27,7 @@ const explore = {
   voice_pitch  	: '1',                                // used for TTS
   hash         	: location.hash.substring(1) || '',
 	qid						: getParameterByName('qid') || '',    // global identifier
-	embedded			: getParameterByName('embedded') || '', // signals to open links its local iframe
+	embedded			: getParameterByName('embedded') || '', // signals to open links in the local iframe
 
   languages     : [],
 
@@ -222,9 +222,27 @@ $( document ).ready( function() {
 
         // get all the languages for this wikipedia-article
         // see: https://www.mediawiki.org/wiki/API:Langlinks
-        const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( explore.title ) + '&prop=langlinks&lllimit=500&format=json';
+        let title = '';
 
-        //console.log( url );
+        if ( explore.embedded ){
+
+          // https://stackoverflow.com/questions/5396560
+          // test URL: https://conze.pt/app/wikipedia/?t=Ch%C3%A2teau%20de%20Bussi%C3%A8re&l=fr&voice=fr-FR&qid=2968712&dir=ltr&embedded=true#_
+          title = decodeURI( title );
+          //console.log( title );
+          //title = decodeURIComponent( escape( title ) );
+          //title = unescape( URIComponent( title ) );
+
+        }
+        else {
+
+          title = encodeURIComponent( explore.title );
+
+        }
+
+        const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json';
+
+        console.log( url );
 
         $.ajax({
           url: url,
@@ -515,7 +533,7 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
                 if ( typeof res.parse === undefined || typeof res.parse === 'undefined' ){ // article does not exist in this language-Wikipedia
 
-                  //console.log('no article found...: ', explore.language, explore.title );
+                  console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
 
                   window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
 

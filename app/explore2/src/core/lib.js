@@ -954,11 +954,22 @@ function init() {
 
   //}
 
+  let cover_topic_html = '';
+
+  $.each( cover_topics, function ( i, v ) {
+
+    cover_topic_html += '<option value="' + v + '">' + v + '</option>'; // TODO: how to translate the label in all languages?
+
+  });
+
+  $('#covertopic').append( cover_topic_html );
+
   // handle clicks on json-tree leaf-nodes
-  $('#swipe-5').on( 'click', '.LIText', function(){ jsontreeClick( $(this) ) }  );
+  //$('#swipe-5').on( 'click', '.LIText', function(){ jsontreeClick( $(this) ) }  );
 
 }
 
+/*
 function jsontreeClick( el ){
 
   let type  = el.children().eq(0).text().trim() || '';
@@ -968,11 +979,12 @@ function jsontreeClick( el ){
 
     const url = '';
 
-    renderToPane( 'p1', explore.base + '/app/wikipedia/?t=' + encodeURIComponent( value ) + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + '&dir=' + explore.language_direction  );
+    renderToPane( 'p1', explore.base + '/app/wikipedia/?t=' + encodeURIComponent( value ) + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded );
 
   }
 
 }
+*/
 
 function removeBookmarkClass(){
 
@@ -2484,6 +2496,36 @@ function setupOptionPersonas() {
       (async () => { await explore.db.set('personas', $(this).val() ); })();
 
       setPersonas();
+
+    })
+
+  })();
+
+}
+
+
+async function setTopicCover() {
+
+  $('#covertopic').find('option[value="' + explore.covertopic + '"]').prop('selected', true);
+  $('#covertopic').formSelect();
+
+}
+
+function setupOptionTopicCover(){
+
+  (async () => {
+
+    explore.covertopic = await explore.db.get('covertopic');
+    explore.covertopic = ( explore.covertopic === null || explore.covertopic === '' ) ? '' : explore.covertopic;
+
+    setTopicCover();
+
+    $('#covertopic').change(function() {
+
+      explore.covertopic = $(this).val();
+      (async () => { await explore.db.set('covertopic', $(this).val() ); })();
+
+      setTopicCover();
 
     })
 
@@ -4062,9 +4104,213 @@ async function setDefaultDisplaySettings( cover, type ) {
   }
   else { // desktop
 
-    setPopularCover();
+    if ( listed( cover_topics, [ explore.covertopic ] ) ){ // show cover-topic
+
+      renderTopicCover( explore.covertopic );
+
+    }
+    else { // show default cover
+
+      setPopularCover();
+
+    }
 
   }
+
+}
+
+async function renderTopicCover( name ) {
+
+  $('#blink').show();
+
+  let url = '';
+
+  if ( name === 'featured-article' ){ // non-standard URL
+
+    url = explore.base + '/app/explore2/assets/json/lists/featured-article/' + explore.language + '.json';
+
+  }
+  else if ( name === 'featured-portal' ){ // non-standard URL
+
+    url = explore.base + '/app/explore2/assets/json/lists/featured-portal/' + explore.language + '.json';
+
+  }
+  else { // standard URL
+
+    url = explore.base + '/app/explore2/assets/json/lists/' + name + '.json';
+
+  }
+
+  //console.log( name, url );
+
+  fetch( url )
+    .then(response => response.json())
+    .then( list => {
+
+      const nr  = Math.floor( Math.random() * list.length );
+      let qid = 'Q' + list[ nr ];
+      let other_id = '';
+
+      if ( name === 'country-map' ){ // split QID|OSMID
+
+        const fields = qid.split('|');
+        qid = fields[0];
+        other_id = fields[1];
+
+      }
+
+      var promiseB = fetchLabel([ qid ]).then(function(result) {
+
+        let label = '';
+
+        if ( valid( result.entities ) ){
+
+          if ( result.entities[ qid ]?.labels[ explore.language ] ){
+
+            label = result.entities[ qid ].labels[ explore.language ].value;
+
+            // content pane info
+            if ( name === 'country-map' ){ // split QID|OSMID
+
+              handleClick({ 
+                id        : 'n1-0',
+                type      : 'link',
+                title     : label,
+                language  : explore.language,
+                qid       : '' + qid,
+                url       : `${explore.base}/app/map/?l=${explore.language}&bbox=&osm_id=${other_id}&qid=${qid}&title=${label}`,
+                tag       : '',
+                languages : '',
+                custom    : '',
+                target_pane : 'p1',
+              });
+
+            }
+            else {
+
+              let cover_name = label || '';
+              cover_name = cover_name.replace(/_/g, ' ');
+
+              let cover_file = '';
+              let cover_type = '';
+              let cover_css_extra = '';
+
+              let fontlink_html = '<link id="fontlink" />';
+
+              if ( explore.font1 !== 'Quicksand' ){ // only add font-link for alternative fonts
+
+                fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
+
+              }
+
+              // API format: https://en.wikipedia.org/w/api.php?action=query&titles=Flamenco&prop=pageimages&format=json&pithumbsize=600
+              let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600&pilimit=1';
+
+              let covers = [ 'abstract_004.jpg', 'abstract_005.jpg' ];
+
+              const abstract_cover = covers[ Math.floor( Math.random() * covers.length) ];
+
+              $.ajax({
+
+                url: url_api_image,
+
+                dataType: "jsonp",
+
+                success: function( img_data ) {
+
+                  if ( typeof img_data.query.pages[ Object.keys( img_data.query.pages)[0] ] === undefined ){ // no cover image found
+
+                    cover_file = explore.base + '/app/explore2/assets/images/wallpapers/' + abstract_cover;
+
+                  }
+                  else {
+
+                    if (  typeof img_data.query.pages[ Object.keys( img_data.query.pages)[0] ].thumbnail === undefined ||
+                          typeof img_data.query.pages[ Object.keys( img_data.query.pages)[0] ].thumbnail === 'undefined' ){ // no cover image found
+
+                      cover_file = explore.base + '/app/explore2/assets/images/wallpapers/' + abstract_cover;
+                      
+                    }
+                    else {
+
+                      // TODO?: get higher-resolution image
+                      cover_file = img_data.query.pages[ Object.keys( img_data.query.pages)[0] ].thumbnail.source || '';
+                      cover_css_extra = 'background-size: contain !important;';
+
+                    }
+
+                  }
+
+                  $( explore.baseframe ).attr({ "srcdoc": 
+                    '<!DOCTYPE html> <html lang=' + explore.language + '> <head>' +
+                    '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=5.0">' +
+                    '<link rel="stylesheet" href="' + explore.base + '/app/explore2/node_modules/animate.css/animate.min.css">' +
+                    '<link rel="stylesheet" href="' + explore.base + '/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14">' +
+                    '<link rel="stylesheet" href="' + explore.base + '/app/explore2/dist/css/conzept/common.css">'+
+                    '<link rel="stylesheet" href="' + explore.base + '/app/explore2/dist/css/conzept/cover.css?0.10">' +
+                    fontlink_html +
+
+                    '</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
+
+                    '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=wikipedia&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="far fa-copyright fa-2x"></i></span></a></span>' + 
+
+                    '<img id="color-test-image" src="" style="display:none;"></img>' +
+                    '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions" style="display:none;"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>' +
+
+                    '<script>let language = "en"; let hash = ""; let title = "' + cover_name.trim() + '"; const file = "' + cover_file + '"; let type = "' + cover_type  + '"; const fontsize = ' + explore.fontsize + '</script>' +
+                    '<script src="' + explore.base + '/app/explore2/node_modules/jquery/dist/jquery.min.js"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/node_modules/keyboardjs/dist/keyboard.min.js"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/node_modules/sunzi-color-thief/dist/color-thief.umd.js"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/dist/core/utils.js?' + explore.app_version + '"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/dist/core/cover.js?' + explore.app_version + '"></script>' +
+
+                    '</body></html>'
+
+                  });
+
+                },
+
+              });
+
+            }
+
+          }
+          else {
+
+            console.log('todo: handle topic cover without a matching language')
+
+            handleClick({ 
+              id        : 'n1-0',
+              type      : 'wikipedia-qid',
+              title     : '',
+              language  : explore.language,
+              qid       : '' + qid,
+              url       : '',
+              tag       : '',
+              languages : '',
+              custom    : '',
+              target_pane : 'p1',
+            });
+
+          }
+
+        }
+        else {
+
+          $.toast({
+              heading: 'no results found',
+              text: '',
+              hideAfter : 2000,
+              stack : 1,
+              showHideTransition: 'slide',
+              icon: 'info'
+          })
+
+        }
+
+    });
+
+  });
 
 }
 
@@ -4133,9 +4379,9 @@ async function setPopularCover() {
       }
 
       // https://en.wikipedia.org/w/api.php?action=query&titles=Flamenco&prop=pageimages&format=json&pithumbsize=600
-      let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600';
+      let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600&pilimit=1';
 
-      let covers = [ 'abstract_004.jpg', 'abstract_005.jpg', 'abstract_006.jpg'  ];
+      let covers = [ 'abstract_004.jpg', 'abstract_005.jpg' ];
       const abstract_cover = covers[ Math.floor( Math.random() * covers.length) ];
 
       $.ajax({
@@ -4446,10 +4692,10 @@ function getWikidataFromTitle( title, allow_recheck, target_pane ){
 
             if ( target_pane === 'p0' || target_pane === 'p1' || document.getElementById('infoframeSplit2') === null ){ // single-content-frame
               resetIframe();
-              $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction });
+              $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
             }
             else { // dual-content-frame
-              $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction });
+              $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded  });
             }
 
           }
@@ -4722,6 +4968,11 @@ async function insertMultiValues( args ){
             fetchDepicts( args, null, 1, '%3Fdate' );
 
           }
+					else if ( args.list.startsWith('wikicommons') ){
+
+            fetchWikicommons( args, null, 1, 'DESC(%3Fdate)' );
+
+          }
 					else if ( args.list.startsWith('met') ){
 
             fetchMET( args, null, 1, 'relevance' );
@@ -4770,7 +5021,7 @@ async function insertMultiValues( args ){
           }
 					else if ( args.list.startsWith('arxiv:') ){
 
-            fetchArxiv( args, null, 1, 'relevancy' );
+            fetchArxiv( args, null, 1, 'descending' );
 
           }
 					else if ( args.list.startsWith('gdelt-news:') ){
@@ -5930,7 +6181,7 @@ async function renderType( args ) {
           ){ // render without wikidata-info
 
         resetIframe();
-        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction });
+        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded });
 
       }
       else { // render with wikidata-info
@@ -5979,7 +6230,7 @@ async function renderType( args ) {
         }
         else { // user is coming from an internal click, which should have the wikidata already
 
-          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction );
+          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
 
         }
 
@@ -6152,13 +6403,13 @@ async function renderType( args ) {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
 
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
 
       }
       else {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
 
         $('.fixed-action-btn.direction-left').hide();
 
@@ -6779,6 +7030,7 @@ function postIframeLoad() {
   setBgmode();
   setDarkmode();
   setColorFilter();
+  setTopicCover();
   setMulticolumn();
   setLinkPreview();
   updateLocale( explore.locale );
@@ -8304,6 +8556,71 @@ async function addToCompare( qid ) {
 
 }
 
+async function addToMapCompare( url ) {
+
+  //console.log( url );
+
+  explore.map_compares.push( url );
+
+  console.log( explore.map_compares.length );
+
+  //explore.map_compares = [...new Set( explore.map_compares )]; // use only the unique values
+
+  let message = '';
+
+  if ( explore.map_compares.length >= 1 ){
+
+    let queries = [];
+
+    $.each( explore.map_compares, function( i, url_ ) {
+
+      let item = {
+        url   : url_,
+        title : 'foo',
+      };
+
+      queries.push( item );
+
+    });
+
+    queries = encodeURIComponent( JSON.stringify( queries ) );
+
+    //explore.custom = explore.compares;
+
+    handleClick({
+      id        : 'n1-0',
+      type      : 'link',
+      title     : explore.q.trim(),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURIComponent( `${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=&title=&query=${queries}` ),
+      tag       : '',
+      languages : '',
+      //ids     : explore.compares.join(), // TODO should we only pass this data to ONE field?
+      //custom  : explore.compares.join(),
+      target_pane : 'p1',
+    });
+
+    explore.custom = '';
+
+    message = 'showing map comparison of ' + explore.map_compares.length + ' topics';
+
+  }
+  //else {
+  //  message = 'Add at least one other topic to view the map comparision';
+  //}
+
+  $.toast({
+    heading: '<span class="icon"><i class="fas fa-plus" title="add to map compare"></i></span> &nbsp; topic added to map compare list',
+    text: message,
+    hideAfter : 5000,
+    showHideTransition: 'slide',
+    icon: 'success',
+    stack: 1,
+  })
+
+}
+
 async function queryLocationTypeInstances( qid, country_qid ) {
 
   qid = qid.trim();
@@ -8460,7 +8777,7 @@ function startSpeakingArticle( title, qid, language ){
 
     explore.synth_paused = false;
 
-    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
+    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
   else { // resume existing utterence
@@ -8631,10 +8948,10 @@ $('#swipe-3').on('click', 'h6 > a', function(event) {
         const title_quoted  = quoteTitle( title );
 
         let more_html = 
-          '<ul class="catmore multi-value" name="' + args.target + '"><li>' +
-            '<span class="mv-extra-buttons noindent">' +
+          '<ul class="catmore multi-value" name="' + args.target + '">' +
+            '<li><span class="mv-extra-buttons noindent">' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="wikipedia" aria-label="wikipedia"' + setOnClick( Object.assign({}, args, { type: 'wikipedia', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fab fa-wikipedia-w" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article"' + setOnClick( Object.assign({}, args, { type: 'wikipedia', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fas fa-align-justify" style="position:relative;"></i></span></a>' +
 
               '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fas fa-video" style="position:relative;"></i></span></a>' +
 
@@ -8644,8 +8961,15 @@ $('#swipe-3').on('click', 'h6 > a', function(event) {
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="audio" aria-label="audio"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://archive.org/search.php?query=' + title_quoted + '&and[]=mediatype%3A%22audio%22&and[]=mediatype%3A%22etree%22', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fas fa-music" style="position:relative;"></i></span></a>' ) +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://www.bing.com/images/search?&q=' + title_quoted + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + explore.language + '-' + explore.language ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="far fa-images" style="position:relative;"></i></span></a>' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://openlibrary.org/search?q=' + title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fab fa-mizuni" style="position:relative;"></i></span></a>' +
-            '</span>' +
-          '</li></ul>';
+
+            '</span></li>' +
+
+            '<li><span class="mv-extra-buttons noindent audio-buttons">' +
+              '<a href="javascript:void(0)" title="speak article" aria-label="speak article" onclick="startSpeakingArticle( &apos;' + title + '&apos;, &apos;&apos;, &apos;' + explore.language + '&apos; )"> <span class="icon"><i class="fas fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fas fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fas fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+            '</span></li>' +
+          '</ul>';
 
         let more = '<details id="cat-' + hashCode( title ) + '" class="catmore" title="see more links"><summary class="catmore">' + title + '</summary>' + more_html + '</details><br/>';
 

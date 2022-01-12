@@ -2104,7 +2104,7 @@ var reasonator = {
         if ( project === 'current' || project === 'mainwp' || project === 'wiki' ){ // wikipedia -> conzept
 
 
-          const wikipedia_url = '/wikipedia/?t=' + encodeURIComponent( site.page ) + '&l=' + site.code + '&qid=' + qid;
+          const wikipedia_url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + encodeURIComponent( site.page ) + '&l=' + site.code + '&qid=' + qid;
           //const conzept_url = '/explore/' + encodeURIComponent( site.page ) + '?l=' + site.code + '&t=wikipedia-qid&i=' + qid ;
 
 				  h += '<td><a href="javascript:void(0)" onclick="gotoUrl( &quot;' + wikipedia_url + '&quot;, false )" onauxclick="gotoUrl( &quot;' + wikipedia_url + '&quot;, true )" class="wikipedia" target="_blank">' + site.page + '</a></td></tr>';

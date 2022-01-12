@@ -54,7 +54,6 @@
   src: url( '/fonts/catamaran/catamaran-latin-400.woff2' ) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-*/
 
 @font-face {
   font-family: 'Crimson Text';
@@ -64,9 +63,10 @@
   src: url( '/fonts/crimson/CrimsonText-Regular.woff2' ) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+*/
 
 pre {
-  font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+  font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, Courier New, monospace;
   font-size: smaller;
   line-height: 1.5rem;
   padding: 0.3rem 1rem;
@@ -137,7 +137,7 @@ sup {
   margin-bottom: 0.6rem;
 }
 
-#coordinates {
+#coordinates, .penicon {
   display: none;
 }
 
@@ -284,9 +284,9 @@ blockquote {
 }
 
 blockquote, .poem, .templatequote { /* p.sid ~ dl > dd */
-  font-family: 'Crimson Text', 'Times New Roman', serif !important;
-  font-weight: bolder;
-  font-size: 1.2rem;
+  font-family: Verdana, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 1rem;
   /* font-style: oblique; */
 }
 
@@ -306,6 +306,7 @@ blockquote, .poem, .templatequote { /* p.sid ~ dl > dd */
 blockquote .poem {
   margin-left: 0rem;
   border: none;
+  font-style: oblique;
 }
 
 /* collapsable ToC for mobile */
@@ -355,8 +356,13 @@ blockquote .poem {
 }
 
 *:focus {
+  /*
   outline: none;
   border: 1px solid black;
+  */
+
+  outline: 1px solid black;
+  border: none;
 }
 
 body {
@@ -511,6 +517,10 @@ audio {
   float: right;
   padding: 0rem 0.5rem 0rem 0.5rem;
   /* color: #00000078; */
+}
+
+body.rtl .section-title-button {
+  float: left;
 }
 
 span.tts-buttons button {
@@ -923,12 +933,16 @@ p:first-of-type:first-letter {
   padding-right: 0.5rem;
 }
 
-.reflist-block {
+.reflist-block, .navbox-block {
   padding-top: 1rem;
+  width: 98%;
+  margin-left: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .reference {
-  font-family: Crimson Text;
+  font-family: Verdana;
+  font-size: 0.8rem;
   padding-left: 0.10rem;
 }
 
@@ -1060,6 +1074,14 @@ table.RMinline {
   display: none; /* TOFIX: improve styling, needs removal of figure + img styling first */ 
 }
 
+table.toccolours { /* example: https://conze.pt/app/wikipedia/?t=Franse Revolutie&l=nl&voice=nl-NL&qid=Q6534 */
+  border: 1px solid black;
+  max-width: 60% !important;
+  width: 40% !important;
+  float: right;
+  margin: .7rem 1rem 0rem .7rem;
+}
+
 /*
 .mw-parser-output table.routemap {
   padding: 0;
@@ -1178,7 +1200,8 @@ table.infobox {
 
   max-width: 100% !important;
   table-layout: fixed;
-  overflow-x: auto;
+  /*overflow-x: auto;*/
+  overflow-x: clip;
   border: 1px solid #0000001a;
   border-collapse: separate;
   border-spacing: 0.5em;
@@ -1207,6 +1230,10 @@ table.infobox {
   width: 400px !important;
   max-width: 400px !important;
 
+}
+
+body.rtl .infobox {
+  float: left;
 }
 
 /* FR-language fix */
@@ -1429,6 +1456,10 @@ h1, h2 {
   */
 }
 
+body.rtl h1, h2 {
+  padding-bottom: .8rem;
+}
+
 h2, h3, h4, h5, h6 {
 
   margin-top: 0rem;
@@ -1583,6 +1614,10 @@ figure {
   clear: both;
   padding-left: 15px;
   position: relative;
+}
+
+body.rtl figure {
+  float: left;
 }
 
 .infobox figure, .wikitable figure {
@@ -1817,6 +1852,11 @@ a.toc-link{
   position:absolute;
   width:2px;
 }
+
+body.rtl .toc-link::before{
+  background-color: transparent;
+}
+
 .is-active-link::before{
 }
 
@@ -1898,6 +1938,7 @@ aside {
   z-index: 1;
   top: 0;
   left: -2px;
+  right: none;
   padding-top: 20px;
   padding-left: 1.2rem;
   background-color: inherit;
@@ -1907,6 +1948,11 @@ aside {
   -webkit-overflow-scrolling:touch;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
+}
+
+body.rtl aside {
+  right: -2px;
+  left: none;
 }
 
 aside::-webkit-scrollbar {
@@ -1939,9 +1985,15 @@ main.explore {
   width: 78%;
   max-width: 1100px;
   margin-left: 22%;
+  margin-right: none;
   padding: 0px 0px;
   overflow-y: hidden;
   overflow-x: hidden !important;
+}
+
+body.rtl main.explore {
+  margin-left: none;
+  margin-right: 22%;
 }
 
 #legalnotice {
@@ -2055,14 +2107,19 @@ main.explore {
     display: none;
   }
 
-  #legalnotice {
-    font-size: small;
-    line-height: 100%;
-  }
-
   main.explore {
     margin: auto;
     width: 95%;
+  }
+
+  body.rtl main.explore {
+    margin-left: none;
+    margin-right: 0px;
+  }
+
+  #legalnotice {
+    font-size: small;
+    line-height: 100%;
   }
 
   #wikipedia {

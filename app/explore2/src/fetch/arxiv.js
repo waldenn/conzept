@@ -22,7 +22,7 @@
  * @returns {Promise}
  */
 
-function arxiv_search({ all, author, title, abstrct, journal_ref }, offset_start, offset_end ) {
+function arxiv_search({ all, author, title, abstrct, journal_ref }, offset_start, offset_end, sort_order ) {
 
 	// see:
 	//  https://arxiv.org/help/api/user-manual
@@ -78,7 +78,9 @@ function arxiv_search({ all, author, title, abstrct, journal_ref }, offset_start
 
   }
 
-	baseUrl += '&start=' + offset_start + '&max_results=' + offset_end;
+	//baseUrl += '&start=' + offset_start + '&max_results=' + offset_end;
+
+	baseUrl += '&start=' + offset_start + '&max_results=' + offset_end + '&sortBy=submittedDate&sortOrder=' + sort_order;
 
   let deferred = $.Deferred();
 
@@ -98,26 +100,32 @@ function arxiv_search({ all, author, title, abstrct, journal_ref }, offset_start
       $(xml).find('entry').each(function(index) {
 
           let id				= $(this).find('id').text();
+
+          let file      = $( $(this).find('link')[1] ).attr('href');
+
+          //console.log( $(this).find('link')[1] );
+
           let pub_date	= $(this).find('published').text();
           let title			= $(this).find('title').text();
           let summary		= $(this).find('summary').text();
           let authors		= [];
 
-          $(this).find('author') .each(function(index) {
+          $(this).find('author').each(function(index) {
 
-						authors.push($(this) .text());
+						authors.push($(this).text());
 
 					});
 
           entry.push({
 
-            'title': title,
-            'link': id,
-            'summary': summary,
-            'date': pub_date,
-            'authors': authors,
+            'title'   : title,
+            'link'    : id,
+            'file'    : file,
+            'summary' : summary,
+            'date'    : pub_date,
+            'authors' : authors,
 
-            'total': total
+            'total'   : total // total nr. of results
 
           });
 
@@ -187,9 +195,33 @@ async function fetchArxiv( args, total_results, page, sortby ){
 	let offset_start	= (page - 1) * page_size; 
 	let offset_end		= page * page_size;
 
-  $.when( arxiv_search( { all: keyword }, offset_start, offset_end ) ).then( function( json ) {
+  let sort_select         = '';
+  let sort_select_options = '';
 
-    json = sortObjectsArray( json, 'date' ).reverse();
+  let sort_types          = {
+    descending	: 'newest first',
+    ascending  	: 'oldest first',
+  };
+
+  $.each( Object.keys( sort_types ), function ( i, type ) {
+
+    let selected = '';
+
+    if ( sortby === type ){
+
+      selected = 'selected';
+
+    }
+
+    sort_select_options += '<option value="' + type + '" ' + selected + '>' + sort_types[ type ] + '</option>';
+  
+  });
+
+  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+
+  $.when( arxiv_search( { all: keyword }, offset_start, offset_end, sortby ) ).then( function( json ) {
+
+    //json = sortObjectsArray( json, 'date' ).reverse();
 
     if ( ! valid( json ) ){
 
@@ -206,10 +238,21 @@ async function fetchArxiv( args, total_results, page, sortby ){
       let label = '';
       let img   = '';
       let url   = '';
+      let file  = '';
       let date  = '';
       let desc  = '';
 
+      let authors_html  = '';
+      let authors 			= '';
+
       let abstract_ = '';
+
+      // TODO: handle empty items without PDF-URLs
+      if ( valid( v.file ) ){
+
+        file = v.file.replace('/abs/', '/pdf/') + '#search=' + keyword;
+
+      }
 
       if ( valid( v.date ) ){
 
@@ -229,9 +272,49 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
       }
 
+			if ( valid( v.authors ) ){
+
+				$.each( v.authors, function ( j, name ) {
+
+					if ( typeof name === undefined ){
+
+						//console.log('author undefined! skipping...');
+
+						return 0;
+
+					}
+					else if ( name.startsWith( 'http' ) ){
+
+						return 0;
+
+					}
+
+					// TODO: needs more name cleanups
+					name = name.replace(/[#]/g, '').replace(/_/g, ' ').replace('Künstler/in', '').trim();
+					name = name.replace(/(\r\n|\n|\r)/gm, '');
+
+					let author_name = encodeURIComponent( name );
+
+					let author_url  = 'https://arxiv.org/search/?query=%22' + author_name + '%22&searchtype=author&source=header';
+					//let author_url  = '/app/wikipedia/?t=' + author_name + '&l=' + explore.language + '&voice=' + explore.voice_code;
+
+					authors_html += '<div class="mv-extra-desc">' +
+
+							'<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+
+							'<a href="javascript:void(0)" class="mv-extra-icon" title="author search" aria-label="author search" onclick="openInNewTab( &quot;' + author_url + '&quot;)" onauxclick="openInNewTab( &quot;' + author_url + '&quot;)"> ' + decodeURIComponent( author_name ) + '</a>' +
+
+						'</div>';
+
+				});
+
+        authors = getAbstract( authors_html, 'XYZ', 'authors' );
+
+			}
+
       if ( valid( v.summary ) ){
 
-        desc = getAbstract( v.summary, keyword_match );
+        desc = getAbstract( v.summary, keyword_match, 'abstract' );
 
       }
       else {
@@ -248,7 +331,9 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
       obj[ 'label-' + i ] = {
 
-        title_link:            encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + label + '</a>' + desc ),
+        title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="document" aria-label="document"' + setOnClick( Object.assign({}, args, { type: 'link', url: file, title: args.topic } ) ) + '> ' + label + '</a>' + date + desc + authors ),
+
+        //title_link:            encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + label + '</a>' + date + desc + authors ),
 
         thumb_link: 					'',
 
@@ -276,6 +361,8 @@ async function fetchArxiv( args, total_results, page, sortby ){
       total_results : total_results,
 			page          : page,
      	call          : fname,
+      sortby        : sortby,
+      sort_select   : sort_select,
 
     }
 

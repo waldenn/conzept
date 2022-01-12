@@ -45,6 +45,7 @@ ol { margin-left: 36px; }
   bottom: 1em;
   left: 1em;
   position: fixed;
+  display: block !important;
 }
 
 #video-controls a {

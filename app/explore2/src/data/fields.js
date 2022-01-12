@@ -1,56 +1,6 @@
-var conzept_fields = {
+const conzept_fields = {
 
-  /*
- 
-    input stages:
-    - pre-create
-    - create
-    - post-create
-
-    output stages:
-    - pre-render
-    - render
-    - post-render  (not needed yet)
-
-    - globally there are three classes of fields:
-      - symbol fields (these can be a string or a number)
-      - wikidata-based fields (using their property number, eg. P123 -> 123)
-      - derived-fields (fields which have a dependency on another field or value)
-
-    - field-values can be indicated to be single value or a multi-value ( when "mv": true)
-      
-
-    'foo_bar' : {                                   // field name (must be a unique string without spaces)
-      default_value: '',                            // (if set:) set the "item.<name>" field to this default value (pre-create)
-      value_condition: '<eval-string-to-boolean>',  // (if set:) and is true (create)
-      value: '<eval-string>',                       //    --> evaluate this string (create)
-      create_condition: '<eval-string-to-boolean>', // note: only needed to activate derived-item-fields (as these item-fields don't exist yet)
-                                                    // note: a missing or empty "create_condition" defaults to relying on the items current-value
-                                                          (if set:) and evaluates to "true"
-                                                            --> set item value to "true" (post-create)
-      create_trigger: '<eval-string>',              // note: if ( the internal "create_trigger_enabled" was set to true by a wikidata-field update OR the field is not a wikidata field )
-                                                    //       AND there is "create_trigger" value defined:
-                                                                --> evaluate this code-string to achieve extra 'side effects' during the input-stage (create)
-      render_trigger: '<eval-string>',              // note: if the internal "render_trigger_enabled" is true
-                                                            --> evaluate this code-string to achieve extra 'side effects' during the render-stage
-      render_condition: '<eval-string-to-boolean>', // note: this can be used to always prevent rendering the field OR to only-render-for-a-certain-condition 
-                                                    // note: a missing or empty "render_condition" defaults to "true" TODO: should we change this to "false"?
-                                                    //       (so an explicite 'false' is needed to prevent the rendering of a field)
-                                                    // (if set:) and evaluates to "true"
-                                                          --> render item-field (pre-render)
-      url: '<eval-string-to-url>',                  //
-      title: '<plain-string>',                      //
-      prop: '<integer>',                            // wikidata-property-number
-      type: '<type-string>',                        // link, link-split, url, <custom-type>
-      mv: <true|false>,                             //
-      icon: '<css-class-string>',                   //
-      text: '<plain-string>',                       //
-    },
-
-*/
-
-
-// --- non-button wikidata-field items
+// non-button wikidata-field items
 
 /* 
 'languages' : {
@@ -448,6 +398,8 @@ var conzept_fields = {
   rank: 1,
 },
 
+// end of thumbnail-images
+
 'commons_video' : {
   value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10[0] )}',
   //render_condition: false,
@@ -460,8 +412,6 @@ var conzept_fields = {
   section: '',
   rank: 1,
 },
-
-// end of thumbnail-images
 
 'enzyme_id' : {
   render_condition: false,
@@ -564,7 +514,7 @@ var conzept_fields = {
   rank: [265,1150],
 },
 
-'doid' : { // TOSO: verify that this field works
+'doid' : {
   render_condition: false,
   title: 'Disease Ontology ID',
   prop: '699',
@@ -581,7 +531,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'International Standard Name Identifier',
   prop: '213',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -594,7 +544,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'motto text',
   prop: '1451',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -606,7 +556,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'SPARQL Endpoint URL',
   prop: '5305',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -622,7 +572,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'chemical SMILE',
   prop: '233',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -1786,7 +1736,6 @@ var conzept_fields = {
 
 'gbif_occurence_map' : {
   create_condition: '${ valid( item.gbif_id ) }',
-  //render_condition: false,
   title: 'GBIF occurence map',
   prop: '',
   type: 'link',
@@ -1799,8 +1748,8 @@ var conzept_fields = {
 },
 
 'doi' : {
-  create_condition: '${ valid( item.doi ) }',
-  render_condition: false,
+  //create_condition: '${ valid( item.doi ) }',
+  //render_condition: false,
   title: 'doi',
   prop: '356',
   type: '',
@@ -1943,7 +1892,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'start_date',
   prop: '569',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -1955,7 +1904,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'end_date',
   prop: '570',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -1967,7 +1916,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'dissolved date',
   prop: '576',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -1979,7 +1928,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'point in time',
   prop: '585',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -1991,7 +1940,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'inception date',
   prop: '571',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -2003,7 +1952,7 @@ var conzept_fields = {
   render_condition: false,
   title: 'release date',
   prop: '577',
-  type: 'symbol-string',
+  type: '',
   mv: false,
   icon: '',
   text: '',
@@ -2028,7 +1977,7 @@ var conzept_fields = {
   create_condition: '${ valid( item.audio ) }', // FIXME the audio_widget is sometimes showing up for non-audio topics, why?
   title: 'audio play',
   prop: '',
-  type: 'symbol-string',
+  type: 'symbol-html',
   mv: false,
   string_format: '<div id="${item.qid}" class="audio-widget" title="audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${item.audio}"> </audio></div>',
   icon: '',
@@ -2069,7 +2018,7 @@ var conzept_fields = {
   create_condition: '${ valid( item.audio_anthem ) }',
   title: 'audio play',
   prop: '',
-  type: 'symbol-string',
+  type: 'symbol-html',
   mv: false,
   string_format: '<div id="${item.qid}" class="audio-widget" title="audio anthem" aria-label="audio anthem"><audio class="inline-audio" controls> <source src="${item.audio_anthem}"> </audio></div>',
   icon: '',
@@ -2083,9 +2032,9 @@ var conzept_fields = {
   //create_trigger: 'setTags( item, [ "meta-concept", "mathematics" ] )',
   title: 'defining formula',
   prop: '2534',
-  type: 'symbol-string',
+  type: '',
   mv: true,
-  string_format: '${item.defining_formula}',
+  //string_format: '${item.defining_formula}',
   //string_format: '<span title="defining formula">${item.defining_formula}</span>',
   icon: '',
   text: '',
@@ -2096,7 +2045,7 @@ var conzept_fields = {
 'chemical_formula' : {
   title: 'chemical formula',
   prop: '274',
-  type: 'symbol-string',
+  type: 'symbol-html',
   mv: false,
   string_format: '<span title="chemical formula">${item.chemical_formula}</span>',
   icon: '',
@@ -8555,8 +8504,8 @@ var conzept_fields = {
   mv: false,
   icon: 'far fa-images',
   text: 'Commons gallery',
-  section: ['media-image','main'],
-  rank: [61,1050],
+  section: ['media-image', 'main'],
+  rank: [61, 1050],
 },
 
 'wikicommons_search' : {
@@ -9373,17 +9322,44 @@ var conzept_fields = {
   rank: [7,7140],
 },
 
+'map_markers_query_geo_objects' : { 
+  create_condition: 'checkTag(item, 1, "geographical-structure") && valid( item.qid )',
+  title: '3D geographical-structure type map',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=${qid}&title=${ encodeURIComponent( item.title ) }&query=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3A${ item.qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable',
+  mv: false,
+  icon: 'fas fa-map-marked-alt',
+  text: '3D type map',
+  section: ['location-geography','main'],
+  rank: [51,5921],
+},
+
+'compare_map' : {
+  create_condition: 'valid( item.map_markers_query_geo_objects )',
+  title: 'compare topic map',
+  prop: '',
+  type: 'code',
+  code: 'addToMapCompare( &quot; https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3A${ item.qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable &quot;)',
+  mv: false,
+  url: '',
+  icon: 'fas fa-plus',
+  text: 'compare map',
+  section: ['meta'],
+  rank: [5.1],
+},
+
 'geographical_structure_map_query' : {
   create_condition: 'checkTag(item, 1, "geographical-structure")',
   //create_trigger: 'console.log( item.title, item.tags, checkTag(item, 1, "geographical-structure")  );',
-  title: 'geographical-structure type map',
+  title: '2D geographical-structure type map',
   prop: '',
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fimg%20%3Fgeoshape%20%3Fcoords%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoords.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20(%3FitemLabel)%0ALIMIT%205000%0A%23meta%3A%20${title_}%20%23defaultView%3AMap%7B%22hide%22%3A%20%22%3Fcoords%22%7D',
   //url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fcoords%20%3Fpic%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoords.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20ASC%20(%3FitemLabel)%0ALIMIT%209000%0A%23meta%3A%20${title_}%20locations%0A%23defaultView%3AMap%7B%22hide%22%3A%20%22%3Fcoords%22%7D',
   icon: 'fas fa-map-marked-alt',
-  text: 'type map',
+  text: '2D type map',
   section: ['location-geography','main'],
   rank: [50,5920],
 },
@@ -9591,7 +9567,7 @@ var conzept_fields = {
 },
 
 'twitter_trends_country' : {
-  create_condition: 'valid( item.iso2 )',
+  create_condition: 'valid( item.iso2 ) && valid( item.country_name )',
   title: 'Twitter trends country',
   prop: '',
   type: 'link',
@@ -10985,6 +10961,45 @@ var conzept_fields = {
   rank: 400,
 },
 
+'map_shade' : {
+  create_condition: 'valid( item.lat )',
+  title: '3D shade map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://shademap.app/#${item.lat},${item.lon},12.49795z,1641492931979t,135.22347b,45p',
+  icon: 'fas fa-globe-asia',
+  text: 'shade map',
+  section: 'location-geography',
+  rank: 4.0,
+},
+
+'map_markers_query_instance' : { 
+  create_condition: 'checkTag(item, 0, "location") && valid( [ item.instance_qid, item.country ] )',
+  title: 'instance map query',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=${qid}&title=${ encodeURIComponent( item.title ) }&query=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31%2F(wdt%3AP279*))%20wd%3AQ${ item.instance_qid }.%0A%20%20%3Fitem%20p%3AP17%20%3Fstatement1.%0A%20%20%3Fstatement1%20(ps%3AP17)%20wd%3A${ item.country[0] }.%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%5D%20%3B%0A%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%5D%20%20%0A%0A%20%20%20%20%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Ces%2Cfr%2Cde%2Cit%2Cru%2Cja%2Czh%2Cfa%2Car%2Cnl%2Cca%2Cel%22.%20%7D%0A%7D%0ALIMIT%20500%0A%20%20%0A%0A',
+  mv: false,
+  icon: 'fas fa-map-pin',
+  text: 'instances map',
+  section: 'meta',
+  rank: 46,
+},
+
+'map_markers_query_subclass' : { 
+  create_condition: 'checkTag(item, 1, "geographical-structure") && valid( item.subclass_qid )',
+  title: 'subclass map query',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=${qid}&title=${ encodeURIComponent( item.title ) }&query=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fosmid%20WHERE%20%7B%0A%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3AQ${ item.subclass_qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20%20%20%0A%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP402%20%3Fosmid.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable',
+  mv: false,
+  icon: 'fas fa-map-pin',
+  text: 'subclass map',
+  section: 'meta',
+  rank: 48,
+},
+
 'map_buildings' : {
   create_condition: 'valid( item.lat )',
   title: '3D buildings map',
@@ -10995,7 +11010,7 @@ var conzept_fields = {
   icon: 'fas fa-hotel',
   text: 'buildings map',
   section: 'location-geography',
-  rank: 4,
+  rank: 4.9,
 },
 
 'erfgeo_search' : {
@@ -12109,8 +12124,6 @@ var conzept_fields = {
   rank: 170,
 },
 
-
-
 'google_scholar' : {
   create_condition: true,
   title: 'Google Scholar',
@@ -12635,7 +12648,7 @@ var conzept_fields = {
 },
 
 'govdirectory' : {
-  create_condition: 'valid( item.iso2 )',
+  create_condition: 'valid( item.iso2 ) && valid( item.country_name )',
   title: 'Govdirectory',
   prop: '',
   type: 'link',
@@ -13025,7 +13038,7 @@ var conzept_fields = {
   mv: false,
   url: '',
   icon: 'fas fa-plus',
-  text: 'compare',
+  text: 'compare table',
   section: ['meta'],
   rank: [5],
 },
@@ -13049,7 +13062,7 @@ var conzept_fields = {
   title: 'pause speaking',
   prop: '',
   type: 'code',
-  code: 'pauseSpeakingArticle( )',
+  code: 'pauseSpeakingArticle()',
   mv: false,
   url: '',
   icon: 'fas fa-pause',
@@ -13063,7 +13076,7 @@ var conzept_fields = {
   title: 'stop speaking',
   prop: '',
   type: 'code',
-  code: 'stopSpeakingArticle( )',
+  code: 'stopSpeakingArticle()',
   mv: false,
   url: '',
   icon: 'fas fa-stop',
@@ -13071,8 +13084,6 @@ var conzept_fields = {
   section: [],
   rank: [],
 },
-
-
 
 'class_instances_query' : {
   create_condition: 'valid( item.qid ) && valid( item.subclass_qid )',
@@ -14065,6 +14076,19 @@ var conzept_fields = {
   text: 'bird sounds',
   section: 'education-quizzes',
   rank: 30,
+},
+
+'wikicommons_inline' : {
+  value: 'wikicommons:${item.title}:true',
+  title: 'view wikiCommons media',
+  render_condition: 'valid( item.qid )',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  icon: 'far fa-images',
+  text: 'Commons',
+  section: ['media-image'],
+  rank: [61],
 },
 
 /*

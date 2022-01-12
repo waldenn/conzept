@@ -127,7 +127,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   	thumbs.forEach(( name, index ) => { // progressively (with increasing priority) try to set the thumbnail-image from any wikidata-image-field
 
-    	if ( valid( item[name] ) ){
+    	if ( valid( item[ name ] ) ){
 
       	thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + item[name] + '" title="' + name + '" alt="' + name + '" /></div>';
 
@@ -263,7 +263,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 				o[ name + '_nr'] = '';
 
 			}
-      else if ( v.type === 'symbol-string' ){
+      else if ( v.type === 'symbol-html' ){
 
 				//console.log( name );
 				o[ name + '_string'] = '';
@@ -333,7 +333,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 						o[ name + '_nr'] = '';
 
 					}
-					else if ( v.type === 'symbol-string' ){
+					else if ( v.type === 'symbol-html' ){
 
 						o[ name + '_string'] = '';
 
@@ -367,7 +367,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
         return true;
 
 			}
-      else if ( v.type === 'symbol-string' ){ // string symbol
+      else if ( v.type === 'symbol-html' ){ // string symbol
 
 				// TODO: check that the item-value really is a string first
 				//console.log( name, 'string symbol: ', item[name] );

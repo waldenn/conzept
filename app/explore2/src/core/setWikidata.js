@@ -1207,7 +1207,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
         item.title = wd.sitelinks[wp];
 
-        renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction );
+        renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
 
       }
 
@@ -1239,19 +1239,19 @@ function setWikidata( item, wd, single, target_pane, callback ){
           if ( explore.isMobile ){
 
             // FIXME: why does this overwrite the main sidebar??
-            //$('#infoframeSplit1').attr({"src": explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&qid=' + item.qid });
+            //$('#infoframeSplit1').attr({"src": explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&qid=' + item.qid + '&embedded=' + explore.embedded });
 
           }
           else {
 
-            renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction );
+            renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
 
           }
 
 				}
 				else { // from wikipedia-app
 
-					window.location.href = explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction;
+					window.location.href = explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded;
 
 				}
 

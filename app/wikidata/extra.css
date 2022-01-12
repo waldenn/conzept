@@ -16,6 +16,22 @@ body {
   color: #000;
 }
 
+body.dark .mw-parser-output .sidebar, body.dark .mw-parser-output .navbox, body.dark table, body.dark table * {
+  background: #303030 !important;
+}
+
+body.dark a:hover {
+  background: #f3a8ab63 !important;
+}
+
+#main_content a {
+  color: #106580 !important;
+}
+
+body.dark #main_content a {
+  color: #8bd9f1 !important;
+}
+
 .navbar-nav > li {
   float: right !important;
 }
