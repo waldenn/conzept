@@ -2,11 +2,13 @@
 
 // Shared library functions used within the API-fetch files
 
-function getAbstract( text, keyword_match ){
+function getAbstract( text, keyword_match, title ){
 
   const term  = new RegExp( keyword_match, 'gi');
 
-  return '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + text.replace( term, '<span class="highlight">' + keyword_match + '</span>' ) + '</details>';
+  const detail_title = valid( title ) ? title : '<i class="fas fa-ellipsis-h"></i>';
+
+  return '<details class="inline-abstract"><summary><small>' + detail_title + '</small></summary>' + text.replace( term, '<span class="highlight">' + keyword_match + '</span>' ) + '</details>';
 
 }
 

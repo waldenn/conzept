@@ -1,42 +1,48 @@
 'use strict';
 
 /*
-  Conzept map application based on OpenGLobus
+  Conzept map application based on OpenGlobus
+
+	License: GNU GPLv3
 
   see:
     https://openglobus.org
     https://openglobus.org/api/
+
 */
 
 let app = {
 	globus:	  undefined,
 
-	lat:			0,
-	lon:			0,
-	qid:			'',
-	title:		'',
-	bbox:			[],
+	query:		getParameterByName( 'query' ) || '',
+
+	lat:			getParameterByName( 'lat' ) || '',
+	lon:			getParameterByName( 'lon' ) || '',
+	qid:			getParameterByName( 'qid' ) || '',
+	title:		getParameterByName( 'title' ) || '',
+	bbox:			getParameterByName( 'bbox' ) || undefined,
 
 	language: '',
 	osm_id:		'',
 	view_extent: '',
+
+  label_size: 24,
+  label_offset: [10,20],
+
+  colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
+
 }
 
-$().ready(function() {
-  
-  init();
+let billboard = {
 
-  setupKeys();
+  src: 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/app/map/img/marker-red.png',
+  width: 32,
+  height: 32,
+  offset: [-20, 8],
 
-});
+};
 
 async function init(){
-
-  app.lat 		= getParameterByName( 'lat' ) || '';
-  app.lon 		= getParameterByName( 'lon' ) || '';
-  app.qid			= getParameterByName( 'qid' ) || '';
-  app.title		= getParameterByName( 'title' ) || '';
-  app.bbox 		= getParameterByName( 'bbox' );
 
   if ( valid( app.bbox ) ){
 
@@ -53,6 +59,8 @@ async function init(){
 
   const osm = new og.layer.XYZ("OpenStreetMap", { 
     isBaseLayer: true, 
+    //url: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
+    //url: "https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
     visibility: true, 
     attribution: 'Data @ OpenStreetMap contributors, ODbL', 
@@ -72,96 +80,59 @@ async function init(){
    });
   */
 
-  const markerLayer = new og.layer.Vector("Markers", {
+  app.markerLayer = new og.layer.Vector("Markers", {
     clampToGround: true,
   })
 
   if ( valid( app.lon ) ){
 
-    markerLayer.add(new og.Entity({
-        lonlat: [ app.lon, app.lat ],
-        label: {
-            text: app.title,
-            //outline: 0.1,
-            outlineColor: "rgba(255, 255, 255, 0.4)",
-            size: 15,
-            color: "black",
-            offset: [10, 17 ]
-        },
-        billboard: {
-            src: 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/app/map/img/marker.png',
-            width: 32,
-            height: 32,
-            offset: [0, 32]
-        }
+    app.markerLayer.add(new og.Entity({
+
+			lonlat: [ app.lon, app.lat ],
+
+			label: {
+				text: app.title,
+				//outline: 0.1,
+				outlineColor: "rgba(255, 255, 255, 0.4)",
+				size: app.label_size,
+				color: "black",
+				offsett: app.label_offset,
+			},
+
+			billboard,
+
+			properties: {
+				title: app.title,
+				qid: app.qid,
+			}
+
     }));
 
   }
 
-	markerLayer.events.on("lclick", function (e) {
+	app.markerLayer.events.on("lclick", function (e) {
 
-		console.log( 'picked: ', e.pickingObject, e.pickingObject.label._text );
+		//const label = e.pickingObject.label._text || '';
+		const label = e.pickingObject.properties.title || '';
+		const qid		= e.pickingObject.properties.qid || '';
 
-		const label = e.pickingObject.label._text;
+		console.log( 'picked: ', label, qid );
 
-		myPopup.setContent('<iframe class="inline-iframe resized" style="min-width: 650px; min-height: 500px; border:none;" src=" https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + encodeURIComponent( label ) + '&amp;l=' + app.language + '&qid=' + app.qid + '&embedded=true" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" title="embedded widget: URL-content" role="application" width="100%" height="100%"></iframe>');
+    const url = 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( label ) + '?l=' + app.language + '&amp;t=wikipedia-qid&amp;i=' + qid + '&amp;s=false&amp;embedded=true';
+
+		myPopup.setContent('<iframe class="inline-iframe resized" style="min-width: 650px; min-height: 500px; max-width: 60vh; border:none;" src="' + url + '" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" title="embedded widget: URL-content" role="application" width="100%" height="100%"></iframe>');
 
 		let groundPos = app.globus.planet.getCartesianFromMouseTerrain();
 		myPopup.setCartesian3v(groundPos);
 		myPopup.setVisibility(true);
 
-		// show popup with Bing images from this location
-
-		/*
-		setInfo({
-			'name': e.pickingObject.label._text,
-			'type': 'place',
-			'cname': country,
-			'lon': e.pickingObject._lonlat.lon,
-			'lat': e.pickingObject._lonlat.lat,
-			'extra': true,
-			'wikipedia': lon,
-		});
-		*/
-
 	});
 
 	osm.events.on("lclick", function (e) {
 
-		//console.log('remove popups');
-
-		// remove all popups
-		$('div.og-popup').remove();
+		$('div.og-popup').remove(); // remove all popups
 
 	});
-
-  /*
-  globe.planet.renderer.events.on("lclick", (e) => {
-      let lonLat = globe.planet.getLonLatFromPixelTerrain(e);
-
-      globe.planet.terrain.getHeightAsync(lonLat, (h) => {
-          myPopup.setContent(`lon = ${lonLat.lon.toFixed(5)}<br/>lat = ${lonLat.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
-      });
-
-      let groundPos = globe.planet.getCartesianFromMouseTerrain();
-      myPopup.setCartesian3v(groundPos);
-      myPopup.setVisibility(true);
-  });
-  */
-
-
-  /*
-  let sat = new og.layer.XYZ("MapQuest Satellite", {
-      shininess: 20,
-      specular: [0.00048, 0.00037, 0.00035],
-      diffuse: [0.88, 0.85, 0.8],
-      ambient: [0.15, 0.1, 0.23],
-      isBaseLayer: true,
-      url: "//api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-      visibility: false,
-      attribution: '@2014 MapQuest - Portions @2014 "Map data @ <a target="_blank" href="//www.openstreetmap.org/">OpenStreetMap</a> and contributors, <a target="_blank" href="//opendatacommons.org/licenses/odbl/"> CC-BY-SA</a>"'
-  });
-  */
 
   app.globus = new og.Globe({
 
@@ -175,8 +146,7 @@ async function init(){
 
     viewExtent: app.view_extent,
 
-    layers: [ osm, markerLayer ]
-    //layers: [ osmbuildings, osm, markerLayer ]
+    layers: [ osm, app.markerLayer ]
 
   });
 
@@ -188,7 +158,7 @@ async function init(){
 
   app.globus.renderer.gamma         = 0.10;
   app.globus.renderer.exposure      = 3.80;
-  //app.globus.planet.lightEnabled  = false;
+  app.globus.planet.lightEnabled    = false;
 
   if ( app.osm_id !== '' ){ // OSM object
 
@@ -256,26 +226,32 @@ async function init(){
 
         }
 
-        if ( valid( data.boundingbox ) ){
+        if ( valid( data.lon ) ){
 
           if ( !valid( app.lon ) ){
 
-            markerLayer.add(new og.Entity({
-                lonlat: [ data.lon, data.lat ],
+            app.markerLayer.add(new og.Entity({
+
+                lonlat: [ parseFloat( data.lon ), parseFloat( data.lat ) ],
+
                 label: {
-                    text: app.title,
-                    //outline: 0.1,
-                    outlineColor: "rgba(255, 255, 255, 0.4)",
-                    size: 15,
-                    color: "black",
-                    offset: [10, 17 ]
+                  text: app.title,
+                  //outline: 0.1,
+                  outlineColor: "rgba(255, 255, 255, 0.4)",
+                  color: "black",
+                  size: app.label_size,
+				          offsett: app.label_offset,
                 },
-                billboard: {
-                    src: 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/app/map/img/marker.png',
-                    width: 32,
-                    height: 32,
-                    offset: [0, 32]
-                }
+
+			          billboard,
+
+								properties: {
+
+									title: app.title,
+									qid: app.qid,
+
+								}
+
             }));
 
           }
@@ -293,6 +269,32 @@ async function init(){
       },
 
     });
+
+  }
+  else if ( valid( app.query ) ){ // SPARQL-query
+
+    if ( app.query.startsWith('[') ){ // list of query objects
+
+      //console.log( app.query );
+
+      app.query = JSON.parse( app.query );
+
+      $.each( app.query, function ( i, q ) {
+
+        //console.log( decodeURIComponent( q.url ) );
+
+        handleQuery( decodeURIComponent( q.url ), app.colors[ i % app.colors.length ] );
+
+      });
+
+    }
+    else { // single query URL
+
+      handleQuery( app.query, 'red' );
+
+      //handleQuery( app.query, app.colors[ getRandomInt( app.colors.length ) ] );
+
+    }
 
   }
   else {
@@ -314,15 +316,100 @@ async function init(){
 
 }
 
-async function setupKeys(){
+async function handleQuery( url, color ){
 
-  //keyboardJS.bind('a', (e) => {
+  $.ajax({
 
-    //console.log('a is pressed');
+    url: url,
 
-    //setLonLat( og.getLonLat(), new Vec3(), new Vec3() );
+    dataType: "json",
 
-  //});
+    success: function( data ) {
+
+      let json = data.results.bindings || [];
+
+      if ( typeof json === undefined || typeof json === 'undefined' ){
+
+        return 1;
+      }
+
+      if ( json.length === 0 ) { // no more results
+
+        return 1;
+
+      }
+
+      //console.log( data );
+
+      let markers = [];
+
+      $.each( json, function ( i, v ) {
+
+        let qid = v.item?.value || '';
+        qid = qid.replace( 'http://www.wikidata.org/entity/Q', '' );
+
+        markers.push({
+
+          qid: qid,
+          title: v.itemLabel?.value || '',
+          lat: v.lat?.value || '',
+          lon: v.lon?.value || '',
+          osmid: v.osmid?.value || '',
+
+        });
+
+      });
+
+      renderMultipleMarkers( markers, color );
+
+    },
+
+  });
+
+}
+
+async function renderMultipleMarkers( markers, color ){
+
+  billboard.src = 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/app/map/img/marker-' + color + '.png';
+
+  $.each( markers, function ( i, v ) {
+
+		//console.log( v );
+
+		if ( valid( v.lon ) ){
+
+			app.markerLayer.add(new og.Entity({
+
+        //visibility: false,
+
+				lonlat: [ parseFloat( v.lon ), parseFloat( v.lat ) ],
+
+        /*
+				label: {
+					text: v.title,
+					//outline: 0.1,
+					outlineColor: "rgba(255, 255, 255, 0.4)",
+					size: app.label_size,
+					color: "black",
+				  offsett: app.label_offset,
+				},
+        */
+
+        billboard,
+
+				properties: {
+
+					title: v.title,
+					qid: v.qid,
+
+				}
+
+			}));
+
+		}
+
+
+  });
 
 }
 
@@ -350,5 +437,11 @@ $(document).keydown(function(event) {
     document.toggleFullscreen();
   
   }
+
+});
+
+$().ready(function() {
+  
+  init();
 
 });

@@ -116,6 +116,7 @@ $main_script = '
   <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
+  <!--script src="../app/explore2/libs/weaviate.js?vCONZEPT_VERSION" async></script--> <!-- no NPM dist-package yet -->
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
 
   <!-- Conzept data scripts -->
@@ -308,6 +309,15 @@ $settings_html = '
                     <!--option value="invert">invert</option-->
                     <!--option value="reduced-constrast">reduced-constrast</option-->
                     <!--option value="blur">blur</option-->
+                  </select>
+
+                </div>
+
+                <div id="cover-topic-setting">
+
+                  <label style="display:inline; font-size: larger;" for="covertopic"><span id="app-menu-cover-topic">cover topic</span>: &nbsp;</label>
+                  <select id="covertopic" width="20px">
+                    <option value="none">none</option>
                   </select>
 
                 </div>
@@ -559,14 +569,14 @@ $settings_html = '
                   <span id="tts-container"></span>
                 </li>
 
-                <li>
+                <!--li>
                  <details class="auto">
                   <summary><span id="app-menu-topic-lists"></span></summary>
                     <ul id="hexpages"></ul>
                   </details> 
-                </li>
+                </li-->
 
-                <li>
+                <!--li>
                  <details class="">
                   <summary><span id="app-menu-various-links"></span></summary>
                     <ul>
@@ -615,7 +625,7 @@ $settings_html = '
 
                     </ul>
                   </details> 
-                </li>
+                </li-->
 
               </ul>
 

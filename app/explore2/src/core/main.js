@@ -20,6 +20,8 @@ const explore = {
   hash                : undefined, // URL hash from URL
   //hash_prev         : undefined, // previous URL hash from URL
 
+  embedded            : getParameterByName('embedded') || '', // signals to open links in the local iframe
+
   language            :  undefined, // current language 2-letter-code
   language_script     : '',       // see: https://www.w3.org/International/questions/qa-scripts.en#examples
   language_name       : '',
@@ -69,6 +71,8 @@ const explore = {
   marks               : getParameterByName('m') || '',  // list of linemarks (m=2-4,6,30-32)
 
   compares            : [], // list of IDs used by the wikidata-compare tool
+
+  map_compares        : [], // list of query-URLs used by the map tool
 
   sections            : {}, // template structure: list of section objects in a topic-card
   section_dom         : $('<span></span>'), // template section-structure (as a jQuery DOM-object)
@@ -176,6 +180,7 @@ const explore = {
   bgmode              : undefined,
   personas            : [],
   colorfilter         : undefined,
+  covertopic          : undefined,
   locale              : undefined,
   grayscale           : undefined,
   font1               : undefined,
@@ -298,6 +303,7 @@ $( document ).ready( function() {
     setupFonts();
     setupSwiping();
     setupBookmarks();
+    setupOptionTopicCover(); // needs to be called earlier (so the topic is set when we display the default cover page)
     setupKeyboardNavigation();
     setupKeyboardCombos();
 

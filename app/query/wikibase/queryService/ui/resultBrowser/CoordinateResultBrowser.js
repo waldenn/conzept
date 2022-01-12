@@ -394,7 +394,7 @@ wikibase.queryService.ui.resultBrowser.CoordinateResultBrowser = ( function( $, 
 			color: color,
 			opacity: 0.8,
 			fillColor: color,
-			fillOpacity: 0.9,
+			fillOpacity: 0.0, // CONZEPT PATCH
 			radius: this._getMarkerRadius()
 		};
 	};
