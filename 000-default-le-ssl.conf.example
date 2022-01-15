@@ -19,13 +19,13 @@
        </Proxy>
 
        <Location /app/proxy>
-    # command: conzept-api-proxy.sh
+    # json-proxy (JSON-only file proxy, with secret-key support)
     ProxyPass http://127.0.0.1:50001
     ProxyPassReverse http://127.0.0.1:50001
        </Location>
 
        <Location /app/cors>
-    # command: npm start allOrigins/app.js
+    # allorigins-proxy (general CORS proxy, for any file-type)
     ProxyPass http://127.0.0.1:1458
     ProxyPassReverse http://127.0.0.1:1458
        </Location>
