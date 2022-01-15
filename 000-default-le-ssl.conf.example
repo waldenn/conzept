@@ -36,9 +36,7 @@
          Require all granted
         </Directory>
 
-  ServerName dev.conze.pt
-  
-  # change YOUR_SERVER_HOST
+  # change YOUR_SERVER_HOST (eg. "mysite.com")
   SSLCertificateFile /etc/letsencrypt/live/YOUR_SERVER_HOST/fullchain.pem
   SSLCertificateKeyFile /etc/letsencrypt/live/YOUR_SERVER_HOST/privkey.pem
   
