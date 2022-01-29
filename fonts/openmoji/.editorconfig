@@ -1,9 +1,0 @@
-root = true
-
-[*.{css,js,json,sh,svg}]
-indent_style = space
-indent_size = 2
-
-[*.html]
-indent_style = space
-indent_size = 4
