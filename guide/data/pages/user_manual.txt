@@ -18,20 +18,20 @@ The Conzept project is [[explore>free software]] licensed under the [[https://gi
 
 ===== support =====
 
-  * Conzept has been funded by the **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
+  * Conzept has been funded by the amazing **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
 
-  * All the organizations with a great public mission and API-service. Especially:
+  * All the organizations with a great public mission and API-service used within Conzept. Especially:
     * The **[[https://wikimediafoundation.org/|Wikipedia]]** and **[[https://www.wikidata.org|Wikidata]]** community and developers.
     * The **[[https://openlibrary.org|Open Library]]** and **[[https://archive.org|Archive.org]]** team.
 
-  * The thousands of people who have development Free Software projects which are [[used projects|used within Conzept]].
+  * The thousands of people who have developed **[[used projects|Free Software projects]]** used by Conzept.
 
-  * **[[https://www.browserstack.com/|BrowserStack]]** has kindly provided excellent tools for cross-platform browser testing.
+  * **[[https://www.browserstack.com/|BrowserStack]]** kindly provides excellent tools for cross-platform browser testing.
 
   * **[[explore>Google]] [[explore>YouTube]]** for providing access to the [[https://developers.google.com/youtube/v3/|Youtube API]].
 
 
-Thank you all for the direct or indirect support and development <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
+Thank you all for your direct or indirect support <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
 ===== project goals =====
 
 {{ :logo.svg?200}}
@@ -142,7 +142,7 @@ These are some (experimental) **!-prefixed commands** which, when entered into t
 
 Overview of the current commands:
 
-  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support). (Note: Hopefully in the future this functionality can be extended to a richer mathematical environment called [[https://github.com/sagemathinc/JSage|JSage]])
+  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support). (Note: It would be really wonderful if in the future this functionality could be extended to a mathematical environment being build, called [[https://github.com/sagemathinc/JSage|JSage]])
 
   * **[[https://conze.pt/explore/!check%20Caracas%20has%20a%20lot%20of%20crime?l=en|!check]]** - An AI-based fact-checking command.
 
