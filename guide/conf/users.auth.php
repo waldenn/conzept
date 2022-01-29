@@ -10,4 +10,4 @@
 # Format:
 # login:passwordhash:Real Name:email:groups,comma,separated
 
-admin:$2y$10$Cpg5rG1NdmsvZ4IxiL5cue6F.RW9Osvp4cyJwQtUeZLvfEsDRC7PK:Admin:info@conze.pt:admin,user
+admin:$1$4fd0ad31$.cId7p1uxI4a.RcrH81On0:Admin:jama@conze.pt:admin,user
