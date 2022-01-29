@@ -98,7 +98,7 @@ There is currently one 'magic'-variable usable in field-definition values:
 
 ^ name  ^ description ^
 | **Xvalue** | Used to **automatically iterate over a list of values** (or just one value) coming from Wikidata. This makes it easy to use multi-values **to create multiple new strings**. See an example of its use [[#xvalue|here]]. |
-===== field types =====
+===== types of fields =====
 
 
 **There are two main classes of fields: Wikibased-fields and derived fields.**
