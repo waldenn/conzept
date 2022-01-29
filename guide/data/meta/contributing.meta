@@ -1,0 +1,12 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1643118738;s:8:"modified";i:1643293239;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}s:5:"title";s:12:"contributing";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:12:"contributing";s:5:"title";s:12:"contributing";s:4:"type";s:2:"ul";s:5:"level";i:1;}}s:8:"abstract";s:257:"contributing
+
+
+
+Feel free to submit an issue / pull-request via GitHub, or reach out on Twitter.
+
+	*   GitHub repositories:
+		*  conzept (Conzept project)
+		*  conzept-extra (only used for modifying and building some out-of-tree Conzept apps)
+
+
+	*   Twitter";}s:8:"relation";a:2:{s:5:"media";a:1:{s:8:"logo.svg";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1643118738;s:8:"modified";i:1643293239;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}}}

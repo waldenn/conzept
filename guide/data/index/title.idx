@@ -12,8 +12,8 @@ roadmap
 localization
 section customization
 topic classification
-
-
+installation
+configuration
 
 
 terms
@@ -23,8 +23,8 @@ browser extension
 apps
 adding an app
 
-
-
+code structure
+contributing
 start
 
 build system
