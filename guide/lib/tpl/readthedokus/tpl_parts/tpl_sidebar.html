@@ -1,0 +1,17 @@
+<?php global $conf, $lang; ?>
+
+<nav id="dokuwiki__aside" aria-label="<?php echo $lang['sidebar'] ?>">
+	<div class="aside include group">
+		<?php tpl_includeFile('tpl_parts/tpl_sidebarheader.html') ?>
+		<?php tpl_includeFile('sidebarheader.html') ?>
+		<div id="sidebar">
+			<div style="display:none">
+				<p><strong>Table of Contents</strong></p>
+				<?php tpl_toc()?>
+			</div>
+			<?php tpl_include_page($conf['sidebar'], 1, 1) ?>
+		</div>
+		<?php tpl_includeFile('sidebarfooter.html') ?>
+		<?php tpl_includeFile('tpl_parts/tpl_sidebarfooter.html') ?>
+	</div>
+</nav>

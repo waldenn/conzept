@@ -1,0 +1,37 @@
+
+<h1 class="sectionedit1" id="build_system">build system</h1>
+<div class="level1">
+
+<p>
+When you run “<strong>npm run build</strong>” in the Conzept app directory (located in “app/explore2/”), the <strong><a href="https://github.com/waldenn/conzept/blob/master/app/explore2/build.sh" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/build.sh" rel="ugc nofollow noopener">build.sh</a></strong> script is executed.
+</p>
+
+<p>
+When this build script runs, the following things happen:
+</p>
+<ul>
+<li class="level1"><div class="li"> The existing build-directory (“dist”) is removed (if it exists).</div>
+</li>
+<li class="level1"><div class="li"> Check and create the “conzept” user (used for running the proxy services).</div>
+</li>
+<li class="level1"><div class="li"> Check &amp; create the Conzept configuration directorty (“/etc/conzept”).</div>
+</li>
+<li class="level1"><div class="li"> Check &amp; create the Conzept settings file (“/etc/conzept/settings.conf”).</div>
+</li>
+<li class="level1"><div class="li"> Read the Conzept settings file (and store its values as environment variables).</div>
+</li>
+<li class="level1"><div class="li"> Generate the Conzept JS environment file (located in “app/explore2/src/core/env.js”) from these environment variables (so these settings can be used in the JS code).</div>
+</li>
+<li class="level1"><div class="li"> Transform the <abbr title="HyperText Markup Language">HTML</abbr> / PHP template files in <em class="u">all apps</em> (by inserting the Conzept environment variables).</div>
+</li>
+<li class="level1"><div class="li"> Setup the Conzept proxy services (only done once).</div>
+</li>
+<li class="level1"><div class="li"> Build the Conzept Wikipedia app (using esbuild).</div>
+</li>
+<li class="level1"><div class="li"> Build the main Conzept app (using ebuild).</div>
+</li>
+<li class="level1"><div class="li"> Bundle all Conzept <abbr title="Application Programming Interface">API</abbr>-fetch scripts into one file (this allows for auto-inclusion of any new <abbr title="Application Programming Interface">API</abbr>-fetching code).</div>
+</li>
+</ul>
+
+</div>

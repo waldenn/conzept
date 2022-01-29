@@ -1,0 +1,149 @@
+
+<h1 class="sectionedit1" id="field_customization">field customization</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field customization&quot;,&quot;hid&quot;:&quot;field_customization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-35&quot;} -->
+<h2 class="sectionedit2" id="introduction">introduction</h2>
+<div class="level2">
+
+<p>
+Each <a href="/guide/terms#topic_sections" class="wikilink1" title="terms" data-wiki-id="terms">sections</a> of a <a href="/guide/terms#topic_cards" class="wikilink1" title="terms" data-wiki-id="terms">topic</a> can be populated by links. The links are defined in <a href="/guide/terms#topic_fields" class="wikilink1" title="terms" data-wiki-id="terms">fields</a>.
+</p>
+
+<p>
+When a user clicks such a link, it triggers some kind of action. These actions can be anything, but are often of these types:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Open a link in the <a href="/guide/terms#content_pane" class="wikilink1" title="terms" data-wiki-id="terms">content_pane</a></strong> (this can be an locally hosted app <abbr title="Uniform Resource Locator">URL</abbr> or a remote website which allows being embedded)</div>
+</li>
+<li class="level1"><div class="li"> <strong>Open a link in a new tab</strong> (often needed because many websites don&#039;t allow embedded their website in a 3rd-party iframe)</div>
+</li>
+<li class="level1"><div class="li"> Inline view in the sidebar: <strong>List of items fetched from an <abbr title="Application Programming Interface">API</abbr></strong></div>
+</li>
+<li class="level1"><div class="li"> Inline view in the sidebar: <strong>Show an inline iframe from an <abbr title="Uniform Resource Locator">URL</abbr></strong></div>
+</li>
+</ul>
+
+<p>
+Note that the topic-headline buttons are not yet defined in the “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow">src/data/field.js</a>” file (instead in <a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js" class="urlextern" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js" rel="ugc nofollow">createItemHtml.js</a>), but that functionality will be included at a later stage.
+</p>
+
+<p>
+You can see the active fields for the Conzept website in the “<strong><a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow">src/data/field.js</a></strong>” file.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;introduction&quot;,&quot;hid&quot;:&quot;introduction&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;36-1278&quot;} -->
+<h2 class="sectionedit3" id="field_design">field design</h2>
+<div class="level2">
+
+<p>
+Fields are defined as a list of JavaScript objects with a certain structure (described below).
+</p>
+
+<p>
+The fields are read in order. This also implies that if you want to use an existing field-value in another field, you need to place that field after it.
+</p>
+
+<p>
+Generally there are three classes of fields:
+</p>
+<ol>
+<li class="level1"><div class="li"> symbol fields (these can be a string or a number)</div>
+</li>
+<li class="level1"><div class="li"> wikidata-based fields (using their property number, eg. P123 → 123)</div>
+</li>
+<li class="level1"><div class="li"> derived-fields (fields which have a dependency on another field or value)</div>
+</li>
+</ol>
+
+<p>
+Field-values can be indicated to be single value or a multi-value ( when “mv”: true)
+</p>
+<pre class="code">&lt;code&gt;
+  &#039;foo_bar&#039; : {                                   // field name (must be a unique string without spaces)
+    default_value: &#039;&#039;,                            // (if set:) set the &quot;item.&lt;name&gt;&quot; field to this default value (pre-create)
+    value_condition: &#039;&lt;eval-string-to-boolean&gt;&#039;,  // (if set:) and is true (create)
+    value: &#039;&lt;eval-string&gt;&#039;,                       //    --&gt; evaluate this string (create)
+    create_condition: &#039;&lt;eval-string-to-boolean&gt;&#039;, // note: only needed to activate derived-item-fields (as these item-fields don&#039;t exist yet)
+                                                  // note: a missing or empty &quot;create_condition&quot; defaults to relying on the items current-value
+                                                        (if set:) and evaluates to &quot;true&quot;
+                                                          --&gt; set item value to &quot;true&quot; (post-create)
+    create_trigger: &#039;&lt;eval-string&gt;&#039;,              // note: if ( the internal &quot;create_trigger_enabled&quot; was set to true by a wikidata-field update OR the field is not a wikidata field )
+                                                  //       AND there is &quot;create_trigger&quot; value defined:
+                                                              --&gt; evaluate this code-string to achieve extra &#039;side effects&#039; during the input-stage (create)
+    render_trigger: &#039;&lt;eval-string&gt;&#039;,              // note: if the internal &quot;render_trigger_enabled&quot; is true
+                                                          --&gt; evaluate this code-string to achieve extra &#039;side effects&#039; during the render-stage
+    render_condition: &#039;&lt;eval-string-to-boolean&gt;&#039;, // note: this can be used to always prevent rendering the field OR to only-render-for-a-certain-condition 
+                                                  // note: a missing or empty &quot;render_condition&quot; defaults to &quot;true&quot; TODO: should we change this to &quot;false&quot;?
+                                                  //       (so an explicite &#039;false&#039; is needed to prevent the rendering of a field)
+                                                  // (if set:) and evaluates to &quot;true&quot;
+                                                        --&gt; render item-field (pre-render)
+    url: &#039;&lt;eval-string-to-url&gt;&#039;,                  //
+    title: &#039;&lt;plain-string&gt;&#039;,                      //
+    prop: &#039;&lt;integer&gt;&#039;,                            // wikidata-property-number
+    type: &#039;&lt;type-string&gt;&#039;,                        // link, link-split, url, &lt;custom-type&gt;
+    mv: &lt;true|false&gt;,                             //
+    icon: &#039;&lt;css-class-string&gt;&#039;,                   //
+    text: &#039;&lt;plain-string&gt;&#039;,                       //
+  },
+  &lt;/code&gt;</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field design&quot;,&quot;hid&quot;:&quot;field_design&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1279-4605&quot;} -->
+<h2 class="sectionedit4" id="field_processing">field processing</h2>
+<div class="level2">
+
+<p>
+The field list is processed in 5 stages with 2 phases:
+</p>
+<ul>
+<li class="level1"><div class="li"> The first phase is the <strong>input phase</strong>, where all the field data is collected from external sources such as Wikidata.</div>
+</li>
+<li class="level1"><div class="li"> The second phase is the <strong>render phase</strong> where fields can be (pre)-processed for display to the user. </div>
+</li>
+</ul>
+<pre class="code">     input stages:
+    - pre-create
+    - create
+    - post-create
+
+    render stages:
+    - pre-render
+    - render
+    </pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field processing&quot;,&quot;hid&quot;:&quot;field_processing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;4606-5063&quot;} -->
+<h2 class="sectionedit5" id="field_examples">field examples</h2>
+<div class="level2">
+<pre class="code">...</pre>
+
+<p>
+Each section can define the following fields:
+</p>
+<div class="table sectionedit6"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> name      </th><th class="col1 leftalign"> description       </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <strong>icon</strong> </td><td class="col1"> icon identifier (either taken from <a href="https://fontawesome.com/v5.15/icons?d=gallery" class="urlextern" title="https://fontawesome.com/v5.15/icons?d=gallery" rel="ugc nofollow">FontAwesome</a> of from <a href="https://openmoji.org/library/" class="urlextern" title="https://openmoji.org/library/" rel="ugc nofollow">OpenMoji</a>) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <strong>sub</strong> </td><td class="col1"> section-branch, which is used to define sub-sections within a section. Sections can have unlimited sub-sections. </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;5160-5484&quot;} -->
+<p>
+To add or remove sections, you edit the “sections.js” file as needed and execute “npm run build”.
+</p>
+
+<p>
+In the “<a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field customization</a>” section we will show how content can added to a section.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field examples&quot;,&quot;hid&quot;:&quot;field_examples&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;5064-&quot;} -->

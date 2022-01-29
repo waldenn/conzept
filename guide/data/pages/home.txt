@@ -1,0 +1,1 @@
+{{ :conzept_encyclopedia.jpg?800 }}

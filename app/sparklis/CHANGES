@@ -1,0 +1,117 @@
+# description of main changes that impact interface with outside
+
+2019-04
+- new kind of constraint: ExternalSearch
+- lis.ml: methods computing increments have their callback expecting *optional* index
+  - callbacks are called on None
+    - in case the AJAX calls failed (instead of called on empty indexes as before)
+    - in case increments cannot be computed for some reason (ex: constraints on properties in wikidata)
+- grammar.ml: [hierarchy ~in_] split into [hierarchy] and [in_]
+- lisql2nl.ml: word `FocusSpan takes the increment to which verbalization it belongs
+  - to allow for customized rendering in HTML
+
+2019-02-09
+- new datatype Lisql.delta to represent new entity ids when inserting increments
+  - Lisql.insert_increment and Lisql.delete_focus now return (optionally) not only a new focus but also a delta
+
+2019-02-01
+- signature change of Lis.place
+  - method 'query_ids' returning set of entity ids in query
+    - every result var map to some id in that set
+  - method 'focus_entity' returning kind of entity at focus
+    - one of: `Id id, `Term t, `Undefined
+  - method 'define_sparql' that computes the sparql query
+    - without ajax call, without computing results
+    - query then available via method 'sparql'
+- IncrHierarchy: removed second argument (inversion flag)
+  - now handled at UI level
+
+2019-01-11
+- new option: Lis.config_concept_profile
+  - goal: allow for different user profiles
+  - value: a list of class URIs
+  - effect: retrieves only concept suggestions that are instances of one of those class URIs
+
+2019-01-04
+- distinct counts of values for each table column
+  - new methods in Lis.place
+    - method 'estimate_count_var' that estimates count for some variable
+      - either by retrieving previous SPARQL result
+      - or by estimating from results (may be partial)
+    - method 'ajax_count_id' that evaluates exact count for some id
+      - triggers AJAX call with SPARQL COUNT query
+
+2018-10-31
+- grammar: renamed 'at' into 'with'
+
+2018-10-24
+
+- Permalink.to_query: now takes a continuation 'k' instead of directly returning the LISQL query
+  - because need to retrieve labels of URIs in permalink query
+- dynamic filtering operators (type Lisql.constr)
+  - new method Lis.place#list_term_constraints
+    - to retrieve the relevant term filtering operators (like for modifier increments, no ajax call)
+    - always returns current filtering operator
+- new functions in Lisql2nl to ease verbalization
+  - avoiding exposition of types nl_*
+  - xml_of_elt_s: query -> xml
+  - xml_of_incr: increment -> xml
+  - xml_of_constr : constr -> xml
+
+2018-10-18
+
+- in Lis.place: new method 'ajax_get_more_results' with same signature as 'ajax_sparql_results'
+  - computes 'max_results' more results if partial results
+  - does NOT re-compute increments
+  - in [osparklis.ml], used when asking for next page of results on the last page
+
+2018-08-31
+
+- support for xsd:duration datatype
+  - new grammar item 'duration'
+  - new Lisql.input_type `Duration, used in increments
+- new configurations
+  - Lis.config_max_increment_samples: max size of focus terms to use for computing increments
+
+2018-08-22
+
+- new configurations
+  - Ontology.config_sort_by_position: use schema:position to get position in suggestion lists
+  - Ontology.config_show_logo: use schema:logo to get icons to show on left of labels
+  - Html.config_logo_height: height in pixels for icons
+  - Html.config_sort_by_frequency_terms: was the default, if inactive, lexicographic ordering
+  - Html.config_sort_by_frequency_properties: was the default, if inactive, lexicographic ordering
+  - Osparklis.config_short_permalink: whether to shorten permalink URLs (with bit.ly)
+- permalinks
+  - more stable by ignoring values in HTML on load, rather using hard-coded default values to decide what goes into the permalink
+  - inclusion of focus path
+- grammar
+  - concept/concepts, entity/entities, modifier/modifiers replaced by item/items
+    - the nature of items has been moved to the panel headers as static HTML
+- pseudo xml
+  - DummyFocus split into FocusSpan and FocusName
+    - FocusSpan: the green highlighted subquery
+    - FocusName: the description of the focus id (highlighted header)
+      - this element has to be filled with (Html.html_id_ng state current_id_of_focus)
+
+2018-05-29    N-ary relations, reified triples, support of wikidata
+
+- new configurations
+  - Rdf.config_wikidata_mode : bool
+  - Lis.config_nary_relations : bool
+  - Lexicon.config_arg_lexicon : lexicon
+- new increments (in left column)
+  - IncrPred (arg,pred) : insertion of a n-ary predicate
+  - IncrArg (arg) : insertion of an additional argument of the n-ary predicate at focus
+- new kind of word in XML
+  - Nary (uri,string): similar to Class/Prop (different color)
+
+2018-05-03
+
+[lisql] conversion  focus <--> elt_s * path
+- elt_s_path_of_focus : focus -> unit elt_s * path
+  // decomposes a query focus AtX (x,ctx) into the whole query (without focus), and a path to the focus
+- focus_of_elt_s_path : unit elt_s * path -> focus
+  // the inverse function
+  // composes a whole query and a path into a query focus AtX (x,ctx)
+those functions can be used to recover a precise focus from a permalink, which does not contain the focus location

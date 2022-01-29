@@ -1,0 +1,425 @@
+/*
+  Copyright 2013-2020 Sébastien Ferré, IRISA, Université de Rennes 1
+
+  This file is part of Sparklis.
+*/
+
+/* NOT supported by Internet Explorer
+:root {
+    --color-highlight:#a0f0a0;
+    --color-prehighlight:#f8f880;
+    --color-selection:#f8f840;
+} 
+*/
+
+head, body, input, textarea, select {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 16px;
+}
+
+select {
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.disabledClick {
+    pointer-events: none;
+}
+
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.navbar {
+    margin: 0;
+}
+
+.texte {
+    display:none;
+}
+
+.tooltip {
+    display:none;
+}
+
+.glyphicon-new-window {
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.classURI {
+    color:darkorange;
+}
+
+.propURI {
+    color:darkviolet;
+}
+
+.naryURI {
+    color:darkcyan;
+}
+
+.URI {
+    color:darkblue;
+}
+
+.function {
+    color:green;
+}
+
+.Literal {
+    color:darkgreen;
+}
+
+.numeric {
+    text-align:right;
+}
+
+.nodeID {
+    color:darkgrey;
+}
+
+.modifier {
+    color:darkred;
+}
+
+.highlighted {
+    background-color:#a0f0a0; /* --color-highlight */
+}
+.prehighlighted {
+    background-color:#f8f880; /* --color-prehighlight */
+}
+
+#sparql-endpoint-input {
+    width:300px;
+}
+
+#lisql .focus span {
+    cursor:pointer;
+    transition:background-color 0.6s ease;
+}
+
+.suspended {
+    opacity:0.3;
+}
+
+.coordination {
+    list-style-type:none;
+    margin:0px;
+}
+
+.no-match {
+    opacity:0.5;
+}
+
+.increments-focus {
+}
+
+.term-input {
+}
+
+.selection-incrs {
+    background-color:#f8f840; /* --color-selection */
+    padding:4px;
+}
+
+.selection-increment {
+}
+
+.selected-incr {
+    background-color:#f8f840; /* --color-selection */
+}
+
+.incr-box .panel-body {
+    padding: 0px;
+}
+
+.panel-body > .row {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.panel-footer {
+    padding: 10px 5px 5px 5px;
+}
+
+.buttons-incrs {
+    padding: 0px 5px;
+}
+
+.select-sorting-incrs {
+    padding: 0px 5px;
+    height:30px;
+}
+
+#lisql {
+    font-weight:bold;
+}
+
+#focus-dropdown {
+}
+
+#focus-dropdown-content {
+  display: none;
+  position: absolute;
+  left:200px;
+  z-index: 1;
+  background-color: #f9f9f9;
+  /*min-width: 100px;*/
+  box-shadow: 0px 8px 16px 0px #a0f0a0; /* --color-highlight */
+  padding: 10px 15px 10px 0px;
+}
+#focus-dropdown-content ul {
+    list-style-type: none;
+    padding: 0px;
+    line-height: 90%; // avoids wasted space between items
+}
+#focus-dropdown-content li {
+    /*width: 95%;*/
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top:5px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    white-space: nowrap;
+}
+
+.list-incrs {
+    height:240px;
+    resize:vertical;
+    overflow:auto;
+    padding-top:0;
+}
+
+.list-incrs.css-treeview ul {
+    list-style-type: none;
+    padding: 0px;
+    line-height:90%; // avoids wasted space between items
+}
+.list-incrs.css-treeview > ul {
+    padding-top: 0px;
+}
+.list-incrs.css-treeview ul ul {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+.list-incrs.css-treeview li {
+    width: 95%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top:8px;
+    margin-bottom: 0px;
+    padding-right: 0px;
+    white-space: nowrap;
+}
+
+.increment {
+    display:inline-block;
+    vertical-align:top;
+    line-height:100%;
+    white-space:normal;
+}
+.valid-increment {
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+.invalid-increment {
+    cursor:not-allowed;
+    text-decoration:line-through;
+    opacity:0.5;
+}
+.valid-increment:hover:not(.selected-incr) {
+    background-color:#f8f880; /* --color-prehighlight */
+}
+
+.frequency-results, .frequency-entities {
+    border-radius:6px;
+    margin-left:10px;
+    padding-left:3px;
+    padding-right:3px;
+    border:1px solid grey;
+    color:grey;
+    font-size:12px;
+}
+
+.partial-count:hover {
+    background-color: grey;
+    color: white;
+}
+
+.count-incrs {
+    padding: 5px 5px;
+    font-size:14px;
+    text-align:right;
+}
+
+.css-treeview input.input-treeview ~ ul {
+    display: none; /* hiding sublists of unckecked increments */
+}
+.css-treeview input.input-treeview:checked ~ ul {
+    display: block; /* showing sublists of checked increments */
+}
+/* showing/hiding arrow labels depending on check status */
+.css-treeview input.input-treeview {
+  position: absolute;
+  opacity: 0;
+}
+.css-treeview input.input-treeview ~ .label-checked { display:none; }
+.css-treeview input.input-treeview:checked ~ .label-unchecked { display:none; }
+.css-treeview input.input-treeview:checked ~ .label-checked { display:inline; }
+
+/* switching labels for checkboxes inverting hierarchy display */
+input.input-inverse {
+    position: absolute;
+    opacity: 0;
+}
+input.input-inverse ~ .label-checked { display:none; }
+input.input-inverse ~ .label-unchecked { margin:0px; }
+input.input-inverse:checked ~ .label-unchecked { display:none; }
+input.input-inverse:checked ~ .label-checked { display:inline; margin:0px; }
+
+
+#control-results {
+    margin: 5px 0px;
+}
+
+#list-results {
+}
+
+.simple-table {
+}
+
+#nested-table {
+    padding-top: 5px;
+}
+
+.nested-table {
+    float:left;
+    margin-right:10px;
+}
+
+#div-next-nested-table {
+    clear: both;
+}
+
+
+.header[id] {
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+
+.header[id]:hover {
+    background-color:#f8f880; /* --color-prehighlight */
+}
+
+.cell[id] {
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+
+.cell[id]:hover {
+    background-color:#f8f880; /* --color-prehighlight */
+}
+
+table {
+    border-collapse:collapse;
+}
+
+table, th, td {
+    border:1px solid black;
+}
+
+th, td {
+    padding:4px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+}
+
+#results-carousel .carousel-inner .item > img {
+    height:98vh;
+    margin: 0 auto;
+}
+
+footer {
+    clear:both;
+}
+
+/* examples */
+
+.sparklis-query {
+    padding:5px;
+}
+
+.sparklis-permalink {
+}
+
+/* toggle switch */
+
+.switch {
+  position: relative;
+  top: 3px;
+  margin: 0;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #aaa;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background-color: #333;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: white;
+}
+
+/*input:focus + .slider {
+  box-shadow: 0 0 2px red;
+}*/
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}

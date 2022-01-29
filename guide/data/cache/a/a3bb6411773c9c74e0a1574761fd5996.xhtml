@@ -1,0 +1,59 @@
+
+<h1 class="sectionedit1" id="configuration">configuration</h1>
+<div class="level1">
+
+<p>
+The main settings of the Conzept system can be edited in “<strong>/etc/conzept/settings.conf</strong>”.
+</p>
+
+<p>
+After editing the this file, go to the “<strong>$CONZEPT_WEB_DIR/app/explore2/</strong>” directory and execute “<strong>npm run build</strong>”. <br/>
+
+This build step will update the above settings in all the <abbr title="HyperText Markup Language">HTML</abbr>, PHP and JS files.
+</p>
+
+<p>
+Overview of the Conzept settings:
+</p>
+<div class="table sectionedit2"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> name      </th><th class="col1 leftalign"> description       </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <strong>CONZEPT_HOSTNAME</strong> </td><td class="col1"> Name of the webserver (eg. &#039;conze.pt&#039;) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <strong>CONZEPT_WEB_BASE</strong> </td><td class="col1"> Optional: web base-path (can be used to change the base web <abbr title="Uniform Resource Locator">URL</abbr> location) </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> <strong>CONZEPT_WEB_DIR</strong>  </td><td class="col1"> File system path to the root of the web directory (eg. &#039;/var/www/html&#039;) </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> <strong>CONZEPT_SERVICES_DIR</strong> </td><td class="col1"> File system path to the services directory (eg. &#039;/var/www/html/services&#039;) </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> <strong>CONZEPT_VERSION</strong> </td><td class="col1"> Conzept version string </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <strong>CONZEPT_CORS_PROXY_WHITELIST</strong> </td><td class="col1"> List of domains for which the “allorigins” <a href="/guide/installation#conzept_services_setup" class="wikilink1" title="installation" data-wiki-id="installation">CORS-proxy-service</a> is enabled </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> <strong>CONZEPT_LOCALES</strong> </td><td class="col1"> Supported <a href="/guide/localization" class="wikilink1" title="localization" data-wiki-id="localization">language locales</a> (used for i18n)</td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE</strong> </td><td class="col1"> Common <abbr title="HyperText Markup Language">HTML</abbr>-string which will be included in the <a href="/guide/used_projects#embedded_apps" class="wikilink1" title="used_projects" data-wiki-id="used_projects">embedded apps</a> </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE_NO_JQUERY</strong> </td><td class="col1"> Same as above, but without jQuery (some apps already include jQuery by themselves) </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> <strong>CONZEPT_YOUTUBE_<abbr title="Application Programming Interface">API</abbr>_KEY</strong> </td><td class="col1"> Optional: <a href="https://developers.google.com/youtube/v3/getting-started" class="urlextern" target="_blank" title="https://developers.google.com/youtube/v3/getting-started" rel="ugc nofollow noopener">YouTube API</a> key </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0"> <strong>CONZEPT_TRACKER_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE</strong> </td><td class="col1"> Optional: common tracker <abbr title="HyperText Markup Language">HTML</abbr> string </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;362-1513&quot;} -->
+</div>

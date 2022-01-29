@@ -1,0 +1,20 @@
+====== upgrading conzept ======
+
+To upgrade your Conzept installation to the latest version in the Git repository, follow these steps:
+
+  * First backup the Conzept data directories: /etc/conzept/settings.conf and /app/explore2/src/data
+
+  * Then run "git clone https://github.com/waldenn/conzept.git" (or if you already have the Conzept repository checked out, run "git pull" in that directory)
+
+  * install all files from the repo:
+    * cd conzept
+    * cp -r * [YOUR CONZEPT ROOT DIRECTORY]
+
+  * insert your data backup:
+    * cp settings.conf /etc/conzept
+    * cp -r data/* [YOUR CONZEPT ROOT DIRECTORY]/app/explore2/src/data/
+    * cd [YOUR CONZEPT ROOT DIRECTORY]/app/explore2/
+    * npm run build
+
+
+[ Note: In the future upgrading should become more automated, using an upgrade-script or by having OS distribution packaging. ]

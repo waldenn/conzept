@@ -1,0 +1,53 @@
+<?php global $conf, $lang, $ACT, $INFO ?>
+
+<div id="pagefooter">
+
+<?php if ($ACT == "show") { ?>
+	<div class="" style="display:flex">
+		<a id="btn-prevpage" class="btn invisible"><i class="fas fa-arrow-circle-left"></i> Previous</a>
+		<a id="btn-nextpage" class="btn invisible" style="margin-left:auto">Next <i class="fas fa-arrow-circle-right"></i></a>
+	</div>
+
+	<hr>
+
+	<?php tpl_includeFile('pagefooter.html') ?>
+
+<?php } ?>
+
+<?php if ($INFO["userinfo"]) { ?>
+	<nav class="tools" aria-label="<?php echo $lang['tools'] ?>">
+		<div style="display:flex">
+			<div id="dokuwiki__sitetools">
+				<h3><?php echo $lang['site_tools'] ?></h3>
+				<ul>
+					<?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action ', false); ?>
+				</ul>
+			</div>
+
+			<div id="dokuwiki__pagetools">
+				<h3><?php echo $lang['page_tools'] ?></h3>
+				<ul>
+					<?php echo (new \dokuwiki\Menu\PageMenu())->getListItems('action ', false); ?>
+				</ul>
+			</div>
+
+			<?php if ($conf['useacl']): ?>
+				<div id="dokuwiki__usertools">
+					<h3><?php echo $lang['user_tools'] ?></h3>
+					<ul>
+						<?php
+							if (!empty($_SERVER['REMOTE_USER'])) {
+								echo '<li class="user">';
+								tpl_userinfo();
+								echo '</li>';
+							}
+						?>
+						<?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action ', false); ?>
+					</ul>
+				</div>
+			<?php endif ?>
+		</div>
+		<div class="doc"><?php tpl_pageinfo() ?></div>
+	</nav>
+<?php } ?>
+</div>

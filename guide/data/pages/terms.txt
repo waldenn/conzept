@@ -1,0 +1,78 @@
+====== terms ======
+
+Here is a list of the most important terms used in the Conzept system.
+
+===== topic card =====
+
+[{{ ::topic-card.jpg?direct|topic card}}]
+
+The [[user_manual#search_results|search results]] are rendered in the [[user_manual#conzept_sidebar|sidebar]] as a scrollable list of topic cards.
+
+These topic cards are a container for all information about a topic, including:
+  * Title
+  * [[#topic_headline|Headline]] (showing the topic's classification and the most essential links and info)
+  * Subtitle
+  * Description
+  * Thumbnail
+  * Text-to-speech control buttons
+  * A hierarchy of unfoldable [[#topic_sections|sections]] with section links (click on the <html>&nbsp;<i class="fas fa-play"></i>&nbsp;</html> icon to see them)
+
+
+===== topic headline =====
+
+[{{ ::topic-card-2.jpg?direct|topic card headline}}]
+
+The topic headline shows the most essential links and info (if available / applicable), such as:
+
+  * The classification of the object (the first icon with a blue-background).
+    * Note: For certain topic-types the class-icon is clickable, and will result in submitting a [[user_manual#structured_search|structured query]] for "same type" objects.
+  * Start and end year
+  * Category-tree link
+  * And many other links: homepage, twitter, maps, video, stock, etc.
+
+===== topic sections =====
+
+[{{ ::sections.png?direct|topic sections}}]
+
+The main idea behind Conzept is to help you **see topics of interest from different 'angles'**.
+
+
+The angles can be:
+  * Wikidata information
+  * Video / audio / image archives
+  * Digital books
+  * Science papers
+  * Museum archives
+  * Historic archives (such as newspapers)
+  * Educational materials
+  * Maps
+  * Social media
+  * Meta relations (similar topics, comparisons, link graphs)
+  * and more...
+
+**On Conzept these angles are the topic sections and the links they contain.**
+
+Not all these angles are relevant all the time for topics ofcourse. In some cases Conzept can hide sections or and show extra sections automatically, depending on a certain context.
+
+[ Experimental: You can configure some of this context with the "persona-tags" setting. For example: If you have a "nomad" persona tag, you will see a link to walking routes (in the topic headline), when viewing a location topic. If you have a tourist-persona tag, then you will see a link to hotel locations. ]
+===== topic fields =====
+
+[{{ ::section-fields-1.jpg?direct|main-section fields}}]
+
+Each [[terms#topic_sections|section]] of a [[terms#topic_card|topic]] can be populated by links. \\
+(Note: these can also be a plain string or some non-link HTML. In Conzept we call these elements "fields".)
+
+When a user clicks on such a link, it can trigger several kinds of [[field_customization#introduction|actions]].
+===== conzept sidebar =====
+
+Read more [[user_manual#conzept_sidebar|here]].
+
+===== content panes =====
+
+Read more [[user_manual#content_panes|here]].
+
+===== apps =====
+
+See:
+  * [[apps|List of the most relevant apps]]
+  * [[used_projects#embedded_apps|List of all apps]]

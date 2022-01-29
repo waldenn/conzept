@@ -1,0 +1,57 @@
+====== section customization ======
+
+The content in [[terms#topic_card|topic-cards]] is organized using a tree-structure of [[terms#topic_sections|topic sections]].
+
+The structure and names of these sections comes from the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/sections.js|src/data/sections.js]]**" file.
+
+Each section can define the following fields:
+
+^ name      ^ description       ^
+| **ID** | ID-name, this is the section object-key by which the sections are processed in Conzept. This ID is also used for [[localization|localizing]] section names.|
+| **icon** | Optional: Icon-classes, either taken from [[https://fontawesome.com/v5.15/icons?d=gallery|FontAwesome]] or from [[https://openmoji.org/library/|OpenMoji]]. |
+| **sub** | Optional: Section-branch, which is used to define sub-sections within a section. Sections can have unlimited sub-sections. |
+
+To add or remove sections, you edit the "sections.js" file as needed and execute "**npm run build**".
+
+In [[field customization]] you can see how links can be added to these sections.
+
+===== example =====
+
+Below is a snippet from that file, showing the sections for: "main", "meta" and "media". The Conzept rendered output is shown next to it.
+
+[{{ ::sections_1.png?direct|the rendered topic sections}}]
+
+<code>
+'main': {
+  'icon'  : '',
+},
+
+'meta': {
+  'icon'  : '',
+},
+
+'media': {
+  'icon'  : '',
+
+  'sub'   : {
+
+    'media-video': {
+      'icon' : 'fas fa-video',
+    },
+
+    'media-image': {
+      'icon' : 'far fa-images',
+    },
+
+    'media-audio': {
+      'icon' : 'fas fa-volume-up',
+    },
+
+    'media-software': {
+      'icon' : 'far fa-window-restore',
+    },
+
+  },
+
+},
+</code>

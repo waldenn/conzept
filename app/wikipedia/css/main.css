@@ -1,70 +1,3 @@
-/* quicksand-regular - latin-ext_latin */
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.svg#Quicksand') format('svg'); /* Legacy iOS */
-}
-
-/* quicksand-500 - latin-ext_latin */
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff') format('woff'), /* Modern Browsers */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/quicksand/quicksand-v20-latin-ext_latin-500.svg#Quicksand') format('svg'); /* Legacy iOS */
-}
-
-/*
-@font-face {
-  font-family: 'Catamaran';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/catamaran/v8/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd5bjdu2ui.woff2) format('woff2');
-  src: url( '/fonts/catamaran/catamaran-tamil-400.woff2' ) format('woff2');
-  unicode-range: U+0964-0965, U+0B82-0BFA, U+200C-200D, U+20B9, U+25CC;
-}
-
-@font-face {
-  font-family: 'Catamaran';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url( '/fonts/catamaran/catamaran-latin-ext-400.woff2' ) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: 'Catamaran';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url( '/fonts/catamaran/catamaran-latin-400.woff2' ) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Crimson Text';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url( '/fonts/crimson/CrimsonText-Regular.woff2' ) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-*/
-
 pre {
   font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, Courier New, monospace;
   font-size: smaller;
@@ -101,7 +34,7 @@ sup {
 
 .wikipediapreview-body p {
   /* font-family: 'Lato', sans-serif; */
-  font-family: 'Quicksand', sans-serif !important;
+  font-family: 'Hind', sans-serif !important;
 }
 
 /* Wikipedia syntax highlighting codes */
@@ -374,7 +307,7 @@ body {
   /*font-family: 'K2D', sans-serif; */
   /*font-family: 'Pontano Sans', sans-serif;*/
   /*font-family: 'IBM Plex Sans Condensed';*/
-  font-family: 'Quicksand';
+  font-family: 'Hind';
 
   /*
   font-weight: 300; 
@@ -515,7 +448,7 @@ audio {
 .section-title-button {
   font-size: small;
   float: right;
-  padding: 0rem 0.5rem 0rem 0.5rem;
+  padding: 0rem .5rem;
   /* color: #00000078; */
 }
 
@@ -772,7 +705,7 @@ gbif-map {
 .hatnote, .bandeau-cell, .hauptartikel, div[role=note] {  /* TODO design a proper fix for multi-lingual hatnote-styling support */
   margin-left: 1rem;
   padding-left: 0em !important;
-  font-size: 0.95rem;
+  /*font-size: 0.95rem;*/
   font-style: normal !important;
   /* margin-bottom: 0.5rem; */
 }
@@ -800,7 +733,12 @@ gbif-map {
   margin-bottom: 0.3rem;
   /* margin-left: 1rem; */
   font-weight: bolder;
-  font-size: 0.9rem;
+  font-size: 90%;
+}
+
+.main_template_info.link {
+  text-decoration: none !important;
+  font-weight: 500;
 }
 
 .infobox map {
@@ -1440,12 +1378,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2 {
-
   margin-top: 0rem;
   margin-bottom: 0.2rem;
   padding-top: 1.1rem; 
   padding-bottom: 0.4rem;
-  line-height: 1rem;
 
   /*
   margin-top: 0.36rem;
@@ -1462,7 +1398,7 @@ body.rtl h1, h2 {
 
 h2, h3, h4, h5, h6 {
 
-  margin-top: 0rem;
+  margin-top: -2rem;
   margin-bottom: 0.2rem;
 
   /*
@@ -1484,7 +1420,7 @@ h1, h2 {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a.underline {
@@ -1493,7 +1429,7 @@ a.underline {
 }
 
 a.underline.link {
-  font-weight: 450;
+  /*font-weight: 450;*/
 }
 
 a {
@@ -1506,8 +1442,8 @@ a {
 }
 
 a.link {
-  font-weight: 450 !important;
-  text-decoration: underline !important;
+  /*font-weight: 450 !important;*/
+  /*text-decoration: underline !important;*/
   /* font-weight: 400; */
   /* text-decoration: none; */
   /*text-decoration-color: rgba(175,175,175,0);*/
@@ -1734,11 +1670,7 @@ table .enlargable {
 /* ToC */
 
 .js-toc {
-  /*font-family: 'Quicksand';*/
-  /*font-family: 'Catamaran', sans-serif !important;*/
-  /*font-size: 1.2rem !important;
-  line-height: 1.6rem !important;*/
-  font-size: 110% !important;
+  font-size: 98% !important;
   line-height: 120% !important;
 }
 
@@ -2212,4 +2144,28 @@ body.rtl main.explore {
   #wikipedia {
     margin-left: 22px !important;
   }
+}
+
+
+/* override styles when printing */
+@media print {
+
+  aside {
+    display: none;
+  }
+
+  main.explore {
+    width: 99%;
+    margin-left: 3%;
+    margin: auto !important;
+  }
+
+  .section-title-button,
+  #fullscreenToggle,
+  #wikipedia-menu,
+  .categories, #categories, .catheader
+   {
+    display: none;
+  }
+
 }

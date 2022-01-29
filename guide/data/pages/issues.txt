@@ -1,0 +1,31 @@
+====== issues ======
+
+=====  browser navigation =====
+
+  * **Backwards navigation** (using the browser history stack) has several issues. 
+    * note: The web standards community is working on improving the **[[https://github.com/WICG/app-history|browser-history API]]**, since many SPA's are running into the same issues.
+
+  * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
+
+  * **Touch-based resizing the width of the sidebar** does not work (Todo: make the vertical separator line and the <html><i class="fas fa-grip-lines-vertical"></i></html> resize-handle touch-enabled)
+===== mobile browser compatibility and usability =====
+
+  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
+
+  * The Apple iOS mobile browser needs more UX testing & fixing.
+
+  * Cold-startup time (upon first use) is quite slow - sometimes more than 10-20 seconds on low-bandwidth networks - and should probably be improved.
+
+===== quality assurance =====
+
+  * Accessibility (including keyboard-access) should be assessed and improved where needed.
+    * Integrate an automated accessibility test system.
+    * Look into the [[https://www.carbondesignsystem.com/developing/frameworks/web-components|IBM Carbon]] web-component framework for accessible replacements (when needed)
+
+  * Integrate an automated testing system.
+
+===== admin/dev workflows =====
+
+  * Make [[terms#topic_headline|topic-headline]] fields definable in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file.
+
+  * Improve the workflow of [[adding_an_api|adding API integrations]].

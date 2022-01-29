@@ -9,7 +9,7 @@
 	"homepage": "http://molview.org",
 	"private": true,
 	"devDependencies": {
-		"grunt": "^1.1.0",
+		"grunt": "^1.4.1",
 		"grunt-contrib-clean": "^2.0.0",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-less": "^2.0.0",

@@ -1,0 +1,188 @@
+====== user manual ======
+
+===== introduction =====
+
+[{{::homepage.jpg?direct|home page (with a random cover topic)}}]
+
+[{{::screenshot_from_2022-01-16_13-53-19.jpg?direct|search results page}}]
+
+**[[https://conze.pt|Conzept]] is an attempt to create an [[explore>encyclopedia]] for the 21st century.**
+
+A modern topic-exploration tool based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for: [[explore>fun]], [[explore>education]] and [[explore>research]].
+
+Conzept allows you to explore any of the millions of topics on Wikipedia from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity ("thing") as well as a "string". Client-side [[topic classification|topic-classification]] in addition allows for a fast, higher-level logic throughout the whole user experience.
+
+The integrated user-interface gives you a clean, well-designed view of all this information, in any of the [[explore>List of Wikipedias|300+ Wikipedia languages]], without "[[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]]".
+
+The Conzept project is [[explore>free software]] licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets) and the development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Development news is announced on [[https://twitter.com/conzept__|Twitter]].
+===== project goals =====
+
+{{ :logo.svg?200}}
+
+Although Wikipedia is great and getting better all the time, I (Jama Poulsen) felt that the encyclopedic information could be presented better and have more integration with other major sources of information on the web.
+
+Each Wikipedia "article" actually relates to a multi-faceted concept, which we ideally should be able to easily explore. This is what Conzept strives to be a good tool for. To help anyone to explore and learn about topics of their interest, in an effective and enjoyable way.
+
+The main goals of Conzept are:
+
+  * A more **holistic presentation of the encyclopedic information** contained within Wikipedia and Wikidata by integrating and linking with other information sources.
+
+  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce the cognitive-load and making the learning experience as fun and inspiring as possible.
+
+  * **Innovate** where possible //and// useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
+
+  * Build the project as **free software** and make its use and development accessible for all. Find sustainable ways to support its maintenance, development and collaboration.
+
+===== application layout =====
+
+{{ :app_layout.svg?direct|}}
+
+The layout of Conzept consists of two main areas:
+  * The **[[#conzept sidebar|sidebar]]**, which is used for showing the [[#string search|search interface]], the language select and various tabs.
+
+  * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
+==== conzept sidebar ====
+
+[{{ :sidebar_screenshot_1.jpg?direct|sidebar example}}]
+
+From the sidebar you can:
+
+  * Click on the "conzept" name, to **clear the search query and return to the homescreen.** On the homescreen there are also various topicical links available.
+
+  * <html><i class="fas fa-caret-right"></i>&nbsp;</html> **Change the content language** to any of the ~300 Wikipedia-supported languages
+
+  * <html><i class="fas fa-search"></i>&nbsp;</html> **Enter a [[#string_search|search string]], [[#structured_search|structured search query]] or a [[#commands|command]].**
+
+  * <html><i class="fas fa-stream"></i>&nbsp;</html> **Browse the search results** in the topics-tab.
+    * More [[terms#topic_card|topics]] will be loaded in the sidebar as you scroll down to the bottom of the search results.
+
+  * <html><i class="far fa-bookmark"></i>&nbsp;</html> **Manage your [[#bookmarks|bookmarks]]** in the bookmarks-tab
+    * This allows for quick access to previously bookmarked topics.
+    * You can bookmark a topic by clicking the bookmark-icon in the "main"-section of each topic.
+
+  * <html><i class="fas fa-wrench"></i>&nbsp;</html> **Use additional tools** from the tools-tab, allowing you to:
+    * Go to a random topic
+    * Compare topics ([[https://conze.pt/explore/Trogon?l=en&t=compare&c=Q1268064,Q998535,Q1268477&s=true|example]])
+    * Play ambient audio (which can help with focus)
+    * Fullscreen the app
+    * Bookmark the current URL
+    * Clone the current tab
+
+  * <html><i class="fas fa-cog"></i>&nbsp;</html> **Change the settings** in the [[#settings|settings-tab]].
+
+  * <html><i class="fas fa-question"></i>&nbsp;</html> **See the documentation** in the help-tab.
+    * Links to the user, administrator and developer guides.
+    * List of supported keyboard shortcuts.
+    * Various nnformation about Concept.
+
+  * Control the sidebar presentation:
+    * **Hide the sidebar** by clicking on the <html><i class="fas fa-angle-left"></i></html> icon.
+    * **Resize the width of the sidebar**, by dragging the vertical separator line or the <html><i class="fas fa-grip-lines-vertical"></i></html> resize-handle
+==== content panes ====
+
+[{{ ::content_panes_0.jpg?direct|single content-pane example ([[https://conze.pt/explore/Kazakhstan?l=en&t=link&i=Q232&u=%2Fapp%2Fmap%2F%3Fl%3Den%26bbox%3D67.95%2C47.95%2C68.05%2C48.05%26lat%3D48%26lon%3D68%26osm_id%3D214665%26qid%3D232%26title%3DKazakhstan&c=48,68&s=true|link]]) }}]
+
+[{{ ::content_panes_2.jpg?direct|dual content-pane example ([[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|link]]) }}]
+
+[{{ ::content_panes_1.jpg?direct|another dual content-pane example ([[https://conze.pt/explore/Pythagorean%20theorem?l=en&t=link-split&i=Q11518&u=%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DPythagorean%2520theorem&s=true|link]]) }}]
+
+The content area can consist of one or two **content panes**, depending on the type of content being shown. **These panes are used to show [[apps|Conzept apps]] or (embeddable) websites.**
+
+Some types of content (such as highly inter-related information displaying apps) can sometimes be presented better in a dual-pane view. Such a view can make it easier to browse lots of related objects. without losing the 'main thread'.
+
+**The general workflow of these panes is always from left-to-right. So the sidebar directs the content pane.** If the content area has two content panes, the left pane will direct the right pane.
+
+===== string search =====
+
+{{ :search_1.jpg?direct|search suggestions}}
+
+To find topics of your interest, you can enter a search string into the search bar.
+While typing your string you will get back topic suggestions.
+
+You can either select a topic suggestion or use your own search string.
+
+The results will be shown in the sidebar and the next results are loaded once you scroll to the bottom of the results.
+
+If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
+===== structured search =====
+
+[{{ ::structured_query_1.jpg?direct|structured search query input}}]
+
+[{{ ::structured_query_2.jpg?direct|structured query results ([[https://conze.pt/explore/?l=en&t=wikipedia&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P31%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q5%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%2C%7B%22propertyId%22%3A%22P106%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q36834%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3A%22and%22%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D|link]]) }}]
+
+**Structured searching is an easy way to construct (simple) [[explore>SPARQL]]-queries and see the results in the sidebar.**
+
+This functionality can be accessed by:
+
+  - Clicking on the "structured search" detail-element in the topics-tab. \\ \\
+  - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
+  - Then click the "run query" button. \\ \\
+===== commands =====
+
+[{{ :graph_command.jpg?direct|[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph example]]}}]
+
+These are some (experimental) **!-prefixed commands** which, when entered into the search box, **override the normal search function.**
+
+Overview of the current commands:
+
+  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support). (Note: Hopefully in the future this functionality can be extended to a richer mathematical environment called [[https://github.com/sagemathinc/JSage|JSage]])
+
+  * **[[https://conze.pt/explore/!check%20Caracas%20has%20a%20lot%20of%20crime?l=en|!check]]** - An AI-based fact-checking command.
+
+===== bookmarks =====
+
+[{{ ::bookmark_1.jpg?direct|adding a bookmark}}]
+
+[{{ ::bookmark_2.jpg?direct|bookmark management from the bookmark-tab}}]
+
+You can **bookmark topics** that you like, by opening the main-section of a topic, and then clicking on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon.
+
+To **view and manage your bookmarks**, click on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon in the tab-menu.
+From the bookmark manager you can delete and drag-and-drop the bookmarks into your own list hierarchies.
+
+The bookmarks are only stored locally in the browser (using a browser cookie), and not on any server.
+
+[ Note: There is currently no import / export functionality for bookmarks. ]
+
+===== settings =====
+
+[{{::settings.jpg?direct|settings tab}}]
+
+The following settings are available:
+
+  * Set the **font size**
+
+  * Set the **font type**
+
+  * Set the **interface language** (locale)
+    * Note: This is different from the content-language setting. This //only// affects the Conzept UI interface.
+
+  * Set the **theme** (light / dark mode, link previews, color filters)
+
+  * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
+
+  * Set **persona-tags**
+    * Note: This allows Conzept to better suite the user-interface to your needs. Eg. to show map links for hotels and walking-routes, for tourist-personas.
+
+===== keyboard shortcuts =====
+
+Here is an overview of the available keyboard shortcuts:
+
+<html>
+<ul style="list-style:none;">
+  <li><kbd>f</kbd> &nbsp; <b><span id="app-menu-fullscreen-active-pane">fullscreen the active pane</span></b></li><br/>
+
+  <li><kbd>↓</kbd> &nbsp; <b><span id="app-menu-goto-next-topic">go to next topic (in the sidebar results)</span></b></li><br/>
+
+  <li><kbd>↑</kbd> &nbsp; <b><span id="app-menu-goto-previous-topic">go to previous topic (in the sidebar results)</span>
+  </b></li><br/>
+  <li><kbd>→</kbd> &nbsp; <b><span id="app-menu-goto-next-pane">go to next pane</span></b></li><br/>
+  <li><kbd>←</kbd> &nbsp; <b><span id="app-menu-goto-previous-pane">go to previous pane</span></b></li><br/>
+  <li><kbd>Alt</kbd> + <kbd>x</kbd> &nbsp; <b><span id="app-menu-new-search">new search</span></b> <sup>1</sup></li><br/>
+  <li><kbd>Alt</kbd> + <kbd>y</kbd> &nbsp; <b><span id="app-menu-toggle-sidebar">toggle the sidebar</span></b> <sup>1</sup></li><br/>
+  <li><kbd>Alt</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark">add bookmark</span></b> <sup>1</sup></li><br/>
+  <li><kbd>Alt</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key">random topic</span></b> <sup>1</sup></li><br/>
+</ul>
+
+[ note 1: only available when the focus is on the sidebar or a Wikipedia ]
+</html>

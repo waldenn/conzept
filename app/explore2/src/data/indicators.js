@@ -122,6 +122,14 @@ const indicators = {
       tags: 'setTags( item, [ "work", "video-game" ] )',
   },
 
+  'cryptocurrency': {
+      value: [
+        13479982, 30938210, 55582088, 106561513, 108455807,
+      ],
+      trigger: '',
+      tags: 'setTags( item, [ "work", "cryptocurrency" ] )',
+  },
+
   'software': {
       value: [
 

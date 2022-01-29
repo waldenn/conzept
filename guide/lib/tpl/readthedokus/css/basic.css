@@ -1,0 +1,494 @@
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html
+{
+	font-size: 16px;
+	height: 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%
+}
+
+body,html
+{
+	overflow-x: hidden;
+}
+
+body
+{
+    background-color: __background_alt__;
+    color: __text__;
+    font-size: 18px;
+    font-family: Hind,Rubik,Lato,proxima-nova,"Helvetica Neue",Arial,sans-serif,"Font Awesome 5 Free";
+    font-weight: 400;
+	margin: 0;
+    min-height: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+a
+{
+	color: __link__;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:active,
+a:hover
+{
+	outline: 0
+}
+
+.dokuwiki a.wikilink2:link,
+.dokuwiki a.wikilink2:visited
+{
+    border-bottom: none !important;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    font-weight: 700;
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia","Arial","sans-serif";
+    margin-bottom: 0.8em;
+    clear: both;
+}
+
+h2, h3, h4, h5, h6
+{
+    margin-top: 2rem;
+}
+
+h1
+{
+	font-size: 175%;
+}
+
+h2
+{
+	font-size: 150%;
+}
+
+h3
+{
+	font-size: 125%;
+}
+
+h4
+{
+	font-size: 115%;
+}
+
+h5
+{
+	font-size: 110%;
+}
+
+h6
+{
+	font-size: 100%
+}
+
+dl,
+ol,
+ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+li
+{
+	margin-left: 24px;
+}
+
+dl
+{
+	margin-bottom: 24px;
+}
+
+dl dt
+{
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+dl dd
+{
+	margin: 0 0 12px 24px;
+}
+
+dl.file dd
+{
+	margin-left: 0;
+}
+
+dl.file dt
+{
+	font-size: 80%;
+	margin-left: 0;
+	margin-bottom: 8px;
+}
+pre
+{
+	background-color: __background_code__;
+	border: 1px solid __border_code__;
+	display: block;
+	font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,Courier,monospace;
+	font-size: 12px;
+	line-height: 1.4;
+    margin: 1px 0 24px;
+	overflow: auto;
+	padding: 12px;
+	white-space: pre;
+}
+
+code
+{
+	background-color: __background_monospace__;
+	border: 1px solid __border_monospace__;
+	color: __text_monospace__;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, Courier, monospace;
+	font-size: 75%;
+	max-width: 100%;
+	padding: 2px 5px;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+hr
+{
+    border: 0;
+    border-top: 1px solid #e1e4e5;
+    display: block;
+    height: 1px;
+    margin: 24px 0;
+    padding: 0;
+}
+
+input[type=text],
+input[type=password],
+input[type=email]
+{
+	border: 1px solid #ccc;
+	display: inline-block;
+	font-family: Hind,Rubik,Lato,proxima-nova,Helvetica Neue,Arial,sans-serif;
+	font-size: 80%;
+	padding: 6px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus
+{
+    outline: none;
+}
+
+blockquote
+{
+    line-height: 24px;
+    margin-bottom: 24px;
+    margin-left: 24px;
+}
+
+button,
+.btn
+{
+	background-color: __background_button__;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px -1px rgb(255,255,255,.5) inset, 0px -2px 0px 0px rgb(0,0,0,.1) inset;
+    color: __text_button__;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Hind","Rubik","Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+    font-size: 100%;
+    font-weight: normal;
+	height: 35px;
+    line-height: normal;
+    padding: 6px 12px 8px 12px;
+    text-decoration: none;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    zoom: 1;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+button:hover,
+.btn:hover
+{
+    background-color: __background_button_hover__ !important;
+    color: __text_button_hover__;
+}
+
+main
+{
+	display: block;
+}
+
+table
+{
+	border: solid 1px __border__;
+    border-collapse: collapse;
+    border-spacing: 0;
+	line-height: 18px;
+	margin-bottom: 24px;
+	width: 100%;
+}
+
+table thead
+{
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+
+table th
+{
+    border-bottom: solid 2px __border__;
+	font-weight: bold;
+	padding: 8px 16px 24px;
+}
+
+table td
+{
+	border: solid 1px __border__;
+	line-height: 18px;
+	padding: 8px 16px;
+}
+
+table tr:nth-child(2n)
+{
+	background-color: #f3f6f6;
+}
+
+sup
+{
+	font-size: 80%;
+	vertical-align: super;
+}
+
+blockquote
+{
+    margin-left: 24px;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+
+abbr[title], dfn[title] {
+    /* border-bottom: none; */
+    cursor: auto;
+	text-decoration: none;
+}
+
+header
+{
+	height: __height_header__;
+}
+
+footer
+{
+	height: __height_footer__
+}
+
+.visible
+{
+	display: block;
+}
+
+.invisible
+{
+	display: none;
+}
+
+#__media_query
+{
+	display: none;
+	--media-query: pc;
+}
+
+/* IE11 workaround */
+body[data-useragent*='Trident'] #__media_query
+{
+	-media-query: pc;
+}
+
+@media (max-width: __media_query_tb__)
+{
+	#__media_query
+	{
+		--media-query: tb;
+	}
+
+	/* IE11 workaround */
+	body[data-useragent*='Trident'] #__media_query
+	{
+		-media-query: tb;
+	}
+}
+
+@media (max-width: __media_query_sp__)
+{
+	#__media_query
+	{
+		--media-query: sp;
+	}
+
+	/* IE11 workaround */
+	body[data-useragent*='Trident'] #__media_query
+	{
+		-media-query: sp;
+	}
+}
+
+/* Conzept Guide style */
+
+.mediaright, div.thumb2 {
+  float: right;
+  width: 50%;
+  filter: drop-shadow(0 .15rem .15rem gray);
+  border-radius: .2rem;
+  margin: 0.1rem 0rem 0.7rem 1rem;
+}
+
+div.thumb2 {
+  width: 50%;
+  float: right;
+}
+
+div.thumb2 .mediabox2 {
+  width: 100%;
+  height: max-content;
+}
+
+html .thumbcaption {
+  text-align: center;
+}
+
+.btn-expand {
+  display: none !important;
+}
+
+div.thumb2 .thumbinner {
+  width: 100%;
+}
+
+html .thumbcaption {
+  max-width: 100% !important;
+}
+
+nav {
+  background-color: #fcfcfc !important;
+}
+
+#dokuwiki__aside ul > li > div.li > a, #dokuwiki__aside ul > li > div.li > span > a {
+  color: #000 !important;
+}
+
+#dokuwiki__aside #sidebar > ul > li > div.li > a:hover, #dokuwiki__aside #sidebar > ul > li > div.li > span > a:hover {
+  background-color: #e0080840 !important;
+}
+
+#dokuwiki__aside #dw__toc ul.toc > .level1 ul.toc > li > div.li > a:hover {
+  background-color: #e0080840 !important;
+}
+
+#dokuwiki__aside #dw__toc > div > .toc > .level1 > div.li:first-child > a {
+  border-bottom: none !important;
+  border-top: none !important;
+  background-color: #f5f5f561 !important;
+}
+
+#pagefooter .tools a {
+  color: #000 !important;
+}
+
+#pagefooter .tools {
+  color: black !important;
+  background-color: #fbfaf9 !important;
+}
+
+body {
+  background-color: #fbfaf9 !important;
+}
+
+#dokuwiki__content > .group {
+  background-color: #fbfaf9 !important;
+}
+
+#dokuwiki__aside {
+  background-color: #fbfaf9 !important;
+}
+
+#sidebarheader .search input[type="text"] {
+  background-color: #fbfaf9 !important;
+}
+
+#dokuwiki__aside p strong {
+  font-size: 100% !important;
+  padding: 0 1em !important;
+}
+
+#sidebarheader {
+  background-color: #fbfaf9 !important;
+}
+
+#sidebarheader .home > a {
+  color: black !important;
+}
+
+.home {
+  display: none;
+}
+
+#sidebarheader .search input[type="text"] {
+  text-transform: lowercase;
+}
+
+kbd {
+  font-size: 150% !important;
+  color: #55a5d9;
+}
+
+table td {
+  line-height: 140%;
+}
+
+.mediacenter {
+  max-width: 80% !important;
+}
+
+hr {
+  border-top: 1px solid transparent !important;
+}
+
+#dokuwiki__content .page p {
+  line-height: 1.6rem !important;
+  margin: 0 0 1.6rem !important;
+}
+
+/* dark mode styling */
+
+/*
+body.dark {
+  color: #ffffffd9 !important;
+  background-color: #121212 !important;
+}
+
+body.dark #dokuwiki__content > .group {
+  background-color: #121212 !important;
+}
+
+body.dark div, body.dark span, body.dark iframe, body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6, body.dark p, body.dark blockquote, body.dark pre, body.dark code, body.dark kbd, body.dark ol, body.dark ul, body.dark li, body.dark fieldset, body.dark form, body.dark label, body.dark table, body.dark caption, body.dark tbody, body.dark tfoot, body.dark thead, body.dark tr, body.dark th, body.dark td, body.dark article, body.dark aside, body.dark details, body.dark figcaption, body.dark figure, body.dark footer {
+  color: white !important;
+}
+*/

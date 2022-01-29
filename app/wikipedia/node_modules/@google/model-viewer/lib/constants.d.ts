@@ -1,0 +1,16 @@
+export declare const HAS_WEBXR_DEVICE_API: boolean;
+export declare const HAS_WEBXR_HIT_TEST_API: false | ((options: XRHitTestOptionsInit) => Promise<XRHitTestSource>);
+export declare const HAS_RESIZE_OBSERVER: boolean;
+export declare const HAS_INTERSECTION_OBSERVER: boolean;
+export declare const IS_WEBXR_AR_CANDIDATE: false | ((options: XRHitTestOptionsInit) => Promise<XRHitTestSource>);
+export declare const IS_MOBILE: boolean;
+export declare const IS_CHROMEOS: boolean;
+export declare const IS_ANDROID: boolean;
+export declare const IS_IOS: boolean;
+export declare const IS_AR_QUICKLOOK_CANDIDATE: boolean;
+export declare const IS_SAFARI: boolean;
+export declare const IS_FIREFOX: boolean;
+export declare const IS_OCULUS: boolean;
+export declare const IS_IOS_CHROME: boolean;
+export declare const IS_IOS_SAFARI: boolean;
+export declare const IS_SCENEVIEWER_CANDIDATE: boolean;

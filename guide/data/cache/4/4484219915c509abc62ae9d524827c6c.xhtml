@@ -1,0 +1,45 @@
+
+<h1 class="sectionedit1" id="upgrading_conzept">upgrading conzept</h1>
+<div class="level1">
+
+<p>
+To upgrade your Conzept installation to the latest version in the Git repository, follow these steps:
+</p>
+<ul>
+<li class="level1"><div class="li"> First backup the Conzept data directories: /etc/conzept/settings.conf and /app/explore2/src/data</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Then run “git clone <a href="https://github.com/waldenn/conzept.git" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept.git" rel="ugc nofollow noopener">https://github.com/waldenn/conzept.git</a>” (or if you already have the Conzept repository checked out, run “git pull” in that directory)</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> install all files from the repo:</div>
+<ul>
+<li class="level2"><div class="li"> cd conzept</div>
+</li>
+<li class="level2"><div class="li"> cp -r * [YOUR CONZEPT ROOT DIRECTORY]</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> insert your data backup:</div>
+<ul>
+<li class="level2"><div class="li"> cp settings.conf /etc/conzept</div>
+</li>
+<li class="level2"><div class="li"> cp -r data/* [YOUR CONZEPT ROOT DIRECTORY]/app/explore2/src/data/</div>
+</li>
+<li class="level2"><div class="li"> cd [YOUR CONZEPT ROOT DIRECTORY]/app/explore2/</div>
+</li>
+<li class="level2"><div class="li"> npm run build</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+[ Note: In the future upgrading should become more automated, using an upgrade-script or by having <abbr title="Operating System">OS</abbr> distribution packaging. ]
+</p>
+
+</div>

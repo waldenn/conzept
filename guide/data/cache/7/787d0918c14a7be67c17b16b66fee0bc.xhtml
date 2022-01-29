@@ -1,0 +1,56 @@
+
+<h1 class="sectionedit1" id="adding_an_app">adding an app</h1>
+<div class="level1">
+
+<p>
+It is easy to integrate any existing (and future) statically-build web application into Conzept.
+</p>
+
+<p>
+<strong>Due to Conzepts use of iframes within the content panes, the execution and styling context of the app is completely isolated.</strong> Yet it is still easy to communicate with the iframed app via its <abbr title="Uniform Resource Locator">URL</abbr>-parameters (and when needed triggering postMessage() calls in its JS code).
+</p>
+
+<p>
+To add an extra app to the existing set of apps, these things need to be done:
+</p>
+<ul>
+<li class="level1"><div class="li"> First <strong>copy the app</strong> to a directory in Conzept ($CONZEPT_WEB_DIR/app/&lt;your_app_name&gt;/)</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Often you&#039;ll want to <strong>modify the app, to have it make use of some extra <abbr title="Uniform Resource Locator">URL</abbr> parameters</strong>, such as: the topic title, content language, Wikidata Qid or something else. In most applications this can easily be done.</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Optional: Add the Conzept common <abbr title="HyperText Markup Language">HTML</abbr>/<abbr title="Cascading Style Sheets">CSS</abbr>/JS resources to the app:</div>
+<ul>
+<li class="level2"><div class="li"> Copy the “index.html” to index.template.html (or the “index.php” to “index.template.php”, for PHP apps)</div>
+</li>
+<li class="level2"><div class="li"> Insert the following template snippet into the <abbr title="HyperText Markup Language">HTML</abbr> page, which will get substituted during the build step: <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE</strong>. (If the project already includes jQuery, use: <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE_NO_JQUERY</strong>)</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Then <strong>add a new <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field</a> definition</strong>, to create a link to this specific app. Here is a simple example:</div>
+</li>
+</ul>
+<pre class="code">&#039;my_app_name&#039; : {
+  create_condition: true,
+  title: &#039;My Chemistry App&#039;,
+  prop: &#039;&#039;,
+  type: &#039;link&#039;,
+  mv: false,
+  url: &#039;${explore.base}/app/myapp/?q=${title_quoted}&#039;,
+  mv: false,
+  icon: &#039;fas fa-flask&#039;,
+  text: &#039;MyApp name&#039;,
+  section: [&#039;science-chemistry&#039;,&#039;main&#039;],
+  rank: [100,10000],
+},</pre>
+<ul>
+<li class="level1"><div class="li"> Run “<strong>npm run build</strong>” to rebuild the Conzept system. The new app should now be linked up in the topic results.</div>
+</li>
+</ul>
+
+</div>

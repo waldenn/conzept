@@ -1136,7 +1136,7 @@ const conzept_fields = {
   prop: '1421',
   type: 'link',
   mv: false,
-  url: '${item.grin_url}', // FIXME: research why a multi-value with ${X} fails here
+  url: '${item.grin_url}', // FIXME: research why a multi-value with ${Xvalue} fails here
   icon: 'fab fa-pagelines',
   text: 'GRIN',
   section: ['science-biology', 'main'],
@@ -1516,7 +1516,7 @@ const conzept_fields = {
   title: 'Dutch museum of world cultures (NMVW)',
   prop: '7831',
   type: 'url',
-  url: 'https://hdl.handle.net/20.500.11840/pi${X}',
+  url: 'https://hdl.handle.net/20.500.11840/pi${Xvalue}',
   mv: true,
   icon: 'fas fa-university',
   text: 'NMVW',
@@ -1748,10 +1748,19 @@ const conzept_fields = {
 },
 
 'doi' : {
-  //create_condition: '${ valid( item.doi ) }',
-  //render_condition: false,
   title: 'doi',
   prop: '356',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
+'doi_prefix' : {
+  title: 'DOI prefix',
+  prop: '1662',
   type: '',
   mv: false,
   icon: '',
@@ -2122,6 +2131,41 @@ const conzept_fields = {
   section: '',
   rank: 1,
 },
+
+'market_capitalization' : {
+  title: 'market capitalization',
+  prop: '2226',
+  type: 'symbol-number',
+  mv: false,
+  icon: 'fas fa-hand-holding-usd',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
+'cryptocurrency_symbol' : {
+  title: 'cryptocurrency symbol',
+  prop: '5810',
+  type: '',
+  mv: false,
+  icon: '',
+  text: 'cryptocurrency symbol',
+  section: '',
+  rank: 1,
+},
+
+/*
+'short_name' : {
+  title: 'short name',
+  prop: '1813',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+*/
 
 'number_of_seasons' : {
   title: 'number of seasons',
@@ -2545,6 +2589,7 @@ const conzept_fields = {
   rank: 110,
 },
 
+/*
 'parlgov' : {
   create_condition: true,
   render_condition: 'checkTag(item, 1, "country")',
@@ -2552,12 +2597,13 @@ const conzept_fields = {
   prop: '',
   type: 'url',
   mv: false,
-  url: 'http://www.parlgov.org/explore/${item.iso3}/party/', // FIXME: URL seems broken currentntly
+  url: 'http://www.parlgov.org/explore/${item.iso3}/party/', // FIXME: URL seems broken currently
   icon: 'fas fa-university',
   text: 'ParlGov',
   section: 'government',
   rank: 3100,
 },
+*/
 
 'bionomia_country' : {
   create_condition: true,
@@ -2626,6 +2672,19 @@ const conzept_fields = {
   text: 'Wiki Education',
   section: 'education-assistance',
   rank: 60,
+},
+
+'nl_edusources' : {
+  create_condition: '"${explore.language}" === "nl"',
+  title: 'EduSources',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://edusources.nl/materialen/zoeken?search_text="${title_no_braces}"',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'EduSources',
+  section: 'education-assistance',
+  rank: 65,
 },
 
 'skillshare' : {
@@ -2936,6 +2995,123 @@ const conzept_fields = {
   rank: 30,
 },
 
+'libretext_biology' : {
+  create_condition: true,
+  title: 'LibreTexts biology',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://bio.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts biology',
+  section: 'education-assistance',
+  rank: 35.0,
+},
+
+'libretext_chemistry' : {
+  create_condition: true,
+  title: 'LibreTexts chemistry',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://chem.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts chemistry',
+  section: 'education-assistance',
+  rank: 35.1,
+},
+
+'libretext_geosciences' : {
+  create_condition: true,
+  title: 'LibreTexts geosciences',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://geo.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts geo',
+  section: 'education-assistance',
+  rank: 35.2,
+},
+
+'libretext_medicine' : {
+  create_condition: true,
+  title: 'LibreTexts medicine',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://med.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts medicine',
+  section: 'education-assistance',
+  rank: 35.3,
+},
+
+'libretext_humanities' : {
+  create_condition: true,
+  title: 'LibreTexts humanities',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://human.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts humanities',
+  section: 'education-assistance',
+  rank: 35.4,
+},
+
+'libretext_social_science' : {
+  create_condition: true,
+  title: 'LibreTexts social science',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://socialsci.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts social',
+  section: 'education-assistance',
+  rank: 35.5,
+},
+
+'libretext_engineering' : {
+  create_condition: true,
+  title: 'LibreTexts engineering',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://eng.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts engineering',
+  section: 'education-assistance',
+  rank: 35.6,
+},
+
+'libretext_mathematics' : {
+  create_condition: true,
+  title: 'LibreTexts mathematics',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://math.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts math',
+  section: 'education-assistance',
+  rank: 35.7,
+},
+
+'libretext_statistics' : {
+  create_condition: true,
+  title: 'LibreTexts statistics',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://stats.libretexts.org/Special:Search?query=${title_quoted}&type=wiki',
+  icon: 'fas fa-chalkboard-teacher',
+  text: 'LibreTexts statistics',
+  section: 'education-assistance',
+  rank: 35.8,
+},
+
 'serendipity_oer' : {
   create_condition: true,
   title: 'Serendipity OER search',
@@ -3103,7 +3279,7 @@ const conzept_fields = {
   title: 'email',
   prop: '968',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'far fa-envelope',
   text: 'email',
@@ -3127,7 +3303,7 @@ const conzept_fields = {
   title: 'blog',
   prop: '1581',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'fas fa-rss',
   text: 'blog',
@@ -3151,7 +3327,7 @@ const conzept_fields = {
   title: 'official website',
   prop: '856',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'fas fa-home',
   text: 'site',
@@ -3163,7 +3339,7 @@ const conzept_fields = {
   title: 'online catalog',
   prop: '8768',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'fas fa-home',
   text: 'online catalog',
@@ -3197,7 +3373,7 @@ const conzept_fields = {
   title: 'described by URL',
   prop: '973',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'fab fa-google-wallet',
   text: 'descr url',
@@ -3299,7 +3475,7 @@ const conzept_fields = {
   title: 'GitHub topic',
   prop: '9100',
   type: 'url',
-  url: 'https://github.com/topics/${X}',
+  url: 'https://github.com/topics/${Xvalue}',
   mv: true,
   icon: 'fab fa-github',
   text: 'GitHub topic',
@@ -3424,7 +3600,7 @@ const conzept_fields = {
   title: 'equivalent property',
   prop: '1628',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'oma oma-black-card-index-dividers',
   text: 'equiv. property',
@@ -3436,7 +3612,7 @@ const conzept_fields = {
   title: 'exact match',
   prop: '2888',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'oma oma-black-card-index-dividers',
   text: 'exact match',
@@ -3448,7 +3624,7 @@ const conzept_fields = {
   title: 'equivalent class',
   prop: '1709',
   type: 'url',
-  url: '${X}',
+  url: '${Xvalue}',
   mv: true,
   icon: 'oma oma-black-card-index-dividers',
   text: 'equiv. class',
@@ -3521,7 +3697,7 @@ const conzept_fields = {
   title: 'Twitter user',
   prop: '2002',
   type: 'url',
-  url: 'https://twitter.com/${X}',
+  url: 'https://twitter.com/${Xvalue}',
   mv: true,
   icon: 'fab fa-twitter',
   text: 'Twitter user',
@@ -3533,7 +3709,7 @@ const conzept_fields = {
   title: 'Twitter topic',
   prop: '8672',
   type: 'url',
-  url: 'https://twitter.com/i/topics/${X}',
+  url: 'https://twitter.com/i/topics/${Xvalue}',
   mv: true,
   icon: 'fab fa-twitter',
   text: 'Twitter topic',
@@ -3569,7 +3745,7 @@ const conzept_fields = {
   title: 'Reddit forum',
   prop: '3984',
   type: 'url',
-  url: 'https://www.reddit.com/r/${X}',
+  url: 'https://www.reddit.com/r/${Xvalue}',
   mv: true,  // TODO: make multi-value possible for strings which need processing towards URLs with a url-format // example: https://www.wikidata.org/wiki/Q13479982
   icon: 'fab fa-reddit',
   text: 'Reddit forum',
@@ -3581,7 +3757,7 @@ const conzept_fields = {
   title: 'Reddit graph',
   prop: '3984',
   type: 'link',
-  url: '${explore.base}/app/reddit/?query=${X}',
+  url: '${explore.base}/app/reddit/?query=${Xvalue}',
   mv: true,
   icon: 'fab fa-reddit',
   text: 'Reddit graph',
@@ -4006,11 +4182,23 @@ const conzept_fields = {
   type: 'link',
   mv: false,
   url: 'https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
-
   icon: 'fas fa-project-diagram',
-  text: 'sparql explorer',
+  text: 'sparql explorer 1',
   section: ['meta', 'science-datasets-topical', 'main'],
   rank: [ 49, 69, 63 ],
+},
+
+'sparql_sparklis' : {
+  title: 'Sparklis SPARQL Endpoint Explorer',
+  create_condition: 'valid( item.sparql_endpoint_url )',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://conze.pt/app/sparklis/webapp/osparklis.html?title=&endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
+  icon: 'fas fa-project-diagram',
+  text: 'sparql explorer 2',
+  section: ['meta', 'science-datasets-topical', 'main'],
+  rank: [ 50, 70, 64 ],
 },
 
 'subclass_of' : {
@@ -8741,7 +8929,6 @@ const conzept_fields = {
   title: 'parent taxon',
   prop: '171',
   type: 'wikipedia-qid',
-
   mv: false, // TODO: make multi-value (and fix places where this data is also used)? 
   icon: 'fas fa-sort-amount-up-alt',
   text: 'parent taxon',
@@ -9244,14 +9431,14 @@ const conzept_fields = {
 'map3d' : {
   create_condition: 'valid( ${item.lat} )',
   //default_value: '',
-  title: '3D satellite map',
+  title: 'satellite terrain map',
   prop: '',
   type: 'link',
   url: '${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}',
   mv: false,
   icon: 'fas fa-globe-asia',
   //icon: 'fas fa-map-marked-alt',
-  text: '3D map',
+  text: 'terrain map',
   section: ['location-geography'],
   rank: [3],
 },
@@ -9493,7 +9680,6 @@ const conzept_fields = {
   type: 'url',
   mv: false,
 	url: 'https://www.submarinecablemap.com/#/submarine-cable/${ title_dashed }', // TODO: can we make the required title more delarative / use JS?
-	//url: 'https://www.submarinecablemap.com/#/submarine-cable/${ item.title.replace(/\//g, "").replace(/ /g, "-").toLowerCase() }',
   icon: 'fas fa-route',
   text: 'submarine cable',
   section: ['location-geography','main'],
@@ -9563,7 +9749,19 @@ const conzept_fields = {
   text: 'Twitter search',
   section: 'news-social',
   rank: 35,
+},
 
+'twitter_spaces_search' : {
+  create_condition: true,
+  title: 'Twitter Spaces live audio-chat search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://findspaces.vercel.app/?search=${title_}&state=all',
+  icon: 'fab fa-twitter',
+  text: 'Twitter spaces',
+  section: ['news-social', 'media-audio'],
+  rank: [35.1, 109],
 },
 
 'twitter_trends_country' : {
@@ -10724,14 +10922,14 @@ const conzept_fields = {
   rank: [15,1610],
 },
 
-// FIXME BUG: the created ${X} link replaces the whole app (and the label is a Qid) -> fix 'link'-type handling in {X} urls
+// FIXME BUG: the created ${Xvalue} link replaces the whole app (and the label is a Qid) -> fix 'link'-type handling in {Xvalue} urls
 /*
 'wad_movement' : {
   title: 'Wikidata Art Depiction Explorer: art movement items',
   prop: '135',
   type: 'link',
   mv: true,
-  url: 'https://art.wikidata.link/browse?P135=${X}',
+  url: 'https://art.wikidata.link/browse?P135=${Xvalue}',
   icon: 'fas fa-stream',
   text: 'movement art',
   section: ['art','main'],
@@ -10999,6 +11197,22 @@ const conzept_fields = {
   section: 'meta',
   rank: 48,
 },
+
+/* FIXME
+'map_open_infrastructure' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Open Infrastructure map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  //url: 'https://openinframap.org/%23${item.lat}/${item.lon}/4',
+  url: 'https://openinframap.org/#{item.lon}/{item.lat}/6.78',
+  icon: 'fas fa-bolt',
+  text: 'infra map',
+  section: 'location-geography',
+  rank: 4.8,
+},
+*/
 
 'map_buildings' : {
   create_condition: 'valid( item.lat )',
@@ -12003,6 +12217,45 @@ const conzept_fields = {
   rank: 80,
 },
 
+'inciteful_topic' : {
+  create_condition: true,
+  title: 'Inciteful text search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://inciteful.xyz/search?q=${title_quoted}',
+  icon: 'fas fa-project-diagram',
+  text: 'Inciteful',
+  section: 'science-search-tools',
+  rank: 90.0,
+},
+
+'inciteful_doi' : {
+  create_condition: '${ valid( item.doi ) }',
+  title: 'Inciteful DOI search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://inciteful.xyz/p/${item.doi}',
+  icon: 'fas fa-project-diagram',
+  text: 'Inciteful DOI',
+  section: 'science-search-tools',
+  rank: 90.1,
+},
+
+'inciteful_doi_prefix' : {
+  create_condition: '${ valid( item.doi_prefix ) }',
+  title: 'Inciteful DOI-prefix search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://inciteful.xyz/search?q=${item.doi_prefix}',
+  icon: 'fas fa-project-diagram',
+  text: 'Inciteful DOI prefix',
+  section: 'science-search-tools',
+  rank: 90.2,
+},
+
 /*
 'litmaps' : {
   create_condition: true,
@@ -12279,7 +12532,86 @@ const conzept_fields = {
   icon: 'fas fa-industry',
   text: 'Open Corp.',
   section: 'business',
-  rank: 107,
+  rank: 410,
+},
+
+'decrypt_site' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency")',
+  title: 'Decrypt.co coin info',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://decrypt.co/price/${title_no_braces_lowercase}',
+  icon: 'fab fa-bitcoin',
+  text: 'Decrypt',
+  section: 'business',
+  rank: 10.1,
+},
+
+'defi_lama' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency")',
+  title: 'DeFi Lama coin info',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://defillama.com/chain/${title_no_braces}',
+  icon: 'fab fa-bitcoin',
+  text: 'DeFi Lama',
+  section: 'business',
+  rank: 10.2,
+},
+
+'coindesk_coin' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency") && valid( item.cryptocurrency_symbol )',
+  title: 'Coindesk coin info',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.coindesk.com/price/${title_no_braces_lowercase}/',
+  //url: 'https://www.coindesk.com/price/${item.cryptocurrency_symbol.toLowerCase()}/',
+  icon: 'fab fa-bitcoin',
+  text: 'Coindesk',
+  section: 'business',
+  rank: 10.3,
+},
+
+'coindesk_news' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency")',
+  title: 'Coindesk news',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.coindesk.com/search?s=${title_no_braces}',
+  icon: 'fab fa-bitcoin',
+  text: 'Coindesk news',
+  section: 'business',
+  rank: 10.4,
+},
+
+'cointelegraph_news' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency")',
+  title: 'CoinTelegraph news',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://cointelegraph.com/search?query=${title_no_braces}',
+  icon: 'fab fa-bitcoin',
+  text: 'CoinTele. news',
+  section: 'business',
+  rank: 10.5,
+},
+
+'messari' : {
+  create_condition: 'checkTag( item, 1, "cryptocurrency")',
+  title: 'Messari coin info',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://messari.io/asset/${title_no_braces}',
+  icon: 'fab fa-bitcoin',
+  text: 'Messari',
+  section: 'business',
+  rank: 10.6,
 },
 
 'automata' : {
@@ -12293,6 +12625,19 @@ const conzept_fields = {
   text: 'Automata',
   section: 'business',
   rank: 120,
+},
+
+'financial_times' : {
+  create_condition: true,
+  title: 'Financial Times',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.ft.com/search?q=${title_quoted}',
+  icon: 'fas fa-money-check-alt',
+  text: 'FT',
+  section: 'business',
+  rank: 125,
 },
 
 'bloomberg' : {
@@ -14009,8 +14354,8 @@ const conzept_fields = {
   mv: true,
   icon: 'fab fa-erlang',
   text: 'Europeana',
-  section: 'art',
-  rank: 100,
+  section: ['art', 'media-image'],
+  rank: [100,95],
 },
 
 'loc_images_inline' : {

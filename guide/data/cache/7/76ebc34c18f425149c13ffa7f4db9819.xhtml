@@ -1,0 +1,57 @@
+
+<h1 class="sectionedit1" id="configuration">configuration</h1>
+<div class="level1">
+
+<p>
+The main settings of the Conzept system can be edited in “<strong>/etc/conzept/settings.conf</strong>”.
+</p>
+<div class="table sectionedit2"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> name      </th><th class="col1 leftalign"> description       </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <strong>CONZEPT_HOSTNAME</strong> </td><td class="col1"> name of the webserver (eg. &#039;conze.pt&#039;) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <strong>CONZEPT_WEB_BASE</strong> </td><td class="col1"> optional: web base-path (can be used to change the base web <abbr title="Uniform Resource Locator">URL</abbr> location) </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> <strong>CONZEPT_WEB_DIR</strong>  </td><td class="col1"> file system path to the root of the web directory (eg. &#039;/var/www/html&#039;) </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> <strong>CONZEPT_SERVICES_DIR</strong> </td><td class="col1"> file system path to the services directory (eg. &#039;/var/www/html/services&#039;) </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> <strong>CONZEPT_VERSION</strong> </td><td class="col1"> Conzept version string </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <strong>CONZEPT_CORS_PROXY_WHITELIST</strong> </td><td class="col1"> list of domains for which the CORS-proxy is enabled </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> <strong>CONZEPT_YOUTUBE_<abbr title="Application Programming Interface">API</abbr>_KEY</strong> </td><td class="col1"> optional: YouTube <abbr title="Application Programming Interface">API</abbr> key </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> <strong>CONZEPT_LOCALES</strong> </td><td class="col1"> supported language locales (used for i18n)</td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE</strong> </td><td class="col1"> common <abbr title="HyperText Markup Language">HTML</abbr>-string which will be included in embedded apps </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> <strong>CONZEPT_COMMON_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE_NO_JQUERY</strong> </td><td class="col1"> same as above, but without jQuery (some apps already include jQuery by themselves) </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0"> <strong>CONZEPT_TRACKER_<abbr title="HyperText Markup Language">HTML</abbr>_INCLUDE</strong> </td><td class="col1"> optional: common tracker <abbr title="HyperText Markup Language">HTML</abbr> string </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;122-1098&quot;} -->
+<p>
+After editing the settings file, go to the “<strong>$CONZEPT_WEB_DIR/app/explore2/</strong>” directory and execute “<strong>npm run build</strong>”.
+</p>
+
+<p>
+This build step will update the above settings in all the <abbr title="HyperText Markup Language">HTML</abbr>, PHP and JS files.
+</p>
+
+</div>

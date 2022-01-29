@@ -1,0 +1,313 @@
+====== field customization ======
+
+This section describes what Conzept fields are and how they are structured.
+===== introduction =====
+
+Each [[terms#topic_sections|section]] of a [[terms#topic_card|topic-card]] can be populated by links. These links are constructed from declarative [[terms#topic_fields|field]] **[[#field_schema|definitions]].** When a user clicks on such a link, it can trigger some kind of action.
+
+There are several types of actions a field can trigger:
+
+  * **__Open a link in the [[user_manual#content_panes|content area]]__**. This can be an self-hosted [[apps|app]] URL or a remote website which allows being embedded (without [[explore>Cross-origin resource sharing|CORS]] issues).
+
+  * **__Open a link in a new browser tab__**. This is sometimes required because the website does not allow being embedded in a 3rd-party iframe or user-authentication is needed.
+
+  * Inline view in the sidebar:
+    * **__Show a list of items from the Wikidata entity__**. (The field needs to have the multi-value key set to "true" in Conzept and also contain multiple values in Wikidata. If there is only one item in Wikidata the field will be rendered as a normal link to the Wikipedia/Wikidata page.)
+    * **__Show a list of items fetched from an API__**. These type of actions also require some [[#adding_api_support|code support to fetch the API data]].
+    * **__Show an inline iframe from an URL__**
+
+  * **__Trigger some code to run__** when the link is clicked. Examples: create a new bookmark or start/stop playing an audio file.
+
+You can see all the fields used for the Conzept website in the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|src/data/field.js]]**" file. Once you have added one or more field definitions to this file, you only need to run "**npm run build**" in the "app/explore2/" directory to start using these new fields. \\
+To make sure all users use the most recent version, it is recommended to also update the [[configuration|version setting]].
+
+[ Note: that the [[terms#topic_headline|topic-headline]] buttons are //not yet// defined in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file, but instead in the [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js|createItemHtml.js]] file. ]
+===== field processing =====    
+
+The field list is processed in two phases. Normally, you wont need to understand the details of these stages, but sometimes understanding them can help how to create more complicated field definitions.
+
+The first phase is the **__input phase__**, where all the field data is collected from external sources such as Wikidata and other API's. This phase has three stages: pre-create, create and post-create. See: [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/setWikidata.js|setWikidata.js]] and the [[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|API fetch functions]].
+
+The second phase is the **__render phase__** where fields are processed for display to the user (since all the data is now available), and has two stages: pre-render and render. See: [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js|createItemHtml.js]].
+
+For each topic listed in the search results, Conzept will check all the defined fields, to find the usable ones. When a field is used, it will set a value (on an internal Conzept data-structure), which will eventually be used to render a link in the user interface.
+
+When a field has a non-false / not-empty value (meaning: "item.<name>" is set to some non-false value), the field is active and will be used for further processing. In all other cases, the field will not be processed further.
+
+The **fields are read in order**, without any dependency resolving. This also implies, that if you want to use an existing field-value in another field, you need to place that field after it.
+
+===== field schema =====
+
+**Fields are defined as a list of JavaScript objects with a certain structure.**
+
+Each field-object must have a unique name (the object key) and a set of properties (shown in the table below). \\
+All properties are optional, but some [[#field_types|types of fields]] will require certain properties.
+
+Here is a list of the properties that can be used to define fields:
+
+^ name  ^ data type ^ description ^ used in stage ^
+| **default_value** | <string> |if set: set the "item.<name>" field to this value | pre-create |
+| **value_condition** | <eval-string-to-boolean> |if set: and evaluates to "true" => set "item.<name>" to “true”| create |
+| **value** | <eval-string> | => evaluate this string | create |
+| **create_condition** | <eval-string-to-boolean> |if set: and evaluates to "true" => set "item.<name>" to "true" \\ \\ note: only needed to activate derived-item-fields (as these item-fields don't exist yet) \\ \\ note: a missing or empty "create_condition" defaults to relying on the items current-value | pre-create | 
+| **create_trigger** | <eval-string> | if the "create_condition" is set to "true" => evaluate this code-string to achieve extra side-effects during the input-stage | post-create |
+| **render_condition** | <eval-string-to-boolean> |if set: and evaluates to "true" => render this field | pre-render |
+| **render_trigger** | <eval-string> |if set AND the "render_condition" is "true" => evaluate this code-string to achieve extra side-effects during the render-stage | render |
+| **url** | <eval-string-to-url> | URL-address to use when a link is clicked | create and pre-render | 
+| **title** | <eval-string> | link hover-title | pre-render |
+| **prop** | <integer> | [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata-property]] number | create |
+| **type** | <link %%|%% link-split %%|%% url %%|%% wikipedia-qid %%|%% symbol-number %%|%% symbol-string> | indicate the type of field | create and pre-render |
+| **mv** | <true %%|%% false> | indicate if multiple values are allowed | create and pre-render |
+| **icon** | <css-class-string> | icon class from [[https://fontawesome.com/v5.15/icons?d=gallery|FontAwesome]] or [[https://openmoji.org/library/|OpenMoji]]| pre-render |
+| **text** | <plain-string> | text under the icon (note: don't use long words here) | pre-render |
+| **section** | <plain-string %%|%% array-of-strings> | section(s) in which to place the link | render |
+| **rank** | <number %%|%% array-of-numbers> | position of the link (set for each section) | render |
+
+===== special values =====
+
+Conzept has some special title-values which can be used anywhere in the field definition values:
+
+^ name  ^ description ^
+| **title** | title as-is|
+| **title_** | title without Wikipedia-namespace and braces|
+| **title_enc** | title URL-encoded |
+| **title_quoted** | title "in quotes" |
+| **title_plus** | title with a plus for spaces|
+| **title_dashed** | title with dash for spaces|
+| **title_lowercase** | title in lowercase|
+| **title_no_spaces** | title without spaces|
+| **title_no_braces** | title without braces|
+| **title_no_braces_lowercase** | title without braces in lowercase|
+
+\\
+
+There is currently one 'magic'-variable usable in field-definition values:
+
+^ name  ^ description ^
+| **Xvalue** | Used to **automatically iterate over a list of values** (or just one value) coming from Wikidata. This makes it easy to use multi-values **to create multiple new strings**. See an example of its use [[#xvalue|here]]. |
+===== field types =====
+
+
+**There are two main classes of fields: Wikibased-fields and derived fields.**
+
+==== Wikidata-based fields ====
+
+These fields have a [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata property number]] listed in its **"prop:"** value. If a topic has such a Wikidata property value, Conzept will get that data from Wikidata.
+
+Wikidata-based fields can generate three types of data (based on Wikidata item statement values):
+
+^ name      ^ description       ^
+| **no type** | If the field-type is left empty, the data is treated as (one or more) strings by default. |
+| **wikipedia-qid** | One or more Wikidata [[https://www.wikidata.org/wiki/Wikidata:Identifiers|Q-IDs]] coming from a Wikidata item statement (eg. "Q42"). \\ \\ Note: the "wikipedia-qid" name is used to automatically render either a Wikipedia page or a Wikidata page. Showing the Wikipedia article takes precedence, if it is available in the users' language. |
+| **symbol-number** | Number coming from a Wikidata item statement (eg. "3051"). |
+| **symbol-html** | This type should only be used when you want create raw HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
+
+=== examples ===
+
+An example which renders a link to "members of" values of a topic, using the Qid data:
+
+<code>
+'member_of' : {             // ID of the field (must be unique)
+  title: 'member of',       // title of the field (shown when a user hovers over the link)
+  prop: '463',              // Wikidata property
+  type: 'wikipedia-qid',    // expected data type are Wikidata Qid's
+  mv: true,                 // multiple values are allowed
+  icon: 'far fa-handshake', // icon shown for the link
+  text: 'member of',        // text shown for the link
+  section: ['main'],        // which section(s) to show the link in
+  rank: [5160],             // position of each link within each section
+},
+</code>
+
+\\
+
+An example of a field without a type (which means the data will be treated as a string):
+
+<code>
+'atomic_symbol' : {
+  render_condition: false, // this means we wont show this field in the UI, but just store the value.
+  title: 'atomic symbol',
+  prop: '246',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+</code>
+
+\\
+
+An example for the "number of employees" of a topic:
+
+<code>
+'employees' : {
+  title: 'employees',
+  prop: '1128',
+  type: 'symbol-number',
+  mv: false,
+  icon: 'fas fa-male',
+  text: '',
+  section: ['main'],
+  rank: [3180],
+},
+</code>
+
+\\
+
+Here's an example where the "symbol-string" HTML-creation is used to present an audio element (in the topic card):
+
+<code>
+'audio_widget' : {
+  create_condition: '${ valid( item.audio ) }',
+  title: 'audio play',
+  prop: '',
+  type: 'symbol-html',
+  mv: false,
+  string_format: '<div id="${item.qid}" class="audio-widget" title="audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${item.audio}"> </audio></div>',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+</code>
+
+\\
+<html><span id="xvalue"></span></html>
+An example where the magic variable "**${Xvalue}**" is used to automatically iterate over a list of values (or just one value) coming from Wikidata. This makes it easy to use multi-values to create multiple new strings.
+
+The example below illustrates the rendering of multiple website URL(s), if there are multiple websites listed on Wikidata for that entity.
+
+<code>
+'website' : {
+  title: 'official website',
+  prop: '856',
+  type: 'url',
+  url: '${Xvalue}', // each website URL will be rendered as a link
+  mv: true,
+  icon: 'fas fa-home',
+  text: 'site',
+  section: 'main',
+  rank: 40,
+},
+</code>
+==== Derived fields ====
+
+**Derived fields have a dependency on another __field__ or __value__**. These fields may or may not use some Wikidata data.
+
+__Dependent values__ can be all sorts of different things:
+  * The existance of a Wikidata-Qid for the topic.
+  * A topic title string like "Classical music"
+  * an active user language like "es" (Spanish)
+  * a remote JSON API call definition (eg. for the Rijksmuseum API)
+  * etc.
+
+Derived fields come in various forms:
+
+^ name      ^ description       ^
+| **link** | open URL in the local content pane|
+| **link-split** | open URL as two content panes |
+| **url** | open as external URL |
+| **rest-json** | API fetch |
+
+=== examples ===
+
+== example: wikidata-derived field ==
+
+
+The derived-field example below will show a link to the "GBIF organism occurrence map", but only if the "item.gbif_id" was set (from an earlier Wikidata field definition).
+
+<code>
+'gbif_id' : { // Wikidata field
+  render_condition: false,
+  title: 'gbif_id',
+  prop: '846',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
+'gbif_occurence_map' : { // Derived field, which depends on the field above being set
+  create_condition: '${ valid( item.gbif_id ) }',
+  title: 'GBIF occurence map',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/response/gbif-map?l=${explore.language}&t=${title_enc}&id=${item.gbif_id}',
+       // The "explore.base" directory comes from the Conzept setting "CONZEPT_WEB_BASE",
+       // to make the URL root location more flexible, but is not required.
+  mv: false,
+  icon: 'fas fa-binoculars',
+  text: 'occurence map',
+  section: ['science-biology','main'],
+  rank: [400,7900],
+},
+</code>
+
+
+== example: title-based external-link field ==
+
+This will show a tab-opening link to Google Scholar. 
+
+<code>
+'google_scholar' : {
+  create_condition: true,
+  title: 'Google Scholar',
+  prop: '',
+  type: 'url', // "url" always opens links in a new tab
+  mv: false,
+  url: 'https://scholar.google.com/scholar?q=${title_quoted}',
+  icon: 'fab fa-google',
+  text: 'Google Scholar',
+  section: 'science-search-tools',
+  rank: 60,
+},
+</code>
+
+== example: language-conditioned link field ==
+
+This will show the Russian Yandex search-engine link, but only if the users' language is set to Russian: 
+
+<code>
+'yandex_ru' : {
+  create_condition: '"${explore.language}" === "ru"',
+  title: 'Yandex search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://yandex.ru/search/?text=${title_quoted}',
+  icon: 'fab fa-yandex',
+  text: 'Yandex',
+  section: 'web',
+  rank: 4,
+},
+</code>
+
+
+
+== example: API-based link field ==
+
+This is an example of a field which **fetches data from the Wikicommons API**, using special code located in the [[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|fetch directory]].
+
+The specific code for this API can be found [[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch/wikicommons.js|here]].
+
+[ Note: In the future this API-interface will likely be further specified and passed on to the API-function as a normal JS object. ]
+
+<code>
+'wikicommons_inline' : {
+  value: 'wikicommons:${item.title}:true', // name of the API to call in the code, and the arguments which are passed to it.
+  title: 'view wikiCommons media',
+  render_condition: 'valid( item.qid )', // only render this link if there is a Wikidata Qid
+  prop: '0', // Note: currently all API derived-fields must set their property-key to "0".
+             // Doing this triggers the data to be processed similar to Wikidata data.
+  type: 'rest-json', // this indicates the field is an API-derived field
+  mv: true,
+  icon: 'far fa-images',
+  text: 'Commons',
+  section: ['media-image'],
+  rank: [61],
+},
+</code>

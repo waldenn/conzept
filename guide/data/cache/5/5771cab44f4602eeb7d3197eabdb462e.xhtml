@@ -1,0 +1,223 @@
+
+<h1 class="sectionedit1" id="nlnet_milestones">NLnet milestones</h1>
+<div class="level1">
+
+<p>
+“Conzept encyclopedia” (code: 2021-08-033)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;NLnet milestones&quot;,&quot;hid&quot;:&quot;nlnet_milestones&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-75&quot;} -->
+<h2 class="sectionedit2" id="m1cleanup_organize_thedirectories_code_and_build_workflow_2_weeks_should_finish_before_the_end_the_year">M1: cleanup &amp; organize the: directories, code and build workflow (2 weeks, should finish before the end the year)</h2>
+<div class="level2">
+
+<p>
+Due to some issues the current build-system of Conzept is a shell-script which:
+</p>
+<ul>
+<li class="level1"><div class="li"> inserts environment-values into various files (such as unique version strings to update browser caching of files);</div>
+</li>
+<li class="level1"><div class="li"> minifies files;</div>
+</li>
+<li class="level1"><div class="li"> bundles files;</div>
+</li>
+<li class="level1"><div class="li"> obfuscates files (this is only needed to prevent JavaScript code-theft when an application is not opensource).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M1: cleanup &amp; organize the: directories, code and build workflow (2 weeks, should finish before the end the year)&quot;,&quot;hid&quot;:&quot;m1cleanup_organize_thedirectories_code_and_build_workflow_2_weeks_should_finish_before_the_end_the_year&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;76-556&quot;} -->
+<h3 class="sectionedit3" id="cleanup_and_organize_the_directories_and_repos">cleanup and organize the directories and repos</h3>
+<div class="level3">
+
+<p>
+Make the code layout clean and usable by the build-process.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;cleanup and organize the directories and repos&quot;,&quot;hid&quot;:&quot;cleanup_and_organize_the_directories_and_repos&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;557-675&quot;} -->
+<h3 class="sectionedit4" id="setup_a_modern_npm_build_system_for_conzept_main_code_and_the_wikipedia_app">setup a modern NPM build system for Conzept main code and the Wikipedia app</h3>
+<div class="level3">
+
+<p>
+I would like to make Conzept SPA run using NPM-imports and bundler/minifier like esbuild or webpack. There are a lot of libraries to import and use. I would then also break up this <a href="https://conze.pt/app/explore2/libs/fetches.js" class="urlextern" title="https://conze.pt/app/explore2/libs/fetches.js" rel="ugc nofollow">fetches.js file</a> containing all the 3rd-party-<abbr title="Application Programming Interface">API</abbr> integrations (for various REST and SPARQL endpoints) into a fetch-directory with a file for each service. Perhaps also clean up / modernize / comment some code-parts in this process.
+</p>
+
+<p>
+NOTE: There are two different <em>types</em> of code-sources used in Conzept:
+</p>
+<ul>
+<li class="level1"><div class="li"> “out of tree” build-directory that creates (through a build process) a directory containing code (which Conzept then uses)</div>
+</li>
+<li class="level1"><div class="li"> “in tree” directory (these directories can be edited directly by the developer)</div>
+</li>
+</ul>
+
+<p>
+I will place all “out of tree” projects into one repository and another for all the “in tree” code.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;setup a modern NPM build system for Conzept main code and the Wikipedia app&quot;,&quot;hid&quot;:&quot;setup_a_modern_npm_build_system_for_conzept_main_code_and_the_wikipedia_app&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;676-1612&quot;} -->
+<h2 class="sectionedit5" id="m2write_documentation_6_weeks">M2: write documentation (6 weeks)</h2>
+<div class="level2">
+
+<p>
+Document all aspects of the Conzept application, in a clear and visual fashion, for:
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <strong>users</strong> (describing the various interface parts and the user worlflows)</div>
+<ul>
+<li class="level2"><div class="li"> describe the basic Conzept functionality visually</div>
+</li>
+<li class="level2"><div class="li"> describe the more advanced Conzept functionality visually</div>
+</li>
+<li class="level2"><div class="li"> add links from inside the Conzept app (for certain functions) to the relevant manual-sections</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>admins</strong> (describe how to install, configure and customize Conzept)</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>developers</strong> (how is the code structured, how do the core mechanisms work, and what needs to be improved)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M2: write documentation (6 weeks)&quot;,&quot;hid&quot;:&quot;m2write_documentation_6_weeks&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1613-2231&quot;} -->
+<h2 class="sectionedit6" id="m3add_remaining_wikidata_properties_1_week">M3: add remaining Wikidata properties (1 week)</h2>
+<div class="level2">
+
+<p>
+Conzept currently uses only a part of the ~10.000 properties on Wikidata, of which &gt;90% are identity-properties linking 3rd-party sites. I would like to create an ingestion-script to import most properties into Conzept in a proper manner.
+</p>
+
+<p>
+It would also be an interesting scalability-test (CPU and UI-layout wise), to properly check and render so many potential fields of topics.
+</p>
+<p><a class="folder" href="#folded_f65c64bd405109b964bf64d907e4790b_1">see details </a></p><div class="folded hidden" id="folded_f65c64bd405109b964bf64d907e4790b_1"><ul>
+<li class="level1"><div class="li"> get property data (&#039;en&#039; only at first):</div>
+</li>
+</ul>
+<pre class="code">  SELECT ?property ?propertyType ?propertyLabel ?propertyDescription ?propertyAltLabel WHERE {
+    ?property wikibase:propertyType ?propertyType .
+    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;[AUTO_LANGUAGE],en&quot;. }
+  }
+  ORDER BY ASC(xsd:integer(STRAFTER(STR(?property), &#039;P&#039;)))</pre>
+<ul>
+<li class="level1"><div class="li"> parse data into a conzept fields</div>
+</li>
+</ul>
+<pre class="code">  id:     propertyLabel -&gt; convert to lowercase -&gt; replace spaces with an underscore
+  title:  &#039;propertyLabel&#039;,
+  prop:   propery -&gt; remove &#039;wd:P&#039; from string start
+  type:   propertyType -&gt; remove &quot;wikibase:&quot;
+          - WikibaseItem
+            - default to multi-value (manual check for single-value?)
+          - &#039;ExternalId&#039;
+            - use urlFormat and id to fill in the url-value
+            - default to single-value
+          - Url
+            - default to single-value
+          - String
+            - default to single-value
+          - Quantity
+            - default to single-value
+          - GlobeCoordinate
+            - default to single-value
+          - CommonsMedia
+            - default to single-value
+  url:    &#039;&#039;, (set when Url-type and )
+  mv:     true | false (depends on type)
+  icon:   &#039;far fa-question-circle&#039;,
+  text:   propertyLabel -&gt; make an smart string-reduction function
+  section:[&#039;main&#039;], (if type === &#039;ExternalId&#039; -&gt; add section &quot;library-identity&quot;)
+  rank:   [ 15000 + id ], (if type === &#039;ExternalId&#039; -&gt; add rank 15000 + id )</pre>
+
+<p>
+Open questions:
+</p>
+<ul>
+<li class="level1"><div class="li"> How to use the propertyLabel translations for all available languages?</div>
+</li>
+<li class="level1"><div class="li"> How to reduce the title-string for these translations for the icon-text? (as there is not much space with the icons)</div>
+</li>
+<li class="level1"><div class="li"> What will the performance impact be when adding so many extra fields? (what to do if this is an issue?)</div>
+</li>
+<li class="level1"><div class="li"> How to best organize all these ID-type fields in the UI?</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M3: add remaining Wikidata properties (1 week)&quot;,&quot;hid&quot;:&quot;m3add_remaining_wikidata_properties_1_week&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2232-4592&quot;} -->
+<h2 class="sectionedit7" id="m4setup_a_self-hosted_entitree_as_a_conzept_controlled_embedded_sub-system_1_week">M4: setup a self-hosted Entitree as a Conzept controlled/embedded sub-system (1 week)</h2>
+<div class="level2">
+
+<p>
+Currently Conzept just links to an external <abbr title="Uniform Resource Locator">URL</abbr> for rendering Entitree-views (embedded in an iframe). This is not ideal from a user perspective. It would be better to have more control over the Entitree view rendering by self-hosting it (and eg. being able to click on article links that will open in a second content-pane instead of a new tab), as Entitree is a very useful (and good) sub-system for viewing flat-tree structures, such as:
+</p>
+<ul>
+<li class="level1"><div class="li"> organizational hierarchies (<a href="https://www.entitree.com/en/subsidiary/Volkswagen_Group" class="urlextern" title="https://www.entitree.com/en/subsidiary/Volkswagen_Group" rel="ugc nofollow">https://www.entitree.com/en/subsidiary/Volkswagen_Group</a>)</div>
+</li>
+<li class="level1"><div class="li"> family lineages,</div>
+</li>
+<li class="level1"><div class="li"> and many other types of hierarchical sets.</div>
+</li>
+</ul>
+
+<p>
+Entitree does that job better than the Wikidata-query-service tool, which render rather &#039;messy&#039; graph vertices, which are harder to understand and are not zoomable.
+</p>
+
+<p>
+I&#039;ve looked into integrating Entitree  before, but did not succeed in getting it working then. Entitree has some issues with being embedded in webpage that need to be investigated and resolved (it expects to control the parent window <abbr title="Uniform Resource Locator">URL</abbr> and requires a pretty-<abbr title="Uniform Resource Locator">URL</abbr> structure, instead of normal <abbr title="Uniform Resource Locator">URL</abbr>-parameters). I think it needs some code patches to those parts to be embeddable properly.
+</p>
+
+<p>
+Once that is done, I could add the most relevant links (such as for families and organizational structures) to the Conzept fields. I will share the patches with the Entitree team (I&#039;ve already been in contact with them before).
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M4: setup a self-hosted Entitree as a Conzept controlled\/embedded sub-system (1 week)&quot;,&quot;hid&quot;:&quot;m4setup_a_self-hosted_entitree_as_a_conzept_controlled_embedded_sub-system_1_week&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;4593-6073&quot;} -->
+<h2 class="sectionedit8" id="final_steps">final steps</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> NixOS packaging and package testing</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> usability evaluation and recommendations</div>
+<ul>
+<li class="level2"><div class="li"> Asses the accessibility issues (readability, color-contrasts, keyboard-access, screen-reader quality, etc.) of Conzept and fix them. I&#039;ve tried to fix the most common issues, but I think it would be good to do a more rigorous investigation for any remaining issues and solicit some reviews from accessibility community. Both on mobile and desktop. Not everything discovered can probably be fixed right-away, but it would build a good base to plan and prioritize for further accessibility improvements.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> security evaluation and recommendations</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> dual licensing(?) legal input: AGPL + a proprietary license</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> publish code (with license headers) on GitHub:</div>
+<ul>
+<li class="level2"><div class="li"> another mono-repo for the build-step app projects</div>
+</li>
+<li class="level2"><div class="li"> and another mono-repo for the main conzept file structure</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> …</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;final steps&quot;,&quot;hid&quot;:&quot;final_steps&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;6074-&quot;} -->

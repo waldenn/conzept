@@ -1,0 +1,125 @@
+
+<h1 class="sectionedit1" id="nlnet_milestones">NLnet milestones</h1>
+<div class="level1">
+
+<p>
+“Conzept encyclopedia” (code: 2021-08-033)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;NLnet milestones&quot;,&quot;hid&quot;:&quot;nlnet_milestones&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-79&quot;} -->
+<h2 class="sectionedit2" id="m3add_remaining_wikidata_properties_1_week">M3: add remaining Wikidata properties (1 week)</h2>
+<div class="level2">
+
+<p>
+Conzept currently uses only a part of the ~10.000 properties on Wikidata, of which &gt;90% are identity-properties linking 3rd-party sites. I would like to create an ingestion-script to import most properties into Conzept in a proper manner.
+</p>
+
+<p>
+It would also be an interesting scalability-test (CPU and UI-layout wise), to properly check and render so many potential fields of topics.
+</p>
+<p><a class="folder" href="#folded_bf41259e51f4d70789b8db5696de06f7_1">see details </a></p><div class="folded hidden" id="folded_bf41259e51f4d70789b8db5696de06f7_1"><ul>
+<li class="level1"><div class="li"> get property data (&#039;en&#039; only at first):</div>
+</li>
+</ul>
+<pre class="code">  SELECT ?property ?propertyType ?propertyLabel ?propertyDescription ?propertyAltLabel WHERE {
+    ?property wikibase:propertyType ?propertyType .
+    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;[AUTO_LANGUAGE],en&quot;. }
+  }
+  ORDER BY ASC(xsd:integer(STRAFTER(STR(?property), &#039;P&#039;)))</pre>
+<ul>
+<li class="level1"><div class="li"> parse data into a conzept fields</div>
+</li>
+</ul>
+<pre class="code">  id:     propertyLabel -&gt; convert to lowercase -&gt; replace spaces with an underscore
+  title:  &#039;propertyLabel&#039;,
+  prop:   propery -&gt; remove &#039;wd:P&#039; from string start
+  type:   propertyType -&gt; remove &quot;wikibase:&quot;
+          - WikibaseItem
+            - default to multi-value (manual check for single-value?)
+          - &#039;ExternalId&#039;
+            - use urlFormat and id to fill in the url-value
+            - default to single-value
+          - Url
+            - default to single-value
+          - String
+            - default to single-value
+          - Quantity
+            - default to single-value
+          - GlobeCoordinate
+            - default to single-value
+          - CommonsMedia
+            - default to single-value
+  url:    &#039;&#039;, (set when Url-type and )
+  mv:     true | false (depends on type)
+  icon:   &#039;far fa-question-circle&#039;,
+  text:   propertyLabel -&gt; make an smart string-reduction function
+  section:[&#039;main&#039;], (if type === &#039;ExternalId&#039; -&gt; add section &quot;library-identity&quot;)
+  rank:   [ 15000 + id ], (if type === &#039;ExternalId&#039; -&gt; add rank 15000 + id )</pre>
+
+<p>
+Open questions:
+</p>
+<ul>
+<li class="level1"><div class="li"> How to use the propertyLabel translations for all available languages?</div>
+</li>
+<li class="level1"><div class="li"> How to reduce the title-string for these translations for the icon-text? (as there is not much space with the icons)</div>
+</li>
+<li class="level1"><div class="li"> What will the performance impact be when adding so many extra fields? (what to do if this is an issue?)</div>
+</li>
+<li class="level1"><div class="li"> How to best organize all these ID-type fields in the UI?</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M3: add remaining Wikidata properties (1 week)&quot;,&quot;hid&quot;:&quot;m3add_remaining_wikidata_properties_1_week&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;80-2440&quot;} -->
+<h2 class="sectionedit3" id="m4setup_a_self-hosted_entitree_as_a_conzept_controlled_embedded_sub-system_1_week">M4: setup a self-hosted Entitree as a Conzept controlled/embedded sub-system (1 week)</h2>
+<div class="level2">
+
+<p>
+Currently Conzept just links to an external <abbr title="Uniform Resource Locator">URL</abbr> for rendering Entitree tree-structure views (embedded in an iframe). This is not ideal from a user perspective. It would be better to have more control over the Entitree view rendering by self-hosting it (and eg. being able to click on article links that will open in a second content-pane instead of a new tab), as Entitree is a very useful (and good) sub-system for viewing flat-tree structures, such as:
+</p>
+<ul>
+<li class="level1"><div class="li"> organizational hierarchies (<a href="https://www.entitree.com/en/subsidiary/Volkswagen_Group" class="urlextern" target="_blank" title="https://www.entitree.com/en/subsidiary/Volkswagen_Group" rel="ugc nofollow noopener">https://www.entitree.com/en/subsidiary/Volkswagen_Group</a>)</div>
+</li>
+<li class="level1"><div class="li"> family lineages,</div>
+</li>
+<li class="level1"><div class="li"> and many other types of hierarchical sets.</div>
+</li>
+</ul>
+
+<p>
+Entitree does that job better than the Wikidata-query-service tool, which render rather &#039;messy&#039; graph vertices, which are harder to understand and are not zoomable.
+</p>
+
+<p>
+I&#039;ve looked into integrating Entitree before, but did not succeed in getting it working then. Entitree has some issues with being embedded in webpage that need to be investigated and resolved (it expects to control the parent window <abbr title="Uniform Resource Locator">URL</abbr> and requires a pretty-<abbr title="Uniform Resource Locator">URL</abbr> structure, instead of normal <abbr title="Uniform Resource Locator">URL</abbr>-parameters). I suspect it needs some patches to those code parts to allow being embeddable properly. 
+</p>
+
+<p>
+Once that is done, I could add the most relevant links (such as for families and organizational structures) to the Conzept fields. I will share the patches with the Entitree team (I&#039;ve already been in contact with them before).
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;M4: setup a self-hosted Entitree as a Conzept controlled\/embedded sub-system (1 week)&quot;,&quot;hid&quot;:&quot;m4setup_a_self-hosted_entitree_as_a_conzept_controlled_embedded_sub-system_1_week&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2441-3947&quot;} -->
+<h2 class="sectionedit4" id="final_steps">final steps</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> NixOS packaging and package testing</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> usability evaluation and recommendations</div>
+<ul>
+<li class="level2"><div class="li"> Asses the accessibility issues (readability, color-contrasts, keyboard-access, screen-reader quality, etc.) of Conzept and fix them. I&#039;ve tried to fix the most common issues, but I think it would be good to do a more rigorous investigation for any remaining issues and solicit some reviews from accessibility community. Both on mobile and desktop. Not everything discovered can probably be fixed right-away, but it would build a good base to plan and prioritize for further accessibility improvements.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> security evaluation and recommendations</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;final steps&quot;,&quot;hid&quot;:&quot;final_steps&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3948-&quot;} -->

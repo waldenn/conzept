@@ -1,0 +1,10 @@
+*~
+*.cmi
+*.cmo
+*.cmx
+*.cma
+*.cmxa
+*.byte
+log/
+old/
+node_modules/

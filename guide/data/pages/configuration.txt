@@ -1,0 +1,22 @@
+====== configuration ======
+
+The main settings of the Conzept system can be edited in "**/etc/conzept/settings.conf**".
+
+After editing the this file, go to the "**$CONZEPT_WEB_DIR/app/explore2/**" directory and execute "**npm run build**". \\
+This build step will update the above settings in all the HTML, PHP and JS files.
+
+Overview of the Conzept settings:
+
+^ name      ^ description       ^
+| **CONZEPT_HOSTNAME** | Name of the webserver (eg. 'conze.pt') |
+| **CONZEPT_WEB_BASE** | Optional: web base-path (can be used to change the base web URL location) |
+| **CONZEPT_WEB_DIR**  | File system path to the root of the web directory (eg. '/var/www/html') |
+| **CONZEPT_SERVICES_DIR** | File system path to the services directory (eg. '/var/www/html/services') |
+| **CONZEPT_VERSION** | Conzept version string |
+| **CONZEPT_CORS_PROXY_WHITELIST** | List of domains for which the "allorigins" [[installation#conzept_services_setup|CORS-proxy-service]] is enabled |
+| **CONZEPT_LOCALES** | Supported [[localization|language locales]] (used for i18n)|
+| **CONZEPT_COMMON_HTML_INCLUDE** | Common HTML-string which will be included in the [[used_projects#embedded_apps|embedded apps]] |
+| **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY** | Same as above, but without jQuery (some apps already include jQuery by themselves) |
+| **CONZEPT_YOUTUBE_API_KEY** | Optional: [[https://developers.google.com/youtube/v3/getting-started|YouTube API]] key |
+| **CONZEPT_TRACKER_HTML_INCLUDE** | Optional: common tracker HTML string |
+

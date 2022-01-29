@@ -424,7 +424,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
                 strings.sort( (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }) )
                   .forEach( ( string_val, string_index ) => { // for each URL string 
 
-                    let X       = string_val;
+                    let Xvalue  = string_val;
                     let mv_url  = eval(`\`${ v.url }\``);
 
                     urls_obj[ string_val ] = mv_url;
@@ -497,7 +497,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
                   strings.sort( (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }) )
                     .forEach( ( string_val, string_index ) => { // for each URL string 
 
-                    let X       = string_val;
+                    let Xvalue  = string_val;
                     let mv_url  = eval(`\`${ v.url }\``);
 
                     urls_obj[ string_val ] = mv_url;

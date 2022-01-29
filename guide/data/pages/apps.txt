@@ -1,0 +1,113 @@
+====== apps ======
+
+Conzept allows internal (self-hosted) URLs and some external URLs to be rendered into the [[user_manual#content_panes|content area]].
+
+The internal URLs are used for **[[used_projects#embedded_apps|embedding apps]]**. There are currently about 40 of such apps.
+
+Below is an overview of the most relevant apps.
+
+===== wikipedia app =====
+
+[{{::wikipedia_1.jpg?direct|Wikipedia app shown in the content pane}}]
+
+The Wikipedia app renders the content from Wikipedia in Conzept (with its own styling and layout).
+
+Main features:
+  * Dynamic table of contents \\ \\
+  * Fullscreen image viewing and zooming \\ \\
+  * Text-to-speech support \\ \\
+  * The action buttons (at the top) allow for doing something with the topic: \\ \\
+    * <html><i class="fas fa-retweet"></i>&nbsp;</html> Explore the topic into the sidebar \\ \\
+    * <html><i class="fas fa-video"></i>&nbsp;</html> View related videos, images and books \\ \\
+    * <html><i class="fas fa-plus"></i>&nbsp;</html> Add the topic to the [[#compare app|compare]] list \\ \\
+    * <html><i class="fas fa-external-link-alt"></i>&nbsp;</html> Clone the current tab into another tab \\ \\
+    * <html><i class="fab fa-wikipedia-w"></i>&nbsp;</html> Go to the original Wikipedia page (eg. to edit the article) \\ \\
+    * <html><i class="far fa-clipboard"></i>&nbsp;</html> View the Wikipedia Talk-article \\ \\
+    * <html><i class="fas fa-print"></i>&nbsp;</html> Print the article \\ \\
+    * Switch the article language
+
+===== wikidata app =====
+
+[{{::wikidata_app.jpg?direct|[[https://conze.pt/explore/Hyacinth%20(plant)?l=en&t=link&i=Q158758&u=%2Fapp%2Fwikidata%2F%3Fq%3DQ158758%26lang%3Den%26lang3%3Deng&s=true|example]]}}]
+
+This app renders the content from Wikidata in a form better optimized for reading.
+
+From here you can also go to the Wikidata source page (eg. to make edits), by clicking the <html>&nbsp;<i class="fas fa-external-link-alt"></i>&nbsp;</html> icon.
+
+===== video app =====
+
+[{{::video_app.jpg?direct|[[https://conze.pt/explore/John%20Coltrane?l=en&t=link&i=Q7346&u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22John%20Coltrane%22&s=true|example]]}}]
+
+The video app renders the content from YouTube  into Conzept in a more minimal style.
+
+There are options to filter the video by: duration, resolution and type.
+
+You can also sort the videos by: relevance, date and number of views.
+
+The Youtube API access is kindly being provided for free by [[explore>Google]] to the conze.pt website. Thank you!
+
+===== links app =====
+
+[{{ ::links_app.jpg?direct|[[https://conze.pt/explore/Pythagorean%20theorem?l=en&t=link-split&i=Q11518&u=%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DPythagorean%2520theorem&s=true|example]] }}]
+
+This links-app renders the the first 20 links of a Wikipedia-article into a zoomable, interactive graph view.
+
+It allows you to explore the essential relations of a topic in a more visual form, and in parallel read the Wikipedia article on the second content-pane.
+
+===== map app =====
+
+[{{::map_app_1.jpg?direct|map example of a location (with an opened infobox)}}]
+
+[{{::map_app_3.jpg?direct|map example of a location with a border outline}}]
+
+[{{::map_app_2.jpg?direct|map example created from a SPARQL-query (retrieving two different data-sets)}}]
+
+The map app can render locations and areas on a 3D terrain map of Earth.
+
+Tha map app can also render the results coming from a SPARQL-query constructed by adding geo-type topics to a map-query list. To add such a geo-type go to the "meta"-section of a topic and click on the <html><i class="fas fa-plus"></i></html> "compare map" button.
+
+===== nearby map app =====
+
+[{{::nearby_app.jpg?direct|[[https://conze.pt/explore/Qeysarie%20Gate?l=en&t=link-split&i=Q5871275&u=https%3A%2F%2Fconze.pt%2Fapp%2Fnearby%2F%23lat%3D32.660369%26lng%3D51.676797%26zoom%3D17%26interface_language%3Den%26layers%3Dwikidata_image%2Cwikidata_no_image%2Cwikipedia&c=32.660369,51.676797&s=true|example]]}}]
+
+This app helps you see the nearby points of interest for topics with a geo-location. As you pan the map new points of interest are shown.
+
+===== time-space app =====
+
+[{{ ::content_panes_2_mark.jpg?direct|[[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|example]] }}]
+
+The time-space app allows you to view series of related events, both in the time dimension as well as the spatial dimension.
+===== filter-browse app =====
+
+[{{::filter_browse_app.jpg?direct|[[https://conze.pt/explore/Business?l=en&t=link-split&i=Q4830453&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fc%3DQ4830453%26lang%3Den&s=true|example]]}}]
+
+The filter-browse app allows you to drill-down on classes of Wikidata properties, though only if some "[[https://www.wikidata.org/wiki/Property:P1963|properties-for-this-type]]" were defined on that entity in Wikidata.
+===== compare app =====
+
+[{{::compare_app.jpg?direct|[[https://conze.pt/explore/Trogon?l=en&t=compare&s=true&c=Q1268064,Q998535,Q1268477|example]]}}]
+
+The compare app allows you to see the Wikidata property differences between a set of topics.
+
+This tool works best if the topics in your set are similar to each other.
+
+===== organism occurrence map =====
+
+[{{::occurence_map_app.jpg?direct|[[https://conze.pt/explore/American%20alligator?l=en&t=link&i=Q193327&u=https%3A%2F%2Fconze.pt%2Fapp%2Fresponse%2Fgbif-map%3Fl%3Den%26t%3DAmerican%20alligator%26id%3D2441370&s=true|example]]}}]
+
+The occurence app shows the organism observations collected by the [[explore>Global Biodiversity Information Facility|]].
+
+The app also allows you to select extra map overlays (such as: country borders, 30-year mean temperature / average precipitation, and more).
+
+The app is also rendered as an webcomponent in Wikipedia articles relating to organism (in the "occurrence map" section).
+===== inline: category tree =====
+[{{::category_tree.jpg?direct|[[https://conze.pt/explore/Uganda?l=en&t=wikipedia&f=category_tree&s=true|example]]}}]
+
+This is an [[terms#topic_card|topic card]] widget available for topics with a category in Wikipedia. This allows you to browse the category-tree related to that topic.
+
+All the sub-categories can be explored and the pages within each sub-category can be viewed.
+
+Each page in a category has a menu-bar with buttons to:
+
+  * Explore the topic further \\ \\ 
+  * Read the Wikipedia article \\ \\
+  * Find related video / audio / images /  boooks

@@ -6,7 +6,7 @@ $detect       = new Mobile_Detect;
 $user_agent   = getenv("HTTP_USER_AGENT");
 
 $viewMode     = '';
-$font         = 'Quicksand';
+$font         = 'Hind'; // IBM Plex Sans Condensed', 'Quicksand';
 $ua_string    = '';
 $alt_key      = 'Alt';
 
@@ -72,7 +72,7 @@ foreach ($locales as &$loc) {
 $main_css = '
   <link rel="stylesheet" href="../app/explore2/dist/css/various/materialize.min.css" type="text/css">
   <link rel="stylesheet" href="../app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14" type="text/css">
-  <link rel="stylesheet" href="../app/explore2/dist/css/openmoji/openmoji-black-awesome.css?v13.11" type="text/css"> <!-- contains custom patches to align with fontawesome -->
+  <link rel="stylesheet" href="../app/explore2/dist/css/openmoji/openmoji-black-awesome.css?v13.110" type="text/css"> <!-- contains custom patches to align with fontawesome -->
 
   <!--link rel="stylesheet" href="../app/explore2/css/various/jqtree.css" type="text/css"--> <!-- TODO: re-append the style overrides from here into the main.css -->
   <link rel="stylesheet" href="../app/explore2/node_modules/jqtree/jqtree.css" type="text/css">
@@ -87,62 +87,62 @@ $main_css = '
   <link rel="stylesheet" href="../app/explore2/dist/css/various/flag-icon.min.css" type="text/css">
 
   <!-- Conzept CSS -->
-  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.50.021" type="text/css">
-  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.50.021"  type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.50.021"  type="text/css">
+  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.50.043" type="text/css">
+  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.50.043"  type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.50.043"  type="text/css">
 ';
 
 $main_script = '
   <!-- jQuery dependent scripts -->
-  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.50.021"></script>
+  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.50.043"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.utils.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.lcd.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.languagefilter.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.core.js"></script>
-  <script src="../app/explore2/libs/jquery.fontselect.js?v0.50.021"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
+  <script src="../app/explore2/libs/jquery.fontselect.js?v0.50.043"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
   <script src="../app/explore2/node_modules/jqtree/tree.jquery.js"></script>
   <script src="../app/explore2/node_modules/select2/dist/js/select2.min.js"></script>
-  <script src="../app/explore2/node_modules/jqtree/tree.jquery.js?v0.50.021"></script>
-  <script src="../app/explore2/libs/materialize.min.js?v0.50.021"></script> <!-- no NPM-package -->
+  <script src="../app/explore2/node_modules/jqtree/tree.jquery.js?v0.50.043"></script>
+  <script src="../app/explore2/libs/materialize.min.js?v0.50.043"></script> <!-- no NPM-package -->
   <script src="../app/explore2/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.50.021"></script>
+  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.50.043"></script>
 
   <!-- non-jQuery dependent scripts -->
-  <script src="../app/explore2/libs/splitter.js?v0.50.021"></script> <!-- contains some custom code modifications -->
-  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.50.021"></script>
-  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.50.021"></script>
+  <script src="../app/explore2/libs/splitter.js?v0.50.043"></script> <!-- contains some custom code modifications -->
+  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.50.043"></script>
+  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.50.043"></script>
   <script src="../app/explore2/node_modules/banana-i18n/dist/banana-i18n.js"></script>
-  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.50.021"></script>
+  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.50.043"></script>
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
-  <!--script src="../app/explore2/libs/weaviate.js?v0.50.021" async></script--> <!-- no NPM dist-package yet -->
+  <script src="../app/explore2/libs/weaviate.js?v0.50.043" async></script> <!-- no NPM dist-package yet -->
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
 
   <!-- Conzept data scripts -->
-  <script src="../app/explore2/dist/data/fields.js?v0.50.021"></script>
+  <script src="../app/explore2/dist/data/fields.js?v0.50.043"></script>
   <script src="../app/explore2/dist/data/iso2_codes.js"></script>
-  <script src="../app/explore2/dist/data/languages.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/indicators.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/countries.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/former_countries.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/tags.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/chains.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/cover_data.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/osm_tags.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/playlist.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/sections.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/data/sections_init.js?v0.50.021"></script>
+  <script src="../app/explore2/dist/data/languages.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/indicators.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/countries.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/former_countries.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/tags.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/chains.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/cover_data.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/osm_tags.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/playlist.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/sections.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/data/sections_init.js?v0.50.043"></script>
 
   <!-- Conzept core scripts -->
-  <script src="../app/explore2/dist/core/env.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/utils.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/setWikidata.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/createItemHtml.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/fetch_lib.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/fetches.js?v0.50.021"></script>
-  <script src="../app/explore2/dist/core/lib.js?v0.50.021"></script> <!-- Conzept app core library -->
-  <script src="../app/explore2/dist/core/main.js?v0.50.021"></script> <!-- Conzept app entry point -->
+  <script src="../app/explore2/dist/core/env.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/utils.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/setWikidata.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/createItemHtml.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/fetch_lib.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/fetches.js?v0.50.043"></script>
+  <script src="../app/explore2/dist/core/lib.js?v0.50.043"></script> <!-- Conzept app core library -->
+  <script src="../app/explore2/dist/core/main.js?v0.50.043"></script> <!-- Conzept app entry point -->
 
   <!-- tracker -->
   <script type="text/javascript"> window._paq = []; var u = "//conze.pt/stats/"; window._paq.push(["setCookieDomain", "*.conzept.org"]); window._paq.push(["trackPageView"]); window._paq.push(["enableLinkTracking"]); window._paq.push(["enableHeartBeatTimer", 30]); window._paq.push(["setTrackerUrl", u+"p.php?"]); window._paq.push(["setSiteId", "2"]); window._paq.push(["trackEvent", "Explore", "app"]); var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0]; g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"p.js"; s.parentNode.insertBefore(g,s); </script>
@@ -168,13 +168,14 @@ $sticky_html = '
     </span>
 
     <ul id="tabs-swipe-demo" class="tabs">
-      <li class="tab col s3  topics-button" title="topics"><a id="tab-head-topics" href="#swipe-2" aria-label="topics tab"><i class="fa fa-th-large"></i></a></li>
-      <li class="tab col s3" title="topics"><a id="tab-head-concepts" class="active" href="#swipe-3" aria-label="topics tab"><i class="fas fa-stream"></i></a></li>
-      <li class="tab col s3" style="display:none;" title="lists"><a id="tab-head-lists" href="#swipe-4" aria-label="lists tab"><i class="fas fa-list-ul"></i></a></li>
-      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#swipe-5" aria-label="bookmarks tab"><i class="far fa-bookmark"></i></a></li>
-      <li class="tab col s3" title="tools"><a id="tab-head-tools" href="#swipe-7" aria-label="tools tab"><i class="fas fa-wrench"></i></a></li>
-      <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#swipe-1" aria-label="settings tab"><i class="fas fa-cog"></i></a></li>
-      <li class="tab col s3" title="help"><a id="tab-head-help" href="#swipe-6" aria-label="help tab"><i class="fas fa-question"></i></a></li>
+      <!--li class="tab col s3  topics-button" title="topics"><a id="tab-head-topics" href="#swipe-2" aria-label="topics tab"><i class="fa fa-th-large"></i></a></li-->
+      <li class="tab col s3" title="topics"><a id="tab-head-concepts" class="active" href="#tab-topics" aria-label="topics tab"><i class="fas fa-stream"></i></a></li>
+      <li class="tab col s3" title="bookmarks"><a id="tab-head-bookmarks" href="#tab-bookmarks" aria-label="bookmarks tab"><i class="far fa-bookmark"></i></a></li>
+      <li class="tab col s3" style="display: none;" title="audio chat" onclick="insert_audio_chat_app()"><a id="tab-head-audio-chat" href="#tab-audio-chat" aria-label="audio-chat tab"><i class="far fa-comments"></i></a></li>
+      <li class="tab col s3" title="tools"><a id="tab-head-tools" href="#tab-tools" aria-label="tools tab"><i class="fas fa-wrench"></i></a></li>
+      <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#tab-settings" aria-label="settings tab"><i class="fas fa-cog"></i></a></li>
+      <li class="tab col s3" title="help"><a id="tab-head-help" href="#tab-help" aria-label="help tab"><i class="fas fa-question"></i></a></li>
+
       <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fas fa-expand-arrows-alt" title="toggle fullscreen (main app)"></i></a></li>
       <!--li class="tab col s3 global-action" id="add-bookmark" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="bookmark this page"><a id="add-bookmark" style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="addBookmark(event, &quot;clicked&quot; )"><i id="bookmarkIcon" class="far fa-bookmark" title="bookmark current URL"></i></a></li-->
     </ul>
@@ -186,7 +187,7 @@ $settings_html = '
 
   <span class="noselect">
 
-    <div id="swipe-1" class="main-container">
+    <div id="tab-settings" class="main-container">
 
       <div class="fixed-container"></div>
 
@@ -418,11 +419,10 @@ $settings_html = '
 
     </div>
 
-    <div id="swipe-2" class="main-container">
-      <!-- unused tab -->
-    </div>
+    <!--div id="swipe-2" class="main-container">
+    </div-->
 
-    <div id="swipe-3" class="on main-container" role="main">
+    <div id="tab-topics" class="on main-container" role="main">
 
         <div class="fixed-container"></div>
         <div class="content-wrapper">
@@ -468,7 +468,7 @@ $settings_html = '
 
     </div>
 
-    <div id="swipe-5" class="main-container">
+    <div id="tab-bookmarks" class="main-container">
 
       <div class="fixed-container"></div>
       <div class="content-wrapper">
@@ -498,7 +498,7 @@ $settings_html = '
     </div>
 
 
-    <div id="swipe-7" class="main-container">
+    <div id="tab-tools" class="main-container">
 
       <div class="fixed-container"></div>
       <div class="content-wrapper">
@@ -643,7 +643,32 @@ $settings_html = '
     </div>
 
 
-    <div id="swipe-6" class="main-container">
+    <div id="tab-audio-chat" class="main-container">
+
+      <div class="fixed-container"></div>
+      <div class="content-wrapper">
+
+        <div class="overflow-container" tabindex="-1">
+
+          <h4 class="tab-title" id="app-tab-audio-chat-title" style="font-family: ' . $font . ' !important;">audio chat</h4>
+
+          <div class="overflow-content indent">
+
+            <span id="audio-chat-app-container"><span>
+
+          </div>
+
+          <div style="margin-bottom:' . $content_bottom_margin . '"></div>
+
+        </div>
+      </div>
+
+      <div style="margin-bottom:' . $window_bottom_margin . '"></div>
+
+    </div>
+
+
+    <div id="tab-help" class="main-container">
 
       <div class="fixed-container"></div>
       <div class="content-wrapper">
@@ -657,7 +682,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/guide" target="infoframe" title="guide" aria-label="docs"><i class="fas fa-book fa-2x"></i></a></li>
+                  <li> &nbsp; <a href="https://conze.pt/guide/user_manual" target="infoframe" title="user manual" aria-label="user manual"><i class="fas fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 
@@ -678,6 +703,11 @@ $settings_html = '
             </details>
 
             <details class="" closed>
+              <summary><span id="app-menu-license">license</span></summary>
+                &nbsp;<a href="https://github1s.com/waldenn/conzept/blob/master/LICENSE" target="infoframe" title="license" aria-label="docs"><u>GNU GPL v3</u></i></a><br/>
+            </details>
+
+            <details class="" closed>
               <summary><span id="app-menu-credits"></span></summary>
                   Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="software integrations" aria-label="docs"><u>integrated software</u></i></a>.<br/>
 
@@ -687,7 +717,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-about"></span></span></summary>
                 <ul>
-                  <li>&nbsp; <span id="app-menu-version"></span>: v0.50.021</li>
+                  <li>&nbsp; <span id="app-menu-version"></span>: v0.50.043</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news">Twitter</a></li>
@@ -734,7 +764,7 @@ echo '
 
     <meta charset="utf-8" />
 
-    <link rel="manifest" href="/manifest.json?v0.50.021">
+    <link rel="manifest" href="/manifest.json?v0.50.043">
 
     <!-- title -->
     <title>conzept encyclopedia</title>
@@ -760,7 +790,7 @@ echo '
     <!-- icons -->
     <link rel="shortcut icon" href="/favicon.ico" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/favs/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favs/apple-touch-icon.png">
     <link rel="apple-touch-startup-image" href="../../assets/icons/apple-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="../../assets/icons/apple-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
     <link rel="apple-touch-startup-image" href="../../assets/icons/apple-1242x2148.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
@@ -786,8 +816,8 @@ echo '
       </style>
     </noscript>
 
-    <link rel="" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" />
-    <link rel="" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" />
+    <link rel="" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" />
+    <link rel="" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" />
 
     <link id="fontlink">
 ';
@@ -798,13 +828,13 @@ if ( $viewMode == 'mobile' ){
   // iOS Safari style-fixes
   if ( strstr($ua_string, " AppleWebKit/") && strstr($ua_string, " Safari/") && !strstr($ua_string, " CriOS") ){
 
-      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.50.021">';
+      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.50.043">';
 
   };
 
   echo '
     <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css">
-    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.50.021">
+    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.50.043">
   </head>
 
   <body class="mobile">
@@ -833,7 +863,7 @@ if ( $viewMode == 'mobile' ){
 
     </div>
 
-    <script src="../app/explore2/libs/swiper.min.js?v0.50.021"></script>
+    <script src="../app/explore2/libs/swiper.min.js?v0.50.043"></script>
 
     ' . $main_css . '
     ' . $main_script . '

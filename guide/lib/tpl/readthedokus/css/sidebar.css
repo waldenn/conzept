@@ -1,0 +1,219 @@
+#dokuwiki__aside
+{
+	bottom: __height_footer__;
+	background-color: __background_sidebar__;
+	color: __text_sidebar__;
+	flex-shrink: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	padding-bottom: 2em;
+	position: fixed;
+	top: __height_header__;
+	width: __width_sidebar__;
+}
+
+#dokuwiki__site:not(.showSidebar) #dokuwiki__aside
+{
+	display: none;
+}
+
+body[data-useragent*='Trident'] .rightSidebar #dokuwiki__aside
+{
+	right: calc(~"(-16px + 100vw - "__width_site__~")/2");
+}
+
+#dokuwiki__aside > .aside {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 100%;
+	width: calc(__width_sidebar__ + 20);
+}
+
+#dokuwiki__aside ul li
+{
+	margin-left: 0;
+}
+
+#dokuwiki__aside p strong
+{
+	color: __text_sidebar_caption__;
+	display: block;
+	font-size: 85%;
+	font-weight: bold;
+	height: 32px;
+	line-height: 32px;
+	margin: 12px 0 0;
+	padding: 0 1.6em;
+	/* text-transform: uppercase; */
+	white-space: nowrap;
+}
+
+#dokuwiki__aside ul > li > div.li > a,
+#dokuwiki__aside ul > li > div.li > span > a
+{
+	color: __text_sidebar__;
+	display: block;
+	font-size: 90%;
+	line-height: 18px;
+	padding: .4em 1.6em;
+	position: relative;
+}
+
+#dokuwiki__aside #sidebar > ul > li > div.li > a:hover,
+#dokuwiki__aside #sidebar > ul > li > div.li > span > a:hover
+{
+	background-color: __background_sidebar_hover__;
+}
+
+#dokuwiki__aside #dw__toc
+{
+	background-color: __background_sidebar_toc__;
+	float: none;
+	margin: 0;
+	width: 100%;
+}
+
+#dokuwiki__aside #dw__toc ul.toc
+{
+	padding-left: 0;
+}
+
+#dokuwiki__aside #dw__toc ul.toc.invisible
+{
+	display: none;
+}
+
+#dokuwiki__aside #dw__toc > div
+{
+	padding: 0;
+}
+
+#dokuwiki__aside #dw__toc > h3
+{
+	display: none;
+}
+
+#dokuwiki__aside #dw__toc ul > li > div.li
+{
+	padding: 0;
+}
+
+#dokuwiki__aside #dw__toc ul > li > div.li > a
+{
+	color: __text_sidebar_toc__;
+}
+
+#dokuwiki__aside #dw__toc .btn-expand
+{
+	display: inline-block;
+}
+
+#dokuwiki__aside #dw__toc .btn-expand i
+{
+	color: __text_sidebar_expand1__;
+	display: inline-block;
+	font-size: .8em;
+	line-height: 1.6em;
+	margin-left: -15px;
+}
+
+#dokuwiki__aside #dw__toc .btn-expand img
+{
+	height: 11px;
+	margin-left: 1px;
+	width: 9px;
+}
+
+#dokuwiki__aside #dw__toc > div > .toc > .level1 > div.li:first-child > a
+{
+    border-bottom: solid 1px __background_sidebar_toc_highlight__;
+    border-top: solid 1px __background_sidebar_toc_highlight__;
+	background-color: __background__;
+}
+
+#dokuwiki__aside #dw__toc > div > .toc > .level1 > div.li:first-child > a
+{
+	font-weight: bold;
+}
+
+#dokuwiki__aside #dw__toc ul.toc > .level1 ul.toc > li.current
+{
+	background-color: __background_sidebar_toc_highlight__;
+}
+
+#dokuwiki__aside #dw__toc ul.toc > .level1 ul.toc > li > div.li.current > a
+{
+	font-weight: bold;
+}
+
+#dokuwiki__aside #dw__toc ul.toc > .level1 ul.toc > li > div.li > a:hover
+{
+	background-color: __background_sidebar_toc_hover__;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level2 > div.li > a .btn-expand i,
+#dokuwiki__aside #dw__toc ul > li.level3 > div.li > a .btn-expand i,
+#dokuwiki__aside #dw__toc ul > li.level4 > div.li > a .btn-expand i
+{
+	color: __text_sidebar_expand2__;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level2 > div.li > a
+{
+	padding-left: 2.4em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level2 > div.li > a .btn-expand
+{
+	left: 1.8em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level3 > div.li > a
+{
+	padding-left: 3.2em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level3 > div.li > a .btn-expand
+{
+	left: 2.6em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level4 > div.li > a
+{
+	padding-left: 4em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level4 > div.li > a .btn-expand
+{
+	left: 3.4em;
+}
+
+#dokuwiki__aside #dw__toc ul > li.level5 > div.li > a
+{
+	padding-left: 4.8em;
+}
+
+@media (max-width: __media_query_sp__)
+{
+
+	#dokuwiki__aside
+	{
+		width: 85%;
+	}
+
+	#dokuwiki__site.showSidebarSP #dokuwiki__aside
+	{
+		display: block;
+	}
+
+	#dokuwiki__site:not(.showSidebarSP) #dokuwiki__aside
+	{
+		display: none;
+	}
+
+	#dokuwiki__aside > .aside
+	{
+		width: auto;
+	}
+
+}
