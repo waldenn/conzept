@@ -239,6 +239,10 @@ var conzept_tags = {
         text : "software",
         icon : ["far fa-window-restore"],
       },
+      "cryptocurrency" : {
+        text : "cryptocurrency",
+        icon : ["fab fa-bitcoin"],
+      },
     },
   },
 

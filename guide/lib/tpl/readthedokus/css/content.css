@@ -1,0 +1,101 @@
+h1, h2 {
+	border-bottom: 2px solid #009ee0a6;
+	border-bottom: 1px solid #009ee0;
+}
+
+h3, h4 {
+	border-bottom: solid 1px #000;
+}
+
+#dokuwiki__site > div.wrapper
+{
+	max-width: __width_site__;
+	margin: 0 auto;
+}
+
+#dokuwiki__site > div.wrapper.group
+{
+	display: flex;
+}
+
+#dokuwiki__site.rightSidebar > div.wrapper.group
+{
+	flex-direction: row-reverse;
+}
+
+#dokuwiki__content
+{
+	flex: 1;
+	margin-left: __width_sidebar__;
+	min-height: 100%;
+	min-width: 0;
+}
+
+#dokuwiki__site:not(.showSidebar) #dokuwiki__content
+{
+	margin-left: 0;
+}
+
+#dokuwiki__site.rightSidebar #dokuwiki__content
+{
+	margin-left: 0;
+	margin-right: __width_sidebar__;
+}
+
+#dokuwiki__content > .group
+{
+	padding: 1.618em 3.236em;
+	height: 100%;
+	margin: 0;
+	background-color: __background__;
+}
+
+.mode_show #dokuwiki__content > .group
+{
+	max-width: __width_content__;
+}
+
+#dokuwiki__site.rightSidebar.mode_show #dokuwiki__content > .group
+{
+	margin-left: auto;
+}
+
+#dokuwiki__content .page p
+{
+	line-height: 24px;
+	margin: 0 0 24px;
+}
+
+#dokuwiki__content .page ul,ol
+{
+	line-height: 24px;
+	margin-bottom: 24px;
+}
+
+@media (max-width: __media_query_sp__)
+{
+
+	#dokuwiki__content
+	{
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	#dokuwiki__site.showSidebarSP #dokuwiki__content
+	{
+		position: fixed;
+		left: 85%;
+	}
+
+	#dokuwiki__site.showSidebarSP.rightSidebar #dokuwiki__content
+	{
+		left: auto;
+		right: 85%;
+	}
+
+	#dokuwiki__content > .group
+	{
+		padding: 1.6em;
+	}
+
+}

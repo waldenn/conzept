@@ -1,0 +1,33 @@
+<?php global $conf, $lang, $ACT, $INFO, $ID, $DOKU_BASE ?>
+
+<div id="pageheader">
+	<!-- Messages -->
+	<div id="msgarea">
+	    <?php html_msgarea() ?>
+	</div>
+
+	<div style="display:flex;align-items:center">
+		<!-- Breadcrumbs -->
+		<div class="breadcrumbs">
+			<?php if ($ACT == "show") { ?>
+				<span class="home"><a href="<?php echo wl(); ?>">Docs</a></span>
+			<?php } else { ?>
+				<span class="admin"><a href="<?php echo wl($ID,array('do'=>'admin'),true,'&'); ?>">Admin</a></span>
+			<?php } ?>
+
+			 »  <bdi><?php tpl_pagetitle(); ?></bdi>
+		</div>
+
+		<!-- Edit this page -->
+		<?php if ($ACT == "show" && $INFO["userinfo"]) { ?>
+			<a style="margin-left:auto" href="<?php echo wl($ID,array('do'=>'edit'),true,'&'); ?>">
+				<i class="fas fa-pencil-alt"></i>
+				<span> Edit this page</span>
+			</a>
+		<?php } ?>
+	</div>
+
+	<?php tpl_includeFile('pageheader.html') ?>
+
+	<hr>
+</div>

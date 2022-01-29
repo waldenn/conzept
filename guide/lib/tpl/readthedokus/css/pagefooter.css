@@ -1,0 +1,44 @@
+#pagefooter
+{
+	color: __text_pagefooter__;
+}
+
+#pagefooter p
+{
+	margin-bottom: 12px;
+}
+
+#pagefooter .tools
+{
+	background-color: __background_theme__;
+	color: __text_theme__;
+	font-size: 90%;
+	line-height: 20px;
+	margin-top: 30px;
+	padding: 15px;
+}
+
+#pagefooter .tools a
+{
+	color: __text_theme__;
+}
+
+#pagefooter .tools ul li:hover
+{
+	text-decoration: underline;
+}
+
+#pagefooter .tools .doc
+{
+	border-top: solid 1px;
+	display: block;
+	margin-top: 20px;
+	padding-top: 10px;
+	text-align:right;
+}
+
+#pagefooter #dokuwiki__pagetools,
+#pagefooter #dokuwiki__usertools
+{
+	margin-left: 30px;
+}

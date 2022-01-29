@@ -1,0 +1,7 @@
+base   imagebox
+author Lukas Rademacher, CvH, Dr-Yukon, FFTiger & myst6re
+email  lukas@rademacher.ac
+date   2019-10-13
+name   Plugin imagebox
+desc   Syntax for display an image with a caption, like Wikipedia.org
+url    https://www.dokuwiki.org/plugin:imagebox

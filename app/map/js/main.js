@@ -12,22 +12,24 @@
 */
 
 let app = {
-	globus:	  undefined,
+	globus:	      undefined,
 
-	query:		getParameterByName( 'query' ) || '',
+	query:		    getParameterByName( 'query' ) || '',
 
-	lat:			getParameterByName( 'lat' ) || '',
-	lon:			getParameterByName( 'lon' ) || '',
-	qid:			getParameterByName( 'qid' ) || '',
-	title:		getParameterByName( 'title' ) || '',
-	bbox:			getParameterByName( 'bbox' ) || undefined,
+	lat:			    getParameterByName( 'lat' ) || '',
+	lon:			    getParameterByName( 'lon' ) || '',
+	qid:			    getParameterByName( 'qid' ) || '',
+	title:		    getParameterByName( 'title' ) || '',
+	bbox:			    getParameterByName( 'bbox' ) || undefined,
 
-	language: '',
-	osm_id:		'',
-	view_extent: '',
+	language:     '',
+	osm_id:       '',
+	view_extent:  '',
 
-  label_size: 24,
+  label_size:   24,
   label_offset: [10,20],
+  outline:      0.77,
+  outline_color:'rgba(255,255,255,.4)',
 
   colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
 
@@ -57,6 +59,15 @@ async function init(){
 
   //console.log( app );
 
+
+  var osm = new og.layer.XYZ("OpenStreetMap", {
+      isBaseLayer: true,
+      url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      visibility: true,
+      attribution: 'Data @ <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+  });
+
+  /*
   const osm = new og.layer.XYZ("OpenStreetMap", { 
     isBaseLayer: true, 
     //url: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
@@ -69,6 +80,7 @@ async function init(){
     specular: [0, 0, 0],
     //shininess: 100,
    });
+  */
 
   /*
   const osmbuildings = new og.layer.XYZ("OpenStreetMap buildings", { 
@@ -92,8 +104,8 @@ async function init(){
 
 			label: {
 				text: app.title,
-				//outline: 0.1,
-				outlineColor: "rgba(255, 255, 255, 0.4)",
+        //outline: app.outline,
+        //outlineColor: app.outline_color,
 				size: app.label_size,
 				color: "black",
 				offsett: app.label_offset,
@@ -156,9 +168,9 @@ async function init(){
 		visibility: false,
 	});
 
-  app.globus.renderer.gamma         = 0.10;
-  app.globus.renderer.exposure      = 3.80;
-  app.globus.planet.lightEnabled    = false;
+  app.globus.planet.lightEnabled  = true; // OpenGlobus bug?: setting this to "false" causes OSM-map not to render!
+  app.globus.renderer.gamma       = 0.10;
+  app.globus.renderer.exposure    = 3.80;
 
   if ( app.osm_id !== '' ){ // OSM object
 
@@ -226,6 +238,8 @@ async function init(){
 
         }
 
+        app.globus.planet.lightEnabled = false;
+
         if ( valid( data.lon ) ){
 
           if ( !valid( app.lon ) ){
@@ -236,8 +250,8 @@ async function init(){
 
                 label: {
                   text: app.title,
-                  //outline: 0.1,
-                  outlineColor: "rgba(255, 255, 255, 0.4)",
+                  //outline: app.outline,
+                  //outlineColor: app.outline_color,
                   color: "black",
                   size: app.label_size,
 				          offsett: app.label_offset,
@@ -341,7 +355,8 @@ async function handleQuery( url, color ){
 
       //console.log( data );
 
-      let markers = [];
+      let markers     = [];
+      let coordinates = [];
 
       $.each( json, function ( i, v ) {
 
@@ -358,7 +373,25 @@ async function handleQuery( url, color ){
 
         });
 
+        //coordinates.push( [ v.lat?.value, v.lon?.value ] );
+				//coordinates.push( [ parseFloat( v.lat?.value ), parseFloat( v.lon?.value ), 0 ] );
+
+        coordinates.push( [ new og.LonLat( parseFloat( v.lat?.value ), parseFloat( v.lon?.value ) ) ] );
+
       });
+
+      // get extend of coordinates and fiy to it
+      const extent = new og.Extent();
+      extent.setByCoordinates( coordinates );
+
+      //console.log( coordinates );
+      //console.log( extent );
+
+      //app.globus.planet.flyExtent( extent );
+
+      //console.log( markers );
+
+      app.globus.planet.lightEnabled = false;
 
       renderMultipleMarkers( markers, color );
 
@@ -380,15 +413,15 @@ async function renderMultipleMarkers( markers, color ){
 
 			app.markerLayer.add(new og.Entity({
 
-        //visibility: false,
+        //visibility: true,
 
 				lonlat: [ parseFloat( v.lon ), parseFloat( v.lat ) ],
 
         /*
 				label: {
 					text: v.title,
-					//outline: 0.1,
-					outlineColor: "rgba(255, 255, 255, 0.4)",
+          outline: app.outline,
+          outlineColor: app.outline_color,
 					size: app.label_size,
 					color: "black",
 				  offsett: app.label_offset,
@@ -407,7 +440,6 @@ async function renderMultipleMarkers( markers, color ){
 			}));
 
 		}
-
 
   });
 

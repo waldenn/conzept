@@ -36,7 +36,7 @@ const explore = {
 	// could we read these from storage?
   locale       	: getParameterByName('locale') || 'en',
   fontsize     	: getParameterByName('fs') || '19',
-  font1        	: getParameterByName('font') || 'Quicksand',
+  font1        	: getParameterByName('font') || CONZEPT_FONT,
   darkmode     	: getParameterByName('darkmode') || false,
   //linkpreview  	: getParameterByName('lp') || false,
   isMobile     	: getParameterByName('mobile') || detectMobile(),
@@ -157,11 +157,11 @@ $( document ).ready( function() {
     // set font
 		explore.font1 = await explore.db.get('font1');
 
-		if ( explore.font1 !== 'Quicksand' ){ // custom font
+		if ( explore.font1 !== CONZEPT_FONT ){ // custom font
 
       if ( ! valid( explore.font1 ) ){
 
-        explore.font1 = 'Quicksand';
+        explore.font1 = CONZEPT_FONT;
 
       }
 
@@ -901,7 +901,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       let fontlink_html = '<link id="fontlink" />';
 
-      if ( explore.font1 !== 'Quicksand' ){ // only add font-link for alternative fonts
+      if ( explore.font1 !== CONZEPT_FONT ){ // only add font-link for alternative fonts
         fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
       }
 
@@ -920,7 +920,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       }
 
-      let talk_page_button = '<span id="gotoTalkPage"><button onclick="gotoTalkPage()" onauxclick="gotoTalkPage( true )" class="dropbtn" tabIndex="0" title="go to talk-page" aria-label="go to talk-page"><span class="icon"><i class="far fa-comments"></i></span></button></span> ';
+      let talk_page_button = '<span id="gotoTalkPage"><button onclick="gotoTalkPage()" onauxclick="gotoTalkPage( true )" class="dropbtn" tabIndex="0" title="go to talk-page" aria-label="go to talk-page"><span class="icon"><i class="far fa-clipboard"></i></span></button></span> ';
 
       if ( title.startsWith( explore.lang_talk + ':' ) ){ // already on a talk page
 
@@ -948,6 +948,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             '<span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" tabIndex="0" title="go to images" aria-label="go to images"><span class="icon"><i class="far fa-images"></i></span></button></span> ' +
             '<span id="gotoBooks"><button onclick="gotoBooks()"  onauxclick="gotoBooks( true )" class="dropbtn" tabIndex="0" title="go to books" aria-label="go to books"><span class="icon"><i class="fab fa-mizuni"></i></span></button></span> ' +
             '<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fas fa-plus"></i></span></button></span> ' +
+            '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fas fa-print"></i></span></button></span> ' +
             '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to wikipedia"><span class="icon"><i class="fab fa-wikipedia-w"></i></span></button></span> ' +
             '<span id="otherLanguage"><button onclick="showWikipediaLanguages()" class="dropbtn active uls-trigger" tabIndex="0" title="article in other languages"> '  + language_display + '</button></span>' +
 
@@ -980,6 +981,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 				$( '#gotoImages' ).hide();
 				$( '#gotoBooks' ).hide();
 				$( '#addToCompare' ).hide();
+				$( '#printPage' ).hide();
 			}
 
 			if ( explore.isFirefox ){ // pause() does nothing with Firefox on Linux (what about Firefox on Windows?), so hide the pause-button

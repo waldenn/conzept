@@ -21,6 +21,7 @@ const explore = {
   //hash_prev         : undefined, // previous URL hash from URL
 
   embedded            : getParameterByName('embedded') || '', // signals to open links in the local iframe
+  tab                 : getParameterByName('tab') || undefined, // requested tab from the URL
 
   language            :  undefined, // current language 2-letter-code
   language_script     : '',       // see: https://www.w3.org/International/questions/qa-scripts.en#examples
@@ -43,6 +44,7 @@ const explore = {
   language_param      : getParameterByName('l') || undefined, // requested language from the URL
   locale_param        : getParameterByName('h') || undefined, // requested 'human locale' language from the URL
   query_param         : getParameterByName('query') || undefined, // requested 'structured query' from the URL
+
   //country           : 'us', // default is "United States"
 
   uls                 : undefined, // reference to the ULS object
@@ -154,8 +156,8 @@ const explore = {
   //tts_removals      : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, math',
 
   // TTS helper
-  voice_code          : undefined,   // used voice code like "en-GB", etc.
-  voice_code_selected : '', // user-selected voice code like "en-GB", etc.
+  voice_code          : undefined,    // used voice code like "en-GB", etc.
+  voice_code_selected : '',           // user-selected voice code like "en-GB", etc.
   voice_rate          : 1.00,
   speakingNow         : 'false',
   speakingTitle       : '',
@@ -163,11 +165,11 @@ const explore = {
   baseframe           : '#infoframe', // desktop
 
   // default font styles
-  default_font        : 'Quicksand',
-  default_fontsize    : 15,                // default for mobile screens
-  default_fontsize_small_desktop : 18,  // default for small desktops (<1300)
-  default_fontsize_medium_desktop: 18,  // default for medium desktops (<1600)
-  default_fontsize_large_desktop : 18,  // default for large desktops (>1600)
+  default_font        : 'Hind',       // 'IBM Plex Sans Condensed',
+  default_fontsize    : 16,             // default for mobile screens
+  default_fontsize_small_desktop : 19,  // default for small desktops (<1300)
+  default_fontsize_medium_desktop: 19,  // default for medium desktops (<1600)
+  default_fontsize_large_desktop : 19,  // default for large desktops (>1600)
 
   banner_width        : '1200px', // desktop size
 
@@ -372,6 +374,6 @@ jQuery.extend({
 });
 
 async function onTabShow( tab ){
-  explore.activeTab = tab.id.replace('swipe-', ''); // set active tab
+  explore.activeTab = tab.id; // set active tab
   $('#sidebar').scrollTop( explore.tabPositions[ explore.activeTab ] ); // use previous scroll position
 }

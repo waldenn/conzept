@@ -284,8 +284,8 @@ class GBIFMap extends HTMLElement {
 			<link rel="stylesheet" href="/app/explore2/css/various/openlayers.css">
 			<link rel="stylesheet" href="/app/explore2/css/various/ol-ext.css" type="text/css">
 			<link rel="stylesheet" href="/app/explore2/css/various/climatemaps.css" type="text/css">
-      <link rel="preload" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" crossorigin="anonymous"/>
-      <link rel="preload" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" crossorigin="anonymous"/>
+      <link rel="preload" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" crossorigin="anonymous"/>
+      <link rel="preload" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" crossorigin="anonymous"/>
 
       <style>
 

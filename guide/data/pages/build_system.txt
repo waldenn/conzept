@@ -1,0 +1,18 @@
+====== build system ======
+
+When you run "**npm run build**" in the Conzept app directory (located in "app/explore2/"), the **[[https://github.com/waldenn/conzept/blob/master/app/explore2/build.sh|build.sh]]** script is executed.
+
+When this build script runs, the following things happen:
+
+  * The existing build-directory ("dist") is removed (if it exists).
+  * Check and create the "conzept" user (used for running the proxy services).
+  * Check & create the Conzept configuration directorty ("/etc/conzept").
+  * Check & create the Conzept settings file ("/etc/conzept/settings.conf").
+  * Read the Conzept settings file (and store its values as environment variables).
+  * Generate the Conzept JS environment file (located in "app/explore2/src/core/env.js") from these environment variables (so these settings can be used in the JS code).
+  * Transform the HTML / PHP template files in __all apps__ (by inserting the Conzept environment variables).
+  * Setup the Conzept proxy services (only done once).
+  * Build the Conzept Wikipedia app (using esbuild).
+  * Build the main Conzept app (using ebuild).
+  * Bundle all Conzept API-fetch scripts into one file (this allows for auto-inclusion of any new API-fetching code).
+

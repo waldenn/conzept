@@ -49,7 +49,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let map_link            = '';
   let nearby_link         = '';
   let linkgraph_link      = '';
-  let mountain_map_link   = '';
+  let satellite_map_link  = '';
   let youtube_channel_link= '';
   let video_link          = '';
   let open_library_link   = '';
@@ -78,6 +78,9 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let wikiversity_link    = '';
   let geo_structure_map_link = '';
 
+  let cryptocurrency_symbol = '';
+  let market_cap_percentage = '';
+
   //console.log( args );
   //console.log( id, title );
 
@@ -95,6 +98,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   const title_no_spaces     = encodeURIComponent( title_.replace(/ /g, '') );
 
   const title_no_braces     = removebracesTitle( title );
+  const title_no_braces_lowercase = title_no_braces.toLowerCase();
 
   const date_yyyy_mm_dd     = new Date().toISOString().slice(0,10);
 
@@ -151,6 +155,21 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   if ( valid( item.from_sparql ) ){
 
     type_ = 'wikipedia-qid';
+
+  }
+
+  if ( valid( item.cryptocurrency_symbol ) ){
+
+    cryptocurrency_symbol = item.cryptocurrency_symbol;
+
+    if ( valid( item.market_capitalization ) ){
+
+      // periodically update the total market cap from here: https://coinmarketcap.com (or use an API)
+      const mcp = ( parseFloat( item.market_capitalization ) / 14341863878032 ) * 100;
+
+      market_cap_percentage = ' <span title="market cap share" style="font-size: small">(' + numbro( mcp ).format({ thousandSeparated: true, totalLength: 3 })  + '%)</span>';
+
+    }
 
   }
 
@@ -1661,14 +1680,11 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     nearby_button = '<a href="javascript:void(0)" title="Wiki-items nearby map" aria-label="Wiki-items nearby map"' + setOnClick( Object.assign({}, args, { type: 'link-split',  url: '/app/nearby/#lat=' + item.lat + '&lng=' + item.lon + '&zoom=17&interface_language=' + explore.language + '&layers=wikidata_image,wikidata_no_image,wikipedia', title: title, qid: item.qid } ) ) + '><span class="icon"><i class="fas fa-map-pin" style="position:relative;"><span class="subtext">nearby</span></i></span>';
 
-    if ( tags[1] === 'mountain' ){
+    //if ( tags[1] === 'mountain' ){
 
-      const url = `${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}`;
+      satellite_map_link = '&nbsp;<a href="javascript:void(0)" title="terrain map" aria-label="terrain map"' + setOnClick( Object.assign({}, args, { type: 'link', url: `${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}`, title: title, qid: item.qid } ) ) + '><span class="icon"><i class="fas fa-satellite" style="position:relative;"></i></span></a> ';
 
-      mountain_map_link = '&nbsp;<a href="javascript:void(0)" title="mountain terrain" aria-label="mountain terrain"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: title, qid: item.qid } ) ) + '><span class="icon"><i class="fas fa-mountain" style="position:relative;"></i></span></a> ';
-    
-
-    }
+    //}
 
   }
 
@@ -1842,7 +1858,10 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     o.students_count_nr +
     life_expectancy_query +
     hdi_query +
+    cryptocurrency_symbol +
     o.total_revenue_nr +
+    o.market_capitalization_nr +
+    market_cap_percentage +
     o.collection_size_nr +
     o.alexa_rank_nr +
     visitors_query +
@@ -1858,7 +1877,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     wikivoyage_link +           // nomad-persona
     nearby_link +
     map_link +
-    mountain_map_link +
+    satellite_map_link +
     ( valid( explore.personas.includes('tourist') ) ? o.osm_query_hiking_routes : '' )  +
     filter_link +
     cattree_link +

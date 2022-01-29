@@ -1,0 +1,186 @@
+======  topic classification ======
+
+Topic-classification happens live on the client (in the users browser), for each search result topic with a Wikidata Qid.
+Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, while still be a flexible process.
+
+Conzept tries to classify Wikidata topics with two [[#classes|class tags]] ([[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js|file]]). One tag for the **main class** of the topic and another for the **subclass**. (note: In the future another tag-level may be added, if needed.)
+
+Conzept tries to classifiy the topics as precise as possible, but sometimes only the main-class is being set (or even none at all). That being said, __it is estimated more than 90% of all items on Wikidata are currently being classified by at least a main-class!__
+
+The main-classes are chosen for being **somewhat comprehensive** (though there are always topics outside of their scope) and **useful within the Conzept interface**. The sub-classes are often less comprehensive (as there are many more to list!), but are still considered useful for the Conzept interface. It is easy to add more classes when the need arises.
+
+If a topic has no Wikidata Qid, it will only be classified if it belongs to one of the Wikipedia classes listed below (disambiguation article, list article, category page, etc.).
+
+In the future Conzept may also use an AI-based classification-system which could help with classifying any of those missing cases.
+===== classes =====
+
+The main classes and their sub-claseses (if any):
+
+  * **raw-query-string** (non-Wikidata topic)
+
+  * **disambiguation** (Wikipedia disambiguation page)
+    * person
+
+  * **list** (Wikipedia list topic)
+
+  * **category** (Wikipedia category)
+
+  * **wikispecial** (Wikipedia special page)
+
+  * **location**
+    * country
+    * mountain
+
+  * **time**
+    * accident
+
+  * **organization** (human organization)
+    * business-chain
+    * museum
+    * music-group
+
+  * **group** (human grouping - but not an organization)
+    * nobility
+    * nobility-family
+
+  * **work**
+    * symbol
+    * satellite
+    * ship
+    * fictional-entity
+    * dish
+    * beverage
+    * written-work
+    * periodical
+    * comics
+    * video-game
+    * music
+    * film
+    * tv-series
+    * submarine-communications-cable
+    * flag
+    * website
+    * software
+    * cryptocurrency
+
+  * **person**
+    * scientist
+    * musician
+    * painter
+    * filmmaker
+    * actor
+
+  * **cultural-concept**
+    * role
+    * rank
+    * music-genre
+    * religion
+    * mythology
+    * education
+    * road
+    * network
+    * movement
+    * tonality
+
+  * **organism**
+    * bird
+    * mushroom
+    * amphibian
+    * insect
+    * reptile
+    * plant
+    * plant-organ
+
+  * **substance** (synthetic or natural substances)
+    * periodic-table-element
+    * chromosome
+    * gene
+    * genome
+    * mineral
+
+  * **natural-type** (clearly a concrete natural *physical thing*: planet, snowflake, organs, ...)
+    * astronomical-object
+
+  * **natural-concept** (more abstract natural concepts)
+    * chemistry
+    * geology
+    * astronomy
+    * anatomy
+    * medical-condition
+    * animal-disease
+    * human-disease
+    * human-disease-cause
+    * personal-concept
+    * geographical-structure (note: may need a better classification)
+
+  * **meta-concept** (abstract topics)
+    * mathematics
+===== classification process =====
+
+There are several ways for a topic to be classified in Conzept:
+
+  * **__Wikidata Qid__ match with a value in the [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/indicators.js|indicators]].** Each class can have an array of Qids which will classify it. See an example indicator object below.
+    *  See [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/setWikidata.js|setWikidata.js]] for code example on how these indicators are used for classification. Note how sometimes the "instance_of", "subclass_of" or both Wikidata class properties are being used for matching against the indicators.
+
+<code>
+'country': {
+    value: [
+        6256, 3624078, 43702, // Wikidata  Qids which indicate a country
+    ],
+    trigger: '',
+    tags: 'setTags( item, [ "location", "country" ] )', // this sets both the main-class and sub-class of a topic
+},
+</code>
+
+\\
+
+  * **Matching a certain Wikidata-property (or set of properties) to a class using a [[|field definition]]**. You can either calls **setTags( <item>, <tag-array> )** directly, or use the **listed( <value-array>, <indicator-array> )** function. Here are some examples:
+
+<code>
+'parent_taxon' : {
+  create_trigger: 'setTags( item, [ "organism" ] );', // only the main-class is being set here
+  title: 'parent taxon',
+  prop: '171',
+  type: 'wikipedia-qid',
+  mv: false,
+  icon: 'fas fa-sort-amount-up-alt',
+  text: 'parent taxon',
+  section: ['science-biology','main'],
+  rank: [70, 1910],
+},
+</code>
+
+<code>
+'atomic_number' : {
+  create_trigger: 'setTags( item, [ "", "periodic-table-element" ] )',
+     // only the sub-class is set (as empty fields are ignored in setTags())
+  render_condition: false,
+  title: 'atomic number',
+  prop: '1086',
+  type: 'symbol-number',
+  mv: false,
+  icon: 'fas fa-atom',
+  text: 'atomic number',
+  section: '',
+  rank: 1,
+},
+</code>
+
+<code>
+'paintings_inline' : {
+  render_condition: 'listed( item.occupations, indicators.painter.value )', // matches all the painter-indicators with the items occupation-values
+  value: 'paintings:${item.title}:true',
+  title: 'paintings',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  icon: 'fas fa-th-large',
+  text: 'paintings',
+  section: ['art','main'],
+  rank: [30, 1710],
+},
+</code>
+
+\\
+
+  * **Wikipedia page metadata** (the Wikipedia API returns article information such as: disambiguation page, category page, etc., which can also be used to classify topics.

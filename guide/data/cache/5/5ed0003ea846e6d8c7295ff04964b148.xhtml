@@ -1,0 +1,186 @@
+
+<h1 class="sectionedit1" id="code_structure">code structure</h1>
+<div class="level1">
+
+<p>
+Here is a high-level description of how the code in the Conzept project is structured.
+You can also browse it online <a href="https://github1s.com/waldenn/conzept" class="urlextern" target="_blank" title="https://github1s.com/waldenn/conzept" rel="ugc nofollow noopener">here</a>.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;code structure&quot;,&quot;hid&quot;:&quot;code_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-195&quot;} -->
+<h2 class="sectionedit2" id="root_directory_structure">root directory structure</h2>
+<div class="level2">
+<pre class="code">.
+├── app (all embedded apps, including the Conzept main app, see next section)
+│  ├── ...
+│  ├── ...
+│  └── ...
+│
+├── assets (globally shared assets)
+│  ├── icons
+│  └── fonts
+│
+└── services (background services started upon system boot)
+   ├── allorigins (general CORS proxy)
+   └── json-proxy (JSON-only CORS proxy, also handles secret API-keys)</pre>
+
+<p>
+The Conzept-project root-directory also contains the following relevant files:
+</p>
+<ul>
+<li class="level1"><div class="li"> authors, copyright and license file</div>
+</li>
+<li class="level1"><div class="li"> manifest.json (this enables Conzept to be installed as a desktop app)</div>
+</li>
+<li class="level1"><div class="li"> service-worker.js (required for making the Conzept app installable)</div>
+</li>
+<li class="level1"><div class="li"> opensearch.xml (used by search engines and web browsers to understand the <abbr title="Uniform Resource Locator">URL</abbr> search format of a website)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;root directory structure&quot;,&quot;hid&quot;:&quot;root_directory_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;196-1049&quot;} -->
+<h2 class="sectionedit3" id="conzept_main_app">conzept main app</h2>
+<div class="level2">
+
+<p>
+The Conzept main app is located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2" rel="ugc nofollow noopener">&lt;root_directory&gt;/app/explore2</a></strong>” directory and has the following structure:
+</p>
+<pre class="code">.
+├── assets
+│   ├── geojson (used only for the data-layers in the organism-occurrence web-component)
+│   ├── i18n (localization files)
+│   ├── images (static images)
+│   ├── json (mainly used for storing lists of Wikidata &quot;topic sphere&quot; Qid&#039;s)
+│   ├── models (used to store Draco-optimized GLB 3D models)
+│   └── svg (used for flags, former-flags)
+│
+├── css
+│   ├── conzept (all the Conzept style files)
+│   ├── openmoji (icon set style)
+│   └── various (a few style files not yet installable with NPM)
+│
+├── dist (the build-output directory - never manually edit these files)
+│
+├── libs (a few JS libraries not yet installable with NPM)
+│
+├── notes (a collection of design notes)
+│
+├── php (PHP mobile-detect library)
+│
+├── src (Conzept source directory)
+│   ├── core (core code parts)
+│   ├── data (code which creates dynamic data structures)
+│   ├── fetch (code which fetches API data, each API has its own file - see the section &quot;API code&quot; below)
+│   └── webcomponent (used for storing web-components)
+│
+└── tools (various tools used for: building, installing services, fetching monthly covers, etc.)</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1050-2550&quot;} -->
+<h2 class="sectionedit4" id="entry_point">entry point</h2>
+<div class="level2">
+
+<p>
+The Conzept app is started in “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2/src/core/main.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/src/core/main.js" rel="ugc nofollow noopener">src/core/main.js</a></strong>” and will from there call various function located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2/src/core/main.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/src/core/main.js" rel="ugc nofollow noopener">src/core/lib.js|lib.js</a></strong>”.
+</p>
+
+<p>
+From “main.js”:
+</p>
+<ul>
+<li class="level1"><div class="li"> All the <abbr title="Uniform Resource Locator">URL</abbr> parameters are cleansed, parsed and stored.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> The <strong>global object “<a href="#explore_object" title="code_structure ↵" class="wikilink1">explore</a>“</strong> is created. The values in this  JS-object can be accessed through “explore.&lt;property-name&gt;” (see next section). Note: The explore-object is not accessible in the embedded apps, use <abbr title="Uniform Resource Locator">URL</abbr>-parameters to pass relevant data into the app.).</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> The language and locale are setup (while checking for the language setting in the persistent browser storage).</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Dynamic UI-element are setup and activated.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Keyboard event-handlers setup.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2551-3448&quot;} -->
+<h2 class="sectionedit5" id="explore_object">explore object</h2>
+<div class="level2">
+
+<p>
+This is the global data-structure which Conzept uses for the main app. All its values can also be accessed from <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field definitions</a>.
+</p>
+
+<p>
+Here are some of the important properties on this object:
+</p>
+<div class="table sectionedit6"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> property      </th><th class="col1 leftalign"> description  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> explore.<strong>q</strong> </td><td class="col1"> query string </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> explore.<strong>language</strong> </td><td class="col1"> content language </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> explore.<strong>locale</strong> </td><td class="col1"> <a href="/guide/localization" class="wikilink1" title="localization" data-wiki-id="localization">locale</a> (interface) language ) </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> explore.<strong>qid</strong> </td><td class="col1"> Wikidata Qid (if any, of the current active topic) </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> explore.<strong>db</strong> </td><td class="col1"> persistent storage object using <a href="https://github.com/gruns/ImmortalDB" class="urlextern" target="_blank" title="https://github.com/gruns/ImmortalDB" rel="ugc nofollow noopener">ImmortalDB</a></td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> explore.<strong>query_param</strong> </td><td class="col1"> <a href="/guide/user_manual#structured_search" class="wikilink1" title="user_manual" data-wiki-id="user_manual">structured search</a> query-<abbr title="Uniform Resource Locator">URL</abbr> </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> explore.<strong>fragment</strong> </td><td class="col1"> sidebar detail-fragment to go to upon after loading the <abbr title="Uniform Resource Locator">URL</abbr> (<a href="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" rel="ugc nofollow noopener">example</a>) </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3692-4314&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3449-4315&quot;} -->
+<h2 class="sectionedit7" id="api_code">API code</h2>
+<div class="level2">
+
+<p>
+All the (non-essential) <abbr title="Application Programming Interface">API</abbr> data-fetching code is hosted in “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch" rel="ugc nofollow noopener">app/explore2/src/fetch</a></strong>”. There are currently over 40 different <abbr title="Application Programming Interface">API</abbr> integrations in use for Conzept.
+</p>
+
+<p>
+<strong>Each <abbr title="Application Programming Interface">API</abbr> has its own file, but shares a common structure.</strong> This makes adding new <abbr title="Application Programming Interface">API</abbr>&#039;s relatively easy, though it still requires some coding and looking at the data structures of the <abbr title="Application Programming Interface">API</abbr> returned results.
+</p>
+
+<p>
+That common code structure is used to handle:
+</p>
+<ul>
+<li class="level1"><div class="li"> The input arguments (title string, current paging status and sometimes custom data)</div>
+</li>
+<li class="level1"><div class="li"> Result paging (page size, current page, total results)</div>
+</li>
+<li class="level1"><div class="li"> Sorting options (optional)</div>
+</li>
+<li class="level1"><div class="li"> Rendering the returned results into Conzept</div>
+</li>
+</ul>
+
+<p>
+To add a new <abbr title="Application Programming Interface">API</abbr>, see <strong><a href="/guide/integrating_an_api" class="wikilink1" title="integrating_an_api" data-wiki-id="integrating_an_api">integrating an API</a></strong>.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4316-&quot;} -->

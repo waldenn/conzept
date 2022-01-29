@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generator="FeedCreator 1.8" -->
+<?xml-stylesheet href="https://conze.pt/guide/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="https://conze.pt/guide/feed.php">
+        <title>Conzept guide</title>
+        <description></description>
+        <link>https://conze.pt/guide/</link>
+        <image rdf:resource="https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico" />
+       <dc:date>2022-01-09T07:34:01+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="https://conze.pt/guide/roadmap?rev=1641700219&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/issues?rev=1641699808&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/field_customization?rev=1641677639&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/terms?rev=1641642771&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/section_customization?rev=1641597596&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/sidebar?rev=1641204748&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/upgrading?rev=1641204706&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/localization?rev=1641159042&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/configuration?rev=1641137437&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=logo.jpg&amp;ns=&amp;rev=1631992702&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico">
+        <title>Conzept guide</title>
+        <link>https://conze.pt/guide/</link>
+        <url>https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico</url>
+    </image>
+    <item rdf:about="https://conze.pt/guide/roadmap?rev=1641700219&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-09T04:50:19+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>roadmap - [specific ideas] </title>
+        <link>https://conze.pt/guide/roadmap?rev=1641700219&amp;do=diff</link>
+        <description>roadmap
+
+specific ideas
+
+	*  Fix the items mentioned in issues.
+
+	*  Add claim-support to the Wikidata-data fetching (and support for claim-data in the field-definitions).
+
+	*  Create a Conzept browser extension, by modifying and uploading this text selection search extension (MIT license).</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/issues?rev=1641699808&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-09T04:43:28+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>issues - [mobile browser compatibility and usability] </title>
+        <link>https://conze.pt/guide/issues?rev=1641699808&amp;do=diff</link>
+        <description>issues
+
+browser navigation
+
+	*  Backwards navigation (using the browser history stack) has several issues. 
+		*  note: The web standards community are working on improving the browser-history API, since many SPA's are running into the same issues.
+
+
+	*  Reloading complex-encoded URLs</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/field_customization?rev=1641677639&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-08T22:33:59+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>field_customization - [Wikidata-based fields] </title>
+        <link>https://conze.pt/guide/field_customization?rev=1641677639&amp;do=diff</link>
+        <description>field customization
+
+introduction
+
+Each sections of a topic can be populated by links. These links are defined in fields. When a user clicks on such a link, it can trigger some kind of action.
+
+There are five types of actions a field can trigger:
+
+	*  Open a link in the</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/terms?rev=1641642771&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-08T12:52:51+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>terms</title>
+        <link>https://conze.pt/guide/terms?rev=1641642771&amp;do=diff</link>
+        <description>terms
+
+Here is a list of the most important terms used in the Conzept system.
+
+topic cards
+
+...
+
+topic headline
+
+...
+
+topic sections
+
+...
+
+topic fields
+
+...
+
+sidebar
+
+...
+
+content pane
+
+...</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/section_customization?rev=1641597596&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-08T00:19:56+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>section_customization</title>
+        <link>https://conze.pt/guide/section_customization?rev=1641597596&amp;do=diff</link>
+        <description>section customization
+
+Topic-cards are organized using a tree-structure of topic sections.
+
+The structure and names of these sections comes from the “src/data/sections.js” file.
+
+Below is a snippet from that file, showing the sections for: “main”, “meta” and “media”.
+
+
+'main': {
+  'icon'  : '',
+},
+
+'meta': {
+  'icon'  : '',
+},
+
+'media': {
+  'icon'  : '',
+
+  'sub'   : {
+
+    'media-video': {
+      'icon' : 'fas fa-video',
+    },
+
+    'media-image': {
+      'icon' : 'far fa-images',
+    },
+
+    'm…</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/sidebar?rev=1641204748&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-03T11:12:28+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>sidebar</title>
+        <link>https://conze.pt/guide/sidebar?rev=1641204748&amp;do=diff</link>
+        <description>start
+
+user docs
+
+	*  user manual
+	*  terms
+
+admin docs
+
+	*  installation
+	*  configuration
+	*  section customization
+	*  field customization
+	*  localization
+	*  security
+	*  upgrading
+
+developer docs
+
+	*  architecture
+	*  used projects
+	*  topic classification
+	*  issues
+	*  roadmap
+
+other
+
+	*  NLnet milestones</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/upgrading?rev=1641204706&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-03T11:11:46+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>upgrading - created</title>
+        <link>https://conze.pt/guide/upgrading?rev=1641204706&amp;do=diff</link>
+        <description>upgrading conzept
+
+TODO
+
+	*  first backup the Conzept data directories: /etc/conzept/settings.conf and /app/explore2/src/data
+
+	*  git clone conzept OR git pull conzept (if you already have the Conzept repo checked out)
+
+	*  install all files from the repo:</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/localization?rev=1641159042&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-02T22:30:42+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>localization</title>
+        <link>https://conze.pt/guide/localization?rev=1641159042&amp;do=diff</link>
+        <description>localization
+
+Most of the Conzept interface can be localized, these parts include main UI elements such as menu labels and the topic-card section names.
+
+The list of supported locales can be found in the Conzept settings file (“CONZEPT_LOCALES”). Conzept also has basic support for right-to-left scripts such as Arabic.</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/configuration?rev=1641137437&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-01-02T16:30:37+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>configuration</title>
+        <link>https://conze.pt/guide/configuration?rev=1641137437&amp;do=diff</link>
+        <description>configuration
+
+The main settings of the Conzept system can be edited in “/etc/conzept/settings.conf”.
+ name       description        CONZEPT_HOSTNAME  name of the webserver (eg. 'conze.pt')  CONZEPT_WEB_BASE  optional: web base-path (can be used to change the base web</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/?image=logo.jpg&amp;ns=&amp;rev=1631992702&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2021-09-18T21:18:22+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>logo.jpg</title>
+        <link>https://conze.pt/guide/?image=logo.jpg&amp;ns=&amp;rev=1631992702&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/logo.jpg?w=384&amp;h=384&amp;t=1640302911&amp;amp;tok=ddbc72&quot; alt=&quot;logo.jpg&quot; /&gt;</description>
+    </item>
+</rdf:RDF>

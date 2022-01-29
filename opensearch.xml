@@ -2,7 +2,7 @@
   <ShortName>Conzept encyclopedia</ShortName>
   <Description>topic exploration tool</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">/favs/favicon.ico</Image>
+  <Image width="16" height="16" type="image/x-icon">/assets/favs/favicon.ico</Image>
   <Url type="text/html" template="https://conze.pt/explore/{searchTerms}" />
   <moz:SearchForm>https://conze.pt/explore</moz:SearchForm>
 </OpenSearchDescription>

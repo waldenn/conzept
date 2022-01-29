@@ -131,7 +131,7 @@ body.dark a.underline {
 }
 
 body.dark a {
-  text-decoration: none;
+  text-decoration: underline;
   color: #ffffffd9 !important;
 }
 

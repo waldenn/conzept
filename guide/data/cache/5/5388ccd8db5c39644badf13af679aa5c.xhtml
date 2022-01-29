@@ -1,0 +1,109 @@
+
+<h1 class="sectionedit1" id="architecture">architecture</h1>
+<div class="level1">
+<p><a class="folder" href="#folded_e7468d9fd39dabbab000eab1384825b1_1">notes </a></p><div class="folded hidden" id="folded_e7468d9fd39dabbab000eab1384825b1_1">
+<h5>URL structure</h5>
+<pre class="code">                        SIDEBAR                 PANE1                                                     PANE2</pre>
+
+<p>
+<a href="https://conze.pt/explore" class="urlextern" title="https://conze.pt/explore" rel="ugc nofollow">https://conze.pt/explore</a>  /Peyron   ?l=en         &amp;t=wikipedia &amp;i=21492627 &amp;u=<a href="https://." class="urlextern" title="https://." rel="ugc nofollow">https://.</a>..  &amp;c=foo,bar,baz   &amp;t2=wikipedia   i2=21492628 &amp;u2=<a href="https://." class="urlextern" title="https://." rel="ugc nofollow">https://.</a>.  &amp;c2=foo
+</p>
+<pre class="code">              /&lt;service&gt;/&lt;query&gt;  ?l=&lt;language&gt; &amp;t=&lt;type&gt;    &amp;i=&lt;index&gt;  &amp;u=&lt;uri&gt;        &amp;c=&lt;custom-data  &amp;t2=&lt;type-mode&gt; i2=&lt;index&gt;  &amp;u2=&lt;uri&gt;       &amp;c2=&lt;type-mode-custom-data&gt;</pre>
+
+<p>
+core parameters:
+</p>
+<pre class="code">&lt;query&gt; (used for the sidebar results)
+  STRING: literal-query: (any string not beginning with a &quot;?&quot; character)
+  default: &#039;&#039;</pre>
+<pre class="code">&lt;l&gt; (global active language)
+  STRING: 2 or 3 letter iso-language-code
+  default: &#039;en&#039;</pre>
+<pre class="code">&lt;t&gt; | &lt;t2&gt;
+  STRING: action-type
+  default: &#039;wikipedia&#039;</pre>
+<pre class="code">&lt;i&gt; | &lt;i2&gt;
+  STRING: wikidata &quot;Q identifier&quot;
+  default: &#039;&#039;</pre>
+<pre class="code">&lt;u&gt; | &lt;u2&gt;
+  SERIALIZED URI STRING: to pass a URI
+  default: &#039;&#039;</pre>
+<pre class="code">&lt;c&gt; | &lt;c2&gt;
+  SERIALIZED OBJECT: to pass any custom data structure
+  default: &#039;&#039;</pre>
+
+<p>
+other parameters:
+</p>
+<pre class="code">&lt;m&gt;
+  COMMA-SEPARATED-LIST of line marks (potential future use: referrals to any other conzept persistent indexes)
+  default: &#039;&#039;</pre>
+<pre class="code">&lt;d&gt;
+  BOOLEAN: direct-wikipedia-title toggle
+  default: &#039;false&#039; (note: only shown as parameter when set to &#039;true&#039;)</pre>
+<pre class="code">&lt;s&gt;
+  BOOLEAN: sidebar visibility toggle
+  default: &#039;true&#039;</pre>
+<pre class="code">&lt;v&gt;
+  SYMBOL: &quot;desktop&quot; or &quot;mobile&quot; view-mode request
+  default: (depends on device type, but can be overruled)</pre>
+<pre class="code">wikipedia-qid?&lt;h&gt; (TODO)
+  STRING: 2 or 3 letter iso-language-code of the i18n human-language interface
+  default: &#039;en&#039; (note: only shown as parameter when set)</pre>
+<hr />
+
+<p>
+app integration:
+</p>
+
+<p>
+essential types:
+</p>
+<ol>
+<li class="level1"><div class="li"> wikipedia     (requires a title)</div>
+</li>
+<li class="level2"><div class="li"> wikipedia-qid (requires a Wikidata Qid)</div>
+</li>
+<li class="level2"><div class="li"> link</div>
+</li>
+<li class="level2"><div class="li"> link-split    (only for p0)</div>
+</li>
+<li class="level2"><div class="li"> url           (not used for any pane, only for opening new tabs, TODO: prevent the useless <abbr title="Uniform Resource Locator">URL</abbr> updating)</div>
+</li>
+<li class="level2"><div class="li"> articles      (only for p0)</div>
+</li>
+<li class="level2"><div class="li"> random        (special case)</div>
+</li>
+</ol>
+<ol>
+<li class="level1"><div class="li"> other types (mostly doing some external-content-control-complexity):</div>
+</li>
+</ol>
+
+<p>
+      [ NOTE: push these into a mv-list OR into their own app if thats is possible! ]
+</p>
+<ol>
+<li class="level1"><div class="li"> wander (could this be turned into a &#039;link&#039; type?)</div>
+</li>
+<li class="level3"><div class="li"> dates, [m]</div>
+</li>
+<li class="level3"><div class="li"> nearby ( → place into a mv-list? to research: detect if map is already being show, and then just send a postMessage)</div>
+</li>
+<li class="level3"><div class="li"> map (cluster map with a deeper integration, move to a seperate “link” app?)</div>
+</li>
+</ol>
+
+<h5>data</h5>
+
+<p>
+Conzept relies on using the JSON <abbr title="Application Programming Interface">API</abbr>&#039;s and semantic web technologies (SPARQL queries) to fetch its data. This data is heuristically classified (on the browser-client) into a self-created ontology of topic-classes (event, person, work, organization, organism, substance, …) and topic-subclasses (music, bird, …). This classification already covers more than 90% of all topics in Wikipedia (in all its languages) and is being improved all the time (both in quantity as well in quality / semantic-precision). The main challenge here is finding the right, usable topic-abstractions for the millions of topics. The live-rendering of the fetched data in the sidebar is configured using a JSON-field definition file, which allows processing various types of data (single values, arrays of values, booleans, SPARQL-query URLs) into an organized topic card. So the developer can add fields to the card by adding fields in that JSON file. These fields are parsed during 3-stages (creation, post-creation, rendering) and allow for code-triggers and field-depency checks. This allows eg. to only show some card-sections like the science→biology section if that is relevant. This topic-card rendering is also what sets Conzept apart from some other Wikidata rendering tools, in that it allows for a more complex layout (many topics in the sidebar with infinite-paging functionality and a tree-hierarchy of sections to only reveal what the user wants to see), user interactivity (inline lists of SPARQL data, etc.) and better performance (only when a button is clicked, will the required data be fetched).
+</p>
+
+<h5>architecture</h5>
+
+<p>
+Conzept is a Single Page Application (SPA) build upon: JavaScript, <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr>, various JS libraries (including jQuery), various JSON data files and a large set of (iframe-embeddable) self-hosted web-apps. This microservice-oriented architecture improves the development agility, becasue existing/future semantic apps can easily be integrated into Conzept with a clean separation of concerns. So eg. there is a separate web-app for rendering Wikipedia articles and another for showing YouTube videos. There are about 40 of such self-hosted web-apps. Some made by myself, and some made by others (and patched for better a integration). For most of the external apps I&#039;ve been opensourcing the patches in my github account (<a href="https://github.com/waldenn?tab=repositories" class="urlextern" title="https://github.com/waldenn?tab=repositories" rel="ugc nofollow">https://github.com/waldenn?tab=repositories</a>). The integration with these apps is done via common <abbr title="Uniform Resource Locator">URL</abbr>-parameters (mainly: topic title, iso2-language and the Wikidata Qid) and postMessage() iframe communication. This allows clicks in the embedded iframe to update views in other panes. This latter part was one of the trickier parts to get right and make simple, as there are many combinations of actions possible (which pane to update, what to show in that pane, etc.). All this now works across both desktop and mobile browsers. On mobile the layout is slightly-different from the desktop view, since each pane on mobile takes up the whole screen and the user can swipe between these screens. In addition to those embedded apps there are also inline-views of content in the sidebar. An example of this is the dynamic viewing of the category-tree for topics that have a category. Other examples are SPARQL-query results displayed as inline lists or as dynamicaly inserted maps of locations or a table of results from a SPARQL-query. Example of the latter: <a href="https://twitter.com/conzept__/status/1398782565855731713" class="urlextern" title="https://twitter.com/conzept__/status/1398782565855731713" rel="ugc nofollow">https://twitter.com/conzept__/status/1398782565855731713</a>
+</p>
+</div>
+</div>

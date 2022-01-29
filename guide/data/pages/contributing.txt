@@ -1,0 +1,12 @@
+====== contributing ======
+
+{{ :logo.svg?300}}
+
+Feel free to submit an issue / pull-request via GitHub, or reach out on Twitter.
+
+  * <html><i class="fab fa-github"></i>&nbsp;</html> GitHub repositories:
+    * **[[https://github.com/waldenn/conzept|conzept]]** (Conzept project)
+    * **[[https://github.com/waldenn/conzept-extra|conzept-extra]]** (only used for modifying and building some out-of-tree Conzept apps)
+
+  * <html><i class="fab fa-twitter"></i>&nbsp;</html> **[[https://twitter.com/conzept__|Twitter]]**
+

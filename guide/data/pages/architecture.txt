@@ -1,0 +1,80 @@
+======  architecture ======
+
+The main architectural choices made in the Conzept application are:
+
+  * Keep things **__simple__**, **web native** and **fun to code.** Performance is secondary.
+
+  * Use **embedded iframes** as a form of simple, well-isolated, micro-services.
+
+  * Use **declarative data definitions** where needed (examples: [[section_customization|sections]], [[field_customization|fields]], [[topic_classification|topic tags and indicators]]). Avoid code duplication where possible, instead use use expressive data structures parsed by minimal code.
+
+  * The communication between Conzept and [[used_projects#embedded_apps|embedded apps]] is done using **URL-parameters** and **postMessage()** function calls.
+    * Some styling of embedded apps is also applied by setting common classes on the body-element (such as the "dark" class for dark-mode styles, or the "rtl" class for right-to-left language-scripts).
+
+  * **Use vanilla JS** (avoid complex [[https://catonmat.net/frameworks-dont-make-sense|frameworks]] inverting control), with jQuery for managing the DOM.
+    * jQuery - and the jQuery-dependent plugins - may be removed/replaced in the future, if beneficial.
+    * When needed: use [[explore>WebAssembly]] for performance-demanding, compute parts in the code. (eg. for [[explore>Optical character recognition|OCR]]).
+
+  * Main types of data-types to use: plain strings, URLs, JSON, Wikidata Qid's.
+
+  * Allow the **safe use of [[explore>Eval|eval()]]** needed for flexible [[field_customization|field definitions]]. This is safe, as only the admins/devs can update the field definitions. Conzept is also a mainly client-side application, and no user-writable data is stored on the server-side.
+
+  * If some HTML-widget needs to be used in many different places, create a **[[explore>Web Components|web component]]**. This was done for the [[apps#organism_occurrence_map|organism occurrence map]].
+
+
+  * Value the user-experience before the technology.
+===== URL structure =====
+
+Conzept is mainly based around URLs, iframes and strings (in various data formats).
+
+Let's first look at some example URLs and then look at all the available parameters.
+==== example URLs ====
+
+  * https://conze.pt/explore/Semantic%20Web (Minimal URL with a query-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)
+
+  * https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true (explicit request for the English language)
+  * https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true (explicit request for the German language)
+
+  * https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true (Explicitly load a certain Wikipedia Q-ID topic. Such a type may or may not also resolve to a Wikipedia article - in this specific case it does not.)
+
+  * https://conze.pt/explore/Semantic%20Web?l=en&t=link&i=Q54837&u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22Semantic%20Web%22&s=true (Loads the embedded video URL in the content pane.)
+
+  * https://conze.pt/explore/Semantic%20Web?l=de&t=link-split&i=Q54837&u=%2Fapp%2Flinks%2F%3Fl%3Dde%26t%3DSemantic%2520Web&s=true (Link-split example loading the link-graph app.)
+
+  * https://conze.pt/explore/Semantic%20Web?l=en&t=wander&i=Q54837&s=true (Loads the wander-video app.)
+
+==== URL parameters ====
+
+Besides the "Semantic web" query-string used in the URLs below, the are also various optional parameters available to structure URLs.
+
+The core URL parameters:
+
+^ parameter      ^ default value ^ description       ^
+| **l** | "en" | language |
+| **t** | "wikipedia" | action-type |
+| **i** |  | Wikidata Q-identifier (qid) |
+| **u**  | | URL-string | 
+| **c**  | | custom data |
+
+\\
+
+Other URL parameters:
+
+^ parameter   ^ default value ^ description       ^
+| **s** | true | sidebar visibility |
+| **v** | (depends on device type, but can be overruled) | view-mode requested, can be "desktop" or "mobile" |
+| u  | URL string | URL to open in the content pane |
+| c  | custom data | custom data field (its format is not specified)|
+===== action types =====
+
+The types parameter ("**t**") in Conzept URLs indicated what type of content should be loaded.
+
+These action-types are currently available:
+
+^ type      ^ argument data-type ^ description       ^
+| **wikipedia** | string | request the Wikipedia page |
+| **wikipedia-qid** | Wikidata qid | request the Wikipedia or the Wikidata page (in that order) |
+| **link-split** | url |load two content panes and load the URL into the first content pane, in the second-content pane load the Wikipedia page for the search-string |
+| **articles** | string | (only used internally) to update the sidebar with a new string-search (and not update the content area) |
+| **random** | string | loads a random Wikipedia article |
+| **wander** | string | loads the Wander-app to show a series of YouTube videos (note: this type may be removed in the future) |

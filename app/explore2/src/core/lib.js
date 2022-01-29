@@ -303,18 +303,18 @@ async function applyFont( font ) {
 
   (async () => { await explore.db.set( 'font1', explore.font1 ); })();
 
+  //console.log( explore.font1 );
+
 	// setup fontlink
-  if ( explore.font1 !== 'Quicksand' ){ // custom font
+  //if ( explore.font1 !== 'FOO IBM Plex Sans Condensed' ){ // custom font FIXME
 
 	  $('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
 	  $( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
 
-  }
-  else { // standard font
-
-	  $( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id=fontlink />' );
-
-  }
+  //}
+  //else { // standard font
+	  //$( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id=fontlink />' );
+  //}
 
   // activate font on parent-body
 	$('body').css( 'font-family', explore.font1 , '');
@@ -656,7 +656,8 @@ async function newSearch(){
 
   $('#srsearch').val('');
   $('#srsearch').focus();
-  explore.tabsInstance.select('swipe-3');
+
+  explore.tabsInstance.select('tab-topics');
 
 }
 
@@ -667,8 +668,15 @@ async function showStartPage(){
 
   $('#srsearch').val('');
   $('#srsearch').focus();
-  $('#swipe-3 .overflow-container').scrollTop(0);
-  explore.tabsInstance.select('swipe-3');
+  $('#tab-topics .overflow-container').scrollTop(0);
+
+  if ( valid( explore.tab ) ){
+    explore.tabsInstance.select( explore.tab );
+    explore.tab = '';
+  }
+  else {
+    explore.tabsInstance.select('tab-topics');
+  }
 
   let title = 'home - conzept encyclopedia';
 
@@ -1265,7 +1273,7 @@ function setupSearch() {
           $('.searchbox').autocomplete('close');
 
           // go to the results tab
-          explore.tabsInstance.select('swipe-3');
+          explore.tabsInstance.select('tab-topics');
       }
 
   });
@@ -1362,7 +1370,7 @@ function setupSearch() {
     $('.submitSearch').trigger('click');
 
     // goto to results tab
-    explore.tabsInstance.select('swipe-3');
+    explore.tabsInstance.select('tab-topics');
 
   });
 
@@ -1394,8 +1402,8 @@ function setupSearch() {
 		$('#srsearch').val( q );
     explore.q = $('#srsearch').val();
 
-    explore.tabsInstance.select('swipe-3');
-    $('#swipe-3 .overflow-container').scrollTop(0);
+    explore.tabsInstance.select('tab-topics');
+    $('#tab-topics .overflow-container').scrollTop(0);
 
   });
 
@@ -2345,6 +2353,7 @@ async function updateLocaleInterface(){
   $('#app-tab-tools-title').text( explore.banana.i18n('app-tab-tools-title') );
   $('#app-tab-settings-title').text( explore.banana.i18n('app-tab-settings-title') );
   $('#app-tab-help-title').text( explore.banana.i18n('app-tab-help-title') );
+  $('#app-tab-audio-chat-title').text( explore.banana.i18n('app-tab-audio-chat-title') );
 
   // menus
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
@@ -2359,6 +2368,7 @@ async function updateLocaleInterface(){
   $('#app-menu-user-manual').html( explore.banana.i18n('app-menu-user-manual') );
   $('#app-menu-keyboard-shortcuts').html( explore.banana.i18n('app-menu-keyboard-shortcuts') );
   $('#app-menu-credits').html( explore.banana.i18n('app-menu-credits') );
+  //$('#app-menu-license').html( explore.banana.i18n('app-menu-license') );
   $('#app-menu-about').html( explore.banana.i18n('app-menu-about') );
 
   $('#app-menu-random-topic').html( explore.banana.i18n('app-menu-random-topic') );
@@ -2826,8 +2836,12 @@ async function setupUI() {
 
     if ( explore.q ) {
 
-      if ( explore.isMobile === false ){
-        explore.tabsInstance.select('swipe-3');
+      if ( valid( explore.tab ) ){
+        explore.tabsInstance.select( explore.tab );
+        explore.tab = '';
+      }
+      else if ( explore.isMobile === false ){
+        explore.tabsInstance.select('tab-topics');
       }
 
     }
@@ -3994,9 +4008,9 @@ async function setDefaultDisplaySettings( cover, type ) {
       '</p>' + 
     
       '<div class="frontpage-grid-container">' +
+        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/home" target="infoframe"><span class="icon"><i class="fas fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-user-manual">help</span></span></a></div>' +
         '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fas fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' +
         '<div><a class="" title="random featured article" aria-label="random featured article" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="far fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
-        '<div><a class="" title="random country map" aria-label="random country map" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fas fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
       '</div>' +
 
         '<details class="auto frontpage" style="" closed>' +
@@ -4009,6 +4023,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="current events" aria-label="current events" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="far fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
 
             // geography
+            '<div><a class="" title="random country map" aria-label="random country map" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fas fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
             '<div><a class="" title="random country" aria-label="random country" href="javascript:void(0)" onclick="showRandomCountry()"><span class="icon"><i class="far fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country"></span></span></a></div>' +
             '<div><a class="" title="random historical country" aria-label="random historical country" href="javascript:void(0)" onclick="showRandomListItem( &quot;historical-country&quot; )"><span class="icon"><i class="far fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-historical-country"></span></span></a></div>' +
             '<div><a class="" title="random capitol" aria-label="random capitol" href="javascript:void(0)" onclick="showRandomListItem( &quot;capitol&quot; )"><span class="icon"><i class="fas fa-map-marker-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-capitol">capitol</span></span></a></div>' +
@@ -4090,6 +4105,19 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   if ( explore.type === 'random'){
   
+    return 0;
+
+  }
+
+  if ( explore.firstAction && valid( explore.uri )  && !valid( explore.query_param ) ){ // an URL was passed upon a new load, which is not a structured-query
+
+    $( explore.baseframe ).attr({"src": explore.uri });
+
+    explore.uri = ''; // reset URL param
+
+    $('#blink').hide();
+    $('#loader').hide();
+
     return 0;
 
   }
@@ -4197,11 +4225,11 @@ async function renderTopicCover( name ) {
 
               let fontlink_html = '<link id="fontlink" />';
 
-              if ( explore.font1 !== 'Quicksand' ){ // only add font-link for alternative fonts
+              //if ( explore.font1 !== 'IBM Plex Sans Condensed' ){ // only add font-link for alternative fonts
 
-                fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
+                //fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
 
-              }
+              //}
 
               // API format: https://en.wikipedia.org/w/api.php?action=query&titles=Flamenco&prop=pageimages&format=json&pithumbsize=600
               let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600&pilimit=1';
@@ -4250,7 +4278,8 @@ async function renderTopicCover( name ) {
                     '<link rel="stylesheet" href="' + explore.base + '/app/explore2/dist/css/conzept/cover.css?0.10">' +
                     fontlink_html +
 
-                    '</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
+                    '</head><body style="' + cover_css_extra + ' font-size: ' + explore.fontsize + 'px">' + 
+                    //'</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
 
                     '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=wikipedia&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="far fa-copyright fa-2x"></i></span></a></span>' + 
 
@@ -4372,7 +4401,7 @@ async function setPopularCover() {
 
       let fontlink_html = '<link id="fontlink" />';
 
-      if ( explore.font1 !== 'Quicksand' ){ // only add font-link for alternative fonts
+      if ( explore.font1 !== 'Hind' ){ // only add font-link for alternative fonts
 
         fontlink_html = '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">';
 
@@ -5212,7 +5241,7 @@ async function openInline( title, fragment_id, fragment_title ){
       $( sel ).first().parents('details').attr( 'open', '' );
       $( sel ).first().click().attr('open', '');
 
-      const container = $('#swipe-3 .overflow-container');
+      const container = $('#tab-topics .overflow-container');
       const position	= $( sel ).first().offset().top - container.offset().top + container.scrollTop() - 20;
       container.animate({ scrollTop: position });
 
@@ -6026,8 +6055,12 @@ async function renderResults( wikiResults ) {
       //},
     });
 
-		if ( explore.isMobile ){
-			explore.tabsInstance.select('swipe-3');
+    if ( valid( explore.tab ) ){
+      explore.tabsInstance.select( explore.tab );
+      explore.tab = '';
+    }
+		else if ( explore.isMobile ){
+			explore.tabsInstance.select('tab-topics');
 		}
 
 		if ( wikiResults.query.search.length > 0 ){
@@ -6272,7 +6305,13 @@ async function renderType( args ) {
     explore.q = getSearchValue();
     $('.submitSearch').click();
 
-    explore.tabsInstance.select('swipe-3');
+    if ( valid( explore.tab ) ){
+      explore.tabsInstance.select( explore.tab );
+      explore.tab = '';
+    }
+    else {
+      explore.tabsInstance.select('tab-topics');
+    }
 
 		markArticle('n1-0', explore.type );
 
@@ -6285,7 +6324,7 @@ async function renderType( args ) {
 
     $('.submitSearch').click();
     explore.type = 'articles';
-    explore.tabsInstance.select('swipe-3');
+    explore.tabsInstance.select('tab-topics');
 
   }
 	else if ( type === 'bookmark' ){
@@ -6302,7 +6341,7 @@ async function renderType( args ) {
 
     getRandomPages(); // this will set the type back to "wikipedia" and submit the search also.
 
-    explore.tabsInstance.select('swipe-3');
+    explore.tabsInstance.select('tab-topics');
 
 	}
 
@@ -6883,7 +6922,9 @@ function buildURLParameters(){ // builds a URL state object from the current sta
     }
     else {
 
-      p.u = '&u=' + encodeURIComponent( JSON.stringify( explore.uri ) ).replace(/^%22/, '').replace(/%22$/, '' );
+      //p.u = '&u=' + encodeURIComponent( JSON.stringify( explore.uri ) ).replace(/^%22/, '').replace(/%22$/, '' );
+
+      p.u = '&u=' + encodeURIComponent( explore.uri );
 
     }
 
@@ -7470,7 +7511,7 @@ function receiveMessage(event){
 
 				if ( $( '#' + explore.topic_cursor ).css('display') === 'block' ){ // and is not hidden
 
-          explore.tabsInstance.select('swipe-3');
+          explore.tabsInstance.select('tab-topics');
 					explore.topic_cursor = $( '#' + explore.topic_cursor ).attr('id');
 					$( '#' + explore.topic_cursor + ' a').first().focus();
 
@@ -7491,14 +7532,14 @@ function receiveMessage(event){
     }
 
     // show list tab
-    explore.tabsInstance.select('swipe-4');
+    //explore.tabsInstance.select('tab-list');
 
     // highlight id
     markArticle( id );
 
     // scroll to ID
     $('#' + id).get(0).scrollIntoView({behavior: "auto", block: 'start'});
-    setTimeout(() => { $('#swipe-4')[0].scrollBy(0, -120) }, 100); // TODO: the y-value probably needs some adjusting on other platforms
+    //setTimeout(() => { $('#tab-list')[0].scrollBy(0, -120) }, 100); // TODO: the y-value probably needs some adjusting on other platforms
 
   }
   else if ( event.data.event_id === 'remove-compare-items' ){
@@ -8850,7 +8891,7 @@ async function startSpeaking( text ){
 }
 
 // category-tree click-handling
-$('#swipe-3').on('click', 'h6 > a', function(event) {
+$('#tab-topics').on('click', 'h6 > a', function(event) {
 
   event.preventDefault();
 
@@ -9179,13 +9220,109 @@ function setOnClickTopicCard( args ){ // creates the "onclick"-string for most d
 
 }
 
+async function insert_audio_chat_app(){
+
+  if ( $('#audio-chat-app').length === 0 ){ // check if app was already inserted
+
+    //$('#audio-chat-app-container').html( '<iframe id="audio-chat-app" src="https://jam.systems/Conzept" allow="microphone *;" width="90%" height="500"> </iframe>' );
+
+    const url = 'https://jam.systems/Conzept';
+
+    const min_height = explore.isMobile ? '300px' : '500px';
+
+    const html = '<ul class="multi-value"><li class="resizer"><iframe class="inline-iframe resized" style="min-height: ' + min_height + '; border:none;" src="' + url + '" width="100%" height="100%" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen allow-downloads allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock title="embedded widget: URL-content" role="application"></iframe></li></ul>'; 
+
+    $( '#audio-chat-app-container' ).html( html );
+
+  }
+
+}
+
 async function insert_MIDI_app(){
 
-  // check if app was already inserted
-  if ( $('#midi-music-app').length === 0 ){
+  if ( $('#midi-music-app').length === 0 ){ // check if app was already inserted
 
     $('#midi-music-app-container').html( '<p id="midi-music-app" class="mv-content"><ul class="multi-value"><li class="resizer"><iframe class="inline-iframe resized" title="embedded MIDI music app" role="application" style="min-height: 600px" src="https://mmontag.github.io/chip-player-js/?p=/browse" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="100%" height="100%" loading="lazy"></iframe></li></ul></p>' );
 
   }
+
+}
+
+async function queryWeaviate(){
+
+  /*
+  var url = 'http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080/v1/graphql';
+
+  var query = '{\n Get {\n Paragraph(\n ask: {\n question: \"Who was Stanley Kubrick?\"\n properties: [\"content\"]\n }\n limit: 1\n ) {\n content\n order\n title\n inArticle {\n ... on Article {\n title\n }\n }\n _additional {\n answer {\n result\n }\n }\n }\n }\n}';
+
+  $.post( url, query, function( res ) {
+    console.log( res );
+  });
+
+
+  // setup Weaviate client
+  const client = weaviate.client({
+    scheme: 'https',
+    host: 'conze.pt/app/cors/raw/?url=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080',
+  });
+  */
+
+  // execute a minimal GraphQL query
+  /*
+  client
+    .schema
+    .getter()
+    .do()
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.error(err)
+    });
+  */
+
+  /*
+  client.graphql
+    .get()
+    .withClassName('Paragraph')
+    .withFields('title url wordCount')
+    .do()
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.error(err)
+    });
+
+  client.graphql.get().withClassName('Paragraph').withFields('*').do().then(res => {console.log(res)} )
+  */
+
+/*
+{
+  Get {
+    Paragraph(
+      ask: {
+        question: "Who was Stanley Kubrick?"
+        properties: ["content"]
+      }
+      limit: 1
+    ) {
+      content
+      order
+      title
+      inArticle {
+        ... on Article {
+          title
+        }
+      }
+      _additional {
+        answer {
+          result
+        }
+      }
+    }
+  }
+}
+*/
 
 }

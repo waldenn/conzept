@@ -1,0 +1,141 @@
+
+<h1 class="sectionedit1" id="concept_stores">concept stores</h1>
+<div class="level1">
+
+<p>
+Research how it would be possible to <strong>allow 3rd-party SPARQL-based endpoints to be added as a new “concept store”</strong> (besides Wikipedia and Wikidata).
+</p>
+
+<p>
+[ Note: This research follows from a Twitter discussion with <a href="https://twitter.com/kidehen/status/1482077334001885192" class="urlextern" target="_blank" title="https://twitter.com/kidehen/status/1482077334001885192" rel="ugc nofollow noopener">Kingsley Uyi Idehen</a> ]
+</p>
+
+<p>
+Use cases:
+</p>
+<ul>
+<li class="level1"><div class="li"> An organization with a SPARQL-endpoint that wants to use the Conzept UI, to give people an integrated/customizable/augmented view of their knowledge base.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Allow for adding extra “concept stores” to a Conzept system, so other (more niche) concepts can be presented.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> (more difficult probably) Allow a user to explore an unkown SPARQL-endpoint and render the results in Conzept and allow for full-text searches within that knowledge base (the latter may need more than a SPARQL end-point).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;concept stores&quot;,&quot;hid&quot;:&quot;concept_stores&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-843&quot;} -->
+<h2 class="sectionedit2" id="requirements">requirements</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Add semantic metadata to each Conzept page (explore best practices)</div>
+<ul>
+<li class="level2"><div class="li"> test with the <a href="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" class="urlextern" target="_blank" title="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" rel="ugc nofollow noopener">OpenLink Structured Data Sniffer extension</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Integrate a SPARQL-explorer sub-system, like <strong><a href="https://conze.pt/app/sparklis/webapp/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" class="urlextern" target="_blank" title="https://conze.pt/app/sparklis/webapp/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" rel="ugc nofollow noopener">Sparklis</a></strong></div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://github.com/sebferre/sparklis" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis" rel="ugc nofollow noopener">git repo</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.irisa.fr/LIS/ferre/sparklis/examples.html" class="urlextern" target="_blank" title="http://www.irisa.fr/LIS/ferre/sparklis/examples.html" rel="ugc nofollow noopener">NLP query examples</a></div>
+</li>
+<li class="level2"><div class="li"> sparql-endpoint testing: <a href="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" class="urlextern" target="_blank" title="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" rel="ugc nofollow noopener">query all endpoints</a> (note: some endpoints are dead) → then open “sparql explorer 2” in the main-section </div>
+</li>
+<li class="level2"><div class="li"> Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy services)</div>
+</li>
+<li class="level2"><div class="li"> build steps <a href="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" rel="ugc nofollow noopener">here</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> an OpenSearch auto-complete <abbr title="Application Programming Interface">API</abbr> (for fast, realtime concept searches).</div>
+<ul>
+<li class="level2"><div class="li"> Question: Could these be auto-generated from the SPARQL end-point?</div>
+</li>
+<li class="level2"><div class="li"> Implement support for doing multiple queries at once and combining the results. </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;requirements&quot;,&quot;hid&quot;:&quot;requirements&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;844-2419&quot;} -->
+<h2 class="sectionedit3" id="adapt_conzept_internals">adapt conzept internals</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Adapt internal data structures to allow for handling non-Wikidata entities.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Adapt field-definitions to allow for non-Wikidata property resolving</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> How to &#039;understand&#039; the SPARQL-endpoint class graph and class properties?</div>
+<ul>
+<li class="level2"><div class="li"> Adapt topic classification code to allow for non-Wikidata classification rules.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Allow the Conzept type-system to handle non-Wikidata-Qid based entity IDs (eg. EntityDocument URLs)</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> How to page the results correctly, when combining them from multiple data sources?</div>
+<ul>
+<li class="level2"><div class="li"> get total results per data source</div>
+</li>
+<li class="level2"><div class="li"> combine page-N results per data source</div>
+</li>
+<li class="level2"><div class="li"> result ordering in pages</div>
+</li>
+<li class="level2"><div class="li"> understand when to stop querying a data source</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> …</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;adapt conzept internals&quot;,&quot;hid&quot;:&quot;adapt_conzept_internals&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2420-3148&quot;} -->
+<h2 class="sectionedit4" id="other_tools">other tools</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <strong><a href="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" class="urlextern" target="_blank" title="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" rel="ugc nofollow noopener">SparqlExplorer</a></strong> (Not used on Conzept. I&#039;ve been unable to build it from source yet, due to NPM package version dependency issues)</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" class="urlextern" target="_blank" title="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" rel="ugc nofollow noopener">git repo</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong><a href="https://conze.pt/app/query/" class="urlextern" target="_blank" title="https://conze.pt/app/query/" rel="ugc nofollow noopener">Wikidata Query Service</a></strong> (self-hosted)</div>
+<ul>
+<li class="level2"><div class="li"> Could be used for federated SPARQL querying.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong><a href="https://sqid.toolforge.org/" class="urlextern" target="_blank" title="https://sqid.toolforge.org/" rel="ugc nofollow noopener">SQID</a></strong> (Not used on Conzept. This is a Wikidata-specific search/browse tool, based on the Wikidata SPARQL and REST <abbr title="Application Programming Interface">API</abbr>.)</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://sqid.toolforge.org/" class="urlextern" target="_blank" title="https://sqid.toolforge.org/" rel="ugc nofollow noopener">git repo</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other tools&quot;,&quot;hid&quot;:&quot;other_tools&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3149-&quot;} -->

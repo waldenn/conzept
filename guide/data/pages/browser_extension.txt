@@ -1,0 +1,13 @@
+====== browser extension ======
+
+Create a **browser extension** for text-selection queries on 3rd party sites, by modifying the [[https://github.com/emvaized/selecton-extension|selecton extension]] (MIT license).
+
+Todo's:
+  * Make Conzept the default search engine
+  * Make text-selection-handles support touch interaction
+  * Simplify / hide the complex configuration menu
+  * Have the extension also work for PDFs and self-hosted iframes ([[https://github.com/emvaized/selecton-extension/issues/23|issue opened]])
+
+Future potential ideas:
+  * Named-entity detection and display (for the selected text)
+  * Wikidata URL-format match detection (to link web pages to Wikidata entities).

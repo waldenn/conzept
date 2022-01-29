@@ -19,13 +19,13 @@
        </Proxy>
 
        <Location /app/proxy>
-    # json-proxy (JSON-only file proxy, with secret-key support)
+    # command: conzept-api-proxy.sh
     ProxyPass http://127.0.0.1:50001
     ProxyPassReverse http://127.0.0.1:50001
        </Location>
 
        <Location /app/cors>
-    # allorigins-proxy (general CORS proxy, for any file-type)
+    # command: npm start allOrigins/app.js
     ProxyPass http://127.0.0.1:1458
     ProxyPassReverse http://127.0.0.1:1458
        </Location>
@@ -36,7 +36,9 @@
          Require all granted
         </Directory>
 
-  # change YOUR_SERVER_HOST (eg. "mysite.com")
+  ServerName dev.conze.pt
+  
+  # change YOUR_SERVER_HOST
   SSLCertificateFile /etc/letsencrypt/live/YOUR_SERVER_HOST/fullchain.pem
   SSLCertificateKeyFile /etc/letsencrypt/live/YOUR_SERVER_HOST/privkey.pem
   

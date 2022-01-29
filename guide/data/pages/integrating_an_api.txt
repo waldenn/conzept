@@ -1,0 +1,44 @@
+==== integrating an API ====
+
+[{{ ::rijksmuseum_api.jpg?direct|Rijksmuseum API in Conzept}}]
+
+The easiest way to integrate a new [[code_structure#api_code|API-endpoint]] is to copy a similar API-file from "[[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|app/explore2/src/fetch]]" and then making the necessary changes to it.
+
+For some APIs you might want to render zoomable [[explore>International Image Interoperability Framework|IIIF]] images, for others you may just want a link to the webpage. You can choose how to present the results.
+
+In general integrating an API involves the steps outlined below.
+
+We'll use the [[https://data.rijksmuseum.nl/object-metadata/api/|Rijksmuseum API]] as an example. That API-file is located in "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/fetch/rijksmuseum.js|src/fetch/rijksmuseum.js]]".
+
+  * **Add a [[field_customization|field definition]] of the [[field_customization#exampleapi-based_link_field|type API]] to "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|fields.js]]".**
+    * Note: the [[field_customization#exampleapi-based_link_field|field-definition data structure for API's]] is under-specified at the moment. This needs to be fixed.
+
+<code>
+'rijksmuseum_inline' : {
+  value: 'rijksmuseum:${item.title}:true', // API-arguments: name of the API in Conzept, title-string, if the API should be used  
+  title: 'Rijksmuseum',
+  prop: '0',         // required for all APIs 
+  type: 'rest-json', // this indicates an API-endpoint
+  mv: true,
+  url: '',
+  icon: 'fas fa-university',
+  text: 'Rijks museum',
+  section: 'art',
+  rank: 70,
+},
+</code>
+
+  * **Add a line to "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/lib.js|src/core/lib.js]]" in the insertMultiValues() function for that API.**
+    * Note: Hopefully in the future this step can be automated away.
+
+<code>
+else if ( args.list.startsWith('rijksmuseum') ){
+
+  fetchRijksmuseum( args, null, 1, 'relevance' ); // this calls the "fetchRijksmuseum()" function in "src/fetch/rijksmuseum.js"
+
+}
+</code>
+
+  * **Copy a similar API-file** in the "src/data/fetch" directory to your API-file, **then modify to make it work as you want.**
+
+  * **Test if the API integration works in Conzept**, by viewing the results when you click on the field-link for a topic.

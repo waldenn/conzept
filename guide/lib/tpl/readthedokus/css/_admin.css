@@ -1,0 +1,509 @@
+.dokuwiki div.section_highlight
+{
+    border-color: __border_edit_highlight__;
+	background-color: __background_edit_highlight1__;
+	background-image:
+		-webkit-gradient(linear, 0 0, 100% 100%,
+			color-stop(.25, __background_edit_highlight2__),
+			color-stop(.25, transparent),
+			color-stop(.5, transparent),
+			color-stop(.5, __background_edit_highlight2__),
+			color-stop(.75, __background_edit_highlight2__),
+			color-stop(.75, transparent),
+			to(transparent)
+		);
+	-webkit-background-size: 7px 7px;
+}
+
+div.error, div.info, div.success, div.notify
+{
+	margin-bottom: 30px;
+}
+
+#pagefooter .tools h3
+{
+	margin-bottom: .5em;
+}
+
+#pagefooter .tools li
+{
+	margin-left: 0;
+}
+
+#acl_manager .footnotes
+{
+	font-size: 75%;
+}
+
+#config__manager fieldset
+{
+	margin: 0 0 1em 0;
+}
+
+#config__manager table,
+#config__manager table th,
+#config__manager table td
+{
+	border: none;
+}
+
+#config__manager td input.edit
+{
+	width: 100%;
+}
+
+#config__manager td.label span.outkey
+{
+	background-color: transparent;
+	font-size: 80%;
+	font-weight: bold;
+}
+
+#config__manager td.label
+{
+	padding-bottom: 2em;
+	overflow-wrap: anywhere;
+}
+
+#config__manager fieldset td.value
+{
+	vertical-align: middle;
+	width: auto;
+}
+
+#config__manager td .input
+{
+	width: auto;
+}
+
+.dokuwiki .secedit
+{
+	float: none;
+	display: inline-block;
+	margin-top: 0;
+	text-align: right;
+	width: 100%;
+}
+
+.dokuwiki .secedit button
+{
+    font-size: 75%;
+	font-weight: bold;
+    border: none;
+    background: transparent;
+	box-shadow: none;
+    color: gray;
+    cursor: pointer;
+}
+
+#config__manager .selection,
+#config__manager .selectiondefault
+{
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	width: auto;
+	overflow-wrap: anywhere;
+}
+
+#config__manager .selection label,
+#config__manager .selectiondefault label
+{
+	float: none;
+	width: auto;
+	margin-right: auto;
+	margin-left: 5px;
+}
+
+#config__manager td:first-child
+{
+	width: 50%;
+}
+
+#config__manager tr.default .input, #config__manager tr.default input, #config__manager tr.default textarea, #config__manager tr.default select, #config__manager .selectiondefault
+{
+    width: 100%;
+}
+
+#config__manager tr .input, #config__manager tr input, #config__manager tr textarea, #config__manager tr select
+{
+	width:100%;
+}
+
+#config__manager tr input[type="checkbox"]
+{
+	width: auto;
+}
+
+#config__manager td
+{
+	border-bottom: solid 1px lightgray;
+}
+
+
+#config__manager
+{
+	overflow-x: auto;
+}
+
+#config__manager td.label img
+{
+	padding: 0 0 0 5px;
+	float: none;
+	margin-top: -7px;
+}
+
+#config__manager tr:last-child td
+{
+	border-bottom: none;
+}
+
+#config__manager td.label span.outkey
+{
+	margin-top: 0px;
+	margin-bottom: .5em;
+}
+
+#config__manager select {
+	padding: 4px 0;
+}
+
+#config__manager tr .input, #config__manager tr input, #config__manager tr textarea, #config__manager tr select,
+#config__manager tr.default .input, #config__manager tr.default input, #config__manager tr.default textarea, #config__manager tr.default select, #config__manager .selectiondefault
+{
+	border: solid 1px #ccc;
+}
+
+#config__manager input[type="checkbox"]
+{
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#config__manager td.label label
+{
+    margin-left: -.7em;
+}
+
+#config__manager code
+{
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+#config__manager form > p
+{
+	text-align: right;
+}
+
+#popularity_feedback + div + form fieldset
+{
+	border: none;
+	padding: 0;
+	text-align: right;
+	width: 100% !important;
+}
+
+#popularity_feedback + div + form fieldset > label
+{
+	display: block;
+	text-align: left;
+}
+
+#acl_manager > div.clearer
+{
+	margin: 20px 0;
+}
+
+#acl_manager #acl__user
+{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#acl_manager #acl__user input
+{
+	flex: 1;
+	margin: 0 10px 0 0;
+}
+
+#acl_manager #acl__user button
+{
+	margin-left: auto;
+}
+
+#acl_manager #acl__user select
+{
+	height: 30px;
+	margin: 0 0 0 10px;
+}
+
+#acl_manager #acl__info fieldset
+{
+	margin: 0;
+	width: 100%;
+}
+
+#acl_manager #acl__info fieldset button
+{
+	margin-left: 10px;
+}
+
+#acl_manager table,
+#acl_manager table td
+{
+	border: none;
+}
+
+#acl_manager table th
+{
+	border: solid 1px __border__;
+}
+
+#acl_manager table > tbody > tr:last-child th
+{
+	border: none;
+	border-bottom: none;
+}
+
+#acl_manager table td
+{
+	border: solid 1px lightgray;
+	padding: 15px 10px;
+	vertical-align: middle;
+}
+
+#acl_manager table td > span
+{
+	display: block;
+}
+
+#acl_manager table th.action
+{
+	padding: 20px 0;
+}
+
+#acl_manager table th.action:hover
+{
+	background-color: white;
+}
+
+#acl_manager table td input[type="radio"]
+{
+	margin: 0 0 0 10px;
+}
+
+#acl_manager > h1 + div
+{
+	display: flex;
+    justify-content: space-between;
+}
+
+#acl_manager #acl__tree
+{
+	float: none;
+	height: auto;
+}
+
+#acl_manager #acl__tree ul
+{
+	margin: 0;
+}
+
+#acl_manager #acl__tree ul li
+{
+	padding-left: 0;
+}
+
+#acl_manager #acl__tree > ul > li
+{
+	margin-left: 12px;
+}
+
+#acl_manager #acl__detail
+{
+	float: none;
+	height: 100%;
+}
+
+
+#plugin__styling table
+{
+	margin: 20px 0;
+	width: 100%;
+}
+
+#plugin__styling table td
+{
+	border: solid 1px lightgray;
+	padding: 10px 10px;
+}
+
+#plugin__styling table td input
+{
+	width: 100%;
+}
+
+#plugin__styling form p
+{
+	text-align: right
+}
+
+#user__manager div
+{
+	margin-bottom: 50px;
+}
+
+div#user__manager > div:nth-child(2) table > tbody:nth-child(3)
+{
+	text-align: right;
+}
+
+#user__manager table
+{
+	width: 100%;
+}
+
+#user__manager table,
+{
+	border: none;
+}
+
+#user__manager table th
+{
+	border: solid 1px __border__;
+}
+
+#user__manager table td
+{
+	/* border: solid 1px lightgray; */
+	padding: 10px 10px;
+}
+
+#user__manager table > tbody:last-child td
+{
+	border: none;
+}
+
+#user__manager table input
+{
+	width: 100%;
+}
+
+#user__manager .import_users form
+{
+	align-items: center;
+	border: solid 1px lightgray;
+	display: flex;
+	padding: 10px ;
+	width: 100%;
+}
+
+#user__manager .import_users form > button
+{
+	margin-left: auto;
+}
+
+#extension__manager form.install
+{
+	text-align: right;
+	width: 100%;
+}
+
+#extension__manager form.install label.block
+{
+	text-align: left;
+}
+
+#extension__manager form.install label.block:first-child
+{
+	display: flex;
+	align-items: center;
+}
+
+#extension__manager form.install label.block:first-child input
+{
+	flex: 1;
+	margin-left: 15px;
+}
+
+#extension__manager form.install label.block:nth-child(3)
+{
+	border-bottom: solid 1px lightgray;
+	padding-bottom: 10px;
+}
+
+#extension__manager form.install label.block:nth-child(5)
+{
+	display: inline-block;
+	margin: 0 0 30px 0;
+}
+
+#extension__manager form.search > div.no
+{
+	align-items: center;
+	display: flex;
+	width: 100%;
+}
+
+#extension__manager form.search > div.no > label.edit
+{
+	align-items: center;
+	display: flex;
+	flex: 1;
+}
+
+#extension__manager form.search > div.no > label.edit > input
+{
+	flex: 1;
+	margin: 0 10px;
+	width: 100%;
+}
+
+#dw__editform div.editBar
+{
+	display: flex;
+	flex-direction: column-reverse;
+	position: relative;
+}
+
+#dw__editform div.editBar #size__ctl
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#dw__editform div.editBar .summary
+{
+	/* align-items: center; */
+	/* display: flex; */
+	margin-top: 30px;
+}
+
+#dw__editform div.editBar .summary label:first-child
+{
+	align-items: center;
+	display: flex;
+}
+
+#dw__editform div.editBar .summary label:first-child input
+{
+	flex: 1;
+	margin-left: 10px;
+	width: 100%;
+}
+
+#dw__editform div.editBar .summary label:last-child
+{
+	display: block;
+	font-size: 90%;
+	text-align: right;
+}
+
+#dw__editform div.editBar .editButtons
+{
+	margin-right: 0;
+	margin-top: 20px;
+	text-align: right;
+}

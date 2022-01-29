@@ -1,0 +1,344 @@
+
+<h1 class="sectionedit1" id="topic_classification">topic classification</h1>
+<div class="level1">
+
+<p>
+Topic-classification happens live on the client (in the users browser), for each search result topic with a Wikidata Qid.
+Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, while still be a flexible process.
+</p>
+
+<p>
+Conzept tries to classify Wikidata topics with two <a href="#classes" title="topic_classification ↵" class="wikilink1">class tags</a> (<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" rel="ugc nofollow noopener">file</a>). One tag for the <strong>main class</strong> of the topic and another for the <strong>subclass</strong>. (note: In the future another tag-level may be added, if needed.)
+</p>
+
+<p>
+Conzept tries to classifiy the topics as precise as possible, but sometimes only the main-class is being set (or even none at all). That being said, <em class="u">it is estimated more than 90% of all items on Wikidata are currently being classified by at least a main-class!</em>
+</p>
+
+<p>
+The main-classes are chosen for being <strong>somewhat comprehensive</strong> (though there are always topics outside of their scope) and <strong>useful within the Conzept interface</strong>. The sub-classes are often less comprehensive (as there are many more to list!), but are still considered useful for the Conzept interface. It is easy to add more classes when the need arises.
+</p>
+
+<p>
+If a topic has no Wikidata Qid, it will only be classified if it belongs to one of the Wikipedia classes listed below (disambiguation article, list article, category page, etc.).
+</p>
+
+<p>
+In the future Conzept may also use an AI-based classification-system which could help with classifying any of those missing cases.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;topic classification&quot;,&quot;hid&quot;:&quot;topic_classification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1598&quot;} -->
+<h2 class="sectionedit2" id="classes">classes</h2>
+<div class="level2">
+
+<p>
+The main classes and their sub-claseses (if any):
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>raw-query-string</strong> (non-Wikidata topic)</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>disambiguation</strong> (Wikipedia disambiguation page)</div>
+<ul>
+<li class="level2"><div class="li"> person</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>list</strong> (Wikipedia list topic)</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>category</strong> (Wikipedia category)</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>wikispecial</strong> (Wikipedia special page)</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>location</strong></div>
+<ul>
+<li class="level2"><div class="li"> country</div>
+</li>
+<li class="level2"><div class="li"> mountain</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>time</strong></div>
+<ul>
+<li class="level2"><div class="li"> accident</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>organization</strong> (human organization)</div>
+<ul>
+<li class="level2"><div class="li"> business-chain</div>
+</li>
+<li class="level2"><div class="li"> museum</div>
+</li>
+<li class="level2"><div class="li"> music-group</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>group</strong> (human grouping - but not an organization)</div>
+<ul>
+<li class="level2"><div class="li"> nobility</div>
+</li>
+<li class="level2"><div class="li"> nobility-family</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>work</strong></div>
+<ul>
+<li class="level2"><div class="li"> symbol</div>
+</li>
+<li class="level2"><div class="li"> satellite</div>
+</li>
+<li class="level2"><div class="li"> ship</div>
+</li>
+<li class="level2"><div class="li"> fictional-entity</div>
+</li>
+<li class="level2"><div class="li"> dish</div>
+</li>
+<li class="level2"><div class="li"> beverage</div>
+</li>
+<li class="level2"><div class="li"> written-work</div>
+</li>
+<li class="level2"><div class="li"> periodical</div>
+</li>
+<li class="level2"><div class="li"> comics</div>
+</li>
+<li class="level2"><div class="li"> video-game</div>
+</li>
+<li class="level2"><div class="li"> music</div>
+</li>
+<li class="level2"><div class="li"> film</div>
+</li>
+<li class="level2"><div class="li"> tv-series</div>
+</li>
+<li class="level2"><div class="li"> submarine-communications-cable</div>
+</li>
+<li class="level2"><div class="li"> flag</div>
+</li>
+<li class="level2"><div class="li"> website</div>
+</li>
+<li class="level2"><div class="li"> software</div>
+</li>
+<li class="level2"><div class="li"> cryptocurrency</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>person</strong></div>
+<ul>
+<li class="level2"><div class="li"> scientist</div>
+</li>
+<li class="level2"><div class="li"> musician</div>
+</li>
+<li class="level2"><div class="li"> painter</div>
+</li>
+<li class="level2"><div class="li"> filmmaker</div>
+</li>
+<li class="level2"><div class="li"> actor</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>cultural-concept</strong></div>
+<ul>
+<li class="level2"><div class="li"> role</div>
+</li>
+<li class="level2"><div class="li"> rank</div>
+</li>
+<li class="level2"><div class="li"> music-genre</div>
+</li>
+<li class="level2"><div class="li"> religion</div>
+</li>
+<li class="level2"><div class="li"> mythology</div>
+</li>
+<li class="level2"><div class="li"> education</div>
+</li>
+<li class="level2"><div class="li"> road</div>
+</li>
+<li class="level2"><div class="li"> network</div>
+</li>
+<li class="level2"><div class="li"> movement</div>
+</li>
+<li class="level2"><div class="li"> tonality</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>organism</strong></div>
+<ul>
+<li class="level2"><div class="li"> bird</div>
+</li>
+<li class="level2"><div class="li"> mushroom</div>
+</li>
+<li class="level2"><div class="li"> amphibian</div>
+</li>
+<li class="level2"><div class="li"> insect</div>
+</li>
+<li class="level2"><div class="li"> reptile</div>
+</li>
+<li class="level2"><div class="li"> plant</div>
+</li>
+<li class="level2"><div class="li"> plant-organ</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>substance</strong> (synthetic or natural substances)</div>
+<ul>
+<li class="level2"><div class="li"> periodic-table-element</div>
+</li>
+<li class="level2"><div class="li"> chromosome</div>
+</li>
+<li class="level2"><div class="li"> gene</div>
+</li>
+<li class="level2"><div class="li"> genome</div>
+</li>
+<li class="level2"><div class="li"> mineral</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>natural-type</strong> (clearly a concrete natural *physical thing*: planet, snowflake, organs, …)</div>
+<ul>
+<li class="level2"><div class="li"> astronomical-object</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>natural-concept</strong> (more abstract natural concepts)</div>
+<ul>
+<li class="level2"><div class="li"> chemistry</div>
+</li>
+<li class="level2"><div class="li"> geology</div>
+</li>
+<li class="level2"><div class="li"> astronomy</div>
+</li>
+<li class="level2"><div class="li"> anatomy</div>
+</li>
+<li class="level2"><div class="li"> medical-condition</div>
+</li>
+<li class="level2"><div class="li"> animal-disease</div>
+</li>
+<li class="level2"><div class="li"> human-disease</div>
+</li>
+<li class="level2"><div class="li"> human-disease-cause</div>
+</li>
+<li class="level2"><div class="li"> personal-concept</div>
+</li>
+<li class="level2"><div class="li"> geographical-structure (note: may need a better classification)</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>meta-concept</strong> (abstract topics)</div>
+<ul>
+<li class="level2"><div class="li"> mathematics</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classes&quot;,&quot;hid&quot;:&quot;classes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1599-3476&quot;} -->
+<h2 class="sectionedit3" id="classification_process">classification process</h2>
+<div class="level2">
+
+<p>
+There are several ways for a topic to be classified in Conzept:
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <strong><em class="u">Wikidata Qid</em> match with a value in the <a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/indicators.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/indicators.js" rel="ugc nofollow noopener">indicators</a>.</strong> Each class can have an array of Qids which will classify it. See an example indicator object below.</div>
+<ul>
+<li class="level2"><div class="li">  See <a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/setWikidata.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/setWikidata.js" rel="ugc nofollow noopener">setWikidata.js</a> for code example on how these indicators are used for classification. Note how sometimes the “instance_of”, “subclass_of” or both Wikidata class properties are being used for matching against the indicators.</div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code">&#039;country&#039;: {
+    value: [
+        6256, 3624078, 43702, // Wikidata  Qids which indicate a country
+    ],
+    trigger: &#039;&#039;,
+    tags: &#039;setTags( item, [ &quot;location&quot;, &quot;country&quot; ] )&#039;, // this sets both the main-class and sub-class of a topic
+},</pre>
+
+<p>
+<br/>
+
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Matching a certain Wikidata-property (or set of properties) to a class using a <a href="/guide/topic_classification" class="wikilink1" title="topic_classification" data-wiki-id="topic_classification">field definition</a></strong>. You can either calls <strong>setTags( &lt;item&gt;, &lt;tag-array&gt; )</strong> directly, or use the <strong>listed( &lt;value-array&gt;, &lt;indicator-array&gt; )</strong> function. Here are some examples:</div>
+</li>
+</ul>
+<pre class="code">&#039;parent_taxon&#039; : {
+  create_trigger: &#039;setTags( item, [ &quot;organism&quot; ] );&#039;, // only the main-class is being set here
+  title: &#039;parent taxon&#039;,
+  prop: &#039;171&#039;,
+  type: &#039;wikipedia-qid&#039;,
+  mv: false,
+  icon: &#039;fas fa-sort-amount-up-alt&#039;,
+  text: &#039;parent taxon&#039;,
+  section: [&#039;science-biology&#039;,&#039;main&#039;],
+  rank: [70, 1910],
+},</pre>
+<pre class="code">&#039;atomic_number&#039; : {
+  create_trigger: &#039;setTags( item, [ &quot;&quot;, &quot;periodic-table-element&quot; ] )&#039;,
+     // only the sub-class is set (as empty fields are ignored in setTags())
+  render_condition: false,
+  title: &#039;atomic number&#039;,
+  prop: &#039;1086&#039;,
+  type: &#039;symbol-number&#039;,
+  mv: false,
+  icon: &#039;fas fa-atom&#039;,
+  text: &#039;atomic number&#039;,
+  section: &#039;&#039;,
+  rank: 1,
+},</pre>
+<pre class="code">&#039;paintings_inline&#039; : {
+  render_condition: &#039;listed( item.occupations, indicators.painter.value )&#039;, // matches all the painter-indicators with the items occupation-values
+  value: &#039;paintings:${item.title}:true&#039;,
+  title: &#039;paintings&#039;,
+  prop: &#039;0&#039;,
+  type: &#039;rest-json&#039;,
+  mv: true,
+  icon: &#039;fas fa-th-large&#039;,
+  text: &#039;paintings&#039;,
+  section: [&#039;art&#039;,&#039;main&#039;],
+  rank: [30, 1710],
+},</pre>
+
+<p>
+<br/>
+
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Wikipedia page metadata</strong> (the Wikipedia <abbr title="Application Programming Interface">API</abbr> returns article information such as: disambiguation page, category page, etc., which can also be used to classify topics.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classification process&quot;,&quot;hid&quot;:&quot;classification_process&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;3477-&quot;} -->

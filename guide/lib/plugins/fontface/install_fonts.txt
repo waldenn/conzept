@@ -1,0 +1,27 @@
+
+===== Installation Instructions =====
+
+The settings depend on the embedding technique you use.
+
+==== Uploaded font (@font-face) ====
+
+You need to upload at least two files into the plugin's "fonts" directory to accomodate the majoriity of all the different browsers:
+
+  * <fontFile>.ttf
+  * <fontFile>.woff
+
+Optionally you can also add:
+
+  * <fontFile>.eot
+  * <fontFile>.svg
+  * <fontFile>.woff2
+
+Here you will find ready-made font packages which will already contain all or most of them:
+http://www.fontsquirrel.com/fontface
+
+==== Google Font ====
+
+You don't need to upload any files. You can use any of the fonts listed here:
+http://www.google.com/webfonts
+
+You can add variants into the "fontFile" option, e.g. 'Expletus+Sans:regular,bold'.

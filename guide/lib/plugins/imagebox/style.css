@@ -1,0 +1,67 @@
+div.thumb2 {
+margin-bottom:.5em;
+padding-right:10px;
+width:auto;
+display:table-cell
+}
+
+div.trien {
+margin: .5em 1.4em .8em 0;
+}
+
+div.tleft {
+clear: left;
+float: left;
+margin: .5em 1.4em .8em 0;
+}
+
+div.tright {
+clear: right;
+float: right;
+margin: .5em 0 .8em 1.4em;
+}
+
+div.tcenter {
+clear:both;
+text-align:center;
+margin:.5em auto .8em
+}
+
+div.thumb2 .thumbinner {
+display: inline-block;
+background-color: #F9F9F9;
+border: 1px solid #CCC;
+font-size: 94%;
+overflow: hidden;
+padding: 3px;
+}
+
+div.thumb2 .mediabox2 {
+background: #FFF none repeat scroll 0 0;
+margin: 0;
+}
+
+html .thumbcaption {
+border: medium none;
+font-size: 94%;
+line-height: 1.4em;
+padding: 3px;
+text-align: left;
+}
+
+div.thumb2 .magnify {
+background: transparent none repeat scroll 0 0;
+border: medium none !important;
+float: right;
+}
+div.thumb2 .magnify a,
+div.thumb2 .magnify img {
+background: transparent none repeat scroll 0 0;
+border: medium none !important;
+display: block;
+}
+
+div.thumb2 .interwiki {
+background-position: 0 center;
+padding-left: 17px;
+}

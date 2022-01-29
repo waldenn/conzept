@@ -1,0 +1,83 @@
+
+<h1 class="sectionedit1" id="section_customization">section customization</h1>
+<div class="level1">
+
+<p>
+The content in <a href="/guide/terms#topic_card" class="wikilink1" title="terms" data-wiki-id="terms">topic-cards</a> is organized using a tree-structure of <a href="/guide/terms#topic_sections" class="wikilink1" title="terms" data-wiki-id="terms">topic sections</a>.
+</p>
+
+<p>
+The structure and names of these sections comes from the “<strong><a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/sections.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/sections.js" rel="ugc nofollow noopener">src/data/sections.js</a></strong>” file.
+</p>
+
+<p>
+Each section can define the following fields:
+</p>
+<div class="table sectionedit2"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> name      </th><th class="col1 leftalign"> description       </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <strong>ID</strong> </td><td class="col1"> ID-name, this is the section object-key by which the sections are processed in Conzept. This ID is also used for <a href="/guide/localization" class="wikilink1" title="localization" data-wiki-id="localization">localizing</a> section names.</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <strong>icon</strong> </td><td class="col1"> Optional: Icon-classes, either taken from <a href="https://fontawesome.com/v5.15/icons?d=gallery" class="urlextern" target="_blank" title="https://fontawesome.com/v5.15/icons?d=gallery" rel="ugc nofollow noopener">FontAwesome</a> or from <a href="https://openmoji.org/library/" class="urlextern" target="_blank" title="https://openmoji.org/library/" rel="ugc nofollow noopener">OpenMoji</a>. </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> <strong>sub</strong> </td><td class="col1"> Optional: Section-branch, which is used to define sub-sections within a section. Sections can have unlimited sub-sections. </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;390-899&quot;} -->
+<p>
+To add or remove sections, you edit the “sections.js” file as needed and execute “<strong>npm run build</strong>”.
+</p>
+
+<p>
+In <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field customization</a> you can see how links can be added to these sections.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;section customization&quot;,&quot;hid&quot;:&quot;section_customization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1085&quot;} -->
+<h2 class="sectionedit3" id="example">example</h2>
+<div class="level2">
+
+<p>
+Below is a snippet from that file, showing the sections for: “main”, “meta” and “media”. The Conzept rendered output is shown next to it.
+</p>
+<div class="thumb2 tright"><div class="thumbinner"><a href="/guide/_media/sections_1.png" class="media" target="_blank" title="sections_1.png" rel="noopener"><img src="/guide/_media/sections_1.png?w=550&amp;h=716&amp;tok=34b120" class="mediabox2" alt="" width="550" height="716" /></a><div class="thumbcaption" style="max-width: 544px">the rendered topic sections</div></div></div><pre class="code">&#039;main&#039;: {
+  &#039;icon&#039;  : &#039;&#039;,
+},
+
+&#039;meta&#039;: {
+  &#039;icon&#039;  : &#039;&#039;,
+},
+
+&#039;media&#039;: {
+  &#039;icon&#039;  : &#039;&#039;,
+
+  &#039;sub&#039;   : {
+
+    &#039;media-video&#039;: {
+      &#039;icon&#039; : &#039;fas fa-video&#039;,
+    },
+
+    &#039;media-image&#039;: {
+      &#039;icon&#039; : &#039;far fa-images&#039;,
+    },
+
+    &#039;media-audio&#039;: {
+      &#039;icon&#039; : &#039;fas fa-volume-up&#039;,
+    },
+
+    &#039;media-software&#039;: {
+      &#039;icon&#039; : &#039;far fa-window-restore&#039;,
+    },
+
+  },
+
+},</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example&quot;,&quot;hid&quot;:&quot;example&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1086-&quot;} -->

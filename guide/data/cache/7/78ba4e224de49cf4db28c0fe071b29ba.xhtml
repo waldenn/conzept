@@ -1,0 +1,62 @@
+
+<h3 class="sectionedit1" id="adding_an_api">adding an API</h3>
+<div class="level3">
+<div class="thumb2 tright"><div class="thumbinner"><a href="/guide/_media/rijksmuseum_api.jpg" class="media" target="_blank" title="rijksmuseum_api.jpg" rel="noopener"><img src="/guide/_media/rijksmuseum_api.jpg?w=1920&amp;h=1080&amp;tok=be395e" class="mediabox2" alt="" width="1920" height="1080" /></a><div class="thumbcaption" style="max-width: 1914px">Rijksmuseum <abbr title="Application Programming Interface">API</abbr> in Conzept</div></div></div>
+<p>
+The easiest way to integrate a new <a href="/guide/code_structure#api_code" class="wikilink1" title="code_structure" data-wiki-id="code_structure">API-endpoint</a> is to copy a similar <abbr title="Application Programming Interface">API</abbr>-file from “<a href="https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch" rel="ugc nofollow noopener">app/explore2/src/fetch</a>” and then making the necessary changes to it.
+</p>
+
+<p>
+For some APIs you might want to render zoomable <a href="/guide/explore_international_image_interoperability_framework" class="wikilink2" title="explore_international_image_interoperability_framework" rel="nofollow" data-wiki-id="explore_international_image_interoperability_framework">IIIF</a> images, for others you may just want a link to the webpage. You can choose how to present the results.
+</p>
+
+<p>
+In general integrating an <abbr title="Application Programming Interface">API</abbr> involves the steps outlined below.
+</p>
+
+<p>
+We&#039;ll use the <a href="https://data.rijksmuseum.nl/object-metadata/api/" class="urlextern" target="_blank" title="https://data.rijksmuseum.nl/object-metadata/api/" rel="ugc nofollow noopener">Rijksmuseum API</a> as an example. That <abbr title="Application Programming Interface">API</abbr>-file is located in “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/fetch/rijksmuseum.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/fetch/rijksmuseum.js" rel="ugc nofollow noopener">src/fetch/rijksmuseum.js</a>”.
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <strong>Add a <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field definition</a> of the <a href="/guide/field_customization#exampleapi-based_link_field" class="wikilink1" title="field_customization" data-wiki-id="field_customization">type API</a> to “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">fields.js</a>”.</strong></div>
+<ul>
+<li class="level2"><div class="li"> Note: the <a href="/guide/field_customization#exampleapi-based_link_field" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field-definition data structure for API&#039;s</a> is under-specified at the moment. This needs to be fixed.</div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code">&#039;rijksmuseum_inline&#039; : {
+  value: &#039;rijksmuseum:${item.title}:true&#039;, // API-arguments: name of the API in Conzept, title-string, if the API should be used  
+  title: &#039;Rijksmuseum&#039;,
+  prop: &#039;0&#039;,         // required for all APIs 
+  type: &#039;rest-json&#039;, // this indicates an API-endpoint
+  mv: true,
+  url: &#039;&#039;,
+  icon: &#039;fas fa-university&#039;,
+  text: &#039;Rijks museum&#039;,
+  section: &#039;art&#039;,
+  rank: 70,
+},</pre>
+<ul>
+<li class="level1 node"><div class="li"> <strong>Add a line to “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/lib.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/lib.js" rel="ugc nofollow noopener">src/core/lib.js</a>” in the insertMultiValues() function for that <abbr title="Application Programming Interface">API</abbr>.</strong></div>
+<ul>
+<li class="level2"><div class="li"> Note: Hopefully in the future this step can be automated away.</div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code">else if ( args.list.startsWith(&#039;rijksmuseum&#039;) ){
+
+  fetchRijksmuseum( args, null, 1, &#039;relevance&#039; ); // this calls the &quot;fetchRijksmuseum()&quot; function in &quot;src/fetch/rijksmuseum.js&quot;
+
+}</pre>
+<ul>
+<li class="level1"><div class="li"> <strong>Copy a similar <abbr title="Application Programming Interface">API</abbr>-file</strong> in the “src/data/fetch” directory to your <abbr title="Application Programming Interface">API</abbr>-file, <strong>then modify to make it work as you want.</strong></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Test if the <abbr title="Application Programming Interface">API</abbr> integration works in Conzept</strong>, by viewing the results when you click on the field-link for a topic.</div>
+</li>
+</ul>
+
+</div>
