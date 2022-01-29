@@ -14,19 +14,19 @@ To add an extra app to the existing set of apps, these things need to be done:
     * Copy the "index.html" to index.template.html (or the "index.php" to "index.template.php", for PHP apps)
     * Insert the following template snippet into the HTML page, which will get substituted during the build step: **CONZEPT_COMMON_HTML_INCLUDE**. (If the project already includes jQuery, use: **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY**)
 
-  * Then **add a new [[field_customization|field]] definition**, to create a link to this specific app. Here is a simple example:
+  * Then **add a new [[field_customization|field]] definition**, to create a link to this specific app. Here is a simple example, which adds a link in two sections:
 
 <code>
 'my_app_name' : {
   create_condition: true,
-  title: 'My Chemistry App',
+  title: 'My App Name',
   prop: '',
   type: 'link',
   mv: false,
   url: '${explore.base}/app/myapp/?q=${title_quoted}',
   mv: false,
   icon: 'fas fa-flask',
-  text: 'MyApp name',
+  text: 'My App Name',
   section: ['science-chemistry','main'],
   rank: [100,10000],
 },

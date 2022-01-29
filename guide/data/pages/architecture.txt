@@ -65,7 +65,9 @@ Other URL parameters:
 | **v** | (depends on device type, but can be overruled) | view-mode requested, can be "desktop" or "mobile" |
 | u  | URL string | URL to open in the content pane |
 | c  | custom data | custom data field (its format is not specified)|
-===== action types =====
+
+
+===== URL action types =====
 
 The types parameter ("**t**") in Conzept URLs indicated what type of content should be loaded.
 

@@ -77,7 +77,7 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 
 Add yourself to the "www-data" group (so you can make edits as yourself):
 <code>usermod -a -G www-data YOUR_USER_ID</code>
-<code>logout</code>
+<code>exit && logout</code>
 
 (then log in again, to reload the shell environment)
 
@@ -141,6 +141,19 @@ Manually fetch the initial covers once:
 Startup the services by rebooting:
 <code>sudo reboot now</code>
 
+===== DokuWiki =====
+
+Modify the DokuWiki base-URL setting in "guide/conf/local.php":
+
+<code>
+$conf['baseurl'] = 'https://YOUR_HOSTNAME';
+</code>
+
+Change the admin password:
+  * Go to: https://YOUR_HOSTNAME/guide/home?do=login 
+  * Login as admin (password: "admin")
+  * Go to https://YOUR_HOSTNAME/guide/home?do=profile
+  * Change the password using the form
 ===== Conzept-extra setup (optional)=====
 
 This setup part is only required if you want to build and modify certain NPM-build conzept apps (there are currently seven apps and one library in this repo).

@@ -63,6 +63,19 @@ Here is a list of the properties that can be used to define fields:
 | **section** | <plain-string %%|%% array-of-strings> | section(s) in which to place the link | render |
 | **rank** | <number %%|%% array-of-numbers> | position of the link (set for each section) | render |
 
+===== field types =====
+
+These types are currently available in field-definitions:
+
+^ type      ^ required field ^ description       ^
+| **no type** | | If the field-type is left empty, the data is treated as (one or more) strings by default. |
+| **wikipedia-qid** | prop | Fetch the Wikidata for this property. This will return one or more Wikidata [[https://www.wikidata.org/wiki/Wikidata:Identifiers|Q-IDs]] coming from a Wikidata item statement (eg. "Q42"). \\ \\ Note: the "wikipedia-qid" name is used to automatically render either a Wikipedia page or a Wikidata page. Showing the Wikipedia article takes precedence, if it is available in the users' language. |
+| **symbol-number** | prop | Number coming from a Wikidata item statement (eg. "3051"). |
+| **symbol-html** | prop | This type should only be used when you want create raw HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
+| **link** | url | Open the URL in a single content-pane |
+| **url** | url | Open the URL in a new browser-tab |
+| **link-split** | url |Open the URL in two content panes. Load the supplied URL into the first content pane, in the second-content pane we try to load the Wikipedia / Wikidata page for this search-string / qid|
+| **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument}':true",| Fetch data from the supplied API-function and the argument. The results are rendered in the topic-card |
 ===== special values =====
 
 Conzept has some special title-values which can be used anywhere in the field definition values:
@@ -94,13 +107,6 @@ There is currently one 'magic'-variable usable in field-definition values:
 
 These fields have a [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata property number]] listed in its **"prop:"** value. If a topic has such a Wikidata property value, Conzept will get that data from Wikidata.
 
-Wikidata-based fields can generate three types of data (based on Wikidata item statement values):
-
-^ name      ^ description       ^
-| **no type** | If the field-type is left empty, the data is treated as (one or more) strings by default. |
-| **wikipedia-qid** | One or more Wikidata [[https://www.wikidata.org/wiki/Wikidata:Identifiers|Q-IDs]] coming from a Wikidata item statement (eg. "Q42"). \\ \\ Note: the "wikipedia-qid" name is used to automatically render either a Wikipedia page or a Wikidata page. Showing the Wikipedia article takes precedence, if it is available in the users' language. |
-| **symbol-number** | Number coming from a Wikidata item statement (eg. "3051"). |
-| **symbol-html** | This type should only be used when you want create raw HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
 
 === examples ===
 
@@ -203,14 +209,6 @@ __Dependent values__ can be all sorts of different things:
   * a remote JSON API call definition (eg. for the Rijksmuseum API)
   * etc.
 
-Derived fields come in various forms:
-
-^ name      ^ description       ^
-| **link** | open URL in the local content pane|
-| **link-split** | open URL as two content panes |
-| **url** | open as external URL |
-| **rest-json** | API fetch |
-
 === examples ===
 
 == example: wikidata-derived field ==
@@ -219,7 +217,7 @@ Derived fields come in various forms:
 The derived-field example below will show a link to the "GBIF organism occurrence map", but only if the "item.gbif_id" was set (from an earlier Wikidata field definition).
 
 <code>
-'gbif_id' : { // Wikidata field
+'gbif_id' : { // normal Wikidata field
   render_condition: false,
   title: 'gbif_id',
   prop: '846',
