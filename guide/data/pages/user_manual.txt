@@ -15,6 +15,23 @@ Conzept allows you to explore any of the millions of topics on Wikipedia from ma
 The integrated user-interface gives you a clean, well-designed view of all this information, in any of the [[explore>List of Wikipedias|300+ Wikipedia languages]], without "[[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]]".
 
 The Conzept project is [[explore>free software]] licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets) and the development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Development news is announced on [[https://twitter.com/conzept__|Twitter]].
+
+===== support =====
+
+  * Conzept has been funded by the **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
+
+  * All the organizations with a great public mission and API-service. Especially:
+    * The **[[https://wikimediafoundation.org/|Wikipedia]]** and **[[https://www.wikidata.org|Wikidata]]** community and developers.
+    * The **[[https://openlibrary.org|Open Library]]** and **[[https://archive.org|Archive.org]]** team.
+
+  * The thousands of people who have development Free Software projects which are [[used projects|used within Conzept]].
+
+  * **[[https://www.browserstack.com/|BrowserStack]]** has kindly provided excellent tools for cross-platform browser testing.
+
+  * **[[explore>Google]] [[explore>YouTube]]** for providing access to the [[https://developers.google.com/youtube/v3/|Youtube API]].
+
+
+Thank you all for the direct or indirect support and development <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
 ===== project goals =====
 
 {{ :logo.svg?200}}
