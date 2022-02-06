@@ -5,7 +5,7 @@ INITIAL PHASE:
 
   - string search
 
-  - structured search (via a SPARQL web-client)
+  - structured search (using a SPARQL-query)
 
   - random drop
     - topic (very broad)

@@ -516,7 +516,7 @@ function setParameter( name, value ){
 
   }
 
-  window.history.replaceState({}, '', decodeURIComponent(`${window.location.pathname}?${params}`));
+  window.history.replaceState({}, '', decodeURIComponent(`${window.location.pathname}?${params}#` + explore.hash ));
 
 }
 
@@ -741,9 +741,11 @@ function setOnMultiValueClick( args ){ // dynamically creates lists of "onclick"
     args.languages = '';
   }
 
-  //console.log(args)
+  //console.log(args);
 
-  return ' onclick="insertMultiValues( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" data-title="' + args.title + '" ';
+  args.title = args.title.replace(/,/g, '_'); // hack to prevent the jQuery-selector from breaking
+
+  return ' onclick="stateResetCheck( event ); insertMultiValues( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" data-title="' + args.title + '" ';
 
 }
 
@@ -756,7 +758,7 @@ function setOnClick( args ){ // creates the "onclick"-string for most dynamic-co
     args.languages = '';
   }
 
-  return ' onclick="handleClick( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" onauxclick="onMiddleClick( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" ';
+  return ' onclick="stateResetCheck( event ); handleClick( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" onauxclick="onMiddleClick( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" ';
 
 }
 

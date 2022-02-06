@@ -682,7 +682,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/guide/user_manual" target="infoframe" title="user manual" aria-label="user manual"><i class="fas fa-book fa-2x"></i></a></li>
+                  <li> &nbsp; <a href="https://conze.pt/guide/home" target="infoframe" title="guide" aria-label="guide"><i class="fas fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 
@@ -702,21 +702,10 @@ $settings_html = '
                 &nbsp; <small>- <span id="app-menu-note-1"></span></small> <br/>
             </details>
 
-            <details class="" closed>
-              <summary><span id="app-menu-license">license</span></summary>
-                &nbsp;<a href="https://github1s.com/waldenn/conzept/blob/master/LICENSE" target="infoframe" title="license" aria-label="docs"><u>GNU GPL v3</u></i></a><br/>
-            </details>
-
-            <details class="" closed>
-              <summary><span id="app-menu-credits"></span></summary>
-                  Conzept would not be possible without the integration of many free software components. See the list of <a href="https://conze.pt/guide/used_projects" target="infoframe" title="software integrations" aria-label="docs"><u>integrated software</u></i></a>.<br/>
-
-                  Conzept has received funding through the <a href="https://nlnet.nl/project/Conzept/" target="_blank"><u>NLnet Foundation</u></a> (backed by the <a href="https://www.ngi.eu" target="_blank" title="organization"><u>NGI4eu</u></a> and EU Council vision and funds). Thank you for this support!
-            </details>
-
-            <details class="" closed>
+           <details class="" closed>
               <summary><span id="app-menu-about"></span></span></summary>
                 <ul>
+                  <li>&nbsp; <span id="app-menu-license"></span>: <a href="https://github1s.com/waldenn/conzept/blob/master/LICENSE" target="infoframe" title="license" aria-label="docs">GNU GPL v3</a></li>
                   <li>&nbsp; <span id="app-menu-version"></span>: vCONZEPT_VERSION</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>

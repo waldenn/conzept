@@ -142,6 +142,10 @@ body.dark .dropdown-content li > a:hover, body.dark .dropdown-content li > span:
   background: #e97374;
 }
 
+body.dark .dropdown-content.select-dropdown {
+  background: #121212;
+}
+
 body.dark #fullscreenToggle, body.dark #scrollToTop, body.dark #sidebarToggle {
   color: #ffffffd1;
 }
@@ -393,4 +397,12 @@ body.dark .block-style ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover
 
 body.dark ul.jqtree-tree .jqtree-title {
   color: #ffffffd1;
+}
+
+body.dark #section-info {
+  color: #d4d4d4;
+}
+
+body.dark .field-info {
+  border-bottom: 1px solid #fcfcfc59;
 }

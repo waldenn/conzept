@@ -124,7 +124,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     subtitle = args.subtitle;
   }
 
-  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
+  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms_image', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
   let thumbnail = '';
 
   if ( args.thumbnail === '' ){ // no thumnail set yet
@@ -374,25 +374,52 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 				// TODO: check that the item-value really is a number first
 				//console.log( name, 'number symbol: ', item[name] );
 
+        let nr_value = '';
+
 				if ( item[name] > 10000 || countDecimals( item[name] ) > 3 ){
-					o[name + '_nr'] = '&nbsp;<small title="' + v.title + '" class="nowrap"><i class="' + v.icon + '"></i>&#8239;' + numbro( item[name] ).format({ thousandSeparated: true, totalLength: 3 }) + '</small>';
+					nr_value = numbro( item[name] ).format({ thousandSeparated: true, totalLength: 3 });
 				}
 				else {
-					o[name + '_nr'] = '&nbsp;<small title="' + v.title + '" class="nowrap"><i class="' + v.icon + '"></i>&#8239;' + item[name] + '</small>';
+					nr_value = item[name];
 				}
 
-				//console.log( o[name + '_nr'] );
+		    o[name + '_nr'] = '&nbsp;<small title="' + v.title + '" class="nowrap"><i class="' + v.icon + '"></i>&#8239;' + nr_value + '</small>';
 
-        return true;
+        // render these fields as a list of: "key: value"
+        o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value number" title="' + v.title + '" aria-label="' + v.title + '">' + nr_value + '</div>';
+
+				//console.log( o[name] );
+
+        //return true;
 
 			}
+      if ( v.type === 'symbol-string' ){ // string symbol
+
+				if ( typeof v.string_format === undefined || typeof v.string_format === 'undefined' || v.string_format === '' ){ // plain string
+
+          // render these fields as a list of: "key: value"
+          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '">' + item[name] + '</div>';
+
+
+				}
+				else { // constructed string
+
+          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '">' + eval(`\`${ v.string_format }\``)  + '</div>';
+
+          //o[ name ] = eval(`\`${ v.string_format }\``);
+          //console.log( name, v.string_format, item[name + '_string'] );
+
+				}
+
+ 
+
+      }
       else if ( v.type === 'symbol-html' ){ // string symbol
 
 				// TODO: check that the item-value really is a string first
 				//console.log( name, 'string symbol: ', item[name] );
 
 				if ( typeof v.string_format === undefined || typeof v.string_format === 'undefined' || v.string_format === '' ){ // plain string
-					// do nothing
 
 					o[name + '_string'] = item[name];
 
@@ -418,8 +445,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
         }
 
       }
-
-      //console.log( name, 'baz' );
 
       if ( v.type === 'code' && valid( v.code) ){ // custom-code action-button
 
@@ -506,6 +531,9 @@ function createItemHtml( args ){ // creates the HTML-card for each result
             }
             else {
 
+              // URL FIX
+              //console.log( item[name] );
+
               $.each( item[name], function( label, url ){
 
                 // remove protocol-string (if needed)
@@ -549,7 +577,16 @@ function createItemHtml( args ){ // creates the HTML-card for each result
           if ( typeof v.url === undefined || typeof v.url === 'undefined' || v.url === '' ){ // plain URL
             // do nothing
 
-            item.url = item[name];
+            if ( valid( v.url_format ) ){ // use the given URL-format
+
+              item.url = v.url_format.replace( /\$1/g, item[name] );
+
+            }
+            else {
+
+              item.url = item[name];
+
+            }
 
           }
           else { // constructed URL
@@ -581,6 +618,13 @@ function createItemHtml( args ){ // creates the HTML-card for each result
             o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type, url: item.url } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
           }
+
+        }
+        else if ( v.type === 'symbol-string' ){
+        }
+        else if ( v.type === 'symbol-number' ){
+
+          //console.log( o[ name ] );
 
         }
         else { // any non-link-type
@@ -1313,7 +1357,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   if ( valid( item.outline ) ){
 
-    const url = explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.outline;
+    const url = explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.outline + '#' + explore.hash;
 
     outline_link = '&nbsp;<a href="javascript:void(0)" title="outline" aria-label="outline"' + setOnClick( Object.assign({}, args, { type: 'link', url: url } ) ) + '><span class="icon"><i class="fas fa-wave-square" style="position:relative;"></i></span></a> ';
 
@@ -1725,6 +1769,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
         tags[0] === 'group' ||
         tags[0] === 'organism' ||
         tags[0] === 'meta-concept' ||
+        tags[0] === 'cultural-concept' ||
         tags[1] === 'geographical-structure' ||
         tags[1] === 'religion' ||
         tags[1] === 'museum' ||
@@ -1878,6 +1923,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     nearby_link +
     map_link +
     satellite_map_link +
+    ( valid( explore.personas.includes('tourist') ) ? o.osm_routing : '' )  +
     ( valid( explore.personas.includes('tourist') ) ? o.osm_query_hiking_routes : '' )  +
     filter_link +
     cattree_link +

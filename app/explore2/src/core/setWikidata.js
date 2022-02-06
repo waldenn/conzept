@@ -427,6 +427,8 @@ function setWikidata( item, wd, single, target_pane, callback ){
                     let Xvalue  = string_val;
                     let mv_url  = eval(`\`${ v.url }\``);
 
+                    //console.log( 'mv url: ', mv_url );
+
                     urls_obj[ string_val ] = mv_url;
 
                 });
@@ -1207,7 +1209,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
         item.title = wd.sitelinks[wp];
 
-        renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
+        renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
 
       }
 
@@ -1244,14 +1246,14 @@ function setWikidata( item, wd, single, target_pane, callback ){
           }
           else {
 
-            renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
+            renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
 
           }
 
 				}
 				else { // from wikipedia-app
 
-					window.location.href = explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded;
+					window.location.href = explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash;
 
 				}
 
@@ -1278,7 +1280,7 @@ async function renderWikidata( target_pane ){
 
 	if ( typeof resetIframe === 'function'  ) { // call from the explore-app
 
-    renderToPane( target_pane, explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language  );
+    renderToPane( target_pane, explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language );
 
 	}
 	else { // call from the wikipedia-app

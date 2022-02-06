@@ -334,6 +334,9 @@ async function setupFonts(){
 	// font type
 	explore.font1 = ( explore.font1 === null || explore.font1 === undefined ) ? explore.default_font : explore.font1;
 
+  // temporary hack to change the default font
+  if ( explore.font1 === 'Quicksand'){ explore.font1 = 'Hind'; }
+
   applyFont( explore.font1 );
 
 	$('#font1').fontselect().on('change', function() {
@@ -665,6 +668,7 @@ async function showStartPage(){
 
   explore.searchmode    = 'wikipedia';
   explore.type          = '';
+  explore.hash          = '';
 
   $('#srsearch').val('');
   $('#srsearch').focus();
@@ -693,7 +697,7 @@ async function showStartPage(){
   $('meta[property="og:description"]').attr('content', description );
   $('meta[property="twitter:description"]').attr('content', description );
 
-  const url = '/explore?l=' + explore.language;
+  const url = '/explore?l=' + explore.language + '#' + explore.hash;
   $('link[rel=canonical]').attr('href', url );
   $('meta[property="og:url"]').attr('content', url );
   $('meta[property="twitter:url"]').attr('content', url );
@@ -1201,7 +1205,7 @@ function openBookmark( event, newtab ) {
 
     if ( newtab ){
 
-      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=wikipedia';
+      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=wikipedia' + '#' + explore.hash;
 
       openInNewTab( url );
 
@@ -1243,6 +1247,7 @@ function setupSearch() {
 
           // reset any structured-search query-data
           explore.query = '';
+          explore.hash  = '';
 
           explore.type  = 'wikipedia'; // set to default type
 
@@ -1353,6 +1358,8 @@ function setupSearch() {
     // discern user-click from synthetic-click
     if ( event.hasOwnProperty('originalEvent') ){ // user-click
 
+      explore.hash = ''; // reset hash
+
       if ( explore.isMobile ){
 
         explore.preventSliding = true; // for mobile: stay on search-results page
@@ -1416,6 +1423,7 @@ function setupSearch() {
 
       // reset any structured-search query-data
       explore.query = '';
+      explore.hash = '';
 
       if ( explore.isMobile ){
 
@@ -2302,7 +2310,7 @@ function updateLocale( l ){ // set from user-locale
 
       explore.locale = l;
 
-      fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + explore.banana.locale + '.json?' + explore.app_version ).then((response) => response.json()).then((messages) => {
+      fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + explore.banana.locale + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
 
         explore.banana.load( messages, explore.banana.locale)
         updateLocaleInterface();
@@ -2330,7 +2338,7 @@ function updateLocaleNative( ){ // set from language
 
     if ( explore.locales.includes( l ) ){
 
-      fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + l + '.json?' + explore.app_version ).then((response) => response.json()).then((messages) => {
+      fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + l + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
 
         explore.banana_native.load( messages, l );
 
@@ -2368,7 +2376,7 @@ async function updateLocaleInterface(){
   $('#app-menu-user-manual').html( explore.banana.i18n('app-menu-user-manual') );
   $('#app-menu-keyboard-shortcuts').html( explore.banana.i18n('app-menu-keyboard-shortcuts') );
   $('#app-menu-credits').html( explore.banana.i18n('app-menu-credits') );
-  //$('#app-menu-license').html( explore.banana.i18n('app-menu-license') );
+  $('#app-menu-license').html( explore.banana.i18n('app-menu-license') );
   $('#app-menu-about').html( explore.banana.i18n('app-menu-about') );
 
   $('#app-menu-random-topic').html( explore.banana.i18n('app-menu-random-topic') );
@@ -2404,10 +2412,29 @@ async function updateLocaleInterface(){
   $('#app-menu-goto-previous-pane').html( explore.banana.i18n('app-menu-goto-previous-pane') );
   $('#app-menu-new-search').html( explore.banana.i18n('app-menu-new-search') );
 
+  $('#app-menu-cover-topic').text( explore.banana.i18n('app-menu-cover-topic') );
+  $('#app-menu-culture').text( explore.banana.i18n('app-menu-culture') );
+  $('#app-menu-nature').text( explore.banana.i18n('app-menu-nature') );
+  $('#app-menu-license').text( explore.banana.i18n('app-menu-license') );
+  $('#app-menu-persona').text( explore.banana.i18n('app-menu-persona') );
+
   $('#app-guide-string-search').text( explore.banana.i18n('app-guide-string-search') );
 
   // welcome view
   $('#app-guide-welcome-text').html( explore.banana.i18n('app-guide-welcome-text') );
+  $('#app-guide-featured-article').text( explore.banana.i18n('app-guide-featured-article') );
+  $('#app-guide-featured-portal').text( explore.banana.i18n('app-guide-featured-portal') );
+  $('#app-guide-continent').text( explore.banana.i18n('app-guide-continent') );
+  $('#app-guide-bioregion').text( explore.banana.i18n('app-guide-bioregion') );
+  $('#app-guide-mountain-range').text( explore.banana.i18n('app-guide-mountain-range') );
+  $('#app-guide-disease').text( explore.banana.i18n('app-guide-disease') );
+  $('#app-guide-organism').text( explore.banana.i18n('app-guide-organism') );
+  $('#app-guide-protein').text( explore.banana.i18n('app-guide-protein') );
+  $('#app-guide-atom').text( explore.banana.i18n('app-guide-atom') );
+  $('#app-guide-protist').text( explore.banana.i18n('app-guide-protist') );
+  $('#app-guide-help').text( explore.banana.i18n('app-guide-help') );
+  $('#app-guide-sea').text( explore.banana.i18n('app-guide-sea') );
+
   $('#app-guide-news').text( explore.banana.i18n('app-guide-news') );
   $('#app-guide-topic').text( explore.banana.i18n('app-guide-topic') );
   $('#app-guide-artwork').text( explore.banana.i18n('app-guide-artwork') );
@@ -2430,6 +2457,33 @@ async function updateLocaleInterface(){
   $('#app-guide-fungus').text( explore.banana.i18n('app-guide-fungus') );
   $('#app-guide-bacterium').text( explore.banana.i18n('app-guide-bacterium') );
   $('#app-guide-virus').text( explore.banana.i18n('app-guide-virus') );
+  $('#app-guide-cell-type').text( explore.banana.i18n('app-guide-cell-type') );
+  $('#app-guide-archae').text( explore.banana.i18n('app-guide-archae') );
+
+  $('#app-guide-country-map').text( explore.banana.i18n('app-guide-country-map') );
+  $('#app-guide-country').text( explore.banana.i18n('app-guide-country') );
+  $('#app-guide-capitol').text( explore.banana.i18n('app-guide-capitol') );
+  $('#app-guide-form-of-governement').text( explore.banana.i18n('app-guide-form-of-governement') );
+  $('#app-guide-religion').text( explore.banana.i18n('app-guide-religion') );
+  $('#app-guide-period').text( explore.banana.i18n('app-guide-period') );
+  $('#app-guide-history-aspect').text( explore.banana.i18n('app-guide-history-aspect') );
+  $('#app-guide-revolution').text( explore.banana.i18n('app-guide-revolution') );
+  $('#app-guide-war').text( explore.banana.i18n('app-guide-war') );
+  $('#app-guide-battle').text( explore.banana.i18n('app-guide-battle') );
+  $('#app-guide-documentary').text( explore.banana.i18n('app-guide-documentary') );
+  $('#app-guide-documentary-title').text( explore.banana.i18n('app-guide-documentary-title') );
+  $('#app-guide-film-title').text( explore.banana.i18n('app-guide-film-title') );
+  $('#app-guide-art-movement').text( explore.banana.i18n('app-guide-art-movement') );
+  $('#app-guide-composer').text( explore.banana.i18n('app-guide-composer') );
+  $('#app-guide-painter').text( explore.banana.i18n('app-guide-painter') );
+  $('#app-guide-poet').text( explore.banana.i18n('app-guide-poet') );
+  $('#app-guide-philosopher').text( explore.banana.i18n('app-guide-philosopher') );
+  $('#app-guide-architect').text( explore.banana.i18n('app-guide-architect') );
+  $('#app-guide-inventor').text( explore.banana.i18n('app-guide-inventor') );
+  $('#app-guide-software').text( explore.banana.i18n('app-guide-software') );
+  $('#app-guide-mathematics').text( explore.banana.i18n('app-guide-mathematics') );
+  $('#app-guide-tourist-attraction').text( explore.banana.i18n('app-guide-tourist-attraction') );
+  $('#app-guide-dish').text( explore.banana.i18n('app-guide-dish') );
 
   // other elements
   $('#app-structured-search-title').text( explore.banana.i18n('app-structured-search-title') );
@@ -2641,7 +2695,7 @@ function setupURL() {
   // URI.js: https://medialize.github.io/URI.js/docs.html
   //				 https://medialize.github.io/URI.js/docs.html#search-set
   explore.url = URI.parse( document.URL );
-  explore.hash = window.location.hash.substring(1) || '';
+  //explore.hash = window.location.hash.substring(1) || '';
 
   // store previous URL state values
   explore.q_prev = explore.q;
@@ -2657,8 +2711,8 @@ function setupURL() {
   $(window).on('popstate', function (e) {
 
     // set hash if needed
-    let hash = window.location.hash.substring(1) || '';
-    explore.hash = hash.replace(/[ %{}|^~\[\]()`"'+<%'&\.\/?:@;=,]/g, '_').toLowerCase();
+    //let hash = window.location.hash.substring(1) || '';
+    explore.hash = explore.hash.replace(/[ %{}|^~\[\]()`"'+<%'&\.\/?:@;=,]/g, '_').toLowerCase();
 
     // set language 
     explore.language = window.language = getParameterByName('l');
@@ -4008,7 +4062,7 @@ async function setDefaultDisplaySettings( cover, type ) {
       '</p>' + 
     
       '<div class="frontpage-grid-container">' +
-        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/home" target="infoframe"><span class="icon"><i class="fas fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-user-manual">help</span></span></a></div>' +
+        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/home" target="infoframe"><span class="icon"><i class="fas fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
         '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fas fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' +
         '<div><a class="" title="random featured article" aria-label="random featured article" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="far fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
       '</div>' +
@@ -4030,7 +4084,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random form of government" aria-label="random form of government" href="javascript:void(0)" onclick="showRandomListItem( &quot;form-of-governement&quot; )"><span class="icon"><i class="fas fa-balance-scale-right fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-form-of-governement">form of gov.</span></span></a></div>' +
             '<div><a class="" title="random ethnic group" aria-label="random ethnic group" href="javascript:void(0)" onclick="showRandomListItem( &quot;ethnic-group&quot; )"><span class="icon"><i class="fas fa-hand-holding-heart fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ethnic-group"></span></span></a></div>' +
             '<div><a class="" title="random language" aria-label="random language" href="javascript:void(0)" onclick="showRandomLanguage()"><span class="icon"><i class="fas fa-language fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-language"></span></span></a></div>' +
-            '<div><a class="" title="random religion" aria-label="random religion" href="javascript:void(0)" onclick="showRandomListItem( &quot;religion&quot; )"><span class="icon"><i class="fas fa-dharmachakra fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-religion2">religion</span></span></a></div>' +
+            '<div><a class="" title="random religion" aria-label="random religion" href="javascript:void(0)" onclick="showRandomListItem( &quot;religion&quot; )"><span class="icon"><i class="fas fa-dharmachakra fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-religion">religion</span></span></a></div>' +
 
             // history
             '<div><a class="" title="random period" aria-label="random period" href="javascript:void(0)" onclick="showRandomListItem( &quot;period&quot; )"><span class="icon"><i class="fas fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-period">period</span></span></a></div>' +
@@ -4041,7 +4095,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             // film
             '<div><a class="" title="random documentary" aria-label="random documentary" href="javascript:void(0)" onclick="showRandomDocumentary()"><span class="icon"><i class="fas fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary"></span></span></a></div>' +
-            '<div><a class="" title="random documentary title" aria-label="random documentary title" href="javascript:void(0)" onclick="showRandomListItem( &quot;documentary&quot; )"><span class="icon"><i class="fas fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documementary-title">documentary title</span></span></a></div>' +
+            '<div><a class="" title="random documentary title" aria-label="random documentary title" href="javascript:void(0)" onclick="showRandomListItem( &quot;documentary&quot; )"><span class="icon"><i class="fas fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary-title">documentary title</span></span></a></div>' +
             '<div><a class="" title="random film title" aria-label="random film title" href="javascript:void(0)" onclick="showRandomListItem( &quot;film&quot; )"><span class="icon"><i class="fas fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-film-title">film title</span></span></a></div>' +
 
             // arts
@@ -4290,8 +4344,8 @@ async function renderTopicCover( name ) {
                     '<script src="' + explore.base + '/app/explore2/node_modules/jquery/dist/jquery.min.js"></script>' +
                     '<script src="' + explore.base + '/app/explore2/node_modules/keyboardjs/dist/keyboard.min.js"></script>' +
                     '<script src="' + explore.base + '/app/explore2/node_modules/sunzi-color-thief/dist/color-thief.umd.js"></script>' +
-                    '<script src="' + explore.base + '/app/explore2/dist/core/utils.js?' + explore.app_version + '"></script>' +
-                    '<script src="' + explore.base + '/app/explore2/dist/core/cover.js?' + explore.app_version + '"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/dist/core/utils.js?' + explore.version + '"></script>' +
+                    '<script src="' + explore.base + '/app/explore2/dist/core/cover.js?' + explore.version + '"></script>' +
 
                     '</body></html>'
 
@@ -4380,7 +4434,7 @@ async function setPopularCover() {
     explore.language = 'en'; // or use: getLangCode2( lang3 )
   }
 
-  let url = explore.base + '/app/explore2/assets/json/covers/' + explore.language + '-' + year + '-' + month + '.json?' + explore.app_version;
+  let url = explore.base + '/app/explore2/assets/json/covers/' + explore.language + '-' + year + '-' + month + '.json?' + explore.version;
 
   $.ajax({
 
@@ -4463,8 +4517,8 @@ async function setPopularCover() {
             '<script src="' + explore.base + '/app/explore2/node_modules/jquery/dist/jquery.min.js"></script>' +
             '<script src="' + explore.base + '/app/explore2/node_modules/keyboardjs/dist/keyboard.min.js"></script>' +
             '<script src="' + explore.base + '/app/explore2/node_modules/sunzi-color-thief/dist/color-thief.umd.js"></script>' +
-            '<script src="' + explore.base + '/app/explore2/dist/core/utils.js?' + explore.app_version + '"></script>' +
-            '<script src="' + explore.base + '/app/explore2/dist/core/cover.js?' + explore.app_version + '"></script>' +
+            '<script src="' + explore.base + '/app/explore2/dist/core/utils.js?' + explore.version + '"></script>' +
+            '<script src="' + explore.base + '/app/explore2/dist/core/cover.js?' + explore.version + '"></script>' +
 
             '</body></html>'
 
@@ -4703,13 +4757,13 @@ function getWikidataFromTitle( title, allow_recheck, target_pane ){
 
 		            if ( explore.isMobile ){
 
-                  console.log('check 2 - mobile');
                   $( explore.baseframe ).attr({"src": decodeURI( explore.uri ) });
 
                 }
                 else {
-                  console.log('check 3');
+
                   $( '#infoframeSplit2' ).attr({"src": decodeURI( explore.uri ) });
+
                 }
 
               }
@@ -4720,11 +4774,16 @@ function getWikidataFromTitle( title, allow_recheck, target_pane ){
           else {
 
             if ( target_pane === 'p0' || target_pane === 'p1' || document.getElementById('infoframeSplit2') === null ){ // single-content-frame
+
               resetIframe();
-              $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
+
+              $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+
             }
             else { // dual-content-frame
-              $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded  });
+
+              $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+
             }
 
           }
@@ -5223,6 +5282,8 @@ async function insertCategoryTree( args ){
 }
 
 async function openInline( title, fragment_id, fragment_title ){
+
+  //explore.hash = ''; // reset hash
 
   //console.log( 'openInline: ', title, fragment_id, fragment_title );
 
@@ -6214,7 +6275,8 @@ async function renderType( args ) {
           ){ // render without wikidata-info
 
         resetIframe();
-        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded });
+
+        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else { // render with wikidata-info
@@ -6263,7 +6325,7 @@ async function renderType( args ) {
         }
         else { // user is coming from an internal click, which should have the wikidata already
 
-          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded );
+          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
 
         }
 
@@ -6442,13 +6504,13 @@ async function renderType( args ) {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
 
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         $('.fixed-action-btn.direction-left').hide();
 
@@ -6764,7 +6826,7 @@ async function handleClick ( args ) {
 
   renderType( renderType_args );
 
-  explore.hash = ''; // TODO: redesign hash handling
+  //explore.hash = ''; // TODO: redesign hash handling
 
 };
 
@@ -6863,7 +6925,7 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');;
 
-    let url = '/explore/' + t + '?l=' + explore.language + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.d + p.f + '&s=' + explore.show_sidebar + p.query;
+    let url = '/explore/' + t + '?l=' + explore.language + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.d + p.f + '&s=' + explore.show_sidebar + p.query + '#' + explore.hash.replace(/#/g, '');
 
     $('link[rel=canonical]').attr('href', url );
     $('meta[property="og:url"]').attr('content', url );
@@ -7106,7 +7168,7 @@ function postIframeLoad() {
  
       iframeEl.contentWindow.location.hash = hash_;
 
-      explore.hash = ''; // reset hash
+      //explore.hash = ''; // reset hash
     }
 
 
@@ -7395,7 +7457,11 @@ function receiveMessage(event){
   else if ( event.data.event_id === 'hash-change' ){
 
     // see also: https://gist.github.com/manufitoussi/7529fa882ff0b737f257
-    console.log('hash change signalled: ', event.data.data.hash );
+    //console.log('hash change signalled: ', event.data.data.hash );
+
+    explore.hash = event.data.data.hash.replace(/#/g, '');;
+
+    window.location.hash = explore.hash;
 
   }
   else if ( event.data.event_id === 'uls-close' ){
@@ -8206,7 +8272,7 @@ function refreshArticles(){
   }
 
   // store hash from URL, for later use
-  const hash_ = ( explore.hash !== '') ? '#' + explore.hash : '';
+  const hash_ = ( explore.hash !== '') ? explore.hash : '';
  
   if ( explore.replaceState ){
 
@@ -8818,7 +8884,7 @@ function startSpeakingArticle( title, qid, language ){
 
     explore.synth_paused = false;
 
-    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
+    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
   else { // resume existing utterence
@@ -9243,6 +9309,17 @@ async function insert_MIDI_app(){
   if ( $('#midi-music-app').length === 0 ){ // check if app was already inserted
 
     $('#midi-music-app-container').html( '<p id="midi-music-app" class="mv-content"><ul class="multi-value"><li class="resizer"><iframe class="inline-iframe resized" title="embedded MIDI music app" role="application" style="min-height: 600px" src="https://mmontag.github.io/chip-player-js/?p=/browse" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="100%" height="100%" loading="lazy"></iframe></li></ul></p>' );
+
+  }
+
+}
+
+function stateResetCheck( event ){
+
+  // discern user-click from synthetic-click
+  if ( event instanceof Event ){ // user event
+
+    explore.hash = ''; // reset hash
 
   }
 

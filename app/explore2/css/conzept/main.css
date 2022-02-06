@@ -373,7 +373,8 @@ details.multi-value[open] summary {
 
 details.inline-abstract {
   text-indent: 1rem;
-  line-height: normal;
+  /*line-height: normal;*/
+  line-height: 150% !important;
   font-size: normal;
   font-weight: normal;
   text-align: left;
@@ -540,6 +541,7 @@ body.rtl span.nobreak {
   overflow-y: hidden;
   padding: 0 5px 0 10px;
   padding-top: 120px !important;
+  /* padding-top: calc( 120px + 1rem ) !important; */
 }
 
 .content-wrapper {
@@ -567,8 +569,14 @@ body.rtl span.nobreak {
 }
 
 .headline-left-half {
-  flex: 0.05;
+  /* flex: 0.05; */
+  display: flex !important;
   margin-left: 3%;
+  align-items: first baseline;
+}
+
+.headline-left-half.icon i, .headline-right-half i {
+  vertical-align: middle;
 }
 
 .headline-right-half {
@@ -630,7 +638,7 @@ a.topic-class:focus, a.topic-class:hover {
 
 .icon.newtab {
   background-image: radial-gradient(circle at center, black 2px, transparent 2px), radial-gradient(circle at center, black 2px, transparent 1px);
-  background-size: 1rem 1rem;
+  background-size: 0.7rem 0.7rem;
   background-position: right top;
       background-position-x: right;
       background-position-y: top;
@@ -702,8 +710,12 @@ mark {
   padding: 0.6rem;
   position: relative;
   border-radius: 0.5rem 0.7rem 0.7rem 0.5rem;
+  /*
+  font-size: 100%;
+  font-size: 50%;
   font-size: 1.1rem;
   line-height: 1.6rem;
+  */
 }
 
 .intro-box a {
@@ -837,7 +849,7 @@ select.browser-default {
   white-space: nowrap;
 }
 .font-select .fs-results li.active {
-  background-color: #f3abad !important;
+  background-color: #f3abada1 !important;
   cursor: pointer;
 }
 
@@ -957,6 +969,9 @@ input[type=range]::-moz-focus-outer {
   font-family: 'Hind', 'IBM Plex Sans Condensed';
 
   font-size: .5em;
+
+  line-height: 0.8rem !important;
+
   bottom: -1.7rem;
 
   font-weight: 400;
@@ -968,13 +983,67 @@ input[type=range]::-moz-focus-outer {
 
 i.oma .subtext {
   background: transparent !important;
-  line-height: normal;
+  /*line-height: normal;*/
   /*line-height: 1em;*/
 }
 
 .intro-box a:hover .oma {
   filter: invert(66%) sepia(11%) saturate(5452%) hue-rotate(312deg) brightness(93%) contrast(101%) !important;
 }
+
+/* section-specific styling */
+
+#section-info {
+  grid-template-columns: 60% 40%;
+  grid-gap: 0rem;
+  font-size: smaller;
+}
+
+.field-info {
+  border-bottom: 1px solid #00000021;
+}
+
+.field-info.field-info-key {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.field-info.field-info-value {
+  text-align: center;
+  font-weight: 450;
+}
+
+#section-library-identity {
+  grid-template-columns: 100%;
+  grid-gap: 0rem;
+  margin-top: -1rem;
+}
+
+#section-library-identity i {
+  color: transparent;
+}
+
+#section-library-identity .subtext {
+  text-indent: 0rem;
+  text-align: left;
+  width: max-content;
+  font-size: medium;
+  color: black;
+}
+
+#section-library-identity .subtext:hover {
+  color: red !important;
+}
+
+#section-library-identity a {
+  line-height: 180%;
+}
+
+#section-library-identity .icon.newtab {
+  background-image: none;
+}
+
+/* end of section-specific styling */
 
 .section-icon.oma {
   background-size: 1.4em 1.4em;
@@ -1666,7 +1735,8 @@ textarea {
 
 details {
   display: block;
-  line-height: 3.5rem;
+  line-height: 250% !important;
+  /*line-height: 3.5rem;*/
   list-style: none;
 }
 
@@ -1941,7 +2011,7 @@ summary:hover {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax( 2em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax( 3em, 1fr));
   grid-gap: 1.4rem;
   padding-bottom: 1rem;
 }
@@ -2011,7 +2081,8 @@ h1 {
 }
 
 .tab-title {
-  font-size: 2rem;
+  font-size: 140%;
+  /*font-size: 2rem;*/
   line-height: 90%;
   margin: 1.7rem 0rem 1rem 0rem;
   user-select: none;
@@ -2056,8 +2127,11 @@ h1 {
 
 #srsearch {
   width: 70%;
+  font-size: 110%;
+  /*
   font-size: 1.5rem;
   height: 2rem;
+  */
   padding: 5px 5px 2px 5px;
   margin-left: 10px;
   font-weight: 500 !important;
@@ -2107,6 +2181,7 @@ h1 {
   top: 2px;
   right: 10px;
   font-size: small;
+  padding-top: 0.4rem;
 }
 
 .bookmark-explore {
@@ -2528,6 +2603,7 @@ details[open].conf summary ~ * {
 }
 
 #detail-structured-search {
+  font-size: 80%;
   margin-top: -0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -2572,6 +2648,11 @@ details[open].conf summary ~ * {
   width: 95%;
 }
 
+.medialinks details {
+  line-height: 200% !important;
+  margin-bottom: 0.3rem;
+}
+
 div#links .medialinks {
   margin-left: 3%;
   padding: 3px 4px;
@@ -2593,6 +2674,7 @@ div#links .medialinks {
 
 summary.more.bt {
   line-height: 1rem;
+  margin-bottom: 1rem;
 }
 
 .more-details:focus, summary.bt:focus {
@@ -3049,7 +3131,7 @@ ul.jqtree-tree .jqtree-toggler.jqtree-toggler-right {
 }
 .block-style ul.jqtree-tree .jqtree-element {
   position: relative;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   background-color: rgba(204, 204, 204, 0.4);
   padding: 0.1rem 1.5rem 0.1rem 0.1rem;
   border-radius: 0.3rem;
@@ -3101,6 +3183,10 @@ ul.jqtree-tree .jqtree-toggler.jqtree-toggler-right {
   display: none;
   width: 0;
   height: 0;
+}
+
+input:not([type]), input[type="text"]:not(.browser-default), input[type="password"]:not(.browser-default), input[type="email"]:not(.browser-default), input[type="url"]:not(.browser-default), input[type="time"]:not(.browser-default), input[type="date"]:not(.browser-default), input[type="datetime"]:not(.browser-default), input[type="datetime-local"]:not(.browser-default), input[type="tel"]:not(.browser-default), input[type="number"]:not(.browser-default), input[type="search"]:not(.browser-default), textarea.materialize-textarea {
+  height: fit-content;
 }
 
 @media only screen and (min-width: 1600px) {
