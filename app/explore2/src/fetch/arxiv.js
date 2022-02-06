@@ -238,9 +238,9 @@ async function fetchArxiv( args, total_results, page, sortby ){
       let label = '';
       let img   = '';
       let url   = '';
-      let file  = '';
       let date  = '';
       let desc  = '';
+      let pdf_html_link = '';
 
       let authors_html  = '';
       let authors 			= '';
@@ -250,14 +250,23 @@ async function fetchArxiv( args, total_results, page, sortby ){
       // TODO: handle empty items without PDF-URLs
       if ( valid( v.file ) ){
 
-        file = v.file.replace('/abs/', '/pdf/') + '#search=' + keyword;
+        let url_tmp = v.file.replace('/abs/', '/pdf/');
+
+        url = url_tmp + '#search=' + keyword;
+
+        // see:
+        //  https://ar5iv.org
+        //  https://github.com/dginev/ar5iv
+        let pdf_html_url = 'https://conze.pt/app/cors/raw/?url=' + encodeURIComponent( url_tmp.replace('/arxiv\.org/', '/ar5iv.org/') );
+
+        pdf_html_link = '&nbsp;&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="view PDF as HTML" aria-label="view PDF as HTML"' + setOnClick( Object.assign({}, args, { type: 'link', url: pdf_html_url, title: '', qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fab fa-html5" style="position:relative;"></i></span></a>';
 
       }
 
       if ( valid( v.date ) ){
 
         let d = v.date.split('T')[0];
-        date  = ' <div class="mv-extra-date">' + d + '</div>';
+        date  = ' <div class="mv-extra-date">' + d + pdf_html_link + '</div>';
 
       }
 
@@ -323,15 +332,13 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
       }
 
-      if ( valid( v.link ) ){
-
-        url = encodeURIComponent( JSON.stringify( v.link ) );
-
-      }
+      //if ( valid( v.link ) ){
+        //url = encodeURIComponent( JSON.stringify( v.link ) );
+      //}
 
       obj[ 'label-' + i ] = {
 
-        title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="document" aria-label="document"' + setOnClick( Object.assign({}, args, { type: 'link', url: file, title: args.topic } ) ) + '> ' + label + '</a>' + date + desc + authors ),
+        title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="document" aria-label="document"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '> ' + label + '</a>' + date + desc + authors ),
 
         //title_link:            encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + label + '</a>' + date + desc + authors ),
 

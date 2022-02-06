@@ -5,8 +5,8 @@
 # source conzept environment variables
 . /etc/conzept/settings.conf &&
 
-#year=$(date +'%Y') # FIXME: fails for first month of the new year
-year="2021"
+year=$(date +'%Y') # FIXME: fails for first month of the new year
+#year="2021"
 month=$(date +'%m' -d 'last month')
 dir="$CONZEPT_WEB_DIR/app/explore2/assets/json/covers"
 

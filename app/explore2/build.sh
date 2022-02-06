@@ -49,10 +49,10 @@ fi
 
   # transform template HTML and PHP files (by inserting environment variables)
   # note: this command transforms all embedded app template-files.
-  ./transform_templates.sh &&
+  ./template_transform.sh &&
 
   # setup conzept services (CORS/JSON proxies)
-  ./setup_conzept_services.sh
+  ./conzept_services_setup.sh
 
   cd .. &&
 

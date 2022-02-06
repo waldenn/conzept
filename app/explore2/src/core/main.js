@@ -17,7 +17,7 @@ const explore = {
 
   query               : '', // query-builder form-state
 
-  hash                : undefined, // URL hash from URL
+  hash                : window.location.hash.substring(1) || '', // URL hash from URL
   //hash_prev         : undefined, // previous URL hash from URL
 
   embedded            : getParameterByName('embedded') || '', // signals to open links in the local iframe

@@ -4,6 +4,10 @@ const sections = {
   'icon'  : '',
 },
 
+'info': {
+  'icon'  : '',
+},
+
 'meta': {
   'icon'  : '',
 },
