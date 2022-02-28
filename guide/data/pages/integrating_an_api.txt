@@ -2,9 +2,9 @@
 
 [{{ ::rijksmuseum_api.jpg?direct|Rijksmuseum API in Conzept}}]
 
-The easiest way to integrate a new [[code_structure#api_code|API-endpoint]] is to copy a similar API-file from "[[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|app/explore2/src/fetch]]" and then making the necessary changes to it.
+The easiest way to integrate a new [[code_structure#api_code|API-endpoint]] is to copy a similar API-file from "[[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|app/explore2/src/fetch]]" and then making the necessary changes to it. You can choose how to present the results.
 
-For some APIs you might want to render zoomable [[explore>International Image Interoperability Framework|IIIF]] images, for others you may just want a link to the webpage. You can choose how to present the results.
+For some APIs you might want to render zoomable [[explore>International Image Interoperability Framework|IIIF]] images, for others you may just want a "open in a new tab" link to a webpage. Some APIs support sorting options, others do not.
 
 In general integrating an API involves the steps outlined below.
 
@@ -36,9 +36,11 @@ else if ( args.list.startsWith('rijksmuseum') ){
 
   fetchRijksmuseum( args, null, 1, 'relevance' ); // this calls the "fetchRijksmuseum()" function in "src/fetch/rijksmuseum.js"
 
+  // fetchRijksmuseum( field-args, total-results, current-page, active-sorting-filter ) // the API-function call argument types
+
 }
 </code>
 
-  * **Copy a similar API-file** in the "src/data/fetch" directory to your API-file, **then modify to make it work as you want.**
+  * **Copy a similar API-file** from the "src/data/fetch" directory to your API-file, **then modify to make it work as you want.**
 
   * **Test if the API integration works in Conzept**, by viewing the results when you click on the field-link for a topic.

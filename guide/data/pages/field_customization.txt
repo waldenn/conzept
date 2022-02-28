@@ -53,6 +53,8 @@ Here is a list of the properties that can be used to define fields:
 | **create_trigger** | <eval-string> | if the "create_condition" is set to "true" => evaluate this code-string to achieve extra side-effects during the input-stage | post-create |
 | **render_condition** | <eval-string-to-boolean> |if set: and evaluates to "true" => render this field | pre-render |
 | **render_trigger** | <eval-string> |if set AND the "render_condition" is "true" => evaluate this code-string to achieve extra side-effects during the render-stage | render |
+| **string_format** | <eval-string> | string-format used to transform the Wikidata property string or number into custom HTML| create and pre-render | 
+| **url_format** | <eval-string-to-url> | URL-address-format from Wikidata (or another source), to use when a link is clicked | create and pre-render | 
 | **url** | <eval-string-to-url> | URL-address to use when a link is clicked | create and pre-render | 
 | **title** | <eval-string> | link hover-title | pre-render |
 | **prop** | <integer> | [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata-property]] number | create |
@@ -68,21 +70,22 @@ Here is a list of the properties that can be used to define fields:
 These types are currently available in field-definitions:
 
 ^ type      ^ required field ^ description       ^
-| **no type** | | If the field-type is left empty, the data is treated as (one or more) strings by default. |
+| **no type** | | If the field-type is left empty, the data is treated as (one or more) strings by default (but not treated as an "info"-section field, as is done for "symbol-string" and "symbol-number" fields.). |
 | **wikipedia-qid** | prop | Fetch the Wikidata for this property. This will return one or more Wikidata [[https://www.wikidata.org/wiki/Wikidata:Identifiers|Q-IDs]] coming from a Wikidata item statement (eg. "Q42"). \\ \\ Note: the "wikipedia-qid" name is used to automatically render either a Wikipedia page or a Wikidata page. Showing the Wikipedia article takes precedence, if it is available in the users' language. |
 | **symbol-number** | prop | Number coming from a Wikidata item statement (eg. "3051"). |
+| **symbol-string** | prop | String coming from a Wikidata item statement (eg. "+45-111-222-333"). |
 | **symbol-html** | prop | This type should only be used when you want create raw HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
 | **link** | url | Open the URL in a single content-pane |
 | **url** | url | Open the URL in a new browser-tab |
 | **link-split** | url |Open the URL in two content panes. Load the supplied URL into the first content pane, in the second-content pane we try to load the Wikipedia / Wikidata page for this search-string / qid|
-| **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument}':true",| Fetch data from the supplied API-function and the argument. The results are rendered in the topic-card |
+| **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument-string}':true" | [[#exampleapi-based_link_field|Fetch API data]] from the [[integrating_an_api|supplied API-function]] and the argument-string (eg. a title-string or qid). The third boolean-argument can enable/disable the API data fetching. The results are rendered in the topic-card. \\ \\ Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. |
 ===== special values =====
 
 Conzept has some special title-values which can be used anywhere in the field definition values:
 
 ^ name  ^ description ^
 | **title** | title as-is|
-| **title_** | title without Wikipedia-namespace and braces|
+| **title_** | title without any Wikipedia namespace-prefix and braces|
 | **title_enc** | title URL-encoded |
 | **title_quoted** | title "in quotes" |
 | **title_plus** | title with a plus for spaces|
@@ -97,7 +100,7 @@ Conzept has some special title-values which can be used anywhere in the field de
 There is currently one 'magic'-variable usable in field-definition values:
 
 ^ name  ^ description ^
-| **Xvalue** | Used to **automatically iterate over a list of values** (or just one value) coming from Wikidata. This makes it easy to use multi-values **to create multiple new strings**. See an example of its use [[#xvalue|here]]. |
+| **Xvalue** | Used to **automatically iterate over a list of values** (or just one value) coming from Wikidata. This makes it easy to use multi-values **to create multiple new strings**. See examples of its use [[#xvalue|here]]. |
 ===== types of fields =====
 
 
@@ -110,7 +113,7 @@ These fields have a [[https://www.wikidata.org/wiki/Wikidata:Database_reports/Li
 
 === examples ===
 
-An example which renders a link to "members of" values of a topic, using the Qid data:
+An example which renders a link to all the "members of" (Wikidata property) values of a topic:
 
 <code>
 'member_of' : {             // ID of the field (must be unique)
@@ -196,6 +199,24 @@ The example below illustrates the rendering of multiple website URL(s), if there
   text: 'site',
   section: 'main',
   rank: 40,
+},
+</code>
+
+\\
+
+Another example using "${Xvalue}" for a part of the URL:
+
+<code>
+'twitter_topic' : {
+  title: 'Twitter topic',
+  prop: '8672',
+  type: 'url',
+  url: 'https://twitter.com/i/topics/${Xvalue}',
+  mv: true,
+  icon: 'fab fa-twitter',
+  text: 'Twitter topic',
+  section: ['news-social','main'],
+  rank: [34,9070],
 },
 </code>
 ==== Derived fields ====

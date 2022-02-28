@@ -32,19 +32,19 @@ To add an extra app to the existing set of apps, these things need to be done:
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Then <strong>add a new <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field</a> definition</strong>, to create a link to this specific app. Here is a simple example:</div>
+<li class="level1"><div class="li"> Then <strong>add a new <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field</a> definition</strong>, to create a link to this specific app. Here is a simple example, which adds a link in two sections:</div>
 </li>
 </ul>
 <pre class="code">&#039;my_app_name&#039; : {
   create_condition: true,
-  title: &#039;My Chemistry App&#039;,
+  title: &#039;My App Name&#039;,
   prop: &#039;&#039;,
   type: &#039;link&#039;,
   mv: false,
   url: &#039;${explore.base}/app/myapp/?q=${title_quoted}&#039;,
   mv: false,
   icon: &#039;fas fa-flask&#039;,
-  text: &#039;MyApp name&#039;,
+  text: &#039;My App Name&#039;,
   section: [&#039;science-chemistry&#039;,&#039;main&#039;],
   rank: [100,10000],
 },</pre>

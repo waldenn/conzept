@@ -8,15 +8,17 @@
 
   * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
-  * Find and integrate a more lightweight MIDI-webcomponent ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)
+  * Find and integrate a **more lightweight MIDI-webcomponent** ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)
 
-  * Allow the user bookmarks to be imported & exported.
+  * Implement **bookmark imported & exporting**.
 
-  * Support and document setting up Nginx as a webserver alternative for Apache2.
+  * Support and document setting up **Nginx as a webserver** alternative for Apache2.
+
+  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]].
 ===== general ideas =====
 
   * Research **educational-support enhancements**:
-    * Collaborative & social learning features (eg. [[https://jamshelf.com/|Jam]] audio-chat rooms for each topic)
+    * Collaborative & social learning features (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
     * User-created and auto-generated presentations around a topic
     * Auto-generated topic [[https://conze.pt/explore/Genre?l=en&t=link&i=Q483394&u=https%3A%2F%2Fconze.pt%2Fapp%2Fquiz%2F%3Fm%3Dlist%26q%3DQ3305213%26p%3DP136%26l%3Den&s=true|quizzes]]
     * Auto-generated, [[https://fs.blog/spacing-effect/|spaced-repetition]]-based facts learning (for a certain topic / set of topics / topic-domain)
@@ -29,3 +31,8 @@
 
   * Look into integrating **[[explore>Solid (web decentralization project)|Solid]]** for user-authentication ([[explore>WebID]], [[explore>Decentralized identifier|DID]]) and user-data-storage (LoD pod) workflows. (How would offline work?)
     * [[https://www.youtube.com/watch?v=TkdlhrDeLCE|intro video]]
+    * Some related thoughts on this topic:
+      * Also allow for anonymous usage (if the user wants this). So a form of progressive enhancement for web application authentication.
+      * How would offline web application access still work in these environments (this would require some form of client-side caching).
+      * Suppose I would like to give a certain group of users some special 'rewards' (eg. access to a certain part of the website / web application), how could that be structured? Preferably there would be some standard web API to check against.
+      * Could we mix Solid authentication with OpenID-style authentication (to make it even easier for the user that wants to login)?

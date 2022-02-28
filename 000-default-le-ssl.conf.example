@@ -30,6 +30,11 @@
     ProxyPassReverse http://127.0.0.1:1458
        </Location>
 
+       <Location /app/tree>
+          ProxyPass http://127.0.0.1:3000
+          ProxyPassReverse http://127.0.0.1:3000
+       </Location>
+
         <Directory "/var/www/html">
          Options Indexes FollowSymLinks MultiViews
          AllowOverride All

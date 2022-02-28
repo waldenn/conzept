@@ -2,12 +2,20 @@
 
 =====  browser navigation =====
 
-  * **Backwards navigation** (using the browser history stack) has several issues. 
-    * note: The web standards community is working on improving the **[[https://github.com/WICG/app-history|browser-history API]]**, since many SPA's are running into the same issues.
+  * **Backwards & Forwards history navigation** has several issues.
+    * note: The web standards community is working on improving the [[https://github.com/WICG/app-history|browser-history API]], since many other "Single Page Applications" (SPA) are running into the same issues.
+    * See also: **[[https://wicg.github.io/app-history/|App History API]]** (proposal)
 
   * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
+    * There is a need to have a better workflow & tooling to help with debugging these URL-issues.
 
   * **Touch-based resizing the width of the sidebar** does not work (Todo: make the vertical separator line and the <html><i class="fas fa-grip-lines-vertical"></i></html> resize-handle touch-enabled)
+
+  * **URL hash handling**
+    * Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.
+    * Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)
+    * Scroll-position / section alignment issue for Wikipedia ([[https://conze.pt/app/wikipedia/?t=Benin%20City&l=en&voice=en-US&qid=320704&dir=ltr&embedded=#references|example]])
+
 ===== mobile browser compatibility and usability =====
 
   * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
@@ -24,8 +32,17 @@
 
   * Integrate an automated testing system.
 
-===== admin/dev workflows =====
+===== admin-dev workflows =====
 
   * Make [[terms#topic_headline|topic-headline]] fields definable in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file.
 
-  * Improve the workflow of [[adding_an_api|adding API integrations]].
+  * Improve the workflow for [[integrating_an_api|adding API integrations]].
+
+===== field localization =====
+
+  * Create a structure to store field translations (title and icon-title), both for Wikidata and non-Wikidata fields.
+    * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
+
+===== other =====
+
+  * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)

@@ -62,7 +62,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let movement_works_link = '';
   let archive_scholar_link= '';
   let archive_genealogy_link= ''; // could we make this inline?
-  let entitree_link       = '';
   let codeview_link       = '';
   let glotto_link         = '';
   let xeno_canto_link     = '';
@@ -967,8 +966,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   }
 
-
-  let dash = '&#10143;';
+  const dash = ( explore.language_direction === 'rtl' ) ? '&#10510;' : '&#10511'; // '&#10143;';
 
   if ( start_date !== '' && end_date !== '' ){ // case 1) start & end date
 
@@ -1617,13 +1615,15 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   }
 
+  /*
   if ( valid( item.xeno_canto ) ){
 
     const url = `https://www.xeno-canto.org/species/${item.xeno_canto}`
 
-    xeno_canto_link = '&nbsp;<a href="javascript:void(0)" title="Xeno-canto bird sounds" aria-label="Xeno-canto bird sounds"' + setOnClick( Object.assign({}, args, { type: 'link', url: url } ) ) + '><span class="icon"><i class="fas fa-crow" style="position:relative;"></i></span></a> ';
+    xeno_canto_link = '&nbsp;<a href="javascript:void(0)" title="Xeno-canto bird sounds" aria-label="Xeno-canto bird sounds"' + setOnClick( Object.assign({}, args, { type: 'url', url: url } ) ) + '><span class="icon"><i class="fas fa-crow" style="position:relative;"></i></span></a> ';
 
   }
+  */
 
 
   if ( valid( item.semantic_scholar_author_id ) ){
@@ -1672,23 +1672,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
       found_in_taxon_link = '&nbsp;<a href="javascript:void(0)" title="found in taxon" aria-label="found in taxon"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&qid=' + item.found_in_taxon + '&voice=' + explore.voice_code  } ) ) + '"><span title="found in taxon" class="icon"><i class="oma oma-black-leaf-fluttering-in-wind" style="position:relative;"></i></span></a> ';
 
     }
-
-  }
-
-  if ( valid( item.is_nobility ) ){
-
-    const type = 'family_tree';
-
-    entitree_link = '&nbsp;<a href="javascript:void(0)" title="EntiTree family tree" aria-label="EntiTree family tree"' + setOnClick( Object.assign({}, args, { type: 'link',  url: 'https://www.entitree.com/' + explore.language + '/' + type + '/' + item.qid, title: title, qid: item.qid } ) ) + '><span class="icon"><i class="fas fa-crown" style="position:relative;"></i></span></a> ';
-
-  }
-
-
-  if ( valid( item.is_nobility_family ) ){
-
-    const type = 'family';
-
-    entitree_link = '&nbsp;<a href="javascript:void(0)" title="EntiTree family tree" aria-label="EntiTree family tree"' + setOnClick( Object.assign({}, args, { type: 'link',  url: 'https://www.entitree.com/' + explore.language + '/' + type + '/' + item.qid, title: title, qid: item.qid } ) ) + '><span class="icon"><i class="fas fa-crown" style="position:relative;"></i></span></a> ';
 
   }
 
@@ -1917,6 +1900,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     ' ' + o.website +
     ' ' + o.twitter +
     ' ' + o.mastodon_address +
+    outline_link +
     linkgraph_link +
     coworking_space_map_link +  // nomad-persona
     wikivoyage_link +           // nomad-persona
@@ -1935,15 +1919,24 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     open_library_link +
     wikiversity_link +
     audio_link +
-    xeno_canto_link +
-    taxon_group_link +
+    //xeno_canto_link + // not embeddable anymore
     chain_map_link +
+    ( valid( item.nobility_family_entitree ) ? o.nobility_family_entitree : '' )  +
+    ( valid( item.nobility_familytree_entitree ) ? o.nobility_familytree_entitree : '' )  +
+    ( valid( item.familytree_entitree ) ? o.familytree_entitree : '' )  +
+    ( valid( item.subsidiary_organization_entitree ) ? o.subsidiary_organization_entitree : '' )  +
+    ( valid( item.parent_organization_entitree ) ? o.parent_organization_entitree : '' )  +
+    taxon_group_link +
     occurence_map_link +
+    ( valid( item.taxon_entitree ) ? o.taxon_entitree : '' )  +
     found_in_taxon_link +
     o.chemical_formula_string +
     molview_link +
+    anatomy_link +
     timespace_link +
-    entitree_link +
+    ( valid( item.has_parts_entitree ) ? o.has_parts_entitree : '' )  +
+    ( valid( item.part_of_entitree ) ? o.part_of_entitree : '' )  +
+    ( valid( item.relatives_entitree ) ? o.relatives_entitree : '' )  +
     ( valid( tags[1] === 'tonality' ) ? o.music_tonality_query : '' ) +
     music_link +
     o.photosphere +
@@ -1961,11 +1954,9 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     feed_link +
     stockprice_link +
     business_news_link +
-    outline_link +
     outlinks_link +
     codeview_link +
     archive_game_link +
-    anatomy_link +
     satellite_link +
   '</span>';
 

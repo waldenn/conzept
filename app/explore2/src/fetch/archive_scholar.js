@@ -44,7 +44,7 @@ async function fetchArchiveScholar( args, total_results, page, sortby ){
   let sort_select_options = '';
 
   let sort_types          = {
-    relevancy   : 'relevance',
+    relevance   : 'relevance',
     time_asc    : 'oldest first',
     time_desc   : 'newest first',
   };

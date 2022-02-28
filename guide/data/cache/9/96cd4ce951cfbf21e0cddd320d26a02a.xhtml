@@ -90,10 +90,10 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 <p>
 (then log in again, to reload the shell environment)
 </p>
-<pre class="code">sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild</pre>
+<pre class="code">sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild pm2</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Node setup&quot;,&quot;hid&quot;:&quot;node_setup&quot;,&quot;codeblockOffset&quot;:22,&quot;secid&quot;:6,&quot;range&quot;:&quot;1644-2199&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Node setup&quot;,&quot;hid&quot;:&quot;node_setup&quot;,&quot;codeblockOffset&quot;:22,&quot;secid&quot;:6,&quot;range&quot;:&quot;1644-2203&quot;} -->
 <h2 class="sectionedit7" id="conzept_setup">Conzept setup</h2>
 <div class="level2">
 <pre class="code">git clone https://github.com/waldenn/conzept.git</pre>
@@ -108,7 +108,7 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 Add yourself to the “www-data” group (so you can make edits as yourself):
 </p>
 <pre class="code">usermod -a -G www-data YOUR_USER_ID</pre>
-<pre class="code">logout</pre>
+<pre class="code">exit &amp;&amp; logout</pre>
 
 <p>
 (then log in again, to reload the shell environment)
@@ -134,7 +134,7 @@ Add yourself to the “www-data” group (so you can make edits as yourself):
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept setup&quot;,&quot;hid&quot;:&quot;conzept_setup&quot;,&quot;codeblockOffset&quot;:29,&quot;secid&quot;:7,&quot;range&quot;:&quot;2200-3064&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept setup&quot;,&quot;hid&quot;:&quot;conzept_setup&quot;,&quot;codeblockOffset&quot;:29,&quot;secid&quot;:7,&quot;range&quot;:&quot;2204-3076&quot;} -->
 <h2 class="sectionedit8" id="conzept_services_setup">Conzept services setup</h2>
 <div class="level2">
 <pre class="code">sudo su</pre>
@@ -155,7 +155,7 @@ Example:
 # JSON CORS-proxy (with secret-API-key support, port 50001 on localhost only)
 su conzept -s /bin/sh -c &#039;$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 50001 -c $CONZEPT_SERVICES_DIR/json-proxy.json &amp;&#039;
 
-# any-file CORS-proxy (port 1458 on localhpst only)
+# any-file CORS-proxy (port 1458 on localhost only)
 su conzept -s /bin/sh -c &#039;cd &quot;$CONZEPT_SERVICES_DIR/allorigins&quot; &amp;&amp; npm start app.js &amp;&#039;
 
 exit 0;</pre>
@@ -164,6 +164,11 @@ exit 0;</pre>
 Make it executable:
 </p>
 <pre class="code">chmod +x /etc/rc.local</pre>
+
+<p>
+Setup the pm2-process for the Entitree app:
+</p>
+<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh &amp;&amp; pm2 save &amp;&amp; pm2 startup ubuntu -u conzept</pre>
 
 <p>
 Setup crontab for periodic commands:
@@ -193,8 +198,32 @@ Startup the services by rebooting:
 <pre class="code">sudo reboot now</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept services setup&quot;,&quot;hid&quot;:&quot;conzept_services_setup&quot;,&quot;codeblockOffset&quot;:41,&quot;secid&quot;:8,&quot;range&quot;:&quot;3065-4556&quot;} -->
-<h2 class="sectionedit9" id="conzept-extra_setup_optional">Conzept-extra setup (optional)</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept services setup&quot;,&quot;hid&quot;:&quot;conzept_services_setup&quot;,&quot;codeblockOffset&quot;:41,&quot;secid&quot;:8,&quot;range&quot;:&quot;3077-4754&quot;} -->
+<h2 class="sectionedit9" id="dokuwiki">DokuWiki</h2>
+<div class="level2">
+
+<p>
+Modify the DokuWiki base-<abbr title="Uniform Resource Locator">URL</abbr> setting in “guide/conf/local.php”:
+</p>
+<pre class="code">$conf[&#039;baseurl&#039;] = &#039;https://YOUR_HOSTNAME&#039;;</pre>
+
+<p>
+Change the admin password:
+</p>
+<ul>
+<li class="level1"><div class="li"> Go to: <a href="https://YOUR_HOSTNAME/guide/home?do=login" class="urlextern" target="_blank" title="https://YOUR_HOSTNAME/guide/home?do=login" rel="ugc nofollow noopener">https://YOUR_HOSTNAME/guide/home?do=login</a> </div>
+</li>
+<li class="level1"><div class="li"> Login as admin (password: “admin”)</div>
+</li>
+<li class="level1"><div class="li"> Go to <a href="https://YOUR_HOSTNAME/guide/home?do=profile" class="urlextern" target="_blank" title="https://YOUR_HOSTNAME/guide/home?do=profile" rel="ugc nofollow noopener">https://YOUR_HOSTNAME/guide/home?do=profile</a></div>
+</li>
+<li class="level1"><div class="li"> Change the password using the form</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;DokuWiki&quot;,&quot;hid&quot;:&quot;dokuwiki&quot;,&quot;codeblockOffset&quot;:50,&quot;secid&quot;:9,&quot;range&quot;:&quot;4755-5114&quot;} -->
+<h2 class="sectionedit10" id="conzept-extra_setup_optional">Conzept-extra setup (optional)</h2>
 <div class="level2">
 
 <p>
@@ -212,4 +241,4 @@ You can now modify, build and deploy out-of-tree Conzept apps. Just “cd” int
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept-extra setup (optional)&quot;,&quot;hid&quot;:&quot;conzept-extra_setup_optional&quot;,&quot;codeblockOffset&quot;:49,&quot;secid&quot;:9,&quot;range&quot;:&quot;4557-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept-extra setup (optional)&quot;,&quot;hid&quot;:&quot;conzept-extra_setup_optional&quot;,&quot;codeblockOffset&quot;:51,&quot;secid&quot;:10,&quot;range&quot;:&quot;5115-&quot;} -->

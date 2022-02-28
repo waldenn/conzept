@@ -12,7 +12,7 @@ You can also browse it online <a href="https://github1s.com/waldenn/conzept" cla
 <h2 class="sectionedit2" id="root_directory_structure">root directory structure</h2>
 <div class="level2">
 <pre class="code">.
-├── app (all embedded apps, including the Conzept main app, see next section)
+├── app (all ~40 embedded apps, including the Conzept main app, see next section)
 │  ├── ...
 │  ├── ...
 │  └── ...
@@ -40,12 +40,12 @@ The Conzept-project root-directory also contains the following relevant files:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;root directory structure&quot;,&quot;hid&quot;:&quot;root_directory_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;196-1049&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;root directory structure&quot;,&quot;hid&quot;:&quot;root_directory_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;196-1053&quot;} -->
 <h2 class="sectionedit3" id="conzept_main_app">conzept main app</h2>
 <div class="level2">
 
 <p>
-The Conzept main app is located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2" rel="ugc nofollow noopener">&lt;root_directory&gt;/app/explore2</a></strong>” directory and has the following structure:
+The Conzept main app (the UI wrapping all the other apps) is located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2" rel="ugc nofollow noopener">&lt;root_directory&gt;/app/explore2</a></strong>” directory and has the following structure:
 </p>
 <pre class="code">.
 ├── assets
@@ -78,7 +78,7 @@ The Conzept main app is located in the “<strong><a href="https://github.com/wa
 └── tools (various tools used for: building, installing services, fetching monthly covers, etc.)</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1050-2550&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1054-2591&quot;} -->
 <h2 class="sectionedit4" id="entry_point">entry point</h2>
 <div class="level2">
 
@@ -111,7 +111,7 @@ From “main.js”:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2551-3448&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2592-3489&quot;} -->
 <h2 class="sectionedit5" id="explore_object">explore object</h2>
 <div class="level2">
 
@@ -147,12 +147,15 @@ Here are some of the important properties on this object:
 		<td class="col0"> explore.<strong>query_param</strong> </td><td class="col1"> <a href="/guide/user_manual#structured_search" class="wikilink1" title="user_manual" data-wiki-id="user_manual">structured search</a> query-<abbr title="Uniform Resource Locator">URL</abbr> </td>
 	</tr>
 	<tr class="row7">
+		<td class="col0"> explore.<strong>hash</strong> </td><td class="col1"> current <abbr title="Uniform Resource Locator">URL</abbr>-fragment </td>
+	</tr>
+	<tr class="row8">
 		<td class="col0"> explore.<strong>fragment</strong> </td><td class="col1"> sidebar detail-fragment to go to upon after loading the <abbr title="Uniform Resource Locator">URL</abbr> (<a href="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" rel="ugc nofollow noopener">example</a>) </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3692-4314&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3733-4399&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3449-4315&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3490-4400&quot;} -->
 <h2 class="sectionedit7" id="api_code">API code</h2>
 <div class="level2">
 
@@ -183,4 +186,4 @@ To add a new <abbr title="Application Programming Interface">API</abbr>, see <st
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4316-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4401-&quot;} -->

@@ -64,7 +64,7 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 
 (then log in again, to reload the shell environment)
 
-<code>sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild</code>
+<code>sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild pm2</code>
 ===== Conzept setup =====
 
 <code>git clone https://github.com/waldenn/conzept.git</code>
@@ -109,7 +109,7 @@ Example:
 # JSON CORS-proxy (with secret-API-key support, port 50001 on localhost only)
 su conzept -s /bin/sh -c '$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 50001 -c $CONZEPT_SERVICES_DIR/json-proxy.json &'
 
-# any-file CORS-proxy (port 1458 on localhpst only)
+# any-file CORS-proxy (port 1458 on localhost only)
 su conzept -s /bin/sh -c 'cd "$CONZEPT_SERVICES_DIR/allorigins" && npm start app.js &'
 
 exit 0;
@@ -117,6 +117,10 @@ exit 0;
 
 Make it executable:
 <code>chmod +x /etc/rc.local</code>
+
+Setup the pm2-process for the Entitree app:
+
+<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh && pm2 save && pm2 startup ubuntu -u conzept</code>
 
 Setup crontab for periodic commands:
 

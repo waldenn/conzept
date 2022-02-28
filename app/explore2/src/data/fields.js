@@ -4446,7 +4446,7 @@ conzept_fields = {
   type: 'wikipedia-qid',
   mv: true,
   icon: 'far fa-clock',
-  text: 'notable event',
+  text: 'significant event',
   section: ['library-history','main'],
   rank: [92,1430],
 },
@@ -5010,7 +5010,7 @@ conzept_fields = {
   type: 'wikipedia-qid',
   mv: true,
   icon: 'fas fa-sitemap',
-  text: 'parent org',
+  text: 'parent org graph',
   section: ['business','main'],
   rank: [100,1980],
 },
@@ -6384,7 +6384,7 @@ conzept_fields = {
 'xeno_canto' : {
   title: 'Xeno-canto bird sounds',
   prop: '2426',
-  type: 'link',
+  type: 'url',
   url: 'https://www.xeno-canto.org/species/${item.xeno_canto}',
   mv: false,
   icon: 'fas fa-crow',
@@ -8864,6 +8864,193 @@ conzept_fields = {
   text: 'GloBI',
   section: ['science-biology', 'main'],
   rank: [460, 12100],
+},
+
+'author_entitree' : {
+  create_condition: 'valid( item.is_author ) && checkTag(item, 0, "person")',
+  title: 'author works tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P50/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'authored tree',
+  section: ['main'],
+  rank: [2029],
+},
+
+'influenced_by_entitree' : {
+  create_condition: 'valid( item.influenced_by )',
+  title: 'influence tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P737/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'influence tree',
+  section: ['main'],
+  rank: [5699],
+},
+
+'position_held_entitree' : {
+  create_condition: 'valid( item.position_held )',
+  title: 'position-held tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P39/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'position tree',
+  section: ['main'],
+  rank: [3209],
+},
+
+'significant event_entitree' : {
+  create_condition: 'valid( item.significant_event )',
+  title: 'significant event tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P793/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'significant event',
+  section: ['main'],
+  rank: [1429],
+},
+
+'member_of_entitree' : {
+  create_condition: 'valid( item.member_of )',
+  title: 'member-of tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P463/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'member-of tree',
+  section: ['main'],
+  rank: [5159],
+},
+
+'part_of_entitree' : {
+  create_condition: 'valid( item.part_of )',
+  //create_condition: 'checkTag(item, 0, "time") && valid( item.part_of )',
+  title: 'part-of tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P361/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'part-of tree',
+  section: ['library-history', 'main'],
+  rank: [20, 7239],
+},
+
+'has_parts_entitree' : {
+  create_condition: 'valid( item.has_parts ) && ! valid( item.part_of )',
+  //create_condition: 'checkTag(item, 0, "time") && valid( item.has_parts ) && ! valid( item.part_of )',
+  title: 'has-parts tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P527/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'has-parts tree',
+  section: ['library-history', 'main'],
+  rank: [19, 7238],
+},
+
+'nobility_familytree_entitree' : {
+  create_condition: 'valid( item.is_nobility )',
+  title: 'family tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/family_tree/${item.qid}',
+  icon: 'fas fa-crown',
+  text: 'nobility tree',
+  section: ['main'],
+  rank: [6009],
+},
+
+'nobility_family_entitree' : {
+  create_condition: 'valid( item.is_nobility_family )',
+  title: 'family tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P53/${item.qid}',
+  icon: 'fas fa-crown',
+  text: 'nobility tree',
+  section: ['main'],
+  rank: [6008],
+},
+
+'familytree_entitree' : {
+  create_condition: '( checkTag(item, 0, "person") && !valid( item.is_nobility ) ) && ( validAny( [ item.father, item.mother, item.spouse, item.unmarried_partner, item.sibling, item.child ] ) )',
+  title: 'family tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/family_tree/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'family tree',
+  section: ['main'],
+  rank: [6011],
+},
+
+'relatives_entitree' : {
+  create_condition: 'checkTag(item, 0, "person") && validAny( item.relatives )',
+  title: 'relatives tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P1038/${item.qid}',
+  //url: '${explore.base}/app/tree/${explore.language}/relative/${item.qid}',
+  icon: 'fas fa-holly-berry',
+  text: 'relatives tree',
+  section: ['main'],
+  rank: [6039],
+},
+
+'subsidiary_organization_entitree' : {
+  create_condition: 'valid( item.subsidiary )',
+  title: 'subsidiary organization tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P355/${item.qid}',
+  //url: '${explore.base}/app/tree/${explore.language}/subsidiary/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'subs. org',
+  section: ['business','main'],
+  rank: [9,1978],
+},
+
+'parent_organization_entitree' : {
+  create_condition: 'valid( item.parent_organization ) && !valid( item.subsidiary )',
+  title: 'parent organization tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P749/${item.qid}',
+  //url: '${explore.base}/app/tree/${explore.language}/parent_organization/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'parent org',
+  section: ['business','main'],
+  rank: [10,1979],
+},
+
+'taxon_entitree' : {
+  create_condition: 'valid( item.has_taxon )',
+  title: 'taxonomy tree',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/tree/${explore.language}/P171/${item.qid}',
+  icon: 'fas fa-sitemap',
+  text: 'taxon tree',
+  section: ['science-biology','main'],
+  rank: [49, 1889],
 },
 
 'taxon_graph' : {
@@ -12894,6 +13081,19 @@ conzept_fields = {
   rank: 38,
 },
 
+'substack_search' : {
+  create_condition: true,
+  title: 'Substack blog search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://substack.com/discover/${title_quoted}',
+  icon: 'fas fa-align-left',
+  text: 'Substack',
+  section: 'news-social',
+  rank: 39,
+},
+
 'dbpedia_search' : {
   create_condition: true,
   title: 'DBpedia search',
@@ -14047,6 +14247,19 @@ conzept_fields = {
   text: 'wQuote',
   section: 'library-general',
   rank: 250,
+},
+
+'hackernews_inline' : {
+  value: 'hackernews:${item.title}:true',
+  title: 'HackerNews search',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  url: '',
+  icon: 'fas fa-microchip',
+  text: 'Hacker News inline',
+  section: 'news-tech',
+  rank: 9,
 },
 
 'gdelt_news' : {
@@ -122910,6 +123123,7 @@ conzept_fields = {
   auto: true,
 },
 
+/*
 'url' : {
   title: 'URL',
   prop: '2699',
@@ -122922,6 +123136,7 @@ conzept_fields = {
   rank: [92699],
   auto: true,
 },
+*/
 
 'property_proposal_discussion' : {
   title: 'Property proposal discussion',
@@ -132290,13 +132505,14 @@ conzept_fields = {
 },
 
 'commons_creator_page' : {
-  title: 'Commons Creator page',
+  title: 'WikiCommons Creator page',
   prop: '1472',
   type: 'symbol-string',
   mv: false,
+  string_format: '<a href="https://commons.m.wikimedia.org/wiki/${ encodeURIComponent( item.commons_creator_page ) }?uselang=${explore.language}" title="WikiCommons page" target="infoframe">${item.commons_creator_page}</a>',
   url: '',
   icon: '',
-  text: 'Commons Creator page',
+  text: 'WikiCommons page',
   section: 'info',
   rank: '301472',
   auto: true,
@@ -132329,14 +132545,14 @@ conzept_fields = {
 },
 
 'commons_institution_page' : {
-  title: 'Commons Institution page',
+  title: 'WikiCommons Institution page',
   prop: '1612',
   type: 'symbol-string',
   mv: false,
   string_format: '<a href="https://commons.m.wikimedia.org/wiki/${ encodeURIComponent( item.commons_institution_page ) }?uselang=${explore.language}" title="WikiCommons page" target="infoframe">${item.commons_institution_page}</a>',
   url: '',
   icon: '',
-  text: 'Commons Institution page',
+  text: 'WikiCommons page',
   section: 'info',
   rank: '301612',
   auto: true,
@@ -134214,6 +134430,7 @@ conzept_fields = {
   auto: true,
 },
 
+/*
 'openstreetmap_zoom_level' : {
   title: 'OpenStreetMap zoom level',
   prop: '6592',
@@ -134226,6 +134443,7 @@ conzept_fields = {
   rank: '306592',
   auto: true,
 },
+*/
 
 'position_in_forsyth-edwards_notation' : {
   title: 'Position in Forsyth-Edwards Notation',

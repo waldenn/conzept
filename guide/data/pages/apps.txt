@@ -17,14 +17,14 @@ Main features:
   * Fullscreen image viewing and zooming \\ \\
   * Text-to-speech support \\ \\
   * The action buttons (at the top) allow for doing something with the topic: \\ \\
-    * <html><i class="fas fa-retweet"></i>&nbsp;</html> Explore the topic into the sidebar \\ \\
-    * <html><i class="fas fa-video"></i>&nbsp;</html> View related videos, images and books \\ \\
-    * <html><i class="fas fa-plus"></i>&nbsp;</html> Add the topic to the [[#compare app|compare]] list \\ \\
-    * <html><i class="fas fa-external-link-alt"></i>&nbsp;</html> Clone the current tab into another tab \\ \\
-    * <html><i class="fab fa-wikipedia-w"></i>&nbsp;</html> Go to the original Wikipedia page (eg. to edit the article) \\ \\
-    * <html><i class="far fa-clipboard"></i>&nbsp;</html> View the Wikipedia Talk-article \\ \\
-    * <html><i class="fas fa-print"></i>&nbsp;</html> Print the article \\ \\
-    * Switch the article language
+    * <html><i class="fas fa-retweet"></i>&nbsp;</html> Explore the topic by running a new search query for this topic-title.\\ \\
+    * <html><i class="fas fa-video"></i>&nbsp;</html> View related videos, images and books. \\ \\
+    * <html><i class="fas fa-plus"></i>&nbsp;</html> Add the topic to the [[#compare app|compare]] list. \\ \\
+    * <html><i class="fas fa-external-link-alt"></i>&nbsp;</html> Clone the current tab into another tab. \\ \\
+    * <html><i class="fab fa-wikipedia-w"></i>&nbsp;</html> Go to the original Wikipedia page (eg. to edit the article). \\ \\
+    * <html><i class="far fa-clipboard"></i>&nbsp;</html> View the Wikipedia Talk-article. \\ \\
+    * <html><i class="fas fa-print"></i>&nbsp;</html> Print the article. \\ \\
+    * Switch the article language.
 
 ===== wikidata app =====
 
@@ -81,33 +81,52 @@ The time-space app allows you to view series of related events, both in the time
 
 [{{::filter_browse_app.jpg?direct|[[https://conze.pt/explore/Business?l=en&t=link-split&i=Q4830453&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fc%3DQ4830453%26lang%3Den&s=true|example]]}}]
 
-The filter-browse app allows you to drill-down on classes of Wikidata properties, though only if some "[[https://www.wikidata.org/wiki/Property:P1963|properties-for-this-type]]" were defined on that entity in Wikidata.
+The filter-browse app allows you to drill-down on classes of Wikidata properties.
+
+(Note: only available if some "[[https://www.wikidata.org/wiki/Property:P1963|properties-for-this-type]]" were defined for the entity in Wikidata.)
+=====  tree app =====
+
+[{{::tree_app.jpg?direct|[[https://conze.pt/explore/Frederick%20Douglass?l=en&t=link-split&i=Q215562&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ215562&s=true#|example]]}}]
+
+With the tree app you can see the relations to and from a topic in the form of a zoomable tree structure.
+
+These relations can be:
+  * [[https://conze.pt/explore/Cosimo%20de'%20Medici?l=en&t=link-split&i=Q48544&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ48544&s=true#|family]]
+  * [[https://conze.pt/explore/Louis%20Pasteur?l=en&t=link-split&i=Q529&u=%2Fapp%2Ftree%2Fen%2FP463%2FQ529&s=true#|member of]]
+  * [[https://conze.pt/explore/Google?l=en&t=link-split&i=Q95&u=%2Fapp%2Ftree%2Fen%2FP355%2FQ95&c=37.42248575,-122.08558456613565&s=true#|subsidiary and parent companies]]
+  * [[https://conze.pt/explore/Liver?l=en&t=link-split&i=Q9368&u=%2Fapp%2Ftree%2Fen%2FP361%2FQ9368&s=true#|part of]]
+  * [[https://conze.pt/explore/Eighty%20Years'%20War?l=en&t=link-split&i=Q164432&u=%2Fapp%2Ftree%2Fen%2FP527%2FQ164432&s=true#|has parts]]
+  * ...and more
+
 ===== compare app =====
 
 [{{::compare_app.jpg?direct|[[https://conze.pt/explore/Trogon?l=en&t=compare&s=true&c=Q1268064,Q998535,Q1268477|example]]}}]
 
-The compare app allows you to see the Wikidata property differences between a set of topics.
+The compare app allows you to see the Wikidata property differences between a user-selected set of topics.
 
-This tool works best if the topics in your set are similar to each other.
+This tool works best if the topics in your selection are similar to each other.
 
+You can add a new topic by clicking the <html><i class="fas fa-plus"></i></html> "compare table" link in the meta-section of each topic.
+
+You can remove the compare topics, from within the compare-app, by clicking the <html><i class="far fa-times-circle"></i></html> icon at the top of each column or remove them all at once by clicking the <html><i class="fas fa-trash"></i></html> icon in the app's menu-bar.
 ===== organism occurrence map =====
 
 [{{::occurence_map_app.jpg?direct|[[https://conze.pt/explore/American%20alligator?l=en&t=link&i=Q193327&u=https%3A%2F%2Fconze.pt%2Fapp%2Fresponse%2Fgbif-map%3Fl%3Den%26t%3DAmerican%20alligator%26id%3D2441370&s=true|example]]}}]
 
-The occurence app shows the organism observations collected by the [[explore>Global Biodiversity Information Facility|]].
+The occurrence app shows the organism observations collected by the [[explore>Global Biodiversity Information Facility|]].
 
-The app also allows you to select extra map overlays (such as: country borders, 30-year mean temperature / average precipitation, and more).
+The app also allows you to select extra map overlays (such as: country borders, 30-year mean temperature, average precipitation, and more).
 
-The app is also rendered as an webcomponent in Wikipedia articles relating to organism (in the "occurrence map" section).
+The app is also rendered as an web-component in Wikipedia articles relating to organism (in the "occurrence map" section).
 ===== inline: category tree =====
 [{{::category_tree.jpg?direct|[[https://conze.pt/explore/Uganda?l=en&t=wikipedia&f=category_tree&s=true|example]]}}]
 
-This is an [[terms#topic_card|topic card]] widget available for topics with a category in Wikipedia. This allows you to browse the category-tree related to that topic.
+This is a [[terms#topic_card|topic card]] widget available for topics with a category in Wikipedia. It allows you to browse the category-tree related to that topic.
 
 All the sub-categories can be explored and the pages within each sub-category can be viewed.
 
 Each page in a category has a menu-bar with buttons to:
 
-  * Explore the topic further \\ \\ 
-  * Read the Wikipedia article \\ \\
-  * Find related video / audio / images /  boooks
+  * Explore the topic further. \\ \\ 
+  * Read the Wikipedia article. \\ \\
+  * Find related video, audio, images and books.

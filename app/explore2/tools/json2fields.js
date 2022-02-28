@@ -21,7 +21,7 @@ if ( process.argv.length < 4 ){
 
 const property_class    = process.argv[3];
 
-let ignore_props        = [ 432, 1424, 1629, 2667, 4329 ]; // These Wikidata properties are not usefull for Conzept.
+let ignore_props        = [ 432, 1424, 1629, 2667, 4329, 6592 ]; // These Wikidata properties are not usefull for Conzept.
 let ignore_claim_props  = [ 85, 9680 ]; // These Wikidata properties are not usefull untill Conzept supports statement claims.
 let existing_props      = [];
 

@@ -35,11 +35,51 @@ Use cases:
 <ul>
 <li class="level2"><div class="li"> test with the <a href="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" class="urlextern" target="_blank" title="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" rel="ugc nofollow noopener">OpenLink Structured Data Sniffer extension</a></div>
 </li>
+<li class="level2"><div class="li"> other links: <a href="https://socialsharepreview.com" class="urlextern" target="_blank" title="https://socialsharepreview.com" rel="ugc nofollow noopener">1</a>, <a href="https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts" class="urlextern" target="_blank" title="https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts" rel="ugc nofollow noopener">2</a></div>
+</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="level1 node"><div class="li"> Integrate a SPARQL-explorer sub-system, like <strong><a href="https://conze.pt/app/sparklis/webapp/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" class="urlextern" target="_blank" title="https://conze.pt/app/sparklis/webapp/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" rel="ugc nofollow noopener">Sparklis</a></strong></div>
+<li class="level1 node"><div class="li"> Create a list of store-definitions containing:</div>
+<ul>
+<li class="level2"><div class="li"> Name</div>
+</li>
+<li class="level2"><div class="li"> Description</div>
+</li>
+<li class="level2"><div class="li"> Website</div>
+</li>
+<li class="level2"><div class="li"> active (boolean)</div>
+</li>
+<li class="level2"><div class="li"> SPARQL-endpoint <abbr title="Uniform Resource Locator">URL</abbr></div>
+</li>
+<li class="level2"><div class="li"> OpenSearch <abbr title="Uniform Resource Locator">URL</abbr> (for JSON, and XML?). See also: <a href="https://github.com/nsidc/OpenSearchlight" class="urlextern" target="_blank" title="https://github.com/nsidc/OpenSearchlight" rel="ugc nofollow noopener">OpenSearchlight</a>.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Multi-query support for the autocomplete widget:</div>
+<ul>
+<li class="level2"><div class="li"> result merging</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Multi-query support for the search-query results:</div>
+<ul>
+<li class="level2"><div class="li"> result merging</div>
+</li>
+<li class="level2"><div class="li"> result ranking</div>
+</li>
+<li class="level2"><div class="li"> result paging </div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Integrate a SPARQL-explorer sub-system, like <strong><a href="https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" class="urlextern" target="_blank" title="https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" rel="ugc nofollow noopener">Sparklis</a></strong></div>
 <ul>
 <li class="level2"><div class="li"> <a href="https://github.com/sebferre/sparklis" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis" rel="ugc nofollow noopener">git repo</a></div>
 </li>
@@ -47,26 +87,16 @@ Use cases:
 </li>
 <li class="level2"><div class="li"> sparql-endpoint testing: <a href="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" class="urlextern" target="_blank" title="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" rel="ugc nofollow noopener">query all endpoints</a> (note: some endpoints are dead) → then open “sparql explorer 2” in the main-section </div>
 </li>
-<li class="level2"><div class="li"> Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy services)</div>
+<li class="level2"><div class="li"> Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)</div>
 </li>
 <li class="level2"><div class="li"> build steps <a href="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" rel="ugc nofollow noopener">here</a></div>
 </li>
 </ul>
 </li>
 </ul>
-<ul>
-<li class="level1 node"><div class="li"> an OpenSearch auto-complete <abbr title="Application Programming Interface">API</abbr> (for fast, realtime concept searches).</div>
-<ul>
-<li class="level2"><div class="li"> Question: Could these be auto-generated from the SPARQL end-point?</div>
-</li>
-<li class="level2"><div class="li"> Implement support for doing multiple queries at once and combining the results. </div>
-</li>
-</ul>
-</li>
-</ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;requirements&quot;,&quot;hid&quot;:&quot;requirements&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;844-2419&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;requirements&quot;,&quot;hid&quot;:&quot;requirements&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;844-2762&quot;} -->
 <h2 class="sectionedit3" id="adapt_conzept_internals">adapt conzept internals</h2>
 <div class="level2">
 <ul>
@@ -109,7 +139,7 @@ Use cases:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;adapt conzept internals&quot;,&quot;hid&quot;:&quot;adapt_conzept_internals&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2420-3148&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;adapt conzept internals&quot;,&quot;hid&quot;:&quot;adapt_conzept_internals&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2763-3491&quot;} -->
 <h2 class="sectionedit4" id="other_tools">other tools</h2>
 <div class="level2">
 <ul>
@@ -138,4 +168,4 @@ Use cases:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other tools&quot;,&quot;hid&quot;:&quot;other_tools&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3149-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other tools&quot;,&quot;hid&quot;:&quot;other_tools&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3492-&quot;} -->

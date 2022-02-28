@@ -682,7 +682,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/guide/home" target="infoframe" title="guide" aria-label="guide"><i class="fas fa-book fa-2x"></i></a></li>
+                  <li> &nbsp; <a href="https://conze.pt/guide/user_manual" target="infoframe" title="guide" aria-label="guide"><i class="fas fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 

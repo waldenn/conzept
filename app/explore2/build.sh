@@ -73,3 +73,10 @@ cat dist/fetch/* > dist/core/fetches.js &&
 
 # add keyboardJS library to utils
 cat ./node_modules/keyboardjs/dist/keyboard.min.js >> dist/core/utils.js
+
+# add symlink path for entitree (TODO: should be fixed in the entitree-build)
+if ! [ -e "$CONZEPT_WEB_DIR/_next" ]
+then
+  cd $CONZEPT_WEB_DIR
+  ln -s $CONZEPT_SERVICES_DIR/entitree/.next/ _next
+fi

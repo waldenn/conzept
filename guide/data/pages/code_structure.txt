@@ -7,7 +7,7 @@ You can also browse it online [[https://github1s.com/waldenn/conzept|here]].
 
 <code>
 .
-├── app (all embedded apps, including the Conzept main app, see next section)
+├── app (all ~40 embedded apps, including the Conzept main app, see next section)
 │  ├── ...
 │  ├── ...
 │  └── ...
@@ -30,7 +30,7 @@ The Conzept-project root-directory also contains the following relevant files:
 
 ===== conzept main app =====
 
-The Conzept main app is located in the "**[[https://github.com/waldenn/conzept/tree/master/app/explore2|<root_directory>/app/explore2]]**" directory and has the following structure:
+The Conzept main app (the UI wrapping all the other apps) is located in the "**[[https://github.com/waldenn/conzept/tree/master/app/explore2|<root_directory>/app/explore2]]**" directory and has the following structure:
 
 <code>
 .
@@ -93,6 +93,7 @@ Here are some of the important properties on this object:
 | explore.**qid** | Wikidata Qid (if any, of the current active topic) |
 | explore.**db** | persistent storage object using [[https://github.com/gruns/ImmortalDB|ImmortalDB]]|
 | explore.**query_param** | [[user_manual#structured_search|structured search]] query-URL |
+| explore.**hash** | current URL-fragment |
 | explore.**fragment** | sidebar detail-fragment to go to upon after loading the URL ([[https://conze.pt/explore/London?l=en&t=wikipedia&f=category_tree&s=true|example]]) |
 
 ===== API code=====
