@@ -260,7 +260,7 @@ li {
 
 ul.multi-value li {
   font-size: 1.3rem !important;
-  font-weight: bold;
+  font-weight: 600;
   list-style: none !important;
   line-height: 1.4rem;
   /* font-size: larger */;
@@ -643,6 +643,10 @@ a.topic-class:focus, a.topic-class:hover {
       background-position-x: right;
       background-position-y: top;
   background-repeat: no-repeat;
+}
+
+.headline-right-half .icon.newtab {
+  background-size: 0.2rem 0.2rem;
 }
 
 .title-newtab {

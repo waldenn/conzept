@@ -21,6 +21,7 @@
   * [[used projects|used projects]]
   * [[adding an app]]
   * [[integrating an API]]
+  * [[adding new Wikidata properties|new Wikidata properties]]
   * [[topic classification]]
 
 **plans**

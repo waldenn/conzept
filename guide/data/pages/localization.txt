@@ -2,14 +2,17 @@
 
 [{{ ::german_view.jpg?direct|Conzept in German}}]
 
-Most of the Conzept interface can be localized, these parts include main UI elements such as menu labels and the topic-card section names. Conzept has basic support for right-to-left scripts such as Arabic.
+Most of the Conzept interface can be localized, these parts include the main UI elements, such as menu-labels and the [[terms#topic_card|topic-card]] section-names.
 
-The list of supported locales can be found in the Conzept settings file (look for the "CONZEPT_LOCALES" setting).
+Conzept also has basic support for right-to-left scripts, such as Arabic.
 
-If you want to add a new locale to Conzept:
+The list of supported locales can be found in the Conzept settings file ("CONZEPT_LOCALES" setting).
 
-  - Add the locale to the "CONZEPT_LOCALES" setting in the Conzept settings file. \\ \\
-  - Add a the new locale file to the "[[https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n|app/explore2/assets/i18n]]" directory. The easiest way to do this is to copy the [[https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json|english]] locale to your new locale file and then make the translation changes needed for that locale. \\ \\
-  - Finally run "npm run build" to rebuild Conzept.
+To add a new locale to Conzept, follow these steps:
+
+  - **Add the locale to the "CONZEPT_LOCALES" setting** in the Conzept settings file. \\ \\
+  - **Add a the new locale file** to the "[[https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n|app/explore2/assets/i18n]]" directory.
+    * Note: The easiest way to do this is to copy the [[https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json|english]] locale to your new locale file and then make the translation changes needed for that locale. \\ \\
+  - Run "**npm run build**" to rebuild Conzept.
 
 Optional: It would be very nice to file an issue or pull-request on the [[https://github.com/waldenn/conzept|GitHub repo]] for this new translation file!

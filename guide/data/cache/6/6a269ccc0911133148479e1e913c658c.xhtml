@@ -7,24 +7,42 @@
 <h2 class="sectionedit2" id="browser_navigation">browser navigation</h2>
 <div class="level2">
 <ul>
-<li class="level1 node"><div class="li"> <strong>Backwards navigation</strong> (using the browser history stack) has several issues. </div>
+<li class="level1 node"><div class="li"> <strong>Backwards &amp; Forwards history navigation</strong> has several issues.</div>
 <ul>
-<li class="level2"><div class="li"> note: The web standards community is working on improving the <strong><a href="https://github.com/WICG/app-history" class="urlextern" target="_blank" title="https://github.com/WICG/app-history" rel="ugc nofollow noopener">browser-history API</a></strong>, since many SPA&#039;s are running into the same issues.</div>
+<li class="level2"><div class="li"> note: The web standards community is working on improving the <a href="https://github.com/WICG/app-history" class="urlextern" target="_blank" title="https://github.com/WICG/app-history" rel="ugc nofollow noopener">browser-history API</a>, since many other “Single Page Applications” (SPA) are running into the same issues.</div>
+</li>
+<li class="level2"><div class="li"> See also: <strong><a href="https://wicg.github.io/app-history/" class="urlextern" target="_blank" title="https://wicg.github.io/app-history/" rel="ugc nofollow noopener">App History API</a></strong> (proposal)</div>
 </li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> <strong>Reloading complex-encoded URLs</strong> does not always work, due the mis-encoding of the <abbr title="Uniform Resource Locator">URL</abbr> parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.</div>
+<li class="level1 node"><div class="li"> <strong>Reloading complex-encoded URLs</strong> does not always work, due the mis-encoding of the <abbr title="Uniform Resource Locator">URL</abbr> parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.</div>
+<ul>
+<li class="level2"><div class="li"> There is a need to have a better workflow &amp; tooling to help with debugging these <abbr title="Uniform Resource Locator">URL</abbr>-issues.</div>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
 <li class="level1"><div class="li"> <strong>Touch-based resizing the width of the sidebar</strong> does not work (Todo: make the vertical separator line and the <i class="fas fa-grip-lines-vertical"></i> resize-handle touch-enabled)</div>
 </li>
 </ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong><abbr title="Uniform Resource Locator">URL</abbr> hash handling</strong></div>
+<ul>
+<li class="level2"><div class="li"> Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.</div>
+</li>
+<li class="level2"><div class="li"> Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)</div>
+</li>
+<li class="level2"><div class="li"> Scroll-position / section alignment issue for Wikipedia (<a href="https://conze.pt/app/wikipedia/?t=Benin%20City&amp;l=en&amp;voice=en-US&amp;qid=320704&amp;dir=ltr&amp;embedded=#references" class="urlextern" target="_blank" title="https://conze.pt/app/wikipedia/?t=Benin%20City&amp;l=en&amp;voice=en-US&amp;qid=320704&amp;dir=ltr&amp;embedded=#references" rel="ugc nofollow noopener">example</a>)</div>
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-795&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-1392&quot;} -->
 <h2 class="sectionedit3" id="mobile_browser_compatibility_and_usability">mobile browser compatibility and usability</h2>
 <div class="level2">
 <ul>
@@ -41,7 +59,7 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile browser compatibility and usability&quot;,&quot;hid&quot;:&quot;mobile_browser_compatibility_and_usability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;796-1152&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile browser compatibility and usability&quot;,&quot;hid&quot;:&quot;mobile_browser_compatibility_and_usability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1393-1749&quot;} -->
 <h2 class="sectionedit4" id="quality_assurance">quality assurance</h2>
 <div class="level2">
 <ul>
@@ -60,17 +78,39 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;quality assurance&quot;,&quot;hid&quot;:&quot;quality_assurance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1153-1549&quot;} -->
-<h2 class="sectionedit5" id="admin_dev_workflows">admin/dev workflows</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;quality assurance&quot;,&quot;hid&quot;:&quot;quality_assurance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1750-2146&quot;} -->
+<h2 class="sectionedit5" id="admin-dev_workflows">admin-dev workflows</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> Make <a href="/guide/terms#topic_headline" class="wikilink1" title="terms" data-wiki-id="terms">topic-headline</a> fields definable in the “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">field.js</a>” file.</div>
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Improve the workflow of <a href="/guide/adding_an_api" class="wikilink2" title="adding_an_api" rel="nofollow" data-wiki-id="adding_an_api">adding API integrations</a>.</div>
+<li class="level1"><div class="li"> Improve the workflow for <a href="/guide/integrating_an_api" class="wikilink1" title="integrating_an_api" data-wiki-id="integrating_an_api">adding API integrations</a>.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;admin\/dev workflows&quot;,&quot;hid&quot;:&quot;admin_dev_workflows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1550-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;admin-dev workflows&quot;,&quot;hid&quot;:&quot;admin-dev_workflows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2147-2431&quot;} -->
+<h2 class="sectionedit6" id="field_localization">field localization</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Create a structure to store field translations (title and icon-title), both for Wikidata and non-Wikidata fields.</div>
+<ul>
+<li class="level2"><div class="li"> Allow the <a href="/guide/adding_new_wikidata_properties" class="wikilink1" title="adding_new_wikidata_properties" data-wiki-id="adding_new_wikidata_properties">json2fields</a> script to fetch and store property translations too.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field localization&quot;,&quot;hid&quot;:&quot;field_localization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2432-2698&quot;} -->
+<h2 class="sectionedit7" id="other">other</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> How to detect if the field <abbr title="Uniform Resource Locator">URL</abbr> could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the <abbr title="Uniform Resource Locator">URL</abbr>, checking for CORS-errors?)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other&quot;,&quot;hid&quot;:&quot;other&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2699-&quot;} -->

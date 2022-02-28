@@ -16,7 +16,7 @@ In the future Conzept may also use an AI-based classification-system which could
 
 The main classes and their sub-claseses (if any):
 
-  * **raw-query-string** (non-Wikidata topic)
+  * **raw-query-string** (used when there are no matching Wikipedia titles for a search-query)
 
   * **disambiguation** (Wikipedia disambiguation page)
     * person
@@ -33,6 +33,13 @@ The main classes and their sub-claseses (if any):
 
   * **time**
     * accident
+
+  * **person**
+    * scientist
+    * musician
+    * painter
+    * filmmaker
+    * actor
 
   * **organization** (human organization)
     * business-chain
@@ -63,13 +70,6 @@ The main classes and their sub-claseses (if any):
     * software
     * cryptocurrency
 
-  * **person**
-    * scientist
-    * musician
-    * painter
-    * filmmaker
-    * actor
-
   * **cultural-concept**
     * role
     * rank
@@ -82,6 +82,13 @@ The main classes and their sub-claseses (if any):
     * movement
     * tonality
 
+  * **substance** (synthetic or natural substances)
+    * periodic-table-element
+    * chromosome
+    * gene
+    * genome
+    * mineral
+
   * **organism**
     * bird
     * mushroom
@@ -91,14 +98,7 @@ The main classes and their sub-claseses (if any):
     * plant
     * plant-organ
 
-  * **substance** (synthetic or natural substances)
-    * periodic-table-element
-    * chromosome
-    * gene
-    * genome
-    * mineral
-
-  * **natural-type** (clearly a concrete natural *physical thing*: planet, snowflake, organs, ...)
+  * **natural-type** (not an organism, but clearly a discrete, natural, //physical thing//: planet, snowflake, organs, ...)
     * astronomical-object
 
   * **natural-concept** (more abstract natural concepts)

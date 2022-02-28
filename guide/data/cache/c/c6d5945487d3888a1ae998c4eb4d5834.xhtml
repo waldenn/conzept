@@ -3,26 +3,34 @@
 <div class="level1">
 <div class="thumb2 tright"><div class="thumbinner"><a href="/guide/_media/german_view.jpg" class="media" target="_blank" title="german_view.jpg" rel="noopener"><img src="/guide/_media/german_view.jpg?w=1920&amp;h=1080&amp;tok=224349" class="mediabox2" alt="" width="1920" height="1080" /></a><div class="thumbcaption" style="max-width: 1914px">Conzept in German</div></div></div>
 <p>
-Most of the Conzept interface can be localized, these parts include main UI elements such as menu labels and the topic-card section names. Conzept has basic support for right-to-left scripts such as Arabic.
+Most of the Conzept interface can be localized, these parts include the main UI elements, such as menu-labels and the <a href="/guide/terms#topic_card" class="wikilink1" title="terms" data-wiki-id="terms">topic-card</a> section-names.
 </p>
 
 <p>
-The list of supported locales can be found in the Conzept settings file (look for the “CONZEPT_LOCALES” setting).
+Conzept also has basic support for right-to-left scripts, such as Arabic.
 </p>
 
 <p>
-If you want to add a new locale to Conzept:
+The list of supported locales can be found in the Conzept settings file (“CONZEPT_LOCALES” setting).
+</p>
+
+<p>
+To add a new locale to Conzept, follow these steps:
 </p>
 <ol>
-<li class="level1"><div class="li"> Add the locale to the “CONZEPT_LOCALES” setting in the Conzept settings file. <br/>
+<li class="level1"><div class="li"> <strong>Add the locale to the “CONZEPT_LOCALES” setting</strong> in the Conzept settings file. <br/>
 <br/>
 </div>
 </li>
-<li class="level1"><div class="li"> Add a the new locale file to the “<a href="https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n" rel="ugc nofollow noopener">app/explore2/assets/i18n</a>” directory. The easiest way to do this is to copy the <a href="https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json" class="urlextern" target="_blank" title="https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json" rel="ugc nofollow noopener">english</a> locale to your new locale file and then make the translation changes needed for that locale. <br/>
+<li class="level1 node"><div class="li"> <strong>Add a the new locale file</strong> to the “<a href="https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2/assets/i18n" rel="ugc nofollow noopener">app/explore2/assets/i18n</a>” directory.</div>
+<ul>
+<li class="level2"><div class="li"> Note: The easiest way to do this is to copy the <a href="https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json" class="urlextern" target="_blank" title="https://raw.githubusercontent.com/waldenn/conzept/master/app/explore2/assets/i18n/conzept-en.json" rel="ugc nofollow noopener">english</a> locale to your new locale file and then make the translation changes needed for that locale. <br/>
 <br/>
 </div>
 </li>
-<li class="level1"><div class="li"> Finally run “npm run build” to rebuild Conzept.</div>
+</ul>
+</li>
+<li class="level1"><div class="li"> Run “<strong>npm run build</strong>” to rebuild Conzept.</div>
 </li>
 </ol>
 

@@ -765,14 +765,13 @@ async function setupKeyboardNavigation(){
 
         if (e.key === 'ArrowRight') { // move to content-pane
 
-          if ( $( explore.baseframe ).contents().find('a').length ){ // content-pane exists
+          if ( $( explore.baseframe ).contents().find('html').length ){ // content-pane exists
 
-            $( explore.baseframe ).contents().find('a').first().focus();
+            if ( $( explore.baseframe ).contents()[0].baseURI.startsWith( 'https://' + explore.host ) ){ // local iframe URL
 
-          }
-          else if ( $( explore.baseframe ).contents().find('html').length ){ // content-pane exists
+              $( explore.baseframe ).contents().find('a').first().focus();
 
-            $( explore.baseframe ).contents().find('html').first().focus();
+            }
 
           }
 
@@ -4062,7 +4061,7 @@ async function setDefaultDisplaySettings( cover, type ) {
       '</p>' + 
     
       '<div class="frontpage-grid-container">' +
-        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/home" target="infoframe"><span class="icon"><i class="fas fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
+        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/user_manual" target="infoframe"><span class="icon"><i class="fas fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
         '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fas fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' +
         '<div><a class="" title="random featured article" aria-label="random featured article" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="far fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
       '</div>' +
@@ -5001,9 +5000,14 @@ async function insertMultiValues( args ){
             fetchWikiNews( args, args.list );
 
           }
+					else if ( args.list.startsWith('hackernews:') ){
+
+            fetchHackerNews( args, null, 1, 'relevance' );
+
+          }
 					else if ( args.list.startsWith('archive-scholar:') ){
 
-            fetchArchiveScholar( args, null, 1, 'relevancy' );
+            fetchArchiveScholar( args, null, 1, 'relevance' );
 
           }
 					else if ( args.list.startsWith('unpaywall') ){
@@ -5018,7 +5022,7 @@ async function insertMultiValues( args ){
           }
 					else if ( args.list.startsWith('bhl:') ){
 
-            fetchBHL( args, null, 1, 'relevancy' );
+            fetchBHL( args, null, 1, 'relevance' );
 
           }
 					else if ( args.list.startsWith('mastodon') ){
@@ -6642,14 +6646,8 @@ async function handleClick ( args ) {
   //console.log( 'explore.keyboard_ctrl_pressed: ', explore.keyboard_ctrl_pressed );
   //console.log( 'event.ctrlKey: ', event.ctrlKey );
 
-  // TODO: check for CTRL-key, to open link in new tab
-  if ( valid( explore.keyboard_ctrl_pressed ) ){ // trigger onauxclick-code
-
-    if ( ! valid( event ) ){
-      console.log( 'undefined event: ', args, explore.keyboard_ctrl_pressed  );
-
-      return 0;
-    }
+  // check for CTRL-key, to open link in new tab
+  if ( valid( [ explore.keyboard_ctrl_pressed, event ] ) ){
 
     event.preventDefault();
 
@@ -6660,11 +6658,10 @@ async function handleClick ( args ) {
       //console.log('handle embedded-app CTRL-click' );
 
     }
-    else { // main app
+    else { // main app call
 
       //console.log('main app CTRL-click: open in new window');
       //console.log( event.target.hasAttribute("onauxclick") );
-      //console.log( event.target.getAttribute("onauxclick") );
 
       const open_in_new_tab_code = event.target.getAttribute('onauxclick');
 
@@ -6877,6 +6874,12 @@ function quoteTitle( title ){
 function updatePushState( title, mode ){
 
   title = title.replace( /\?/g, '%3F'); // need to escape "?" for structured form-query URLs
+
+  if ( ! valid( explore.hash ) ){
+
+    explore.hash = '';
+
+  }
 
   const no_update_types = [ 'bookmark' ];
 

@@ -52,7 +52,7 @@
   "app-menu-random-topic-key": "zufälliges thema",
   "app-menu-compare-topics": "themen vergleichen",
   "app-menu-toggle-fullscreen": "vollbild umschalten",
-  "app-menu-bookmark-current-url": "aktuelle url als lesezeichen speichern",
+  "app-menu-bookmark-current-url": "aktuelle URL als lesezeichen speichern",
   "app-menu-clone-tab": "klon-tab",
   "app-menu-plant-identification": "pflanzenkennzeichnung",
   "app-menu-text-identification": "texterkennung",
@@ -134,14 +134,6 @@
   "app-menu-goto-next-pane": "gehe zum nächsten fenster",
   "app-menu-goto-previous-pane": "gehe zum vorherigen fenster",
   "app-menu-new-search": "neue suche",
-  "app-guide-documentary": "dokumentarfilm",
-  "app-guide-country": "land",
-
-  "app-menu-goto-next-topic": "go to next topic (in the sidebar results)",
-  "app-menu-goto-previous-topic": "go to previous topic (in the sidebar results)",
-  "app-menu-goto-next-pane": "go to next pane",
-  "app-menu-goto-previous-pane": "go to previous pane",
-  "app-menu-new-search": "new search",
   "app-guide-documentary": "dokumentarfilm",
   "app-guide-country": "land",
 

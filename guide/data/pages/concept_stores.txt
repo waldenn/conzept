@@ -16,6 +16,7 @@ Use cases:
 
   * Add semantic metadata to each Conzept page (explore best practices)
     * test with the [[https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/|OpenLink Structured Data Sniffer extension]]
+    * other links: [[https://socialsharepreview.com|1]], [[https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts|2]]
 
   * Create a list of store-definitions containing:
     * Name
@@ -33,7 +34,7 @@ Use cases:
     * result ranking
     * result paging 
 
-  * Integrate a SPARQL-explorer sub-system, like **[[https://conze.pt/app/sparklis/webapp/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&endpoint=https%3A//ldf.fi/mufi/sparql|Sparklis]]**
+  * Integrate a SPARQL-explorer sub-system, like **[[https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&endpoint=https%3A//ldf.fi/mufi/sparql|Sparklis]]**
     * [[https://github.com/sebferre/sparklis|git repo]]
     * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
     * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 

@@ -8,7 +8,7 @@
 
 **[[https://conze.pt|Conzept]] is an attempt to create an [[explore>encyclopedia]] for the 21st century.**
 
-A modern topic-exploration tool based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for: [[explore>fun]], [[explore>education]] and [[explore>research]].
+A modern topic-exploration tool based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for [[explore>fun]], [[explore>education]] and [[explore>research]].
 
 Conzept allows you to explore any of the millions of topics on Wikipedia from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity ("thing") as well as a "string". Client-side [[topic classification|topic-classification]] in addition allows for a fast, higher-level logic throughout the whole user experience.
 
@@ -16,22 +16,21 @@ The integrated user-interface gives you a clean, well-designed view of all this 
 
 The Conzept project is [[explore>free software]] licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets) and the development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Development news is announced on [[https://twitter.com/conzept__|Twitter]].
 
-===== support =====
+===== thanks =====
 
-  * Conzept has been funded by the amazing **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
+  * Conzept has been partly funded by the amazing **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
 
-  * All the organizations with a great public mission and API-service used within Conzept. Especially:
+  * The organizations with a great public mission and API-service used within Conzept. Especially:
     * The **[[https://wikimediafoundation.org/|Wikipedia]]** and **[[https://www.wikidata.org|Wikidata]]** community and developers.
     * The **[[https://openlibrary.org|Open Library]]** and **[[https://archive.org|Archive.org]]** team.
 
-  * The thousands of people who have developed **[[used projects|Free Software projects]]** used by Conzept.
-
-  * **[[https://www.browserstack.com/|BrowserStack]]** kindly provides excellent tools for cross-platform browser testing.
+  * The thousands of people who have developed the **[[used projects|Free Software projects]]** used by Conzept.
 
   * **[[explore>Google]] [[explore>YouTube]]** for providing access to the [[https://developers.google.com/youtube/v3/|Youtube API]].
 
+  * **[[https://www.browserstack.com/|BrowserStack]]** kindly provides a great, cross-platform browser testing environment.
 
-Thank you all for your direct or indirect support <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
+Thank you all for your direct and indirect support <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
 ===== project goals =====
 
 {{ :logo.svg?200}}
@@ -42,20 +41,20 @@ Each Wikipedia "article" actually relates to a multi-faceted concept, which we i
 
 The main goals of Conzept are:
 
-  * A more **holistic presentation of the encyclopedic information** contained within Wikipedia and Wikidata by integrating and linking with other information sources.
+  * A more **holistic presentation of the encyclopedic information** contained within Wikipedia and Wikidata, by integrating and linking with other information sources.
 
   * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce the cognitive-load and making the learning experience as fun and inspiring as possible.
 
-  * **Innovate** where possible //and// useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
+  * **Innovate** where that is both possible and useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
 
-  * Build the project as **free software** and make its use and development accessible for all. Find sustainable ways to support its maintenance, development and collaboration.
+  * Build the project as **free software** and make its use and development accessible for all. Make it free of advertising, but find sustainable ways to support its maintenance, development and collaboration.
 
 ===== application layout =====
 
 {{ :app_layout.svg?direct|}}
 
 The layout of Conzept consists of two main areas:
-  * The **[[#conzept sidebar|sidebar]]**, which is used for showing the [[#string search|search interface]], the language select and various tabs.
+  * The **[[#conzept sidebar|sidebar]]**, which is used for showing the [[#string search|search interface]], the language selection and various tabs.
 
   * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
 ==== conzept sidebar ====
@@ -109,6 +108,9 @@ Some types of content (such as highly inter-related information displaying apps)
 
 **The general workflow of these panes is always from left-to-right. So the sidebar directs the content pane.** If the content area has two content panes, the left pane will direct the right pane.
 
+Philosophically speaking, a single content-pane view is a sort of **1st-degree presentation** (concept => concept relation detail), while a dual content-pane view is a **2nd-degree presentation** (concept => concept relations overview => concept relation details). 
+
+Some embedded apps have a  2nd-degree presention inside of a single-pane (eg. the map app through a modal popup). Simply having 1st and 2nd-degree presentations can cover most information relations quite well, while still limiting the cognitive load. 
 ===== string search =====
 
 {{ :search_1.jpg?direct|search suggestions}}
@@ -142,7 +144,8 @@ These are some (experimental) **!-prefixed commands** which, when entered into t
 
 Overview of the current commands:
 
-  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support). (Note: It would be really wonderful if in the future this functionality could be extended to a mathematical environment being build, called [[https://github.com/sagemathinc/JSage|JSage]])
+  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support).
+    * Note: It would be really wonderful, if in the future this functionality could be extended to a much more advanced mathematical environment currently being build, called [[https://github.com/sagemathinc/JSage|JSage]].
 
   * **[[https://conze.pt/explore/!check%20Caracas%20has%20a%20lot%20of%20crime?l=en|!check]]** - An AI-based fact-checking command.
 

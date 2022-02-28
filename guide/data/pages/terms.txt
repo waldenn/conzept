@@ -28,16 +28,15 @@ The topic headline shows the most essential links and info (if available / appli
     * Note: For certain topic-types the class-icon is clickable, and will result in submitting a [[user_manual#structured_search|structured query]] for "same type" objects.
   * Start and end year
   * Category-tree link
-  * And many other links: homepage, twitter, maps, video, stock, etc.
+  * And many other links: website, maps, video, twitter, etc.
 
 ===== topic sections =====
 
 [{{ ::sections.png?direct|topic sections}}]
 
-The main idea behind Conzept is to help you **see topics of interest from different 'angles'**.
+The main idea behind Conzept is to help you **see topics of interest from different viewpoints**.
 
-
-The angles can be:
+These are some of the available viewpoints:
   * Wikidata information
   * Video / audio / image archives
   * Digital books
@@ -47,14 +46,14 @@ The angles can be:
   * Educational materials
   * Maps
   * Social media
-  * Meta relations (similar topics, comparisons, link graphs)
+  * Meta-relations (similar topics, comparisons, article link graphs)
   * and more...
 
-**On Conzept these angles are the topic sections and the links they contain.**
+**On Conzept these viewpoints are the topic-sections and the links they contain.**
 
-Not all these angles are relevant all the time for topics ofcourse. In some cases Conzept can hide sections or and show extra sections automatically, depending on a certain context.
+Not all these viewpoints are relevant all the time for topics ofcourse. In some cases Conzept can hide sections or show extra sections automatically, depending on a certain context.
 
-[ Experimental: You can configure some of this context with the "persona-tags" setting. For example: If you have a "nomad" persona tag, you will see a link to walking routes (in the topic headline), when viewing a location topic. If you have a tourist-persona tag, then you will see a link to hotel locations. ]
+[ Experimental: You can configure some of this context with the "persona-tags" setting. For example: If you have a "nomad" persona tag, you will see a link to walking routes in the topic-headline, when viewing a location topic. If you have a tourist-persona tag, then you will see a link to hotel locations. ]
 ===== topic fields =====
 
 [{{ ::section-fields-1.jpg?direct|main-section fields}}]
