@@ -5,6 +5,8 @@
 user="conzept"
 confdir="/etc/conzept"
 
+current_dir=$(pwd)
+
 # clear build directory (not really required)
 if [ -d "dist" ] 
 then
@@ -77,6 +79,11 @@ cat ./node_modules/keyboardjs/dist/keyboard.min.js >> dist/core/utils.js
 # add symlink path for entitree (TODO: should be fixed in the entitree-build)
 if ! [ -e "$CONZEPT_WEB_DIR/_next" ]
 then
+  cd $CONZEPT_SERVICES_DIR/entitree/ &&
+  npm install &&
+  npm run build &&
   cd $CONZEPT_WEB_DIR
   ln -s $CONZEPT_SERVICES_DIR/entitree/.next/ _next
 fi
+
+cd $current_dir
