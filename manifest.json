@@ -5,8 +5,8 @@
   "scope": "/explore",
   "start_url": "/explore",
   "id": "conzept_encyclopedia",
-  "name": "Conzept Encyclopedia",
-  "short_name": "Conzept Encyclopedia",
+  "name": "Conzept encyclopedia",
+  "short_name": "Conzept encyclopedia",
   "orientation" : "any",
   "description": "Conzept is an encyclopedia for the 21st century. A modern topic-exploration tool based on Wikipedia, Wikidata, Open Library and many other information sources.",
   "icons": [

@@ -35,7 +35,12 @@
           ProxyPassReverse http://127.0.0.1:3000
        </Location>
 
-        <Directory "/var/www/html">
+       <Location /app/europeana>
+          ProxyPass http://127.0.0.1:3001
+          ProxyPassReverse http://127.0.0.1:3001
+       </Location>
+
+       <Directory "/var/www/html">
          Options Indexes FollowSymLinks MultiViews
          AllowOverride All
          Require all granted
