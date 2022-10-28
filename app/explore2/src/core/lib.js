@@ -7189,8 +7189,8 @@ async function setPopularCover() {
   }
 
   let date          = new Date();
-  let year          = '2021';
-  //let year        = date.getFullYear();
+  //let year          = '2021';
+  let year        = date.getFullYear();
   let day_of_month  = date.getDate();
 
   let month         = ''; 
@@ -7210,7 +7210,7 @@ async function setPopularCover() {
 
   }
 
-  month = '12';
+  //month = '12';
 
   // FIXME looks like something sets the language to 'eng' at times, research what is causing this.
   if ( explore.language === 'eng' ){

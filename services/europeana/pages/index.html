@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>conzept: Europeana</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+  <!--link rel="stylesheet" href="/app/europeana/styles/bootstrap.min.css"-->
+  <link rel="stylesheet" href="/app/europeana/styles/index.css?v0.015">
+
+  <!-- FIXME: use template processing; conzept resources -->
+  <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.168" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.168"></script><script src="/app/explore2/dist/core/utils.js?v0.51.168"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+  <script src="/app/explore2/libs/TinyGesture.js"></script>
+  <script src="/app/explore2/libs/lc/js/lc_lightbox.lite.js"></script>
+  <link rel="stylesheet" href="/app/explore2/libs/lc/css/lc_lightbox.min.css" />
+  <link rel="stylesheet" href="/app/explore2/libs/lc/skins/minimal.css" />
+  <script src="/app/explore2/node_modules/openseadragon/build/openseadragon/openseadragon.js"></script>
+
+  <!--script src="/app/europeana/scripts/bootstrap.min.js"></script-->
+  <script type="module" src="/app/europeana/scripts/search.js?v0.015"></script>
+</head>
+
+<body>
+
+  <h3><span id="main-title">Europeana viewer</span></h3>
+
+  <div class="container-fluid">
+      <div class="offcanvas text-white bg-dark offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+        </div>
+        <div class="offcanvas-body">
+          <ul class="nav flex-column">
+            <li class="nav-item" style="display:none;">
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Select Server</span>
+              </h6>
+              <input type="radio" class="btn-check" name="btnradio" id="europeana" autocomplete="off" checked>
+              <label class="btn btn-outline-primary" for="europeana">Europeana</label>
+            
+              <input type="radio" class="btn-check" name="btnradio" id="local" autocomplete="off">
+              <label class="btn btn-outline-primary" for="local">Local</label>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+
+
+      <main>
+        <div class=" flex-wrap  pt-3 pb-2 mb-3">
+        <div class="container">
+          
+            <div class="form-group mx-sm-3 mb-2">
+              <form id="SearchForm">
+                <div class="input-group" id="searchgroup">
+
+                  <input id="searchbox" type="search" class="form-control form-control-lg rounded-3" name="search"
+                    placeholder="search" aria-label="search" aria-describedby="inputGroup-sizing-lg">
+
+                  <button class="btn btn-primary mb-2 btn-lg fw-bold" id="searchbtn">
+                    <div id="bef-click">
+                      <i class="material-icons-sharp">search</i>
+                    </div>
+                    <div id="aft-click" hidden>
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </button> &nbsp; &nbsp;
+
+                  <!--h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Media Types</span>
+                  </h6-->
+
+                  <details id="search-filter">
+                    <summary>media filters</summary>
+                    <span class="user-options">
+                      <input type="checkbox" class="btn-check" id="images" title="images" autocomplete="off" checked>
+                      <label class="btn btn-outline-warning" for="images"><i class="fa-regular fa-image"></i></label>
+                    
+                      <input type="checkbox" class="btn-check" id="sounds" title="sounds" autocomplete="off" checked>
+                      <label class="btn btn-outline-warning" for="sounds"><i class="fa-solid fa-volume-high"></i></label>
+                    
+                      <input type="checkbox" class="btn-check" id="texts" title="texts" autocomplete="off" checked>
+                      <label class="btn btn-outline-warning" for="texts"><i class="fa-solid fa-file-lines"></i></label>
+
+                      <input type="checkbox" class="btn-check" id="videos" title="videos" autocomplete="off" checked>
+                      <label class="btn btn-outline-warning" for="videos"><i class="fa-solid fa-video"></i></label>
+                    
+                      <input type="checkbox" class="btn-check" id="3ds" title="3D" autocomplete="off" checked>
+                      <label class="btn btn-outline-warning" for="3ds"><i class="fa-solid fa-cube"></i></label>
+                    </span>
+                  </details> 
+
+                  <details id="sort-key">
+                    <summary>sort options</summary>
+                    <span class="user-options">
+                      <small>(todo)</small>
+                    </span>
+                  </details> 
+
+                  <details id="search-help">
+                    <summary>search help</summary>
+                    <ul class="outline">
+                      <li><b>title:</b> -Search by title</li>
+                      <li><b>who:</b> -Search by creator</li>
+                      <li><b>where:</b> -Search by location</li>
+                      <li><b>when:</b> -Search by time</li>
+                      <br/>
+                      <li>Logical opperators: <b>AND</b>, <b>OR</b></li>
+                      <br/>
+                      <li>Examples:</li>
+                      <ul>
+                        <li>Mona Lisa who:"Leonardo da Vinci"</li>
+                        <li>where:(London OR Paris)</li>
+                      </ul>
+                    </ul>
+                  </details> 
+
+                  <span id="result-meta"><span id="result-count" title="number of results"></span> <i class="fa-solid fa-hashtag"></i></div>
+
+                </span>
+
+              </form>
+            </div>
+        </div>
+        <!-- <div class="container" id="cont"></div> -->
+        <div class="py-5 bg-light">
+          <div class="container" id="cont">
+            <div class="row" id="results"></div>
+            <!--div class="jumbotron">
+              <h1 class="display-4">Your Search results will appear here</h1>
+              <p class="lead">This is a simple banner placed strategically here so the web page doesnt seem so blank</p>
+              <hr class="my-4">
+              <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            </div-->
+          </div>
+        </div>
+        <div id="pagination-container"></div>
+
+        <div id="footer">
+          <span>The <small><a target="_blank" href="https://pro.europeana.eu/page/apis">Europeana API</a> is a service provided by the <a target="_blank" href="https://pro.europeana.eu/about-us/foundation">Europeana Foundation</a></small></span>
+        </div>
+      </main>
+  </div>
+  <!--script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script-->
+</body>
+
+</html>

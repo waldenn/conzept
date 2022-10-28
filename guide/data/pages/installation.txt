@@ -31,6 +31,7 @@ Conzept installation documention (written for Ubuntu 2020.04 LTS).
 ==== setup Apache2 with PHP and HTTP/2 ====
 
 <code>a2enmod proxy proxy_http headers expires proxy_fcgi setenvif && service apache2 restart</code>
+<code>systemctl restart apache2</code>
 <code>a2enconf php7.4-fpm && service apache2 restart</code>
 <code>a2dismod php7.4 && service apache2 restart</code>
 <code>a2dismod mpm_prefork && a2enmod mpm_event && service apache2 restart && service php7.4-fpm restart</code>
@@ -58,7 +59,7 @@ Remove the default Apache-server HTML file:
 
 Install the node version manager (note: you can check for newer LTS vresions by running: nvm ls-remote):
 
-<code>nvm install v16.13.1</code>
+<code>nvm install v16.18.0</code>
 
 <code>logout</code>
 
@@ -88,7 +89,7 @@ Add yourself to the "www-data" group (so you can make edits as yourself):
 
   * OPTIONAL: edit the settings in "/etc/conzept/settings.conf" and run "npm run build" again
 
-  * NOTE: any modifications to the CONZEPT_WEB_BASE also requires changing:
+  * NOTE: any modifications to the CONZEPT_WEB_BASE setting also requires changing:
     * the Apache site config
     * the root .htaccess file
     * the root manifest.json file
@@ -113,15 +114,15 @@ su conzept -s /bin/sh -c '$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 500
 # any-file CORS-proxy (port 1458 on localhost only)
 su conzept -s /bin/sh -c 'cd "$CONZEPT_SERVICES_DIR/allorigins" && npm start app.js &'
 
+# pm2 services
+pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
+pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
+
 exit 0;
 </file>
 
 Make it executable:
 <code>chmod +x /etc/rc.local</code>
-
-Setup the pm2-process for the Entitree app:
-
-<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh && pm2 save && pm2 startup ubuntu -u conzept</code>
 
 Setup crontab for periodic commands:
 
