@@ -114,12 +114,16 @@ su conzept -s /bin/sh -c '$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 500
 # any-file CORS-proxy (port 1458 on localhost only)
 su conzept -s /bin/sh -c 'cd "$CONZEPT_SERVICES_DIR/allorigins" && npm start app.js &'
 
-# pm2 services
-pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
-pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
+# pm2 services (auto-startup not working for some reason)
+#pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
+#pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
 
 exit 0;
 </file>
+
+# manually startup some services
+<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh</code>
+<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh</code>
 
 Make it executable:
 <code>chmod +x /etc/rc.local</code>

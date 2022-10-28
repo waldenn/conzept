@@ -41,10 +41,9 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.png" />
-          // CONZEPT PATCH START
-          //<script async src="https://platform.twitter.com/widgets.js" />
+          { /* CONZEPT PATCH START */ }
           <span id="queryTitle"></span>
-          // CONZEPT PATCH END
+          { /* CONZEPT PATCH END */ }
           <meta
             name="keywords"
             content="Family, Entity, Item, Tree, Taxonomy, Graph, Wikipedia, Wikidata, Diagram, Chart, D3, Hierarchy"
