@@ -1,68 +1,46 @@
 ====== concept stores ======
 
-Research how it would be possible to **allow 3rd-party SPARQL-based endpoints to be added as a new “concept store”** (besides Wikipedia and Wikidata).
+The idea of "concept stores" is to **allow any REST / SPARQL API to be added to Conzept**.
 
-[ Note: This research follows from a Twitter discussion with [[https://twitter.com/kidehen/status/1482077334001885192|Kingsley Uyi Idehen]] ]
+With these goals:
+  * Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output. (work in progress)
+  * Make the API search results show up in the same style and results paging mechanics, as the other datasources. (working)
+  * Let the topic results be augmented from Wikidata (if wanted). (working)
+  * Have autocompletion work too (if wanted and possible). (working)
+  * Make the web user be able to choose which datasources to use. (working)
 
-Use cases:
+[ Note: This sub-project follows from a Twitter discussion with [[https://twitter.com/kidehen/status/1482077334001885192|Kingsley Uyi Idehen]] ]
 
-  * An organization with a SPARQL-endpoint that wants to use the Conzept UI, to give people an integrated/customizable/augmented view of their knowledge base.
+===== use cases =====
 
-  * Allow for adding extra "concept stores" to a Conzept system, so other (more niche) concepts can be presented.
+  * **Allow for adding extra "data sources" to a Conzept encyclopedia system**, so other concepts - beyond Wikipedia and Wikidata - can also be presented.
 
-  * (more difficult probably) Allow a user to explore an unkown SPARQL-endpoint and render the results in Conzept and allow for full-text searches within that knowledge base (the latter may need more than a SPARQL end-point).
+  * **Any organization that wants to use the Conzept user-interface for showing and augmenting their own knowledge base.**
 
-===== requirements =====
 
-  * Add semantic metadata to each Conzept page (explore best practices)
-    * test with the [[https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/|OpenLink Structured Data Sniffer extension]]
-    * other links: [[https://socialsharepreview.com|1]], [[https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts|2]]
+==== status ====
 
-  * Create a list of store-definitions containing:
-    * Name
-    * Description
-    * Website
-    * active (boolean)
-    * SPARQL-endpoint URL
-    * OpenSearch URL (for JSON, and XML?). See also: [[https://github.com/nsidc/OpenSearchlight|OpenSearchlight]].
+  * The **[[datasources]]** system is now working, with these remaining issues:
+    * bug: fix the [[https://t.co/TFjoJisZGG|wikidata-structured-query]] path (topics not showing in the sidebar)
+    * todo: add back the raw-topic-card (needs checking to see the raw-query-string does not string-match any datasource results on the first page)
+    * todo: indicate when there are "no results" for a search
 
-  * Multi-query support for the autocomplete widget:
-    * result merging
+  * Technical roadmap:
+    * Research how to further **generalize the datasource integration**, using the common result-format used on Conzept (which is largely based on the Wikipedia API result structure)
+    * Add hooks for pre- and post-processing of the API data.
+    * Add hooks to enrich the API data (with Wikipedia and Wikidata information)
+    * Test these ideas on real datasources.
+    * Allow for datasource activation via an URL parameter (so these searches can be linked to) and store these in a cookie.
+===== other tools =====
 
-  * Multi-query support for the search-query results:
-    * result merging
-    * result ranking
-    * result paging 
-
-  * Integrate a SPARQL-explorer sub-system, like **[[https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&endpoint=https%3A//ldf.fi/mufi/sparql|Sparklis]]**
+  * **Sparklis** (SPARQL-endpoint explorer)
     * [[https://github.com/sebferre/sparklis|git repo]]
     * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
     * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 
     * Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)
     * build steps [[https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156|here]]
 
-===== adapt conzept internals =====
-
-  * Adapt internal data structures to allow for handling non-Wikidata entities.
-
-  * Adapt field-definitions to allow for non-Wikidata property resolving
-
-  * How to 'understand' the SPARQL-endpoint class graph and class properties?
-    * Adapt topic classification code to allow for non-Wikidata classification rules.
-
-  * Allow the Conzept type-system to handle non-Wikidata-Qid based entity IDs (eg. EntityDocument URLs)
-
-  * How to page the results correctly, when combining them from multiple data sources?
-    * get total results per data source
-    * combine page-N results per data source
-    * result ordering in pages
-    * understand when to stop querying a data source
- 
-  * ...
-
-===== other tools =====
-
-  * **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]** (Not used on Conzept. I've been unable to build it from source yet, due to NPM package version dependency issues)
+  * **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]**
     * [[https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/|git repo]]
 
   * **[[https://conze.pt/app/query/|Wikidata Query Service]]** (self-hosted)

@@ -24,6 +24,7 @@ body
     font-size: 18px;
     font-family: Hind,Rubik,Lato,proxima-nova,"Helvetica Neue",Arial,sans-serif,"Font Awesome 5 Free";
     font-weight: 400;
+    font-display: swap;
 	margin: 0;
     min-height: 100%;
 	-webkit-font-smoothing: antialiased;
@@ -40,6 +41,10 @@ a:active,
 a:hover
 {
 	outline: 0
+}
+
+.mediabox2:hover {
+  outline: #ee8585 solid 5px !important;
 }
 
 .dokuwiki a.wikilink2:link,
@@ -472,8 +477,25 @@ hr {
 }
 
 #dokuwiki__content .page p {
-  line-height: 1.6rem !important;
+  line-height: 130% !important;
   margin: 0 0 1.6rem !important;
+}
+
+#dokuwiki__aside ul > li > div.li > a, #dokuwiki__aside ul > li > div.li > span > a {
+  line-height: 130% !important;
+}
+
+p {
+  text-align: initial !important;
+}
+
+pre.code {
+  background-color: #55a5d91a !important;
+  border: none !important;
+  border-radius: 0.5em !important;
+  font-family: mono !important;
+  width: fit-content;
+  max-width: 99%;
 }
 
 /* dark mode styling */
@@ -492,3 +514,57 @@ body.dark div, body.dark span, body.dark iframe, body.dark h1, body.dark h2, bod
   color: white !important;
 }
 */
+
+.modal {
+  background-color: rgb(0,0,0);
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5000; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+
+  width: 100%; /* Full width  */
+  height: 100%; /* Full height */
+  overflow: hidden !important; /* Enable scroll if needed */
+}
+
+  /* Modal Content (Image) */
+  .modal-content {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 95%;
+    overflow: hidden;
+
+  }
+
+  /* Caption of Modal Image (Image Text) - Same Width as the Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+    line-height: 1.2em;
+    overflow-y: scroll;
+    color: #ccc;
+    padding: 10px 0;
+    height: 3em;
+  }
+
+  #myModal span {
+    margin-top: -2rem;
+    float: right;
+    padding: 0.5rem 1.1rem;
+    margin-right: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .close:hover, #modal_previous:hover, #modal_next:hover {
+    outline: 2px solid gray;
+  }

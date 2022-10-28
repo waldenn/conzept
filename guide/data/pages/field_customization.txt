@@ -7,9 +7,9 @@ Each [[terms#topic_sections|section]] of a [[terms#topic_card|topic-card]] can b
 
 There are several types of actions a field can trigger:
 
-  * **__Open a link in the [[user_manual#content_panes|content area]]__**. This can be an self-hosted [[apps|app]] URL or a remote website which allows being embedded (without [[explore>Cross-origin resource sharing|CORS]] issues).
+  * **__Open a link in the [[user_manual#content_panes|content area]]__**. This can be an self-hosted [[apps|app]] URL, or a remote website which allows being embedded (without [[explore>Cross-origin resource sharing|CORS]] issues).
 
-  * **__Open a link in a new browser tab__**. This is sometimes required because the website does not allow being embedded in a 3rd-party iframe or user-authentication is needed.
+  * **__Open a link in a new browser tab__**. This is sometimes required when the website does not allow being embedded in a 3rd-party iframe or user-authentication is required.
 
   * Inline view in the sidebar:
     * **__Show a list of items from the Wikidata entity__**. (The field needs to have the multi-value key set to "true" in Conzept and also contain multiple values in Wikidata. If there is only one item in Wikidata the field will be rendered as a normal link to the Wikipedia/Wikidata page.)
@@ -18,10 +18,7 @@ There are several types of actions a field can trigger:
 
   * **__Trigger some code to run__** when the link is clicked. Examples: create a new bookmark or start/stop playing an audio file.
 
-You can see all the fields used for the Conzept website in the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|src/data/field.js]]**" file. Once you have added one or more field definitions to this file, you only need to run "**npm run build**" in the "app/explore2/" directory to start using these new fields. \\
-To make sure all users use the most recent version, it is recommended to also update the [[configuration|version setting]].
-
-[ Note: that the [[terms#topic_headline|topic-headline]] buttons are //not yet// defined in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file, but instead in the [[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js|createItemHtml.js]] file. ]
+You can see all the fields used for the Conzept website in the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|src/data/field.js]]**" file. Once you have added one or more field definitions to this file, you only need to run "**npm run build**" in the "app/explore2/" directory to start using these new fields. To make sure all users use the most recent version, it is recommended to also update the [[configuration|version setting]].
 ===== field processing =====    
 
 The field list is processed in two phases. Normally, you wont need to understand the details of these stages, but sometimes understanding them can help how to create more complicated field definitions.
@@ -74,26 +71,26 @@ These types are currently available in field-definitions:
 | **wikipedia-qid** | prop | Fetch the Wikidata for this property. This will return one or more Wikidata [[https://www.wikidata.org/wiki/Wikidata:Identifiers|Q-IDs]] coming from a Wikidata item statement (eg. "Q42"). \\ \\ Note: the "wikipedia-qid" name is used to automatically render either a Wikipedia page or a Wikidata page. Showing the Wikipedia article takes precedence, if it is available in the users' language. |
 | **symbol-number** | prop | Number coming from a Wikidata item statement (eg. "3051"). |
 | **symbol-string** | prop | String coming from a Wikidata item statement (eg. "+45-111-222-333"). |
-| **symbol-html** | prop | This type should only be used when you want create raw HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
+| **symbol-html** | prop | This type should only be used when you want create custom HTML-string output, based on some Wikidata item statement string. \\ \\ For example when creating an audio-element HTML string from the audio-file data. |
 | **link** | url | Open the URL in a single content-pane |
 | **url** | url | Open the URL in a new browser-tab |
 | **link-split** | url |Open the URL in two content panes. Load the supplied URL into the first content pane, in the second-content pane we try to load the Wikipedia / Wikidata page for this search-string / qid|
 | **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument-string}':true" | [[#exampleapi-based_link_field|Fetch API data]] from the [[integrating_an_api|supplied API-function]] and the argument-string (eg. a title-string or qid). The third boolean-argument can enable/disable the API data fetching. The results are rendered in the topic-card. \\ \\ Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. |
 ===== special values =====
 
-Conzept has some special title-values which can be used anywhere in the field definition values:
+Conzept has various title-forms which can be used anywhere in the field definition values:
 
 ^ name  ^ description ^
 | **title** | title as-is|
-| **title_** | title without any Wikipedia namespace-prefix and braces|
-| **title_enc** | title URL-encoded |
-| **title_quoted** | title "in quotes" |
-| **title_plus** | title with a plus for spaces|
-| **title_dashed** | title with dash for spaces|
-| **title_lowercase** | title in lowercase|
-| **title_no_spaces** | title without spaces|
 | **title_no_braces** | title without braces|
 | **title_no_braces_lowercase** | title without braces in lowercase|
+| **title_** | title without any Wikipedia namespace-prefix and braces (note: also the basis for all the titles below)|
+| **title_enc** | title URL-encoded |
+| **title_quoted** | title "in quotes" (note: this is the most used title-form, for 3rd-party site searches) |
+| **title_plus** | title with a plus for spaces |
+| **title_dashed** | title with dash for spaces |
+| **title_lowercase** | title in lowercase |
+| **title_no_spaces** | title without spaces |
 
 \\
 
@@ -130,7 +127,7 @@ An example which renders a link to all the "members of" (Wikidata property) valu
 
 \\
 
-An example of a field without a type (which means the data will be treated as a string):
+An example of a field without a type (which means the data will be treated as a plain string):
 
 <code>
 'atomic_symbol' : {
@@ -165,7 +162,7 @@ An example for the "number of employees" of a topic:
 
 \\
 
-Here's an example where the "symbol-string" HTML-creation is used to present an audio element (in the topic card):
+The "symbol-html"-type can be used to create customized HTML strings. This example presents an audio element (in the topic card):
 
 <code>
 'audio_widget' : {

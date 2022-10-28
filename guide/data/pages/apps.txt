@@ -46,6 +46,21 @@ You can also sort the videos by: relevance, date and number of views.
 
 The Youtube API access is kindly being provided for free by [[explore>Google]] to the conze.pt website. Thank you!
 
+=====  tree app =====
+
+[{{::tree_app.jpg?direct|[[https://conze.pt/explore/Frederick%20Douglass?l=en&t=link-split&i=Q215562&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ215562&s=true#|example]]}}]
+
+With the tree app you can see the relations to and from a topic in the form of a zoomable tree structure.
+
+These relations can be:
+  * [[https://conze.pt/explore/Cosimo%20de'%20Medici?l=en&t=link-split&i=Q48544&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ48544&s=true#|family]]
+  * [[https://conze.pt/explore/Louis%20Pasteur?l=en&t=link-split&i=Q529&u=%2Fapp%2Ftree%2Fen%2FP463%2FQ529&s=true#|member of]]
+  * [[https://conze.pt/explore/Google?l=en&t=link-split&i=Q95&u=%2Fapp%2Ftree%2Fen%2FP355%2FQ95&c=37.42248575,-122.08558456613565&s=true#|subsidiary and parent companies]]
+  * [[https://conze.pt/explore/Liver?l=en&t=link-split&i=Q9368&u=%2Fapp%2Ftree%2Fen%2FP361%2FQ9368&s=true#|part of]]
+  * [[https://conze.pt/explore/Eighty%20Years'%20War?l=en&t=link-split&i=Q164432&u=%2Fapp%2Ftree%2Fen%2FP527%2FQ164432&s=true#|has parts]]
+  * [[https://conze.pt/explore/Trogon?l=en&t=link-split&i=Q191469&u=%2Fapp%2Ftree%2Fen%2FP171%2FQ191469&s=true#|parent taxon]]
+  * ...and more
+
 ===== links app =====
 
 [{{ ::links_app.jpg?direct|[[https://conze.pt/explore/Pythagorean%20theorem?l=en&t=link-split&i=Q11518&u=%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DPythagorean%2520theorem&s=true|example]] }}]
@@ -64,7 +79,7 @@ It allows you to explore the essential relations of a topic in a more visual for
 
 The map app can render locations and areas on a 3D terrain map of Earth.
 
-Tha map app can also render the results coming from a SPARQL-query constructed by adding geo-type topics to a map-query list. To add such a geo-type go to the "meta"-section of a topic and click on the <html><i class="fas fa-plus"></i></html> "compare map" button.
+The map app can also render the results coming from a SPARQL-query constructed by adding geo-type topics to a map-query list. To add such a geo-type go to the "meta"-section of a topic and click on the <html><i class="fas fa-plus"></i></html> "compare map" button.
 
 ===== nearby map app =====
 
@@ -77,6 +92,7 @@ This app helps you see the nearby points of interest for topics with a geo-locat
 [{{ ::content_panes_2_mark.jpg?direct|[[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|example]] }}]
 
 The time-space app allows you to view series of related events, both in the time dimension as well as the spatial dimension.
+
 ===== filter-browse app =====
 
 [{{::filter_browse_app.jpg?direct|[[https://conze.pt/explore/Business?l=en&t=link-split&i=Q4830453&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fc%3DQ4830453%26lang%3Den&s=true|example]]}}]
@@ -84,19 +100,6 @@ The time-space app allows you to view series of related events, both in the time
 The filter-browse app allows you to drill-down on classes of Wikidata properties.
 
 (Note: only available if some "[[https://www.wikidata.org/wiki/Property:P1963|properties-for-this-type]]" were defined for the entity in Wikidata.)
-=====  tree app =====
-
-[{{::tree_app.jpg?direct|[[https://conze.pt/explore/Frederick%20Douglass?l=en&t=link-split&i=Q215562&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ215562&s=true#|example]]}}]
-
-With the tree app you can see the relations to and from a topic in the form of a zoomable tree structure.
-
-These relations can be:
-  * [[https://conze.pt/explore/Cosimo%20de'%20Medici?l=en&t=link-split&i=Q48544&u=%2Fapp%2Ftree%2Fen%2Ffamily_tree%2FQ48544&s=true#|family]]
-  * [[https://conze.pt/explore/Louis%20Pasteur?l=en&t=link-split&i=Q529&u=%2Fapp%2Ftree%2Fen%2FP463%2FQ529&s=true#|member of]]
-  * [[https://conze.pt/explore/Google?l=en&t=link-split&i=Q95&u=%2Fapp%2Ftree%2Fen%2FP355%2FQ95&c=37.42248575,-122.08558456613565&s=true#|subsidiary and parent companies]]
-  * [[https://conze.pt/explore/Liver?l=en&t=link-split&i=Q9368&u=%2Fapp%2Ftree%2Fen%2FP361%2FQ9368&s=true#|part of]]
-  * [[https://conze.pt/explore/Eighty%20Years'%20War?l=en&t=link-split&i=Q164432&u=%2Fapp%2Ftree%2Fen%2FP527%2FQ164432&s=true#|has parts]]
-  * ...and more
 
 ===== compare app =====
 

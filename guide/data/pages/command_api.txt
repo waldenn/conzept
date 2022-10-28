@@ -1,0 +1,312 @@
+====== command API ======
+
+===== getting started =====
+
+You can start building and running Conzept commands by opening the command-editor (located in the tools-tab).
+
+Then execute the commands:
+
+  * By typing: **[CTRL] + [ENTER]**
+
+  * Or by clicking the ''▶ run'' button
+
+Open your browser console, to see any logging (if needed).
+
+Check this example to get started: ''[[https://conze.pt/explore/?&t=&i=Q333&s=true&commands=(show%20%27topic%20%27(%20Q333%20)%20)#|(show 'topic '( Q333 ) )]]''
+
+Autocompletion of the Scheme-based command-language symbols (including the Wikidata properties and entities) are available by pressing: **[CTRL] + [SPACE]** (note: there are still some autocomplete and editing [[#notes|issues]])
+===== purpose =====
+
+  * To have **a good command API ([[explore>Domain-specific language|DSL]]) and command editor, for creating entity and media processing workflows** in Conzept.
+
+  * The DSL should be usable for:
+    * [[explore>Data analysis]]
+    * [[explore>Data visualization]]
+    * [[explore>Storytelling]]
+    * [[explore>Education]]
+
+  * Design priorities:
+    * useful
+    * intuitive, **simple**, elegant
+    * **composable**, coherent
+    * robust, durable
+
+  * Aimed at Wikidata, but could perhaps also made suitable for use with other SPARQL-endpoints in the future.
+
+
+===== commands =====
+
+==== system commands====
+
+  * **set configuration value**
+    * ''[[https://conze.pt/explore?&commands=(set%20%27language%20%27fr)|(set 'language '<language> )]]'' (set language)
+    * ''[[https://conze.pt/explore?&commands=(set%20%27darkmode%20%27true)|(set 'darkmode '<true|false|system> )]]'' (set theme)
+====data fetching commands====
+
+  * **query** ( list of SPARQL conditions => entity list)
+    * query format: ''[[|(query ( '(<condition 1>)  '(<condition 2>) (...) ) )]]''
+      * query-conditions are specified as list of three strings: ''[[|<propertyID> [=|>|<] [<Qid>|<numeric-value>]]]''
+      * note: when using the inequality operators: the difference between a decimal and a timestamp will be automatically detected, based on the property type.
+    * Composed query-command examples:
+      * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27map%20(%20query%20(%20%27(P31%20%3D%20Q6256)%20)%20)%20)#|(show 'map ( query ( '(P31 = Q6256) ) ) )]]'' (all countries)
+      * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27map%20(%20query%20(%20%27(P31%20%3D%20Q6256)%20%27(P361%20%3D%20Q18)%20)%20)%20)#|(show 'map ( query ( '(P31 = Q6256) '(P361 = Q18) ) ) )]]'' (countries on the South American continent)
+      * ''[[https://conze.pt/explore/?&s=true&commands=(show 'image ( query ( '( P171 %3D%20 Q681374 ) ) ) )#|(show 'image ( query ( '( P171 =  Q681374 ) ) ) )]]'' (taxons with parent taxon "Monarchidae")
+      * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27timeline%20(%20query%20(%20%27(%20P106%20%3D%20Q82594%20)%20%27(%20P21%20%3D%20Q6581072%20)%20)%20)%20)#|(show 'timeline ( query ( '( P106 = Q82594 ) '( P21 = Q6581072 ) ) ) )]]'' (female computer scientists)
+      * ''[[https://conze.pt/explore/?&&s=true&commands=(show 'map3d (query ( %0A%20 '( P31 %3D Q12570 )%0A%20 '( P2043 > 2500 )%0A%20 ) ) )%0A%0A#|(show 'map3d (query ( '( P31 = Q12570 ) '( P2043 > 2500 ) ) ) )]]'' (suspension-bridges longer than 2500 (note: unit specification not supported)
+      * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27image%20(%20query%20(%20%27(%20P31%2FP279*%20%3D%20Q204832)%20%27(%20P571%20%253C%201990%20)%20)%20)%20)#|(show 'image ( query ( '( P31/P279* = Q204832) '( P571 < 1990 ) ) ) )
+]]'' (instances or instances of sub-classes of roller-coasters, build before the year 1990)
+  * ? **entity**
+    * ''(entity '(Q5 Q55) )''
+  * ? **entity-statement**
+    * ''(entity-statement '(Q55:P31) )''
+  * ? **entity-label**
+    * ''(entity-label '(Q5 Q55))''
+  * ? **property** data
+    * ''(property '(P31) )''
+  * ? **property-label**
+    * ''(property-label '(P31 P279))''
+  * ? **identify** (title-string => possibly related list of entity IDs ranked by match-likelihood)
+    * ''(identify ("Netherlands" "Germany"))''
+
+====data rendering commands====
+
+  * **show** '<view> '( <query|entities> )
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27topic%20%27(Q333)%20)#|(show 'topic '(Q333) )]]'' (Wikipedia/Wikidata page - only the first entity provided is used)
+    * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27sidebar%20(%20query%20(%20%27(%20P31%2FP279*%20%3D%20Q204832)%20%27(%20P571%20%253C%201990%20)%20)%20)%20)#|(show 'sidebar ( query ( '( P31/P279* = Q204832) '( P571 < 1990 ) ) ) )]]'' (show results in the sidebar - no support yet for using entities instead of a query)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27table%20%27(Q183%20Q55)%20)#|(show 'table '(Q183 Q55) )]]'' (table of topics)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27image%20%27(Q296%20Q5582)%20)#|(show 'image '(Q296 Q5582) )]]'' (image-grid of topics)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27timeline%20%27(Q183%20Q55)%20)#|(show 'timeline '(Q183 Q55) )]]'' (timeline of topics)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27graph%20%27(Q296%20Q5582)%20)#|(show 'graph '(Q296 Q5582) )]]'' (graph of topics)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27linkgraph%20%27(Q181014%20Q638%20Q81982%20Q186393)%20)#|(show 'linkgraph '(Q181014 Q638 Q81982 Q186393) )]]'' (graph of the Wikipedia-article-links of entities)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27map%20%27(Q183%20Q55)%20)#|(show 'map '(Q183 Q55) )]]'' (2D location map of entities)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27map3d%20%27(Q232%20Q794%20Q843)%20)#|(show 'map3d '(Q232 Q794 Q843) )]]'' (3D location map of entities)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27map3d-instance-of%20%27(Q82137%20Q101659)%20)#|(show 'map3d-instance-of '(Q82137 Q101659) )]]'' (3D location map of entities which are an instance-of (P31) these entity-types)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27compare%20%27(Q183%20Q55)%20)#|(show 'compare '(Q183 Q55) )]]'' (compare entities)
+
+  * non-entity based show-commands:
+    * ''[[https://conze.pt/explore/?&s=true&commands=(show 'link '( "https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis" ) )#|(show 'link '( "<web-URL>" ) )]]'' (open an iframe-embeddable-URL in the content pane)
+    * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27url%20%27(%20%22https%3A%2F%2Fwww.law.cornell.edu%2Fconstitution%2Fthird_amendment%23%3A~%3Atext%3DNo%2520soldier%2Claw%22%20)%20)#|(show 'url '( "<web-URL>" ) )]]'' (open any URL in a new tab. note: this also allows for the one-time use of text-fragments on 3rd-party URLs)
+    * ''[[https://conze.pt/explore/?s=true&commands=(%20show%20%27pdf%20%27(%20%22https%3A%2F%2Fwww.ohchr.org%2Fsites%2Fdefault%2Ffiles%2Fdocuments%2Fpublications%2Fguidingprinciplesbusinesshr_en.pdf%22)%20)#|(show 'pdf '( "<PDF-URL>") )]]''
+    * ''[[https://conze.pt/explore/?s=true&commands=(%20show%20%27iiif%20%27(%22https%3A%2F%2Fwww.loc.gov%2Fitem%2F2021667604%2Fmanifest.json%22)%20)%0A#|(show 'iiif '("<IIIF-URL>") )]]'' 
+    * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27audio%20%27(%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F00%2FCELLO_LIVE_PERFORMANCES_JOHN_MICHEL-J_S_Bach_Gamba_Sonata_in_g_1st_mvt.ogg%22%20)%20)%0A(show%20%27link%20%27(%20%22https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis%22%20)%20)%0A#|(show 'audio '( "<audio-file-URL>" ) )
+]]'' (background-play an audio file)
+    * ''[[https://conze.pt/explore/?s=true&commands=(show%20%27audio-query%20%27(%20%22source%3Aconzept%3Bstart%3A1880%3Bend%3A1920%22%20)%20)#|(show 'audio-query '( "source:[conzept|archive.org|europeana];start:1880;end:1930" ) )]]'' (audio background-play filtered by a period)
+      *  ''[[https://conze.pt/explore/?s=true&commands=(show%20%27audio-query%20%27(%20%22source%3Aconzept%3Bcountry%3AQ30%22%20)%20)#|(show 'audio-query '( "source:conzept;country:Q30" ) )
+]]'' (audio background-play filtered by a country)
+    * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27audio-waveform%20%27(%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F00%2FCELLO_LIVE_PERFORMANCES_JOHN_MICHEL-J_S_Bach_Gamba_Sonata_in_g_1st_mvt.ogg%22%20)%20)%0A#|(show 'audio-waveform '( "<audio-file-URL>" ) )
+]]'' (play an audio file in the wave-form tool)
+    * ''[[https://conze.pt/explore/?&s=true&commands=%3B(show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%26t%3D20s%20)%20)%0A%3B(show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FzqNTltOGh5c%3Ft%3D104%20)%20)%0A(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fembed%2FBspouwCTXRo%3Fstart%3D76%26end%3D96%20)%20)#|(show 'youtube '(<youtube-URL>) )]]'' (youtube video, note: if the URL has any start/end parameters, these will be used)
+    * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22slide%201%22%0A%20%20%20(%20fragment%20%22go%20to%20a%20canvas%22%20%22goto%3A4%22%20)%0A%20%20%20(%20fragment%20%22go%20to%20another%20canvas%22%20%22goto%3A2%22%20)%0A%20%20%20(show%20%27image-set%20%27(%20%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F4f%2FOrion_Belt.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F9%2F9e%2FMilky_Way_Arch.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F7b%2FIo_highest_resolution_true_color.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fe9%2FNebra_disc_1.jpg%2F2527px-Nebra_disc_1.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fc%2Fca%2FPercival_Lowell_observing_Venus_from_the_Lowell_Observatory_in_1914.jpg%22%0A%20%20%20%20%20)%20)%0A%20)%0A%20(%20slide%20%22slide%202%22%0A%20%20%20(%20fragment%20%22foo%22%20)%0A%20%20%20(%20fragment%20%22bar%22%20)%0A%20%20%20(%20fragment%20%22baz%22%20)%0A%20)%0A)#|(show 'image-set '( "<image-1-file-URL>" "<image-2-file-URL>" ... ) )]]'' (show one or more images in an [[explore>International Image Interoperability Framework|IIIF]]-based zoomable view)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27chemical%20%27(8478)%20)#|(show 'chemical '(8478) )]]'' (chemical structure by "[[https://www.wikidata.org/wiki/Property:P662|PubChem Cid]]", see [[#notes|notes]])
+
+  * **search** '<view> '(<query|entities>) (not yet supported for use in presentations)
+    * ''[[https://conze.pt/explore/?&commands=(search+%27web+%27(+Q165+Q45782+Q35509+)+)#|(search 'web '( Q165 Q45782 Q35509 ) )]]'' (Bing web-search of entity labels)
+    * ''[[https://conze.pt/explore/?&commands=(search+%27image+%27(+Q165+Q45782+Q35509+)+)#|(search 'image '( Q165 Q45782 Q35509 ) )]]'' (Bing image-search of entity labels)
+    * ''[[https://conze.pt/explore/?&commands=(search+%27video+%27(+Q165+Q45782+Q35509+)+)#|(search 'video '( Q165 Q45782 Q35509 ) )]]'' (video search of entity labels)
+    * ''[[https://conze.pt/explore/?&commands=(search+%27explore+%27(+Q165+Q45782+Q35509+)+)#|(search 'explore '( Q165 Q45782 Q35509 ) )]]'' (Conzept search of entity labels)
+
+  * **text-to-speech**
+    * ''[[https://conze.pt/explore/?&commands=(say%20%22All%20that%20glisters%20is%20not%20gold%22)#|(say "All that glisters is not gold")]]'' (speak some text)
+    * ''[[https://conze.pt/explore/?&t=wikipedia-qid&i=Q206400&s=true&commands=(say%20%27Q206400)#|(say 'Q206400)]]'' (speak a Wikipedia-article using an entity ID)
+      * note: currently there is no UI for controlling the command-API TTS-speaker, but any other TTS-buttons in the UI can stop the speaking, or simply close the tab)
+
+
+==== presentation commands ====
+
+[{{::presentation-001.png?direct|presentation [[https://conze.pt/explore/?&t=link&u=%2Fapp%2Fvideo%2F%3Fwide%3Dtrue%23%2Fview%2FfBoHkB92SU0%2F2425&s=true&commands=(%20presentation%0A%20(%20slide%20%22live%20performance%20-%20So%20What%22%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%20)%20)%0A%20)%0A%20(%20slide%20%22Miles%20Davis%20quintet%20solo%22%0A%20%20%20(%20fragment%20%22video%20with%20a%20start%20time%22%20)%0A%20%20%20(%20fragment%20%22move%20video%20cursor%22%20%22goto%3A2785%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20video%20cursor%20again%22%20%22goto%3A545%22%20)%20%20%20%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FfBoHkB92SU0%3Ft%3D2425%20)%20)%0A%20)%0A)#|example]] }}]
+
+Presentations can be constructed using the commands: **presentation**, **slide** and **fragment**.
+
+<code>
+( presentation
+
+  ( slide  "title 1"
+    ( <list-of-fragments-and-commands> )
+  )
+
+  ( slide "title 2"
+    ( <list-of-fragments-and-commands> )
+  )
+  
+)
+</code>
+
+Each slide can contain multiple commands, but most of the time you should only use one-command per slide (so these commands don't interfere with each other). You can use multiple fragments per slide.
+
+Fragments can contain Markdown text. A special link-shortcut syntax is available when linking to Conzept by entity ID:
+<code>( fragment "aka [\"Devil's Bible\"](Q212180)" )</code>
+
+The presentation can contain "meta-data", such as:
+  * **background** (All the RevealJS [[https://revealjs.com/backgrounds/|background types]], except color-names, are supported).
+  * **color** (Any valid CSS color)
+  * **autoslide** (Slide-timer in milliseconds. This also makes the slide fragments show at once.)
+
+Example:
+<code>
+( presentation
+ ( set '( 'background "https://conze.pt/app/explore2/assets/video/backgrounds/005.mp4" ) )
+ ( set '( 'color "#ffffee" ) )
+ ( set '( 'autoslide "20000" ) )
+ ( slide "Universe"
+   ( show 'topic '( Q1 ) )
+ )
+ ( slide "Milky Way galaxy"
+   ( show 'topic '( Q321 ) )
+ )
+ ( slide "Sun"
+   ( show 'topic '( Q525 ) )
+ )
+)
+</code>
+
+Slides can contain **action commands** (for data fetching, rendering, etc.) and **fragments** (which are on or more click-through elements on a slide).
+
+Fragment syntax:
+<code>( fragment "[plaintext|markdown]" "<goto:[seconds|text|index|...]>" </code>
+
+Simple fragment example:
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22slide%201%22%0A%20%20%20(%20fragment%20%22foo%22%20)%0A%20%20%20(%20fragment%20%22bar%22%20)%0A%20%20%20(%20fragment%20%22baz%22%20)%0A%20)%0A%20(%20slide%20%22slide%202%22%0A%20%20%20(%20fragment%20%22foo%22%20)%0A%20%20%20(%20fragment%20%22bar%22%20)%0A%20%20%20(%20fragment%20%22baz%22%20)%0A%20)%0A)#|simple fragment]]'' (every user-click shows an additional text line)
+
+Fragments examples with "goto-triggers":
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22US%20Bill%20of%20Rights%22%0A%20%20%20(%20fragment%20%221st%20fragment%22%20%22goto%3AA%20minority%20of%20the%20Constitution%27s%20critics%22%20)%0A%20%20%20(%20fragment%20%222nd%20fragment%22%20%22goto%3A55%20delegates%20who%20drafted%22%20)%0A%20%20%20(%20show%20%27topic%20%27(%20Q862765)%20)%0A%20)%0A%20(%20slide%20%22external%20URLs%20allow%20a%20one-time%20use%20of%20a%20text-fragment%22%0A%20%20%20(%20fragment%20%22if%20you%20need%20multiple%20(external)%20fragments%2C%20create%20a%20slide%20for%20each%20of%20these%22%20)%0A%20%20%20(show%20%27url%20%27(%20%22https%3A%2F%2Fwww.law.cornell.edu%2Fconstitution%2Fthird_amendment%23%3A~%3Atext%3DSupreme%20court%22%20)%20)%0A%20)%0A)#|webpage highlighting]]''
+  * ''[[https://conze.pt/explore/?s=true&commands=(%20presentation%0A%20(%20set%20%27(%20%27background%20%22https%3A%2F%2Fwww.apc.org%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fnode_full-size%2Fpublic%2FUN_logo.jpg%3Fitok%3DJCkWY5el%22%20)%20)%0A%20(%20set%20%27(%20%27color%20%22white%22%20)%20)%0A%20(%20slide%20%22UN%20Universal%20Declaration%20of%20Human%20Rights%22%0A%20%20%20(%20show%20%27pdf%20%27(%20%22https%3A%2F%2Fwww.ohchr.org%2Fsites%2Fdefault%2Ffiles%2FUDHR%2FDocuments%2FUDHR_Translations%2Feng.pdf%22)%20)%0A%20%20%20(%20fragment%20%22move%20position%20to%20a%20page%22%20%22goto%3A2%3A%22%20)%20%0A%20%20%20(%20fragment%20%22move%20again%20and%20highlight%22%20%22goto%3A2%3AArticle%20I%22%20)%20%0A%20%20%20(%20fragment%20%22...and%20again%22%20%22goto%3A4%3AArticle%2012%22%20)%20%0A%20)%20%0A%20(%20slide%20%22UN%20Human%20Rights%20Guiding%20Principles%22%0A%20%20%20(%20fragment%20%22move%20position%22%20%22goto%3A6%3AGuiding%20Principles%22%20)%20%0A%20%20%20(%20fragment%20%22move%20position%20again%22%20%22goto%3A27%3AVerify%20whether%20adverse%20human%20rights%20impacts%20are%20being%20addressed%22%20)%20%0A%20%20%20(%20show%20%27pdf%20%27(%20%22https%3A%2F%2Fwww.ohchr.org%2Fsites%2Fdefault%2Ffiles%2Fdocuments%2Fpublications%2Fguidingprinciplesbusinesshr_en.pdf%22)%20)%0A%20)%0A)|PDF paging and highlighting]]''
+  * ''[[https://conze.pt/explore/?s=true&commands=(%20presentation%0A%20(%20slide%20%22live%20performance%20-%20So%20What%22%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%20)%20)%0A%20)%0A%20(%20slide%20%22Miles%20Davis%20quintet%20solo%22%0A%20%20%20(%20fragment%20%22video%20with%20a%20start%20time%22%20)%0A%20%20%20(%20fragment%20%22move%20video%20cursor%22%20%22goto%3A2785%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20video%20cursor%20again%22%20%22goto%3A545%22%20)%20%20%20%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FfBoHkB92SU0%3Ft%3D2425%20)%20)%0A%20)%0A)#|YouTube video cursor]]''
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22%5C%22Sonata%20No.%203%20in%20G%20minor%5C%22%20by%20John%20Michel%22%0A%20%20%20(%20fragment%20%22composed%20by%20J.S.%20Bach%20(BWV%201029)%22%20)%0A%20%20%20(%20fragment%20%22move%20audio%20cursor%22%20%22goto%3A70%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20audio%20cursor%20again%22%20%22goto%3A160%22%20)%20%20%20%0A%20%20%20(show%20%27audio-waveform%20%27(%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F00%2FCELLO_LIVE_PERFORMANCES_JOHN_MICHEL-J_S_Bach_Gamba_Sonata_in_g_1st_mvt.ogg%22%20)%20)%0A%20)%0A)#|audio-waveform cursor]]''
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22slide%201%22%0A%20%20%20(%20fragment%20%22go%20to%20a%20canvas%22%20%22goto%3A4%22%20)%0A%20%20%20(%20fragment%20%22go%20to%20another%20canvas%22%20%22goto%3A2%22%20)%0A%20%20%20(show%20%27image-set%20%27(%20%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F4f%2FOrion_Belt.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F9%2F9e%2FMilky_Way_Arch.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F7b%2FIo_highest_resolution_true_color.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fe%2Fe9%2FNebra_disc_1.jpg%2F2527px-Nebra_disc_1.jpg%22%0A%20%20%20%20%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fc%2Fca%2FPercival_Lowell_observing_Venus_from_the_Lowell_Observatory_in_1914.jpg%22%0A%20%20%20%20%20)%20)%0A%20)%0A%20(%20slide%20%22slide%202%22%0A%20%20%20(%20fragment%20%22foo%22%20)%0A%20%20%20(%20fragment%20%22bar%22%20)%0A%20%20%20(%20fragment%20%22baz%22%20)%0A%20)%0A)#|image-set cursor]]''
+    * canvas-selection syntax: "goto:<canvas-index>" (''working - with some bugs'')
+    * canvas-region syntax: "goto:<x,y,w,h>" (region-view-box: "x-position, y-position, width, height") (''not working yet'')
+    * canvas+region syntax: "goto:<image-number>;<x,y,w,h>" (''not working yet'')
+    * text search syntax: "goto:<text>" (''not working yet'')
+
+==== presentation examples ====
+
+  * ''[[https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q1&s=true&commands=(%20presentation%0A%20(%20set%20%27(%20%27background%20%22https%3A%2F%2Fconze.pt%2Fapp%2Fexplore2%2Fassets%2Fvideo%2Fbackgrounds%2F001.mp4%22%20)%20)%0A%20(%20slide%20%22universe%20slide%22%0A%20%20%20(%20show%20%27topic%20%27(Q1)%20)%0A%20%20%20(%20say%20%22universe%20slide%22)%0A%20)%0A%20(%20slide%20%22earth%20slide%22%0A%20%20%20(%20show%20%27topic%20%27(Q2)%20)%0A%20%20%20(%20say%20%22earth%20slide%22)%0A%20)%0A%20(%20slide%20%22life%20slide%22%0A%20%20%20(%20show%20%27topic%20%27(Q3)%20)%0A%20%20%20(%20say%20%22life%20slide%22)%0A%20)%0A)#|basic]]''
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(slide%20%22Sonata%20-%20musical%20form%22%0A%20%20(%20show%20%27topic%20%27(%20Q131269%20)%20)%0A%20%20(%20show%20%27audio%20%27(%22https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FSpecial%3AFilePath%2FDomenico.Scarlatti.Sonata.f.minor.Kirkpatrick.466.ogg%22)%20)%0A%20)%0A%20(%20slide%20%22%5C%22Sonata%20No.%203%20in%20G%20minor%5C%22%20by%20John%20Michel%22%0A%20%20%20(%20fragment%20%22composed%20by%20J.S.%20Bach%20(BWV%201029)%22%20)%0A%20%20%20(%20fragment%20%22move%20audio%20cursor%22%20%22goto%3A70%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20audio%20cursor%20again%22%20%22goto%3A160%22%20)%20%20%20%0A%20%20%20(show%20%27audio-waveform%20%27(%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F00%2FCELLO_LIVE_PERFORMANCES_JOHN_MICHEL-J_S_Bach_Gamba_Sonata_in_g_1st_mvt.ogg%22%20)%20)%0A%20)%0A)##|Bach]]''
+  * ''[[https://conze.pt/explore/?&s=true&commands=(%20presentation%0A%20(%20slide%20%22Miles%20Davis%22%0A%20%20%20(%20say%20%22Miles%20Davis%20-%20the%20Jazz%20legend%22)%0A%20%20%20(%20show%20%27topic%20%27(%20Q93341%20)%20)%0A%20%20%20(%20fragment%20%22Jazz%20legend%22%20)%0A%20%20%20(%20fragment%20%221926%20-%201991%22%20)%0A%20)%0A%20(%20slide%20%22discography%22%0A%20%20%20(%20say%20%22his%20discography%20consists%20of%20at%20least%2061%20studio%20albums%2C%2039%20live%20albums%2C%2046%20compilation%20albums%2C26%20box%20sets%2C%204%20soundtrack%20albums%2C%2057%20singles%20and%203%20remix%20albums.%20%22)%0A%20%20%20(%20show%20%27timeline%20(%20query%20(%20%27(%20P31%20%3D%20Q482994%20)%20%27(%20P175%20%3D%20Q93341%20)%20)%20)%20)%0A%20)%0A%20(%20slide%20%22live%20performance%20-%20So%20What%22%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%20)%20)%0A%20)%0A%20(%20slide%20%22Miles%20Davis%20quintet%20solo%22%0A%20%20%20(%20fragment%20%22video%20with%20a%20start%20time%22%20)%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FfBoHkB92SU0%3Ft%3D2425%20)%20)%0A%20)%0A%20(%20slide%20%22some%20quotes%20which%20show%20his%20poetic%2C%20but%20direct%20personality%22%0A%20%20%20(%20show%20%27audio%20%27(%20%22https%3A%2F%2Fia800900.us.archive.org%2F31%2Fitems%2F04AllBlues_201901%2F03%20Blue%20in%20Green.mp3%22%20)%20)%0A%20%20%20(%20show%20%27link%20%27(%20%22https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis%22%20)%20)%0A%20)%0A%20(%20slide%20%22Kind%20of%20Blue%20-%20Blue%20in%20Green%20performance%22%0A%20%20%20(%20show%20%27audio%20%27(%20%22https%3A%2F%2Fia800900.us.archive.org%2F31%2Fitems%2F04AllBlues_201901%2F03%20Blue%20in%20Green.mp3%22%20)%20)%0A%20%20%20(%20show%20%27topic%20%27(%20Q283221%20)%20)%0A%20)%0A%20(%20slide%20%22The%20Flamenco%20Sketches%20were%20composed%20in%20collaboration%20with%20Bill%20Evans%22%0A%20%20%20(%20show%20%27audio%20%27(%20%22https%3A%2F%2Fia803001.us.archive.org%2F13%2Fitems%2FMilesDavisKindOfBlue_201905%2FFlamenco%20Sketches.mp3%22%20)%20)%0A%20%20%20(%20show%20%27topic%20%27(%20Q208205%20)%20)%0A%20)%0A%20(%20slide%20%22explore%20related%20topics%22%0A%20%20(show%20%27linkgraph%20%27(%20Q8341%20Q93341%20)%20)%0A%20)%0A)#|Miles Davis]]''
+  * ''[[https://conze.pt/explore/?s=true&commands=(%20presentation%0A%20(%20set%20%27(%20%27background%20%22https%3A%2F%2Fimages.rawpixel.com%2Fimage_800%2FcHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3B4MTA1NzQwNC1pbWFnZS1qb2I2MzAtYV8xLmpwZw.jpg%3Fs%3DxHYWWIHwR3disyqxI_LTZTapJMTjq2y1IfYOnyONX8E%22%20)%20)%0A%20(%20set%20%27(%20%27color%20%22%23000033%22%20)%20)%0A%20(%20slide%20%22Codex%20Gigas%22%0A%20%20%20(%20fragment%20%22aka%20%5B%5C%22Devil%27s%20Bible%5C%22%5D(Q212180)%22%20)%0A%20%20%20(%20show%20%27iiif%20%27(%22https%3A%2F%2Fwww.loc.gov%2Fitem%2F2021667604%2Fmanifest.json%22)%20)%0A%20)%0A%20(%20slide%20%22Gospel%20Book%22%0A%20%20%20(%20fragment%20%22%5C%22Evangelia%20secundum%20Lucam%20et%20Johannem%5C%22%22%20)%0A%20%20%20(%20show%20%27iiif%20%27(%20%22https%3A%2F%2Fcudl.lib.cam.ac.uk%2Fiiif%2FMS-KK-00001-00024%22%20)%20)%0A%20)%0A)#|IIIF-formatted bookscans]]''
+
+  * Auto-generation of topic presentation (''work in progress'')
+    * Current available for [[https://conze.pt/explore/?&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P662%22,%22propertyDataType%22:%22external-id%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}#|all PubChem compounds]] (go to meta section => click on the presentation icon)
+
+===== notes =====
+
+  * Implement correct URL-parameter quoting for these special-characters: ? & # > < (double encoding needed?)
+
+  * Todo: Create a "**meta-object format**" for attribution and other things (see also: [[explore>Dublin Core]])
+    * copyright license
+    * copyright owner(s)
+    * creators(s)
+    * publisher(s)
+    * title
+    * description
+    * date
+    * attribution link
+
+  * Improve editor experience
+    * Autocomplete:
+      * Can we use autocomplete for multi-words (strings containing spaces)?
+      * Make property-autocomplete results have a higher priority (as there are fewer of them)
+      * The Ace-editor should not cancel the autocompletion, when it runs out of local options! (leave it open and let the user type)
+      * Add autocompletion for the custom function-names
+      * See also: [[https://github.com/SemanticComputing/federated-sparql-search-widget|federated-sparql-search-widget]] - SPARQL-store source-selector and autocomplete example
+     * todo:
+       * highlight entities?
+       * add presentation/section/fragment button? allow for right-click insert?
+
+  * Presentation issues:
+    * BUG: in fullscreen the autocomplete-menu is not visible
+    * BUG: slow loading pages may overwrite next slides/actions (especially when the user clicks quickly on "next slide")
+      * todo: research ways how to prevent this render-output clobbering.
+    * BUG: Ace-editor: sometimes there are only a few lines visible in the editor!??
+    * BUG: Parentheses in background-color/gradient strings are stripped.
+    * research: How to auto-create an 'interesting' presentation from just a topic ID (optionally with an "topic lens" definition, to give some more semantic direction).
+    * Could we make truly multi-lingual presentation text using [[https://browser.mt/|Bergamot]]? (client-side translation)
+
+  * Add Schema.org "[[https://schema.org/potentialAction|potentialAction]]" command-links to JSON-LD (if useful).
+
+  * Assess any security implications from running command-URLs code.
+    * What are the potential risks?
+    * How can these risks be minimized (if serious): CSP rules, ...?
+
+  * Research DSL workflow for more complex query-output-types:
+    * To research: Allow for SPARQL-query URL-output as an alternative (eg. for use with the "image-set" command).
+    * Bubble charts:
+      * [[https://conze.pt/app/query/#%23Longest%20rivers%0A%23defaultView%3ABubbleChart%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Flength%20%3Fpic%20%3Flocation%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%2Fwdt%3AP279%2a%20wd%3AQ4022%20.%0A%20%20%3Fitem%20wdt%3AP2043%20%3Flength%20.%0A%20%20%3Fitem%20wdt%3AP18%20%3Fpic%20.%0A%20%20%3Fitem%20wdt%3AP625%20%3Flocation%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22%20.%20%7D%0A%7D%20ORDER%20BY%20DESC%28%3Flength%29%20%3FitemLabel%0ALIMIT%2050|longest rivers]]
+      * [[https://conze.pt/app/query/#%23Largest%20cities%20of%20the%20world%0A%23defaultView%3ABubbleChart%0ASELECT%20%3FcityLabel%20%3Fpopulation%20%3Fgps%0AWITH%20%7B%0A%20%20SELECT%20DISTINCT%20%2a%0A%20%20WHERE%20%7B%0A%20%20%20%20%3Fcity%20wdt%3AP31%2Fwdt%3AP279%2a%20wd%3AQ515%20.%0A%20%20%20%20%3Fcity%20wdt%3AP1082%20%3Fpopulation%20.%0A%20%20%20%20%3Fcity%20wdt%3AP625%20%3Fgps%20.%0A%20%20%7D%0A%20%20ORDER%20BY%20DESC%28%3Fpopulation%29%0A%20%20LIMIT%20100%0A%7D%20AS%20%25i%0AWHERE%20%7B%0A%20%20INCLUDE%20%25i%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22%20.%20%7D%0A%7D%0AORDER%20BY%20DESC%28%3Fpopulation%29|most populated cities]]
+
+   * Audio-waveform app:
+     * Add start-time / start-end-time URL-parameter support
+     * Allow a user to right-click to copy: start-time (in seconds) or start-end-time (in seconds)
+
+  * Chemical command:
+    * Generally note: This is an interesting **topical DSL** example.
+    * Add support for using an entity-ID (besides the PubChem Cid)
+    * Could we handle multiple elements?
+    * Expand range of supported chemical structures, properties and relations: proteins, genes, gene pathways, etc.?
+
+
+
+===== links =====
+
+==== scheme links ====
+
+  * standards:
+    * [[https://www.schemers.org/Documents/Standards/R5RS/r5rs.pdf|Scheme v5]] (pdf, 1998)
+    * [[https://small.r7rs.org/attachment/r7rs.pdf|Scheme v7]] (pdf, 2013)
+  * Wikipedia:
+    * [[explore>Scheme (programming language)|Scheme]]
+    * [[explore>Lisp (programming language)|Lisp]]
+  * code examples:
+    * [[https://programming-idioms.org/cheatsheet/Scheme|basic examples]]
+  * books:
+    * "[[https://archive.org/details/sketchy-lisp/mode/2up?view=theater|Sketchy LISP]]" (pdf)
+    * "[[https://vpb.smallyu.net/[Type]%20books/The%20Little%20Schemer.pdf|The Little Schemer]]" (pdf)
+    * "[[https://doc.lagout.org/programmation/Lisp/Scheme/The%20Seasoned%20Schemer%20-%20Daniel%20P.%20Friedman.pdf|The Seasoned Schemer]]" (pdf)
+    * "[[https://xuanji.appspot.com/isicp/| Structure and Interpretation of Computer Programs]]" (interactive version)
+    * ...
+  * videos:
+    * [[https://www.youtube.com/watch?v=6k78c8EctXI|intro 1]]
+    * [[https://www.youtube.com/watch?v=tA1clbGDczI|intro 2]]
+  * Community:
+    * [[https://old.reddit.com/r/scheme/|reddit: scheme]]
+  * "Lips" - a Scheme implementation for JS environments
+    * [[https://lips.js.org|website]]
+    * [[https://github.com/jcubic/lips|code]]
+    * [[https://github.com/jcubic/lips/wiki/v1.0.0|docs]], [[https://github.com/jcubic/lips/blob/devel/REFERENCE.md|function reference]], [[https://github.com/jcubic/lips/wiki/Getting-Started|obsolete docs]]
+
+==== revealjs docs ====
+
+  * [[https://revealjs.com/config/|Config]]
+  * [[https://revealjs.com/api/|API]]
+  * [[https://revealjs.com/events/|Events]]
+  * [[https://revealjs.com/presentation-state/|State]]
+  * [[https://revealjs.com/postmessage/|postMessage() docs]], [[https://codepen.io/hakimel/pen/PZxbod|example]]
+
+==== deeplinking ====
+
+  * [[https://wicg.github.io/scroll-to-text-fragment/|text-fragments]] ([[https://caniuse.com/url-scroll-to-text-fragment|browser support]])
+  * "[[https://www.w3.org/TR/media-frags/|media fragments  URI 1.0]]" (2012)
+  * IIIF annotation tools:
+    * [[https://leaflet-iiif-geojson.glitch.me/|Leaflet-IIIF-geojson]]
+      * [[https://googlemapsmania.blogspot.com/2022/09/leaflet-iiif-annotation.html|blog post]]
+      * more about [[https://observablehq.com/@bertspaan/using-allmaps-to-draw-geojson-on-a-iiif-image|geojson with iiif]]
+      * [[https://editor.allmaps.org/#/|allmaps tool]]
+      * Does UV have GeoJSON support? Example: <code>{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"text":"foo"}, "geometry":{"type":"Polygon","coordinates":[[[130.0625,-114.125],[130.0625,-98.75],[145.875,-98.75],[145.875,-114.125],[130.0625,-114.125]]]}}]}</code>
+    * [[https://ncsu-libraries.github.io/annona/storyboard/|Annona]]
+  * Universal Viewer docs:
+    * [[https://github1s.com/UniversalViewer/universalviewer/tree/main/src|source]]
+    * [[https://github.com/UniversalViewer/universalviewer/wiki/UV-Examples|wiki]]
+    * [[https://github.com/UniversalViewer/universalviewer/issues|issues]]
+    * control tips: [[https://github.com/UniversalViewer/universalviewer/issues/562|uv.set/getContentState]]
+==== other links ====
+
+  * "[[https://dl.acm.org/doi/pdf/10.1145/359131.359133|Beyond programming languages]]" (pdf)
+  * "[[https://f1000researchdata.s3.amazonaws.com/manuscripts/4790/2f1ec514-203b-4ee8-b033-4ca7d69bb93b_3978%20-%20konrad%20hinsen_v2.pdf|Computational science: shifting the focus from tools to
+models]]" (pdf)
+  * "[[https://science-in-the-digital-era.khinsen.net/#Computational%20media|Computational media]]"
+  * [[explore>Computational semiotics]]
+  * [[explore>Category theory]]:
+    * video: "[[https://www.youtube.com/watch?v=HdZk92s7z1U|Category Theory: Visual Mathematics for the 21st century]]"
+    * [[https://github.com/prathyvsh/category-theory-resources|Prathyvsh linked resources]]
+    * "[[https://multix.substack.com/p/solving-data-integration-with-cats|Moving Past Functions To Cats]]"
+    * [[https://ncatlab.org/nlab/show/computational+trilogy|computational trilogy]]

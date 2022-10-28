@@ -1,5 +1,11 @@
 ====== issues ======
 
+=====  container based install =====
+
+  * **Create a [[explore>Docker (software)|Docker container]]** to make the install process a lot easier. Help needed here!
+
+  * What about NixOS packaging? I've heard we can create Docker images from this packaging. (My current VPS does not support NiXOS however)
+
 =====  browser navigation =====
 
   * **Backwards & Forwards history navigation** has several issues.
@@ -9,8 +15,6 @@
   * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
     * There is a need to have a better workflow & tooling to help with debugging these URL-issues.
 
-  * **Touch-based resizing the width of the sidebar** does not work (Todo: make the vertical separator line and the <html><i class="fas fa-grip-lines-vertical"></i></html> resize-handle touch-enabled)
-
   * **URL hash handling**
     * Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.
     * Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)
@@ -18,11 +22,16 @@
 
 ===== mobile browser compatibility and usability =====
 
-  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
+  * Fix bugs in mobile panel loading/clearing
+
+  * Cold-startup time (upon first use) is quite slow - sometimes more than 10-20 seconds on low-bandwidth networks
 
   * The Apple iOS mobile browser needs more UX testing & fixing.
 
-  * Cold-startup time (upon first use) is quite slow - sometimes more than 10-20 seconds on low-bandwidth networks - and should probably be improved.
+  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices. Currently it has no ToC.
+
+
+
 
 ===== quality assurance =====
 
@@ -32,6 +41,7 @@
 
   * Integrate an automated testing system.
 
+  * Get more UX feedback from real users.
 ===== admin-dev workflows =====
 
   * Make [[terms#topic_headline|topic-headline]] fields definable in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file.
@@ -40,9 +50,112 @@
 
 ===== field localization =====
 
-  * Create a structure to store field translations (title and icon-title), both for Wikidata and non-Wikidata fields.
+  * Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
     * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
+
+  * Cleanup design any remaining inconsistencies of the field definitions.
+===== Wikidata/Wikipedia issues encountered =====
+
+  * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with "GROUP BY")
+  * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using wikibase-sdk (with claims).
+  * Integrating Wikidata localization data for properties.
+  * Abandoned Wikidata-based applications.
+  * Wikipedia: Image-loading blocking sometimes ("too many image requests")
 
 ===== other =====
 
   * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
+  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
+
+===== europeana notes =====
+
+  * FIXME: something broke the app as of October 2022.
+
+  * Conzept currently uses the Europeana APIs for:
+    * The **[[https://conze.pt/explore/Hendrick%20Avercamp?l=nl&t=link&i=Q212593&u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Hendrick%2520Avercamp%2522%26l%3Dnl%26t%3Dimages&s=true#|Europeana item viewer app]]** (REST API, [[https://github.com/petropok/europeanaproj/blob/main/public/scripts/search.js#L30-L117|not sparql]]) (code based on [[https://github.com/petropok/europeanaproj|this project]])
+      * 
+    * The **inline Europeana media-query for images** (REST API)
+    * TODO: audio-query in SPARQL/REST (used for dynamically fetching audio in the auto-generated [[https://conze.pt/guide/command_api#presentation_examples|presentations]]) (see below)
+
+  * Europeana SPARQL links:
+    * https://pro.europeana.eu/page/sparql (docs)
+    * http://sparql.europeana.eu (online query tool)
+
+  * Specific SPARQL-questions:
+    * Show a SPARQL query to fetch audio-URLs (in MP3 or Ogg Vorbis format) from a certain creation year (with a source link for attribution).
+
+How to get the license info: also from the Aggregator object?
+  * edm:rights // "The rights statement that applies to the digital representation (...)"
+  * dc:rights  // "Information about rights held in and over the resource."
+
+<code>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX ore: <http://www.openarchives.org/ore/terms/>
+SELECT ?title ?creator ?mediaURL ?date
+WHERE {
+  ?CHO edm:type "SOUND" ;
+      ore:proxyIn ?proxy;
+      dc:title ?title ;
+      dc:creator ?creator ;
+      #dc:source ?source . 
+      #dc:license ?license ;
+      dc:date ?date .
+  ?proxy edm:isShownBy ?mediaURL .
+  FILTER (?date > "1960" && ?date < "1970") .
+  FILTER(regex(str(?mediaURL), ".mp3" ) )
+}
+LIMIT 100
+</code>
+
+
+    * The same query as above, but for a certain country.
+
+How to get country string?
+<code>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+PREFIX ore: <http://www.openarchives.org/ore/terms/>
+SELECT ?title ?creator ?mediaURL ?date ?country
+WHERE {
+
+  # ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
+  #    edm:country "France" .
+      
+  ?CHO edm:type "SOUND" ;
+      ore:proxyIn ?proxy;
+      dc:title ?title ;
+      dc:creator ?creator ;
+
+  ?proxy edm:isShownBy ?mediaURL .
+}
+LIMIT 100
+</code>
+
+working "country" example:
+
+<code>
+PREFIX ore: <http://www.openarchives.org/ore/terms/>
+PREFIX edm: <http://www.europeana.eu/schemas/edm/>
+
+SELECT DISTINCT ?year ?country
+WHERE {
+  ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
+      edm:country ?country .
+  ?Proxy ore:proxyFor ?ProvidedCHO ;
+      edm:year ?year .
+  FILTER (?year > "1700" && ?year < "2020")
+}
+ORDER BY asc(?year)
+LIMIT 100
+</code> 
+
+  * General remarks on the SPARQL service:
+    * Add **[[https://sparql.europeana.eu|https]]-support** (besides http) to the [[http://sparql.europeana.eu/|SPARQL-endpoint]] (web applications hosted on https require that, because of the secure-browser context strictness these days).
+    * what is the **SPARQL data freshness** (I've heard the data is 2+ years old) and what is the **data completeness** (amount of items, compared to the REST API)?
+    * It would be nice to have better **ontology documentation**, especially an overview of the high-level concepts.
+      * For example provide an entity overview like [[https://makg.org|this]] and a visual relation-tree like [[https://makg.org/schema-linked-dataset-descriptions/|this]].
+      * Plus anything that would make the mental-map-to-ontology translation easier for users.
+    * Provide a low-barrier REST/SPARQL API **query-support via a wiki or forum** similar (this is what Wikidata is doing)
+    * Provide a community wiki-page with lots of **linked query examples** (with a short explanation and if needed comments in the SPARQL-query) 
+    * Provide a **better online query-tool**, like: https://query.wikidata.org (this tool is free and open to use, this is [[https://conze.pt/app/query/|also]] used for Conzept)

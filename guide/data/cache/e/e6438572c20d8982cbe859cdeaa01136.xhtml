@@ -3,16 +3,16 @@
 <div class="level1">
 
 <p>
-Topic-classification happens live on the client (in the users browser), for each search result topic with a Wikidata Qid.
-Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, while still be a flexible process.
+Topic-classification happens live in the browser, for each search result topic with a Wikidata Qid.
+Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, distributed and cheap, while still be a flexible process.
 </p>
 
 <p>
-Conzept tries to classify Wikidata topics with two <a href="#classes" title="topic_classification ↵" class="wikilink1">class tags</a> (<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" rel="ugc nofollow noopener">file</a>). One tag for the <strong>main class</strong> of the topic and another for the <strong>subclass</strong>. (note: In the future another tag-level may be added, if needed.)
+Conzept tries to heuristically classify Wikidata topics with two <a href="#classes" title="topic_classification ↵" class="wikilink1">class tags</a> (<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/tags.js" rel="ugc nofollow noopener">file</a>). One tag for the <strong>main class</strong> of the topic and another for the <strong>subclass</strong>. (note: In the future another tag-level may be added, if needed.)
 </p>
 
 <p>
-Conzept tries to classifiy the topics as precise as possible, but sometimes only the main-class is being set (or even none at all). That being said, <em class="u">it is estimated more than 90% of all items on Wikidata are currently being classified by at least a main-class!</em>
+Conzept tries to classify the topics as precise as possible, but sometimes only the main-class is being set (or even none at all). That being said, <em class="u">it is estimated more than 90% of all items on Wikidata are currently being classified by at least a main-class!</em>
 </p>
 
 <p>
@@ -28,7 +28,7 @@ In the future Conzept may also use an AI-based classification-system which could
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;topic classification&quot;,&quot;hid&quot;:&quot;topic_classification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1598&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;topic classification&quot;,&quot;hid&quot;:&quot;topic_classification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1612&quot;} -->
 <h2 class="sectionedit2" id="classes">classes</h2>
 <div class="level2">
 
@@ -263,7 +263,7 @@ The main classes and their sub-claseses (if any):
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classes&quot;,&quot;hid&quot;:&quot;classes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1599-3550&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classes&quot;,&quot;hid&quot;:&quot;classes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1613-3564&quot;} -->
 <h2 class="sectionedit3" id="classification_process">classification process</h2>
 <div class="level2">
 
@@ -319,7 +319,7 @@ There are several ways for a topic to be classified in Conzept:
   rank: 1,
 },</pre>
 <pre class="code">&#039;paintings_inline&#039; : {
-  render_condition: &#039;listed( item.occupations, indicators.painter.value )&#039;, // matches all the painter-indicators with the items occupation-values
+  render_condition: &#039;listed( item.occupations, indicators.painter.value )&#039;, // matches all the painter-indicators against the occupation-values of a topic
   value: &#039;paintings:${item.title}:true&#039;,
   title: &#039;paintings&#039;,
   prop: &#039;0&#039;,
@@ -341,4 +341,4 @@ There are several ways for a topic to be classified in Conzept:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classification process&quot;,&quot;hid&quot;:&quot;classification_process&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;3551-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;classification process&quot;,&quot;hid&quot;:&quot;classification_process&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;3565-&quot;} -->

@@ -10,21 +10,23 @@
 
 A modern topic-exploration tool based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for [[explore>fun]], [[explore>education]] and [[explore>research]].
 
-Conzept allows you to explore any of the millions of topics on Wikipedia from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity ("thing") as well as a "string". Client-side [[topic classification|topic-classification]] in addition allows for a fast, higher-level logic throughout the whole user experience.
+Conzept allows you to explore any of the millions of topics on Wikipedia from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity (a "thing") as well as a "string".
 
-The integrated user-interface gives you a clean, well-designed view of all this information, in any of the [[explore>List of Wikipedias|300+ Wikipedia languages]], without "[[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]]".
+Client-side [[topic classification|topic-classification]] in addition, allows for a fast, higher-level logic, throughout the whole user experience.
 
-The Conzept project is [[explore>free software]] licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets) and the development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Development news is announced on [[https://twitter.com/conzept__|Twitter]].
+The integrated user-interface gives you a clean view of all this information, in any of the ~[[explore>List of Wikipedias|300 Wikipedia languages]], without "[[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]]".
+
+The Conzept project is [[explore>free software]], licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets). The development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Project news is announced on [[https://twitter.com/conzept__|Twitter]].
 
 ===== thanks =====
 
   * Conzept has been partly funded by the amazing **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]** (backed by the [[https://www.ngi.eu|NGI4eu]] and [[https://www.consilium.europa.eu/en/european-council/|EU Council]] vision and funds).
 
-  * The organizations with a great public mission and API-service used within Conzept. Especially:
+  * The organizations with a great public mission, community and API-service. Especially:
     * The **[[https://wikimediafoundation.org/|Wikipedia]]** and **[[https://www.wikidata.org|Wikidata]]** community and developers.
     * The **[[https://openlibrary.org|Open Library]]** and **[[https://archive.org|Archive.org]]** team.
 
-  * The thousands of people who have developed the **[[used projects|Free Software projects]]** used by Conzept.
+  * The thousands of people who have developed the **[[used projects|Free Software projects]]**, directly or indirectly used by this project.
 
   * **[[explore>Google]] [[explore>YouTube]]** for providing access to the [[https://developers.google.com/youtube/v3/|Youtube API]].
 
@@ -43,15 +45,38 @@ The main goals of Conzept are:
 
   * A more **holistic presentation of the encyclopedic information** contained within Wikipedia and Wikidata, by integrating and linking with other information sources.
 
-  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce the cognitive-load and making the learning experience as fun and inspiring as possible.
+  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce the cognitive-load and making the experience as fun and inspiring as possible.
 
   * **Innovate** where that is both possible and useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
 
-  * Build the project as **free software** and make its use and development accessible for all. Make it free of advertising, but find sustainable ways to support its maintenance, development and collaboration.
+  * Build the project as **free software** and make its use and development accessible for all. Make it free of advertising, but find sustainable ways to support its maintenance, development and collaboration. One way to support this project is to become a [[https://github.com/sponsors/waldenn|GitHub sponsor]].
+
+
+Secondary goals:
+
+  * **Generalize the UI and data-processes**, to expand beyond the Wikipedia & Wikidata spheres.
+
+  * **Art direction with composable content views** --> semantic [[https://conze.pt/guide/architecture|web app composability]]
+    * using the "The "narrow waist" is a concept, interface, or protocol that solves an interoperability problem." - [[https://www.oilshell.org/blog/2022/02/diagrams.html|*]]
+
+  * Allow for **social learning** (using eg. peer-to-peer audio-chat rooms for each topic). Doing things together can be more fun!
+===== inspiration & motivation =====
+
+Some points of inspiration for this project were:
+  * A Dutch youth encyclopedia I enjoyed reading when I was a child. [{{ :spectrum_jeugd_encyclopedie.png?direct|Dutch youth encyclopedia}}]
+
+  * The Microsoft [[explore>Encarta]] encyclopedia CD-ROM in the 1990's. [{{ :encarta_1.png?direct|[[explore>Encarta]] screenshot}}]
+
+  * The beauty and complexity of nature and mathematics.
+
+  * The free software, open content and the web developer community (endless creativity and innovation).
+
+  * The children and adolescents I work with at the [[https://spirare.org|Spirare]] school for gifted children.
+
 
 ===== application layout =====
 
-{{ :app_layout.svg?direct|}}
+[{{ :app_layout.jpg?direct|application layout}}]
 
 The layout of Conzept consists of two main areas:
   * The **[[#conzept sidebar|sidebar]]**, which is used for showing the [[#string search|search interface]], the language selection and various tabs.
@@ -59,7 +84,7 @@ The layout of Conzept consists of two main areas:
   * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
 ==== conzept sidebar ====
 
-[{{ :sidebar_screenshot_1.jpg?direct|sidebar example}}]
+[{{ :sidebar_screenshot_1.jpg?direct|sidebar example }}]
 
 From the sidebar you can:
 
@@ -110,7 +135,7 @@ Some types of content (such as highly inter-related information displaying apps)
 
 Philosophically speaking, a single content-pane view is a sort of **1st-degree presentation** (concept => concept relation detail), while a dual content-pane view is a **2nd-degree presentation** (concept => concept relations overview => concept relation details). 
 
-Some embedded apps have a  2nd-degree presention inside of a single-pane (eg. the map app through a modal popup). Simply having 1st and 2nd-degree presentations can cover most information relations quite well, while still limiting the cognitive load. 
+Some embedded apps have a  2nd-degree presention inside of a single-pane (eg. the map app through a modal popup). Simply having 1st and 2nd-degree presentations can cover most information relations quite well, while still limiting the cognitive load and view-management efforts of the user. 
 ===== string search =====
 
 {{ :search_1.jpg?direct|search suggestions}}
@@ -129,35 +154,25 @@ If your search-string does not directly match any Wikipedia article, there will 
 
 [{{ ::structured_query_2.jpg?direct|structured query results ([[https://conze.pt/explore/?l=en&t=wikipedia&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P31%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q5%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%2C%7B%22propertyId%22%3A%22P106%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q36834%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3A%22and%22%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D|link]]) }}]
 
-**Structured searching is an easy way to construct (simple) [[explore>SPARQL]]-queries and see the results in the sidebar.**
+**Structured searching is an easy way to construct basic Wikidata [[explore>SPARQL]]-queries and see the topic results in the sidebar.**
 
-This functionality can be accessed by:
+Structured search can be accessed by:
 
   - Clicking on the "structured search" detail-element in the topics-tab. \\ \\
   - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
   - Then click the "run query" button. \\ \\
 ===== commands =====
 
-[{{ :graph_command.jpg?direct|[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph example]]}}]
-
-These are some (experimental) **!-prefixed commands** which, when entered into the search box, **override the normal search function.**
-
-Overview of the current commands:
-
-  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]** - A function plotter command (with [[explore>WebXR]] support).
-    * Note: It would be really wonderful, if in the future this functionality could be extended to a much more advanced mathematical environment currently being build, called [[https://github.com/sagemathinc/JSage|JSage]].
-
-  * **[[https://conze.pt/explore/!check%20Caracas%20has%20a%20lot%20of%20crime?l=en|!check]]** - An AI-based fact-checking command.
-
+(TODO: show an example use cases of the **[[command API]]**)
 ===== bookmarks =====
 
 [{{ ::bookmark_1.jpg?direct|adding a bookmark}}]
 
 [{{ ::bookmark_2.jpg?direct|bookmark management from the bookmark-tab}}]
 
-You can **bookmark topics** that you like, by opening the main-section of a topic, and then clicking on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon.
+You can **bookmark topics** that you like, by opening the "main"-section of a topic, and then clicking on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon.
 
-To **view and manage your bookmarks**, click on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon in the tab-menu.
+To **see and manage your bookmarks**, click on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon in the tab-menu.
 From the bookmark manager you can delete and drag-and-drop the bookmarks into your own list hierarchies.
 
 The bookmarks are only stored locally in the browser (using a browser cookie), and not on any server.
@@ -179,11 +194,11 @@ The following settings are available:
 
   * Set the **theme** (light / dark mode, link previews, color filters)
 
+  * Set **personal info**
+    * Country-setting (automatically set from the browser-locale, but can be changed)
+    * Optional: Interest tags (//experimental//). Note: This allows Conzept to better suit the user-interface to your needs. Eg. to show map links for hotels and walking-routes, with the tourist-tag.
+
   * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
-
-  * Set **persona-tags**
-    * Note: This allows Conzept to better suite the user-interface to your needs. Eg. to show map links for hotels and walking-routes, for tourist-personas.
-
 ===== keyboard shortcuts =====
 
 Here is an overview of the available keyboard shortcuts:
@@ -204,5 +219,5 @@ Here is an overview of the available keyboard shortcuts:
   <li><kbd>Alt</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key">random topic</span></b> <sup>1</sup></li><br/>
 </ul>
 
-[ note 1: only available when the focus is on the sidebar or a Wikipedia ]
+[ note 1: only available when the focus is on the sidebar or a Wikipedia article ]
 </html>

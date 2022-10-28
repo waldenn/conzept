@@ -13,6 +13,6 @@ When this build script runs, the following things happen:
   * Transform the HTML / PHP template files in __all apps__ (by inserting the Conzept environment variables).
   * Setup the Conzept proxy services (only done once).
   * Build the Conzept Wikipedia app (using esbuild).
-  * Build the main Conzept app (using ebuild).
+  * Build the main Conzept "explore2" app (using ebuild).
   * Bundle all Conzept API-fetch scripts into one file (this allows for auto-inclusion of any new API-fetching code).
 

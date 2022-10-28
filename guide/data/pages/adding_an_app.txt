@@ -4,13 +4,13 @@ It is easy to integrate any existing (and future) statically-build web applicati
 
 **Due to Conzepts use of iframes within the content panes, the execution and styling context of the app is completely isolated.** Yet it is still easy to communicate with the iframed app via its URL-parameters (and when needed triggering postMessage() calls in its JS code).
 
-To add an extra app to the existing set of apps, these things need to be done:
+To add a new app to the existing set of apps, follow these steps:
 
-  * First **copy the app** to a directory in Conzept ($CONZEPT_WEB_DIR/app/<your_app_name>/)
+  * First **copy the app** to a directory in Conzept ($CONZEPT_WEB_DIR/app/<your_app_name>/). Check that the app is accessible and running correctly.
 
-  * Often you'll want to **modify the app, to have it make use of some extra URL parameters**, such as: the topic title, content language, Wikidata Qid or something else. In most applications this can easily be done.
+  * Often you'll want to **modify the app a bit, to have it make use of some extra URL parameters**, such as: passing the topic title, content language, or an entity ID or something else. In most applications this can easily be done.
 
-  * Optional: Add the Conzept common HTML/CSS/JS resources to the app:
+  * Optional: Add the Conzept common HTML/CSS/JS resources to the app. This will add some common styling (fonts, icons, fullscreen button, etc.) and also some common JS functions often needed in these apps (URL parameter access, access to Conzept content panes, and more).
     * Copy the "index.html" to index.template.html (or the "index.php" to "index.template.php", for PHP apps)
     * Insert the following template snippet into the HTML page, which will get substituted during the build step: **CONZEPT_COMMON_HTML_INCLUDE**. (If the project already includes jQuery, use: **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY**)
 

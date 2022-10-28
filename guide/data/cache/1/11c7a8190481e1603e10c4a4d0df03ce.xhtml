@@ -3,83 +3,81 @@
 <div class="level1">
 
 <p>
-Research how it would be possible to <strong>allow 3rd-party SPARQL-based endpoints to be added as a new “concept store”</strong> (besides Wikipedia and Wikidata).
+The idea of “concept stores” is to <strong>allow any REST / SPARQL <abbr title="Application Programming Interface">API</abbr> to be added to Conzept</strong>.
 </p>
 
 <p>
-[ Note: This research follows from a Twitter discussion with <a href="https://twitter.com/kidehen/status/1482077334001885192" class="urlextern" target="_blank" title="https://twitter.com/kidehen/status/1482077334001885192" rel="ugc nofollow noopener">Kingsley Uyi Idehen</a> ]
+With these goals:
 </p>
+<ul>
+<li class="level1"><div class="li"> Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output. (work in progress)</div>
+</li>
+<li class="level1"><div class="li"> Make the <abbr title="Application Programming Interface">API</abbr> search results show up in the same style and results paging mechanics, as the other datasources. (working)</div>
+</li>
+<li class="level1"><div class="li"> Let the topic results be augmented from Wikidata (if wanted). (working)</div>
+</li>
+<li class="level1"><div class="li"> Have autocompletion work too (if wanted and possible). (working)</div>
+</li>
+<li class="level1"><div class="li"> Make the web user be able to choose which datasources to use. (working)</div>
+</li>
+</ul>
 
 <p>
-Use cases:
+[ Note: This sub-project follows from a Twitter discussion with <a href="https://twitter.com/kidehen/status/1482077334001885192" class="urlextern" target="_blank" title="https://twitter.com/kidehen/status/1482077334001885192" rel="ugc nofollow noopener">Kingsley Uyi Idehen</a> ]
 </p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;concept stores&quot;,&quot;hid&quot;:&quot;concept_stores&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-757&quot;} -->
+<h2 class="sectionedit2" id="use_cases">use cases</h2>
+<div class="level2">
 <ul>
-<li class="level1"><div class="li"> An organization with a SPARQL-endpoint that wants to use the Conzept UI, to give people an integrated/customizable/augmented view of their knowledge base.</div>
+<li class="level1"><div class="li"> <strong>Allow for adding extra “data sources” to a Conzept encyclopedia system</strong>, so other concepts - beyond Wikipedia and Wikidata - can also be presented.</div>
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Allow for adding extra “concept stores” to a Conzept system, so other (more niche) concepts can be presented.</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> (more difficult probably) Allow a user to explore an unkown SPARQL-endpoint and render the results in Conzept and allow for full-text searches within that knowledge base (the latter may need more than a SPARQL end-point).</div>
+<li class="level1"><div class="li"> <strong>Any organization that wants to use the Conzept user-interface for showing and augmenting their own knowledge base.</strong></div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;concept stores&quot;,&quot;hid&quot;:&quot;concept_stores&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-843&quot;} -->
-<h2 class="sectionedit2" id="requirements">requirements</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;use cases&quot;,&quot;hid&quot;:&quot;use_cases&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;758-1061&quot;} -->
+<h3 class="sectionedit3" id="status">status</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> The <strong><a href="/guide/datasources" class="wikilink1" title="datasources" data-wiki-id="datasources">datasources</a></strong> system is now working, with these remaining issues:</div>
+<ul>
+<li class="level2"><div class="li"> bug: fix the <a href="https://t.co/TFjoJisZGG" class="urlextern" target="_blank" title="https://t.co/TFjoJisZGG" rel="ugc nofollow noopener">wikidata-structured-query</a> path (topics not showing in the sidebar)</div>
+</li>
+<li class="level2"><div class="li"> todo: add back the raw-topic-card (needs checking to see the raw-query-string does not string-match any datasource results on the first page)</div>
+</li>
+<li class="level2"><div class="li"> todo: indicate when there are “no results” for a search</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Technical roadmap:</div>
+<ul>
+<li class="level2"><div class="li"> Research how to further <strong>generalize the datasource integration</strong>, using the common result-format used on Conzept (which is largely based on the Wikipedia <abbr title="Application Programming Interface">API</abbr> result structure)</div>
+</li>
+<li class="level2"><div class="li"> Add hooks for pre- and post-processing of the <abbr title="Application Programming Interface">API</abbr> data.</div>
+</li>
+<li class="level2"><div class="li"> Add hooks to enrich the <abbr title="Application Programming Interface">API</abbr> data (with Wikipedia and Wikidata information)</div>
+</li>
+<li class="level2"><div class="li"> Test these ideas on real datasources.</div>
+</li>
+<li class="level2"><div class="li"> Allow for datasource activation via an <abbr title="Uniform Resource Locator">URL</abbr> parameter (so these searches can be linked to) and store these in a cookie.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;status&quot;,&quot;hid&quot;:&quot;status&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1062-2002&quot;} -->
+<h2 class="sectionedit4" id="other_tools">other tools</h2>
 <div class="level2">
 <ul>
-<li class="level1 node"><div class="li"> Add semantic metadata to each Conzept page (explore best practices)</div>
-<ul>
-<li class="level2"><div class="li"> test with the <a href="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" class="urlextern" target="_blank" title="https://addons.mozilla.org/en-US/firefox/addon/openlink-structured-data-sniff/" rel="ugc nofollow noopener">OpenLink Structured Data Sniffer extension</a></div>
-</li>
-<li class="level2"><div class="li"> other links: <a href="https://socialsharepreview.com" class="urlextern" target="_blank" title="https://socialsharepreview.com" rel="ugc nofollow noopener">1</a>, <a href="https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts" class="urlextern" target="_blank" title="https://github.com/statico/ycombinator1.com/blob/main/pages/api/item.ts" rel="ugc nofollow noopener">2</a></div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Create a list of store-definitions containing:</div>
-<ul>
-<li class="level2"><div class="li"> Name</div>
-</li>
-<li class="level2"><div class="li"> Description</div>
-</li>
-<li class="level2"><div class="li"> Website</div>
-</li>
-<li class="level2"><div class="li"> active (boolean)</div>
-</li>
-<li class="level2"><div class="li"> SPARQL-endpoint <abbr title="Uniform Resource Locator">URL</abbr></div>
-</li>
-<li class="level2"><div class="li"> OpenSearch <abbr title="Uniform Resource Locator">URL</abbr> (for JSON, and XML?). See also: <a href="https://github.com/nsidc/OpenSearchlight" class="urlextern" target="_blank" title="https://github.com/nsidc/OpenSearchlight" rel="ugc nofollow noopener">OpenSearchlight</a>.</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Multi-query support for the autocomplete widget:</div>
-<ul>
-<li class="level2"><div class="li"> result merging</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Multi-query support for the search-query results:</div>
-<ul>
-<li class="level2"><div class="li"> result merging</div>
-</li>
-<li class="level2"><div class="li"> result ranking</div>
-</li>
-<li class="level2"><div class="li"> result paging </div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Integrate a SPARQL-explorer sub-system, like <strong><a href="https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" class="urlextern" target="_blank" title="https://conze.pt/app/sparklis/osparklis.html?title=%0A%09%09%20%20Core%20English%20DBpedia%0A%09%09&amp;endpoint=https%3A//ldf.fi/mufi/sparql" rel="ugc nofollow noopener">Sparklis</a></strong></div>
+<li class="level1 node"><div class="li"> <strong>Sparklis</strong> (SPARQL-endpoint explorer)</div>
 <ul>
 <li class="level2"><div class="li"> <a href="https://github.com/sebferre/sparklis" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis" rel="ugc nofollow noopener">git repo</a></div>
 </li>
@@ -94,56 +92,8 @@ Use cases:
 </ul>
 </li>
 </ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;requirements&quot;,&quot;hid&quot;:&quot;requirements&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;844-2762&quot;} -->
-<h2 class="sectionedit3" id="adapt_conzept_internals">adapt conzept internals</h2>
-<div class="level2">
 <ul>
-<li class="level1"><div class="li"> Adapt internal data structures to allow for handling non-Wikidata entities.</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Adapt field-definitions to allow for non-Wikidata property resolving</div>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> How to &#039;understand&#039; the SPARQL-endpoint class graph and class properties?</div>
-<ul>
-<li class="level2"><div class="li"> Adapt topic classification code to allow for non-Wikidata classification rules.</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Allow the Conzept type-system to handle non-Wikidata-Qid based entity IDs (eg. EntityDocument URLs)</div>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> How to page the results correctly, when combining them from multiple data sources?</div>
-<ul>
-<li class="level2"><div class="li"> get total results per data source</div>
-</li>
-<li class="level2"><div class="li"> combine page-N results per data source</div>
-</li>
-<li class="level2"><div class="li"> result ordering in pages</div>
-</li>
-<li class="level2"><div class="li"> understand when to stop querying a data source</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> …</div>
-</li>
-</ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;adapt conzept internals&quot;,&quot;hid&quot;:&quot;adapt_conzept_internals&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2763-3491&quot;} -->
-<h2 class="sectionedit4" id="other_tools">other tools</h2>
-<div class="level2">
-<ul>
-<li class="level1 node"><div class="li"> <strong><a href="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" class="urlextern" target="_blank" title="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" rel="ugc nofollow noopener">SparqlExplorer</a></strong> (Not used on Conzept. I&#039;ve been unable to build it from source yet, due to NPM package version dependency issues)</div>
+<li class="level1 node"><div class="li"> <strong><a href="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" class="urlextern" target="_blank" title="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" rel="ugc nofollow noopener">SparqlExplorer</a></strong></div>
 <ul>
 <li class="level2"><div class="li"> <a href="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" class="urlextern" target="_blank" title="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" rel="ugc nofollow noopener">git repo</a></div>
 </li>
@@ -168,4 +118,4 @@ Use cases:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other tools&quot;,&quot;hid&quot;:&quot;other_tools&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3492-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other tools&quot;,&quot;hid&quot;:&quot;other_tools&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2003-&quot;} -->

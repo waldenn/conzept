@@ -9,7 +9,7 @@ Overview of the Conzept settings:
 
 ^ name      ^ description       ^
 | **CONZEPT_HOSTNAME** | Name of the webserver (eg. 'conze.pt') |
-| **CONZEPT_WEB_BASE** | Optional: web base-path (can be used to change the base web URL location) |
+| **CONZEPT_WEB_BASE** | Optional: web base-path (can be used to change the base web URL location) (note: needs more testing) |
 | **CONZEPT_WEB_DIR**  | File system path to the root of the web directory (eg. '/var/www/html') |
 | **CONZEPT_SERVICES_DIR** | File system path to the services directory (eg. '/var/www/html/services') |
 | **CONZEPT_VERSION** | Conzept version string |

@@ -77,7 +77,8 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 
 Add yourself to the "www-data" group (so you can make edits as yourself):
 <code>usermod -a -G www-data YOUR_USER_ID</code>
-<code>exit && logout</code>
+<code>exit</code>
+<code>logout</code>
 
 (then log in again, to reload the shell environment)
 

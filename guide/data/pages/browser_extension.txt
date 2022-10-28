@@ -1,13 +1,17 @@
 ====== browser extension ======
 
-Create a **browser extension** for text-selection queries on 3rd party sites, by modifying the [[https://github.com/emvaized/selecton-extension|selecton extension]] (MIT license).
+''(work in progress)''
 
-Todo's:
-  * Make Conzept the default search engine
-  * Make text-selection-handles support touch interaction
-  * Simplify / hide the complex configuration menu
-  * Have the extension also work for PDFs and self-hosted iframes ([[https://github.com/emvaized/selecton-extension/issues/23|issue opened]])
+The **Conzept browser extension** is a (lightly-patched) fork of the great [[https://github.com/fuddl/wd|Wikidata-for-Web extension]].
 
-Future potential ideas:
-  * Named-entity detection and display (for the selected text)
-  * Wikidata URL-format match detection (to link web pages to Wikidata entities).
+This extension allows you to:
+
+  * **Text-selection search**: Select some text on any website, then __right-click for the context-menu__ , which will show an option to search on Conzept. Even browser-viewed PDF files are supported!
+
+  * Detect and **see the semantic metadata** on (supported) websites, in a sidebar panel. This works through Wikidata-based URL-matching and by checking the website for embedded metadata (meta-tags, JSON-LD).
+
+===== install =====
+
+* **[[https://addons.mozilla.org/addon/conzept-encyclopedia-extension/|Firefox version]]**
+
+* **Chrome version** (soon)

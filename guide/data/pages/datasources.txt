@@ -1,0 +1,7 @@
+====== datasources ======
+
+(TODO: Document how the datasources system works and how it can be configured. Show a simple datasource integration example.)
+
+See also:
+  * **[[concept_stores|datasources roadmap]]**
+  * **[[https://conze.pt/app/explore2/src/data/datasources.js|src/data/datasources.js]]**

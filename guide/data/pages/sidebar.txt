@@ -4,6 +4,7 @@
   * [[user manual]]
   * [[apps]]
   * [[terms]]
+  * [[browser extension]]
 
 **admin docs**
   * [[installation]]
@@ -21,13 +22,14 @@
   * [[used projects|used projects]]
   * [[adding an app]]
   * [[integrating an API]]
+  * [[datasources]]
   * [[adding new Wikidata properties|new Wikidata properties]]
   * [[topic classification]]
 
 **plans**
   * [[issues]]
   * [[roadmap]]
-    * [[browser extension]]
-    * [[concept stores]]
+  * [[command API]]
+  * [[concept stores]]
 
  ~~NOCACHE~~

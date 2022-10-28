@@ -43,6 +43,16 @@ $showSidebar = page_findnearest($conf['sidebar']);
 				<div class="group">
             		<?php tpl_includeFile('tpl_parts/tpl_content.html') ?>
 				</div>
+
+        <!-- image modal -->
+        <div id="myModal" class="modal">
+          <span id="modal_close" class="close" title="close modal" tabindex="0" onclick="document.getElementById('myModal').style.display='none'" onkeypress="document.getElementById('myModal').style.display='none'">&times;</span>
+          <span id="modal_next" class="" title="next image" tabindex="0" onclick="gotoNextImage()"> &gt; </span>
+          <span id="modal_previous" class="" title="previous image" tabindex="0" onclick="gotoPreviousImage()"> &lt; </span>
+          <img class="modal-content" id="img01" alt="image modal" src="-">
+          <div class="modal-caption" id="caption"></div>
+        </div>
+
 			</main>
         </div>
 
@@ -53,5 +63,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
 	<!-- Utils -->
     <div class="no" style="display:none"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
 	<div id="__media_query"></div>
+
+  <script src="/guide/lib/tpl/readthedokus/js/conzept.js" type="text/javascript" defer></script>
 </body>
 </html>

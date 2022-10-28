@@ -19,11 +19,11 @@ Each <a href="/guide/terms#topic_sections" class="wikilink1" title="terms" data-
 There are several types of actions a field can trigger:
 </p>
 <ul>
-<li class="level1"><div class="li"> <strong><em class="u">Open a link in the <a href="/guide/user_manual#content_panes" class="wikilink1" title="user_manual" data-wiki-id="user_manual">content area</a></em></strong>. This can be an self-hosted <a href="/guide/apps" class="wikilink1" title="apps" data-wiki-id="apps">app</a> <abbr title="Uniform Resource Locator">URL</abbr> or a remote website which allows being embedded (without <a href="https://conze.pt/explore/Cross-origin resource sharing?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Cross-origin resource sharing?l=en&amp;t=wikipedia" rel="noopener">CORS</a> issues).</div>
+<li class="level1"><div class="li"> <strong><em class="u">Open a link in the <a href="/guide/user_manual#content_panes" class="wikilink1" title="user_manual" data-wiki-id="user_manual">content area</a></em></strong>. This can be an self-hosted <a href="/guide/apps" class="wikilink1" title="apps" data-wiki-id="apps">app</a> <abbr title="Uniform Resource Locator">URL</abbr>, or a remote website which allows being embedded (without <a href="https://conze.pt/explore/Cross-origin resource sharing?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Cross-origin resource sharing?l=en&amp;t=wikipedia" rel="noopener">CORS</a> issues).</div>
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> <strong><em class="u">Open a link in a new browser tab</em></strong>. This is sometimes required because the website does not allow being embedded in a 3rd-party iframe or user-authentication is needed.</div>
+<li class="level1"><div class="li"> <strong><em class="u">Open a link in a new browser tab</em></strong>. This is sometimes required when the website does not allow being embedded in a 3rd-party iframe or user-authentication is required.</div>
 </li>
 </ul>
 <ul>
@@ -44,17 +44,11 @@ There are several types of actions a field can trigger:
 </ul>
 
 <p>
-You can see all the fields used for the Conzept website in the “<strong><a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">src/data/field.js</a></strong>” file. Once you have added one or more field definitions to this file, you only need to run “<strong>npm run build</strong>” in the “app/explore2/” directory to start using these new fields. <br/>
-
-To make sure all users use the most recent version, it is recommended to also update the <a href="/guide/configuration" class="wikilink1" title="configuration" data-wiki-id="configuration">version setting</a>.
-</p>
-
-<p>
-[ Note: that the <a href="/guide/terms#topic_headline" class="wikilink1" title="terms" data-wiki-id="terms">topic-headline</a> buttons are <em>not yet</em> defined in the “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">field.js</a>” file, but instead in the <a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/createItemHtml.js" rel="ugc nofollow noopener">createItemHtml.js</a> file. ]
+You can see all the fields used for the Conzept website in the “<strong><a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">src/data/field.js</a></strong>” file. Once you have added one or more field definitions to this file, you only need to run “<strong>npm run build</strong>” in the “app/explore2/” directory to start using these new fields. To make sure all users use the most recent version, it is recommended to also update the <a href="/guide/configuration" class="wikilink1" title="configuration" data-wiki-id="configuration">version setting</a>.
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;introduction&quot;,&quot;hid&quot;:&quot;introduction&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;112-2359&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;introduction&quot;,&quot;hid&quot;:&quot;introduction&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;112-2023&quot;} -->
 <h2 class="sectionedit3" id="field_processing">field processing</h2>
 <div class="level2">
 
@@ -83,7 +77,7 @@ The <strong>fields are read in order</strong>, without any dependency resolving.
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field processing&quot;,&quot;hid&quot;:&quot;field_processing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2360-3992&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field processing&quot;,&quot;hid&quot;:&quot;field_processing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2024-3656&quot;} -->
 <h2 class="sectionedit4" id="field_schema">field schema</h2>
 <div class="level2">
 
@@ -165,9 +159,9 @@ note: a missing or empty “create_condition” defaults to relying on the items
 		<td class="col0"> <strong>rank</strong> </td><td class="col1"> &lt;number | array-of-numbers&gt; </td><td class="col2"> position of the link (set for each section) </td><td class="col3"> render </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;4389-6879&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;4053-6543&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field schema&quot;,&quot;hid&quot;:&quot;field_schema&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3993-6880&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field schema&quot;,&quot;hid&quot;:&quot;field_schema&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;3657-6544&quot;} -->
 <h2 class="sectionedit6" id="field_types">field types</h2>
 <div class="level2">
 
@@ -195,7 +189,7 @@ Note: the “wikipedia-qid” name is used to automatically render either a Wiki
 		<td class="col0"> <strong>symbol-string</strong> </td><td class="col1"> prop </td><td class="col2"> String coming from a Wikidata item statement (eg. “+45-111-222-333”). </td>
 	</tr>
 	<tr class="row5">
-		<td class="col0"> <strong>symbol-html</strong> </td><td class="col1"> prop </td><td class="col2"> This type should only be used when you want create raw <abbr title="HyperText Markup Language">HTML</abbr>-string output, based on some Wikidata item statement string. <br/>
+		<td class="col0"> <strong>symbol-html</strong> </td><td class="col1"> prop </td><td class="col2"> This type should only be used when you want create custom <abbr title="HyperText Markup Language">HTML</abbr>-string output, based on some Wikidata item statement string. <br/>
 <br/>
 For example when creating an audio-element <abbr title="HyperText Markup Language">HTML</abbr> string from the audio-file data. </td>
 	</tr>
@@ -214,14 +208,14 @@ For example when creating an audio-element <abbr title="HyperText Markup Languag
 Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:7,&quot;range&quot;:&quot;6965-8908&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:7,&quot;range&quot;:&quot;6629-8575&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field types&quot;,&quot;hid&quot;:&quot;field_types&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;6881-8908&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field types&quot;,&quot;hid&quot;:&quot;field_types&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;6545-8575&quot;} -->
 <h2 class="sectionedit8" id="special_values">special values</h2>
 <div class="level2">
 
 <p>
-Conzept has some special title-values which can be used anywhere in the field definition values:
+Conzept has various title-forms which can be used anywhere in the field definition values:
 </p>
 <div class="table sectionedit9"><table class="inline">
 	<thead>
@@ -233,34 +227,34 @@ Conzept has some special title-values which can be used anywhere in the field de
 		<td class="col0"> <strong>title</strong> </td><td class="col1"> title as-is</td>
 	</tr>
 	<tr class="row2">
-		<td class="col0"> <strong>title_</strong> </td><td class="col1"> title without any Wikipedia namespace-prefix and braces</td>
-	</tr>
-	<tr class="row3">
-		<td class="col0"> <strong>title_enc</strong> </td><td class="col1"> title <abbr title="Uniform Resource Locator">URL</abbr>-encoded </td>
-	</tr>
-	<tr class="row4">
-		<td class="col0"> <strong>title_quoted</strong> </td><td class="col1"> title “in quotes” </td>
-	</tr>
-	<tr class="row5">
-		<td class="col0"> <strong>title_plus</strong> </td><td class="col1"> title with a plus for spaces</td>
-	</tr>
-	<tr class="row6">
-		<td class="col0"> <strong>title_dashed</strong> </td><td class="col1"> title with dash for spaces</td>
-	</tr>
-	<tr class="row7">
-		<td class="col0"> <strong>title_lowercase</strong> </td><td class="col1"> title in lowercase</td>
-	</tr>
-	<tr class="row8">
-		<td class="col0"> <strong>title_no_spaces</strong> </td><td class="col1"> title without spaces</td>
-	</tr>
-	<tr class="row9">
 		<td class="col0"> <strong>title_no_braces</strong> </td><td class="col1"> title without braces</td>
 	</tr>
-	<tr class="row10">
+	<tr class="row3">
 		<td class="col0"> <strong>title_no_braces_lowercase</strong> </td><td class="col1"> title without braces in lowercase</td>
 	</tr>
+	<tr class="row4">
+		<td class="col0"> <strong>title_</strong> </td><td class="col1"> title without any Wikipedia namespace-prefix and braces (note: also the basis for all the titles below)</td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> <strong>title_enc</strong> </td><td class="col1"> title <abbr title="Uniform Resource Locator">URL</abbr>-encoded </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <strong>title_quoted</strong> </td><td class="col1"> title “in quotes” (note: this is the most used title-form, for 3rd-party site searches) </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> <strong>title_plus</strong> </td><td class="col1"> title with a plus for spaces </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> <strong>title_dashed</strong> </td><td class="col1"> title with dash for spaces </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> <strong>title_lowercase</strong> </td><td class="col1"> title in lowercase </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> <strong>title_no_spaces</strong> </td><td class="col1"> title without spaces </td>
+	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table2&quot;,&quot;secid&quot;:9,&quot;range&quot;:&quot;9035-9539&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table2&quot;,&quot;secid&quot;:9,&quot;range&quot;:&quot;8696-9322&quot;} -->
 <p>
 <br/>
 
@@ -279,9 +273,9 @@ There is currently one &#039;magic&#039;-variable usable in field-definition val
 		<td class="col0"> <strong>Xvalue</strong> </td><td class="col1"> Used to <strong>automatically iterate over a list of values</strong> (or just one value) coming from Wikidata. This makes it easy to use multi-values <strong>to create multiple new strings</strong>. See examples of its use <a href="#xvalue" title="field_customization ↵" class="wikilink1">here</a>. </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table3&quot;,&quot;secid&quot;:10,&quot;range&quot;:&quot;9621-9876&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table3&quot;,&quot;secid&quot;:10,&quot;range&quot;:&quot;9404-9659&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;special values&quot;,&quot;hid&quot;:&quot;special_values&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;8909-9876&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;special values&quot;,&quot;hid&quot;:&quot;special_values&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;8576-9659&quot;} -->
 <h2 class="sectionedit11" id="types_of_fields">types of fields</h2>
 <div class="level2">
 
@@ -290,7 +284,7 @@ There is currently one &#039;magic&#039;-variable usable in field-definition val
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;types of fields&quot;,&quot;hid&quot;:&quot;types_of_fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;9877-9986&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;types of fields&quot;,&quot;hid&quot;:&quot;types_of_fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;9660-9769&quot;} -->
 <h3 class="sectionedit12" id="wikidata-based_fields">Wikidata-based fields</h3>
 <div class="level3">
 
@@ -299,7 +293,7 @@ These fields have a <a href="https://www.wikidata.org/wiki/Wikidata:Database_rep
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata-based fields&quot;,&quot;hid&quot;:&quot;wikidata-based_fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;9987-10271&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata-based fields&quot;,&quot;hid&quot;:&quot;wikidata-based_fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;9770-10054&quot;} -->
 <h4 class="sectionedit13" id="examples">examples</h4>
 <div class="level4">
 
@@ -323,7 +317,7 @@ An example which renders a link to all the “members of” (Wikidata property) 
 </p>
 
 <p>
-An example of a field without a type (which means the data will be treated as a string):
+An example of a field without a type (which means the data will be treated as a plain string):
 </p>
 <pre class="code">&#039;atomic_symbol&#039; : {
   render_condition: false, // this means we wont show this field in the UI, but just store the value.
@@ -362,7 +356,7 @@ An example for the “number of employees” of a topic:
 </p>
 
 <p>
-Here&#039;s an example where the “symbol-string” <abbr title="HyperText Markup Language">HTML</abbr>-creation is used to present an audio element (in the topic card):
+The “symbol-html”-type can be used to create customized <abbr title="HyperText Markup Language">HTML</abbr> strings. This example presents an audio element (in the topic card):
 </p>
 <pre class="code">&#039;audio_widget&#039; : {
   create_condition: &#039;${ valid( item.audio ) }&#039;,
@@ -420,7 +414,7 @@ Another example using “${Xvalue}” for a part of the <abbr title="Uniform Res
 },</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;examples&quot;,&quot;hid&quot;:&quot;examples&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;10272-13051&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;examples&quot;,&quot;hid&quot;:&quot;examples&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;10055-12855&quot;} -->
 <h3 class="sectionedit14" id="derived_fields">Derived fields</h3>
 <div class="level3">
 
@@ -445,12 +439,12 @@ Another example using “${Xvalue}” for a part of the <abbr title="Uniform Res
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Derived fields&quot;,&quot;hid&quot;:&quot;derived_fields&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:14,&quot;range&quot;:&quot;13052-13486&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Derived fields&quot;,&quot;hid&quot;:&quot;derived_fields&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:14,&quot;range&quot;:&quot;12856-13290&quot;} -->
 <h4 class="sectionedit15" id="examples1">examples</h4>
 <div class="level4">
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;examples&quot;,&quot;hid&quot;:&quot;examples1&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:15,&quot;range&quot;:&quot;13487-13504&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;examples&quot;,&quot;hid&quot;:&quot;examples1&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:15,&quot;range&quot;:&quot;13291-13308&quot;} -->
 <h5 class="sectionedit16" id="examplewikidata-derived_field">example: wikidata-derived field</h5>
 <div class="level5">
 
@@ -485,7 +479,7 @@ The derived-field example below will show a link to the “GBIF organism occurre
 },</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: wikidata-derived field&quot;,&quot;hid&quot;:&quot;examplewikidata-derived_field&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:16,&quot;range&quot;:&quot;13505-14508&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: wikidata-derived field&quot;,&quot;hid&quot;:&quot;examplewikidata-derived_field&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:16,&quot;range&quot;:&quot;13309-14312&quot;} -->
 <h5 class="sectionedit17" id="exampletitle-based_external-link_field">example: title-based external-link field</h5>
 <div class="level5">
 
@@ -506,7 +500,7 @@ This will show a tab-opening link to Google Scholar.
 },</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: title-based external-link field&quot;,&quot;hid&quot;:&quot;exampletitle-based_external-link_field&quot;,&quot;codeblockOffset&quot;:7,&quot;secid&quot;:17,&quot;range&quot;:&quot;14509-14946&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: title-based external-link field&quot;,&quot;hid&quot;:&quot;exampletitle-based_external-link_field&quot;,&quot;codeblockOffset&quot;:7,&quot;secid&quot;:17,&quot;range&quot;:&quot;14313-14750&quot;} -->
 <h5 class="sectionedit18" id="examplelanguage-conditioned_link_field">example: language-conditioned link field</h5>
 <div class="level5">
 
@@ -527,7 +521,7 @@ This will show the Russian Yandex search-engine link, but only if the users&#039
 },</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: language-conditioned link field&quot;,&quot;hid&quot;:&quot;examplelanguage-conditioned_link_field&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:18,&quot;range&quot;:&quot;14947-15387&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: language-conditioned link field&quot;,&quot;hid&quot;:&quot;examplelanguage-conditioned_link_field&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:18,&quot;range&quot;:&quot;14751-15191&quot;} -->
 <h5 class="sectionedit19" id="exampleapi-based_link_field">example: API-based link field</h5>
 <div class="level5">
 
@@ -557,4 +551,4 @@ The specific code for this <abbr title="Application Programming Interface">API</
 },</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: API-based link field&quot;,&quot;hid&quot;:&quot;exampleapi-based_link_field&quot;,&quot;codeblockOffset&quot;:9,&quot;secid&quot;:19,&quot;range&quot;:&quot;15388-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example: API-based link field&quot;,&quot;hid&quot;:&quot;exampleapi-based_link_field&quot;,&quot;codeblockOffset&quot;:9,&quot;secid&quot;:19,&quot;range&quot;:&quot;15192-&quot;} -->

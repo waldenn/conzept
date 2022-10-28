@@ -28,8 +28,7 @@ We'll use the [[https://data.rijksmuseum.nl/object-metadata/api/|Rijksmuseum API
 },
 </code>
 
-  * **Add a line to "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/lib.js|src/core/lib.js]]" in the insertMultiValues() function for that API.**
-    * Note: Hopefully in the future this step can be automated away.
+  * **Add a line to "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/core/lib.js|src/core/lib.js]]" in the insertMultiValues() function for that API.** (note: in the future this step will be removed)
 
 <code>
 else if ( args.list.startsWith('rijksmuseum') ){

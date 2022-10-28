@@ -1,23 +1,173 @@
-1645213234	89.205.143.213	E	issues	admin	[browser navigation] 		7
-1645394376	89.205.141.97	E	installation	admin	[Conzept services setup] 		107
-1645396569	89.205.141.97	E	installation	admin	[Conzept services setup] 		-107
-1645438184	188.95.144.78	E	apps	admin	[compare app] 		293
-1645438242	188.95.144.78	E	apps	admin	[tree app] 		-3
-1645439461	188.95.144.78	E	apps	admin	[tree app] 		755
-1645439509	188.95.144.78	E	apps	admin	[tree app] 		-4
-1645439518	188.95.144.78	E	apps	admin	[tree app] 		-2
-1645440341	188.95.144.78	E	used_projects	admin	[embedded apps] 		259
-1645440410	188.95.144.78	E	used_projects	admin	[embedded apps] 		0
-1645441228	188.95.144.78	E	apps	admin	[tree app] 		-5
-1645441399	188.95.144.78	E	user_manual	admin	[thanks] 		-1
-1645442245	188.95.144.78	E	apps	admin	[tree app] 		1
-1645955115	84.241.207.186	E	architecture	admin	[architecture] 		140
-1645955180	84.241.207.186	E	architecture	admin	[architecture] 		35
-1645956912	84.241.207.186	E	architecture	admin	[architecture] 		59
-1645957252	84.241.207.186	E	architecture	admin	[architecture] 		47
-1645957273	84.241.207.186	E	architecture	admin	[architecture] 		12
-1645957595	84.241.207.186	E	architecture	admin	[architecture] 		51
-1646009370	84.241.207.186	E	architecture	admin	[architecture] 		83
-1646043283	84.241.205.186	E	installation	admin	[Node setup] 		4
-1646043501	84.241.205.186	E	installation	admin	[Conzept services setup] 		180
-1646043538	84.241.205.186	E	installation	admin	[Conzept services setup] 		6
+1666379219	89.205.141.89	E	user_manual	admin	[introduction] 		-188
+1666379252	89.205.141.89	E	user_manual	admin	[thanks] 		2
+1666379285	89.205.141.89	E	user_manual	admin	[thanks to] 		-2
+1666379322	89.205.141.89	E	user_manual	admin	[thanks] 		-9
+1666379361	89.205.141.89	E	user_manual	admin	[thanks] 		29
+1666379655	89.205.141.89	E	user_manual	admin	[content panes] 		40
+1666379734	89.205.141.89	E	user_manual	admin	[structured search] 		9
+1666379808	89.205.141.89	E	user_manual	admin	[structured search] 		-1
+1666379957	89.205.141.89	E	user_manual	admin	[commands] 		-884
+1666379995	89.205.141.89	E	user_manual	admin	[bookmarks] 		2
+1666380023	89.205.141.89	E	user_manual	admin	[bookmarks] 		-1
+1666381185	89.205.141.89	E	user_manual	admin	[project goals] 		5
+1666397148	89.205.128.116	E	architecture	admin	[architecture] 		-57
+1666482625	84.241.203.207	E	user_manual	admin	[commands] 		-13
+1666565441	84.241.203.207	E	used_projects	admin	[embedded apps] 		0
+1666565514	84.241.203.207	E	used_projects	admin	[embedded apps] 		-246
+1666566021	84.241.203.207	E	user_manual	admin	[structured search] 		3
+1666566101	84.241.203.207	E	user_manual	admin	[settings] 		-1
+1666566186	84.241.203.207	E	user_manual	admin	[settings] 		0
+1666566249	84.241.203.207	E	field_customization	admin	[introduction] 		1
+1666566295	84.241.203.207	E	field_customization	admin	[introduction] 		-1
+1666566387	84.241.203.207	E	field_customization	admin	[introduction] 		-3
+1666566436	84.241.203.207	E	field_customization	admin	[introduction] 		-333
+1666566621	84.241.203.207	E	field_customization	admin	[special values] 		126
+1666566683	84.241.203.207	E	field_customization	admin	[special values] 		-122
+1666566722	84.241.203.207	E	field_customization	admin	[special values] 		38
+1666566765	84.241.203.207	E	field_customization	admin	[special values] 		10
+1666566908	84.241.203.207	E	field_customization	admin	[special values] 		46
+1666566984	84.241.203.207	E	field_customization	admin	[special values] 		18
+1666567051	84.241.203.207	E	architecture	admin	[architecture] 		17
+1666567127	84.241.203.207	E	code_structure	admin	[root directory structure] 		9
+1666567359	84.241.202.78	E	adding_an_app	admin			-13
+1666567428	84.241.202.78	E	adding_an_app	admin			57
+1666567538	84.241.202.78	E	adding_an_app	admin			17
+1666567698	84.241.202.78	E	adding_an_app	admin			202
+1666567825	84.241.202.78	E	integrating_an_api	admin			-14
+1666567938	84.241.202.78	E	topic_classification	admin	[topic classification] 		-22
+1666568012	84.241.202.78	E	topic_classification	admin	[topic classification] 		23
+1666568070	84.241.202.78	E	topic_classification	admin	[topic classification] 		13
+1666568316	84.241.202.78	E	topic_classification	admin	[classification process] 		8
+1666568491	84.241.202.78	E	roadmap	admin	[specific ideas] 		-10
+1666568531	84.241.202.78	E	roadmap	admin	[specific ideas] 		24
+1666568577	84.241.202.78	E	issues	admin	[europeana notes] 		56
+1666568617	84.241.202.78	E	concept_stores	admin	[requirements] 		44
+1666568654	84.241.202.78	E	browser_extension	admin			24
+1666568681	84.241.202.78	E	command_api	admin			-31
+1666568963	84.241.202.78	E	integrating_an_api	admin			-7
+1666569064	84.241.202.78	E	build_system	admin			11
+1666569113	84.241.202.78	E	localization	admin			-154
+1666569296	84.241.202.78	E	architecture	admin	[architecture] 		8
+1666569340	84.241.202.78	E	architecture	admin	[architecture] 		7
+1666569487	84.241.202.78	E	architecture	admin	[architecture] 		161
+1666569683	84.241.202.78	E	architecture	admin	[architecture] 		143
+1666569704	84.241.202.78	E	architecture	admin	[architecture] 		-5
+1666569747	84.241.202.78	E	architecture	admin	[architecture] 		0
+1666569827	84.241.202.78	E	architecture	admin	[architecture] 		-3
+1666569878	84.241.202.78	E	architecture	admin	[architecture] 		1
+1666569895	84.241.202.78	E	architecture	admin	[architecture] 		4
+1666569927	84.241.202.78	E	architecture	admin	[architecture] 		12
+1666569996	84.241.202.78	E	architecture	admin	[architecture] 		1
+1666570020	84.241.202.78	E	architecture	admin	[architecture] 		-1
+1666570117	84.241.202.78	E	architecture	admin	[architecture] 		10
+1666570164	84.241.202.78	E	architecture	admin	[architecture] 		-1
+1666570196	84.241.202.78	E	architecture	admin	[architecture] 		5
+1666570240	84.241.202.78	E	architecture	admin	[architecture] 		4
+1666570372	84.241.202.78	E	architecture	admin	[architecture] 		38
+1666570394	84.241.202.78	E	architecture	admin	[architecture] 		7
+1666570525	84.241.202.78	E	used_projects	admin	[various code] 		9
+1666571236	84.241.202.78	E	configuration	admin			27
+1666571325	84.241.202.78	E	upgrading	admin			5
+1666571465	84.241.202.78	E	code_structure	admin	[conzept main app] 		4
+1666571499	84.241.202.78	E	code_structure	admin	[conzept main app] 		5
+1666571537	84.241.202.78	E	code_structure	admin	[entry point] 		1
+1666571555	84.241.202.78	E	code_structure	admin	[entry point] 		4
+1666571582	84.241.202.78	E	code_structure	admin	[entry point] 		7
+1666571695	84.241.202.78	E	code_structure	admin	[entry point] 		41
+1666571754	84.241.202.78	E	code_structure	admin	[explore object] 		2
+1666571809	84.241.202.78	E	user_manual	admin	[commands] 		6
+1666572411	84.241.202.78	E	architecture	admin	[URL parameters] 		32
+1666572442	84.241.202.78	E	architecture	admin	[URL parameters] 		50
+1666572458	84.241.202.78	E	architecture	admin	[URL parameters] 		6
+1666624575	84.241.202.78	E	browser_extension	admin			-40
+1666631428	84.241.202.78	E	browser_extension	admin			102
+1666631442	84.241.202.78	E	browser_extension	admin			22
+1666631454	84.241.202.78	E	browser_extension	admin			3
+1666719792	89.205.143.119	E	concept_stores	admin	[requirements] 		-66
+1666719810	89.205.143.119	E	concept_stores	admin	[concept stores] 		9
+1666721153	89.205.143.119	E	concept_stores	admin	[concept stores] 		42
+1666721185	89.205.143.119	E	concept_stores	admin	[status] 		45
+1666721276	89.205.143.119	C	datasources	admin	created		205
+1666721295	89.205.143.119	E	datasources	admin			1
+1666721339	89.205.143.119	E	concept_stores	admin	[status] 		19
+1666721355	89.205.143.119	E	concept_stores	admin	[status] 		3
+1666721404	89.205.143.119	E	concept_stores	admin	[concept stores] 		-215
+1666721526	89.205.143.119	E	concept_stores	admin	[requirements] 		-431
+1666721627	89.205.143.119	E	concept_stores	admin			-753
+1666721659	89.205.143.119	E	concept_stores	admin	[other tools] 		-18
+1666721758	89.205.143.119	E	concept_stores	admin	[concept stores] 		3
+1666721845	89.205.143.119	E	concept_stores	admin	[concept stores] 		78
+1666721873	89.205.143.119	E	concept_stores	admin	[concept stores] 		3
+1666721912	89.205.143.119	E	concept_stores	admin	[concept stores] 		40
+1666722061	89.205.143.119	E	concept_stores	admin			250
+1666722148	89.205.143.119	E	concept_stores	admin	[concept stores] 		5
+1666722203	89.205.143.119	E	concept_stores	admin	[concept datasources] 		24
+1666722221	89.205.143.119	E	concept_stores	admin			4
+1666722256	89.205.143.119	E	sidebar	admin			20
+1666722326	89.205.143.119	E	datasources	admin			61
+1666733580	89.205.143.119	E	browser_extension	admin			-9
+1666746122	84.241.203.14	E	sidebar	admin			0
+1666746566	84.241.203.14	E	browser_extension	admin			45
+1666746634	84.241.203.14	E	browser_extension	admin	[browser extension] 		107
+1666746687	84.241.203.14	E	browser_extension	admin	[browser extension] 		-34
+1666746707	84.241.203.14	E	browser_extension	admin	[browser extension] 		0
+1666746732	84.241.203.14	E	browser_extension	admin	[browser extension] 		10
+1666746844	84.241.203.14	E	browser_extension	admin	[browser extension] 		47
+1666746921	84.241.203.14	E	browser_extension	admin	[browser extension] 		92
+1666747032	84.241.203.14	E	browser_extension	admin	[browser extension] 		27
+1666747104	84.241.203.14	E	concept_stores	admin	[concept datasources] 		2
+1666747212	84.241.203.14	E	concept_stores	admin	[use cases] 		-25
+1666747221	84.241.203.14	E	concept_stores	admin	[use cases] 		1
+1666747265	84.241.203.14	E	concept_stores	admin	[use cases] 		26
+1666747406	84.241.203.14	E	concept_stores	admin	[status] 		74
+1666747433	84.241.203.14	E	concept_stores	admin	[status] 		46
+1666747468	84.241.203.14	E	concept_stores	admin	[concept datasources] 		3
+1666748111	84.241.203.14	E	concept_stores	admin	[status] 		400
+1666748159	84.241.203.14	E	concept_stores	admin	[status] 		8
+1666748185	84.241.203.14	E	concept_stores	admin	[other tools] 		-142
+1666748285	84.241.203.14	E	concept_stores	admin	[other tools] 		-113
+1666748481	84.241.203.14	E	concept_stores	admin	[concept datasources] 		-115
+1666748555	84.241.203.14	E	concept_stores	admin	[concept datasources] 		18
+1666748603	84.241.203.14	E	concept_stores	admin	[concept datasources] 		-14
+1666749020	84.241.203.14	E	datasources	admin			-14
+1666749178	84.241.203.14	E	concept_stores	admin			-5
+1666749398	84.241.203.14	E	roadmap	admin	[specific ideas] 		92
+1666749456	84.241.203.14	E	roadmap	admin	[specific ideas] 		13
+1666749541	84.241.203.14	E	roadmap	admin	[specific ideas] 		28
+1666749662	84.241.203.14	E	roadmap	admin	[specific ideas] 		33
+1666749697	84.241.203.14	E	roadmap	admin	[specific ideas] 		4
+1666749728	84.241.203.14	E	roadmap	admin	[specific ideas] 		0
+1666749896	84.241.203.14	E	roadmap	admin	[general ideas] 		52
+1666786058	84.241.203.14	E	concept_stores	admin	[status] 		-140
+1666786391	84.241.203.14	E	concept_stores	admin	[status] 		78
+1666786415	84.241.203.14	E	concept_stores	admin	[status] 		38
+1666786431	84.241.203.14	E	concept_stores	admin	[status] 		0
+1666787763	84.241.203.14	E	concept_stores	admin	[status] 		2
+1666787840	84.241.203.14	E	concept_stores	admin	[status] 		-4
+1666789263	84.241.203.14	E	concept_stores	admin	[status] 		39
+1666793151	84.241.203.14	E	datasources	admin			47
+1666793319	84.241.203.14	E	concept_stores	admin	[status] 		85
+1666793373	84.241.203.14	E	concept_stores	admin	[status] 		22
+1666793398	84.241.203.14	E	concept_stores	admin	[status] 		1
+1666793758	84.241.203.14	E	concept_stores	admin	[status] 		32
+1666793776	84.241.203.14	E	concept_stores	admin	[status] 		10
+1666794129	84.241.203.14	E	concept_stores	admin	[concept stores] 		391
+1666794179	84.241.203.14	E	concept_stores	admin	[concept stores] 		-15
+1666815620	84.241.203.14	E	concept_stores	admin	[status] 		157
+1666815744	84.241.203.14	E	concept_stores	admin	[status] 		22
+1666815800	84.241.203.14	E	concept_stores	admin	[status] 		35
+1666831463	89.205.141.113	E	concept_stores	admin	[status] 		57
+1666831524	89.205.141.113	E	concept_stores	admin	[status] 		19
+1666831537	89.205.141.113	E	concept_stores	admin	[status] 		-1
+1666836892	89.205.141.113	E	concept_stores	admin	[status] 		-289
+1666837347	89.205.141.113	E	concept_stores	admin	[status] 		6
+1666837366	89.205.141.113	E	concept_stores	admin	[status] 		-180
+1666838531	89.205.141.113	E	concept_stores	admin	[status] 		211
+1666838557	89.205.141.113	E	concept_stores	admin	[status] 		1
+1666838606	89.205.141.113	E	concept_stores	admin	[status] 		49
+1666840364	89.205.141.113	E	concept_stores	admin	[status] 		1
+1666840468	89.205.141.113	E	concept_stores	admin	[status] 		62
+1666869428	89.205.141.113	E	concept_stores	admin	[status] 		-261
+1666872512	89.205.141.113	E	issues	admin			267
+1666872920	89.205.141.113	E	issues	admin	[container based install] 		38
+1666872935	89.205.141.113	E	issues	admin	[container based install] 		-1

@@ -18,7 +18,7 @@ You can also browse it online [[https://github1s.com/waldenn/conzept|here]].
 │
 └── services (background services started upon system boot)
    ├── allorigins (general CORS proxy)
-   └── json-proxy (JSON-only CORS proxy, also handles secret API-keys)
+   └── json-proxy (JSON-only CORS proxy, which can also handle secret API-keys)
 </code>
 
 The Conzept-project root-directory also contains the following relevant files:
@@ -37,8 +37,8 @@ The Conzept main app (the UI wrapping all the other apps) is located in the "**[
 ├── assets
 │   ├── geojson (used only for the data-layers in the organism-occurrence web-component)
 │   ├── i18n (localization files)
-│   ├── images (static images)
-│   ├── json (mainly used for storing lists of Wikidata "topic sphere" Qid's)
+│   ├── images (some static images)
+│   ├── json (mainly used for storing lists of Wikidata "topic theme" entity IDs)
 │   ├── models (used to store Draco-optimized GLB 3D models)
 │   └── svg (used for flags, former-flags)
 │
@@ -72,11 +72,11 @@ From "main.js":
 
   * All the URL parameters are cleansed, parsed and stored.
 
-  * The **global object "[[#explore_object|explore]]"** is created. The values in this  JS-object can be accessed through "explore.<property-name>" (see next section). Note: The explore-object is not accessible in the embedded apps, use URL-parameters to pass relevant data into the app.).
+  * The **global object "[[#explore_object|explore]]"** is created. The values in this  JS-object can be accessed through: "**explore.<property-name>**" (see next section). Note: The explore-object is not accessible in the embedded apps, use URL-parameters to pass relevant data into the embedded app.
 
   * The language and locale are setup (while checking for the language setting in the persistent browser storage).
 
-  * Dynamic UI-element are setup and activated.
+  * Dynamic UI-element are setup and activated (autocompletion, user settings UI, etc.).
 
   * Keyboard event-handlers setup.
 
@@ -94,7 +94,7 @@ Here are some of the important properties on this object:
 | explore.**db** | persistent storage object using [[https://github.com/gruns/ImmortalDB|ImmortalDB]]|
 | explore.**query_param** | [[user_manual#structured_search|structured search]] query-URL |
 | explore.**hash** | current URL-fragment |
-| explore.**fragment** | sidebar detail-fragment to go to upon after loading the URL ([[https://conze.pt/explore/London?l=en&t=wikipedia&f=category_tree&s=true|example]]) |
+| explore.**fragment** | sidebar topic-detail-fragment to go to, after loading the URL ([[https://conze.pt/explore/London?l=en&t=wikipedia&f=category_tree&s=true|example]]) |
 
 ===== API code=====
 

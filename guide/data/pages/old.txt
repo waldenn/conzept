@@ -1,0 +1,1187 @@
+====== old notes ======
+
+[ note: this "old notes" page is a scratchpad of useful concepts, potential features and pesky issues ]
+
+===== abstract ideas =====
+
+  * user controls the topic 'journey':
+    * topic selection (by searching or browsing - and then perhaps filtering)
+    * explore related topics
+    * explore internal links
+    * view other topic dimensions: video, images, etc.
+    * domain specific exploration: [[explore>contextualization|context]] control (input/select/filters+sorting) & discovery (browse/search/click/...)
+      * classs (or class tree)
+      * subclasss (or subclass tree)
+      * pageviews: <html><a href="https://nl.wikipedia.org/w/api.php?action=query&format=json&prop=pageviews&titles=Liefde|Bank+of+England|British+Museum">1</a></html>, [[https://www.mediawiki.org/wiki/Extension:PageViewInfo|2]]
+      * startdate : enddate
+      * ? filter string
+
+  * mental model structure ideas:
+    * users:
+      * [[:natural learning]]
+      * [[/list/four_pillars|four pillars of life]]
+      * [[/workshop/self-study|self-study tips]]
+      * ..
+    * developers:
+      * [[https://gtoolkit.com/usecases/|moldable development]] (less coding time, more expression / exploration / impact)
+
+=====design principles=====
+
+  * UX & general design info:
+    * "[[https://uxdesign.cc/how-to-solve-problems-6bf14222e424|What problem are you solving? 3 steps]]"
+    * "[[https://www.interaction-design.org/literature/book/the-encyclopedia-of-human-computer-interaction-2nd-ed|Encyclopedia of HCI]]"
+    * [[https://wiki.c2.com/?ConceptualIntegrity|Conceptual Integrity]]
+    * "[[http://www.bp.ntu.edu.tw/wp-content/uploads/2011/12/06-Alexander-A-city-is-not-a-tree.pdf|A City is Not a Tree]]"
+    * "[[https://www.mondo2000.com/2018/06/18/the-inspiration-for-hypercard/|The inspiration for Hypercard]]"
+      * [[explore>HyperCard]]
+      * [[https://medium.com/@modernserf/the-origin-of-hypercard-in-the-breakdown-of-the-bicycle-for-the-mind-8d0f3287e561|how to get there?]]
+    * [[https://uxdesign.cc/five-factors-of-meaningful-design-6819cda0cef2|Five factors of meaningful design]] ([[https://www.kasperhornbaek.dk/papers/CHI2019_Meaning.pdf|pdf]])
+    * [[explore>The Toyota Way]]
+    * [[https://hiringengineersbook.com/post/autonomy/|intangible aspects of software]]
+    * [[https://www.asktog.com/menus/designMenu.html|AskTog design pages]]
+      * [[https://asktog.com/atc/principles-of-interaction-design/|first principles]]
+    * [[https://microkerneldude.wordpress.com/2020/03/11/sel4-design-principles/|sel4 microkernel design principles]]
+    * [[http://www.designbetter.co/books|DesignBetter]]
+    * [[https://martinrue.com/my-engineering-axioms/|engineering axioms]]
+    * [[https://www.nickkolenda.com/user-experience/|checklist]]
+    * [[http://worrydream.com/refs/|HCI research]]
+    * [[https://www.terrapinbrightgreen.com/reports/14-patterns/|14 patterns of biophilic design]]
+    * [[http://robust.cs.unm.edu/doku.php|robustness-first computing]]
+    * [[https://praxis.fortelabs.co/how-to-take-smart-notes/|smart notes]]
+    * [[https://scottreinhard.com/Building-Upon-Interaction-Gestalt-Master-s-Thesis|interaction gestalt]]
+    * [[https://orbit.kiwi/|Orbit info]]
+    * [[https://pages.cs.wisc.edu/~remzi/OSTEP/|Operating Systems design]]: virtualization (abstraction), concurrency (async), persistence (storage), security (trust and safety)
+    * [[https://codeincomplete.com/posts/development-values/|dev values]]
+    * [[https://wjwh.eu/posts/2020-10-14-software-maintenance.html|software maintenance: software is like a wooden boat]]
+    * [[https://plato.stanford.edu/entries/computer-science/|philosophy of CS]]
+    * [[explore>Command–query separation|Command–Query separation]]
+    * [[https://urbit.org/blog/precepts/|Urbit design principles]],
+    * [[https://malleable.systems/|malleable software]]
+    * [[http://www.threatmodelingmanifesto.org/|Threat Model Manifesto]] (towards more robust systems)
+    * [[https://visly.app/blog/keyboard-accessibility|keyboard accessibility]]
+    * [[https://www.nngroup.com/articles/how-people-read-online/|how people read online]]
+    * [[explore>phenomenon based learning]]: [[http://www.phenomenaleducation.info/change-with-digital.html|1]]
+    * [[https://medium.com/javascript-scene/abstract-data-types-and-the-software-crisis-671ea7fc72e7|Abstract Data Types intro]]
+    * "The evolution of computing implies a requirements hierarchy. If the hardware works, then software becomes the priority; if the software works, then user needs become important; and if user needs are fulfilled, then social requirements arise. As one level's issues are met, those of the next appear" - [[https://www.interaction-design.org/literature/book/the-social-design-of-technical-systems-building-technologies-for-communities-2nd-edition/the-evolution-of-computing|*]]
+    * [[https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html|Design Principles Behind Smalltalk]]
+    * [[https://ishadeed.com/article/grid-layout-flexbox-components/|Grid for layout, Flexbox for components]]
+    * ...
+
+  * **predictability, learnability, memorability, focus**
+    * "Easy to learn, nice to master".
+    * "I can remember what that is and where that is".
+    * "I still know how to use it".
+    * clean UI
+    * [[https://learnui.design/blog/4-rules-intuitive-ux.html|4 UX rules]]
+    * "Put work in front of real people early and often." ([[https://design-system.barnardos.org.uk/principles/|1]])
+    * "Start with user needs, avoid making assumptions"
+    * "Test and iterate regularly with users"
+    * "Iterate based on evidence"
+    * "Release early"
+    * build-in ambient music for better focus? [[https://whatismusic.info/blog/MusicIsNotAPositiveSuperstimulusItsANegativeSuperstimulus.html|1]]
+
+  * **effectiveness**
+    * "To understand something, you must actively engage with it." - [[https://andymatuschak.org/books/|*]]
+
+  * **efficiency**
+    * performant
+    * Automate everything that can be automated (both on the server and the client).
+      * "Do the hard work so the user doesn’t have to"
+      * "Don't make me think!" (don't waste a users cognitive energy, if that can be avoided.)
+
+  * **satisfaction & joy**
+    * "... build something genuinely useful, something which really does __make people’s lives simpler, more pleasant, productive and fun__, our job is also to understand what people think they want and then translate the value of [our application or service] into their terms." [[https://www.younglingfeynman.com/essays/illogical|*]]
+    * joyful: adventure, knowledge, progress
+    * "[[https://vanschneider.com/beauty-vs-function|design with love and care]]"
+    * "build trust and familiarity across products"
+    * [[https://uxdesign.cc/ui-gamification-or-making-your-design-fun-to-play-with-6021ecafe77b|UX gamification]]
+
+  * **reliability** (low error rate)
+
+  * **adaptability**
+    * "[[https://blog.jessitron.com/2019/10/13/dont-build-systems-build-subsystems/|don't build systems, build subsystems]]"
+      * "Always consider your design a subsystem. (...) Whenever you’re designing something, the first step is: What is the system my system lives in? I need to understand that system to understand what my system does."
+    * "[[https://brandur.org/small-sharp-tools|small, sharp tools]]"
+    * [[https://martinfowler.com/architecture/|application architecture]]
+
+  * **accessibility** (needs more work)
+    * "Strive to support all who need the product"
+      * desktop user experience
+      * mobile user experience (needs more testing and development)
+      * design for the "Big Screen" too (think: teaching, presentations, workshops, etc.) 
+    * "Design for the most constrained environment"
+    * "Be part of the open digital community"
+    * "[[https://ahuth.github.io/articles/great-accessibility-articles/|Great Accessibility Articles]]"
+      * [[https://dragun.tech/jsconfhawaii/|dragon.tech info]]
+    * [[https://www.checkmycolours.com|check color contrasts]]
+    * check with chrome-extensions
+      * add "tab-indexes" on "onclick-elements"
+      * ...
+    * see also:
+      * [[https://a11yproject.com|a11yproject]]
+      * [[https://material.io/design/color/dark-theme.html#|dark-mode guidelines]]: [[https://github.com/Assortment/darkmodejs|darkmodejs]] (see also: [[https://blog.prototypr.io/how-to-design-a-dark-theme-for-your-android-app-3daeb264637|darkmode design steps]])
+        * [[https://tombrow.com/dark-mode-website-css|1]]
+        * [[https://dev.to/lampewebdev/css-quickies-css-variables-or-how-you-create-a-white-dark-theme-easily-1i0i|css-variables intro]]
+
+    * people:
+      * [[https://mek.fyi/|M. Karpeles ideas and projects]] (OpenLibrary)
+      * [[https://ultimategerardm.blogspot.com/|Gerard M. blog]] (wikimedia)
+
+
+> “//When you want to hurry something, that means you no longer care about it and want to get on to other things.//” - Robert M. Pirsig
+
+=====business=====
+
+> "The only two frictions for user adoption are __knowing about it__ and a __desire to use it__." - [[https://medium.com/rezi-resume/0-to-50-000-users-a-candid-look-into-creative-growth-2774bef993af|*]]
+
+   * key users:
+     * professional users (marketing aimed at academic professionsals, scientists, writers, journalists, libraries)
+     * students (marketing aimed at schools / universities / student groups)
+     * casual users (marketing aimed at popular hangouts of english-speaking, educated people)
+       * adult life-long learner (broad interest person, retired professional, high IQ person)
+       * children and adolescents (marketing aimed at parents to stimulate their childrens curiosity, learning and growth)
+ 
+   * [[https://hackernoon.com/ultimate-startup-launch-checklist-2020-edition-at9u3wxg|startup checklist]]
+     * [[https://hackernoon.com/how-to-validate-your-startup-idea-with-less-time-and-money-nk8u306f|validate business idea]]
+     * [[https://apollodigital.io/blog/saas-marketing|saas-marketing]]
+    * [[https://www.thefxck.com/interviews/b2c-marketing-strategy-brandbuilding-interview-pasta-evangelist|B2C strategy]]
+      * mission statement: "**__Provide the best [[explore>encyclopedia]] service for individuals and organizations.__**"
+ 
+    * [[explore>B2C|B2C strategy]] for third-party integrations?
+
+       * key measures of success:
+          * Have fun developing Conzept.
+          * Have many happy users.
+          * Have premium subscribers who love the Conzept service.
+          * Have Conzept being used in schools, universities and public libraries around the world.
+          * Provide other people the opportunity to help develop and maintain Conzept.
+          * Help out projects upon which Conzept depends (and give back to the community where possible).
+          * Join discussions for related developments of knowledge systems.
+
+      * develop the mission strategy
+
+    *  "[[https://paulbuchheit.blogspot.com/2010/02/if-your-product-is-great-it-doesnt-need.html|pick three key attributes]], get those things very, very right, and then forget about everything else (...) By focusing on only a few core features in the first version, you are forced to find the true essence and value of the product.": **pleasant, inspiring, empowering**
+      * The most pleasant, effective and efficient encyclopedic experience ever.
+      * Inspiration is the energy driving motivation and perseverance of learning and doing. Make the encyclopedic information and its information-relations shine as bright as possible.
+      * A promise to keep improving the experience and adapt to any new insights.
+
+    * [[explore>Marketing]]
+    * [[https://github.com/LisaDziuba/Marketing-for-Engineers|marketing for engineers]] (list of links)
+    * [[https://stripe.com/au/atlas/guides/business-of-saas|business of saas]]
+    * [[https://www.simonblogs.com/tutorials/20-growth-marketing-hacks-for-your-first-100-customers|hacks for the first 100 customers]]
+    * [[https://www.indiehackers.com/post/how-can-i-learn-marketing-as-a-developer-e2a9eb1f51|marketing and sales info]]
+    * [[https://www.indiehackers.com/post/how-to-brainstorm-great-business-ideas-ab51c3d51c|brainstorming]], [[https://www.indiehackers.com/post/how-to-brainstorm-great-business-ideas-ab51c3d51c|first principles]], traction channels
+    * [[https://github.com/stripe/stripe-php/|stripe-php]]
+    * [[https://www.sequoiacap.com/article/pricing-your-product/|pricing your product]]
+      * [[https://www.firmhouse.com/blog/how-to-set-your-subscription-pricing-strategy|pricing strategy]]
+    * "[[https://www.lennyrachitsky.com/p/how-the-biggest-consumer-apps-got|How did the big consumer apps get their first 1,000 users?]]"
+
+    * [[explore>playbook]] examples: [[https://www.fullstacklabs.co/playbook|1]]
+    * [[http://startupclass.samaltman.com/courses/lec06/|growth & the magic moment]]
+    * marketing infrastructure: twitter, reddit, facebook, educational networks (schools, universities, parent orgs), ... 
+    * [[https://hugozap.com/posts/how-to-finish-your-side-project/|how to finish a side-project]]
+
+    * SaaS pricing
+      * [[https://www.mikesonders.com/saas-website-content/|saas-site-content]]
+      * [[https://stripe.com/en-in/atlas/guides/saas-pricing|saas-pricing]]
+      * [[https://baremetrics.com/blog/saas-financial-model|saas-financial-model]]
+
+   * SaaS tools/services:
+     * [[https://www.chargebee.com/|chargebee]]
+
+===== prio state-flow issues =====
+
+  * implement dual-pane-URL-parameter-control
+
+  * review "hash" handling code:
+    * URL hash not working in all cases (due to character encoding)
+    * make it robust
+    * make it also handle the new ":~:" text-fragments standard
+
+  * other state-related flows:
+    * back-and-forth bugs: [[https://conze.pt/explore/Red%20Slate%20Mountain?l=en&t=wikipedia&s=true&i=1405920|click on geocode]] -> then go back (not working)
+    * push/pop page-state changes not always updating result list after "reload this topic" (find the cause)
+    * also set "explore.language_direction" when going back in the history (eg. from Hebrew to an English topic)
+
+===== prio now issues =====
+
+  * **BUG!** sometimes NOTHING can change the URL-title anymore --> research what is causing this!
+    * clues: "going back to a link-split URL" triggers it?? [[https://conze.pt/explore/Musical%20instrument?l=en&t=link-split&s=true&i=34379&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fl%3Den%26c%3DQ34379|1]]
+
+  * **BUG!** font-change is not propagated to the iframe immediately
+
+  * **BUG!** this article does not load the wikipedia page, why? [[https://conze.pt/explore/Sport?l=en&t=wikipedia&s=true|1]]
+
+  * BUG: the "contains admin. entities"-button fails to show the fetched labels: [[https://conze.pt/explore/Russia?l=en|1]] (could this be because there are more than 50 labels to fetch?)
+
+  * BUG: this page fails to load the existing wikipedia page: [[https://conze.pt/explore/%D9%83%D8%A7%D8%B3%D9%BE%D8%A7%D8%B1%20%D9%BE%D9%88%D9%8A%D9%83?l=arz&t=wikipedia&s=true|1]]
+
+  * make mobile UX good
+    * BUG: mobile-random exception in line 12588: res.parse is undefined
+    *  BUG: fix second-content-pane bug
+    * add swiper-action to default blank page
+    * add a fixed-button for showing the ToC menu?
+
+  * darkmode: autocomplete-item-text not styled yet
+
+  * also support 3D glb files in the infobox: [[https://conze.pt/explore/(1620)%20%D0%93%D0%B5%D0%BE%D0%B3%D1%80%D0%B0%D1%84?l=tt&t=wikipedia&s=true&i=141554|1]]
+
+  * multi-source search integration (wikidata, other SPARQL end-points, etc.)
+
+  * no art works found for this artist, why?: [[https://conze.pt/explore/Carl%20Grabow?l=sv&t=link-split&s=true&i=5766563&u=https%3A%2%2Fconze.pt%2Fapp%2Fwikidata%2Fembed.html%23SELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253FauthorLabel%252520%25253FitemDescription%252520%25253Finception%252520%25253Fpic%252520WHERE%252520%25257B%25250A%252520%252520%25257B%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ3305213%252520%25257D%252520UNION%252520%25257B%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ93184%252520%25257D%252520UNION%252520%25257B%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ11060274%252520%25257D%252520UNION%252520%25257B%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ15123870%252520%25257D.%25250A%252520%252520%25253Fitem%252520wdt%25253AP170%252520wd%25253AQ5766563%252520.%25250A%252520%252520VALUES%252520%25253Fauthor%252520%25257B%252520wd%25253AQ5766563%252520%25257D%25250A%252520%252520OPTIONAL%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic%252520%25257D.%25250A%252520%252520OPTIONAL%25257B%252520%25253Fitem%252520wdt%25253AP571%252520%25253Finception%252520%25257D.%252520%252520%252520%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522sv%25252Cen%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Finception)%252520%25250ALIMIT%2525203000%252520%252523meta%25253Apaintings%252520by%252520Carl%2520Grabow%252520%25250A%252523defaultView%25253AImageGrid%25250A%252523view%25253AImageGrid%25257B%252522hide%252522%25253A%252520%252522%25253FitemDescription%252522%25257D%25250A|link]]
+    * improve art browser, inspiration: https://openartbrowser.org/en/
+
+  * fix roundtripping bug in root-graph reloading: [[https://conze.pt/explore/Trogon?l=en&t=link-split&s=true&i=191469&u=https%3A%2F%2Fconze.pt%2Fapp%2Fquery%2Fembed.html%23SELECT%252520%25253Fitem%252520%25253FitemLabel%252520%25253FitemDescription%252520%25253Fpic%252520%25253FlinkTo%25250AWHERE%25250A%25257B%25250A%252520%252520wd%25253AQ191469%252520wdt%25253AP171*%252520%25253Fitem%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP171%252520%25253FlinkTo%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257Bbd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%252522%252520%25257D%25250A%25257D%252523defaultView%25253AGraph%25250A%252523meta%25253ATrogon%25253Alayout-topdown|1]]
+
+  * history timeline inspiration: [[https://histomania.com/|1]]
+
+  * quiz app
+    * BUG: clear map-marker after round
+    *  word-fill-in-animation [[https://codepen.io/chadd/pen/mdPZrbP|1]]
+
+  * new infinite-scroll data API app structure
+    * option: https://github.com/dataformsjs/dataformsjs
+
+  * fix proper article-click if no matching title was found, examples: [[https://conze.pt/explore/carl%20spitzweg?l=en&t=wikipedia&s=true|1]], [[https://conze.pt/explore/ray%20burggraf?l=en&t=wikipedia&s=true|2]]
+
+  * implement more frequently used properties (including multi-values): [[https://twitter.com/Connected_Data/status/1311992581283368962/photo/1|1]]
+
+  * BUG: page does not load: [[https://conze.pt/explore/Wikipedia:WikiProject%20Germany/Portal:Berlin?l=en&t=wikipedia&s=true&i=3248436|1]]
+
+  * BUG: openstreetmap-map-image not opening (due to other px syntax in URL?)
+    example: [[https://conze.pt/explore/Adatepe%20Olive%20Oil%20Museum?l=en&t=wikipedia&s=true|1]]
+
+  * BUG: compare view: openseadragon-zoom state can't be exited!
+
+  * todo: sort out what to do with the skipped images (icons, etc.)
+
+  * search museum -> sidebar: category:museum undefined
+
+  * Wikipedia rendering issues:
+
+    * external-link not being opened in new tab: [[https://conze.pt/explore/Museum?l=en|1]] (click on "interactive version")
+    * improve image-gallery parsing
+      * text needs better alignment
+      * BUG: something breaks image-view-paging in this article: [[https://conze.pt/explore/Sculpture?l=en&t=wikipedia&s=true|1]]
+      * BUG: whole displaced page: [[https://conze.pt/explore/No%20Parlez?l=en&t=wikipedia&s=true&i=7044754|1]]
+
+    * images:
+      * multi-thumb gallery: prevent unneeded row-breaking from happening
+      * some thumb-images not enlarged here:
+        * [[https://conze.pt/explore/France?l=fr&t=wikipedia&s=true&c=47,2|1]]
+      * minor bug: image with scrollbar displayed wrong: [[https://conze.pt/explore/New%20Zealand?l=en&t=wikipedia&s=true&i=664&c=-41.2,174#culture__|1]]
+      * remove max-width on <figure> for wrongly displayed images in: [[https://conze.pt/explore/United%20States?l=en&t=wikipedia&s=true&i=30&c=39.828175,-98.5795|1]]
+      * [[https://conze.pt/explore/Route%20europ%C3%A9enne%201?l=fr&t=wikipedia&s=true|infobox icons should be left-aligned]]
+      * rating star images not aligned horizontally: [[https://conze.pt/explore/Angry%20Birds%20(video%20game)?l=en&t=wikipedia&s=true&i=4558721|1]]
+      * some images very small: [[https://conze.pt/explore/World%20population%20milestones?l=en&t=wikipedia&s=true|1]]
+
+    * non-thumb-images:
+      * don't open / show very small images ( < 80px width ) in the image viewer
+      * todo handle other thumbs: [[https://conze.pt/explore/Mathematics?l=en&t=wikipedia&s=true|1]]
+        * multi-thumbs
+        * table-thumbs
+      * bug with globe image? [[https://conze.pt/explore/Outline%20of%20India?l=en&t=wikipedia&s=true&i=3348804|1]]
+
+
+    * infobox
+      * improve overall styling where possible
+        * on mobile the infobox needs to be slightly narrower
+        * can we make the infobox width the same as the right-aligned-thumbs?
+      * handle detail-open-close elements
+        * example "Infobox NavFrame": [[https://conze.pt/explore/Zohar?l=en&t=wikipedia&s=true&i=205388|1]]
+      * test various articles + languages
+      * internal hash-links of the infobox are not working: [[https://conze.pt/explore/History%20of%20Bulgaria?l=en&t=wikipedia&s=true|1]]
+      * text-align center on infobox table-tr-header not yet implemented, example: [[https://conze.pt/explore/Lutheranism?l=en&t=link&s=true&u=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLutheranism|1]]
+
+    * target position to sub-headers too far
+
+    * darkmode needs more fixes: infobox, galleries, wikipedia-link-previews, etc.
+
+    * wikipedia-preview, see: [[https://github.com/wikimedia/wikipedia-preview|1]]
+      * encode special characters in URL? example link "grand slams" and those after break: [[https://conze.pt/explore/Manny%20Ram%C3%ADrez?l=nl&t=wikipedia&s=false|1]]
+      * allow user to toggle this feature on/off
+      * change bottom links to icons for: read-article | explore this topic
+      * improve preview header text
+
+    * article which has bad html-rendering: [[https://conze.pt/explore/Order-4%20octahedral%20honeycomb?l=en&t=wikipedia&s=true|1]]
+
+    * ToC
+      * ! research the weird "__" title bugfix
+      * mobile ToC: [[https://somewebmedia.github.io/hc-offcanvas-nav/|1]]
+
+    * links
+      * user-controlled link-bolding not working (for now this is switched on by default)
+      * bug: the external link "wiki" -> "explore" here: [[https://conze.pt/explore/Lepidostoma?l=en&t=wikipedia&s=true&i=15952859|1]]
+
+    * table styling:
+      * use same styling as wikipedia?
+      * test cases:
+        * [[https://conze.pt/explore/Demographics%20of%20India?l=en&t=wikipedia&s=true|1]]
+        * [[https://conze.pt/explore/Partition%20h%C3%A9raldique?l=fr&t=wikipedia&s=true&i=260704n|1]]
+
+    * references:
+      * also detail-wrap "div.listaref"
+        * test case: [[https://conze.pt/explore/N,N,N',N'-tetrametilmetanodiamina|1]]
+      * references are not detail-wrapped here: [[https://conze.pt/explore/Visby?l=sv&t=link&s=true&u=https%3A%2F%2Fsv.wikipedia.org%2Fwiki%2FVisby|1]],  [[https://conze.pt/explore/Open%20Library?l=it&t=wikipedia&s=true|2]]
+      * implement ISBN/etc. book links: [[https://conze.pt/explore/Anemone%20hortensis?l=en&t=wikipedia&s=true|1]]
+
+    * hatnote:
+      * image-in-hatnote breaks line: [[https://conze.pt/explore/Benin?l=pt&t=wikipedia&s=true|1]]
+
+    * image-map not rendered correctly:
+      * [[https://conze.pt/explore/Angola?l=de&t=link&s=true&u=https%3A%2F%2Fde.wikipedia.org%2Fwiki%2FAngola|1]]
+      * [[https://conze.pt/explore/Zgornji%20Otok?l=en&t=wikipedia&s=true|2]]
+      * [[https://conze.pt/explore/Nolot?l=en&t=wikipedia&s=true|3]]
+      * [[https://conze.pt/explore/finland?l=en&t=wikipedia&s=true&c=65,27|4]]
+      * [[https://conze.pt/explore/Yukon?l=en&t=wikipedia&s=true&|infobox image is misaligned]] (image-map within the infobox)
+
+    * perform multi-lingual tests!! --> when good: port changes to production
+
+    * multi-column not working anymore
+
+    * ToC issues
+      * ToC not correct (day is cut of) here: [[https://conze.pt/explore/March%201916?l=en&t=wikipedia&s=true&i=13071430|1]]
+      * ToC hash-clicks not set correct here: [[https://conze.pt/explore/Outline%20of%20architecture?l=en&t=wikipedia-qid&s=true&i=Q7112558|1]]
+
+    * category redirect/empty notice not visible: [[https://conze.pt/explore/Category:Museum?l=en&t=wikipedia&s=true|1]]
+
+
+    * make the mobile experience great:
+      * implement multi-frame doc-content
+      * center infobox on mobile
+      * make darkmode-theme more aligned with Android. Use :root css variables and see if we can avoid the white-flash.
+        * see also: [[https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet|JS CSS API]]
+      * make detail-elements taller and the fonts larger
+      * mobile landscape-mode not using the whole screen. (ok for desktop, not mobile)
+      * fix iOS issues: language undefined, ...
+      * make charts have a minimum height, see also: [[https://www.chartjs.org/docs/latest/general/responsive.html#important-note|1]]
+      * is structured-search too slow on mobile? Should we async-preload the large JSON data files?
+      * on mobile: give detail a subtle background color, so hitting it is clearer and easier.
+      * on mobile: make the "clear-search button" larger.
+      * on mobile: add bookmarking link button on content pane
+
+    * improve maintenance factor:
+      * **improve build system** using [[https://www.instagram.com/p/B8yzL4OBUhH/?utm_source=ig_web_copy_link|esbuild]] or [[https://github.com/romefrontend/rome|rome]]?
+      * **refactor & DRY code** (simplify any complex state-handling code)
+        * DRYer handling of [[https://medium.com/javascript-scene/handling-null-and-undefined-in-javascript-1500c65d51ae|undefined and null values]]: [[https://seifi.org/javascript/optional-chaining-in-javascript.html|1]], [[https://mariosfakiolas.com/blog/es2020-optional-chaining-and-nullish-coalescing-operators/|2]]
+      * collect and document PATCH sets
+      * setup testing:
+        * unit tests: [[https://jsdoc.app/|JSDoc]] + [[https://github.com/supabase/doctest-js|Doctest]] ([[https://dev.to/supabase/use-comments-to-unit-test-your-code-4igk|intro]])
+        * functional tests
+      * better automated backups & restore docs
+
+    * native locale not always used on first visit:  [[https://conze.pt/explore/Qu%C3%ADmica%20org%C3%A2nica?l=pt&t=wikipedia&s=true&i=11351|example]]
+
+    * set correct custom-parameter in the URL when loading this [[https://conze.pt/explore/?l=en&t=compare&s=true&c=Q7097885,Q4740702|compare request]]
+
+    * global-hover-menu-fullscreen button not working during split-content-window use.
+
+    * **implement backend integration**
+      * current issues:
+        * socketio path issue
+        * ...
+      * [[https://github.com/async-labs/saas|saas]] ([[https://github.com/builderbook/builderbook|docs]])
+        * steps: [[https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-18.04/|mongo install]]
+      * add [[https://github.com/stripe/stripe-php|Stripe API]] integration
+        * [[https://stripe.com/docs/api|API docs]]
+
+  * the wikidata link in the navbox at the bottom is linked from, example: [[https://conze.pt/explore/Ammonoidea?l=en&t=wikipedia&s=true|1]]
+
+  * badly rendered image map: [[https://conze.pt/explore/Germany?l=en&t=wikipedia&s=true&i=183&c=51,10|1]]
+
+  * map with link-labels badly formatted: [[https://conze.pt/explore/Europe?l=en&t=wikipedia&s=true|1]]
+
+  * for timelines: change width too 100% (is this correct in all cases?): [[https://conze.pt/explore/List%20of%20classical%20music%20composers%20by%20era?l=en&t=wikipedia&s=true|1]]
+
+  * "tright" table layout not good enough here: [[https://conze.pt/explore/Ligne%20de%20d%C3%A9marcation%20(France)?l=fr&t=wikipedia&s=true|1]] 
+===== prio 0 issues =====
+
+  * fix: "TypeError: r.shift is not a function libs.js:2:40107"
+
+  * broken infobox: [[https://conze.pt/explore/Metro%20de%20Madrid?l=es&t=wikipedia&s=true&i=191987#citations|1]]
+
+  * fix small-image-icon alignment issues, examples: [[https://conze.pt/explore/Megadiverse%20countries?l=en&t=wikipedia&s=true|1]]
+
+  * make "coverhex" page also work on mobile
+
+  * BUG: lineage-table overflows page-width (also on Wikipedia!) [[https://conze.pt/explore/Bektashi%20Order?l=en&t=wikipedia&s=true|1]]
+
+  * overview map breaks for some data:  jquery error: "Unexpected end of JSON input at JSON.parse"
+
+  * claims sometimes contain start + end dates, but statements only the inception date (leading to reduced dating info): [[https://conze.pt/explore/Nazi%20Germany?l=en&t=wikipedia&s=true&i=7318&c=52.516666666667,13.4|1]]
+
+  * graph-view issues:
+    * show the qid (instead of the whole qid-url?) as the link title
+    * maybe? allow for recursive-interactive querying of the tree-nodes by the concept-URL convention.
+    * is there a way to show a useful taxonomy tree for "common organism names", eg [[https://conze.pt/explore/Cat?l=en&t=wikipedia&s=true&i=146|cat]]?
+
+  * table-view issues:
+    * [[https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial#Grouping|group]] "actings" by itemLabel
+    * add optional image (P18) for: film actings, written works, ...
+
+  * the bookmark-action should not update the URL (as it serves no purpose)
+    * if first user action is of type 'bookmark' rewrite it the type to 'wikipedia'
+
+  * wikidata-query: wikipedia-side issue:
+    * done by qid? lookup language-specific wikipedia article (instead of just trying to search for the title)
+    * example: [[https://conze.pt/explore/Jean%20Sibelius?l=en&t=link-split&s=true&i=45682|J. Sibelius]] -> compositions graph -> "Pan and Echo" 
+
+  * map-view issues: wikidata-qid page not showing sometimes (for items missing labels?)
+
+  * external URL-encoding issues: [[https://conze.pt/explore/Africa?l=en&t=url&s=true&i=15&u=%22https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&c=1,17|example]]
+
+  * add a "content-frame-only-output"-parameter to be able to check the wikipedia page rendering in all online accessibility-tools
+
+  * image zoom issues:
+    * navigator-window not showing [[https://openseadragon.github.io/docs/OpenSeadragon.Navigator.html|1]]
+    * compare app: openseadragon-viewer not hiding when closed (or not being closed?)
+    * zoom not working on some (my) Android phone -> Check other physical devices.
+
+  * how to properly encode the "language &" so that it can be copy and pasted without loosing the "&language=" part.
+
+  * "text-align-center" media icons
+
+  * closing the "LC-lightbox"-modal scrolls to the top of the page (in some situations), why?
+
+  * allow the locale to be set via an URL parameter
+
+  * keyboard access issues:
+    * settings: font-selection using UP/DOWN + ENTER key not working
+    * bookmark keyboard-click not working
+    * needed: search-input-focus / iframe-focus key-combo toggle
+
+  * languages.js file:
+    * add any missing "qid"-fields
+    * use the "qid"-field to fetch the localized-language-name and render that as the language label
+
+  * wikipedia-content-with-link-hash is not encoded correctly
+    * example case: [[https://conze.pt/explore/History%20of%20the%20FIFA%20World%20Cup#Final%20tournament|1]]
+
+  * add a close-button to the language-select modal
+
+  * "nearby" click within nearby-view: scrollToTop() not working
+
+  * create new OpenLibrary search/browse app based on the [[https://openlibrary.org/developers/api|API]]
+    * main reason: overcome CORS restrictions and have much better UX integration (visual styling, deep-link bookmarking, ...)
+    * use infinite scrolling for results
+    * todo: reseach if [[https://github.com/search?l=JavaScript&o=desc&q=openlibrary&s=updated&type=Repositories|anyone]] as been working on this.
+      * examples: [[https://github.com/lorepirri/openlibrary-simple-search|1]], [[https://github.com/ShayanPourani/2-14-18-search|2]]
+      * tools: [[https://github.com/search?q=itemsjs&type=Repositories|itemJS]], [[https://github.com/eikes/facetedsearch|facetedsearch]]
+
+  * Android:
+    * image | video | archive | ... action-buttons not working (incorrectly only does a hash-change due to incorrect type-history-management)
+
+  * iPhone:
+    - bold link activation not persistent across page loads.
+    - add more bottom space to any list view
+    - Links and backlink view gives same results??
+
+  * improve security factor:
+    * [[https://owasp.org/www-project-top-ten/|top 10 issues]]
+
+  * links app: comma-in-title needs escaping, examples: [[https://conze.pt/explore/William%20IV,%20Prince%20of%20Orange?l=en&t=link-split&s=true&7i=380949&u=https%3A%2F%2Fconze.pt%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DWilliam%2520IV%2C%2520Prince%2520of%2520Orange|17]]
+===== prio 1 issues =====
+
+  * add licenses and links of the used projects to a credit-overview page
+
+  * links app: title-with-comma are not expanded automatically (why does this happen?): [[https://conze.pt/app/links/?l=en&t=Neighborhoods%20of%20Albany%252C%20New%20York|1]]
+
+  * use [[https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API|Broadcast Channel API]]
+    * [[https://github.com/pubkey/broadcast-channel|github project polyfill]]
+
+  * set true topic title for rechecked-title-lookups: [[https://conze.pt/explore/Apaloderma%20narina?l=en&t=wikipedia&s=true|1]]
+
+  * fix support for the pre-html-tag (see: "01-document/preProcess/index.js") in the wiki-text, examples: [[https://conze.pt/explore/Parsec%20(parser)?l=en&t=wikipedia&s=true&i=19599508|1]]
+
+  * add some kind of [[https://github.com/geoip-lite/node-geoip|ip2country]] lookup system, to detect the user country
+
+  * wander app:
+    * design a system to show several types of media (videos, images, ...?)
+      * data structure of the global media queue
+      * how to structure the wander app to handle more media types
+      * can we keep fullscreen on continuously?
+        * allow for keeping wander in fullscreen: needs postMessage-messages + body-html-regeneration (instead of URL-loading)
+    * images slideshow example code: [[https://lvivduncan.github.io/levus-fullscreen-backgound-slideshow/|images-from-wikidata-sparql slideshow]]
+    * [[https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fitem%20%3FauthorLabel%20%3FitemLabel%20%3Finception%20%3Fpic%20WHERE%20{%0A%20%20{%20%3Fitem%20wdt%3AP31%20wd%3AQ3305213%20}%20UNION%20{%20%3Fitem%20wdt%3AP31%20wd%3AQ93184%20}%20UNION%20{%20%3Fitem%20wdt%3AP31%20wd%3AQ11060274%20}.%0A%20%20%3Fitem%20wdt%3AP170%20wd%3AQ102272%20.%0A%20%20VALUES%20%3Fauthor%20{%20wd%3AQ102272%20}%0A%20%20OPTIONAL{%20%3Fitem%20wdt%3AP18%20%3Fpic%20}.%0A%20%20OPTIONAL{%20%3Fitem%20wdt%3AP571%20%3Finception%20}.%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20{%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20}%0A}%0AORDER%20BY%20DESC%20(%3Finception)%20%0ALIMIT%201000%20%23meta%3Apaintings%20by%20Jan%20van%20Eyck%20%0A%23defaultView%3AImageGrid&format=json|sparql image-json example]]
+
+  * openlibrary: OCLC, DOI identifier search
+    * [[https://api.unpaywall.org/v2/10.1038/nature12373?email=nospam@example.org|use unpaywall.org]] for DOI queries
+
+  * make topic-compare-values (especially for the GBIF related properties) clickable: [[https://conze.pt/explore/?l=en&t=compare&s=true&c=Q630457,Q729676,Q831376|example]]
+    * correct function in split-pane situations depends on the fix for setting the qid in the secondary content-window
+
+  * europeana app:
+    * get fullsize image link (from guid data field? or the JSON it points to?)
+    * get direct pdf/text/... download link if possible
+    * make audio and video data work
+    * lowercase all type fields
+    * replace type fields with an icon in the html
+    * 
+
+  * add a language indicator to bookmarks
+
+  * graph:  complete owners detection:
+    * { prop: 'P127', name: 'owner', to_q: false, edge_color: '#3923D6' },
+    * done: { prop: 'P749', name: 'parentOrg', to_q: false, edge_color: '#FF4848' },
+    * { prop: 'P1830', name: 'owns', to_q: false, edge_color: '#3923D6' },
+    * done: { prop: 'P355', name: 'subsidiary', to_q: false, edge_color: '#FF4848' },
+
+  * splitter-handles in chrome too close to scrollbar?: add "margin-left: 2px" to .vsplitter (but only for embedded frame), to visually separate the scrollbar from the splitter-bar
+
+  * on chrome mobile: fullscreen button not working
+
+  * integrations of major national library / art / culture repositories:
+    * [[http://ncaa.gov.in/|India]]  (still non-https)
+    * [[http://archives.nypl.org/US: |NYPL]]
+    * ...
+
+  * make wallpaper work for:
+    * non-click-actions
+    * structured-query searches
+    * svg-images not showing up as background-image
+
+  * when dragging the sidebar open, after-mouse-release: show sticky menu again (if sidebar width is more than ??px)
+
+  * in Chrome: the ULS items also show some weird up/down arrows. What is this?
+
+  * make all embedded apps appear consistently
+    * make swiping work in other embedded apps (when possible): toogles, ... 
+    * add conzept-global keybindings (toggle sidebar, ...) to essential embedded apps
+
+  * RTL-scripts should have switched sidebar and content panes. See also: [[https://www.chenhuijing.com/blog/css-for-i18n/|1]], [[http://ltr.wtf/|site demo]] ([[https://conze.pt/app/toogles/#/view/xpumLsaAWGw|video]])
+
+  * render stock-tickers and exchanges into links for infoboxes
+
+  * the [[https://conze.pt/explore/Wassu%20Stone%20Circles%20Museum?l=en&t=wikidata&s=true&i=2552179&c=Q2552179|360 tour]] is not showing for the "Wassu Stone Circles Museum" topic, but wikidata does have it.
+
+  * landing page & onboarding flow:
+    * examples: [[https://premium.reaguurder.gs/-/nein#membership|1]], [[https://datasaur.ai/|2]], [[https://wanderlog.com/|3]], [[https://sigmetic.io/|4]]
+
+  * correctly reset "explore.marks" whenever another article is clicked by the user.
+
+  * fix wikidata-query-embed-URL-string-encoding bug  (double encoding?), when loading a URL with an embed-query-link in it
+
+  * prevent "i=ndefined" as URL parameter (this happens eg. with Book: titles)
+
+  * allow "toggling of sidebar" from external apps (graph, video, timeline, wikidata)
+ 
+  * date list:
+    * date range slider issue: retain date-range-slider state across date-item clicks.
+    * why are there no dates shown for [[https://conze.pt/explore/1944%20in%20music?l=en&t=dates&s=true&i=2366581|this]] article?
+    * when reloading a specific date-list-actived item: scroll to that position in the list and highlight the date entry.
+
+  * properly encode bookmark-URLs, so they can be independantly reloaded correctly
+
+  * can we make article language selection work earlier than after full article  load? At least if it's loaded or not.
+
+  * better async function handling & webworkers
+    * design a robust, async wikidata-label-fetching system
+
+  * BUG: sometimes typing a query in (fast?) does not load the correct results, why?
+
+  * improve performance factor:
+    * **improve initial app loading performance:** [[https://googlechrome.github.io/lighthouse/viewer/?psiurl=https%3A%2F%2Fconze.pt%2Fexplore&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo&category=pwa#performance|Lighthouse report]]
+    * ? initial app loading indicator
+
+  * for CSS-style settings: modify the iframe-document-stylesheet ONCE (instead of modifying the element-css every time the iframe is loaded).
+
+  * single-quote commons images don't load fullsize image in the lightbox
+
+  * LC lightbox issue: when thumbnail-view is activated the "lc_text" should be moved adaptively up (using a CSS class).
+
+  * **fix and test mobile layout issues**:
+    * improve cross-mobile-device content-pane-padding with balanced and sufficient margins
+    * fix show-thumbnails-toolbar hiding issues
+    * make TinyGesture.js left-right-swiping more responsive (lower x-distance-threshold and lower velocity-threshold)
+    * fix floating-button-menu placement (sometimes to high up, why?)
+    * make second-level-explore content frame work correctly om mobile
+    * add exit-UX in image-gallery-view
+    * orientation change does not update the iframe height correctly
+    * add "desktop / mobile" switch to settings menu?
+    * ? allow dynamic ToC when: 1) the orientation is "landscape", 2) the window.screenWidth is more than ....px
+    * handle scroll-to-top for mobile tabs (with refreshed content) better
+    * iPad: grayscale mode not working
+    * Windows surface: darkmode not seen when toogles windows was not already in view.
+    * other iOS issues?:
+      * fix: infoboxes are hidden (due to them not having the correct width with large images)
+      * **looses search-input-focus when typing (why?)** (related, iOS disabled features: jQueryUI-autosuggest, history.pushState() reload whole page)
+      * search-input not styled correctly before any input-focus
+      * right content scrolled down (unneeded)
+      * ToC clicks cause reload
+
+  * clicking on a bookmarked topic icon should remove the bookmark.
+
+[{{ : writing_documentation.png?550|([[https://www.divio.com/blog/documentation/|source]])}}]
+
+  * add documentation ([[https://www.divio.com/blog/documentation/|guidelines]]):
+    * tutorial ("get started")
+      * make an introduction video using: [[https://www.videopuppet.com/docs/script/|videopuppet]]?
+    * howto-guide ("how to complete goals")
+      * see also: [[https://github.com/tagspace/trevor-demo|trevor-demo-system]], [[https://app.trevor.io/public/blog/demo|doc]]
+    * reference (..., keyboard-controls)
+    * explanations (tips / definitions / general app info: about, contact, etc.)
+
+  * integrate [[https://restcountries.eu/rest/v2/lang/nl|language <-> countries]] info via the [[https://restcountries.eu/#api-endpoints-language|restcountries API]]
+
+===== prio 2 issues =====
+
+  * browser specific issues:
+    * MacOS Safari: sometimes list-content is not being displayed (why?)
+    * MacOS Safari: a bit more white space to the right on wikipedia content, also to the left between toc.  
+    * Edge: list contents sometimes being removed after being displayed (why?)
+
+  * middle-button-clicking on links in the sidebar should open them in a new window
+    * fix & test auxClick() use
+
+  * fix [[https://developers.google.com/speed/pagespeed/insights/?hl=nl&url=https%3A%2F%2Fwikischool.org%2Fexplore&tab=mobile|mobile performance]] issues 
+
+  * wdq tool: research sparql-based faceted-filtering of table results
+
+  * add multi-select config for switching media-action-topics (science, history, legal, etc.) on or off. Also make the list-order customizable?
+
+  * FIXED? better fix for sticky-nav-gaps showing scrolling background ( as "margin-top -2px" causes other issues)
+
+  * some externel-link-urls are not formatted as links, examples: [[https://conze.pt/explore/trapezoid?l=en&t=wikipedia&s=false#external_links|1]]
+
+  * research/find fixes for persistent loading-indicator (mostly seen when wikipedia image loads fails?)
+    * non-loading images also block the lightbox-plugin from going to the next image.
+ 
+  * prevent the "white-flash" upon iframe-loading when resetting iframed in dark-mode
+
+  * research a good solution to not allow sidebar-bar-visible-browsing to be regular in embedded-app-views. (maybe allow for hiding the sticky-menu via a URL parameter?)
+
+  * wordmap-app fullscreen toggle not working correctly (due to the resize event causing a window reload)
+
+  * [[https://blog.heroku.com/chrome-changes-samesite-cookie|samesite cookie policy changes]]
+
+  * wrong text-order: [[https://conze.pt/explore/Impressionism?l=en&t=wikipedia&p=1&s=false#impressionist_techniques|bad]] versus [[https://en.wikipedia.org/w/index.php?title=Impressionism&action=edit&section=3|wiki-source]] 
+  * missing (non-xml) gallery: [[https://conze.pt/explore/Perianth?l=en&t=wikipedia&p=1&s=true|1]]
+  * image-layout not rendered correctly: [[https://conze.pt/explore/Sensuality?l=en&t=wikipedia&p=1&s=true|1]]
+  * incorrect hash-link: [[https://conze.pt/explore/Reproductive%20system?l=en&t=wikipedia&p=1&s=true#animals|1]]
+  * missing link containing parenthesis: [[https://conze.pt/explore/Impressionism?l=en&t=wikipedia&p=1&s=false#see_also|bad]] versus [[https://en.wikipedia.org/w/index.php?title=Impressionism&action=edit&section=14|wiki-source]]
+  * plain wiki-text list not displayed: [[https://conze.pt/explore/Marshall%20McLuhan?l=en&t=wikipedia&p=1&s=true#tetrad_of_media_effects|1]] 
+
+  * dates type issues:
+    * going back for a dates URL does not render the list-view in the sidebar anymore
+    * clicking on another article in a dates-view -> click on a data -> TODO: first render article in the content frame. 
+    * store section-id in URL via the "i" parameter?
+
+  * data-fetching-layer & paging: correct slighty-off wikipedia total pages flow
+
+  * add more icons, see: [[https://github.com/bradtraversy/design-resources-for-developers|free design resources]]
+
+  * add more AJAX error-handling and error-reporting
+    * make all AJAX calls parallel: [[https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/|1]], [[https://binbytes.com/blog/axios-performing-multiple-requests-simultaneously|2]], [[https://github.com/queicherius/lets-fetch|3]], [[https://www.2n.pl/blog/how-to-use-ajax-events-for-parallel-requests|4]]
+
+  * **plugin system**:
+    * **data input hooks**
+      * data source type: static JSON, remote API
+      * data source configuration object: name, index fields, search limit (per page), ...
+      * data source function-hooks registration and calling
+      * implement optional data source loading in configuration menu (eg. for museums)
+    * **data output hooks**
+      * hookup new render types via plugins
+    * implementation examples: [[https://github.com/brianreavis/microplugin.js|microplugin.js]], [[https://github.com/e0ipso/plugnplay|1]]
+
+
+   * sometimes the 'explore-this-topic' action (on the Wikipedia-page) fails to replace the left-pane state, why?
+   * force portal tables to fit width: [[https://conze.pt/explore/Portale%3AAntica%20Roma?l=it&t=wikipedia|layout problem example]]
+   * Bibliography / ISBNs: what is going wrong [[https://conze.pt/explore/sufism?l=en&t=wikipedia#bibliography|here]] compared to the [[https://en.m.wikipedia.org/wiki/Sufism#Bibliography|original section]]
+
+  * **screen rotation & resizing** handling:
+    * resize / reload whole application again? in landscape mode screen-switch arrow is not visible anymore
+    * define the minimal screen-sizes to show the "wikipedia dynamic ToC".
+    * respect the previous sidebar-toggle-value when the screen was resized
+
+  * on very large screens: allow the second content-frame to show the ToC for wikipedia articles.
+
+  * wikipedia-language-dropdown languages only showing after input field change, why?
+
+  * after typing: also mark the shown article
+
+  * Make go-to-top easier to hit, and make it gray in darkmode.
+
+  * large-graph-views are not usable: [[https://conze.pt/explore/Organ%20(anatomy)?l=en&t=graphs&p=1&s=true&i=712378|example 1]]
+
+===== prio 3 issues =====
+
+  * rarely, but sometimes the ToC list (of first-order headers) is very long, causing some header items not to be visible. Possible solutions:
+    * aside: overflow-y: none
+    * make header-items-height a bit smaller
+    * examples: [[explore>List of animals in the Bible|1]], ...
+
+  * for wikipedia-content-panes: also add a bookmark-icon to the top-right-corner (alongside the "explore this" and "wikipedia" button)
+
+  * add a [[https://zellwk.com/blog/creating-focus-style/|custom focus style]] to interactive UI elements (which currently don't have any focus style)
+
+  * refractor CSS with mobile as the default
+
+  * first H1 should be moved up in desktop-view, but not in the mobile-view.
+
+  * in desktop view: when making dragging the content-pane over the sidebar, the logo-header and randombuttom are displayed on top.
+
+  * how to implement "toggle-fullscreen" from an iframe? (browser security issue)
+
+  * get true iframe-url for internal sites (so the breakout button works correctly)
+
+  * darkmode:
+    * implement [[https://kilianvalkhof.com/2020/design/your-dark-mode-toggle-is-broken/|3-options]] for the darkmode setting: light, dark, system
+    * implement darkmode in iframe-apps: wikidata-graphs, wikidata-timelines, geo
+    * in darkmode this [[https://conze.pt/explore/Inner%20German%20border?l=en&t=wikipedia&s=true&i=700754|article]], goes blank (something is exiting the wikipedia-rendering process, openseadragon issue?)
+
+  * when the leftpane is first minimized and then manually (by dragging) enlarged again, the sticky-menu should be shown again.
+
+  * font-switching not applied to the current window-panes on mobile
+
+  * hash-string-with-special-characters breaks targeting: [[https://conze.pt/explore/Empresa%20Municipal%20de%20Transportes%20de%20Madrid?l=es#v%C3%A9ase_tambi%C3%A9n|example]]
+
+  * query-term with an encoded forward-slash is mis-interpreted as URL-path-separator: [[https://conze.pt/explore/Portal:Contents%2FPortals?l=en&t=wikipedia&p=1|example]]
+
+  * unable to prevent the drag-and-drop from triggering the autocomplete-menu?
+
+  * for wikipedia-articles with a main geocode, show it on the page.
+
+  * [[https://withblue.ink/2019/03/11/why-you-need-to-normalize-unicode-strings.html|normalize UTF-8 input strings]]
+    * fix double character-encoding: [[https://stackoverflow.com/questions/16084935/a-html-space-is-showing-as-2520-instead-of-20|1]]
+
+  * TTS system: add supported language-voices to the wikipedia-languages-array
+
+  * how to handle queries to specific [[https://conze.pt/explore/keshava%20bhat?l=en&m=video|video-title-requests]] that also return wikipedia results?
+
+  * dynamic ToC issue: can the aside scrollbar be sized dynamically by only accounting for all the visible item-heights?
+
+  * wikipedia hierarchical ("multiple-stars at beginning of line") list is represented as a flat list, example: [[https://en.wikipedia.org/wiki/Outline_of_knowledge|wikipedia]], [[https://conze.pt/explore/Outline%20of%20knowledge?l=en|explore]]
+
+  * allow [[https://conze.pt/explore/Category:17th-century Danish composers|categories]] to display their "super/sub/inner-pages relations" to be displayed in list-links
+
+  * image formatting sometimes incorrect:
+     * [[https://en.m.wikipedia.org/wiki/Special:Redirect/file/Arithmometre%252C_designed_by_Charles_Xavier_Thomas%252C_c._1820%252C_for_the_four_rules_of_arithmetic%252C_manufactured_1866-1870_AD%252C_TM10901_-_Tekniska_museet_-_Stockholm%252C_Sweden_-_DSC01567.JPG?width=600|example]] (incorrect replacement of %252C ? check original image name)
+     * [[https://conze.pt/explore/Dirty%20War%20(Mexico)?l=en&t=wikipedia&p=1&s=true|infobox info not shown]]
+
+  * on mobile the "random" action should stay left.
+
+  * on mobile: collapse video-filtermenu and show a menu button
+
+  * how to handle "User:" namespaces better?
+
+ * on Windows Edge:
+   * change summary block from blue to gray?
+   * Make summary button inline.
+
+  * add [[http://grimmdude.com/MidiPlayerJS/|MIDI file playing support]]?
+
+  * how to properly handle forward slashes in URLs so they can be linked to? example: [[https://en.wikipedia.org/wiki/9/11_conspiracy_theories|1]]
+
+  * detect geocodes in chart-table-cells and render them as map-links, examples: [[https://conze.pt/explore/List%20of%20largest%20power%20stations?l=en&t=wikipedia&s=true&i=360124#top_20_largest_power_producing_facilities|1]]
+ =====other ideas=====
+
+  * improve tree browsing:
+    * use entitree?
+    * or this: [[https://family.toolforge.org/ancestors.php?q=Q22686|family tree tool]]
+
+  * use [[https://www.xeno-canto.org/explore/api|xeno-canto API]] to add sounds to the sidebar topics for birds.
+
+  * collabaritive experiences:
+    * [[https://openvidu.io|OpenVidu project]] ([[https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom|1]])
+    * [[https://lisakov.com/projects/open-source-comments/|text comments / discussion apps]]
+    * voice
+    * VR
+    * ...
+
+  * country statistics: [[https://query.wikidata.org/embed.html#%23defaultView%3AMap%0A%0Aselect%20%3Fcountry%20%3Fcount_per_persona%20%3Fshape%20%3Frgb%20where%20%7B%20%0A%20%20%7B%0Aselect%20distinct%20%3Fcountry%20(count(%3Fitem)%20as%20%3Fcount)%20(sample%20(%3Fpop)%20as%20%3Fpopulation)%20where%20%7B%0A%0A%20%20%3Fitem%20wdt%3AP166%2Fwdt%3AP279%20wd%3AQ7191%20.%0A%20%20%3Fitem%20wdt%3AP19%2Fwdt%3AP17*%20%3Fcountry%20.%20%3Fcountry%20wdt%3AP31%20wd%3AQ3624078%20.%0A%20%20%3Fcountry%20wdt%3AP1082%20%3Fpop%20.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%20group%20by%20%3Fcountry%20%0A%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%7D%0A%20%20%3Fcountry%20wdt%3AP3896%20%3Fshape%20.%0A%20%20BIND((%3Fcount%20%2F%20%3Fpopulation)%20as%20%3Fcount_per_persona)%20.%0A%20%20BIND(if%20%0A%20%20%20%20(%3Fcount_per_persona%20%3D%200%2C%20%22ffffff%22%2C%20%0A%20%20%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.0000001%2C%20%22ffeda0%22%2C%0A%20%20%20%20%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.0000007%2C%22fed976%22%2C%20%0A%20%20%20%20%20%20%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.0000016%2C%20%22feb24c%22%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.0000025%2C%20%22fd8d3c%22%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.000003%2C%20%22fc4e2a%22%2C%20%0A%09%09%09%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.0000045%2C%20%22e31a1c%22%2C%20%0A%09%09%09%09%20%20if%20(%3Fcount_per_persona%20%3C%200.000007%2C%20%22bd0026%22%2C%20%0A%09%09%09%09%20%20%20%20if%20(%3Fcount_per_persona%20%3C%200.000014%2C%20%22800026%22%2C%20%22000000%22)))))))))%20as%20%3Frgb)%20.%0A%20%20%0A%7D%0A|example]]
+
+  * [[https://play.google.com/store/apps/details?id=org.wikipedia&showAllReviews=true|wikipedia-mobile-app user wishlist / complaints]]
+    * [[https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible|collapsable ToC on mobile]]
+    * indicate visited links when clicking same-domain iframe links (note: middle-mouse-clicked links do registed as visited)
+    * share buttons
+    * offline reading
+    * note taking
+
+  * auto-detect non-wikipedia search-types:
+    * DOI's: [[https://api.crossref.org/works/10.1016/j.ihj.2014.10.362|example]] using the [[https://github.com/CrossRef/rest-api-doc|CrossRef API library]]
+      * detect by a string starting with: "**doi:10.1016/j.ihj.2014.10.362**"
+    * Wikidata Qid's: "Q123456"
+      * detect by a string starting with a capital Q, and where all following characters are a number (at least 2 numbers). "**Q23233**"
+    * ISBN's using the OpenLibrary API: "**isbn:234-343-320-4994**"
+
+  * setup self-hosted group presentation / sharing using [[https://github.com/codysherman/2nfm|2nfm]] webrtc screen sharing.
+    * this would eg. allow teachers to take students on a tour through a subject.
+
+  * [[https://csslayout.io/patterns|csslayout.io/patterns]]
+
+  * add [[https://audiomass.co/|audiomass]] ([[https://github.com/pkalogiros/audiomass|github]]) as a button to any audio widget. This could be useful for doing more 'research/edit-like-work' on audio (study bird songs, analyze parts of music pieces). 
+
+  * [[https://roughnotation.com/|rough marks around elements]]
+
+  * nearby feature should have a map with all locations (overview map)
+    * add a button (to the location-topics on the left-side) for activating a location in the overview map (right-side)
+
+  * integrate [[https://www.gbif.org/developer/summary|GBIF API]] for organism topics.
+    * see also: [[https://iphylo.blogspot.com/|1]], [[https://www.gla.ac.uk/researchinstitutes/bahcm/staff/rodericpage/#researchinterests,publications|3]]
+    * What could we use the [[https://www.gbif.org/developer/species|species API]] for?
+    * add an interactive climate data layer interface:
+      * [[https://leafletjs.com/examples/geojson/|geoJSON]] [[https://leafletjs.com/reference-1.6.0.html#geojson|layer]] for Leaflet
+      * [[https://github.com/bartromgens/climatemaps|example]] 
+    * [[https://bionomia.net/developers|bionomia API]]
+    * [[https://docs.gbif.org/collections-idea-paper/en/|GBIF ideas paper]]
+    *     Specimens held by a collection
+    *     Type specimens held by a collection
+    *     Species/taxa represented in a collection (with/without specimen counts)
+    *     Sequences, images and other preparations from the collection (but these may be better treated as information about specimens rather than about the collection)
+    *     Datasets (checklists, occurrences, sampling events) associated with the collection 
+    *     Collecting expeditions carried out by or contributing to the collection (modeled as sampling events?)
+    *     Collectors associated with a collection
+    *     Publications based on materials from the collection
+    *     Researchers/staff associated with the collection
+    *     Field notebooks
+
+
+  * newspaper / magazine / grid-like view, examples: [[https://onezero.medium.com/the-morning-paper-revisited-35b407822494|1]], [[https://css-tricks.com/responsive-grid-magazine-layout-in-just-20-lines-of-css/|2]]
+
+  * interactive-visual-search examples:
+    * integrate [[http://www.cheminfo.org/wikipedia/|visual chemical compound search]] ([[https://github.com/cheminfo/wikipedia|github]])
+    * [[https://www.simile-widgets.org/exhibit3/examples/shrooms/shrooms.html|shroom filter-search]]
+    * open question: Can we generalize interactive-visual-searching?
+
+  * integrate [[https://en.wikipedia.org/GBIFwiki/User:Flominator/WikiBlame|wikiblame tool]] for user-selected line-strings
+
+  * plant search and identification:
+    * [[https://www.inaturalist.org/pages/developers|.inaturalist.org]]
+    * integrate with [[https://identify.plantnet.org/|PlantNet]] (by [[https://github.com/plantnet/my.plantnet|API]], by wikidata IDs?, by name search?, by image?)
+
+  * integrate with [[https://birdnet.cornell.edu/|BirdNet]] (bird song search and identification)
+
+  * integrate with [[https://diatoms.org/search/results?q=water|diatoms.org]] ([[https://www.wikidata.org/wiki/Q162678|wikidata]])
+
+  * integrate with [[https://www.algaebase.org|algaebase.org]]
+
+  * get [[https://github.com/wikimedia/mediawiki-api-demos/blob/master/apps/picture-of-the-day-viewer/app.py#L67|picture of the day]] and "article of the day"
+
+  * 'important' topic spheres which should polished: people, film, companies, painting, music, animals, 
+    * make a system to easily browse the [[https://en.wikipedia.org/wiki/Category:Main_topic_classifications|main topics]] based on the wikidata qid's of those topics. Can we group these main topics in a smaller set of "super groups"?
+
+  * research usefulness of [[https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap/Basic_concepts|scroll-snapping]] ([[https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap/Basic_concepts|1]]) for: articles view, list view, video-grid-rows, ..., image-grid-rows
+
+  * topical group text/audio/video chat:
+    * [[https://github.com/souramoo/party|party]]
+    * [[https://github.com/capnmidnight/lozya|lozya]]
+
+  * tools to view high-level architecture
+  * more functional coding approach (single argument functions, immutability?)
+  * better async data fetching: [[https://changani.me/blog/2019/12/22/Executing-concurrent-HTTP-requests/|1]]
+  * are pluggable datasources a good idea? how to integrate these correctly?
+
+  * expand internationalization translations
+
+  * social sharing with the [[https://medium.com/@aksteps/adding-app-like-share-to-your-website-on-mobile-and-social-share-urls-on-desktop-560b2b687d9e|WebShare API]]
+
+  * research adding zooming into images by mousewheel: [[https://github.com/openseadragon/openseadragon|openseadragon]], [[https://github.com/ProjectMirador/mirador|mirador]] (advanced), [[https://github.com/Luperi/wheelzoom|wheelzoom]] (basic)
+
+  * add "Holland Code" aspiration/preference, which could be used for better predicting topics (and topic journeys) of personal interest.
+
+  * table visualization option:
+    * 1) detect if all the data of the first colum or the [[https://conze.pt/explore/JPMorgan%20Chase?l=en&t=wikipedia&p=1&s=true|first row]] is time-based (only constrain to years?)
+    * 2) if so: [[https://www.github.developerdan.com/table-to-json/|convert table data to json]]
+    * 3) render a multi-axis line-graph for each data column? ([[http://thensome.how/|1]])
+ 
+  * treemap ([[https://github.com/evmar/webtreemap|1]]) based on the pageviews of all the outgoing-links (and the article itself)
+
+  * integrate for category concepts:
+    * random article in category: [[https://tools.wmflabs.org/magnustools/randomarticle.php|randomarticle]] ([[https://bitbucket.org/magnusmanske/magnustools/src/master/|src]])
+    * search with depth in category: [[https://petscan.wmflabs.org/|petscan]]
+
+  * ? store scroll-position for local-iframe-content: $('#infoframe')[0].contentWindow.pageYOffset
+
+  * research: cancelling running API queries and processing when the latest query input length is much further far ahead than the processed query.
+
+  * select / filter widgets:
+    * [[https://dbrekalo.github.io/fastselect/#section-Examples|fastselect]]
+    * [[https://www.jqueryscript.net/demo/jQuery-Plugin-For-Custom-Tags-Input-Select-Box-selectize-js/examples/|selectize.js]]
+    * [[https://www.jqueryscript.net/demo/tags-selector-tagselect/|tag-selector]]
+    * [[https://bossanova.uk/jsuites/dropdown-and-autocomplete|multi-select widget]]
+
+  * note-taking functionality for internally-rendered content (wikipedia, wikischool)
+    * store notes locally (as a list of sentence-range numbers)
+    * detect if current page has related notes, if so: highlight all these sentences in yellow.
+    * libraries: [[https://github.com/mir3z/texthighlighter/blob/master/demos/serialization.html|1a]] + [[http://mir3z.github.io/texthighlighter/demos/iframe.html|1b]], [[https://github.com/apache/incubator-annotator|apache annotator]] ([[http://annotator.apache.org/demo/|demo]]), [[https://github.com/openannotation/annotator/|3]], [[https://github.com/hypothesis/h|4]], ...
+    * web apps: [[https://github.com/inkandswitch/capstone|capstone]], [[https://www.youtube.com/watch?v=iKShuvEOiqA|video Notational Velocity UX]]
+    * render mindmap from markdown using [[https://github.com/gera2ld/markmap-lib|markmap]]
+
+  * goal & activity planner?:
+    * define life goals
+    * attach study topics to those goals
+    * attach activities to those topics and/or goals
+    * signal motivational messages to the user
+    * show progress
+
+  * functional (end-to-end) testing using [[http://nightwatchjs.org/|Nightwatch.js]]
+    * test realistic user paths 
+      * URL parameters
+      * settings changes
+      * search-input typing and results
+      * etc.
+
+  * code documentation using [[http://usejsdoc.org/|JSDoc]]
+
+  * [[explore>unit testing]]
+    * [[https://javascriptplayground.com/the-perfect-javascript-unit-test/|best practice tips]]
+
+  * [[https://blog.bitsrc.io/understanding-javascript-async-and-await-with-examples-a010b03926ea|Async-await]]
+
+  * bookmarks tree feature (dev. in progress)
+    * before any write: first re-read bookmark data from storage 
+    * todo: add confirm-removal-modal
+    * todo: register and use wikipedia-article-hash
+    * todo: show language indicator for wikipedia bokmarks (only for non-english articles?)
+    * bug: show a better "display" value and a "bookmark-type-icon" (if useful)
+    * export bookmarks to: markdown (preferably dokuwiki compatible), plain text, html, json
+    * search in bookmarks
+    * ? todo: remove all saved articles
+    * ? allow for "marked text sections" (annotation) as bookmarks
+    * ? server-based syncing of bookmarks (required user accounts + authentication)
+      * [[https://github.com/pubkey/rxdb|rxdb]] (synced pub-sub database)
+      * [[https://github.com/pubkey/rxdb|rxdb client code]]
+    * bug: make bookmarking a "wikischool-page" work correctly
+
+  * ? Google translate integration (can be useful beyond the multi-lingual wiki articles)
+
+  * wikipedia ToC:
+    * desktop: allow for hiding/showing via the settings menu and a wikipedia-frame-toggle.
+    * mobile: display ToC as an overlay-modal?
+
+  * display a link to the toogles app, when playing toogle-video window (so this can easily be copied)
+
+  * [[explore>topic model]] 
+    * [[explore>Latent Dirichlet allocation]]: [[https://github.com/mimno/jsLDA|jsLDA]]
+
+  * storytelling (todo: define this term in the explore-app-context) from a left-pane-tab
+
+  * alternative autocomplete: [[https://github.com/tarekraafat/autoComplete.js|autoComplete.js]]
+
+  * data graphing:
+    * [[https://github.com/anvaka/VivaGraphJS|VivaGraph]] (which uses [[https://github.com/anvaka/ngraph|ngraph]] modules)
+    * [[https://github.com/Microsoft/SandDance|SandDance app]] ("visually explore, understand, and present your data")
+    * [[https://ourworldindata.org/world-population-cartogram|1]]
+
+  * youtube:
+    * allow for background video playing
+      * 1) user clicks the "background-play-this-video" button
+      * 2) get the current video time-signature & stop video
+      * 3) load it into the media-player-tab (or via a bookmark-tab or via a [[https://jspanel.de/|floating panel]]?)
+      * 4) start playing video at the time-signature
+    * [[https://codepen.io/kostas-krevatas/pen/MQJWgR|youtube timestamp list]] (useful?)
+    * language options:
+      * [[https://developers.google.com/youtube/player_parameters#hl|set the interface language]]
+      * [[https://stackoverflow.com/questions/12685280/youtube-embed-force-subtitles-in-specific-language-with-default/23016077|set a video-language-filter?]]
+      * or only set the preferred caption language?
+
+  * keyboard controls:
+    * Allow for using the arrow-keys and [ENTER] to select articles.
+    * Shortcut-keys for:
+      * search-input focus
+      * ...
+      * fullscreening (especially within a video context)
+        * by "MOD-f" key
+        * or by a menu-button
+
+  * power-user command console: [[https://terminal.jcubic.pl/tilda-demo.html|1]]
+
+  * todo: find article geocodes
+    * todo: find nearby places
+
+  * find the more general parent topic(s) for a given article (if possible)
+
+  * find directly related topics (use wikipedia category system?)
+
+  * human touch: tips, advice, humour, ...
+
+  * directions of a concept: eg. guitar
+    * multiple term
+    * make result list more accurate
+
+  * URL parameters for media-types:
+    * todo: links, geo locations, tts-wikipedia, bookmarks-tab
+
+  * [[http://urlsearch.commoncrawl.org/|common crawl]] URL-list by domain: [[http://urlsearch.commoncrawl.org/download?q=com.cnn|example]]
+
+  * various tips & ideas:
+    * Twine-iframe experimentation for a storytelling system
+    * [[explore>conceptual blending]] ( "question-interest" + "a varying stimulus" ] to enhance [[explore>creative thinking]]
+      * specific city -> local-radio + city-streetcam-switching
+      * specific country -> country-radio + country-streetcam-switching
+      * specific organism/visual-artist/architect/... -> image-slide-show + music
+      * [[https://driveandlisten.herokuapp.com/|local-radio + pre-recorded-drive-background-video]]
+      * ...
+    * [[https://medium.com/darklang/the-design-of-dark-59f5d38e52d2|holistic language approach]]
+    * [[https://blog.hiri.com/a-novel-approach-to-onboarding-4a6c952a3e62|user onboarding tips]]
+
+  * quizzing and [[https://www.gwern.net/Spaced-repetition|spaced repetition]]
+    * [[https://jchamill.github.io/jquery-quiz/|jquery-quiz]] ([[https://codepen.io/jchamill/pen/garoqg|demo]])
+    * entity extraction (names, places, dates, ...) and question generation info:
+      * [[https://github.com/adityasarvaiya/Automatic_Question_Generation|Intel AQG]] ([[https://software.intel.com/en-us/articles/using-natural-language-processing-for-smart-question-generation|article]])
+      * [[http://deepquiz.com.s3-website-us-east-1.amazonaws.com/|deepquiz]] (demo)
+      * [[https://github.com/facebookresearch/DrQA|DrQA]] (python)
+
+  * local-first "DB engines": [[https://github.com/kripken/sql.js/|sql.js]] + [[https://github.com/kripken/sql.js/wiki/Load-a-database-from-the-server|load a DB from a remote location]], ...
+
+  * use [[https://github.com/GoogleChromeLabs/comlink|comlink]] to offload all-but-the-rendering to a worker thread.
+    * see also: [[https://github.com/GoogleChromeLabs/comlink|1]], [[https://medium.com/google-developer-experts/running-fetch-in-a-web-worker-700dc33ac854|2]]
+
+  * [[https://wikistream.toolforge.org/#background=true&namespace=article&robot=false&wiki=de.wikipedia|edit stream]]
+
+  * [[https://modelviewer.dev/|3D model viewer]] (web component)
+
+  * go through these [[https://www.monash.edu/study/courses|study fields]] and find ways to improve the subject integration with the media-action-sections, eg.:
+    * chemistry:
+      * cheminfo tool (still needs some polish)
+      * [[https://www.wikidata.org/wiki/Wikidata:WikiProject_Chemistry|Wikidata:WikiProject_Chemistry]]
+      * [[https://www.wikidata.org/wiki/Wikidata:WikiProject_Chemistry/Properties|Wikidata:WikiProject_Chemistry/Properties]]
+    * pharma
+    * education
+    * health
+    * law
+    * art
+    * engineering
+    * mathematics
+      * see: [[https://github.com/mekarpeles/math.mx|math.mx project]]
+
+  * [[https://www.mikealche.com/software-development/how-to-implement-search-by-color-when-all-you-have-is-a-good-coffee|search by color]]
+
+  * embed interactive (math) content with [[https://cindyjs.org/|CindyJS]]
+
+  * integrate [[https://opensource.indeedeng.io/api-documentation/docs/job-search/|Indeed job API]]
+
+  * integrate [[https://map-search.toolforge.org|map-search old map overlays]] (need to find source-repo to add URL-query-searching )
+
+  * link-to / context-search / SPARQL integrate: [[https://query.wikidata.org/#%23Open%20Data%20Portals%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fportal%20%3FportalLabel%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP8402%20%3Fportal%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D|other data portals]]
+
+  * add [[https://www.wikidata.org/wiki/Wikidata:WikiProject_every_politician#Add_your_country|country / legislative info]]
+    * see also:
+      * [[https://twitter.com/Tagishsimon/status/1284259592608849921|1]]
+      * [[https://observablehq.com/@piecesofuk/uk-parliament-party-totals|UK parliament terms browser]]
+      * interesting "data-driver" visualization library: [[https://muzejs.org/|muzejs]]
+
+  * integrate with the future release of the [[https://app.geofluxus.com/|GeoFluxus]]  waste dashboard app.
+=====technical principles=====
+
+  * 1) URL-params are only used for "initial parameter state loading" and "follow up user-presentation-state" (for visual representation and linking)
+    * TODO: reset URL-related fields upon each each call to onClick / handleClick
+  * 2) any link/button actions should contain ALL the required data (but nothing else!), when making a call to handleClick()
+    * what about "type"-continuation?
+  * 3) clicking on a link/button should update the URL correctly and ignore representing unneeded fields
+
+=====tools & data=====
+
+  * [[https://tiny-helpers.dev/|tiny-helpers.dev]] (various online tools)
+    * [[https://logohub.io/|online logo builder]]
+
+  * integrate? [[https://github.com/kenrick95/Raun|Raun]] - live edit viewer
+
+  * [[https://convcomp.it/whither-almond-the-stanford-university-open-virtual-assistant-will-go-b4d66167e76c|Almond]] (personal assistant AI) ([[https://github.com/stanford-oval|github]])
+
+  * wikidata:
+    * [[https://tools.wmflabs.org/admin/tools|wmflabs directory]]
+    * [[https://tools.wmflabs.org/hay/directory/|hay directory]]
+    * [[https://tools.wmflabs.org/apps-gallery/|apps-gallery directory]]
+
+  * [[http://biohackathon.org/d3sparql/|d3sparlq]] ([[https://github.com/ktym/d3sparql|github]])
+
+  * [[https://github.com/tomayac/pageviews.js|pageview.js]]
+    * [[https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews#The_API|API doc]]
+    * [[https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageviews&titles=Buckingham+Palace%7CBank+of+England%7CBritish+Museum|example query]]
+
+  * updated lists of virtual 360 tours: [[https://github.com/stfurkan/gez/blob/master/src/lang/en/places.json|1]]
+
+  * [[https://www.wikidata.org/wiki/Property:P4640|photosphere image]] rendering in [[https://www.wikidata.org/w/index.php?title=Special:WhatLinksHere/Property:P4640&limit=500|articles]], using [[https://github.com/mistic100/Photo-Sphere-Viewer/|photo-sphere-viewer.js]]
+
+    * [[explore>Outline of natural language processing|NLP]] and [[explore>question answering|]]:
+      * [[https://qa.fastforwardlabs.com/methods/background/2020/04/28/Intro-to-QA.html|QA intro]]
+      * [[https://blog.einstein.ai/learning-to-retrieve-reasoning-paths-from-the-wikipedia-graph-for-question-answering/|Reasoning Paths over Wikipedia]] ([[https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths|github]])
+      * [[https://jalammar.github.io/illustrated-word2vec/|illustrated word2vec]] ([[explore>word2vec|1]])
+      * [[https://github.com/spencermountain/compromise|compromise]] (rule-based NLP)
+    * [[https://github.com/topics/structured-data?o=desc&s=stars|structured data extraction]]:
+      * [[https://github.com/amirouche/sensimark|sensimark]] (based on [[https://radimrehurek.com/gensim/index.html|gensim]])
+    * [[https://github.com/gruns/ImmortalDB|immortalDB]] (persistent web storage)
+    * [[https://github.com/spencermountain/wtf_wikipedia|wtf]] ([[https://observablehq.com/@spencermountain/wtf_wikipedia-api|API docs]])
+    * wikipedia [[https://www.mediawiki.org/wiki/API:Query|Query API]] and [[https://en.wikipedia.org/api/rest_v1/|REST API]]:
+      * [[https://www.mediawiki.org/w/api.php?action=help&modules=main#main/datatypes|search datatypes]]
+      * [[https://en.wikipedia.org/wiki/Wikipedia:Namespace|namespaces]]
+      * [[https://www.mediawiki.org/wiki/API:Langlinks|language links]]
+      * <html><a href="https://en.wikipedia.org/w/api.php?action=query&titles=Time%20Lord&generator=images&gimlimit=10&prop=imageinfo&iiprop=url|dimensions|mime&format=json">image links</a></html>
+      * [[https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Liquids&cmlimit=20|category members]]
+      * [[https://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&titles=Stack%20Overflow&rvprop=content&rvsection=0&rvparse|1st article section? html]]
+      * [[https://en.wikipedia.org/w/api.php?action=opensearch&search=life&limit=10&format=json|opensearch json results]]
+      * [[explore>Main_Page?action=raw|article mediawiki text]]
+      * [[https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow|article summary in JSON]]
+      * [[https://en.wikipedia.org/api/rest_v1/page/summary/Stack_Overflow|article metadata in JSON]]
+      * [[https://www.mediawiki.org/w/api.php?action=query&prop=linkshere&titles=Main%20Page|linking-to in JSON]]
+      * [[https://en.wiktionary.org/w/api.php?action=query&titles=fourty|Wiktionary word data]] (returns page ID, see also: [[https://stackoverflow.com/questions/2770547/how-to-retrieve-wiktionary-word-content|tips]] )
+
+    * SPARQL metadata demo: [[https://jsbin.com/bulufef/edit?html,css,js,output|1]], [[https://jsbin.com/hucuqen/edit?html,css,js,output|2]]
+
+    * DBPedia (summary text, categories / labels, redirect titles, broader associations, external links, ...:
+      * [[http://dbpedia.org/page/Near-death_experience|html view]]
+      * [[http://dbpedia.org/data/Near-death_experience.json|JSON data]]
+
+    * [[http://www.datamuse.com/api/|DataMuse]]:
+      * [[https://api.datamuse.com/words?rel_syn=cable|synonyms]]
+      * [[https://api.datamuse.com/words?rel_trg=cable|triggers]]
+
+  * [[https://www.datatables.net|datatables]] (advanced table display)
+    * [[https://wikitable.info/compare/universities|wikidata + more comparisons]] based on datatables
+
+  * [[https://github.com/brettkromkamp/knowledge-graph-radar|knowledge-graph news]]
+
+  * [[https://experiments.archivelab.org/|Archive.org Lab experiments]]
+
+  * [[https://www.bioviz.org/|BioViz tool]] (its a Java tool though, not a web app)
+
+  * What other than "R" OSM types are available to use in border-maps?
+
+  * interesting ideas in this [[https://www.nature.com/articles/s41597-020-00599-8|tree-graph]] D3 tool
+
+  * research integration with the [[https://conceptnet.io|conceptnet.io]] API
+
+===== wikidata timeline =====
+
+  * [[https://lod-cloud.net/|linked open data]]
+
+  * [[https://tools.wmflabs.org/wikidata-timeline/#|timeline system]]
+    * [[https://tools.wmflabs.org/mix-n-match/#/|mix-n-match tool]]
+    * When using WDQ, these properties are used for determining time:
+      * startTime: 'P577', 'P580', 'P569', 'P571'
+      * endTime: 'P577', 'P582', 'P570', 'P576'
+      * ? [[https://www.wikidata.org/wiki/Property:P585|point in time]] (P585)
+    * implement dynamic query building
+      * concepts / identifiers / items / entities ("**Q**"):
+        * [[https://www.wikidata.org/wiki/Q6948349|Q data example]]
+        * [[https://www.wikidata.org/wiki/Wikidata:Identifiers|identifier info]]
+        * [[https://www.wikidata.org/wiki/Help:Items|items info]]
+        * [[https://github.com/cwrc/wikidata-entity-lookup|wikidata-entity-lookup]]
+        * [[https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageprops&titles=Albert%20Einstein|JSON API: from title to Q id]]
+        * [[https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-page_props.sql.gz|dump enwiki_page_props]]
+      * Properties ("**P**"):
+        * [[https://www.wikidata.org/wiki/Wikidata:List_of_properties|topical list of properties]]
+        * [[https://tools.wmflabs.org/prop-explorer/|property explorer]]
+        * [[https://www.wikidata.org/wiki/Property:P31|P data example]]
+        * [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|list of all properties]]
+      * Lexemes ["**L**"]
+        * [[https://www.wikidata.org/wiki/Wikidata:Lexicographical_data|lexicographical data info]]
+      * Forms ("**F**")
+      * Senses ("**S**")
+
+  * [[https://codepen.io/ottomata/pen/VKNyEw/?editors=0010|realtime query-data]] (using EventSource)
+
+dynamic query ideas:
+  * research this **[[https://tools.dicare.org/properties/|complete properties overview]]**
+  * histropedia:
+    * [[https://histropedia.uservoice.com/knowledgebase/articles/408699-automatic-timelines-from-wikipedia-categories|automated timeline from categories]]
+    * [[https://histropedia.uservoice.com/knowledgebase/articles/409697-automatic-timelines-from-wikidata-queries|automated timeline from wikidata]]
+  * list concepts (Q's) (which contain end and start dates): [[https://tools.wmflabs.org/wikidata-timeline/#/timeline?title=Jules%20Verne&wdq=items%5B33977,937,727%5D&languages=en,fr&defaultEndTime=now&sitelink=wikidata&sitelinkFallback|show a list of $Qs]] (if they contain start and end dates?)
+  * [[https://tools.wmflabs.org/wikidata-timeline/#/timeline?title=Dutch%20Presidents&wdq=claim%5B39:3058109%5D|position-held in $Q]] (where Q is a geographical region)
+  * [[https://tools.wmflabs.org/wikidata-timeline/#/timeline?title=BornCity&wdq=claim%5B19:727%5D|born in $Q]]
+
+  * step 1: [[https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageprops&titles=empire|get Q id from wikipedia-concept-string]]
+  * step 2: [[https://tools.wmflabs.org/wikidata-timeline/#/timeline?title=Empires&wdq=claim[31:48349]|"instances of" "empire" query]]
+
+~~NOTOC~~

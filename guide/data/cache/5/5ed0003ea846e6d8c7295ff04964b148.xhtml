@@ -23,7 +23,7 @@ You can also browse it online <a href="https://github1s.com/waldenn/conzept" cla
 │
 └── services (background services started upon system boot)
    ├── allorigins (general CORS proxy)
-   └── json-proxy (JSON-only CORS proxy, also handles secret API-keys)</pre>
+   └── json-proxy (JSON-only CORS proxy, which can also handle secret API-keys)</pre>
 
 <p>
 The Conzept-project root-directory also contains the following relevant files:
@@ -40,7 +40,7 @@ The Conzept-project root-directory also contains the following relevant files:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;root directory structure&quot;,&quot;hid&quot;:&quot;root_directory_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;196-1053&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;root directory structure&quot;,&quot;hid&quot;:&quot;root_directory_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;196-1062&quot;} -->
 <h2 class="sectionedit3" id="conzept_main_app">conzept main app</h2>
 <div class="level2">
 
@@ -51,8 +51,8 @@ The Conzept main app (the UI wrapping all the other apps) is located in the “<
 ├── assets
 │   ├── geojson (used only for the data-layers in the organism-occurrence web-component)
 │   ├── i18n (localization files)
-│   ├── images (static images)
-│   ├── json (mainly used for storing lists of Wikidata &quot;topic sphere&quot; Qid&#039;s)
+│   ├── images (some static images)
+│   ├── json (mainly used for storing lists of Wikidata &quot;topic theme&quot; entity IDs)
 │   ├── models (used to store Draco-optimized GLB 3D models)
 │   └── svg (used for flags, former-flags)
 │
@@ -78,7 +78,7 @@ The Conzept main app (the UI wrapping all the other apps) is located in the “<
 └── tools (various tools used for: building, installing services, fetching monthly covers, etc.)</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1054-2591&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1063-2609&quot;} -->
 <h2 class="sectionedit4" id="entry_point">entry point</h2>
 <div class="level2">
 
@@ -94,7 +94,7 @@ From “main.js”:
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> The <strong>global object “<a href="#explore_object" title="code_structure ↵" class="wikilink1">explore</a>“</strong> is created. The values in this  JS-object can be accessed through “explore.&lt;property-name&gt;” (see next section). Note: The explore-object is not accessible in the embedded apps, use <abbr title="Uniform Resource Locator">URL</abbr>-parameters to pass relevant data into the app.).</div>
+<li class="level1"><div class="li"> The <strong>global object “<a href="#explore_object" title="code_structure ↵" class="wikilink1">explore</a>“</strong> is created. The values in this  JS-object can be accessed through: “<strong>explore.&lt;property-name&gt;</strong>” (see next section). Note: The explore-object is not accessible in the embedded apps, use <abbr title="Uniform Resource Locator">URL</abbr>-parameters to pass relevant data into the embedded app.</div>
 </li>
 </ul>
 <ul>
@@ -102,7 +102,7 @@ From “main.js”:
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Dynamic UI-element are setup and activated.</div>
+<li class="level1"><div class="li"> Dynamic UI-element are setup and activated (autocompletion, user settings UI, etc.).</div>
 </li>
 </ul>
 <ul>
@@ -111,7 +111,7 @@ From “main.js”:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2592-3489&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2610-3560&quot;} -->
 <h2 class="sectionedit5" id="explore_object">explore object</h2>
 <div class="level2">
 
@@ -150,12 +150,12 @@ Here are some of the important properties on this object:
 		<td class="col0"> explore.<strong>hash</strong> </td><td class="col1"> current <abbr title="Uniform Resource Locator">URL</abbr>-fragment </td>
 	</tr>
 	<tr class="row8">
-		<td class="col0"> explore.<strong>fragment</strong> </td><td class="col1"> sidebar detail-fragment to go to upon after loading the <abbr title="Uniform Resource Locator">URL</abbr> (<a href="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" rel="ugc nofollow noopener">example</a>) </td>
+		<td class="col0"> explore.<strong>fragment</strong> </td><td class="col1"> sidebar topic-detail-fragment to go to, after loading the <abbr title="Uniform Resource Locator">URL</abbr> (<a href="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" rel="ugc nofollow noopener">example</a>) </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3733-4399&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3804-4472&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3490-4400&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3561-4473&quot;} -->
 <h2 class="sectionedit7" id="api_code">API code</h2>
 <div class="level2">
 
@@ -186,4 +186,4 @@ To add a new <abbr title="Application Programming Interface">API</abbr>, see <st
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4401-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4474-&quot;} -->
