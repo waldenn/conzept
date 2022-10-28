@@ -65,16 +65,27 @@ function expandNode(page) {
   page = page.replace('%3A', ':');
 
   //console.log( page );
-  //console.log( nodes );
+  //console.log( 'nodes: ', nodes );
+  //console.log( 'test: ', page, nodes._data.Crime );
+  //console.log( 'test2: ', nodes.get( page ) );
 
-  //if ( nodes.get(page) !== null ){
+  //if ( nodes.get(page) !== null 
+  if ( valid( nodes._data[ page ] ) ){
 
-    const label = nodes.get( page ).label;
-
-    const pagename = unwrap(label);
+    //console.log( 'page found in nodes: ', page );
+    const label     = nodes.get( page ).label;
+    const pagename  = unwrap(label);
+    console.log( 'label: ', label);
+    console.log( 'pagename: ', pagename);
     getSubPages(pagename).then(data => expandNodeCallback(page, data));
 
-  //}
+  }
+  else { // TOFIX: something prevents the item from being rendered normally, why?
+    //console.log( 'page not found in nodes: ', page, nodes );
+    console.log('warning: ', page, nodes.get( page ), nodes );
+    //console.log( 'page not found in nodes: ', page, decodeURIComponent( page ), nodes );
+    getSubPages( unwrap( page ) ).then(data => expandNodeCallback( decodeURIComponent( page ), data));
+  }
 
 }
 

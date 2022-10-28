@@ -4,7 +4,7 @@
   "description": "Conzept Wikipedia",
   "main": "wikipedia_main.js",
   "scripts": {
-    "build": "esbuild src/* --outdir=dist --minify --sourcemap && esbuild css/* --outdir=dist/css --minify --sourcemap",
+    "build": "esbuild src/* --outdir=dist --minify && esbuild css/* --outdir=dist/css --minify --sourcemap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

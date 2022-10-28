@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conzept EPUB app</title>
+
+  <script src="libs/jszip.min.js"></script>
+  <script src="libs/epub.min.js"></script>
+
+  <!-- conzept resources -->
+  <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.213" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.213"></script><script src="/app/explore2/dist/core/utils.js?v0.51.213"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+  <script src="src/main.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/examples.css">
+  <!--link rel="stylesheet" href="./css/main.css" type="text/css"/-->
+
+</head>
+<body>
+
+  <!-- <div id="title"></div> -->
+  <select id="toc"></select>
+  <div id="viewer" class="spreads"></div>
+  <a id="prev" href="#prev" class="arrow">‹</a>
+  <a id="next" href="#next" class="arrow">›</a>
+
+</body>
+</html>

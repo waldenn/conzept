@@ -2325,7 +2325,7 @@
 		$(document).on('click', '.lcl_openseadragon', function(e) {
 
       // show loading indicator
-      $('#loader-openseadragon').hide();
+      $('#loader-openseadragon').show();
 
 			if(obj != lcl_curr_obj) {return true;}
 

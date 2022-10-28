@@ -57,7 +57,7 @@ async function fetchHackerNews( args, total_results, page, sortby ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   let endpoint_page = 'search';
 
@@ -150,14 +150,14 @@ async function fetchHackerNews( args, total_results, page, sortby ){
 
             const comments_url = 'https://news.ycombinator.com/item?id=' + v.objectID;
 
-            comments_link = '<div class="mv-extra-date" title="comments"><a href="javascript:void(0)" class="mv-extra-icon" title="comments" aria-label="comments" onclick="openInNewTab( &quot;' + comments_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"><i class="fab fa-hacker-news"></i></a> &nbsp;' + date + '<div>';
+            comments_link = '<div class="mv-extra-date" title="comments"><a href="javascript:void(0)" class="mv-extra-icon" title="comments" aria-label="comments" onclick="openInNewTab( &quot;' + comments_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"><i class="fa-brands fa-hacker-news"></i></a> &nbsp;' + date + '<div>';
 
           }
 
           /*
 					if ( v._highlightResult?.title?.value ){
 
-            desc = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v._highlightResult.title.value + '</details>';
+            desc = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v._highlightResult.title.value + '</details>';
 
           }
           */

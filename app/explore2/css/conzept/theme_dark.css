@@ -348,7 +348,7 @@ body.dark .medialinks a:hover {
   color: #ee6e73cc !important;
 }
 
-body.dark .medialinks .fa, body.dark .medialinks .fab, body.dark .medialinks .far, body.dark .medialinks .fas {
+body.dark .medialinks .fa, body.dark .medialinks .fa-brands, body.dark .medialinks .fa-regular, body.dark .medialinks .fa-solid {
   font-size: 100%;
 }
 

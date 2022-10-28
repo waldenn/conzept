@@ -1,5 +1,3 @@
-// © Copyright 2019-2021 J. Poulsen. All Rights Reserved.
-
 'use strict';
 
 const explore = {
@@ -16,6 +14,7 @@ const explore = {
   terms               : undefined, // query-term
 
   query               : '', // query-builder form-state
+  commands            : '', // editor-commands state
 
   hash                : window.location.hash.substring(1) || '', // URL hash from URL
   //hash_prev         : undefined, // previous URL hash from URL
@@ -44,6 +43,7 @@ const explore = {
   language_param      : getParameterByName('l') || undefined, // requested language from the URL
   locale_param        : getParameterByName('h') || undefined, // requested 'human locale' language from the URL
   query_param         : getParameterByName('query') || undefined, // requested 'structured query' from the URL
+  commands_param      : getParameterByName('commands') || undefined, // requested 'commands' from the URL
 
   //country           : 'us', // default is "United States"
 
@@ -79,7 +79,7 @@ const explore = {
   sections            : {}, // template structure: list of section objects in a topic-card
   section_dom         : $('<span></span>'), // template section-structure (as a jQuery DOM-object)
 
-  datasources         : undefined,
+  datasources         : [], // active datasources
 
   db                  : undefined, // persistent client-side storage using immortalDB
 
@@ -95,21 +95,17 @@ const explore = {
   curr_title          : '',
   curr_article_id     : undefined,
 
-  autocomplete_limit  : 10, // mobile default
-
   // global paging state
-  page                    : 1, // page number we are on
-  wikipedia_search_limit  : 5, // mobile default
-  wikidata_search_limit   : 10, // sync with query-builder source!
+  page                : 1, // page number we are on
   wikidata_query      : '',
   searchmode          : 'wikipedia', // wikipedia or wikidata
   totalRecords        : undefined,
-  lastContinue        : [],
+  lastContinue        : {}, // object to track the paging state: { sroffset: 20, continue: "-||" }
   firstAction         : true,
 
-  sparql_limit        : 100, // wikidata sparql query limit
+  sparql_limit        : 300, // wikidata sparql query limit
 
-  nearby_radius_limit : 10000,  // distance in meters
+  nearby_radius_limit : 10000,// distance in meters
   nearby_max_results  : 250,  // maximum nearby results
 
   vids_mute           : '',
@@ -117,16 +113,15 @@ const explore = {
   // UI state
   replaceState        : true,
   leftPanel           : true,
-  fetchFail           : false,
   activeTab           : undefined,
   tabsInstance        : M.Tabs.init( document.querySelector('#tabs-swipe-demo' ), {
     onShow: onTabShow,
     swipeable: false,
   }),
-  tabPositions        : [0, 0, 0, 0, 0], // 5 tabs
-	swiperLimit         : 2, // only used on mobile
-  preventSliding      : false, // to allow input-search-submits to stay on the same slide
-  windowName          : window.name || '', // used to check if this explore-window is in "infoframeSplit2"
+  tabPositions        : [0, 0, 0, 0, 0],  // 5 tabs
+	swiperLimit         : 2,                // only used on mobile
+  preventSliding      : false,            // to allow input-search-submits to stay on the same slide
+  windowName          : window.name || '',// used to check if this explore-window is in "infoframeSplit2"
   deviceOrientation   : undefined,
   splitter            : undefined,
   splitterWidth       : undefined,
@@ -136,7 +131,7 @@ const explore = {
   show_sidebar_prev   : undefined,
   panel2_minimized    : false, // used for toggling content pane 2 to full width
   viewMode            : getParameterByName('v') || '' , // view modes: desktop / mobile / XR-VR / REST-JSON?
-  click_on_sidebar_article : true, // 
+  click_on_sidebar_article : true,
   showMobileConsole   : false,
   //droppingQuery     : false,
 
@@ -148,6 +143,9 @@ const explore = {
 
   // large table lists
   table               : undefined,
+
+  // audio system
+  autoplay            : false,
 
   // TTS system
   tts_enabled         : true,
@@ -181,6 +179,8 @@ const explore = {
   darkmode            : undefined,
   bgmode              : undefined,
   personas            : [],
+  country             : '',
+  country_name        : '',
   colorfilter         : undefined,
   covertopic          : undefined,
   locale              : undefined,
@@ -205,6 +205,8 @@ const explore = {
 
   covers              : cover_titles,
 
+  ld                  : {}, // used to set extra "linked data" fields
+
   // TODO 
   //  - add entry for "Category" translations (to make the category-rendering work well for other languages)
   //  - complete adding 3-letter language-codes to this table (which are used by Archive.org)
@@ -219,17 +221,21 @@ const explore = {
 
   keyboard_ctrl_pressed : false,
 
-  presentation_playing  : false,
-  presentation_id       : '',
-  presentation_slide    : 0,
-  presentation_nr_of_slides : 0,
+  // command API presentation structures
+  presentation_building_mode  : false,
+  presentation_building_slide : undefined,
+  presentation_commands       : [],
+  presentation_text_background_css : '',
+
+  // command-editor
+  editor                : ace.edit('editor'),
+  lisp                  : lips.exec,
 }
 
 
 if ('serviceWorker' in navigator) {
 
   navigator.serviceWorker.register('/service-worker.js')
-
     .then(function(registration) { // registration was successful
       //console.log('ServiceWorker registration successful with scope: ', registration.scope);
     })
@@ -245,9 +251,6 @@ if ( explore.isMobile ){
   explore.banner_width  = '600px';
     
 }
-
-//let table = {}; // array of wikipedia-language-info objects
-//let table2;
 
 $( document ).ready( function() {
 
@@ -275,14 +278,9 @@ $( document ).ready( function() {
 
       explore.voice_code_selected = await explore.db.get('voice_code_selected');
 
-      //console.log( explore.voice_code_selected );
-
     }
 
-    if ( typeof explore.uri === undefined || typeof explore.uri === 'undefined' || explore.uri === '' ){
-      // do nothing
-    }
-    else { // first decode the URL param
+    if ( valid( explore.uri ) ){ // first decode the URL param
 
       explore.uri = decodeURI( explore.uri );
 
@@ -290,14 +288,10 @@ $( document ).ready( function() {
 
     if ( explore.custom !== '' ){
 
-      //console.log('explore.custom: ', explore.custom );
-
-      //if ( explore.type === 'nearby' ){
-      //  explore.compares = explore.custom.split(','); // get IDs from explore.custom
-      //}
-
       if ( explore.type === 'compare' ){
+
         explore.compares = explore.custom.split(','); // get IDs from explore.custom
+
       }
 
     }
@@ -316,7 +310,8 @@ $( document ).ready( function() {
 
     createSectionDOM();
 
-    // set event-handlers for various search actions (search form input, and some other search-input actions)
+    updateActiveDatasources(); // TODO: also allow for user-storage-based activation
+    setupOptionActiveDatasources();
     setupSearch();
 
     // user-customizable options:
@@ -326,23 +321,10 @@ $( document ).ready( function() {
     setupOptionDarkmode();
     setupOptionColorFilter();
     setupOptionPersonas();
-    setupOptionAutocompleteToggle();
-    setupOptionMulticolumn(); // experimental feature
+    setupOptionCountry();
+    //setupOptionAutocompleteToggle();
+    //setupOptionMulticolumn();
     setupOptionLinkPreview();
-    // setupOptionVoiceCommand();
-    // setupOptionLinkTypes();
-
-    /*
-    if ( explore.isMobile ){ // only show this option on mobile devices
-
-      $('#option-toggle-mobile-console').show();
-
-      setupOptionMobileConsole();
-
-      //toggleMobileConsole();
-
-    }
-    */
 
     setupURL();
     setupUI();
@@ -352,7 +334,11 @@ $( document ).ready( function() {
 
     setupAutoStopAudio();
 
-    // this can trigger the URL-query-search (if there is a URL query parameter) or just displays the cover photo screen
+    setupEditor();
+    setupLispEnv();
+
+    // this can trigger the URL-query-search (if there is a URL
+    // query parameter) or just displays the cover photo screen
     triggerQueryForm();
 
     $('#splash').hide();
@@ -374,6 +360,8 @@ jQuery.extend({
 });
 
 async function onTabShow( tab ){
+
   explore.activeTab = tab.id; // set active tab
   $('#sidebar').scrollTop( explore.tabPositions[ explore.activeTab ] ); // use previous scroll position
+
 }

@@ -57,7 +57,7 @@ async function fetchDepicts( args, total_results, page, sortby, qid_ ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   const search_url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20distinct%20%3Fitem%20%3FitemLabel%20%3Fcoord%20(GROUP_CONCAT(distinct%20%3FcreatorLabel%3B%20separator%3D%22%20-%20%22)%20as%20%3Fauthor)%0A(GROUP_CONCAT(distinct%20STR(%3FcollLabel)%3B%20separator%3D%22%20-%20%22)%20as%20%3Fcollection)%20(SAMPLE(year(%3Fd))as%20%3Fdate)(SAMPLE(%3Fimage)%20as%20%3Fimage)%20%0AWHERE%7B%0A%20%3Fitem%20wdt%3AP180%2Fwdt%3AP279*%20wd%3AQ' + qid + '%20.%0A%20%3Fitem%20p%3AP180%20%3FDeclarationDepeint.%0A%20%3FDeclarationDepeint%20ps%3AP180%2Fwdt%3AP279*%20wd%3AQ' + qid + '.%0A%20OPTIONAL%7B%3FDeclarationDepeint%20pq%3AP2677%20%3Fcoord.%7D%0A%20%3Fitem%20wdt%3AP18%20%3Fimage.%0A%20OPTIONAL%7B%3Fitem%20wdt%3AP571%20%3Fd_crea.%7D%0A%20OPTIONAL%7B%3Fitem%20wdt%3AP577%20%3Fd_publi.%7D%0A%20BIND(COALESCE(%3Fd_crea%2C%20%3Fd_publi)%20AS%20%3Fd)%0A%20OPTIONAL%7B%3Fitem%20wdt%3AP170%20%3Fcreator.%7D%0A%20OPTIONAL%7B%3Fitem%20wdt%3AP195%20%3Fcoll.%7D%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%0A%20%20%3Fitem%20rdfs%3Alabel%20%3FitemLabel.%0A%20%20%3Fcreator%20rdfs%3Alabel%20%3FcreatorLabel.%0A%20%20%3Fcoll%20rdfs%3Alabel%20%3FcollLabel.%0A%20%7D%0A%7D%0AGROUP%20BY%20%3Fitem%20%3FitemLabel%20%3Fcoord%20%0AORDER%20BY%20' + sortby + '%0ALIMIT%20' + page_size + '%0AOFFSET%20' + offset + '%0A';
 
@@ -126,7 +126,7 @@ async function fetchDepicts( args, total_results, page, sortby, qid_ ){
 
             subtitle2 += encodeURIComponent(
               '<div class="mv-extra-desc">' +
-                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
                 '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
               '</div>' );
 
@@ -140,7 +140,7 @@ async function fetchDepicts( args, total_results, page, sortby, qid_ ){
 
           if ( v.date ){
 
-            subtitle = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + encodeURIComponent( v.date.value.replace(/[\[\]]/g, '') ) + '</details>';
+            subtitle = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + encodeURIComponent( v.date.value.replace(/[\[\]]/g, '') ) + '</details>';
             //subtitle = '<div class="mv-extra-desc">' + encodeURIComponent( v.date.value.replace(/[\[\]]/g, '') ) + '</div>';
 
             desc_plain = v.date.value.replace(/[\[\]]/g, '');

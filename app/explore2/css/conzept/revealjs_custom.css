@@ -1,0 +1,77 @@
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  text-transform: none;
+  color: inherit !important;
+}
+
+.reveal h2 {
+  margin-top: 1em;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: underline !important;
+  font-weight: bolder;
+}
+
+a:hover {
+  background: #a8bbf370;
+}
+
+h2 i, h3 i {
+  font-size: 3em !important;
+  opacity: 0.6;
+}
+
+h4 i, h5 i {
+  font-size: 2em !important;
+  opacity: 0.4;
+}
+
+.withborder {
+  border: 0.1em solid white;
+  padding: 0.2em;
+}
+
+audio {
+  width: 90%;
+}
+
+.resizer {
+  /*background: none !important;*/
+  /*border: 1px solid #000000b5;*/
+  padding: 0 !important;
+  margin-top: .5rem !important;
+  border-radius: .2rem !important;
+}
+
+.resizer {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  resize: vertical;
+  overflow: hidden;
+}
+
+/*
+.reveal i{
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
+*/
+
+/* FIXME: auto-hide inactive fragments */
+/*
+.fragment.current-visible.visible:not(.current-fragment) {
+  animation: removed-item-animation 1s cubic-bezier(0.6, -0.05, 0.9, 0.9) forwards;
+}
+
+@keyframes removed-item-animation {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+*/

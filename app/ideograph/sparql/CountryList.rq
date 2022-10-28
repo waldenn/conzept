@@ -1,0 +1,11 @@
+SELECT DISTINCT ?country ?countryLabel 
+WHERE {
+    ?item wdt:P1142 ?linkTo .
+    ?linkTo wdt:P31 wd:Q12909644 . # keep only targets that are political ideologies
+    VALUES ?type { wd:Q7278  wd:Q24649 } # filter by these types of political actors
+    ?item wdt:P31 ?type .
+    ?item wdt:P17 ?country .
+    MINUS { ?item wdt:P576 ?abolitionDate } # exclude abolished parties
+    MINUS { ?country wdt:P576 ?countryAbolitionDate }. # exclude abolished countries
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" . }
+}

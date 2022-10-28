@@ -38,6 +38,8 @@ async function fetchMastodon( args, total_results, page, sortby ){
   let keyword = args.topic.replace(/\(.*?\)/g, '').trim();
   keyword = removeCategoryFromTitle( keyword );
 
+  let keyword_match = keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim();
+
   keyword = encodeURIComponent( keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() );
 
   // see:

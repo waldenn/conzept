@@ -10,7 +10,7 @@
     <script type="text/javascript" src="uv/helpers.js"></script>
 
     <!-- conzept resources -->
-    <link href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14=" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.50.043" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.50.043"></script><script src="/app/explore2/dist/core/utils.js?v0.50.043"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+    <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.51.213" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.213"></script><script src="/app/explore2/dist/core/utils.js?v0.51.213"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
 
     <style>
         body {
@@ -113,6 +113,29 @@
 
         });
 
+        window.addEventListener("message", receiveMessage, false);
+
+        function receiveMessage(event){
+
+          console.log('receiveMessage() called: ', event.data.data );
+
+          if ( event.data.event_id === 'goto' ){ // move video-cursor to this point
+
+            // TODO detect goto type
+            //  - canvas  int (the UV index starts at 0, so add 1)
+            //  - viewbox [x,y,w,h]
+
+            const canvas = event.data.data[0];
+
+            //console.log( 'goto canvas: ', parseInt( canvas ) - 1 );
+
+            //uv.set({ xywh : '' });
+            uv.set({ canvasIndex: parseInt( canvas ) - 1  });
+            
+          }
+
+        }
+
         var uv, manifest, urlDataProvider;
 
         window.addEventListener('uvLoaded', function(e) { 
@@ -120,8 +143,8 @@
             urlDataProvider = new UV.URLDataProvider();
 
             loadManifests(function() {
-                setSelectedManifest();
-                setupUV();
+              setSelectedManifest();
+              setupUV();
             });
 
         }, false);

@@ -18,9 +18,18 @@ if ( window.location.hash ) {
 else {
 
 	// TODO: also set parent-window hash?
-	window.location.hash = '#_';
+	window.location.hash = '#';
 
 }
+
+/*
+// see: https://github.com/viebel/klipse
+window.klipse_settings = {
+  // css selector for the html elements you want to klipsify
+  selector_eval_js: '.mw-highlight-lang-scheme',
+  //selector_eval_js: '.language-klipse-eval-js',
+};
+*/
 
 //console.log('window.location.hash: ', window.location.hash );
 
@@ -84,7 +93,8 @@ $( document ).ready(function() {
   $( "a.internal[title$='.mid']" ).addClass('midi');
 
   // TODO: these needs further styling improvements:
-  $('.noprint').not('.noprint.navbox').not('[role="presentation"]').remove();
+  $('.noprint').not('.noprint.navbox').not('.side-box').not('.listen').not('[role="presentation"]').remove();
+
   $('.mbox-small.noprint[role="presentation"]').addClass('media-block');
 
   $('.mw-authority-control').remove();
@@ -161,7 +171,6 @@ $( document ).ready(function() {
   setupLinks();
 
   setupAudiomassLinks();
-
   setupClicks();
 
   // insert section IDs: TODO move this to its own function
@@ -184,11 +193,11 @@ $( document ).ready(function() {
 
   // wrap reference-lists in a <detail> element
   $('div.reflist').wrap('<details class="reflist-block"></details>');
-  $('details.reflist-block').prepend('<summary title="show / hide references"><i class="far fa-folder-open"></i></summary>');
+  $('details.reflist-block').prepend('<summary title="show / hide references"><i class="fa-regular fa-folder-open"></i></summary>');
 
   // wrap navboxes in a <detail> element
   $('.navbox').wrap('<details class="navbox-block"></details>');
-  $('details.navbox-block').prepend('<summary title="show / hide navbox"><i class="far fa-folder-open"></i> navbox</summary>');
+  $('details.navbox-block').prepend('<summary title="show / hide navbox"><i class="fa-regular fa-folder-open"></i> navbox</summary>');
 
   // all done now, show the content
   $('main.explore').css({ 'visibility' : 'visible' });
@@ -196,7 +205,18 @@ $( document ).ready(function() {
   if ( !isMobile ){
 
     // go to initial URL hash
-    location.hash = "#" + explore.hash; // NOTE: this breaks the mobile layout!
+    window.location.hash = "#" + explore.hash; // NOTE: this breaks the mobile layout!
+
+	  if ( valid( $( window.location.hash )[0] ) ){
+
+	    $( window.location.hash )[0].scrollIntoView();
+	    //$( window.location.hash )[0].scrollIntoView({ block: "start", inline: "nearest" });
+
+      //const element = document.getElementById( explore.hash );
+      //const y = element.getBoundingClientRect().top + window.pageYOffset + 40;
+      //window.scrollTo({top: y, behavior: 'smooth'});
+
+    }
 
   };
 
@@ -204,10 +224,15 @@ $( document ).ready(function() {
 
   if ( explore.autospeak ){ // speak article
 
-    //console.log('autospeaking');
     startSpeaking();
 
   }
+
+  // update JSON-LD info
+  explore.ld.text = $('.sid#0, .sid#1').text().replace(/\[\d+\]/g, ''); // get first paragraphs as text, and remove all brackets-with-numbers
+  //console.log( explore.ld );
+
+  parentref.postMessage({ event_id: 'update-jsonld', data: { fields: explore.ld, } }, '*' );
 
   // send message to main-app that the page has been rendered
   parentref.postMessage({ event_id: 'page-rendered', data: { } }, '*' );
@@ -305,8 +330,6 @@ function setupClicks(){
 	$('a.link.explore').on("click", function (e) {
 
 		e.preventDefault();
-    //console.log('001: ', title, language, hash );  
-
     parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
     parentref.postMessage({ event_id: 'handleClick', data: { type: 'explore', title: title, hash: hash, language: language, } }, '*' );
 
@@ -374,6 +397,9 @@ function locationHashChanged() {
 	  $( window.location.hash )[0].scrollIntoView();
 
   }
+
+  // update hash in parent-window
+  parentref.postMessage({ event_id: 'hash-change', data: { hash: window.location.hash  } }, '*' );
 
 }
 
@@ -471,7 +497,7 @@ function setupArticleImages(){
 
         }
 
-        let model_html = '<model-viewer id="' + model_id + '" class="model-view" title="' + model_name + '" data-name="' + model_name + '" src="' + model_url + '" environment-image="../explore2/assets/images/skybox/aircraft_workshop_01_1k.hdr" exposure="0.64" shadow-intensity="0" shadow-softness="0" ar ar-modes="scene-viewer quick-look" camera-controls loading="lazy" poster="' + thumb + '" ><button class="model-view-button" id="model-view-ar-button" title="AR button" slot="ar-button">AR</button><button title="fullscreen toggle" class="model-view-button" id="model-view-fullscreen-button" onclick="screenfull.toggle(document.getElementById(&quot;' + model_id + '&quot;))"><i class="fas fa-expand"></i></button><div class="model-title">' + caption_plaintext + '</div></model-viewer>'; 
+        let model_html = '<model-viewer id="' + model_id + '" class="model-view" title="' + model_name + '" data-name="' + model_name + '" src="' + model_url + '" environment-image="../explore2/assets/images/skybox/aircraft_workshop_01_1k.hdr" exposure="0.64" shadow-intensity="0" shadow-softness="0" ar ar-modes="scene-viewer quick-look" camera-controls loading="lazy" poster="' + thumb + '" ><button class="model-view-button" id="model-view-ar-button" title="AR button" slot="ar-button">AR</button><button title="fullscreen toggle" class="model-view-button" id="model-view-fullscreen-button" onclick="screenfull.toggle(document.getElementById(&quot;' + model_id + '&quot;))"><i class="fa-solid fa-expand"></i></button><div class="model-title">' + caption_plaintext + '</div></model-viewer>'; 
 
         $(this)[0].src = src;
         let img_html = $(this).html();
@@ -488,10 +514,33 @@ function setupArticleImages(){
         $(this)[0].src = src;
         let img_html = $(this).html();
 
+				// set image source link
+				let commons_file_name = src.split('/').pop();
+				let image_width_string_no_slash = image_width_string.replace( '\/', '');
+				commons_file_name = commons_file_name.replace( image_width_string_no_slash, '' );
+
+				// cleanup SVG-exported image names
+				if ( commons_file_name.endsWith( '.svg.png' ) ){
+					commons_file_name = commons_file_name.replace( '.svg.png', '.svg' );
+				}
+				else if ( commons_file_name.endsWith( '.svg.jpg' ) ){
+					commons_file_name = commons_file_name.replace( '.svg.jpg', '.svg' );
+				}
+
+				if ( !valid( commons_file_name ) ){ // different URL-format
+
+					commons_file_name = src.split('/').pop();
+
+				}
+
+        //console.log( commons_file_name );
+
+				let commons_url = `https://commons.wikimedia.org/w/index.php?search=${commons_file_name}&title=Special:MediaSearch&go=Go&type=image`;
+
         $(this)
           .wrap( '<figure class="non-thumb-media"></figure>' )
-          .after('</span> <figcaption>' + caption + '</figcaption>')
-          //.after('<span class="copyright"><a id="image-source" title="source" aria-label="source" target="_blank" href="' + src + '"><i class="far fa-copyright fa-2x"></i></a></span> <figcaption>' + caption + '</figcaption>')
+          .after('</span> <figcaption>' + caption + '&nbsp;&nbsp;<a title="copyright info" target="_blank" href="' + commons_url + '"><i class="fa-regular fa-copyright"></i></href>' + '</figcaption>')
+          //.after('<span class="copyright"><a id="image-source" title="source" aria-label="source" target="_blank" href="' + src + '"><i class="fa-regular fa-copyright fa-2x"></i></a></span> <figcaption>' + caption + '</figcaption>')
           .wrap('<a href="' + src + '" class="elem" data-lcl-txt="' + caption_plaintext + '" data-articulate-ignore="" tabindex="0"></a>');
 
       }
@@ -647,7 +696,7 @@ function setupToc(){
       return true;
     }
 
-    let heading = $(this).text().replace(/[ %{}|^~\[\]()"'+<>%'&\.\/?:@;=,]/g, '_').replace(/^.+_svg_/, '').toLowerCase();
+    let heading = $(this).text().replace(/[ %{}|^~\[\]()"'+<>%'&\.\/?:@;=,]/g, '_').replace(/^.+_svg_/, '').toLowerCase().replace( /_+$/, '' );
 
     $(this).attr('id', heading );
 
@@ -806,7 +855,7 @@ function setupAudioClicks(){
 
       let audio_url = val;
 
-      console.log( 'audio found: ', audio_url );
+      //console.log( 'audio found: ', audio_url );
 
       let audio_html = '<audio controls><source src="' + audio_url + '"></audio>';
 
@@ -1009,9 +1058,43 @@ function gotoTalkPage( newtab ){
 
 }
 
+function bookmarkToggle(){
+
+  //console.log( 'bookmarkToggle(): ', findObjectByKey( explore.bookmarks, 'name', title ).length > 0 );
+
+  // check if already bookmarked
+  //if ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 )
+  if (  $('.icon .bookmark-icon').hasClass('bookmarked') ){ // remove bookmark
+
+    console.log('TODO: implement remove bookmark: ', title );
+
+    var node = findObjectByKey( explore.bookmarks, 'name', title );
+
+    if ( valid( node[0]?.id ) ){
+
+      console.log( node[0].id );
+
+      window.parent.postMessage({ event_id: 'remove-bookmark', data: { id: node[0].id } }, '*' );
+
+    }
+
+    $('.icon .bookmark-icon').removeClass('bookmarked');
+
+  }
+  else { // add bookmark
+
+    console.log( 'add bookmark: ', title );
+
+    $('.icon .bookmark-icon').addClass('bookmarked');;  
+    window.parent.postMessage({ event_id: 'add-bookmark', data: { } }, '*' );
+
+  }
+
+}
+
 function gotoVideo( newtab ){
 
-  const url = explore.base + '/app/video/#/search/' + title;
+  const url = explore.base + '/app/video/#/search/' + quoteTitle( title );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
@@ -1025,7 +1108,7 @@ function gotoVideo( newtab ){
 
 function gotoImages( newtab ){
 
-  const url = 'https://www.bing.com/images/search?&q=' + title + '&qft=+filterui:photo-photo&FORM=IRFLTR';
+  const url = 'https://www.bing.com/images/search?&q=' + quoteTitle( title ) + '&qft=+filterui:photo-photo&FORM=IRFLTR';
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
@@ -1040,21 +1123,19 @@ function gotoImages( newtab ){
 function gotoBooks( newtab ){
 
   // FIXME: when the language is changed by the user we should also update "lang3"
-  const url = encodeURI( 'https://openlibrary.org/search?q=' + title + '&mode=everything&language=' + explore.lang3 );
+  const url = encodeURI( 'https://openlibrary.org/search?q=' + quoteTitle( title ) + '&mode=everything&language=' + explore.lang3 );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
   else {
 
-    window.top.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url, title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url, title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
 
   }
 
 }
 
 function gotoBookISBN( newtab, id ){
-
-  //console.log( id );
 
   const url = encodeURI( 'https://openlibrary.org/search?q=ISBN%3A' + id + '&mode=everything');
 
@@ -1072,9 +1153,35 @@ function addToCompare( ){
 
 }
 
-function gotoWikipedia( newtab ){
+function gotoCommons( newtab ){
 
-  console.log('gotoWikipedia: ', current_pane );
+  const url = encodeURI( `${explore.base}/app/commons/?q=${qid}&l=${explore.language}` );
+
+  if ( newtab ){ openInNewTab( url ); }
+  else if ( explore.embedded ){ location.href = url; }
+  else {
+
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url, title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+
+  }
+
+}
+
+function gotoWikidata( newtab ){
+
+  const url = encodeURI( 'https://www.wikidata.org/wiki/' + qid );
+
+  if ( newtab ){ openInNewTab( url ); }
+  else if ( explore.embedded ){ location.href = url; }
+  else {
+
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url, title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+
+  }
+
+}
+
+function gotoWikipedia( newtab ){
 
   const url = encodeURI( 'https://' + language + '.wikipedia.org/wiki/' + title );
 
@@ -1182,9 +1289,9 @@ function addSectionTTS(){
 
     $('h2:first').append(
 
-      $('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fas fa-stop"></i></span>&nbsp;' + 
-        '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fas fa-pause"></i></span>' +
-        '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fas fa-play"></i></span>' )
+      $('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
+        '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
+        '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
 
     );
 
@@ -1204,9 +1311,9 @@ function addSectionTTS(){
 
 				$(this).append(
 
-					$('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fas fa-stop"></i></span>&nbsp;' + 
-            '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fas fa-pause"></i></span>' +
-            '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fas fa-play"></i></span>')
+					$('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
+            '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
+            '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
 
 	      );
 		

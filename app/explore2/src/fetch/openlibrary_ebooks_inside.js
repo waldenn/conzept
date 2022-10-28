@@ -37,7 +37,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
   let keyword_match = keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim();
 
   // TODO: query breaks when quotes are used --> file an OpenLibrary GitHub issue
-  keyword = encodeURIComponent( keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() ); // add some extra spaces to avoid the API error message: phrase too short.
+  keyword = encodeURIComponent( quoteTitle( keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() ) );
 
   /* // NOTE: sort & language params are not yet supported for inside-searches it seems
   let sort_select         = '';
@@ -64,7 +64,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
 
   });
  
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value, &quot;*&quot; );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value, &quot;*&quot; );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   let sortby_param = '&sort=' + sortby;
 
@@ -158,7 +158,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
               let author_url  = 'https://openlibrary.org' + author.key;
 
               subtitle += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
                   '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author.name + '</a>' +
                 '</div>';
 
@@ -203,7 +203,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
               let author_url  = 'https://openlibrary.org/search/authors?q=' + author_name;
 
               subtitle += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
                   '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
                 '</div>';
 
@@ -218,7 +218,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
 
             subtitle += '<div class="mv-extra-desc">' +
                 '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + v.fields.meta_publisher[0] + '</a>' +
-                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
               '</div>';
 
           }
@@ -243,7 +243,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
 
             let text = v.highlight.text.join().replace( /\{\{\{/g, '<mark>' ).replace( /\}\}\}/g, '</mark> &mdash; ' );
 
-            subtitle2 = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + text + '</details>';
+            subtitle2 = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + text + '</details>';
 
           }
 

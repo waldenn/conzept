@@ -1,42 +1,5 @@
 'use strict';
 
-async function setTags( item, tags ){
-
-  if ( ! Array.isArray( tags ) || tags.length === 0 ){
-
-    return;
-
-  }
-  else { // we have some tags
-
-    if ( valid( tags[0] ) ){
-      item.tags[0] = tags[0];
-    }
-
-    if ( valid( tags[1] ) ){
-      item.tags[1] = tags[1];
-    }
-
-  }
-
-}
-
-function checkTag( item, level, name ){
-
-  if ( Number.isInteger( level ) ){
-
-    if ( item.tags[ level ] === name ){
-
-      return true;
-
-    }
-
-  }
-
-  return false
-
-}
-
 function addItemCountries( item, prop, former ){
 
   if ( former ){ // check for former-countries instead
@@ -166,17 +129,16 @@ function setWikidata( item, wd, single, target_pane, callback ){
   item.instances      = []; // will be filled by P31
   item.subclasses     = []; // will be filled by P279
   item.tags           = [ '', '' ];
-  item.quizzes        = []; // will be filled by fields setting quizzes
+  item.source         = ''; // from which datasource
 
   item.country_qid    = '';
-
   item.flag           = ''; // FIXME: should be moved to fields?
-
   item.countries   		= [];
+  item.occupations    = []; // will be filled by P105 occupations
 
   item.args           = {}; // used for setting custom-arguments
 
-  item.occupations    = []; // will be filled by P105 occupations
+  //console.log( wd );
 
   if ( valid( wd.claims ) ){
 
@@ -374,6 +336,17 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
   });
 
+
+  // optional third-round of setting the tags, by matching "ORES tags" to Conzept tags
+  //if ( item.tags[0] === '' ){ // still no main-tag set so far...
+  // TODO: fetch ORES data: https://wikipedia-topic.wmcloud.org/api/v1/topic?threshold=0.65&lang=en&title=heaven
+  //  will the ORES API fetches slow things down too much, if we need to wait for all of them to return data?
+  //  --> take the first value (if any)
+  //    --> slplit the tags by "."
+  //      --> get the last tag: ores_tags['<tag>']
+  //        --> call setTag() for each tag-value
+  //}
+
 	// create-phase: set field-values for the fields with a wikidata-property
   conzept_field_names.forEach(( val, index ) => {
 
@@ -485,7 +458,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
               if ( v.mv ){ // multi-value
 
-                if ( v.type === 'wikipedia-qid-sparql' || v.type === 'rest-json' ){ // SPARQL-based-query for a list of qid's + labels
+                if ( v.type === 'wikipedia-qid-sparql' || v.type === 'rest-json' ){ // SPARQL/REST-based query for a list of items
 
                   let _url      = eval(`\`${ v.url }\``);
                   item[ name ]  = _url; // expand value variables of the URL
@@ -842,24 +815,17 @@ function setWikidata( item, wd, single, target_pane, callback ){
       // bbox = min Longitude , min Latitude , max Longitude , max Latitude 
       //
       // TODO: how to adjust the bounding-box according to the object scale?
-      const delta = 0.05;
-      let bb1 = item.lon - delta;
-      let bb2 = item.lat - delta;
-      let bb3 = item.lon + delta;
-      let bb4 = item.lat + delta;
 
       // OSM boundary map detection
       if ( ! valid( wd.claims.P402 ) ){
 
-        item.map  = `${explore.base}/app/map/?l=${explore.language}&bbox=${bb1},${bb2},${bb3},${bb4}&lat=${item.lat}&lon=${item.lon}&title=` + encodeURIComponent( item.title );
+        item.map  = `${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&title=` + encodeURIComponent( item.title );
 
       }
       else {
 
-        item.osm_id         = wd.claims.P402[0];
-
         // single point
-        item.map  = `${explore.base}/app/map/?l=${explore.language}&bbox=${bb1},${bb2},${bb3},${bb4}&lat=${item.lat}&lon=${item.lon}&osm_id=${item.osm_id}&title=` + encodeURIComponent( item.title );
+        item.map  = `${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ wd.claims.P402[0] }&title=` + encodeURIComponent( item.title );
 
       }
 
@@ -876,7 +842,6 @@ function setWikidata( item, wd, single, target_pane, callback ){
       }
 
     }
-
 
     // subsidiaries detection
     if ( valid( wd.claims.P355 ) ){
@@ -1016,18 +981,40 @@ function setWikidata( item, wd, single, target_pane, callback ){
       item.end_date  = wd.claims.P582[0];
     }
 
-    if ( item.start_date === '' ){ // still no start date
+    if ( ! valid( item.start_date ) ){ // still no start date
 
-      if ( valid( wd.claims.P571 ) ){ // inception
-        item.start_date  = wd.claims.P571[0];
+      if ( valid( wd.claims.P575 ) ){ // time of discovery or invention
+        item.start_date  = wd.claims.P575[0];
       }
 
     }
 
-    if ( item.start_date === '' ){ // still no start date
+    if ( ! valid( item.start_date ) ){ // still no start date
 
-      if ( valid( wd.claims.P575 ) ){ // time of discovery or invention
-        item.start_date  = wd.claims.P575[0];
+      if ( valid( wd.claims.P585 ) ){ // point in time
+        item.start_date  = wd.claims.P585[0];
+
+        if ( ! valid( item.end_date ) ){ // also no end date
+
+          item.end_date  = wd.claims.P585[0];
+
+        }
+      }
+
+    }
+
+    if ( ! valid( item.start_date ) ){ // still no start date
+
+      if ( valid( wd.claims.P2031 ) ){ // work period (start)
+        item.start_date  = wd.claims.P2031[0];
+      }
+
+    }
+
+    if ( ! valid( item.end_date ) ){ // still no end date
+
+      if ( valid( wd.claims.P2032 ) ){ // work period (end)
+        item.end_date  = wd.claims.P2032[0];
       }
 
     }
@@ -1164,6 +1151,20 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
   });
 
+  // if no title was set, try to use the English label instead
+  if ( typeof item.title === undefined || isQid( item.title ) ){
+
+    if ( valid( wd.labels ) ){ // we have some labels
+
+      if ( valid( wd.labels['en'] ) ){
+
+        item.title = wd.labels['en'];
+
+      }
+
+    }
+
+  }
 
   // ------ post processing of fields
 
@@ -1331,5 +1332,3 @@ const taxon_ranks = {
   'Q7432'     : 'species',
   'Q68947'    : 'subspecies',
 }
-
-

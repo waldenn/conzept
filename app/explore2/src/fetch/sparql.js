@@ -83,9 +83,9 @@ async function fetchSparql( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link : encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br/>' ),
+            title_link : encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
 
-            thumb_link: encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" tabIndex="-1" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link: encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         encodeURIComponent( getExploreLink( args, label, qid ) ),
             video_link:           encodeURIComponent( getVideoLink( args, label ) ),

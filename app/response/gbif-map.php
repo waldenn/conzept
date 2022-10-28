@@ -1,6 +1,6 @@
 <?php
 
-  $version  = 'v001';
+  $version  = 'v003';
 
   $language = $_GET['l'];
   $title    = $_GET['t'];
@@ -12,8 +12,9 @@
     <meta charset="utf-8">
     <title>GBIF map: ' . $title . '</title>
 
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" type="text/css">
     <script src="../explore2/dist/core/utils.js?'. $version .'"></script>
+
+    <link rel="stylesheet" href="/app/explore2/css/conzept/css/common.css?v001" type="text/css">
 
     <script>
       setupAppKeyboardNavigation();
@@ -25,7 +26,7 @@
       html, body {
         padding: 0;
         margin: 0;
-        font-family: "Quicksand", sans-serif !important;
+        font-family: "Hind", sans-serif !important;
       }
     </style>
   </head>

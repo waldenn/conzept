@@ -364,6 +364,7 @@ var MolView = {
 				Messages.alert("cir_down");
 			}
 		}, "GLmol");
+
 	},
 
 	/**
@@ -561,4 +562,22 @@ var MolView = {
 $(window).on("load", function()
 {
 	MolView.init();
+
 });
+
+
+function checkGoto(){
+
+	// check if there is a goto-command
+	var goto = getParameterByName( 'goto', window.location ) || '';
+
+	console.log( goto );
+
+	if ( valid( goto ) ){
+
+		var sel = '#' + goto;
+		$( sel ).click();
+
+	}
+
+}

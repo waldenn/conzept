@@ -4,7 +4,7 @@ var wikishootme = {
 
 	sparql_url : 'https://query.wikidata.org/bigdata/namespace/wdq/sparql' ,
 	check_reason_no_image : false ,
-	zoom_level : 17 ,
+	zoom_level : 18 ,
 	opacity : 0.5 ,
 	marker_radius : {
 
@@ -279,6 +279,9 @@ var wikishootme = {
 //			h += "<a href='"+entry.url+"' target='_blank'><img src='" + entry.thumburl + "' border=0 style='max-width:100%' /></a>" ;
 //			h += "</div>" ;
 		} else if ( typeof entry.image != 'undefined' ) {
+
+      //console.log( entry.image, entry.mode );
+
 			h += me.createImageThumbnail ( entry.image, entry ) ;
 			
 			if ( entry.mode == 'commons' ) {
@@ -290,6 +293,8 @@ var wikishootme = {
 			}
 			
 		} else if ( entry.mode == 'wikidata' ) { // Wikidata, no image
+
+      //console.log( entry.image, entry.mode );
 		
 			//h += "<div>" + entry.page + "</div>" ;
 		
@@ -333,6 +338,9 @@ var wikishootme = {
 			}
 			
 		} else if ( entry.mode == 'wikipedia' && typeof entry.server != 'undefined' ) {
+
+      //console.log( entry, entry.mode );
+      // NOTE: article images can be fetched with: https://en.wikipedia.org/w/api.php?format=json&action=query&prop=info|extracts|pageimages|images&inprop=url&exsentences=1&titles=india
 			
 			h += "<div class='pageimage_toload' server='" + entry.server + "' page='" + escattr(entry.page) + "'></div>" ;
 			
@@ -1173,7 +1181,13 @@ var wikishootme = {
 		
 		var tl = me.tile_layers[me.current_tile_layer] ;
 		if ( typeof tl == 'undefined' ) tl = me.tile_layers['osm'] ; // Default fallback
-		var tlo = {attribution: tl.attribution} ;
+
+		var tlo = {
+      attribution: tl.attribution,
+      maxZoom: 20,
+      maxNativeZoom: 18,
+    };
+
 		$.each ( ['subdomains'] , function ( k , v ) {
 			if ( typeof tl[v] == 'undefined' ) return ;
 			tlo[v] = tl[v] ;

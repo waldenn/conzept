@@ -2,7 +2,6 @@
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
 
-
 let nodes;
 let edges;
 let network; // Global variables
@@ -82,9 +81,20 @@ function resetNetwork(start) {
   network.setData(data);
 
   if ( firstAction ){
+
     //console.log('auto-opening node with id: ', tags[0] );
-    expandNode( encodeURIComponent( tags[0] ) ); 
-    firstAction = false;
+    //console.log( tags );
+
+    tags.forEach((element) => { 
+
+      //console.log( element );
+
+      expandNode( encodeURIComponent( element ) ); 
+
+      firstAction = false;
+
+    })
+
   }
 
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>location quiz</title>
+        <link rel='stylesheet' href='css/bootstrap.css' />
+        <link rel='stylesheet' href='css/style.css?v0.01' />
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <!--script type='text/javascript' src='libs/jquery.min.js'></script-->
+        <script src="libs/leaflet.js"></script>
+        <script type='text/javascript' src='js/rnd.js'></script>
+        <script type='text/javascript' src='js/minimap.js'></script>
+        <script type='text/javascript' src='js/roundmap.js'></script>
+
+        <!-- conzept resources -->
+        <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.164" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.164"></script><script src="/app/explore2/dist/core/utils.js?v0.51.164"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+        <script>
+          // keyboard control
+          $(document).keydown(function(event) {
+
+            let key = (event.keyCode ? event.keyCode : event.which);
+
+            //console.log( event, key );
+
+            if ( key == '70' ){ // "f"
+
+              document.toggleFullscreen();
+
+            }
+
+          });
+        </script>
+
+        <script type='text/javascript' src='js/app.js?v0.01'></script>
+    </head>
+    <body>
+        <div id='content'>
+            <div id="roundEnd"></div>
+            <div id="endGame"></div>
+            <div id='scoreBoard'>
+                <span class='round'>Current Round: <b>1/5</b></span><br/>
+                <span class='roundScore'>Last Round Score: <b>0</b></span><br/>
+                <span class='totalScore'>Total Score: <b>0</b></span><br />
+                <!--span><a href="https://github.com/blinry/wikidata-guessr">View project on GitHub</a></span-->
+                <span class='setSize'>set size: <b id="setSize">0</b></span><br />
+                <span style="display:none;">
+                    <select id="mode">
+                        <option value="">Start new game...</option>
+                        <option value="">Any item</option>
+                        <option value="?Q7138926">Parliament buildings</option>
+                        <option value="?Q515">Cities</option>
+                        <option value="?Q570116">Tourist attractions</option>
+                        <option value="?Q8502">Mountains</option>
+                        <option value="?Q204832">Roller coasters</option>
+                        <option value="?Q46169">National Park</option>
+                        <option value="?Q9259">World heritage sites</option>
+                    </select>
+                </span>
+            </div>
+            <div id='miniMap'></div>
+            <div id='guessButton' class="btn btn-large btn-danger"><i class="fa-solid fa-play"></i></div>
+            <img id='image' src='' />
+
+            <span id="copyright-notice" style="display: inline;"><a id="image-source" title="source" aria-label="source" target="_blank" href="" class="underline"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>
+        </div>
+
+    </body>
+</html>

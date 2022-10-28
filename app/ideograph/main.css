@@ -1,0 +1,88 @@
+body {
+  font-family: 'Hind';
+  overflow:hidden;
+  background: #fbfaf9;
+}
+#label {
+  position:absolute;
+  font-weight: bold ;
+  font-size:10px;
+  width: auto !important;
+  background: #e8d00b;
+  border-radius: 0.2em;
+}
+#label a {
+  display: inline-block;
+  width: 100%;
+  white-space: normal;
+  vertical-align: top;
+  padding: 0.2em;
+}
+#countryselector {
+  position:absolute;
+  font-size:11px;
+   top:50px;
+  left:10px;
+  height: calc(100% - 30px);
+  overflow-y: scroll;
+   display: none;
+}
+#groupselector {
+   display: none !important;
+}
+#countryselectorbutton {
+  position:absolute;
+  font-size:11px;
+   top:10px;
+  left:10px;
+  height:30px
+}
+#upgradeGraphButton {
+   display:none;
+}
+#loadinginfo {
+  position:absolute;
+  top:40%;
+  left:40%;
+  padding:20px;
+  background: black;
+   color: azure;
+   display:none;
+   z-index:10000;
+  border-radius: 0.4em;
+}
+#title {
+  position: absolute;
+  right:10px;
+  top:10px;
+  width:200px
+}
+h1 {
+  font-size: 17px;
+   margin-bottom: 0.2em;
+}
+.subtitle {
+  font-size:14px;
+   font-style: italic;
+   margin-bottom: 0.5em;
+}
+.author {
+  font-size:14px;
+   margin-bottom: 0.5em;
+}
+.sourcedocs {
+  font-size:13px;
+   margin-bottom: 0.3em;
+}
+a {
+  color: #0d6c97;
+}
+#label {
+   font-size: 1.5em !important;
+   width: 40vw;
+  border: 2px solid transparent;
+}
+#label:hover {
+  /*border: 2px solid black;*/
+  cursor: pointer;
+}

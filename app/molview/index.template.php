@@ -146,6 +146,24 @@ Query parameters:
 			{
 				window.location = window.location.origin + window.location.pathname + "htmlCanvas";
 			}
+
+      // check if there is a goto-command
+      const goto = getParameterByName( 'goto', window.location ) || '';
+
+      window.addEventListener('load', (event) => {
+
+        if ( valid( goto ) ){
+
+          console.log( goto );
+          let sel = '#' + goto;
+          $( sel ).click();
+
+          checkGoto();
+
+        }
+
+      });
+
 		</script>
 
 	</head>

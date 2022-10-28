@@ -1,3 +1,25 @@
+// CONZEPT PATCH
+let player = '';
+
+window.addEventListener("message", receiveMessage, false);
+
+function receiveMessage(event){
+
+  //console.log('receiveMessage() called: ', event.data.data );
+
+  if ( event.data.event_id === 'goto' ){ // move audio-cursor to time-point
+
+    const start = event.data.data[0];
+
+		player.pause();
+    //player.skipForward( start );
+		player.setCurrentTime( start );
+		player.play();
+
+  }
+
+}
+
 (function ( w, d, PKAE ) {
 	'use strict';
 
@@ -23,7 +45,7 @@
 				})
 			]
 		});
-		this.wavesurfer = wavesurfer;
+		this.wavesurfer = player = wavesurfer;
 
 		var AudioUtils = new app._deps.audioutils ( app, wavesurfer );
 		q.is_ready = false;

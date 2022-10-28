@@ -5,3 +5,11 @@ body {
 .og-popup-content-wrapper, .og-popup-tip {
   background: #fbfaf9 !important;
 }
+
+.og-popup {
+  min-width: 400px;
+  max-width: 60vw;
+
+  min-height: 400px;
+  max-height: 60vh; 
+}

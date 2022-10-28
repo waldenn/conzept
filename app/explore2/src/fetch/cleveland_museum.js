@@ -66,7 +66,7 @@ async function fetchCleveland( args, total_results, page, sortby ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
   */
 
   // see: https://openaccess-api.clevelandart.org
@@ -126,7 +126,7 @@ async function fetchCleveland( args, total_results, page, sortby ){
 
           if ( valid( v.digital_description ) ){
 
-            subtitle2		= '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v.digital_description + '</details>';
+            subtitle2		= '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.digital_description + '</details>';
 
             desc_plain	= v.digital_description;
 

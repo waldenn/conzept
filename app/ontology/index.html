@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html><head>
+<meta name="robots" content="nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+<!-- conzept resources -->
+<link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.213" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.213"></script><script src="/app/explore2/dist/core/utils.js?v0.51.213"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+<!--script type="text/javascript" src="libs/bootstrap.min.js"></script-->
+<!--<script type="text/javascript" src="resources/js/wikidata.js"></script>-->
+<script src="libs/d3.v3.min.js"></script>
+<script src="src/main.js"></script>
+
+</head>
+
+<body>
+
+<!--div id="menubar" class="navbar navbar-static-top" style="display:none;">
+ <div class="navbar-inner">
+  <div class="container">
+  
+    <a class="btn btn-navbar navbar-btn" data-toggle="collapse" data-target=".nav-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </a>
+    
+    <a id="toolname" class="brand" href="?">Wikidata generic tree</a>
+    
+    <ul id="toolbar-right" class="nav pull-right">
+      <li><a href="//tools.wmflabs.org/magnustools">Tools</a></li>
+      <li><a href="//toolserver.org/%7Emagnus">Olde tools</a></li>
+      <li><a href="//bitbucket.org/magnusmanske">Git</a></li>
+      <li><a href="//en.wikipedia.org/wiki/User_talk:Magnus_Manske" id="discuss_link">Talk</a></li>
+      <li><a style="margin:0px;padding:0px;margin-top:4px" href="//tools.wmflabs.org/"><img src="https://upload.wikimedia.org/wikipedia/labs/c/cf/Labslogo_thumb.png" title="Powered by Wikimedia Labs" border="0" width="32px"></a></li>
+    </ul>
+    
+  </div>
+</div>
+</div-->
+
+<div id="main_content" class="container">
+
+<div class="row">
+  <div id='loading' style='display:none;margin-left:5px;padding:2px;color:white;background:red;float:right'></div>
+  <div id='intro'>
+    <p>This tool can generate trees from Wikidata structures, such as subclasses, administrative divisions, and taxons.</p>
+    <p>Examples:
+    <ul>
+    <li><a href='?q=23112&rp=131'>Places in Cambridgeshire</a></li>
+    <li><a href='?q=5113&p=150&rp=171,273,75,76,77,70,71,74,89'>All birds</a> (takes a few seconds)</li>
+    <li><a href='?q=2221906&rp=279'>Location subclasses</a></li>
+    <li><a href='?q=362&rp=361'>Parts of World War II</a> (quite sparse...)</li>
+    </ul>
+    </p>
+    <p>Options:
+    <ul>
+    <li>For small result sets (less than ~250 items), try the <a href='?q=23112&rp=131&method=d3'>d3 "star tree"</a></li>
+    <li>Add "&amp;lang=de" to get German labels, if available (works for all languages)</li>
+    </ul>
+    </p>
+  </div>
+  <div id='tree'></div>
+  <div id='d3_tree'></div>
+  <!--div style='margin-top:5px;padding-top:2px;border-top:1px solid #DDDDDD'>
+    <i>Note:</i> This tool is based on <a href='//wdq.wmflabs.org'>Wikidata query</a>, which means it can be a few minutes behind the current Wikidata state.<br/>
+    If an item has multiple parents, it will be sorted under the "deepest" parent, as more specific placements appear to be more useful.<br/>
+    Options : depth=<i>number</i>
+  </div-->
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <title>conzept chess</title>
+
+    <!-- conzept resources -->
+    <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.164" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.164"></script><script src="/app/explore2/dist/core/utils.js?v0.51.164"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+    <script>
+      // keyboard control
+      $(document).keydown(function(event) {
+
+        let key = (event.keyCode ? event.keyCode : event.which);
+
+        //console.log( event, key );
+
+        if ( key == '70' ){ // "f"
+
+          document.toggleFullscreen();
+
+        }
+
+      });
+    </script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./assets/styles/cm-chessboard.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="chessboard-1.0.0.min.css" type="text/css" />
+  </head>
+  <body class="d-flex flex-column h-100">
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+      <div class="container">
+        <h1 class="mt-2">Chess <small><span id="subtitle"></span></small></h1>
+
+        <p class="lead">Status: <span id="uiState"></span></p>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control fw-light" id="fen" />
+          <button class="btn btn-outline-secondary" id="copyFEN" type="button">
+            Copy FEN
+          </button>
+          <button class="btn btn-outline-secondary" id="setFEN" type="button">
+            Set FEN
+          </button>
+        </div>
+        <div id="board" style="width: 100%"></div>
+
+        <div>
+          <div class="my-2 d-flex">
+            <button
+              type="button"
+              class="btn btn-outline-danger me-2"
+              id="reset"
+            >
+              Reset
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary me-2"
+              id="takeBack"
+            >
+              Take Back
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-primary me-2"
+              id="makeMove"
+            >
+              AI Move
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-primary me-4"
+              id="flipBoard"
+            >
+              Flip
+            </button>
+            <div class="flex-grow-1 d-sm-flex d-none">
+              <div class="input-group">
+                <label class="input-group-text" for="inputGroupSelect01"
+                  >Thinking time:</label
+                >
+                <select class="form-select" id="thinkingTime">
+                  <option selected value="1">1s</option>
+                  <option value="3">3s</option>
+                  <option value="5">5s</option>
+                  <option value="10">10s</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="flex-grow-1 d-sm-none d-flex">
+            <div class="input-group">
+              <label class="input-group-text" for="inputGroupSelect01"
+                >Thinking time:</label
+              >
+              <select class="form-select" id="thinkingTime">
+                <option selected value="1">1s</option>
+                <option value="3">3s</option>
+                <option value="5">5s</option>
+                <option value="10">10s</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted"
+          >Made with ❤️ by Gavin. <br />
+          <a href="https://github.com/Strryke/betafish">View source</a></span
+        >
+      </div>
+    </footer>
+  </body>
+  <script src="./js/betafish.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  <!--script src="./js/io2.js"></script-->
+</html>

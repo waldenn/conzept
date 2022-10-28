@@ -479,30 +479,6 @@ const wp_languages = {
     },
     "qid": "13389"
   },
-  "bal": {
-    "name": "Balochi",
-    "namelocal": "بلۏچی,",
-    "script": "Arab",
-    "iso3": "",
-    "iptv": "",
-    "voice": "en-GB",
-    "users": 0,
-    "title": "Balochi Wikipedia",
-    "librivox": "",
-    "namespaces": {
-      "talk": "Talk",
-      "category": "Category",
-      "portal": "Portal",
-      "book": "Book"
-    },
-    "articles": {
-       "current_events": ""
-    },
-   "templates": {
-      "seemore": ""
-    },
-    "qid": "33049"
-  },
   "bar": {
     "name": "Bavarian",
     "namelocal": "Boarisch",
@@ -4324,6 +4300,29 @@ const wp_languages = {
       "seemore": ""
     }
   },
+  "nia": {
+    "name": "Nia",
+    "namelocal": "Li Niha",
+    "script": "Latn",
+    "iso3": "new",
+    "iptv": "",
+    "voice": "",
+    "users": 1,
+    "title": "Nia Wikipedia",
+    "librivox": "",
+    "namespaces": {
+      "talk": "Huhuo",
+      "category": "Kategori",
+      "portal": "Portal",
+      "book": "Book"
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
   "nl": {
     "name": "Dutch",
     "namelocal": "Nederlands",
@@ -4679,7 +4678,7 @@ const wp_languages = {
       "seemore": ""
     }
   },
-  "m": {
+  "pam": {
     "name": "Kapampangan",
     "namelocal": "",
     "script": "Latn",

@@ -284,13 +284,12 @@ class GBIFMap extends HTMLElement {
 			<link rel="stylesheet" href="/app/explore2/css/various/openlayers.css">
 			<link rel="stylesheet" href="/app/explore2/css/various/ol-ext.css" type="text/css">
 			<link rel="stylesheet" href="/app/explore2/css/various/climatemaps.css" type="text/css">
-      <link rel="preload" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" crossorigin="anonymous"/>
-      <link rel="preload" href="/assets/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" crossorigin="anonymous"/>
+			<link rel="stylesheet" href="/app/explore2/css/conzept/css/common.css?v001" type="text/css">
 
       <style>
 
       html, body {
-        font-family: Quicksand;
+        font-family: Hind;
       }
 
       canvas {
@@ -328,7 +327,7 @@ class GBIFMap extends HTMLElement {
       }
 
       .ol-layerswitcher {
-        font-family: Quicksand !important;
+        font-family: Hind !important;
       }
 
       .ol-control.ol-layerswitcher .panel {
@@ -521,6 +520,7 @@ class GBIFMap extends HTMLElement {
 			//center: ol.proj.transform([25, 20], 'EPSG:4326', 'EPSG:3857'),
 			center: ol.proj.fromLonLat([ longitude, latitude]),
 			zoom: zoom,
+      enableRotation: false,
 		})
 
     if ( gbifCountry !== '' ){ // fit zoom to country borders
@@ -632,17 +632,19 @@ class GBIFMap extends HTMLElement {
     //addHardinessZones();
     //addLakes();
     //addPopulation();
+
     addOSM();
     addSatellite();
     addReefs();
     addUrbanizations();
+
     //addIntactForestLandscapes2016();
     //addLight();
-    addWind();
-    addPrecipitation();
-    addMaxTemp();
-    addMinTemp();
-    addMeanTemp();
+    //addWind();
+    //addPrecipitation();
+    //addMaxTemp();
+    //addMinTemp();
+    //addMeanTemp();
     addRivers();
     addGrid();
     addGeographies();

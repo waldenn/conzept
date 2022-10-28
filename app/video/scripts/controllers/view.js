@@ -1,6 +1,25 @@
 /**
  * The controller used when viewing an individual video.
  */
+
+let player = '';
+
+window.addEventListener("message", receiveMessage, false);
+
+function receiveMessage(event){
+
+  //console.log('receiveMessage() called: ', event.data.data );
+
+  if ( event.data.event_id === 'goto' ){ // move video-cursor to this point
+
+    const start = event.data.data[0];
+
+    player.seekTo( start );
+
+  }
+
+}
+
 tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtube', function($scope, $routeParams, $location, youtube) {
 
   $scope.location = $location; // Access $location inside the view.
@@ -93,7 +112,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
 
     //console.log( starttime, endtime );
 
-    var player = new YT.Player('player', {
+      player = new YT.Player('player', {
       'videoId': id,
       'playerVars': {
         'autoplay': 1,
@@ -115,9 +134,25 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
         },
         'onStateChange': function (event) {
 
-          if (event.data === 0) {          
-            console.log('video play ended');
-            parent.postMessage({ event_id: 'next-presentation-slide', data: { } }, '*' );
+          if (event.data === 0) {
+
+            // console.log('video play ended');
+
+            goWander = getParameterByName('wander') || false;
+
+            if ( goWander ){
+
+              //console.log('video ended: go to next topic-stream video');
+
+              parent.postMessage({ event_id: 'next-wander-video', data: {  } }, '*' );
+
+            }
+            else { // check for next presentation-slide (may not be needed)
+
+              parent.postMessage({ event_id: 'next-presentation-slide', data: { } }, '*' );
+
+            }
+
           }
 
           if (event.data == 1) {
@@ -150,6 +185,7 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
         }
       }
     });
+
   };
 
   $scope.getLink = function(video) {
@@ -159,4 +195,5 @@ tooglesApp.controller('ViewCtrl', ['$scope', '$routeParams', '$location', 'youtu
   $scope.averageRating = function(likeCount, dislikeCount) {
     return youtube.averageRating(likeCount, dislikeCount);
   }
+
 }]);

@@ -41,7 +41,7 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
   });
 
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   let page_size = 20;
   let offset    = 0;
@@ -134,7 +134,7 @@ async function fetchPaintings( args, total_results, page, sortby ){
             }
             else {
 
-              desc = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v.itemDescription.value + '</details>';
+              desc = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.itemDescription.value + '</details>';
 
               desc_plain = v.itemDescription.value;
 
@@ -168,7 +168,7 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
             subtitle2 =
               '<div class="mv-extra-desc">' +
-                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author, qid: author_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></a> ' +
+                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author, qid: author_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
                '<a href="javascript:void(0)" class="" title="author" aria-label="author"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: author_qid, title: author } ) ) + '>' + author + '</a>' + 
               '</div>';
 

@@ -15,8 +15,11 @@
     <script src="../explore2/libs/TinyGesture.js"></script>
     <script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js"></script>
 
-    <link rel="stylesheet" href="styles/vendor.css?0.12">
-    <link rel="stylesheet" href="styles/main.css?0.12">
+    <a href="javascript:void(0)" id="wander-to-previous" style="display:none;" title="view previous video"><i class="fas fa-left-long fa-2x"></i></a>
+    <a href="javascript:void(0)" id="wander-to-next" style="display:none;" title="view next video"><i class="fas fa-right-long fa-2x"></i></a>
+
+    <link rel="stylesheet" href="styles/vendor.css?0.15">
+    <link rel="stylesheet" href="styles/main.css?0.15">
 
 </head>
 <body id="video-app" ng-app="tooglesApp" ng-class="{dark: darkmode}">
@@ -67,12 +70,11 @@
             $('body.ng-scope').addClass('dark');
             $("#infoframe").contents().find("body").addClass('dark');
           }
-          else {
+          else { // bright mode
             $('#theme-switch').prop('aria-checked', false);
             $('body.ng-scope').removeClass('dark');
             $("#infoframe").contents().find("body").removeClass('dark');
           }
-
 
         })()
 

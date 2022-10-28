@@ -10,6 +10,9 @@ body, html {
   margin: 0;
   color: #777;
 
+  background-color: black;
+  overflow: hidden;
+
   position: relative;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -69,6 +72,7 @@ a:hover {
   font-size: 2.5em;
   background-color: #1116;
   color: #fff;
+  box-shadow: 0 14px 14px 0 transparent,0 12px 13px #0000003b;
   /* padding: 1.6vw; */
   font-weight: bold;
   border: 3px solid;
@@ -82,6 +86,7 @@ a:hover {
 }
 
 #copyright-notice {
+  display: none;
   position: absolute;
   z-index: 1000;
   color: white;
@@ -109,6 +114,19 @@ h3 {
   left: 0em;
   font-size: initial;
   top: calc( 50% - 2.7em);
+}
+
+canvas {
+  display: block;
+  /*cursor: pointer;*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(1.1);
+  /*filter: sepia(10%);*/
+  width: 100vw;
+  height: 100vh;
 }
 
 @media only screen and (max-width:1300px) {

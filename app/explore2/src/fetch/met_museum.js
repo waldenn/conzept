@@ -72,7 +72,7 @@ async function fetchMET( args, total_results, page, sortby ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
   */
 
   // see:
@@ -196,7 +196,7 @@ async function fetchMET( args, total_results, page, sortby ){
 				              let wiki_url = encodeURIComponent( JSON.stringify( '/app/wikipedia/?t=&qid=' + c_qid + '&l=' + explore.language + '&voice=' + explore.voice_code ) );
 
                       constituents += '<div class="mv-extra-desc">' +
-                          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore constituent" aria-label="explore constituent"' + setOnClick( Object.assign({}, args, { type: 'explore', title: c_name, qid: c_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore constituent" aria-label="explore constituent"' + setOnClick( Object.assign({}, args, { type: 'explore', title: c_name, qid: c_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
                           '<a href="javascript:void(0)" class="mv-extra-icon" title="constituent info" aria-label="constituent info"' + setOnClick( Object.assign({}, args, { type: 'link', title: c_name, url: wiki_url, qid: c_qid, language : explore.language } ) ) + '">' + c_name + '</a>' + c_role +
                         '</div>';
 
@@ -213,7 +213,7 @@ async function fetchMET( args, total_results, page, sortby ){
 
                   subtitle =
                     '<div class="mv-extra-desc">' +
-                      '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.artistDisplayName, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></a> ' +
+                      '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.artistDisplayName, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
                      '<a href="javascript:void(0)" class="" title="author" aria-label="author"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.metmuseum.org/art/collection/search#!?q=' + encodeURIComponent( v.artistDisplayName ) + '&perPage=20&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&searchField=ArtistCulture', title: v.artistDisplayName } ) ) + '>' + v.artistDisplayName + '</a>' + 
                     '</div>';
 
@@ -245,7 +245,7 @@ async function fetchMET( args, total_results, page, sortby ){
 
                 }
 
-                //constituents  = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + constituents + '</details>';
+                //constituents  = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + constituents + '</details>';
 
                 obj[ 'label-' + i ] = {
 

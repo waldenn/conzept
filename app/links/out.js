@@ -1,19 +1,9 @@
 const isTouchDevice = 'd' in document.documentElement;
 
-document.toggleFullscreen = function() {
-
-  if (screenfull.enabled) {
-    screenfull.toggle();
-  }
-
-  return 0;
-
-};
-
 window.gotoArticle = function( qid ){
   //console.log( 'qid: ', qid );
 
-	var url = '/app/wikipedia/?t=&l=' + window.getParameterByName('l') + '&qid=' + qid ;
+	var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=&l=' + window.getParameterByName('l') + '&qid=' + qid ;
 
 	window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } }, '*' );
  
@@ -487,16 +477,27 @@ function expandNode(page) {
   page = page.replace('%3A', ':');
 
   //console.log( page );
-  //console.log( nodes );
+  //console.log( 'nodes: ', nodes );
+  //console.log( 'test: ', page, nodes._data.Crime );
+  //console.log( 'test2: ', nodes.get( page ) );
 
-  //if ( nodes.get(page) !== null ){
+  //if ( nodes.get(page) !== null 
+  if ( valid( nodes._data[ page ] ) ){
 
-    const label = nodes.get( page ).label;
-
-    const pagename = unwrap(label);
+    //console.log( 'page found in nodes: ', page );
+    const label     = nodes.get( page ).label;
+    const pagename  = unwrap(label);
+    console.log( 'label: ', label);
+    console.log( 'pagename: ', pagename);
     getSubPages(pagename).then(data => expandNodeCallback(page, data));
 
-  //}
+  }
+  else { // TOFIX: something prevents the item from being rendered normally, why?
+    //console.log( 'page not found in nodes: ', page, nodes );
+    console.log('warning: ', page, nodes.get( page ), nodes );
+    //console.log( 'page not found in nodes: ', page, decodeURIComponent( page ), nodes );
+    getSubPages( unwrap( page ) ).then(data => expandNodeCallback( decodeURIComponent( page ), data));
+  }
 
 }
 
@@ -566,7 +567,6 @@ function traceBack(node) {
 /* global vis, bindNetwork, getNeutralId, wordwrap, getColor, noInputDetected, getItems, clearItems, addItem, getPageName, getRandomArticle, networkFromJson */ // eslint-disable-line max-len
 // This script contains the code that creates the central network, as well as
 // a function for resetting it to a brand new page.
-
 
 let nodes;
 let edges;
@@ -647,9 +647,20 @@ function resetNetwork(start) {
   network.setData(data);
 
   if ( firstAction ){
+
     //console.log('auto-opening node with id: ', tags[0] );
-    expandNode( encodeURIComponent( tags[0] ) ); 
-    firstAction = false;
+    //console.log( tags );
+
+    tags.forEach((element) => { 
+
+      //console.log( element );
+
+      expandNode( encodeURIComponent( element ) ); 
+
+      firstAction = false;
+
+    })
+
   }
 
 }
@@ -942,7 +953,7 @@ function expandEvent(params) { // Expand a node (with event handler)
       //var link_href = './' + connected_nodes[1].replace(/ /g, '_');;
 
       // show wikipedia page and mark the line where the link first occurs
-      var url = '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
+      var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
 
       window.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: link_href } }, '*' );
 
@@ -953,6 +964,8 @@ function expandEvent(params) { // Expand a node (with event handler)
 	}
 
   if (params.nodes.length) { // Did the click occur on a node?
+
+    //console.log( params.nodes );
 
     const page = params.nodes[0]; // The id of the node clicked
 
@@ -975,7 +988,7 @@ function expandEvent(params) { // Expand a node (with event handler)
 
         title = title.replace(/\{\}/g, '');
 
-        var url = '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
+        var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: '' } }, '*' );
 
         //window.parent.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia-side', title: title, hash: '', language: '', qid: '', ids: '' } }, '*');
@@ -1201,17 +1214,105 @@ function loadSaved() {
 		window.language = getParameterByName('l') || 'en';    
 		tags = getParameterByName('t') || '';    
 
-		//console.log( language, tags );
+    // optional: use Qids -> titles
+    let qid_titles = []
+		let qids = getParameterByName('q') || '';
+		qids = qids.split(',');
 
-		tags = tags.split(',');
+    //console.log( qids, qids.length );
 
-		$.each( tags, function( i, tag ){
+		if ( qids.length > 0 && valid( qids[0] ) ){
 
-			addItem( document.getElementById('input'), decodeURIComponent( tag ) )
+			// clear any title-tag data, use only Qids now
+			tags = '';
 
-		});
+			var promiseB = fetchLabel( qids, window.language ).then( function( result ) {
 
-		$('#submit').trigger('click');
+				let label = '';
+
+			  //console.log( result );
+        
+        Object.values( result.entities ).forEach( value => {
+
+          //console.log( val );
+
+          if ( valid( value.labels[ window.language ] ) ){ // with label
+
+            label = value.labels[ window.language ].value;
+
+            // wrong!
+            //qid_titles.push( label.charAt(0).toUpperCase() + label.slice(1) );
+
+            //console.log( 'label: ', label );
+
+            // get the sitelink-data for this language, to get the correct Wikipedia title
+            
+						let promises = [];
+
+						$.each(qids, function(k, q) {
+
+							promises.push(
+
+								$.ajax({
+
+									url: 'https://www.wikidata.org/wiki/Special:EntityData/' + q + '.json',
+									jsonp: "callback",
+									dataType: "json",
+
+									success: function( response ) {
+
+										//console.log( response.entities[ q ].sitelinks[ window.language + 'wiki' ] );
+
+										if ( valid( response.entities[ q ].sitelinks[ window.language + 'wiki' ] ) ){
+
+											const wp_title = response.entities[ q ].sitelinks[ window.language + 'wiki' ].title;
+											//console.log( wp_title );
+
+											qid_titles.push( wp_title );
+
+											//console.log( qid_titles );
+
+										}
+
+									},
+
+								}),
+
+							);
+
+						});
+
+						$.when.apply($, promises).then(function() {
+
+							//console.log('all promises are done');
+              //console.log( qid_titles );
+
+              // set the Qid tags
+              tags = qid_titles.join(',');
+
+              //console.log( language, tags );
+
+              doRender();
+
+						});
+
+          }
+          else {
+
+            console.log('warning: no label found for Qids: ', qids );
+
+          }
+
+        });
+
+			});
+
+		}
+    else { // use non-Qid title tags
+
+      doRender();
+
+    }
 
     //expandNode( encodeURIComponent( tags[0] );
 
@@ -1235,6 +1336,19 @@ function loadSaved() {
 }
 
 
+function doRender() {
+
+  tags = tags.split(',');
+
+  $.each( tags, function( i, tag ){
+
+    addItem( document.getElementById('input'), decodeURIComponent( tag ) )
+
+  });
+
+  $('#submit').trigger('click');
+
+}
 // Tiny library for presenting modal dialogs. Example usage:
 /*
 <div id="popup">

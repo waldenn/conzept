@@ -136,9 +136,20 @@ wikibase.queryService.ui.resultBrowser.BubbleChartResultBrowser = ( function( $,
 				function( d ) {
 					return d.className.substring( 0, d.r / 4 );
 				} ).on( 'click', function( d ) {
-			if ( d.url ) {
-				window.open( d.url, '_blank' );
-			}
+
+      // CONZEPT PATCH START
+
+			//if ( d.url ) {
+			//	window.open( d.url, '_blank' );
+			//}
+
+			var qid   = d.url.replace('http://www.wikidata.org/entity/Q', '');
+			var l     = getParameterByName( 'l', window.location );
+			var url   = '/app/wikipedia/?t=&l=' + l + '&qid=' + qid;
+
+			window.top.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } } );
+      // CONZEPT PATCH END
+
 		} ).style( 'fill', function( d ) {
 			if ( d.color ) {
 				return self._getFormatter().calculateLuminance( d.color ) <= 0.5 ? '#FFF' : '#000';

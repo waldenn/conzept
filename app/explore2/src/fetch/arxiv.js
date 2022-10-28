@@ -217,7 +217,7 @@ async function fetchArxiv( args, total_results, page, sortby ){
   
   });
 
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   $.when( arxiv_search( { all: keyword }, offset_start, offset_end, sortby ) ).then( function( json ) {
 
@@ -259,7 +259,7 @@ async function fetchArxiv( args, total_results, page, sortby ){
         //  https://github.com/dginev/ar5iv
         let pdf_html_url = 'https://conze.pt/app/cors/raw/?url=' + encodeURIComponent( url_tmp.replace('/arxiv\.org/', '/ar5iv.org/') );
 
-        pdf_html_link = '&nbsp;&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="view PDF as HTML" aria-label="view PDF as HTML"' + setOnClick( Object.assign({}, args, { type: 'link', url: pdf_html_url, title: '', qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fab fa-html5" style="position:relative;"></i></span></a>';
+        pdf_html_link = '&nbsp;&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="view PDF as HTML" aria-label="view PDF as HTML"' + setOnClick( Object.assign({}, args, { type: 'link', url: pdf_html_url, title: '', qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-brands fa-html5" style="position:relative;"></i></span></a>';
 
       }
 
@@ -309,7 +309,7 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
 					authors_html += '<div class="mv-extra-desc">' +
 
-							'<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+							'<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
 
 							'<a href="javascript:void(0)" class="mv-extra-icon" title="author search" aria-label="author search" onclick="openInNewTab( &quot;' + author_url + '&quot;)" onauxclick="openInNewTab( &quot;' + author_url + '&quot;)"> ' + decodeURIComponent( author_name ) + '</a>' +
 

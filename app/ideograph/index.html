@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>IdeoGraph - explorer of ideologies and political parties</title>
+        <meta name="description" content="explorer of ideologies and political parties on WikiData">
+        <meta name="theme-color" content="#000000">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="IdeoGraph"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://ourednik.info/ideograph"/>
+        <meta property="og:image" content="https://ourednik.info/ideograph/img/ideograph_environmentalism_Asia.jpg"/>
+        <meta property="og:description" content="explorer of ideologies and political parties on WikiData"/>      
+        <!--link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Maven Pro"-->
+        <link rel="stylesheet" href="main.css"-->
+
+        <!-- conzept resources -->
+        <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.213" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.213"></script><script src="/app/explore2/dist/core/utils.js?v0.51.213"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+
+    </head>
+    <body class="fullscreen" style="background: #fbfaf9;">
+        <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default"></script> -->
+        <div id="title">
+            <!--h1>IdeoGraph</h1-->
+            <!--div class="subtitle">explorer of ideologies and political parties on WikiData</div-->
+            <div class="author">Author: <a href="https://ourednik.info">André Ourednik</a> (<a href="https://ourednik.info/maps/2021/08/13/ideograph-explore-ideologies-of-political-parties-with-spaqrl-requests-to-wikidata-d3-and-pixijs/">info</a>, <a href="https://github.com/waldenn/ideograph">code</a>)</div>
+            <!--div class="sourcedocs">Source : WikiData (live requests to SPARQL endpoint)</div>
+            <div class="sourcedocs"><a href="https://ourednik.info/maps/2021/08/13/ideograph-explore-ideologies-of-political-parties-with-spaqrl-requests-to-wikidata-d3-and-pixijs/" target="_blank">Documentation</a></div-->
+        </div>
+        <div id="label"><a></a></div>
+        <div id="countryselectorbutton">
+            <div>
+            <input type="button" value="Unselect All" onclick="unSelectAllCountries()"  style="left: 0px; top: 10px;font-family: inherit; display:none;">
+            <input id="upgradeGraphButton" type="button" value="Update Graph" onclick="updateGraph()" style="left: 50px;
+            top: 10px;font-family: inherit;">
+            <button type="submit" label="freeze graph motion" onclick="simulation.stop()"  style="left: 100px; top: 10px;font-family: inherit;"><i class="fas fa-lock"></i></button>
+            </div>
+            <!--div id="groupSelector">
+                <a href="#" onClick="selectGroupAndUpdate(Europe)">Europe (democracies only)</a>
+                <a href="#" onClick="selectGroupAndUpdate(subsaharanAfrica)">Sub-Saharan Africa</a>
+                <a href="#" onClick="selectGroupAndUpdate(Asia)">Asia (without Russia)</a>
+                <a href="#" onClick="selectGroupAndUpdate(CanadaAndUS)">USA and Canada</a>
+                <a href="#" onClick="selectGroupAndUpdate(LatinAmerica)">Latin America</a>
+                <a href="#" onClick="selectGroupAndUpdate(RussiaAndBelarus)">Russia and Belarus</a>
+                <a href="#" onClick="selectGroupAndUpdate(NorthAfrica)">North Africa</a>
+                <a href="#" onClick="selectGroupAndUpdate(Oceania)">Oceania</a>
+            </div-->
+        </div>
+        <div id="countryselector"></div>
+        <div id="loadinginfo" style="">
+            <!--div id="loadingCountries" style="display: none;">Loading list of countries...</div-->
+            <!--div id="countriesLoaded" style="display: none;">Countries loaded.</div-->
+            <div id="loadingGraph" style="display: none;">Loading data from Wikidata...</div>
+            <div id="constructingGraph" style="display: none;"></div>
+            <div id="updatingGraph" style="display: none;"></div>
+        </div>
+        <script src="lib/d3.v5.min.js"></script>
+        <!--script src="https://d3js.org/d3.v5.min.js"></script-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script> -->
+        <script src="lib/pixi.min.js"></script>
+        <script src="lib/viewport.min.js"></script>
+        <script src="lib/papaparse.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>

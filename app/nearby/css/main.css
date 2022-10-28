@@ -108,3 +108,7 @@ div.popup_section {
 .leaflet-left .leaflet-control {
   margin-left: 0px !important;
 }
+
+.coordinates {
+  display: none;
+}

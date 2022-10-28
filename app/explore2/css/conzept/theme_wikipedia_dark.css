@@ -219,6 +219,10 @@ body.dark .infobox {
   background-color: white !important;
 }
 
+body.dark .quotebox {
+  background-color: #121212;
+}
+
 body.dark blockquote, body.dark .poem, body.dark .templatequote {
   font-weight: normal;
 }

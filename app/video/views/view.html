@@ -4,7 +4,8 @@
       <div class="medium-2 columns">
 
         <script>
-          var goBack = function(){
+
+         var goBack = function(){
 
             if (window.parent != window.top) { // embedded iframe
 
@@ -29,6 +30,42 @@
             }
 
           }
+
+          // detect parameter to widen video elemement
+          goWide = getParameterByName('wide') || false;
+          goWander = getParameterByName('wander') || false;
+
+          // set wide-video-mode through body CSS tag
+          if ( goWide ){
+            $('body').addClass('wide black');
+
+            // clean up CSS
+            $('.sidebar').hide();
+            $('.container.row.ng-scope').hide();
+
+            $('.flex-video').appendTo('body'); // move the video element
+            $('.flex-video').css({
+              'width'     : '100vw',
+              'position'  : 'initial',
+            });
+
+            $('body').css({
+              'overflow-y' : 'hidden',
+            });
+
+          }
+
+          if ( goWide ){
+
+            // show wander buttons
+            $('#wander-to-next').show();
+            $('#wander-to-previous').show();
+
+          }
+
+          $('#wander-to-next').click(function(event) { window.top.postMessage({ event_id: 'next-wander-video', data: {  } }, '*' ); });
+          $('#wander-to-previous').click(function(event) { window.top.postMessage({ event_id: 'previous-wander-video', data: {  } }, '*' ); });
+
         </script>
 
         <a title="go back" class="toggle-menu" onclick="goBack();"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></a>

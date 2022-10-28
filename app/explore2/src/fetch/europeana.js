@@ -40,10 +40,16 @@ async function fetchEuropeana( args, total_results, page, sortby ){
 
   let sort_select         = '';
   let sort_select_options = '';
-  let sort_types          = {
-    score         : 'relevance',
-    timestamp     : 'newest first',
-    COMPLETENESS  : 'completeness',
+  let sort_types          = { // see: https://pro.europeana.eu/page/search
+    score             : 'relevance',
+    timestamp_created : 'newest first',
+    timestamp_update  : 'update time',
+    COMPLETENESS      : 'completeness',
+    europeana_id      : 'item ID',
+    random            : 'random',
+    is_fulltext       : 'is_fulltext',
+    has_media         : 'has_media',
+    has_thumbnails    : 'has_thumbnails',
   };
 
   $.each( Object.keys( sort_types ), function ( i, type ) {
@@ -60,7 +66,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   let start_item = ( (page - 1) * page_size ) + 1;
 
@@ -186,7 +192,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
           }
           else {
 
-            desc  += '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v.dcDescription[0] + '</details>';
+            desc  += '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.dcDescription[0] + '</details>';
 
             desc_plain = encodeURIComponent( v.dcDescription[0] );
 
@@ -222,7 +228,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
               let author_url  = '/app/wikipedia/?t=' + author_name + '&l=' + explore.language + '&voice=' + explore.voice_code;
 
               authors += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fas fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
                   '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
                 '</div>';
 
@@ -254,7 +260,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
               // create IIIF-viewer-link
               let coll = { "images": [ ]};
 
-              coll.images.push( [ img, label, desc_plain, authors_plain + '<br/>', provider ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
+              coll.images.push( [ img, label, desc_plain, authors_plain + '<br>', provider ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
 
               if ( coll.images.length > 0 ){ // we found some images
 

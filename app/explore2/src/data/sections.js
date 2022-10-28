@@ -1,41 +1,41 @@
 const sections = {
 
-'main': {
-  'icon'  : '',
-},
+  'main': {
+    'icon'  : '',
+  },
 
-'info': {
-  'icon'  : '',
-},
+  'info': {
+    'icon'  : '',
+  },
 
-'meta': {
-  'icon'  : '',
-},
+  'meta': {
+    'icon'  : '',
+  },
 
-'media': {
-  'icon'  : '',
+  'media': {
+    'icon'  : '',
 
-  'sub'		: {
+    'sub'		: {
 
-    'media-video': {
-      'icon' : 'fas fa-video',
-    },
+      'media-image': {
+        'icon' : 'fa-regular fa-images',
+      },
 
-    'media-image': {
-      'icon' : 'far fa-images',
-    },
+      'media-video': {
+        'icon' : 'fa-solid fa-video',
+      },
 
-    'media-audio': {
-      'icon' : 'fas fa-volume-up',
-    },
+      'media-audio': {
+        'icon' : 'fa-solid fa-volume-up',
+      },
 
-    'media-software': {
-      'icon' : 'far fa-window-restore',
+      'media-software': {
+        'icon' : 'fa-regular fa-window-restore',
+      },
+
     },
 
   },
-
-},
 
 
   'library': {
@@ -44,31 +44,35 @@ const sections = {
 		'sub'		: {
 
 			'library-general': {
-				'icon' : 'fas fa-book-open',
+				'icon' : 'fa-solid fa-book-open',
 			},
 
 			'library-identity': {
-				'icon' : 'fas fa-barcode',
+				'icon' : 'fa-solid fa-barcode',
 			},
 
 			'library-manuscripts': {
-				'icon' : 'fas fa-scroll',
+				'icon' : 'fa-solid fa-scroll',
 			},
 
 			'library-history': {
-				'icon' : 'fas fa-hourglass-half',
+				'icon' : 'fa-solid fa-hourglass-half',
 			},
 
 			'library-religion': {
-				'icon' : 'fas fa-dharmachakra',
+				'icon' : 'fa-solid fa-dharmachakra',
+			},
+
+			'library-poetry': {
+				'icon' : 'fa-solid fa-heart',
 			},
 
 			'library-legal': {
-				'icon' : 'fas fa-gavel',
+				'icon' : 'fa-solid fa-gavel',
 			},
 
 			'library-products': {
-				'icon' : 'fas fa-blender-phone',
+				'icon' : 'fa-solid fa-blender-phone',
 			},
 
     },
@@ -85,51 +89,55 @@ const sections = {
 		'sub'		: {
 
 			'science-search-tools': {
-				'icon' : 'fas fa-search',
+				'icon' : 'fa-solid fa-search',
 			},
 
 			'science-open-journals': {
-				'icon' : 'fas fa-unlock-alt',
+				'icon' : 'fa-solid fa-unlock-alt',
 			},
 
 			'science-closed-journals': {
-				'icon' : 'fas fa-lock',
+				'icon' : 'fa-solid fa-lock',
 			},
 
 			'science-news': {
-				'icon' : 'fas fa-rss',
+				'icon' : 'fa-solid fa-rss',
 			},
 
 			'science-language': {
-				'icon' : 'fas fa-language',
-			},
-
-			'science-biology': {
-				'icon' : 'fab fa-pagelines',
-			},
-
-			'science-medical': {
-				'icon' : 'fas fa-laptop-medical',
-			},
-
-			'science-chemistry': {
-				'icon' : 'fas fa-flask',
-			},
-
-			'science-minerology': {
-				'icon' : 'far fa-gem',
+				'icon' : 'fa-solid fa-language',
 			},
 
 			'science-mathematics': {
-				'icon' : 'fas fa-square-root-alt',
+				'icon' : 'fa-solid fa-square-root-alt',
+			},
+
+			'science-biology': {
+				'icon' : 'fa-brands fa-pagelines',
+			},
+
+			'science-medical': {
+				'icon' : 'fa-solid fa-laptop-medical',
+			},
+
+			'science-chemistry': {
+				'icon' : 'fa-solid fa-flask',
+			},
+
+			'science-minerology': {
+				'icon' : 'fa-regular fa-gem',
+			},
+
+			'science-archeology': {
+				'icon' : 'fa-solid fa-archway',
 			},
 
 			'science-astronomy': {
-				'icon' : 'far fa-sun',
+				'icon' : 'fa-regular fa-sun',
 			},
 
 			'science-datasets': {
-				'icon' : 'fas fa-hockey-puck',
+				'icon' : 'fa-solid fa-hockey-puck',
 
         'sub'		: {
 
@@ -172,6 +180,27 @@ const sections = {
 
   'government': {
     'icon'  : '',
+
+		'sub'		: {
+
+			'government-general': {
+				'icon' : 'fa-solid fa-flag',
+			},
+
+			'government-legislature': {
+				'icon' : 'fa-solid fa-section',
+			},
+
+			'government-executive': {
+				'icon' : 'fa-solid fa-landmark-flag',
+			},
+
+			'government-judicial': {
+				'icon' : 'fa-solid fa-gavel',
+			},
+
+    },
+
   },
 
   'business': {
@@ -184,15 +213,23 @@ const sections = {
 		'sub'		: {
 
 			'location-geography': {
-				'icon' : 'fas fa-globe-americas',
+				'icon' : 'fa-solid fa-globe-americas',
+			},
+
+			'location-demography': {
+				'icon' : 'fa-solid fa-globe',
+			},
+
+			'location-ecology': {
+				'icon' : 'fa-solid fa-recycle',
 			},
 
 			'location-travel': {
-				'icon' : 'fas fa-hiking',
+				'icon' : 'fa-solid fa-hiking',
 			},
 
 			'location-real-estate': {
-				'icon' : 'fas fa-home',
+				'icon' : 'fa-solid fa-home',
 			},
 
     },
@@ -205,20 +242,20 @@ const sections = {
 		'sub'		: {
 
       'society-events': {
-        'icon'  : 'far fa-calendar-alt',
+        'icon'  : 'fa-regular fa-calendar-alt',
       },
 
       'society-sports': {
-        'icon'  : 'fas fa-biking',
+        'icon'  : 'fa-solid fa-biking',
         //'hide'  : true,
       },
 
       'society-food': {
-        'icon'  : 'fas fa-utensils',
+        'icon'  : 'fa-solid fa-utensils',
       },
 
       'society-shopping': {
-        'icon'  : 'fas fa-shopping-bag',
+        'icon'  : 'fa-solid fa-shopping-bag',
       },
 
     }

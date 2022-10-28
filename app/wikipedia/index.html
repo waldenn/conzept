@@ -5,18 +5,15 @@
   <meta charset="UTF-8">
   <base target="_self">
   <title>conzept wikipedia</title>
-  <!-- © Copyright 2019-2021 Jama Poulsen. All Rights Reserved. -->
-
-  <!--link rel="preload" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-regular.woff2" as="font" />
-  <link rel="preload" href="/fonts/quicksand/quicksand-v20-latin-ext_latin-500.woff2" as="font" /-->
-  <!--link rel="preload" href="/fonts/crimson/CrimsonText-Regular.woff2" as="font" /-->
 
   <!-- styles -->
   <style>body { color: #484848; background: #fbfaf9; } </style>
-  <link rel="stylesheet" href="../explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v0.50.043" type="text/css">
-  <link rel="stylesheet" href="../explore2/dist/css/conzept/common.css?v0.50.043">
-  <link rel="stylesheet" href="../explore2/dist/css/various/sortable.css?v0.50.043"> <!-- no NPM-package: https://github.com/tofsjonas/sortable/ -->
-  <link href="../explore2/dist/css/conzept/theme_wikipedia_dark.css?v0.50.043" rel="stylesheet" type="text/css" /> <!-- TODO -->
+  <!--link rel="stylesheet" href="../app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v5.14" type="text/css"-->
+  <link rel="stylesheet" href="../../assets/fonts/fontawesome/css/all.min.css?v6.01" type="text/css"> <!-- TODO: use with NPM, then remove fortawesome -->
+
+  <link rel="stylesheet" href="../explore2/dist/css/conzept/common.css?v0.51.213">
+  <link rel="stylesheet" href="../explore2/dist/css/various/sortable.css?v0.51.213"> <!-- no NPM-package: https://github.com/tofsjonas/sortable/ -->
+  <link href="../explore2/dist/css/conzept/theme_wikipedia_dark.css?v0.51.213" rel="stylesheet" type="text/css" /> <!-- TODO -->
 
   <link rel="stylesheet" href="../explore2/node_modules/jquery.uls/css/jquery.uls.css" type="text/css" >
   <link rel="stylesheet" href="../explore2/node_modules/jquery.uls/css/jquery.uls.grid.css" type="text/css">
@@ -26,12 +23,15 @@
   <link rel="stylesheet" href="../explore2/libs/lc/css/lc_lightbox.min.css" /> <!-- TODO -->
   <link rel="stylesheet" href="../explore2/libs/lc/skins/minimal.css" />
 
-  <link href="../explore2/libs/wikipedia-preview/wikipedia-preview.css?v0.50.043" rel="stylesheet" type="text/css"/>
+  <!-- used by klipse code playground -->
+  <!--link rel="stylesheet" href="../wikipedia/node_modules/klipse/dist/codemirror.css" type="text/css"/-->
 
-  <link rel="stylesheet" href="../wikipedia/dist/css/main.css?v0.50.043" type="text/css"/>
+  <link href="../explore2/libs/wikipedia-preview/wikipedia-preview.css?v0.51.213" type="text/css"/>
+
+  <link rel="stylesheet" href="../wikipedia/dist/css/main.css?v0.51.213" type="text/css"/>
 
   <!-- jQuery dependent scripts -->
-  <script src="../explore2/node_modules/jquery/dist/jquery.min.js?v0.50.043"></script>
+  <script src="../explore2/node_modules/jquery/dist/jquery.min.js?v0.51.213"></script>
   <script src="../explore2/node_modules/jquery.uls/src/jquery.uls.data.js"></script>
   <script src="../explore2/node_modules/jquery.uls/src/jquery.uls.data.utils.js"></script>
   <script src="../explore2/node_modules/jquery.uls/src/jquery.uls.lcd.js"></script>
@@ -39,11 +39,11 @@
   <script src="../explore2/node_modules/jquery.uls/src/jquery.uls.core.js"></script>
 
   <!-- non-jQuery dependent scripts -->
-  <script src="../explore2/libs/splitter.js?v0.50.043"></script> <!-- contains some custom code modifications -->
-  <script src="../explore2/node_modules/urijs/src/URI.min.js?v0.50.043"></script>
-  <script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.50.043"></script>
+  <script src="../explore2/libs/splitter.js?v0.51.213"></script> <!-- contains some custom code modifications -->
+  <script src="../explore2/node_modules/urijs/src/URI.min.js?v0.51.213"></script>
+  <script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.51.213"></script>
   <script src="../explore2/node_modules/banana-i18n/dist/banana-i18n.js"></script>
-  <script src="../explore2/node_modules/mark.js/dist/mark.min.js?v0.50.043"></script>
+  <script src="../explore2/node_modules/mark.js/dist/mark.min.js?v0.51.213"></script>
   <script src="../explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../explore2/node_modules/katex/dist/katex.min.js" async></script>
   <script src="../explore2/libs/wikibase-sdk.min.js"></script>        <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
@@ -55,32 +55,35 @@
   <script type="module" src="../wikipedia/node_modules/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <!-- Conzept data scripts -->
-  <script src="../explore2/dist/data/fields.js?v0.50.043"></script>
+  <script src="../explore2/dist/data/datasources.js?v0.51.213"></script>
+  <script src="../explore2/dist/data/fields.js?v0.51.213"></script>
   <script src="../explore2/dist/data/iso2_codes.js"></script>
-  <script src="../explore2/dist/data/languages.js?v0.50.043"></script>
-  <script src="../explore2/dist/data/indicators.js?v0.50.043"></script>
-  <script src="../explore2/dist/data/countries.js?v0.50.043"></script>
-  <script src="../explore2/dist/data/former_countries.js?v0.50.043"></script>
-  <script src="../explore2/dist/data/tags.js?v0.50.043"></script>
-  <script src="../explore2/dist/data/chains.js?v0.50.043"></script>
+  <script src="../explore2/dist/data/languages.js?v0.51.213"></script>
+  <script src="../explore2/dist/data/indicators.js?v0.02"></script>
+  <script src="../explore2/dist/data/countries.js?v0.51.213"></script>
+  <script src="../explore2/dist/data/former_countries.js?v0.51.213"></script>
+  <script src="../explore2/dist/data/tags.js?v0.51.213"></script>
+  <script src="../explore2/dist/data/chains.js?v0.51.213"></script>
 
   <!-- Conzept core scripts -->
-  <script src="../explore2/dist/core/env.js?v0.50.043"></script>
-  <script src="../explore2/dist/core/utils.js?v0.50.043"></script>
-  <script src="../explore2/dist/core/setWikidata.js?v0.50.043"></script>
-  <script src="../explore2/dist/core/createItemHtml.js?v0.50.043"></script>
-  <script src="../explore2/dist/core/fetches.js?v0.50.043"></script>
+  <script src="../explore2/dist/core/env.js?v0.51.213"></script>
+  <script src="../explore2/dist/core/utils.js?v0.51.213"></script>
+  <script src="../explore2/dist/core/setWikidata.js?v0.51.213"></script>
+  <script src="../explore2/dist/core/createItemHtml.js?v0.51.213"></script>
+  <script src="../explore2/dist/core/fetches.js?v0.51.213"></script>
 
   <!-- Wikipedia app specific scripts -->
   <script src="../explore2/libs/TinyGesture.js"></script>     <!-- NPM-package gives errors in the browser -->
   <script src="../explore2/libs/sortable.js" defer></script>  <!-- no NPM-package: https://github.com/tofsjonas/sortable/ -->
   <!--script src../explore2/libs/html-midi-player.js" defer></script--> <!-- very large script (~0.5MB) -->
-  <script src="./dist/main.js?v0.50.043"></script>
+  <script src="./dist/main.js?v0.51.213"></script>
 
 </head>
 
 <body id="wikipedia-content" class="js-toc-content">
-  <img id="loader" alt="loading" src="../explore2/assets/images/loading.gif?v0.50.043">
+  <img id="loader" alt="loading" src="../explore2/assets/images/loading.gif?v0.51.213">
+
+  <!--script src="../wikipedia/node_modules/klipse/dist/klipse_plugin.min.js"></script-->
 </body>
 
 </html>

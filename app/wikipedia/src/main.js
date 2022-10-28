@@ -4,9 +4,18 @@
 
 // wikibase library
 window.wbk = WBK({
-  instance: 'https://www.wikidata.org',
-  sparqlEndpoint: 'https://query.wikidata.org/sparql'
+  instance:       datasources.wikidata.instance,
+  sparqlEndpoint: datasources.wikidata.endpoint,
 })
+
+/*
+// see: https://github.com/viebel/klipse
+window.klipse_settings = {
+  // css selector for the html elements you want to klipsify
+  selector_eval_js: '.mw-highlight-lang-scheme',
+  //selector_eval_js: '.language-klipse-eval-js',
+};
+*/
 
 let current_pane  = '';
 let parentref     = '';
@@ -76,6 +85,10 @@ const explore = {
 
   keyboard_ctrl_pressed : false,
 
+  ld            : {}, // linked data fields
+
+  bookmarks     : [],
+
 }
 
 $( document ).ready( function() {
@@ -133,8 +146,10 @@ $( document ).ready( function() {
 
       }
 
-    }
+      explore.bookmarks = await explore.db.get('bookmarks');
+      explore.bookmarks = ( explore.bookmarks === null || explore.bookmarks === undefined ) ? [] : JSON.parse( explore.bookmarks );
 
+    }
 
 		explore.lang3 = getLangCode3( explore.language );
 
@@ -240,7 +255,8 @@ $( document ).ready( function() {
 
         }
 
-        const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json';
+        const url = `https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json`;
+        //const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json';
 
         console.log( url );
 
@@ -354,6 +370,19 @@ function afterSetWikidata( item ){
     if ( valid( item.gbif_id ) ){ gbif_id = item.gbif_id; }
     if ( valid( item.page_banner ) ){  banner = item.page_banner; }
 
+    //console.log( 'jsonld item info: ', item );
+    explore.ld.title        = valid( item.title )? item.title : '';
+    explore.ld.tags         = item.tags.filter(Boolean);
+    explore.ld.qid          = valid( item.qid )? item.qid : '';
+
+    explore.ld.thumbnailUrl = valid( item.image )? item.image : '';
+    explore.ld.image        = valid( item.image_full )? item.image_full : '';
+    explore.ld.description  = valid( item.description )? item.description : '';
+
+    explore.ld.google_kg    = valid( item.google_knowledge_graph )? item.google_knowledge_graph : '';
+
+    //console.log( 'ld: ',  explore.ld );
+
 		renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', item.qid, gbif_id, false, banner );
 
 	}
@@ -392,7 +421,7 @@ function updateLocaleNative(){
 
 function getTitleFromQid( qid ){
 
-  //fetchWikidata( [ qid ], '' );
+  //fetchWikidata( [ qid ], '', 'wikidata' );
 
 }
 
@@ -412,7 +441,8 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
     // https://en.wikipedia.org/w/api.php?action=parse&page=Apaloderma%20vittatum&prop=text&formatversion=2&format=json&redirects=
     // https://en.wikipedia.org/w/api.php?action=query&prop=revisions%7Cpageprops&rvprop=content&maxlag=5&rvslots=main&origin=*&format=json&redirects=true&titles=Apaloderma_vittatum
 
-    url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=parse&page=' + encodeURIComponent( title ) + '&prop=text&formatversion=2&format=json&redirects=',
+    url: `https://${explore.language}.${datasources.wikipedia.endpoint}?action=parse&page=${ encodeURIComponent( title ) }&prop=text&formatversion=2&format=json&redirects=`,
+    //url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=parse&page=' + encodeURIComponent( title ) + '&prop=text&formatversion=2&format=json&redirects=',
 
     dataType: "jsonp",
 
@@ -436,7 +466,8 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
         $.ajax({
 
-          url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
+          url: `https://${explore.language}.${datasources.wikipedia.endpoint}`,
+          //url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
           //url: 'https://' + lang +'.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=' + title + '&cmlimit=10',
           dataType: "jsonp",
 
@@ -470,7 +501,8 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
         // 1) check if there is a category with the same name as the article-title (lowercased)
         $.ajax({
 
-          url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
+          url: `https://${explore.language}.${datasources.wikipedia.endpoint}`,
+          //url: 'https://' + explore.language + '.wikipedia.org/w/api.php',
           dataType: "jsonp",
           data: {
             'action': "query",
@@ -607,7 +639,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
   // https://en.wikipedia.org/w/api.php?action=query&format=json&titles=Janelle%20Mon%C3%A1e&prop=categories
   let c = [];
-  const cat_url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&format=json&titles=' + encodeURIComponent( title ) + '&prop=categories';
+
+  const cat_url = `https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=json&titles=${ encodeURIComponent( title ) }&prop=categories`;
 
   $.ajax({
 
@@ -668,12 +701,12 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
         //if ( explore.lang_category + ':'  + title === own_cat )
         if ( title === own_cat ){
-          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><b>  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
-          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '"><b>  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
+          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><b>  <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
+          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '"><b>  <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</b></a></li>';
         }
         else {
-          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '">  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
-          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '">  <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+          own_cats += '<li class="notts"><a class="link catlink" href="' + own_cat + '">  <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+          //own_cats += '<li><a class="link catlink" href="./?l=' + explore.language + '&t=' + own_cat + '">  <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
         }
 
         // collect first 3 categories for display under page title 
@@ -733,7 +766,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             j += 1;
             // remove upto ':' from category name
             //const own_cat_ = own_cat.substring( own_cat.indexOf(":") + 1 );
-            catheadline += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><span class="icon"><i class="far fa-folder-open fa-xs"></i></span>&nbsp; ' + t + '</a></li>';
+            catheadline += '<li class="notts"><a class="link catlink" href="' + own_cat + '"><span class="icon"><i class="fa-regular fa-folder-open fa-xs"></i></span>&nbsp; ' + t + '</a></li>';
           }
 
         }
@@ -775,7 +808,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
       }
       else if ( type === 'category' ){
 
-        main_title = '<h2> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + decodeURIComponent( title.replace( explore.lang_catre1 , '') ) +  '</h2>';
+        main_title = '<h2> <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + decodeURIComponent( title.replace( explore.lang_catre1 , '') ) +  '</h2>';
 
         catparents_title = '';
 
@@ -788,7 +821,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
             const t = cat_members[i].title.replace( explore.lang_catre1, '');
 
-            inner_cats += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '"> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+            inner_cats += '<li class="notts"><a class="link catlink" href="' + encodeURIComponent( cat_members[i].title ) + '"> <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
 
           }
           else { // non-category-page
@@ -840,7 +873,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
             const t = cat_members[i].title.replace( explore.lang_catre1 , '');
 
-            inner_cats += '<li class="notts"><a class="link catlink" href="' + cat_members[i].title + '"> <span class="icon"><i class="far fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
+            inner_cats += '<li class="notts"><a class="link catlink" href="' + cat_members[i].title + '"> <span class="icon"><i class="fa-regular fa-folder-open fa-xs">&nbsp; </i></span> ' + t + '</a></li>';
 
           }
           else {
@@ -920,36 +953,47 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       }
 
-      let talk_page_button = '<span id="gotoTalkPage"><button onclick="gotoTalkPage()" onauxclick="gotoTalkPage( true )" class="dropbtn" tabIndex="0" title="go to talk-page" aria-label="go to talk-page"><span class="icon"><i class="far fa-clipboard"></i></span></button></span> ';
+      /*
+      let talk_page_button = '<span id="gotoTalkPage"><button onclick="gotoTalkPage()" onauxclick="gotoTalkPage( true )" class="dropbtn" tabIndex="0" title="go to talk-page" aria-label="go to talk-page"><span class="icon"><i class="fa-regular fa-comments"></i></span></button></span> ';
 
       if ( title.startsWith( explore.lang_talk + ':' ) ){ // already on a talk page
 
         // replace talk button with the Wikipedia-article button
-        talk_page_button = '<span id="gotoArticle"><button onclick="gotoArticle()" onauxclick="gotoArticle( true )" class="dropbtn" tabIndex="0" title="go to article" aria-label="go to article"><span class="icon"><i class="fas fa-align-justify"></i></span></button></span> ';
+        talk_page_button = '<span id="gotoArticle"><button onclick="gotoArticle()" onauxclick="gotoArticle( true )" class="dropbtn" tabIndex="0" title="go to article" aria-label="go to article"><span class="icon"><i class="fa-solid fa-align-justify"></i></span></button></span> ';
 
       }
+      */
+
+      const wikidata_page_button = valid( explore.qid )? '<span id="gotoWikidata"><button onclick="gotoWikidata()" onauxclick="gotoWikidata( true )"class="dropbtn" tabIndex="0" title="go to Wikidata" aria-label="go to Wikidata"><span class="icon"><i class="fa-solid fa-barcode"></i></span></button></span> ' : '';
+
+      const commons_page_button = valid( explore.qid )? '<span id="gotoCommons"><button onclick="gotoCommons()" onauxclick="gotoCommons( true )"class="dropbtn" tabIndex="0" title="Wikimedia Commons images" aria-label="Wikimedia Commons images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' : '';
+
+      const class_bookmarked = ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ) ? 'bookmarked' : ''; 
 
       html_ = html_.replace(/<body id="wikipedia-content">/, fontlink_html +
 
-        '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>' +
+        '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
         // TODO: move all JS variables into one object and put that object stringified into the iframe data-fields attribute
         '<script> let language = "' + lang + '"; let locale =  "' + explore.locale + '"; let title =  "' + title + '"; let qid =  "' + explore.qid + '"; let languages =  "' + languages + '"; let font1 =  "' + explore.font1 + '"; let darkmode = ' + explore.darkmode + '; </script>' +
         '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=5.0">' +
         '<style>html{visibility: hidden;opacity:0;}</style>' +
         '<aside class="js-toc"> </aside>' +
         '<main class="explore" role="main">' +
-          '<div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="../explore2/assets/images/loading.gif"/></div>' +
+          '<div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 10%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="../explore2/assets/images/loading.gif"/></div>' +
           '<div id="wikipedia-menu">' +
-            '<span id="exploreTopic"><button onclick="goExplore()" onauxclick="goExplore(true)" class="dropbtn" tabIndex="0" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span> ' +
+            '<span id="exploreTopic"><button onclick="goExplore()" onauxclick="goExplore(true)" class="dropbtn" tabIndex="0" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fa-solid fa-retweet"></i></span></button></span> ' +
 
-            '<span id="newTab"><button onclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" onauxclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" class="dropbtn" tabIndex="0" title="open in new tab"><span class="icon"><i class="fas fa-external-link-alt"></i></span></button></span>' +
-            talk_page_button +
-            '<span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" tabIndex="0" title="go to video" aria-label="go to video"><span class="icon"><i class="fas fa-video"></i></span></button></span> ' +
-            '<span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" tabIndex="0" title="go to images" aria-label="go to images"><span class="icon"><i class="far fa-images"></i></span></button></span> ' +
-            '<span id="gotoBooks"><button onclick="gotoBooks()"  onauxclick="gotoBooks( true )" class="dropbtn" tabIndex="0" title="go to books" aria-label="go to books"><span class="icon"><i class="fab fa-mizuni"></i></span></button></span> ' +
-            '<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fas fa-plus"></i></span></button></span> ' +
-            '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fas fa-print"></i></span></button></span> ' +
-            '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to wikipedia"><span class="icon"><i class="fab fa-wikipedia-w"></i></span></button></span> ' +
+            '<span id="newTab"><button onclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" onauxclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" class="dropbtn" tabIndex="0" title="open in new tab"><span class="icon"><i class="fa-solid fa-external-link-alt"></i></span></button></span>' +
+            '<span id="bookmarkToggle"><button onclick="bookmarkToggle()" onauxclick="" class="dropbtn" tabIndex="0" title="bookmark topic" aria-label="bookmark topic"><span class="icon"><i class="bookmark-icon fa-solid fa-bookmark ' + class_bookmarked + '"></i></span></button></span> ' +
+            //'<span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" tabIndex="0" title="go to video" aria-label="go to video"><span class="icon"><i class="fa-solid fa-video"></i></span></button></span> ' +
+            //'<span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" tabIndex="0" title="go to images" aria-label="go to images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' +
+            //'<span id="gotoBooks"><button onclick="gotoBooks()"  onauxclick="gotoBooks( true )" class="dropbtn" tabIndex="0" title="go to books" aria-label="go to books"><span class="icon"><i class="fa-brands fa-mizuni"></i></span></button></span> ' +
+            //'<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fa-solid fa-plus"></i></span></button></span> ' +
+            '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fa-solid fa-print"></i></span></button></span> ' +
+            //talk_page_button +
+            commons_page_button +
+            '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to Wikipedia"><span class="icon"><i class="fa-brands fa-wikipedia-w"></i></span></button></span> ' +
+            wikidata_page_button +
             '<span id="otherLanguage"><button onclick="showWikipediaLanguages()" class="dropbtn active uls-trigger" tabIndex="0" title="article in other languages"> '  + language_display + '</button></span>' +
 
           '</div>' +
@@ -971,8 +1015,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
         '<script src="../explore2/dist/webcomponent/gbif-map.js?' + explore.version + '" type="module"></script>' +
         '<script src="../explore2/libs/sortable.js"></script>' +
 
-        '<br/><div id="legalnotice">This page is based on a <a target="_blank_" href="' + source_page + '">Wikipedia</a> article written by <a href="' + contributors_page + '">contributors</a>. The text is available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license; additional terms may apply. Images, videos and audio are available under their respective licenses.</div>' + 
-        '</main><br/><br/><br/>'
+        '<br><div id="legalnotice">This page is based on a <a target="_blank_" href="' + source_page + '">Wikipedia</a> article written by <a href="' + contributors_page + '">contributors</a>. The text is available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license; additional terms may apply. Images, videos and audio are available under their respective licenses.</div>' + 
+        '</main><br><br><br>'
 
       );
 
@@ -1149,9 +1193,18 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'stop-speaking' ){ // signal from main-app to stop any speech
 
-    console.log('wikipedia app: stop speaking');
+    //console.log('wikipedia app: stop speaking');
 
     stopSpeaking();
+
+  }
+  else if ( event.data.event_id === 'goto' ){ // move text-cursor
+
+    const fragment = '#:~:text=' + encodeURIComponent( event.data.data[0] );
+
+		//console.log('goto fragment: ', fragment );
+
+		window.location.hash = fragment;
 
   }
 
@@ -1185,6 +1238,9 @@ function pauseSpeaking(){
 function stopSpeaking(){
 
 	explore.synth.cancel();
+
+  // also stop parent-frame speaking (if needed)
+  parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
 
 }
 
@@ -1232,16 +1288,15 @@ function startSpeaking( text ){
 
     if ( explore.firstVisit === true ){ // but dont stop it upon first visit
 
-      console.log( 'dont speak: other speaker active upon first visit');
+      //console.log( 'other speaker active upon first visit');
       explore.firstVisit = false;
-      return 0;
+      //return 0;
 
     }
 
     //console.log('already speaking, so cancelling first');
     stopSpeaking();
-
-    // TODO: is it possible to restart speaking immediately after this, without a user-click?
+    //parentref.postMessage({ event_id: 'stop-parent-speaking', data: { } }, '*' );
 
   }
 
@@ -1274,12 +1329,12 @@ function startSpeaking( text ){
 	utterance.rate  = explore.voice_rate;
 	utterance.pitch = explore.voice_pitch;
 
-	if ( explore.synth.speaking ){
+	//if ( explore.synth.speaking ){
 		// do nothing, already speaking
-	}
-	else {
+	//}
+	//else {
 		explore.synth.speak( utterance );
-	}
+	//}
 
   parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
 

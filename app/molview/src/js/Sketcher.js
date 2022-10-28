@@ -74,6 +74,7 @@ var Sketcher = {
 					Sketcher.markOutdated();
 				}
 			});
+
 		}
 		else
 		{

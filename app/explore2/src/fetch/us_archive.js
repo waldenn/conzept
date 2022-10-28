@@ -60,7 +60,7 @@ function fetchUSArchive( args, total_results, page, sortby ){
 
   });
   
-  sort_select = '<label for="sortby" title="sort by"><i class="fas fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
+  sort_select = '<label for="sortby" title="sort by"><i class="fa-solid fa-sort"></i></label><select name="sortby" class="sortby browser-default" title="sort by" onchange="' + fname + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, null, 1, this.value );" data-title="' + args.title + '">' + sort_select_options + '</select>';
 
   let sortby_param = '&sort=' + sortby;
 
@@ -154,7 +154,7 @@ function fetchUSArchive( args, total_results, page, sortby ){
 
             if ( valid( v.teaser ) ){
 
-              desc = '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v.teaser + '</details>';
+              desc = '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.teaser + '</details>';
 
             }
 
@@ -229,35 +229,39 @@ function fetchUSArchive( args, total_results, page, sortby ){
 
           if ( v.objects?.object?.file ){
 
-            file_url = v.objects.object.file['@url']
+            file_url = v.objects.object.file['@url'];
 
-            const file_extension = file_url.split('.').pop();
-  
-            const image_types = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff' ];
+            if ( valid( file_url ) ){
 
-            if ( image_types.includes( file_extension.toLowerCase() ) ){ // valid image
+              const file_extension = file_url.split('.').pop();
+    
+              const image_types = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff' ];
 
-              // create IIIF-viewer-link
-              let coll = { "images": [ ]};
+              if ( image_types.includes( file_extension.toLowerCase() ) ){ // valid image
 
-              // for each image add:
-              coll.images.push( [ file_url, label, encodeURIComponent( desc_plain ), '-', 'US Archives' ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
+                // create IIIF-viewer-link
+                let coll = { "images": [ ]};
 
-              if ( coll.images.length > 0 ){ // we found some images
+                // for each image add:
+                coll.images.push( [ file_url, label, encodeURIComponent( desc_plain ), '-', 'US Archives' ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
 
-                // create an IIIF image-collection file
-                let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+                if ( coll.images.length > 0 ){ // we found some images
 
-                let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+                  // create an IIIF image-collection file
+                  let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-                viewer_url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
+                  let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+
+                  viewer_url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
+
+                }
 
               }
+              else { // non-image media
 
-            }
-            else { // non-image media
+                viewer_url = encodeURIComponent( JSON.stringify( encodeURIComponent( file_url ) ) );
 
-              viewer_url = encodeURIComponent( JSON.stringify( encodeURIComponent( file_url ) ) );
+              }
 
             }
 

@@ -8,6 +8,7 @@ pre {
   /* background: #8080803d; */
   background-color: rgba(204,204,204,.16);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0),0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  display: inline-block;
 }
 
 sup {
@@ -21,6 +22,10 @@ sup {
   width: 70px;
   height: 70px;
   box-shadow: none;
+}
+
+.bookmarked {
+  color: #d65459;
 }
 
 /* wikipedia preview styling */
@@ -38,6 +43,11 @@ sup {
 }
 
 /* Wikipedia syntax highlighting codes */
+
+.mw-highlight {
+  overflow-x: auto;
+}
+
 .mw-highlight .kd {
   color: #008000;
   font-weight: bold;
@@ -158,6 +168,10 @@ sup {
 .trow .tsingle {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+.tmulti .tsingle {
+  margin-bottom: 2em !important;
 }
 
 .thumb.tright {
@@ -417,7 +431,7 @@ audio::-webkit-media-controls-volume-slider, audio::-moz-media-controls-volume-s
 }
 
 audio {
-  width: 100%;
+  width: 100% !important;
 }
 
 .inline-audio {
@@ -446,7 +460,8 @@ audio {
 }
 
 .section-title-button {
-  font-size: small;
+  /*font-size: small;*/
+  font-size: 40%;
   float: right;
   padding: 0rem .5rem;
   /* color: #00000078; */
@@ -477,7 +492,18 @@ details.graph {
 
 /* openseadragon zoom for LC */
 
+img#loader-openseadragon {
+  box-shadow: none;
+}
+
+.openseadragon-container canvas {
+  width: max-content !important; /* hack to remove "colored line" bug */
+}
+
 /*
+.openseadragon-container {
+}
+
 #loader-openseadragon {
   z-index: 9999999;
 }
@@ -974,7 +1000,7 @@ div#background {
 
 .uls-filterinput.uls-languagefilter.languagefilter {
   font-family: inherit !important;
-  font-family: fontAwesome !important;
+  /*font-family: fontAwesome !important;*/
 }
 
 .uls-narrow.grid .row {
@@ -1271,6 +1297,32 @@ table.sidebar * {
 }
 */
 
+.side-box-abovebelow hr {
+  display: none;
+}
+
+.side-box video {
+  width: 100% !important;
+}
+
+.mw-parser-output .side-box {
+  background-color: inherit !important;
+  border: none !important;
+  max-width: 60% !important;
+  width: 40% !important;
+  float: right;
+  margin: .7rem 1rem 0rem .7rem;
+}
+
+.side-box-image {
+  display: none;
+}
+
+.listen-header {
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+
 .infobox td, .infobox th {
   vertical-align: top;
   text-align: left;
@@ -1529,7 +1581,7 @@ img:not(.mw-parser-output img), .inline-video {
   max-height: 750px;
   margin: 0.7vh 1vh 1vh 1vh; 
   /* margin: 0.7rem 0.1rem 0.1rem 0.1rem; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1rem;
 
   left: 0;

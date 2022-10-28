@@ -35,6 +35,8 @@ function expandEvent(params) { // Expand a node (with event handler)
 
   if (params.nodes.length) { // Did the click occur on a node?
 
+    //console.log( params.nodes );
+
     const page = params.nodes[0]; // The id of the node clicked
 
     //console.log( page, params );
@@ -56,7 +58,7 @@ function expandEvent(params) { // Expand a node (with event handler)
 
         title = title.replace(/\{\}/g, '');
 
-        var url = CONZEPT_WEB_BASE '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
+        var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: '' } }, '*' );
 
         //window.parent.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia-side', title: title, hash: '', language: '', qid: '', ids: '' } }, '*');

@@ -56,7 +56,7 @@ var conzept_tags = {
 
   "raw-query-string" : {
     text : "raw-query-string",
-    icon : ["fas fa-pen"],
+    icon : ["fa-solid fa-pen"],
     sub : {
     },
   },
@@ -65,12 +65,12 @@ var conzept_tags = {
 
   "disambiguation" : {
     text : "disambiguation",
-    icon : ["fas fa-question"],
+    icon : ["fa-solid fa-question"],
     sub : {
       "person" : {
         text : "person disambiguation",
-        icon : [ "fas fa-question", "fas fa-user-alt"],
-        //icon : "fas fa-question, fas fa-user-alt", // TODO: first split by comma, then display each icon
+        icon : [ "fa-solid fa-question", "fa-solid fa-user-alt"],
+        //icon : "fa-solid fa-question, fa-solid fa-user-alt", // TODO: first split by comma, then display each icon
       } 
     },
   }, 
@@ -81,7 +81,7 @@ var conzept_tags = {
     //  title.endsWith( 'bibliography' ) ||  title.endsWith( 'discography' ) ||   title.endsWith( 'filmography' ) ||
     //  title.startsWith( 'Portal:') || title.startsWith( 'Book:' ) || title.startsWith( 'Outline of ') ){ // list FIXME use language-indepent-regex
     text : "list",
-    icon : ["fas fa-list-ul"],
+    icon : ["fa-solid fa-list-ul"],
     sub : {
     },
   },
@@ -89,14 +89,14 @@ var conzept_tags = {
   "category" : {
     condition: '"${title}".startsWith( "${explore.lang_category}" + ":")', 
     text : "category",
-    icon : ["fas fa-folder-open"],
+    icon : ["fa-solid fa-folder-open"],
     sub : {
     },
   },
 
   "wikispecial" : {
     text : "template page",
-    icon : ["fab fa-uikit"],
+    icon : ["fa-brands fa-uikit"],
     sub : {
     },
   },
@@ -105,26 +105,26 @@ var conzept_tags = {
 
   "location" : {
     text : "location",
-    icon : ["fas fa-map-marker-alt"],
+    icon : ["fa-solid fa-map-marker-alt"],
     sub : {
       "country" : {
         text : "country",
-        icon : ["fas fa-globe-americas"],
+        icon : ["fa-solid fa-globe-americas"],
       },
       "mountain" : {
         text : "mountain",
-        icon : ["fas fa-mountain"],
+        icon : ["fa-solid fa-mountain"],
       },
     },
   },
 
   "time" : {
     text : "time / period / event",
-    icon : ["far fa-clock"],
+    icon : ["fa-regular fa-clock"],
     sub : {
       "accident" : {
         text : "accident",
-        icon : ["fas fa-bolt"],
+        icon : ["fa-solid fa-bolt"],
       },
     },
   },
@@ -133,34 +133,34 @@ var conzept_tags = {
 
   "organization" : {
     text : "human organization",
-    icon : ["far fa-handshake"],
+    icon : ["fa-regular fa-handshake"],
     sub : {
       "business-chain" : {
         text : "business chain",
-        icon : ["fas fa-store"],
+        icon : ["fa-solid fa-store"],
       },
       "museum" : {
         text : "museum",
-        icon : ["fas fa-university"],
+        icon : ["fa-solid fa-university"],
       },
       "music-group" : {
         text : "music group",
-        icon : ["far fa-handshake", "fas fa-music"],
+        icon : ["fa-regular fa-handshake", "fa-solid fa-music"],
       }
     },
   },
 
   "group" : {
     text : "human grouping (not an organization)",
-    icon : ["fas fa-hand-holding-heart"],
+    icon : ["fa-solid fa-hand-holding-heart"],
     sub : {
       "nobility" : {
         text : "nobility",
-        icon : ["fas fa-crown"],
+        icon : ["fa-solid fa-crown"],
       },
       "nobility-family" : {
         text : "nobility family",
-        icon : ["fas fa-crown"],
+        icon : ["fa-solid fa-crown"],
       },
 
     },
@@ -168,155 +168,159 @@ var conzept_tags = {
 
   "work" : {
     text : "created work",
-    icon : ["fas fa-hands"],
+    icon : ["fa-solid fa-hands"],
     sub : {
       "symbol" : {
         text : "symbol",
-        icon : ["fas fa-shield-alt"],
+        icon : ["fa-solid fa-shield-alt"],
       },
       "satellite" : {
         text : "satellite",
-        icon : ["fas fa-satellite"],
+        icon : ["fa-solid fa-satellite"],
       },
       "ship" : {
         text : "ship",
-        icon : ["fas fa-ship"],
+        icon : ["fa-solid fa-ship"],
       },
       "fictional-entity" : {
         text : "fictional entity",
-        icon : ["fas fa-mask"],
+        icon : ["fa-solid fa-mask"],
       },
       "dish" : {
         text : "food dish",
-        icon : ["fas fa-utensils"],
+        icon : ["fa-solid fa-utensils"],
       },
       "beverage" : {
         text : "beverage",
-        icon : ["fas fa-wine-glass-alt"],
+        icon : ["fa-solid fa-wine-glass-alt"],
       },
       "written-work" : {
         text : "written work",
-        icon : ["fas fa-book"],
+        icon : ["fa-solid fa-book"],
       },
       "periodical" : {
         text : "periodical publication",
-        icon : ["far fa-newspaper"],
+        icon : ["fa-regular fa-newspaper"],
       },
       "comics" : {
         text : "comics",
-        icon : ["fas fa-mask"],
+        icon : ["fa-solid fa-mask"],
       },
       "video-game" : {
         text : "video game",
-        icon : ["fas fa-gamepad"],
+        icon : ["fa-solid fa-gamepad"],
       },
       "music" : {
         text : "music release",
-        icon : ["fas fa-music"],
+        icon : ["fa-solid fa-music"],
       },
       "film" : {
         text : "film",
-        icon : ["fas fa-film"],
+        icon : ["fa-solid fa-film"],
       },
       "tv-series" : {
         text : "TV series",
-        icon : ["fas fa-ellipsis-h", "fas fa-film"],
-        //icon : ["fas fa-grip-lines-vertical", "fas fa-film"],
+        icon : ["fa-solid fa-ellipsis-h", "fa-solid fa-film"],
+        //icon : ["fa-solid fa-grip-lines-vertical", "fa-solid fa-film"],
       },
       "submarine-communications-cable" : {
         text : "submarine communications cable",
-        icon : ["fas fa-route"],
+        icon : ["fa-solid fa-route"],
       },
       "flag" : {
         text : "flag",
-        icon : ["far fa-flag"],
+        icon : ["fa-regular fa-flag"],
       },
       "website" : {
         text : "website",
-        icon : ["far fa-copy"],
+        icon : ["fa-regular fa-copy"],
       },
       "software" : {
         text : "software",
-        icon : ["far fa-window-restore"],
+        icon : ["fa-regular fa-window-restore"],
       },
       "cryptocurrency" : {
         text : "cryptocurrency",
-        icon : ["fab fa-bitcoin"],
+        icon : ["fa-brands fa-bitcoin"],
       },
     },
   },
 
   "person" : {
     text : "person",
-    icon : ["fas fa-user-alt"],
+    icon : ["fa-solid fa-user-alt"],
     sub : {
       // TODO: writer, composer, ...
       "scientist" : {
         text : "scientist",
-        icon : ["fas fa-user-graduate"],
+        icon : ["fa-solid fa-user-graduate"],
       },
       "musician" : {
         text : "musician",
-        icon : ["fas fa-user-alt", "fas fa-music"],
+        icon : ["fa-solid fa-user-alt", "fa-solid fa-music"],
       },
       "painter" : {
         text : "painter",
-        icon : ["fas fa-user-alt", "fas fa-palette"],
+        icon : ["fa-solid fa-user-alt", "fa-solid fa-palette"],
       },
       "filmmaker" : {
         text : "filmmaker",
-        icon : ["fas fa-user-alt", "oma oma-black-movie-camera"],
+        icon : ["fa-solid fa-user-alt", "oma oma-black-movie-camera"],
       },
       "actor" : {
         text : "actor",
-        icon : ["fas fa-user-alt", "oma oma-black-performing-arts"],
+        icon : ["fa-solid fa-user-alt", "oma oma-black-performing-arts"],
       },
     },
   }, 
 
   "cultural-concept" : {
     text : "cultural concept",
-    icon : ["fas fa-people-carry"],
+    icon : ["fa-solid fa-people-carry"],
     sub : {
      "role" : { // TODO: may need some more thought/accuracy/work
         text : "field-of-work or role",
-        icon : ["far fa-address-card"],
+        icon : ["fa-regular fa-address-card"],
       },
      "rank" : { // TODO: may need some more thought/accuracy/work
         text : "position rank",
-        icon : ["far fa-address-card"],
+        icon : ["fa-regular fa-address-card"],
       },
       "music-genre" : {
         text : "music genre",
-        icon : ["fas fa-music"],
+        icon : ["fa-solid fa-music"],
       },
       "religion" : {
         text : "religious concept",
-        icon : ["fas fa-dharmachakra"],
+        icon : ["fa-solid fa-dharmachakra"],
       },
       "mythology" : {
         text : "mythological concept",
-        icon : ["fas fa-dragon"],
+        icon : ["fa-solid fa-dragon"],
       },
       "education" : {
         text : "educational concept",
-        icon : ["fas fa-graduation-cap"],
+        icon : ["fa-solid fa-graduation-cap"],
       },
       "road" : {
         text : "road",
-        icon : ["fas fa-road"],
+        icon : ["fa-solid fa-road"],
       },
       "network" : {
         text : "network",
-        icon : ["fas fa-network-wired"],
+        icon : ["fa-solid fa-network-wired"],
       },
       "movement" : {
         text : "movement",
-        icon : ["fas fa-holly-berry"],
+        icon : ["fa-solid fa-holly-berry"],
       },
       "tonality" : {
         text : "tonality",
-        icon : ["fab fa-itunes-note"],
+        icon : ["fa-brands fa-itunes-note"],
+      },
+      "form-of-government" : {
+        text : "form of governement",
+        icon : ["fa-solid fa-users-between-lines"],
       },
     },
   },
@@ -325,11 +329,15 @@ var conzept_tags = {
 
   "organism" : {
     text : "organism",
-    icon : ["fas fa-paw"],
+    icon : ["fa-solid fa-paw"],
     sub : {
+      "virus" : {
+        text : "virus",
+        icon : ["fa-solid fa-virus"],
+      },
       "bird" : {
         text : "bird",
-        icon : ["fas fa-crow"],
+        icon : ["fa-solid fa-crow"],
       },
       "mushroom" : {
         text : "mushroom",
@@ -337,11 +345,11 @@ var conzept_tags = {
       },
       "amphibian" : {
         text : "amphibian",
-        icon : ["fas fa-frog"],
+        icon : ["fa-solid fa-frog"],
       },
       "insect" : {
         text : "insect",
-        icon : ["fas fa-bug"],
+        icon : ["fa-solid fa-bug"],
       },
       "reptile" : {
         text : "reptile",
@@ -349,99 +357,99 @@ var conzept_tags = {
       },
       "plant" : {
         text : "plant",
-        icon : ["fab fa-pagelines"],
+        icon : ["fa-brands fa-pagelines"],
       },
       "plant-organ" : {
         text : "plant organ",
-        icon : ["fas fa-seedling"],
+        icon : ["fa-solid fa-seedling"],
       },
     },
   },
 
   "substance" : { // synthetic or natural substances
     text : "substance",
-    icon : ["fab fa-react"],
+    icon : ["fa-brands fa-react"],
     sub : {
      "periodic-table-element" : {
         text : "periodic table element",
-        icon : ["fab fa-react"],
+        icon : ["fa-brands fa-react"],
       },
      "chromosome" : {
         text : "chromosome",
-        icon : ["fas fa-dna"],
+        icon : ["fa-solid fa-dna"],
       },
      "gene" : {
         text : "gene",
-        icon : ["fas fa-dna"],
+        icon : ["fa-solid fa-dna"],
       },
      "genome" : {
         text : "genome",
-        icon : ["fas fa-dna"],
+        icon : ["fa-solid fa-dna"],
       },
      "mineral" : {
         text : "genome",
-        icon : ["far fa-gem"],
+        icon : ["fa-regular fa-gem"],
       },
     },
   },
 
   "natural-type" : { // clearly a concrete natural *physical thing*: planet, snowflake, organs, ...
     text : "natural entity (not an organism)",
-    icon : ["far fa-snowflake"],
+    icon : ["fa-regular fa-snowflake"],
     sub : {
      "astronomical-object" : {
         text : "astronomical object",
-        icon : ["far fa-sun"],
+        icon : ["fa-regular fa-sun"],
       },
     },
   }, 
 
   "natural-concept" : { // more abstract natural concepts
     text : "natural concept",
-    icon : ["fas fa-temperature-high"],
+    icon : ["fa-solid fa-temperature-high"],
     sub : {
      "chemistry" : {
         text : "chemistry",
-        icon : ["fab fa-react"],
+        icon : ["fa-brands fa-react"],
       },
      "geology" : {
         text : "geology",
-        icon : ["fas fa-globe-africa"],
+        icon : ["fa-solid fa-globe-africa"],
       },
      "astronomy" : {
         text : "astronomy",
-        icon : ["far fa-sun"],
+        icon : ["fa-regular fa-sun"],
       },
      "anatomy" : {
         text : "anatomy",
-        icon : ["fas fa-brain"],
+        icon : ["fa-solid fa-brain"],
       },
      "medical-condition" : {
         text : "medical condition",
-        icon : ["fas fa-stethoscope"],
+        icon : ["fa-solid fa-stethoscope"],
       },
      "animal-disease" : {
         text : "animal disease",
-        icon : ["fas fa-bacterium"],
+        icon : ["fa-solid fa-bacterium"],
       },
      "human-disease" : {
         text : "human disease",
-        icon : ["fas fa-stethoscope"],
+        icon : ["fa-solid fa-stethoscope"],
       },
      "human-disease-cause" : {
         text : "human disease cause",
-        icon : ["fas fa-stethoscope"],
+        icon : ["fa-solid fa-stethoscope"],
       },
      "personal-concept" : {
         text : "personal concept",
-        icon : ["fas fa-street-view"],
+        icon : ["fa-solid fa-street-view"],
 
       },
      "geographical-structure" : { // may need a better classification
         text : "geographical structure",
-        icon : ["fab fa-firstdraft"],
-        //icon : ["fab fa-schlix"],
-        //icon : ["fas fa-dungeon"],
+        icon : ["fa-brands fa-firstdraft"],
+        //icon : ["fa-brands fa-schlix"],
+        //icon : ["fa-solid fa-dungeon"],
       },
     },
   },
@@ -450,16 +458,16 @@ var conzept_tags = {
 
   "meta-concept" : {
     text : "meta concept",
-    icon : ["fas fa-cubes"],
+    icon : ["fa-solid fa-cubes"],
     sub : {
      "mathematics" : {
         text : "mathematical concept",
-        icon : ["fas fa-square-root-alt"],
+        icon : ["fa-solid fa-square-root-alt"],
       },
       /*
      "risk" : {
         text : "risk",
-        icon : ["fas fa-radiation-alt"],
+        icon : ["fa-solid fa-radiation-alt"],
       },
       */
 

@@ -1,0 +1,11 @@
+SELECT DISTINCT ?item ?itemLabel ?country ?countryLabel ?linkTo ?linkToLabel
+WHERE {
+    ?item wdt:P1142 ?linkTo . # alternative path makes link to ideology superclass
+    ?linkTo wdt:P31 wd:Q12909644 . # take "political ideology" only
+    VALUES ?type { wd:Q7278  wd:Q24649 } # filter by these types of political actors
+    ?item wdt:P31 ?type .
+    VALUES ?country { JSVAR:COUNTRIES } #filter by selected countries
+    ?item wdt:P17 ?country .
+    MINUS { ?item wdt:P576 ?abolitionDate } # exclude abolished parties
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en,fr,es,ca,ko,zh" . }
+}

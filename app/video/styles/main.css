@@ -6,6 +6,11 @@ body {
   font-size: 18px;
 }
 
+body.black {
+  color: white;
+  background-color: black;
+}
+
 body.wallpaper {
 
   background-size: contain;
@@ -229,6 +234,26 @@ body.dark .toogles-video h3{
 
 .nav-section.filtermenu {
   display: none;
+}
+
+#wander-to-previous {
+  position: absolute;
+  right: 55%;
+  bottom: -0.3em;
+  z-index: 9999;
+  color: white;
+}
+
+#wander-to-next {
+  position: absolute;
+  right: 45%;
+  bottom: -0.3em;
+  z-index: 9999;
+  color: white;
+}
+
+#wander-to-previous:hover, #wander-to-next:hover {
+  color: #f3acae;
 }
 
 @media only screen and (max-width:767px){

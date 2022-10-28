@@ -66,7 +66,7 @@ function fetchWikiQuote( args, url ){
           }
           else {
 
-            desc = date + '<details class="inline-abstract"><summary><small><i class="fas fa-ellipsis-h"></i></small></summary>' + v.snippet + '</details>';
+            desc = date + '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.snippet + '</details>';
 
           }
 

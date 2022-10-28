@@ -1,5 +1,53 @@
 // cross-app utility functions
 
+async function setTags( item, tags ){
+
+  if ( ! Array.isArray( tags ) || tags.length === 0 ){
+
+    return;
+
+  }
+  else { // we have some tags
+
+    if ( valid( tags[0] ) ){
+      item.tags[0] = tags[0];
+    }
+
+    if ( valid( tags[1] ) ){
+      item.tags[1] = tags[1];
+    }
+
+  }
+
+}
+
+function checkTag( item, level, name ){
+
+  let r = false; // default
+
+  if ( Number.isInteger( level ) ){
+
+    if ( Array.isArray( name ) ){ // check against a list of tag-strings
+
+      if ( name.some( function( str ) { return item.tags[ level ] === str } ) ){
+
+        r = true;
+
+      }
+
+    }
+    else if ( item.tags[ level ] === name ){ // check for one tag-string
+
+      r = true;
+
+    }
+
+  }
+
+  return r;
+
+}
+
 function getTargetPane(){
 
   let target_pane = '';
@@ -155,6 +203,31 @@ function detectFirefox(){
 
 }
 
+function detectTouch(){
+
+  return valid( ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch) );
+
+}
+
+function countryInRegion( country, region ) {
+
+  const regions = {
+
+    europe : ['ad', 'al', 'at', 'ba', 'be', 'bg', 'ch', 'hr', 'cy', 'cz', 'dk', 'ee', 'fi', 'fr', 'fo', 'de', 'gr', 'hu', 'ie', 'is', 'it', 'li', 'lv', 'lt', 'lu', 'mc', 'md', 'me', 'mk', 'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'sk', 'sm', 'si', 'es', 'se', 'gb', 'va', 'xk'],
+
+  }
+
+  if ( regions[ region ].includes( country ) ){
+
+    return true;
+
+  }
+  else {
+    return false
+  }
+
+}
+
 function listed( myList, myItems, removeQ ){ // both should be a list of numbers!
 
   if ( ! valid( removeQ ) ){
@@ -198,14 +271,18 @@ function listed( myList, myItems, removeQ ){ // both should be a list of numbers
 
 function isQid( title ) {
 
-  if ( title.startsWith('Q') && isNumeric( title.substring(1) ) ){
+  if ( valid( title ) ){
 
-    return true;
+    if ( title.startsWith('Q') && isNumeric( title.substring(1) ) ){
 
-  }
-  else {
+      return true;
 
-    return false;
+    }
+    else {
+
+      return false;
+
+    }
 
   }
 
@@ -235,6 +312,66 @@ function isCategory( title ){
   }
 
   return false;
+
+}
+
+// check the current user language and/or country settings against the allowed set
+function checkLC( l, c ){
+
+  // defaults
+  let l_check = false;
+  let c_check = false;
+  
+  if ( l === '' ){ // ignore empty strings
+
+    l_check = true;
+
+  }
+  else {
+
+    if ( Array.isArray( l ) ){ 
+
+      l = l.map( lang => { return lang.toLowerCase(); });
+
+      l_check = l.includes( explore.language );
+
+    }
+    else {
+
+      l_check = ( l.toLowerCase() === explore.language );
+
+    }
+
+  }
+
+  if ( ! singleValid( c ) ){ // no country argument
+
+    c_check = true;
+
+  }
+  else if ( c === '' ){
+
+    c_check = true;
+
+  }
+  else {
+
+    if ( Array.isArray( c ) ){ 
+
+      c = c.map( country => { return country.toLowerCase(); });
+
+      c_check = c.includes( explore.country );
+
+    }
+    else {
+
+      c_check = ( c.toLowerCase() === explore.country );
+
+    }
+
+  }
+
+  return l_check && c_check;
 
 }
 
@@ -335,7 +472,14 @@ function validAny( cond ){
 
 function singleValid( cond ){
 
-  if ( typeof cond === undefined || typeof cond === 'undefined' || cond === 'undefined' || cond === null || cond === 'null' || cond === false || cond === '' ){
+  if (  typeof cond === undefined ||
+        typeof cond === 'undefined' ||
+        cond === 'undefined' ||
+        cond === null ||
+        cond === 'null' ||
+        cond === 'false' ||
+        cond === false ||
+        cond === '' ){
 
     return false;
 
@@ -436,16 +580,19 @@ function dragElement(elmnt) {
 
 function cloneTab() {
 
-  event.preventDefault();
+  if ( valid( event ) ){
+    event.preventDefault();
+  }
 
   openInNewTab( document.URL );
-
 
 }
 
 function openInNewTab( url ) {
 
-  event.preventDefault();
+  if ( valid( event ) ){
+    event.preventDefault();
+  }
 
   if ( url.startsWith('https%3A' ) || url.startsWith('http%3A' ) ){
 
@@ -501,7 +648,7 @@ function getParameterByName( name, url ) {
 
 }
 
-function setParameter( name, value ){
+function setParameter( name, value, hash ){
 
   const params = new URLSearchParams( window.location.search );
 
@@ -516,13 +663,28 @@ function setParameter( name, value ){
 
   }
 
-  window.history.replaceState({}, '', decodeURIComponent(`${window.location.pathname}?${params}#` + explore.hash ));
+  window.history.replaceState({}, '', decodeURIComponent(`${window.location.pathname}?${params}#` + hash ));
+
+}
+
+function setHashParameter( name, value ) {
+
+	let theURL           	= new URL('https://example.com');     // dummy url
+	theURL.search					= window.location.hash.substring(1);
+	theURL.searchParams.set( name, value );
+	window.location.hash	= theURL.searchParams;
 
 }
 
 function getRandomInt( max ) {
 
   return Math.floor( Math.random() * Math.floor(max) );
+
+}
+
+function getRandomInt2(min, max) {
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 
 }
 
@@ -933,6 +1095,47 @@ function setupAppKeyboardNavigation() {
 
 }
 
+function selectLanguageFrom( available_languages, fallback ) {
+
+  let language          = '';
+  let fallback_language = '';
+
+  if ( valid( fallback ) ){
+
+    fallback_language = fallback; // custom fallback language
+
+  }
+  else {
+
+    fallback_language = 'en'; // default fallback language
+
+  }
+
+  if ( ! Array.isArray( available_languages ) ){
+
+    console.log('warning: no available languages specified.');
+
+    language = fallback_language;
+
+  }
+  else {
+
+    if ( available_languages.includes( explore.language ) ){ // current language is available
+
+      language = explore.language;
+
+    }
+    else {
+
+      language = fallback_language;
+
+    }
+
+  }
+
+  return language;
+
+}
 
 // automatically pause any other audio-element already playing (upon a new 'play'-event)
 async function setupAutoStopAudio(){
@@ -1051,3 +1254,534 @@ function stopAllAudio(){ // pause all audio
       }
   }), e ? module.exports = n : window.screenfull = n) : e ? module.exports = !1 : window.screenfull = !1
 }();
+
+async function fetchLabel( list, lang ){
+
+  let obj = {};
+  let qlist = '';
+
+  //console.log( list );
+
+  $.each( list, function (j, item ) {
+
+    if (  j < 49 ){
+
+      qlist += item + '|';
+
+    }
+    else {
+      // skip label, as we are over the query-limit
+    }
+
+  });
+
+  qlist = qlist.slice(0, -1); // remove last "|"
+
+  // note API limit of 50!
+  let url = 'https://www.wikidata.org/w/api.php?action=wbgetentities&ids=' + qlist + '&format=json&languages=' + lang + '|en&props=labels';
+
+  //console.log( url );
+
+  let result = '';
+
+  try {
+
+    result = await $.ajax({
+        url: url,
+        type: 'GET',
+        jsonp: "callback",
+        dataType: "jsonp",
+        //data: args
+    });
+
+    return result;
+
+  }
+  catch ( error ) {
+
+    console.error( error );
+
+  }
+
+}
+
+function removebracesTitle( title ){ // remove anything in braces
+
+  title = title.replace(/ *\([^)]*\) */g, "").replace(/\//g, ' ').trim();
+
+  return title;
+
+}
+
+function minimizeTitle( title ){
+
+  if ( valid( [ explore.lang_catre1, explore.lang_bookre, explore.lang_porre1 ] )){
+
+  	title = title.replace(/[()]/g, '').replace(/\//g, ' ').replace( explore.lang_catre1 , '').replace( explore.lang_bookre , '').replace( explore.lang_porre1, '').replace(/disambiguation/, '');
+
+	}
+
+  return title;
+
+}
+
+function quoteTitle( title ){
+
+  if ( valid( [ explore.lang_catre1, explore.lang_bookre, explore.lang_porre1 ] )){
+
+    // used for correctly-quoted searches
+    title = title.replace(/\//g, ' ').replace( explore.lang_catre1 , '').replace( explore.lang_bookre , '').replace( explore.lang_porre1, '');
+
+  }
+
+  if ( ! title.includes('(') ){ // no-start-parens in title --> assume no parens
+
+    title = '"' + title + '"';
+
+  }
+  else if ( title.startsWith('(') ){ // (foo)-bar baz -> "foo-bar baz"
+
+    title = '"' + title.replace(/ *\([^)]*\) */g, '') + '"';
+
+  }
+  else { // foo bar (baz) -> "foo bar" baz
+
+    title = '"' + title.replace(/ *\(/, '" ').replace(/[()]/g, '');
+
+  }
+
+  // FIXME: this should be handle correctly for all languages
+  title = title.replace(/disambiguation/, '');
+
+  return title;
+
+}
+
+function getBoundingBox(lon, lat, delta){
+
+  return `${lon - delta},${lat - delta},${lon + delta},${lat + delta}`;
+
+}
+
+function createSingleImageIIIF( title, image_url ){
+
+  let url			= '';
+  let coll		= { "images": [ ]};
+  let label		= encodeURIComponent( title );
+  let author  = '';
+  let desc    = '';
+
+  let img = explore.base + '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent( image_url ) + '?width=5000px';
+
+  coll.images.push( [ img, label, desc, author, 'wikiCommons' ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
+
+  if ( coll.images.length > 0 ){
+
+    let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+
+    let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+
+    return JSON.stringify( encodeURIComponent( iiif_viewer_url ) );
+
+  }
+
+}
+
+function getTimeSpaceURL( item ){
+
+	// not bullet-proof, but we need some 'relevance'-filters before showing the timspace-button (as most events don't have the required data to show a timeline)
+	if (  valid( item.category ) || ( valid( item.followed_by ) || valid( item.part_of ) || valid( item.has_parts ) || valid( item.list_of ) ) ){
+
+		let used_qid = item.qid;
+
+		if ( !valid( item.category ) && valid( item.part_of ) ){ // this is a fallible escape-hatch for using an alternative qid
+
+			if ( Array.isArray( item.part_of ) ){
+
+				used_qid = item.part_of[0];
+
+			}
+			else {
+
+				used_qid = item.part_of;
+
+			}
+
+		}
+
+		let limited_types = [
+			'3186692', '577', '578', '39911', '36507', // year, decade, century, milennium, 
+
+			// TODO: how to better handle these:
+			'27020041', '82414', '159821', // sports events
+		];
+
+		let limited = 'false';
+
+		if ( limited_types.includes( item.instance_qid ) ) { 
+
+			limited = 'true';
+		}
+
+		return `${explore.base}/app/timespace/?q=${used_qid}&l=${explore.language}&highlight=${item.qid}&limited=${limited}`;
+
+	}
+
+}
+
+function cleanText( text ){
+
+  // should single-quotes still be allowed?
+  return text.replace(/(\r\n|\n|\r|'|"|`|\(|\)|\[|\])/gm, '');
+
+}
+
+function getDatingHTML( item, args ){
+
+  let start_date        = '';
+  let end_date          = '';
+  let pointintime       = '';
+  let dating            = '';
+
+  let date_obj          = {};
+
+  // derives from start/end years and can be used to filter output-renderings
+  date_obj.filter_year_start  = new Date().getFullYear();
+  date_obj.filter_year_end    = new Date().getFullYear();
+
+  // DATES
+  if ( valid( item.start_date ) ){
+
+    start_date = item.start_date;
+
+  }
+  else if ( valid( item.date_inception ) ){
+
+    start_date = item.date_inception;
+
+  }
+
+  if ( valid( item.end_date) ){
+
+    end_date = item.end_date;
+
+  }
+  else { // check any other possible end-date types
+
+    if ( valid( item.dissolved_date ) ){
+
+      end_date = item.dissolved_date;
+
+    }
+
+  }
+
+  // TODO: could we code this n-to-1 pointintime login in de fields file?
+  if ( valid( item.date_pointintime ) ){
+
+    pointintime = item.date_pointintime;
+
+  }
+
+  if ( pointintime === '' ){
+
+    if ( valid( item.date_release ) ){
+
+      pointintime = item.date_release;
+
+    }
+
+  }
+
+  const dash = ( explore.language_direction === 'rtl' ) ? '&#10510;' : '&#10511'; // '&#10143;';
+
+  if ( start_date !== '' && end_date !== '' ){ // case 1) start & end date
+
+    const start = new Date( start_date );
+    const end   = new Date( end_date );
+
+    date_obj.filter_year_start = start.getFullYear();
+    date_obj.filter_year_end   = end.getFullYear();
+
+    dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'wikipedia', qid: ''  } ) ) + '>' + start.getFullYear() + '</a>' + dash +
+             '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'wikipedia', qid: '' } ) ) + '>' + end.getFullYear() + '</a>';
+
+    if ( isNaN( start.getFullYear() ) && isNaN( end.getFullYear() ) ){ // probably a complex date string, so just use the original strings
+
+      let s = Math.round( parseInt( item.start_date.split('-01')[0] ) / 1000000 ).toString();
+      let e = Math.round( parseInt( item.end_date.split('-01')[0] ) / 1000000 ).toString();
+
+      //let ancient_format = wNumb({ thousand: ',', }); // TODO: use numbro instead?
+      dating = s + ' mil.' + dash + e + ' mil.';
+
+    }
+
+
+  }
+  else if ( start_date !== '' ){ // case 2) only start date
+
+    const start = new Date( start_date );
+
+    date_obj.filter_year_start = start.getFullYear();
+
+    if ( ! isNaN( start.getFullYear() ) ){ // check to prevent very ancient dates to give a NaN result
+
+      dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + start.getFullYear() + '</a>' + dash;
+
+    }
+    else { // probably a complex date string, so just use the original string
+
+      let s = Math.round( parseInt( start_date.toString().split('-01')[0] ) / 1000000 );
+      dating = s + ' mil.' + dash;
+
+    }
+
+  }
+  else if ( end_date !== '' ){ // case 3: only end date
+
+    const end   = new Date( end_date );
+    dating = dash + '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + end.getFullYear() + '</a>';
+
+  }
+
+  if ( dating === '' ){ // no dating set yet
+
+    if ( pointintime !== '' ){
+
+      const date = new Date( pointintime );
+
+      date_obj.filter_year_start = date.getFullYear();
+
+      if ( ! isNaN( date.getFullYear() ) ){ // check to prevent very ancient dates to give a NaN result
+
+        dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: date.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + date.getFullYear() + '</a>';
+
+      }
+    }
+
+  }
+
+  if ( dating !== '' ){ // if any dating was set, style it.
+    dating = ' <span class="headline-dating" title="dating" class="nowrap">' + dating + '</span> ';
+  }
+
+  //console.log( 'dating: ', dating, start_date, end_date);
+
+  date_obj.dating = dating;
+
+  return date_obj;
+
+}
+
+
+/*
+function fixCountryData(){
+
+  let objects = findObjectByKey( Object.values(countries), 'check', true);
+  let list = objects.map(e => e.chamber1);
+
+
+  Object.values( parls ).forEach( (( p ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( p.c === qid ){ // matching country
+
+        console.log( p.c );
+
+        if ( countries[ qid ].hasOwnProperty( 'chamber_1' ) ){
+
+          countries[ qid ].chamber1 = p.p;
+
+        }
+
+      }
+
+    }))
+
+  }))
+
+  console.log( countries );
+
+  ----------------------------
+
+  Object.keys( old ).forEach( (( l ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( l === qid ){ // matching country
+
+        if ( ! countries[ qid ].hasOwnProperty( 'chamber1' ) ){
+
+          // work on this country data, if possible
+
+          if ( old[ qid ].hasOwnProperty( 'legislative_chamber_1' ) ){
+
+            countries[ qid ].chamber1         = old[ qid ].legislative_chamber_1;
+            countries[ qid ].chamber1_members = old[ qid ].legislative_chamber_1;
+            countries[ qid ].check = true;
+
+          }
+          else if ( old[ qid ].hasOwnProperty( 'legislative_chamber_2' ) ){
+
+            countries[ qid ].chamber2         = old[ qid ].legislative_chamber_2;
+            countries[ qid ].chamber2_members = old[ qid ].legislative_chamber_2;
+            countries[ qid ].check = true;
+
+          }
+          else if ( old[ qid ].hasOwnProperty( 'legislative_chamber_3' ) ){
+
+            countries[ qid ].chamber3         = old[ qid ].legislative_chamber_3;
+            countries[ qid ].chamber3_members = old[ qid ].legislative_chamber_3;
+            countries[ qid ].check = true;
+          
+          }
+
+        }
+
+      }
+
+    }))
+
+  }))
+
+  console.log( countries );
+
+  ----------------------------
+
+  // remove incorrect fields first
+  Object.values( legislatures ).forEach( (( l ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( l.country === qid && countries[ qid ].hasOwnProperty( 'check' ) ){ // matching check country
+
+        if ( countries[ qid ].hasOwnProperty( 'chamber1' ) ){ delete countries[ qid ].chamber1; }
+        if ( countries[ qid ].hasOwnProperty( 'chamber1_members' ) ){ delete countries[ qid ].chamber1_members; }
+        if ( countries[ qid ].hasOwnProperty( 'chamber2' ) ){ delete countries[ qid ].chamber2; }
+        if ( countries[ qid ].hasOwnProperty( 'chamber2_members' ) ){ delete countries[ qid ].chamber2_members; }
+
+      }
+
+    }))
+
+  }))
+
+
+  // update fields
+  Object.values( legislatures ).forEach( (( l ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( l.country === qid && countries[ qid ].hasOwnProperty( 'check' ) ){ // matching check country
+
+        if ( l.role === 'Q637846' ){ // upper chamber
+          countries[ qid ].chamber1 = l.chamber;
+          countries[ qid ].chamber1_members = l.members;
+        }
+        else if ( l.role === 'Q375928' ){ // lower chamber
+          countries[ qid ].chamber2 = l.chamber;
+          countries[ qid ].chamber2_members = l.members;
+        }
+        else { // no role indicated
+
+          if ( countries[ qid ].hasOwnProperty( 'chamber1' ) ){
+
+            if ( countries[ qid ].hasOwnProperty( 'chamber2' ) ){
+
+              if ( countries[ qid ].hasOwnProperty( 'chamber3' ) ){
+
+                // do nothing, we are done
+
+              }
+              else {
+                countries[ qid ].chamber3 = l.chamber;
+                countries[ qid ].chamber3_members = l.members;
+              }
+
+            }
+            else {
+              countries[ qid ].chamber2 = l.chamber;
+              countries[ qid ].chamber2_members = l.members;
+            }
+          }
+          else {
+            countries[ qid ].chamber1 = l.chamber;
+            countries[ qid ].chamber1_members = l.members;
+          }
+
+        }
+      }
+
+    }))
+
+  }))
+
+  console.log( countries );
+
+
+  if ( countries[ qid ].hasOwnProperty( 'chamber1' ) ){
+
+    if ( countries[ qid ].hasOwnProperty( 'chamber2' ) ){
+
+      if ( countries[ qid ].hasOwnProperty( 'chamber3' ) ){
+
+        // do nothing, we are done
+
+      }
+      else { countries[ qid ].chamber3 = data.chambers; }
+
+    }
+    else { countries[ qid ].chamber2 = data.chambers; }
+
+  }
+  else { countries[ qid ].chamber1 = data.chambers; }
+
+
+
+  Object.values( l1 ).forEach( (( data ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( data.country === qid ){
+
+        countries[ qid ].l1 = data.item;
+
+      }
+
+    }))
+
+  }))
+
+  Object.values( l2 ).forEach( (( data ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( data.country === qid ){
+
+        countries[ qid ].l2 = data.item;
+
+      }
+
+    }))
+
+  }))
+
+  Object.values( l3 ).forEach( (( data ) => {
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( data.country === qid ){
+
+        countries[ qid ].l3 = data.item;
+
+      }
+
+    }))
+
+  }))
+
+  console.log( countries );
+
+}
+*/
