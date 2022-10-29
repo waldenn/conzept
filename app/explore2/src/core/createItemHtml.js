@@ -87,6 +87,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
 	}
 
+  item.thumbnail = thumbnail; // store so we can use it in field-conditions
+
   let type_ = 'wikipedia';
 
   if ( valid( item.from_sparql ) ){

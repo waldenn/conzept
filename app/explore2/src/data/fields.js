@@ -2887,7 +2887,7 @@ conzept_fields = {
   text: 'Commons',
   section: ['media-image','main'],
   rank: [51,1041],
-  headline_create: 'valid( item.qid ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept" ] )', 
+  headline_create: 'valid( item.qid ) && valid( item.thumbnail ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept" ] )', 
   headline_type: 'link',
   headline_rank: 440,
 
