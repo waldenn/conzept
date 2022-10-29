@@ -6824,6 +6824,7 @@ async function setDefaultDisplaySettings( cover, type ) {
           '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository"><i class="fa-brands fa-github"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://github.com/sponsors/waldenn?o=esb" title="GitHub sponsor" aria-label="GitHub sponsor"><i class="fa-solid fa-heart"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/conzept-encyclopedia-extension/" title="Firefox browser extension" aria-label="Firefox browser extension"><i class="fa-brands fa-firefox-browser"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fa-brands fa-twitter"></i></a> &nbsp;' + 
         '</span>' + 
       '</p>' + 
@@ -8691,15 +8692,16 @@ async function renderTopics( inputs ) {
 			explore.tabsInstance.select('tab-topics');
 		}
 
-
     if (explore.page === 1 ){
 
-      const id = $( ".entry:nth-child(2)" ).attr('id'); // 'n1'
-      const q_ = getSearchValue().toLowerCase().replace(/^"|"$/g, '').trim();
-
+      const id      = $( ".entry:nth-child(2)" ).attr('id'); // 'n1'
+      const q_      = getSearchValue().toLowerCase().replace(/^"|"$/g, '').trim();
+      let show_raw  = false; // default
 
       // FIXME: clean up and make this "raw-entry display" work dynamically for all datasources
       if ( valid( inputs['wikipedia'] ) ){
+
+        console.log( ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() ) );
 
         // check if the names match of the non-wikipedia and wikipedia article
         const c0 = ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
@@ -8707,35 +8709,33 @@ async function renderTopics( inputs ) {
         const c2 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
         const c3 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
         // check at least the first four (standard, category, book, portal) articles
-        if ( c0 || c1 || c2 || c3 ){
-          // do nothing: raw-string-topic is hidden by default
-        }
-        else {
-          $('.no-wikipedia-entry').show();
+        if ( !c0 || !c1 || !c2 || !c3 ){
+          show_raw = true;
         }
 
         // only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
         if ( explore.firstAction ){ markArticle(id, explore.type ); }
 
       }
-      if ( valid( inputs['wikidata'] ) ){
+      /* FIXME
+      else if ( valid( inputs['wikidata'] ) ){
 
         const c0 = ( q_ === inputs['wikidata'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
 
-        // check at least the first four (standard, category, book, portal) articles
-        if ( c0 ){
-          // do nothing: raw-string-topic is hidden by default
-        }
-        else {
-          $('.no-wikipedia-entry').show();
-        }
+        if ( ! c0 ){ show_raw = false; }
 
         if ( explore.firstAction ){ markArticle(id, explore.type ); }
 
       }
+      */
       else { // mark on the "no-wikipedia-article"
-        $('.no-wikipedia-entry').show();
+        //$('.no-wikipedia-entry').show();
+        show_raw = true;
         markArticle('n0', explore.type );
+      }
+
+      if ( show_raw ){
+        $('.no-wikipedia-entry').show();
       }
 
     }
