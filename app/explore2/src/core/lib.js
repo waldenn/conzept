@@ -8701,15 +8701,16 @@ async function renderTopics( inputs ) {
       // FIXME: clean up and make this "raw-entry display" work dynamically for all datasources
       if ( valid( inputs['wikipedia'] ) ){
 
-        console.log( ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() ) );
-
         // check if the names match of the non-wikipedia and wikipedia article
         const c0 = ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
         const c1 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
         const c2 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
         const c3 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
         // check at least the first four (standard, category, book, portal) articles
-        if ( !c0 || !c1 || !c2 || !c3 ){
+        if ( validAny( [c0, c1, c2, c3] ) ){
+          show_raw = false;
+        }
+        else {
           show_raw = true;
         }
 
@@ -8734,8 +8735,13 @@ async function renderTopics( inputs ) {
         markArticle('n0', explore.type );
       }
 
+      //console.log( 'show_raw: ', show_raw );
+
       if ( show_raw ){
         $('.no-wikipedia-entry').show();
+      }
+      else {
+        $('.no-wikipedia-entry').hide();
       }
 
     }
