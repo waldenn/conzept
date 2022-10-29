@@ -23,7 +23,7 @@
     "education"
   ],
   "author": "Jama Poulsen",
-  "license": "",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/waldenn/conzept/issues"
   },
