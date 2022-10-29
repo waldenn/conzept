@@ -267,8 +267,6 @@ const loadNextPage = async function() {
 
       let topicResults = await fetchWikidataQuery();
 
-      console.log('fetchWikidataQuery data: ', topicResults );
-
       renderTopics( { 'wikidata' : { data: topicResults } } );
 
     }
@@ -8618,11 +8616,10 @@ async function renderTopics( inputs ) {
 
   const raw_entry = createItemHtml( args );
 
-  // QQQ FIXME
   // non-wikipedia entry
-  //if ( explore.page === 1 && explore.searchmode === 'wikipedia' ){
-  //  $('#results').append( raw_entry );
-  //}
+  if ( explore.page === 1 && explore.searchmode === 'wikipedia' ){
+    $('#results').append( raw_entry );
+  }
 
   if ( explore.totalRecords === 0 ){ // no topics found
 
@@ -8694,43 +8691,54 @@ async function renderTopics( inputs ) {
 			explore.tabsInstance.select('tab-topics');
 		}
 
-    // QQQ FIXME make this work for other targeted non-wikipedia-types
-    /*
-		if ( inputs['wikipedia'].data.value[0].source.data.query.length > 0 ){
+
+    if (explore.page === 1 ){
 
       const id = $( ".entry:nth-child(2)" ).attr('id'); // 'n1'
+      const q_ = getSearchValue().toLowerCase().replace(/^"|"$/g, '').trim();
 
-			const q_ = getSearchValue().toLowerCase().replace(/^"|"$/g, '').trim();
 
-      // TODO: handle this with multiple data sources
-			// check if the names match of the non-wikipedia and wikipedia article
-			const c0 = ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
-      const c1 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
-      const c2 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
-      const c3 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
-			const cl = ( explore.page > 1 );
+      // FIXME: clean up and make this "raw-entry display" work dynamically for all datasources
+      if ( valid( inputs['wikipedia'] ) ){
 
-			// check at least the first four (standard, category, book, portal) articles
-			if ( explore.page > 1 || c0 || c1 || c2 || c3 || cl ){
-        // do nothing: raw-string-topic is hidden by default
-			}
-      else {
-				$('.no-wikipedia-entry').show();
+        // check if the names match of the non-wikipedia and wikipedia article
+        const c0 = ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
+        const c1 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
+        const c2 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
+        const c3 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
+        // check at least the first four (standard, category, book, portal) articles
+        if ( c0 || c1 || c2 || c3 ){
+          // do nothing: raw-string-topic is hidden by default
+        }
+        else {
+          $('.no-wikipedia-entry').show();
+        }
+
+        // only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
+        if ( explore.firstAction ){ markArticle(id, explore.type ); }
+
+      }
+      if ( valid( inputs['wikidata'] ) ){
+
+        const c0 = ( q_ === inputs['wikidata'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
+
+        // check at least the first four (standard, category, book, portal) articles
+        if ( c0 ){
+          // do nothing: raw-string-topic is hidden by default
+        }
+        else {
+          $('.no-wikipedia-entry').show();
+        }
+
+        if ( explore.firstAction ){ markArticle(id, explore.type ); }
+
+      }
+      else { // mark on the "no-wikipedia-article"
+        $('.no-wikipedia-entry').show();
+        markArticle('n0', explore.type );
       }
 
-			// only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
-			if ( explore.firstAction && explore.page === 1 ){
-
-				markArticle(id, explore.type );
-
-			}
-
-		}
-		else { // mark on the "no-wikipedia-article"
-	    $('.no-wikipedia-entry').show();
-			markArticle('n0', explore.type );
-		}
-    */
+    }
 
 	}
 
