@@ -1,1 +1,8 @@
 *.swp
+
+conzept-docker/
+
+.env
+
+node_modules
+data/

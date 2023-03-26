@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  certbot :
+    container_name: certbot
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    # depends_on:
+
+    #   - conzept
+  conzept:
+    container_name: conzept
+    build:
+      context: .
+      args:
+        - conzept_ver=2.4
+        - CONZEPT_CERT_NAME=conze.pt
+        - CONZEPT_DOMAIN=conze.pt
+    volumes:
+      - sslvolume:/etc/ssl
+      - ./data/certbot/conf:/etc/letsencrypt/
+      - ./data/certbot/www:/var/www/certbot
+    ports:
+      - 8000:80
+      - 8443:443
+    environment:
+      - DEBUG=true
+    restart: on-failure
+
+
+volumes:
+  sslvolume:
+    #external: true
+
