@@ -75,19 +75,12 @@ COPY conf/nginx-site.conf /etc/nginx/conf.d/default.conf
 COPY conf/.env.docker /var/www/html/.env
 COPY entrypoint.sh /sbin/entrypoint.sh
 
-ARG CONZEPT_CERT_NAME="example-cert"
-ARG CONZEPT_SERVER_NAME="example-server"
-ARG CONZEPT_DOMAIN="example-domain"
-
-ENV CONZEPT_CERT_NAME=$CONZEPT_CERT_NAME
-ENV CONZEPT_SERVER_NAME=$CONZEPT_SERVER_NAME
-ENV CONZEPT_DOMAIN=$CONZEPT_DOMAIN
-RUN grep -l "\$CONZEPT_CERT_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_CERT_NAME/$CONZEPT_CERT_NAME/g"
+RUN . settings.conf && grep -l "\$CONZEPT_CERT_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_CERT_NAME/$CONZEPT_HOSTNAME/g"
 # RUN grep -l "\$CONZEPT_SERVER_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_SERVER_NAME/$CONZEPT_SERVER_NAME/g"
-RUN grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_DOMAIN/$CONZEPT_DOMAIN/g"
+RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_DOMAIN/$CONZEPT_HOSTNAME/g"
 
 
 # USER root
 RUN chmod -v g+rwx /var/run/nginx.pid && \
     chmod -vR g+rw /usr/share/nginx/cache /var/cache/nginx /var/lib/nginx/ /etc/php7/php-fpm.d
-USER 1001
+

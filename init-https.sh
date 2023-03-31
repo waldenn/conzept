@@ -6,13 +6,13 @@
   fi
   # TODO - Dynamic Domain from ENv Variables
 
-  # . ./settings.conf
+. "$PWD/settings.conf"
   # => $CONZEPT_HOSTNAME
-  domains="conze.pt"
+  domains="$CONZEPT_HOSTNAME"
   rsa_key_size=4096
   data_path="./data/certbot"
     # => $CONZEPT_EMAIL
-  email="example@gmail.com" # Adding a valid address is strongly recommended
+  email="$CONZEPT_EMAIL" # Adding a valid address is strongly recommended
   staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits
 
   if [ -d "$data_path" ]; then
@@ -45,7 +45,7 @@
   echo "### Starting nginx ..."
   docker-compose up --force-recreate -d conzept
   echo
-exit 1;
+
   echo "### Deleting dummy certificate for $domains ..."
   docker-compose run --rm --entrypoint "\
     rm -Rf /etc/letsencrypt/live/$domains && \

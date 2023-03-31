@@ -15,19 +15,13 @@ services:
     container_name: conzept
     build:
       context: .
-      args:
-        - conzept_ver=2.4
-        - CONZEPT_CERT_NAME=conze.pt
-        - CONZEPT_DOMAIN=conze.pt
     volumes:
       - sslvolume:/etc/ssl
       - ./data/certbot/conf:/etc/letsencrypt/
       - ./data/certbot/www:/var/www/certbot
     ports:
-      - 8000:80
-      - 8443:443
-    environment:
-      - DEBUG=true
+      - 80:80
+      - 443:443
     restart: on-failure
 
 
