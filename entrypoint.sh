@@ -8,9 +8,10 @@
 initialize_system() {
   echo "Initializing Conzept container ..."
 
-  PHP_MAX_CHILDREN=${PHP_MAX_CHILDREN:-5}
-  # # configure conf files
-  sed 's,{{PHP_MAX_CHILDREN}},'"${PHP_MAX_CHILDREN}"',g' -i /etc/php7/php-fpm.d/www.conf
+  # PHP_MAX_CHILDREN=${PHP_MAX_CHILDREN:-5}
+  # echo "updating PHP_MAX_CHILDREN variable to: ${PHP_MAX_CHILDREN}"
+  # # # configure conf files
+  # sed 's,{{PHP_MAX_CHILDREN}},'"${PHP_MAX_CHILDREN}"',g' -i /etc/php7/php-fpm.d/www.conf
 
 }
 
