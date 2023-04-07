@@ -1,0 +1,9 @@
+# *
+# !entrypoint.sh
+# !conf
+conzept-docker/
+.git
+.github
+.env
+node_modules
+data/
