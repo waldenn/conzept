@@ -6,3 +6,4 @@ conzept-docker/
 .github
 .env
 node_modules
+data/
