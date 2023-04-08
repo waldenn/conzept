@@ -2,7 +2,7 @@
 
 # DOCKER INSTALL
 
-echo "\nInstalling Docker and its dependencies...\n"
+printf "\nInstalling Docker and its dependencies...\n"
 
 docker_compose_version="v2.17.2" # see latest: https://github.com/docker/compose/tags
 
