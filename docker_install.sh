@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# CONZEPT DOCKER INSTALL
+# DOCKER INSTALL
 
 echo "Installing Docker and its dependencies..."
 
