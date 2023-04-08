@@ -768,10 +768,10 @@ $settings_html = '
                   <li>&nbsp; <span id="app-menu-version"></span>: vCONZEPT_VERSION</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news">Twitter</a></li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="GitHub">GitHub</a></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a></li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/sponsors/waldenn?o=esb" aria-label="GitHub sponsor"><i class="fa-solid fa-heart"></i> sponsor</a></li>
-                  <li>&nbsp; &nbsp; <a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy">privacy policy</a></li>
+                  <li>&nbsp; &nbsp; <a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy"><i class="fa-solid fa-section"></i> privacy policy</a></li>
                 </ul>
             </details>
 
