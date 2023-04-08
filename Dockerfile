@@ -81,4 +81,3 @@ RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf
 # USER root
 RUN chmod -v g+rwx /var/run/nginx.pid && \
     chmod -vR g+rw /usr/share/nginx/cache /var/cache/nginx /var/lib/nginx/ /etc/php7/php-fpm.d
-
