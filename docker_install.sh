@@ -29,4 +29,4 @@ sudo curl -L "https://github.com/docker/compose/releases/download/$docker_compos
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-echo "done. please logout and login again."
+echo "Done. Please logout and login again, to activate the group permissions."
