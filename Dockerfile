@@ -1,4 +1,3 @@
-
 # FROM node:16.18.0-alpine AS node
 
 FROM nginx:1.20-alpine
@@ -78,7 +77,6 @@ COPY entrypoint.sh /sbin/entrypoint.sh
 RUN . settings.conf && grep -l "\$CONZEPT_CERT_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_CERT_NAME/$CONZEPT_HOSTNAME/g"
 # RUN grep -l "\$CONZEPT_SERVER_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_SERVER_NAME/$CONZEPT_SERVER_NAME/g"
 RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_DOMAIN/$CONZEPT_HOSTNAME/g"
-
 
 # USER root
 RUN chmod -v g+rwx /var/run/nginx.pid && \
