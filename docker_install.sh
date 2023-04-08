@@ -2,7 +2,7 @@
 
 # DOCKER INSTALL
 
-echo "Installing Docker and its dependencies..."
+echo "\nInstalling Docker and its dependencies...\n"
 
 docker_compose_version="v2.17.2" # see latest: https://github.com/docker/compose/tags
 
@@ -29,4 +29,4 @@ sudo curl -L "https://github.com/docker/compose/releases/download/$docker_compos
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-echo "Done. Please logout and login again, to activate the group permissions."
+printf "\nDone. Please logout and login again, to activate the group permissions.\n"
