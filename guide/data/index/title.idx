@@ -18,7 +18,7 @@ configuration
 
 terms
 upgrading conzept
-concept stores
+
 browser extension
 apps
 adding an app
@@ -34,3 +34,10 @@ adding new Wikidata properties
 command API
 old notes
 datasources
+
+
+URL structure
+JSON-LD
+history
+Docker
+docker notes

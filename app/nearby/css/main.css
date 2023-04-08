@@ -84,6 +84,8 @@ div.popup_section {
 
 .thumb img {
   border-radius: 0.4em;
+  height: fit-content;
+  max-height: 600px;
 }
 
 .dropdown-item:focus, .dropdown-item:hover {

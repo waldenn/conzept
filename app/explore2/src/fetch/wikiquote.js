@@ -106,7 +106,7 @@ function fetchWikiQuote( args, url ){
 			},
       error: function (xhr, ajaxOptions, thrownError) {
 
-				console.log( 'response: hmm...', response ); // server response
+				console.log( 'response: hmm...', thrownError); // server response
 
       }
 

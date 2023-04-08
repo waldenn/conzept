@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["DOM", "ES6", "DOM.Iterable"]
+  },
+  "exclude": [
+    "./dist",
+    "./test"
+  ],
+  "typedocOptions": {
+    "disableOutputCheck": true,
+    "exclude": "**/*_test.ts"
+  }
+}

@@ -31,6 +31,18 @@ a, a:visited {
   color: #005799;
 }
 
+#loader {
+  position: fixed;
+  margin: auto;
+  bottom: 10%;
+  width: 70px;
+  height: 70px;
+  left: 50%;
+  right: 50%;
+  background: #fbfaf9d9;
+  border-radius: 2em;
+}
+
 button {
   background-color: #005799; 
   color: white; 
@@ -142,7 +154,10 @@ button:hover {
 #results img {
   height: 15em;
   margin-bottom: 1em;
+  /*max-width: min-content;*/
+  max-width: 90vw;
 }
+
 #results .caption {
   opacity: 0;
   position: absolute;

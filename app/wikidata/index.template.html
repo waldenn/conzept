@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html id="page">
 
 <head>
 <title>conzept wikidata</title>
@@ -11,11 +11,11 @@
 <!-- conzept resources -->
 CONZEPT_COMMON_HTML_INCLUDE
 
-<script src="../explore2/libs/TinyGesture.js"></script>
-<script src="../explore2/libs/lc/js/lc_lightbox.lite.js"></script>
-<link rel="stylesheet" href="../explore2/libs/lc/css/lc_lightbox.min.css" />
-<link rel="stylesheet" href="../explore2/libs/lc/skins/minimal.css" />
-<script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js" async></script>
+<!--script src="../explore2/libs/TinyGesture.js"></script-->
+<script src="../explore2/libs/lc/dist/js/lc_lightbox.lite.js"></script>
+<link rel="stylesheet" href="../explore2/libs/lc/dist/css/lc_lightbox.css" />
+<link rel="stylesheet" href="../explore2/libs/lc/dist/css/skins/minimal.css" />
+<script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
 
 <!--link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Reasonator_logo_proposal.png/16px-Reasonator_logo_proposal.png"-->
 
@@ -33,7 +33,9 @@ CONZEPT_COMMON_HTML_INCLUDE
 
 <body id="wikidata-app" style='display:none'>
 
-<div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
+  <div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
+
+  <img id="loader" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -64,7 +66,7 @@ CONZEPT_COMMON_HTML_INCLUDE
             <span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" title="go to images" aria-label="go to images"><span class="icon"><i class="far fa-images"></i></span></button></span> 
             <span id="gotoBooks"><button onclick="gotoBooks()" onauxclick="gotoBooks( true )" class="dropbtn" title="go to books" aria-label="go to books"><span class="icon"><i class="fas fa-book"></i></span></button></span> 
             <span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fas fa-plus"></i></span></button></span> 
-            <span id="gotoWikidata"><button onclick="gotoWikidata()" onauxclick="gotoWikidata( true )" class="dropbtn" title="go to Wikidata" aria-label="go to wikipedia"><span class="icon"><i class="fas fa-external-link-alt"></i></span></button></span>   
+            <span id="gotoWikidata"><button onclick="gotoWikidata()" onauxclick="gotoWikidata( true )" class="dropbtn" title="go to Wikidata" aria-label="go to wikipedia"><span class="icon"><i class="fa-solid fa-barcode"></i></span></button></span>   
           </li>
 
 		<li>
@@ -283,7 +285,9 @@ CONZEPT_COMMON_HTML_INCLUDE
 <script type="text/javascript" src="./reasonator_types.js"></script>
 <script type="text/javascript" src="./auto_long_desc.js"></script>
 
-<script type="text/javascript" src="./main.js?v0.18"></script>
+<script src="./js/zooming.js"></script>
+
+<script type="text/javascript" src="./main.js?v0.19"></script>
 
 <script>
 

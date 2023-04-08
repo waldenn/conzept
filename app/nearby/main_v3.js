@@ -59,10 +59,10 @@ var wikishootme = {
 	overlays : {} ,
 	layer_info : {
 		key2name : {
-			wikidata_image:'Wikidata (with image, 3K max)',
-			wikidata_no_image:'Wikidata (no image, 3K max)',
+			wikipedia:'Wikipedia', // 500 max
+			wikidata_image:'Wikidata (with image)', // 3K max
+			wikidata_no_image:'Wikidata (no image, 3K max)', // 3K max
 			//commons:'Commons images (500 max)',
-			wikipedia:'Wikipedia (500 max)',
 			//mixnmatch:"Mix'n'match (5000 max)",
 			//mnm_lc:"Mix'n'match large catalogs (5000 max)",
 			//flickr:'Flickr'
@@ -100,17 +100,23 @@ var wikishootme = {
 		h.push ( 'lng='+me.pos.lng ) ;
 		h.push ( 'zoom='+me.map.getZoom() ) ;
 
-		if ( me.language != 'en' ){
+    //console.log( me.language, lang );
+
+		if ( me.language != 'en' && valid( me.language ) ){
       lang = me.language;
       h.push ( 'interface_language='+me.language ) ;
     }
+    else {
+      me.language, lang = 'en';
+    }
+
 		if ( me.current_tile_layer != 'osm' ) h.push ( 'tiles='+me.current_tile_layer ) ;
 
 		var layers = me.show_layers.join(',') ;
 		if ( layers != me.full_layers ) h.push ( 'layers='+layers ) ;
 
 		if ( me.sparql_filter == '' ) {
-			$('#is_using_filter').hide() ;
+			//$('#is_using_filter').hide() ;
 		} else {
 			h.push ( 'sparql_filter='+encodeURIComponent(me.sparql_filter) ) ;
 			$('#is_using_filter').show() ;
@@ -144,6 +150,9 @@ var wikishootme = {
 		var url = "https://fist.toolforge.org/wdfist/index.html?sparql=" ;
 		url += encodeURIComponent ( sparql ) ;
 		url += '&no_images_only=1&search_by_coordinates=1&remove_multiple=1&prefilled=1' ;
+
+    //console.log( url );
+
 		$('#wdfist').show().attr ( { href : url } ) ;
 		
 		var distance = ne.distanceTo(sw) ;
@@ -347,8 +356,10 @@ var wikishootme = {
 		}
 		
 		if ( typeof entry.commonscat != 'undefined' ) {
+
 			h += "<div class='popup_section'>" ;
-		  h += '<a href="javascript:void(0)" title="wikiCommons category" onclick="gotoUrl(&quot;' + 'https://commons.m.wikimedia.org/wiki/Category:' + escattr(encodeURIComponent(entry.commonscat.replace(/ /g,'_'))) + '&quot;)"><i class="far fa-images"></i></a>';
+		  h += '<a href="javascript:void(0)" title="wikiCommons category" onclick="gotoUrl(&quot;' + `https://conze.pt/app/commons/?q=${entry.page}&l=${lang}` + '&quot;)"><i class="far fa-images"></i></a>';
+		  //h += '<a href="javascript:void(0)" title="wikiCommons category" onclick="gotoUrl(&quot;' + 'https://commons.m.wikimedia.org/wiki/Category:' + escattr(encodeURIComponent(entry.commonscat.replace(/ /g,'_'))) + '&quot;)"><i class="far fa-images"></i></a>';
 		  //h += '<a href="javascript:void(0)" title="Bing image search" onclick="gotoUrl(&quot;' + 'https://www.bing.com/images/search?&q=' + encodeURIComponent( entry.label ) + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + lang + '-' + lang + '&quot;)"><i class="fas fa-search-location"></i></a> ' ;
 		  //h += '<a href="javascript:void(0)" title="video" onclick="gotoUrl(&quot;' + CONZEPT_WEB_BASE + '/app/video/#/search/' + encodeURIComponent( entry.label ) + '&quot;)"><i class="fab fa-youtube"></i></a> ' ;
 			h += "</div>" ;
@@ -359,19 +370,14 @@ var wikishootme = {
 		if ( typeof me.marker_me != 'undefined' ) {
 			var pos = me.marker_me.getLatLng() ;
 
-			route_link = '<a target="_blank" href="' + encodeURI( 'https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route='+ pos.lat + ',' + pos.lng + ';' + entry.pos[0] + ',' + entry.pos[1] + '#map=14/' + entry.lat + '/' + entry.lng ) + '"><i class="fas fa-directions"></i></a>';
+      routing_url = encodeURI( `${CONZEPT_WEB_BASE}/app/routing/?z=18&loc=${pos.lat},${pos.lng}&loc=${entry.pos[0]},${entry.pos[1]}&hl=${ valid(lang)? lang : 'en' }&alt=0` );
+      //routing_url = encodeURI( `${CONZEPT_WEB_BASE}/app/routing/?z=18&loc=${pos.lat},${pos.lng}&loc=${entry.pos[0]},${entry.pos[1]}&hl=${ valid(lang)? lang : 'en' }&alt=0` );
 
-      //console.log( route_url );
+			route_link = '<a href="javascript:void(0)" onclick="gotoUrl(&quot;' + routing_url + '&quot;)"><i class="fas fa-directions"></i></a>';
 
-			//h += "<div style='font-size:10pt'>" ;
-			//h += '<a target="_blank" href="' + encodeURI( 'https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route='+ pos.lat + ',' + pos.lng + ';' + entry.pos[0] + ',' + entry.pos[1] + '#map=14/' + entry.lat + '/' + entry.lng ) + '"><i class="fas fa-directions"></i></a>';
-			//h += "</div>" ;
 		}
 
-    h += "<div class='popup_section'>" ;
-    h += '<a href="javascript:void(0)" title="streetview" onclick="openInNewTab(&quot;' + 'https://maps.google.com/maps?q=&layer=c&cbll=' + entry.pos[0] + ',' + entry.pos[1] + '&cbp=11,0,0,0,0' + '&quot;)"><i class="fas fa-street-view"></i></a>';
-    h += "</div>" ;
-	
+
     h += "<div class='popup_section'>" ;
     h +=  route_link ;
 
@@ -379,9 +385,15 @@ var wikishootme = {
 
       //console.log( entry.label, entry.page );
 
+      /*
       h += '<a href="javascript:void(0)" title="Bing image search" onclick="gotoUrl(&quot;' + 'https://www.bing.com/images/search?&q=' + encodeURIComponent( entry.label ) + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + lang + '-' + lang + '&quot;)"><i class="fas fa-camera-retro"></i></a>' ;
       h += '<a href="javascript:void(0)" title="video" onclick="gotoUrl(&quot;' + CONZEPT_WEB_BASE + '/app/video/#/search/' + encodeURIComponent( entry.label ) + '&quot;)"><i class="fab fa-youtube"></i></a>';
       h += '<a href="javascript:void(0)" title="video" onclick="gotoUrl(&quot;' + 'https://openlibrary.org/search/inside?q=%22' + encodeURIComponent( entry.label ) + '%22' + '&quot;)"><i class="fab fa-mizuni"></i></a>';
+      */
+
+      h += "<div class='popup_section'>" ;
+      h += '<a href="javascript:void(0)" title="streetview" onclick="openInNewTab(&quot;' + 'https://maps.google.com/maps?q=&layer=c&cbll=' + entry.pos[0] + ',' + entry.pos[1] + '&cbp=11,0,0,0,0' + '&quot;)"><i class="fas fa-street-view"></i></a>';
+      h += "</div>" ;
 
     //}
 
@@ -1101,9 +1113,8 @@ var wikishootme = {
 		$('#update').hide() ;
 		//me.cleanLayers() ;
 		
-		$.each ( ['commons','wikipedia','wikidata','flickr','mixnmatch','mnm_lc'] , function ( k , v ) {
-			me.loadLayer ( v ) ;
-		} ) ;
+		$.each ( ['commons','wikipedia','wikidata','flickr','mixnmatch','mnm_lc'] , function ( k , v ) { me.loadLayer ( v ) ; } ) ;
+
 	} ,
 	
 	updateToCurrent : function () {
@@ -1281,6 +1292,21 @@ var wikishootme = {
 				me.layers[key].addTo ( me.map ) ;
 			}
 		} ) ;
+
+
+    L.control.scale({
+      maxWidth : 300,
+      metric : true,
+      imperial : true,
+      updateWhenIdle : true,
+    }).addTo(me.map);
+
+    if ( detectMobile() ){
+
+      $('.leaflet-bottom .leaflet-control-scale').css({ 'margin-bottom': '11em' });
+
+    }
+
 		me.layer_control = L.control.layers(null, me.overlays).addTo(me.map);
 		
 		me.map.on('overlayadd', function(e){me.onOverlayAdd(e)});
@@ -1517,9 +1543,9 @@ var wikishootme = {
 		if ( params.worldwide == '1' ) me.worldwide = true ;
 
     //console.log( params );
-    lang = params.interface_language;
+    lang = params.interface_language || 'en';
+
     me.language = lang ;
-    //console.log( lang );
 
 		var running = 2 ;
 		function fin () {

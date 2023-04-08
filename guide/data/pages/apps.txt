@@ -44,7 +44,7 @@ There are options to filter the video by: duration, resolution and type.
 
 You can also sort the videos by: relevance, date and number of views.
 
-The Youtube API access is kindly being provided for free by [[explore>Google]] to the conze.pt website. Thank you!
+Youtube API access is kindly being provided for free by [[explore>Google]] to the Conze.pt website. Thank you!
 
 =====  tree app =====
 
@@ -67,7 +67,7 @@ These relations can be:
 
 This links-app renders the the first 20 links of a Wikipedia-article into a zoomable, interactive graph view.
 
-It allows you to explore the essential relations of a topic in a more visual form, and in parallel read the Wikipedia article on the second content-pane.
+It allows you to explore the essential relations of a topic in a more visual form.
 
 ===== map app =====
 
@@ -75,7 +75,7 @@ It allows you to explore the essential relations of a topic in a more visual for
 
 [{{::map_app_3.jpg?direct|map example of a location with a border outline}}]
 
-[{{::map_app_2.jpg?direct|map example created from a SPARQL-query (retrieving two different data-sets)}}]
+[{{::map_app_2.jpg?direct|map example created from the UI showing two different data-set instances (rune stones and stave churches)}}]
 
 The map app can render locations and areas on a 3D terrain map of Earth.
 

@@ -2,7 +2,7 @@
 
 It is easy to integrate any existing (and future) statically-build web application into Conzept.
 
-**Due to Conzepts use of iframes within the content panes, the execution and styling context of the app is completely isolated.** Yet it is still easy to communicate with the iframed app via its URL-parameters (and when needed triggering postMessage() calls in its JS code).
+**Due to Conzepts use of iframes within the content panes, the execution and styling context of the app is completely isolated.** Yet it is still easy to communicate with the iframed app via its URL-parameters, or by triggering supported postMessage() calls in its app JS code.
 
 To add a new app to the existing set of apps, follow these steps:
 

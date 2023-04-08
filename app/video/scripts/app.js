@@ -20,6 +20,8 @@ var tooglesApp = angular.module('tooglesApp', ['ngAnimate', 'ngAria', 'ngCookies
     $routeProvider.otherwise({ redirectTo: '/browse' });
   }]);
 
+/*
 if ( detectMobile() === true ){
   setupSwipe( 'video-app' );
 }
+*/

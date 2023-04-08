@@ -100,5 +100,6 @@ div.add_image2item {
 div.popup_section {
 	margin-top:3px;
 	padding:2px;
-	border-top:1px solid #DDD
+	border-top:1px solid #DDD;
+  font-size: 1.3em;
 }

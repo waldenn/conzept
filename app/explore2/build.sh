@@ -65,7 +65,7 @@ npm run build &&
 cd ../explore2 &&
 
 # build the main Conzept app
-esbuild src/core/* src/fetch/* src/data/* src/webcomponent/* --outdir=dist --minify &&
+esbuild src/core/* src/command/* src/datasources/*/* src/fetch/* src/data/* src/webcomponent/* --outdir=dist --minify &&
 
 # build CSS
 esbuild css/conzept/* css/openmoji/* css/various/* --outdir=dist/css/ --minify &&

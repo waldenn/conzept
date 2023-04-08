@@ -1,12 +1,16 @@
 ====== browser extension ======
 
-''(work in progress)''
+[{{::extension_text_selection.jpg?direct|text-selection search}}]
 
-The **Conzept browser extension** is a (lightly-patched) fork of the great [[https://github.com/fuddl/wd|Wikidata-for-Web extension]].
+[{{::extension_sidebar_1.jpg?direct|sidebar entity-view on a matching URL}}]
 
-This extension allows you to:
+The **Conzept browser extension** ([[https://github.com/waldenn/conzept-extension|source]]) is a lightly-patched fork of the great [[https://github.com/fuddl/wd|Wikidata-for-Web extension]].
 
-  * **Text-selection search**: Select some text on any website, then __right-click for the context-menu__ , which will show an option to search on Conzept. Even browser-viewed PDF files are supported!
+The extension aims to **semantically integrate any website** with the Conzept encyclopedia. By "string" and by "thing" (semantic entity).
+
+The Conzept extension allows you to:
+
+  * Do a **text-selection search**: Select some text on any website, then __right-click for the context-menu__ , which will show an option to search on Conzept. Even browser-viewed PDF files are supported!
 
   * Detect and **see the semantic metadata** on (supported) websites, in a sidebar panel. This works through Wikidata-based URL-matching and by checking the website for embedded metadata (meta-tags, JSON-LD).
 
@@ -14,4 +18,16 @@ This extension allows you to:
 
 * **[[https://addons.mozilla.org/addon/conzept-encyclopedia-extension/|Firefox version]]**
 
-* **Chrome version** (soon)
+* **[[https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB|Chrome version]]** (not yet published)
+
+===== issues =====
+
+  * Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I've started some research what the best way forward is to improve the JSON-LD parser. See also: [[https://github.com/openlink/structured-data-sniffer/issues/25|1]]
+
+  * The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.
+
+===== ideas =====
+
+  * Add multi-lingual support to the entity view (use a language switcher or take the language from somewhere else?)
+  * ? Name-entity-linking on 3rd-party webpages, how would the UX for this look?
+  * ? Take a look at the [[https://developer.apple.com/safari/extensions/|Safari extension store]] too, with an Xcode-requirement (which I don't have access too, but maybe there is some way to get that done as well).

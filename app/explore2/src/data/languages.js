@@ -9,11 +9,13 @@ const wp_languages = {
     "users": 1,
     "title": "Abkhazian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Акатегориа",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -33,11 +35,13 @@ const wp_languages = {
     "users": 1,
     "title": "Acehnese Wikipedia",
     "librivox": "80",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kawan",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -56,11 +60,13 @@ const wp_languages = {
     "users": 1,
     "title": "Adyghe Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -80,11 +86,13 @@ const wp_languages = {
     "users": 2,
     "title": "Afrikaanse Wikipedia",
     "librivox": "6",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -104,11 +112,13 @@ const wp_languages = {
     "users": 1,
     "title": "Akan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Nkyekyem",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -128,11 +138,13 @@ const wp_languages = {
     "users": 1,
     "title": "Alemannic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -152,11 +164,13 @@ const wp_languages = {
     "users": 1,
     "title": "Amharic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "መደብ",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -176,11 +190,13 @@ const wp_languages = {
     "users": 1,
     "title": "Aragonese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -200,11 +216,13 @@ const wp_languages = {
     "users": 1,
     "title": "Anglo-Saxon Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Flocc",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -224,11 +242,13 @@ const wp_languages = {
     "users": 3,
     "title": "ويكيبيديا العربية",
     "librivox": "9",
+    "isbn": "مصادر_كتاب",
     "namespaces": {
       "talk": "Talk",
       "category": "تصنيف",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "خاص",
     },
     "articles": {
        "current_events": ""
@@ -248,11 +268,13 @@ const wp_languages = {
     "users": 1,
     "title": "Syriac Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -273,11 +295,13 @@ const wp_languages = {
     "users": 2,
     "title": "ويكيبيديا مصرى",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "ﺎﻠﻔﺋﺓ",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -297,11 +321,13 @@ const wp_languages = {
     "users": 1,
     "title": "Assamese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -321,11 +347,13 @@ const wp_languages = {
     "users": 2,
     "title": "Asturian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -345,11 +373,13 @@ const wp_languages = {
     "users": 1,
     "title": "Atikamekw Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -369,11 +399,13 @@ const wp_languages = {
     "users": 1,
     "title": "Avar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -393,11 +425,13 @@ const wp_languages = {
     "users": 1,
     "title": "Aymara Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -417,11 +451,13 @@ const wp_languages = {
     "users": 2,
     "title": "Azərbaycanca Vikipediya",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kateqoriya",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -441,11 +477,13 @@ const wp_languages = {
     "users": 1,
     "title": "Southern Azerbaijani Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -465,11 +503,13 @@ const wp_languages = {
     "users": 1,
     "title": "Bashkir Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -489,11 +529,13 @@ const wp_languages = {
     "users": 1,
     "title": "Bavarian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -513,11 +555,13 @@ const wp_languages = {
     "users": 1,
     "title": "Samogitian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -537,11 +581,13 @@ const wp_languages = {
     "users": 1,
     "title": "Central Bicolano Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -561,11 +607,13 @@ const wp_languages = {
     "users": 2,
     "title": "Беларуская Вікіпедыя",
     "librivox": "67",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Катэгорыя",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -585,11 +633,13 @@ const wp_languages = {
     "users": 0,
     "title": "Беларуская Вікіпэдыя",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -609,11 +659,13 @@ const wp_languages = {
     "users": 2,
     "title": "Българоезична Уикипедия",
     "librivox": "12",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Категория",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -633,11 +685,13 @@ const wp_languages = {
     "users": 0,
     "title": "Western Balochi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -656,11 +710,13 @@ const wp_languages = {
     "users": 1,
     "title": "Bhojpuri Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -680,11 +736,13 @@ const wp_languages = {
     "users": 1,
     "title": "Bislama Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -704,11 +762,13 @@ const wp_languages = {
     "users": 1,
     "title": "Banjar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -727,11 +787,13 @@ const wp_languages = {
     "users": 1,
     "title": "Bambara Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -751,11 +813,13 @@ const wp_languages = {
     "users": 2,
     "title": "বাংলা উইকিপিডিয়া",
     "librivox": "10",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "বিষয়শ্রেণী",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -775,11 +839,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tibetan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -799,11 +865,13 @@ const wp_languages = {
     "users": 1,
     "title": "বিষ্ণুপ্রিয়া মনিপুরী উইকিপিডিয়া",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -822,11 +890,13 @@ const wp_languages = {
     "users": 2,
     "title": "Breton Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Rummad",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -846,11 +916,13 @@ const wp_languages = {
     "users": 2,
     "title": "Wikipedia na bosanskom jeziku",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -870,11 +942,13 @@ const wp_languages = {
     "users": 1,
     "title": "Buginese Wikipedia",
     "librivox": "82",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -893,11 +967,13 @@ const wp_languages = {
     "users": 1,
     "title": "Buryat (Russia) Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -916,11 +992,13 @@ const wp_languages = {
     "users": 3,
     "title": "Viquipèdia en català",
     "librivox": "13",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categoria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "Actualitat"
@@ -940,11 +1018,13 @@ const wp_languages = {
     "users": 1,
     "title": "Zamboanga Chavacano Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -963,11 +1043,13 @@ const wp_languages = {
     "users": 1,
     "title": "Min Dong Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -986,11 +1068,13 @@ const wp_languages = {
     "users": 1,
     "title": "Chechen Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1010,11 +1094,13 @@ const wp_languages = {
     "users": 2,
     "title": "Wikipedya sa Sinugboanon",
     "librivox": "11",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Espesyal",
     },
     "articles": {
        "current_events": ""
@@ -1033,11 +1119,13 @@ const wp_languages = {
     "users": 1,
     "title": "Chamorro Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1057,11 +1145,13 @@ const wp_languages = {
     "users": 1,
     "title": "Cherokee Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1080,11 +1170,13 @@ const wp_languages = {
     "users": 1,
     "title": "Cheyenne Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1103,11 +1195,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sorani Kurdish Wikipedia",
     "librivox": "95",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1126,11 +1220,13 @@ const wp_languages = {
     "users": 1,
     "title": "Corsican Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categoria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1150,11 +1246,13 @@ const wp_languages = {
     "users": 1,
     "title": "Cree Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1174,11 +1272,13 @@ const wp_languages = {
     "users": 1,
     "title": "Crimean Tatar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1197,11 +1297,13 @@ const wp_languages = {
     "users": 3,
     "title": "Česká Wikipedie",
     "librivox": "16",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1221,11 +1323,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kashubian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1244,11 +1348,13 @@ const wp_languages = {
     "users": 1,
     "title": "Old Church Slavonic Wikipedia",
     "librivox": "15",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1268,11 +1374,13 @@ const wp_languages = {
     "users": 1,
     "title": "Chuvash Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1292,11 +1400,13 @@ const wp_languages = {
     "users": 2,
     "title": "Welsh Wikipedia",
     "librivox": "64",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1316,11 +1426,13 @@ const wp_languages = {
     "users": 3,
     "title": "Dansk Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1340,11 +1452,13 @@ const wp_languages = {
     "users": 4,
     "title": "Deutschsprachige Wikipedia",
     "librivox": "3",
+    "isbn": "ISBN-Suche",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Spezial",
     },
     "articles": {
        "current_events": "Wikipedia_nach_Themen"
@@ -1364,11 +1478,13 @@ const wp_languages = {
     "users": 1,
     "title": "Dinka Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1387,11 +1503,13 @@ const wp_languages = {
     "users": 1,
     "title": "Zazaki Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategoriye",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1410,11 +1528,13 @@ const wp_languages = {
     "users": 1,
     "title": "Dolnoserbska wikipedija",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1433,11 +1553,13 @@ const wp_languages = {
     "users": 1,
     "title": "Doteli Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1456,11 +1578,13 @@ const wp_languages = {
     "users": 1,
     "title": "Divehi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1480,11 +1604,13 @@ const wp_languages = {
     "users": 1,
     "title": "Dzongkha Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1504,11 +1630,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ewe Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1528,11 +1656,13 @@ const wp_languages = {
     "users": 3,
     "title": "Ελληνική Βικιπαίδεια",
     "librivox": "26",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Κατηγορία",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1552,11 +1682,13 @@ const wp_languages = {
     "users": 1,
     "title": "Emilian-Romagnol Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1575,11 +1707,13 @@ const wp_languages = {
     "users": 5,
     "title": "English Wikipedia",
     "librivox": "1",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special" : "Special",
     },
     "articles": {
        "current_events": "Current_events"
@@ -1599,11 +1733,13 @@ const wp_languages = {
     "users": 2,
     "title": "Vikipedio en Esperanto",
     "librivox": "20",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorio",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1623,11 +1759,13 @@ const wp_languages = {
     "users": 4,
     "title": "Wikipedia en español",
     "librivox": "5",
+    "isbn": "FuentesDeLibros",
     "namespaces": {
       "talk": "Talk",
       "category": "Categoría",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Especial",
     },
     "articles": {
        "current_events": "Actualidad"
@@ -1647,11 +1785,13 @@ const wp_languages = {
     "users": 2,
     "title": "Eestikeelne Vikipeedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategooria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1671,11 +1811,13 @@ const wp_languages = {
     "users": 2,
     "title": "Euskarazko Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategoria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1695,11 +1837,13 @@ const wp_languages = {
     "users": 1,
     "title": "Extremaduran Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1718,11 +1862,13 @@ const wp_languages = {
     "users": 3,
     "title": "ویکی‌پدیای فارسی",
     "librivox": "21",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "رده",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1742,11 +1888,13 @@ const wp_languages = {
     "users": 0,
     "title": "Fula Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1766,11 +1914,13 @@ const wp_languages = {
     "users": 3,
     "title": "Suomenkielinen Wikipedia",
     "librivox": "22",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Luokka",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1790,11 +1940,13 @@ const wp_languages = {
     "users": 1,
     "title": "Voro Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1813,11 +1965,13 @@ const wp_languages = {
     "users": 1,
     "title": "Fijian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1837,11 +1991,13 @@ const wp_languages = {
     "users": 1,
     "title": "Faroese Wikipedia",
     "librivox": "70",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Bólkur",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1861,11 +2017,13 @@ const wp_languages = {
     "users": 4,
     "title": "Wikipédia en français",
     "librivox": "2",
+    "isbn": "Ouvrages", // "Ouvrages_de_référence",
     "namespaces": {
       "talk": "Talk",
       "category": "Catégorie",
       "portal": "Portail",
-      "book": "Book"
+      "book": "Book",
+      "special": "Spécial",
     },
     "articles": {
        "current_events": "Actualité"
@@ -1885,11 +2043,13 @@ const wp_languages = {
     "users": 1,
     "title": "Franco-Provençal Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Catègorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1908,11 +2068,13 @@ const wp_languages = {
     "users": 1,
     "title": "North Frisian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1931,11 +2093,13 @@ const wp_languages = {
     "users": 1,
     "title": "Friulian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1954,11 +2118,13 @@ const wp_languages = {
     "users": 1,
     "title": "West Frisian Wikipedia",
     "librivox": "71",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategory",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -1978,11 +2144,13 @@ const wp_languages = {
     "users": 2,
     "title": "Vicipéid na Gaeilge",
     "librivox": "33",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Catagóir",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2002,11 +2170,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gagauz Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2025,11 +2195,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gan Chinese Wikipedia",
     "librivox": "14",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2048,11 +2220,13 @@ const wp_languages = {
     "users": 1,
     "title": "Scottish Gaelic Wikipedia",
     "librivox": "96",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Roinn",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2072,11 +2246,13 @@ const wp_languages = {
     "users": 2,
     "title": "Galipedia",
     "librivox": "94",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2096,11 +2272,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gilaki Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2119,11 +2297,13 @@ const wp_languages = {
     "users": 1,
     "title": "Guarani Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Ñemohenda",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2143,11 +2323,13 @@ const wp_languages = {
     "users": 2,
     "title": "Konknni Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2166,11 +2348,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gorontalo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2189,11 +2373,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gothic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2212,11 +2398,13 @@ const wp_languages = {
     "users": 1,
     "title": "Gujarati Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2236,11 +2424,13 @@ const wp_languages = {
     "users": 1,
     "title": "Manx Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Ronney",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2260,11 +2450,13 @@ const wp_languages = {
     "users": 1,
     "title": "Hausa Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2284,11 +2476,13 @@ const wp_languages = {
     "users": 1,
     "title": "Hakka Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2307,11 +2501,13 @@ const wp_languages = {
     "users": 1,
     "title": "Hawaiian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2330,11 +2526,13 @@ const wp_languages = {
     "users": 3,
     "title": "ויקיפדיה העברית",
     "librivox": "27",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "קטגוריה",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2354,11 +2552,13 @@ const wp_languages = {
     "users": 3,
     "title": "हिन्दी विकिपीडिया",
     "librivox": "72",
+    "isbn": "पुस्तक_स्रोत",
     "namespaces": {
       "talk": "Talk",
       "category": "श्रेणी",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "विशेष",
     },
     "articles": {
        "current_events": ""
@@ -2378,11 +2578,13 @@ const wp_languages = {
     "users": 1,
     "title": "Fiji Hindi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2401,11 +2603,13 @@ const wp_languages = {
     "users": 2,
     "title": "Hrvatska Wikipedija",
     "librivox": "68",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2425,11 +2629,13 @@ const wp_languages = {
     "users": 1,
     "title": "Hornjoserbska wikipedija",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2448,11 +2654,13 @@ const wp_languages = {
     "users": 1,
     "title": "Haitian Creole Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2472,11 +2680,13 @@ const wp_languages = {
     "users": 3,
     "title": "Magyar Wikipédia",
     "librivox": "28",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategória",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2496,11 +2706,13 @@ const wp_languages = {
     "users": 2,
     "title": "Հայերեն Վիքիպեդիա",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2520,11 +2732,13 @@ const wp_languages = {
     "users": 1,
     "title": "Interlingua Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2544,11 +2758,13 @@ const wp_languages = {
     "users": 3,
     "title": "Wikipedia bahasa Indonesia",
     "librivox": "31",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "Peristiwa_terkini"
@@ -2568,11 +2784,13 @@ const wp_languages = {
     "users": 1,
     "title": "Interlingue Wikipedia",
     "librivox": "32",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2592,11 +2810,13 @@ const wp_languages = {
     "users": 1,
     "title": "Igbo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2616,11 +2836,13 @@ const wp_languages = {
     "users": 0,
     "title": "Inupiak Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2640,11 +2862,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ilokano Wikipedia",
     "librivox": "30",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2663,11 +2887,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ingush Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2686,11 +2912,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ido Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2710,11 +2938,13 @@ const wp_languages = {
     "users": 2,
     "title": "Icelandic Wikipedia",
     "librivox": "29",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2734,11 +2964,13 @@ const wp_languages = {
     "users": 3,
     "title": "Wikipedia in italiano",
     "librivox": "4",
+    "isbn": "RicercaISBN",
     "namespaces": {
       "talk": "Talk",
       "category": "Categoria",
       "portal": "Portale",
-      "book": "Book"
+      "book": "Book",
+      "special": "Speciale",
     },
     "articles": {
        "current_events": ""
@@ -2758,11 +2990,13 @@ const wp_languages = {
     "users": 1,
     "title": "Iniktitut Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2782,11 +3016,13 @@ const wp_languages = {
     "users": 4,
     "title": "ウィキペディア日本語版",
     "librivox": "35",
+    "isbn": "文献資料",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "特別",
     },
     "articles": {
        "current_events": "最近の出来事"
@@ -2806,11 +3042,13 @@ const wp_languages = {
     "users": 0,
     "title": "Jamaican Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2829,11 +3067,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lojban Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2852,11 +3092,13 @@ const wp_languages = {
     "users": 2,
     "title": "Javanese Wikipedia",
     "librivox": "36",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2876,11 +3118,13 @@ const wp_languages = {
     "users": 2,
     "title": "ქართული ვიკიპედია",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2900,11 +3144,13 @@ const wp_languages = {
     "users": 1,
     "title": "Karakalpak Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2923,11 +3169,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kabyle Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Catgory",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2946,11 +3194,13 @@ const wp_languages = {
     "users": 0,
     "title": "Kabardian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2969,11 +3219,13 @@ const wp_languages = {
     "users": 0,
     "title": "Kabiye Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -2992,11 +3244,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kongo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3016,11 +3270,13 @@ const wp_languages = {
     "users": 0,
     "title": "Khowar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3039,11 +3295,13 @@ const wp_languages = {
     "users": 0,
     "title": "Kikuyu Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3063,11 +3321,13 @@ const wp_languages = {
     "users": 1,
     "title": "Greenlandic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Sumut",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3087,11 +3347,13 @@ const wp_languages = {
     "users": 1,
     "title": "Khmer Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3111,11 +3373,13 @@ const wp_languages = {
     "users": 2,
     "title": "ಕನ್ನಡ ವಿಕಿಪೀಡಿಯ",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3135,11 +3399,13 @@ const wp_languages = {
     "users": 3,
     "title": "한국어 위키백과",
     "librivox": "38",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "분류",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3159,11 +3425,13 @@ const wp_languages = {
     "users": 1,
     "title": "Komi-Permyak Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3182,11 +3450,13 @@ const wp_languages = {
     "users": 1,
     "title": "Karachay-Balkar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3205,11 +3475,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kashmiri Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3229,11 +3501,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ripuarian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3252,11 +3526,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kurdish Wikipedia",
     "librivox": "95",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorî",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3276,11 +3552,13 @@ const wp_languages = {
     "users": 1,
     "title": "Komi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3300,11 +3578,13 @@ const wp_languages = {
     "users": 1,
     "title": "Cornish Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Class",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3324,11 +3604,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kyrgyz Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3348,11 +3630,13 @@ const wp_languages = {
     "users": 2,
     "title": "Vicipaedia Latina",
     "librivox": "39",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3372,11 +3656,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ladino Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kateggoría",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3395,11 +3681,13 @@ const wp_languages = {
     "users": 1,
     "title": "Luxembourgish Wikipedia",
     "librivox": "73",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3419,11 +3707,13 @@ const wp_languages = {
     "users": 0,
     "title": "Lak Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3442,11 +3732,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lezgi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3465,11 +3757,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lingua Franca Nova Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3488,11 +3782,13 @@ const wp_languages = {
     "users": 1,
     "title": "Luganda Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3512,11 +3808,13 @@ const wp_languages = {
     "users": 1,
     "title": "Limburgish Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3536,11 +3834,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ligurian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categorîa",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3559,11 +3859,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lombard Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categuria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3582,11 +3884,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lingala Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "cateory-l": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3606,11 +3910,13 @@ const wp_languages = {
     "users": 1,
     "title": "Lao Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3630,11 +3936,13 @@ const wp_languages = {
     "users": 1,
     "title": "Northern Luri Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3653,11 +3961,13 @@ const wp_languages = {
     "users": 2,
     "title": "Lietuviškoji Vikipedija",
     "librivox": "41",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3677,11 +3987,13 @@ const wp_languages = {
     "users": 1,
     "title": "Latgalian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3700,11 +4012,13 @@ const wp_languages = {
     "users": 2,
     "title": "Vikipēdija latviešu valodā",
     "librivox": "40",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3724,11 +4038,13 @@ const wp_languages = {
     "users": 1,
     "title": "Maithili Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3747,11 +4063,13 @@ const wp_languages = {
     "users": 1,
     "title": "Banyumasan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3770,11 +4088,13 @@ const wp_languages = {
     "users": 1,
     "title": "Moksha Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3793,11 +4113,13 @@ const wp_languages = {
     "users": 1,
     "title": "Malagasy Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Sokajy",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3817,11 +4139,13 @@ const wp_languages = {
     "users": 1,
     "title": "Meadow Mari Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3840,11 +4164,13 @@ const wp_languages = {
     "users": 1,
     "title": "Māori Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3864,11 +4190,13 @@ const wp_languages = {
     "users": 1,
     "title": "Minangkabau Wikipedia",
     "librivox": "83",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3887,11 +4215,13 @@ const wp_languages = {
     "users": 2,
     "title": "Македонска Википедија",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Категорија",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3911,11 +4241,13 @@ const wp_languages = {
     "users": 2,
     "title": "Malayalam Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3935,11 +4267,13 @@ const wp_languages = {
     "users": 2,
     "title": "Монгол Википедиа",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3959,11 +4293,13 @@ const wp_languages = {
     "users": 2,
     "title": "Marathi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -3983,11 +4319,13 @@ const wp_languages = {
     "users": 1,
     "title": "Hill Mari Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4006,11 +4344,13 @@ const wp_languages = {
     "users": 2,
     "title": "Wikipedia Bahasa Melayu",
     "librivox": "69",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4030,11 +4370,13 @@ const wp_languages = {
     "users": 1,
     "title": "Maltese Wikipedia",
     "librivox": "42",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4054,11 +4396,13 @@ const wp_languages = {
     "users": 1,
     "title": "Mirandese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4077,11 +4421,13 @@ const wp_languages = {
     "users": 2,
     "title": "Burmese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4101,11 +4447,13 @@ const wp_languages = {
     "users": 1,
     "title": "Erzya Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4124,11 +4472,13 @@ const wp_languages = {
     "users": 1,
     "title": "Mazandarani Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4147,11 +4497,13 @@ const wp_languages = {
     "users": 1,
     "title": "Nauruan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4171,11 +4523,13 @@ const wp_languages = {
     "users": 1,
     "title": "Nāhuatl Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4194,11 +4548,13 @@ const wp_languages = {
     "users": 1,
     "title": "Neapolitan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4217,11 +4573,13 @@ const wp_languages = {
     "users": 1,
     "title": "Low Saxon Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "prtal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4240,11 +4598,13 @@ const wp_languages = {
     "users": 1,
     "title": "Dutch Low Saxon Wikipedia",
     "librivox": "19",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4263,11 +4623,13 @@ const wp_languages = {
     "users": 2,
     "title": "Nepali Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4287,11 +4649,13 @@ const wp_languages = {
     "users": 1,
     "title": "Newar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4310,11 +4674,13 @@ const wp_languages = {
     "users": 1,
     "title": "Nia Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Huhuo",
       "category": "Kategori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4333,11 +4699,13 @@ const wp_languages = {
     "users": 3,
     "title": "Nederlandstalige Wikipedia",
     "librivox": "19",
+    "isbn": "Boekbronnen",
     "namespaces": {
       "talk": "Overleg",
       "category": "Categorie",
       "portal": "Portaal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Speciaal",
     },
     "articles": {
        "current_events": "In_het_nieuws"
@@ -4357,11 +4725,13 @@ const wp_languages = {
     "users": 2,
     "title": "Nynorsk Wikipedia",
     "librivox": "74",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4381,11 +4751,13 @@ const wp_languages = {
     "users": 3,
     "title": "Bokmål Wikipedia",
     "librivox": "49",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4405,11 +4777,13 @@ const wp_languages = {
     "users": 0,
     "title": "Novial Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4428,11 +4802,13 @@ const wp_languages = {
     "users": 1,
     "title": "Norman Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4451,11 +4827,13 @@ const wp_languages = {
     "users": 0,
     "title": "Northern Sotho Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Setensele",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4474,11 +4852,13 @@ const wp_languages = {
     "users": 1,
     "title": "Navajo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4498,11 +4878,13 @@ const wp_languages = {
     "users": 1,
     "title": "Chichewa Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4522,11 +4904,13 @@ const wp_languages = {
     "users": 1,
     "title": "Occitan Wikipedia",
     "librivox": "75",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4546,11 +4930,13 @@ const wp_languages = {
     "users": 1,
     "title": "Livvi-Karelian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4569,11 +4955,13 @@ const wp_languages = {
     "users": 1,
     "title": "Oromo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4593,11 +4981,13 @@ const wp_languages = {
     "users": 1,
     "title": "Odia Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4617,11 +5007,13 @@ const wp_languages = {
     "users": 1,
     "title": "Ossetian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4641,11 +5033,13 @@ const wp_languages = {
     "users": 2,
     "title": "Eastern Punjabi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4665,11 +5059,13 @@ const wp_languages = {
     "users": 1,
     "title": "Pangasinan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4688,11 +5084,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kapampangan Wikipedia",
     "librivox": "8844",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4711,11 +5109,13 @@ const wp_languages = {
     "users": 1,
     "title": "Papiamentu Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4734,11 +5134,13 @@ const wp_languages = {
     "users": 1,
     "title": "Picard Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4757,11 +5159,13 @@ const wp_languages = {
     "users": 1,
     "title": "Pennsylvania German Wikipedia",
     "librivox": "3",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Abdeeling",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4780,11 +5184,13 @@ const wp_languages = {
     "users": 1,
     "title": "Palatine German Wikipedia",
     "librivox": "3",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4803,11 +5209,13 @@ const wp_languages = {
     "users": 0,
     "title": "Pali Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4827,11 +5235,13 @@ const wp_languages = {
     "users": 1,
     "title": "Norfolk Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4850,11 +5260,13 @@ const wp_languages = {
     "users": 3,
     "title": "Polskojęzyczna Wikipedia",
     "librivox": "51",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategoria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4874,11 +5286,13 @@ const wp_languages = {
     "users": 1,
     "title": "Piedmontese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categorìa",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4897,11 +5311,13 @@ const wp_languages = {
     "users": 1,
     "title": "Western Punjabi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4920,11 +5336,13 @@ const wp_languages = {
     "users": 1,
     "title": "Pontic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4943,11 +5361,13 @@ const wp_languages = {
     "users": 1,
     "title": "Pashto Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -4967,11 +5387,13 @@ const wp_languages = {
     "users": 3,
     "title": "Wikipédia em português",
     "librivox": "52",
+    "isbn": "Fontes_de_livros",
     "namespaces": {
       "talk": "Talk",
       "category": "Categoria",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Especial",
     },
     "articles": {
        "current_events": "Eventos_atuais"
@@ -4991,6 +5413,7 @@ const wp_languages = {
     "users": 1,
     "title": "Quechua Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Katiguriya",
@@ -5015,11 +5438,13 @@ const wp_languages = {
     "users": 1,
     "title": "Romansh Wikipedia",
     "librivox": "53",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5039,11 +5464,13 @@ const wp_languages = {
     "users": 1,
     "title": "Vlax Romani Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5062,11 +5489,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kirundi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5086,11 +5515,13 @@ const wp_languages = {
     "users": 3,
     "title": "Wikipedia în română",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Categorie",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5110,11 +5541,13 @@ const wp_languages = {
     "users": 1,
     "title": "Aromanian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5133,11 +5566,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tarantino Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5156,11 +5591,13 @@ const wp_languages = {
     "users": 4,
     "title": "Русская Википедия",
     "librivox": "54",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Категория",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "Текущие_события"
@@ -5180,11 +5617,13 @@ const wp_languages = {
     "users": 1,
     "title": "Rusyn Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "ortal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5203,11 +5642,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kinyarwanda Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5227,11 +5668,13 @@ const wp_languages = {
     "users": 2,
     "title": "संस्कृतविकिपीडिया",
     "librivox": "55",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5251,11 +5694,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sakha Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5274,11 +5719,13 @@ const wp_languages = {
     "users": 1,
     "title": "Santali Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5297,11 +5744,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sardinian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5321,11 +5770,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sicilian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Catigurìa",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5344,11 +5795,13 @@ const wp_languages = {
     "users": 2,
     "title": "Scots Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5367,11 +5820,13 @@ const wp_languages = {
     "users": 1,
     "title": "سنڌي وڪيپيڊيا",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5391,11 +5846,13 @@ const wp_languages = {
     "users": 1,
     "title": "Northern Sami Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategoriija",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5415,11 +5872,13 @@ const wp_languages = {
     "users": 0,
     "title": "Sango Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5439,11 +5898,13 @@ const wp_languages = {
     "users": 2,
     "title": "Srpskohrvatska Wikipedija",
     "librivox": "56",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Caegory",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5463,11 +5924,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sinhalese Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5487,11 +5950,13 @@ const wp_languages = {
     "users": 2,
     "title": "Simple English Wikipedia",
     "librivox": "1",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5510,11 +5975,13 @@ const wp_languages = {
     "users": 2,
     "title": "Slovenská Wikipedia",
     "librivox": "57",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5534,11 +6001,13 @@ const wp_languages = {
     "users": 2,
     "title": "Slovenska Wikipedija",
     "librivox": "90",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorija",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5558,11 +6027,13 @@ const wp_languages = {
     "users": 1,
     "title": "Samoan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5582,11 +6053,13 @@ const wp_languages = {
     "users": 1,
     "title": "Shona Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5606,11 +6079,13 @@ const wp_languages = {
     "users": 1,
     "title": "Somali Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5630,11 +6105,13 @@ const wp_languages = {
     "users": 2,
     "title": "Wikipedia shqip",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5654,11 +6131,13 @@ const wp_languages = {
     "users": 3,
     "title": "Википедија на српском језику",
     "librivox": "56",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Категорија",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5678,11 +6157,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sranan Tongo Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5701,11 +6182,13 @@ const wp_languages = {
     "users": 1,
     "title": "Swati Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5725,11 +6208,13 @@ const wp_languages = {
     "users": 0,
     "title": "Sesotho Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5749,11 +6234,13 @@ const wp_languages = {
     "users": 1,
     "title": "Saterland Frisian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5772,11 +6259,13 @@ const wp_languages = {
     "users": 1,
     "title": "Sundanese Wikipedia",
     "librivox": "77",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5796,11 +6285,13 @@ const wp_languages = {
     "users": 3,
     "title": "Svenskspråkiga Wikipedia",
     "librivox": "58",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategori",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "Huvudsida"
@@ -5820,11 +6311,13 @@ const wp_languages = {
     "users": 2,
     "title": "Wikipedia ya Kiswahili",
     "librivox": "93",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Jamii",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5844,11 +6337,13 @@ const wp_languages = {
     "users": 1,
     "title": "Silesian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5867,11 +6362,13 @@ const wp_languages = {
     "users": 2,
     "title": "தமிழ் விக்கிபீடியா",
     "librivox": "60",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5891,11 +6388,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tulu Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5914,11 +6413,13 @@ const wp_languages = {
     "users": 2,
     "title": "Telugu",
     "librivox": "92",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5938,11 +6439,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tetum Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5961,11 +6464,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tajik Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -5985,11 +6490,13 @@ const wp_languages = {
     "users": 3,
     "title": "วิกิพีเดียภาษาไทย",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "หมวดหมู่",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6009,11 +6516,13 @@ const wp_languages = {
     "users": 0,
     "title": "Tigrinya Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6033,11 +6542,13 @@ const wp_languages = {
     "users": 1,
     "title": "Turkmen Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategoriýa",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6057,11 +6568,13 @@ const wp_languages = {
     "users": 2,
     "title": "Tagalog Wikipedia",
     "librivox": "59",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kategorya",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6081,11 +6594,13 @@ const wp_languages = {
     "users": 0,
     "title": "Tswana Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6105,11 +6620,13 @@ const wp_languages = {
     "users": 0,
     "title": "Tongan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6129,11 +6646,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tok Pisin Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Grup",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6152,11 +6671,13 @@ const wp_languages = {
     "users": 2,
     "title": "Türkçe Vikipedi",
     "librivox": "61",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6176,11 +6697,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tsonga Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6200,11 +6723,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tatar Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Төркем",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6224,11 +6749,13 @@ const wp_languages = {
     "users": 0,
     "title": "Tumbuku Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "ctegory-l": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6247,11 +6774,13 @@ const wp_languages = {
     "users": 1,
     "title": "Twi Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6271,11 +6800,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tahitian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6295,11 +6826,13 @@ const wp_languages = {
     "users": 1,
     "title": "Tuvinian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6318,11 +6851,13 @@ const wp_languages = {
     "users": 1,
     "title": "Udmurt Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6341,11 +6876,13 @@ const wp_languages = {
     "users": 1,
     "title": "Uyghur Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "تۈر",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6365,11 +6902,13 @@ const wp_languages = {
     "users": 3,
     "title": "Українська Вікіпедія",
     "librivox": "62",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Категорія",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6389,11 +6928,13 @@ const wp_languages = {
     "users": 2,
     "title": "Urdu Wikipedia",
     "librivox": "63",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "حالیہ_واقعات"
@@ -6413,11 +6954,13 @@ const wp_languages = {
     "users": 2,
     "title": "Uzbek Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Turkum",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6437,11 +6980,13 @@ const wp_languages = {
     "users": 0,
     "title": "Venda Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6461,11 +7006,13 @@ const wp_languages = {
     "users": 1,
     "title": "Venetian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6484,11 +7031,13 @@ const wp_languages = {
     "users": 1,
     "title": "Veps Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "ortal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6507,11 +7056,13 @@ const wp_languages = {
     "users": 3,
     "title": "Wikipedia tiếng Việt",
     "librivox": "98",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Thể_loại",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6531,11 +7082,13 @@ const wp_languages = {
     "urs": 1,
     "title": "West Flemish Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6554,11 +7107,13 @@ const wp_languages = {
     "users": 1,
     "title": "Vükiped Volapükik",
     "librivox": "89",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Klad",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6578,11 +7133,13 @@ const wp_languages = {
     "users": 1,
     "title": "Walloon Wikipedia",
     "librivox": "88",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6602,11 +7159,13 @@ const wp_languages = {
     "users": 1,
     "title": "Waray Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Kaarangay",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6625,11 +7184,13 @@ const wp_languages = {
     "users": 1,
     "title": "Wolof Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6649,11 +7210,13 @@ const wp_languages = {
     "users": 1,
     "title": "Wu Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6672,11 +7235,13 @@ const wp_languages = {
     "users": 1,
     "title": "Kalmyk Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6695,11 +7260,13 @@ const wp_languages = {
     "users": 1,
     "title": "Xhosa Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6719,11 +7286,13 @@ const wp_languages = {
     "users": 1,
     "title": "Mingrelian Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6742,11 +7311,13 @@ const wp_languages = {
     "users": 1,
     "title": "Yiddish Wikipedia",
     "librivox": "65",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6766,11 +7337,13 @@ const wp_languages = {
     "users": 1,
     "title": "Yoruba Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "ẹ̀ka",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6790,11 +7363,13 @@ const wp_languages = {
     "users": 1,
     "title": "Zhuang Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "分类",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6814,11 +7389,13 @@ const wp_languages = {
     "users": 1,
     "title": "Zealandic Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6837,11 +7414,13 @@ const wp_languages = {
     "users": 3,
     "title": "中文维基百科",
     "librivox": "14",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": "新聞動態"
@@ -6861,11 +7440,13 @@ const wp_languages = {
     "users": 1,
     "title": "Classical Chinese Wikipedia",
     "librivox": "14",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6884,11 +7465,13 @@ const wp_languages = {
     "users": 1,
     "title": "Min Nan Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6907,11 +7490,13 @@ const wp_languages = {
     "users": 2,
     "title": "Cantonese Wikipedia",
     "librivox": "78",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6930,11 +7515,13 @@ const wp_languages = {
     "users": 1,
     "title": "Zulu Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6954,11 +7541,13 @@ const wp_languages = {
     "users": 2,
     "title": "Kriyòl Gwiyannen",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -6977,11 +7566,13 @@ const wp_languages = {
     "users": 2,
     "title": "Mon Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""
@@ -7000,11 +7591,13 @@ const wp_languages = {
     "users": 2,
     "title": "Sakizaya Wikipedia",
     "librivox": "",
+    "isbn": "BookSources",
     "namespaces": {
       "talk": "Talk",
       "category": "Category",
       "portal": "Portal",
-      "book": "Book"
+      "book": "Book",
+      "special": "Special",
     },
     "articles": {
        "current_events": ""

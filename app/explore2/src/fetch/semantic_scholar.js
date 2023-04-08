@@ -178,7 +178,7 @@ async function fetchSemanticScholarQuery( args, total_results, page, sortby ){
 			},
       error: function (xhr, ajaxOptions, thrownError){
 
-				console.log( 'response: hmm...', response ); // server response
+				console.log( 'response: hmm...', thrownError); // server response
 
       }
 

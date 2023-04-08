@@ -1,234 +1,10 @@
 'use strict';
 
-// fetch the list of voices and populate the voice options.
-function reloadVoices() {
+async function setupAIChat(){
 
-	if ('speechSynthesis' in window) {
-
-		// get the available voices.
-		let voices = window.speechSynthesis.getVoices();
-
-		$('#voices').empty();
-
-		$('#voices').append( `<option value="${explore.voice_code}"></option>` ); 
-
-		voices.forEach(function(voice, i) {
-
-			if ( voice.lang.startsWith( explore.language ) ){
-
-				$('#voices').append( `<option value="${voice.lang}">${voice.name}</option>` ); 
-
-			}
-
-		});
-
-    // use user-preference if the language matches
-    if ( explore.voice_code_selected.startsWith( explore.language ) ){
-
-      $('#voices option[value=' + explore.voice_code_selected + ']').attr('selected','selected');
-
-    }
-
-	}
+  $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://conze.pt/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
 }
-
-async function setupAmbientAudio(){
-
-	let randomize = true;
-
-	Array.prototype.shuffle = function() {
-
-		let input = this;
-
-		for ( let i = input.length-1; i >=0; i-- ) {
-
-			let randomIndex = Math.floor(Math.random()*(i+1));
-			let itemAtIndex = input[randomIndex];
-
-			input[randomIndex] = input[i];
-			input[i] = itemAtIndex;
-
-		}
-
-		return input;
-
-	}
-
-  const supportsAudio = !! document.createElement('audio').canPlayType;
-
-  if ( supportsAudio ){
-
-    let keys = [];
-
-    for (let key in PLAYLIST){
-      keys.push(key);
-    }
-
-    if (randomize){
-      keys = keys.shuffle();
-    }
-
-    let tracks = [];
-
-    for (let i = 0; i < keys.length; i++) {
-      tracks = tracks.concat( PLAYLIST[ keys[i] ] );
-    }
-
-    let index = 0,
-
-      playing = false,
-
-      buildPlaylist = $.each(tracks, function(key, value) {
-
-        let trackNumber = key,
-          trackName = value.name,
-          trackLength = value.length;
-
-        if (trackNumber.toString().length === 1) {
-          trackNumber = '0' + trackNumber;
-        }
-        else {
-          trackNumber = '' + trackNumber;
-        }
-
-        $('#plList').append('<li><div class="plItem"><div class="plNum">' + trackNumber + '.</div><div class="plTitle" tabindex="0">' + trackName + '</div><div class="plLength">' + trackLength + '</div></div></li>'); 
-
-      }),
-
-      trackCount = tracks.length,
-      npAction = $('#npAction'),
-      npTitle = $('#npTitle'),
-
-      audio = $('#audio1').bind('play', function() {
-
-        playing = true;
-        npAction.text('Now Playing...');
-
-      })
-
-      .bind('pause', function() {
-
-        playing = false;
-        npAction.text('Paused...');
-
-      })
-
-      .bind('ended', function() {
-
-        npAction.text('Paused...');
-
-        if ((index + 1) < trackCount) { // still more tracks to play
-
-          if ( explore.autoplay ) {
-
-            index++;
-            loadTrack(index);
-            audio.play();
-
-          }
-
-        }
-        else {
-
-          audio.pause();
-          index = 0;
-          loadTrack(index);
-
-        }
-      })
-      .get(0),
-
-      btnPrev = $('#btnPrev').click(function() {
-
-        if ((index - 1) > -1) {
-
-          index--;
-          loadTrack(index);
-
-          if (playing) {
-            audio.play();
-          }
-
-        }
-        else {
-
-          audio.pause();
-          index = 0;
-          loadTrack(index);
-
-        }
-
-      }),
-
-      btnNext = $('#btnNext').click(function() {
-
-        if ((index + 1) < trackCount) {
-
-          index++;
-          loadTrack(index);
-
-          if (playing) {
-
-            audio.play();
-
-          }
-
-        }
-        else {
-
-          audio.pause();
-          index = 0;
-          loadTrack(index);
-
-        }
-
-      }),
-
-      li = $('#plList li').click(function() {
-
-        let id = parseInt($(this).index());
-
-        if (id !== index) {
-
-          playTrack(id);
-
-        }
-
-      }),
-
-      loadTrack = function(id) {
-
-        $('.plSel').removeClass('plSel');
-        $('#plList li:eq(' + id + ')').addClass('plSel');
-
-        npTitle.text(tracks[id].name);
-        index = id;
-        audio.src = tracks[id].file;
-
-      },
-
-      playTrack = function(id) {
-
-        loadTrack(id);
-        audio.play();
-
-      };
-
-    if ( explore.autoplay ) {
-
-      playTrack(index);
-
-    }
-    else {
-
-      loadTrack(index);
-
-    }
-  }
-
-}
-
 
 async function setupInfiniteScroll(){
 
@@ -253,7 +29,7 @@ async function setupInfiniteScroll(){
 
 const loadNextPage = async function() {
 
-  if ( explore.searchmode === 'wikidata' ){
+  if ( explore.searchmode === 'wikidata' ){ // wikidata-structured-query
 
     $('#blink').show();
 
@@ -267,7 +43,9 @@ const loadNextPage = async function() {
 
       let topicResults = await fetchWikidataQuery();
 
-      renderTopics( { 'wikidata' : { data: topicResults } } );
+      topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
+
+      renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
     }
 
@@ -286,8 +64,9 @@ const loadNextPage = async function() {
 
       }
 
-
     });
+
+    //console.log( 'combined_pagesize: ', combined_pagesize );
 
     const relative_done   = explore.totalRecords / ( combined_pagesize *  explore.page ); 
 
@@ -304,7 +83,7 @@ const loadNextPage = async function() {
 
       explore.page += 1;
 
-      explore.type = 'wikipedia';
+      explore.type = 'string';
 
       loadTopics( true ); // "true" indicates loading a follow-up page
 
@@ -320,18 +99,8 @@ async function applyFont( font ) {
 
   (async () => { await explore.db.set( 'font1', explore.font1 ); })();
 
-  //console.log( explore.font1 );
-
-	// setup fontlink
-  //if ( explore.font1 !== 'FOO IBM Plex Sans Condensed' ){ // custom font FIXME
-
-	  $('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
-	  $( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
-
-  //}
-  //else { // standard font
-	  //$( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id=fontlink />' );
-  //}
+	$('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
+  $( explore.baseframe ).contents().find('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
 
   // activate font on parent-body
 	$('body').css( 'font-family', explore.font1 , '');
@@ -500,6 +269,8 @@ function triggerQueryForm(){
 
 				runEditorCode( explore.commands );
 
+        updateSidebar( explore.q );
+
      }
      else  {
 
@@ -548,7 +319,7 @@ function triggerQueryForm(){
   }
   else if ( explore.q !== ''){ // normal query
 
-    explore.searchmode = 'wikipedia';
+    explore.searchmode = 'string';
 
     explore.page = 1; // reset page position
 
@@ -562,7 +333,7 @@ function triggerQueryForm(){
     $('.submitSearch').trigger('click'); // synthetic trigger submit
 
     // show non-wikipedia types (if needed)
-    if ( explore.type !== 'wikipedia' && explore.type !== '' ){
+    if ( explore.type !== 'string' && explore.type !== '' ){
 
       handleClick({
         id        : 'n1-0',
@@ -582,7 +353,7 @@ function triggerQueryForm(){
   }
   else if ( explore.q === '' && explore.type === 'wikipedia-qid' && explore.qid !== '' ){ // wikipedia-qid query
 
-    explore.searchmode = 'wikipedia';
+    explore.searchmode = 'string';
 
     let qid = '';
 
@@ -594,6 +365,7 @@ function triggerQueryForm(){
 
     resetIframe();
 
+    // TODO: use async-await
     let promiseB = fetchLabel([ qid ], explore.language ).then(function(result) {
 
       let label = '';
@@ -651,9 +423,14 @@ function triggerQueryForm(){
     });
 
   }
+  else if ( explore.q === '' && explore.type === 'bookmark' ){ // extension text-fragment bookmark-add request
+
+    addBookmark( new CustomEvent( 'build', { } ), 'extension' );
+
+  }
   else if ( explore.q === '' && explore.type === 'compare' ){ // compare request  && explore.compares !== []
 
-    explore.searchmode = 'wikipedia';
+    explore.searchmode = 'string';
 
     resetIframe();
 
@@ -691,7 +468,7 @@ function triggerQueryForm(){
 
 async function newSearch(){
 
-  explore.searchmode    = 'wikipedia';
+  explore.searchmode    = 'string';
   explore.type          = '';
 
   $('#srsearch').val('');
@@ -703,7 +480,7 @@ async function newSearch(){
 
 async function showStartPage(){
 
-  explore.searchmode    = 'wikipedia';
+  explore.searchmode    = 'string';
   explore.type          = '';
   explore.hash          = '';
 
@@ -764,6 +541,7 @@ async function setupKeyboardNavigation(){
 
       const exclude_from_navigation = [ 'INPUT' ];
 
+      //console.log( $(document.activeElement).prop('nodeName') );
       // exclude some (already keybinding) form-elements from this keyboard-navigation
       if ( ! exclude_from_navigation.includes( $(document.activeElement).prop('nodeName') ) ){
 
@@ -784,7 +562,7 @@ async function setupKeyboardNavigation(){
 
         }
 
-        if (e.key === 'ArrowUp') { // go to previous topic
+        if ( e.key === 'ArrowUp' ) { // go to previous topic
 
           if ( $( '#' + explore.topic_cursor ).prev().length ){ // topic exists
 
@@ -923,6 +701,21 @@ function init() {
 
 	window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 
+	// handle broadcast messages
+	explore.broadcast_channel.onmessage = (event) => {
+
+		console.log( 'broadcast message: ', event.data );
+
+		if ( event.data === 'update_bookmark_view' ){
+
+			// re-render bookmarks
+			updateBookmarks();
+
+		}
+
+	};
+
+
   // simple number padding
   Number.prototype.pad = function(size) {
     let s = String(this);
@@ -946,16 +739,6 @@ function init() {
   else {
     explore.direct = false;
   }
-
-  /* TODO: how to re-implement this using data-sources?
-  if ( explore.isMobile === false ){ // desktop
-
-    //  increase some search-result limits
-    explore.wikipedia_search_limit  = 10;
-    explore.autocomplete_limit      = 20;
-
-  }
-  */
 
   // pre-construct the HTML tag-select options, so we only have to do this once
   explore.osm_tag_options += '<option value=""></option>';
@@ -1014,33 +797,141 @@ function init() {
 
   $('#covertopic').append( cover_topic_html );
 
-  // handle clicks on json-tree leaf-nodes
-  //$('#swipe-5').on( 'click', '.LIText', function(){ jsontreeClick( $(this) ) }  );
-
 }
-
-/*
-function jsontreeClick( el ){
-
-  let type  = el.children().eq(0).text().trim() || '';
-  let value = el.children().eq(1).text().trim() || '';
-
-  if ( type === 'name' ){
-
-    const url = '';
-
-    renderToPane( 'p1', explore.base + '/app/wikipedia/?t=' + encodeURIComponent( value ) + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded );
-
-  }
-
-}
-*/
 
 function removeBookmarkClass(){
 
   $('#bookmarkIcon').removeClass('fas')
 
 }
+
+function renderBookmarks(){
+
+  const t = $('#tree');
+
+	// see: https://mbraak.github.io/jqTree/
+	t.tree({
+
+		data: explore.bookmarks,
+		//saveState: true, // FIXME not yet working, see also: https://mbraak.github.io/jqTree/examples/04_save_state/
+		buttonLeft: false,
+		autoOpen: false,
+		slide: false,
+
+		// https://stackoverflow.com/questions/18376165/remove-node-by-id-in-jstree-when-button-is-clicked
+		closedIcon: $('<span class="icon"><i class="fa-solid fa-plus"></i></span>'),
+		openedIcon: $('<span class="icon"><i class="fa-solid fa-minus"></i></span>'),
+		dragAndDrop: true,
+		onCreateLi: function(node, $li, is_selected) {
+
+			let icon = '';
+
+			if ( node.type === 'string' ){
+				icon = '<i style="font-size: smaller; font-style: italic;" class="fa-brands fa-wikipedia-w"></i>:' + node.language ;
+			}
+			else if ( node.type === 'video' ){
+				icon = '<span class="icon"><i class="fa-solid fa-video">';
+			}
+			else if ( node.type === 'music' ){
+				icon = '<span class="icon"><i class="fa-brands fa-itunes-note">';
+			}
+			else if ( node.type === 'images' ){
+				icon = '<span class="icon"><i class="fa-regular fa-images">';
+			}
+			else if ( node.type === 'book' || node.type === 'archive-book-pdf' || node.type === 'archive-book-html' ){
+				icon = '<span class="icon"><i class="fa-solid fa-book-open">';
+			}
+			else if ( node.type === 'archive' ){
+				icon = '<span class="icon"><i class="fa-solid fa-archive"></i></span>';
+			}
+			else if ( node.type === 'websearch' ){
+				icon = '<span class="icon"><i class="fa-brands fa-searchengin"></i></span>';
+			}
+			else if ( node.type === 'compare' ){
+				icon = '<span class="icon"><i class="fa-solid fa-equals"></i></span>';
+			}
+			else if ( node.type === 'url' ){
+				icon = '<span class="icon"><i class="fa-solid fa-up-right-from-square"></i></span>';
+			}
+			else {
+				icon = '<span class="icon"><i class="fa-solid fa-link"></i></span>';
+			}
+
+			$li.find('.jqtree-title').before('<div class="bookmark-row">');
+
+			$li.find('.jqtree-title').after(node.custom_b);
+
+			$li.attr( 'tabindex' , '0');
+
+			if ( node.id === 1 ){ // never show removal-button on root node
+				// skip root node
+			}
+			else { // construct bookmark-element and its action-buttons
+
+				let explore_button  = '';
+				let geo_button      = '&nbsp;';
+				const qid           = valid( node.qid ) ? node.qid : '';
+        const osm_relation_id = ''; // TODO: add this when a bookmark is added
+
+				if ( node.type === 'string' ){ // for wikipedia-bookmark add an explore-button
+
+					explore_button = '&nbsp;<a href="javascript:void(0)" aria-label="exploreBookmark" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
+
+				}
+
+				if ( valid( node.geo ) ){ // has a geo-location
+
+          let lat = node.geo.split(';')[0];
+          let lon = node.geo.split(';')[1];
+
+          let geo_url = `${explore.base}/app/map/?l=${node.language}&bbox=${getBoundingBox( lon, lat, 0.05 )}&lat=${lat}&lon=${lon}&osm_id=${ valid( osm_relation_id )? osm_relation_id : "" }&qid=${qid}&title=${ encodeURIComponent( node.name ) }`;
+
+          // FIXME: trigger click on lower element
+					geo_button = `<a title="show on map" target="infoframe" href="${ geo_url }"><i class="fa-solid fa-location-dot"></i></a> `;
+					//geo_button = `<a title="show on map" aria-label="show on map" href="javascript:void(0)" onclick="openLink( event, &quot;${ geo_url }&quot; )"><i class="fa-solid fa-location-dot"></i></a> `;
+
+				}
+
+				$li.find('.jqtree-title.jqtree_common ').prepend( explore_button +  geo_button + icon + '&nbsp;' );
+				$li.find('.jqtree-element').append( '&nbsp;<a href="javascript:void(0)" aria-label="removeBookmark" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a> ');
+			}
+
+			$li.find('b').after( node.custom_i + '</div>' );
+			$li.attr('id', node.id);
+			$li.attr('data-type', node.type);
+			$li.attr('title', node.display );
+
+			$li.keypress( function( event ){
+
+				// FIXME
+				if ( event.which === 13 ){
+					console.log('bookmark ENTER keypress');
+					$li.click();
+				}
+
+			});
+
+		}
+
+	});
+
+}
+
+/*
+function openLink( event, url ){
+
+	event.preventDefault();
+
+	resetIframe();
+
+	if ( valid( url ) ){
+
+		$( explore.baseframe ).attr({ "src": url });
+
+	}
+
+}
+*/
 
 function setupBookmarks() {
 
@@ -1058,92 +949,7 @@ function setupBookmarks() {
       explore.bookmarks = JSON.parse( explore.bookmarks );
     }
 
-    // see: https://mbraak.github.io/jqTree/
-    t.tree({
-
-      data: explore.bookmarks,
-      //saveState: true, // FIXME not yet working, see also: https://mbraak.github.io/jqTree/examples/04_save_state/
-      buttonLeft: false,
-      autoOpen: false,
-      slide: false,
-
-      // https://stackoverflow.com/questions/18376165/remove-node-by-id-in-jstree-when-button-is-clicked
-      closedIcon: $('<span class="icon"><i class="fa-solid fa-plus"></i></span>'),
-      openedIcon: $('<span class="icon"><i class="fa-solid fa-minus"></i></span>'),
-      dragAndDrop: true,
-      onCreateLi: function(node, $li, is_selected) {
-
-        let icon = '';
-
-        if ( node.type === 'wikipedia' ){
-          icon = '<i style="font-size: smaller; font-style: italic;" class="fa-brands fa-wikipedia-w"></i>:' + node.language ;
-        }
-        else if ( node.type === 'video' ){
-          icon = '<span class="icon"><i class="fa-solid fa-video">';
-        }
-        else if ( node.type === 'music' ){
-          icon = '<span class="icon"><i class="fa-brands fa-itunes-note">';
-        }
-        else if ( node.type === 'images' ){
-          icon = '<span class="icon"><i class="fa-regular fa-images">';
-        }
-        else if ( node.type === 'book' || node.type === 'archive-book-pdf' || node.type === 'archive-book-html' ){
-          icon = '<span class="icon"><i class="fa-solid fa-book-open">';
-        }
-        else if ( node.type === 'archive' ){
-          icon = '<span class="icon"><i class="fa-solid fa-archive"></i></span>';
-        }
-        else if ( node.type === 'websearch' ){
-          icon = '<span class="icon"><i class="fa-brands fa-searchengin"></i></span>';
-        }
-        else if ( node.type === 'compare' ){
-          icon = '<span class="icon"><i class="fa-solid fa-equals"></i></span>';
-        }
-        else {
-          icon = '<span class="icon"><i class="fa-solid fa-link"></i></span>';
-        }
-
-        $li.find('.jqtree-title').before('<div class="bookmark-row">');
-
-        $li.find('.jqtree-title').after(node.custom_b);
-
-        $li.attr( 'tabindex' , '0');
-
-        if ( node.id === 1 ){ // never show removal-button on root node
-          // skip root node
-        }
-        else { // construct bookmark-element and its action-buttons
-
-          let explore_button = '';
-
-          if ( node.type === 'wikipedia' ){ // for wikipedia-bookmark add an explore-button
-
-            explore_button = '<a href="javascript:void(0)" aria-label="exploreBookmark" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
-  
-          }
-
-          $li.find('.jqtree-title.jqtree_common ').prepend( explore_button +  icon + '&nbsp;&nbsp;' );
-          $li.find('.jqtree-element').append( '&nbsp;<a href="javascript:void(0)" aria-label="removeBookmark" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a> ');
-        }
-
-        $li.find('b').after(node.custom_i + '</div>');
-        $li.attr('id', node.id);
-        $li.attr('data-type', node.type);
-        $li.attr('title', node.display );
-
-        $li.keypress(function(e){
-
-          // FIXME
-          if( e.which === 13 ){
-            console.log('bookmark ENTER keypress');
-            $li.click();
-          }
-
-        });
-
-      }
-
-    });
+		renderBookmarks();
 
     t.bind(
       'tree.move',
@@ -1212,9 +1018,16 @@ function openBookmark( event, newtab ) {
 
   setLanguage ( node.language );
 
-  if ( pattern.test(node.url) ) { // check if datatype "url"
+  console.log( 'url: ', node.url );
 
-    if ( newtab ){
+  if ( pattern.test(node.url) ) { // check if bookmark-type is a link (internal or external)
+
+    if ( node.type === 'url' ){ // always open in new tab
+
+      openInNewTab( node.url );
+
+    }
+    else if ( newtab ){ // user wants URL to open in a new tab
 
       const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=link&u=' + encodeURIComponent( node.url );
 
@@ -1243,7 +1056,7 @@ function openBookmark( event, newtab ) {
 
     if ( newtab ){
 
-      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=wikipedia' + '#' + explore.hash;
+      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=string' + '#' + explore.hash;
 
       openInNewTab( url );
 
@@ -1252,7 +1065,7 @@ function openBookmark( event, newtab ) {
 
       handleClick({ 
         id          : 'n1-0',
-        type        : 'wikipedia',
+        type        : 'string',
         title       : node.name,
         language    : node.language,
         qid         : '',
@@ -1310,9 +1123,11 @@ function setupOptionActiveDatasources(){
     html += `
       <div id="datasource-setting-${key}" class="switch">
         <label>
-          <input type="checkbox" ${checked} id="datasource-${key}" onclick="console.log( toggleDatasource( &quot;${key}&quot;) )">
+          <input type="checkbox" ${checked} id="datasource-${key}" onclick="toggleDatasource( &quot;${key}&quot;)">
           <span class="lever"></span>
-          <span id="datasource-name">${d.name}</span>
+          <span class="datasource-list-icon">${d.icon} </span>
+          <span class="datasource-name"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
+          <span class="datasource-description"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description}) </span>
         </label>
       </div>`;
 
@@ -1337,10 +1152,11 @@ async function toggleDatasource( source ) {
 async function fetchAutocompleteData( term ) {
 
   term = cleanText( term );
+  term = term.replace(/&/g, ' ');
 
   let autocomplete_fetches = [];
 
-  $.each( explore.datasources, function( index, source ){ // for each active datasource
+  $.each( Object.keys( datasources), function( index, source ){ // for each active datasource
 
     let d = datasources[ source ];
 
@@ -1372,36 +1188,21 @@ async function fetchAutocompleteData( term ) {
 
   res.forEach(( r, index ) => {
 
-    //console.log( 'autocomplete: ', r );
+    //console.log( 'autocomplete: ', r, index, explore.datasources,  Object.keys( datasources)[ index ] );
+    let d = datasources[ Object.keys( datasources)[ index ] ];
 
-    // FIXME: how to solve this source-mapping + post-data-processing properly?
-    if ( Array.isArray( r ) ){ // assume wikipedia (for now)
+    if ( d.active ){ // only use at active datasources
 
-      r = r[1];
+      if ( r.length === 0 ){ // empty or disabled autocomplete
+        // do nothing
+      }
+      else {
 
-      dataset.push( r );
+        if ( valid( d.code_autocomplete_pre ) ){
 
-    }
-    else { // assume wikidata (for now)
+          eval( `${ d.code_autocomplete_pre }` );
 
-      let json	= [];
-      let wd		= [];
-
-      if ( valid( r.results ) ){
-
-        json = r.results.bindings;
-
-        json.forEach(( v ) => {
-
-          if ( valid( v.itemLabel.value ) ){
-
-            wd.push( v.itemLabel.value );
-
-          }
-
-        });
-
-        dataset.push( [...new Set( wd )] ); // use only the unique values
+        }
 
       }
 
@@ -1409,10 +1210,11 @@ async function fetchAutocompleteData( term ) {
 
   });
 
+  // FIXME: wikidata-only datasource, fails for autocomplete-results
+  //console.log( 'dataset is now: ', dataset );
+
   // merge results
   let union = [...new Set( dataset.flat(1) )] // flatten and get the unique values
-
-  //console.log( 'autocomplete union: ', union );
 
   return union;
 
@@ -1424,7 +1226,7 @@ function setupSearch() {
 
   $('#srsearch, a.submitSearch').keypress(function(event) {
 
-      explore.searchmode = 'wikipedia';
+      explore.searchmode = 'string';
 
       if (event.which == 13) { // ENTER-key
 
@@ -1437,12 +1239,15 @@ function setupSearch() {
           explore.hash      = '';
           explore.commands  = '';
 
-          explore.type  = 'wikipedia'; // set to default type
+          explore.type  = 'string'; // set to default type
 
           if ( explore.q.charAt(0) === '!' ){ // form-query-command
 
             if ( explore.q.startsWith( '!graph' ) ){ 
               console.log('graph query detected');
+            }
+            else if ( explore.q.startsWith( '!chat' ) ){ 
+              console.log('chat query detected');
             }
 
           }
@@ -1470,13 +1275,19 @@ function setupSearch() {
 
     source: function(request, response) {
 
+      $('#blink').show();
+
 			fetchAutocompleteData( request.term ).then(( union ) => {
 
         response( union ); // return the final autocomplete results
 
+        $('#blink').hide();
+
 			}).catch(error => {
 
 				console.log('some request failed: ', request, error );
+
+        $('#blink').hide();
 
 			});
 
@@ -1514,6 +1325,11 @@ function setupSearch() {
   $('.searchbox').on( 'autocompleteselect', function( event, ui ){
 
     $('#pager').hide();
+    $('#blink').show();
+
+    // FIXME
+    $('.searchbox').autocomplete('close');
+    $('#srsearch').blur();
 
     // trigger input-search change
     $('#srsearch').val( ui.item.label );
@@ -1523,7 +1339,7 @@ function setupSearch() {
     explore.query     = '';
     explore.commands  = '';
 
-    explore.type  = 'wikipedia'; // set default type
+    explore.type  = 'string'; // set default type
 
     // discern user-click from synthetic-click
     if ( event.hasOwnProperty('originalEvent') ){ // user-click
@@ -1568,7 +1384,7 @@ function setupSearch() {
     // TODO: unable to get the "event.target" string
     //console.log( event.target );
 
-    explore.type = 'wikipedia';
+    explore.type = 'string';
 
     const q = getSearchValue( );
 
@@ -1584,9 +1400,17 @@ function setupSearch() {
 
   });
 
-  $('a.submitSearch').on( 'click', function (e) {
+  $('a.submitSearch').on( 'click', function (e){
 
-    explore.searchmode = 'wikipedia';
+    let q = getSearchValue();
+
+    //console.log( q, explore.q, $( '#srsearch' ).val() );
+
+    // FIXME
+    $('.searchbox').autocomplete('close');
+    $('#srsearch').blur();
+
+    explore.searchmode = 'string';
 
     // discern user-click from synthetic-click
     if ( e.hasOwnProperty('originalEvent') ){ // user-click
@@ -1618,17 +1442,8 @@ function setupSearch() {
 
     e.preventDefault();
 
-    let q = getSearchValue();
-
     explore.page = 1;       // reset page position
     explore.wallpaper = ''; // reset wallpaper
-
-    if ( explore.q.charAt(0) === '!' ){ // structured form-query
-
-      let s = explore.q.substring(1);
-      console.log( 'structured form-query submit: ', s );
-
-    }
 
     $('#pager').hide();
 
@@ -1644,12 +1459,12 @@ function setupSearch() {
 
     // make wikipedia the base type (we can override later)
     if ( explore.type === '' && explore.page === 1 ){
-      explore.type = 'wikipedia';
+      explore.type = 'string';
     }
 
     // only use custom type on firstAction visits
     if ( ! explore.firstAction ){
-      explore.type = 'wikipedia';
+      explore.type = 'string';
     }
 
     if ( explore.q ) {
@@ -1676,6 +1491,29 @@ function setupSearch() {
           });
 
         }
+        else if ( explore.q.startsWith( '!chat' ) ){ // chat command
+
+          explore.q = explore.q.trim().charAt(0).toUpperCase() + explore.q.slice(1);
+
+          const m = explore.q.replace( '!chat ', '' );
+
+          const url = `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${explore.tutor}`;
+
+          handleClick({ 
+            id        : 'n1-0',
+            type      : 'link-split',
+            panelwidth : 70,
+            title     : m,
+            language  : explore.language,
+            qid       : '',
+            url       : encodeURI( url ),
+            tag       : '',
+            languages : '',
+            custom    : '',
+            target_pane : 'p1',
+          });
+
+        }
 
       }
       else { // normal query results
@@ -1684,6 +1522,8 @@ function setupSearch() {
         updatePushState( explore.q, 'add' );
 
         refreshArticles(); // render the list of sidebar-topics
+
+        $('#blink').show();
 
       }
 
@@ -1761,7 +1601,7 @@ function setBgmode( ) {
 
   if ( explore.bgmode ){
 
-    if ( explore.type === 'wikipedia' || explore.type === 'video' ){
+    if ( explore.type === 'string' || explore.type === 'video' ){
       $( explore.baseframe ).contents().find("body").addClass('wallpaper').trigger('classChange');
       $( explore.baseframe ).contents().find("body").css( 'background-image', 'linear-gradient(to right, rgba(251, 250, 249,0.95), rgba(251, 250, 249,0.80)), url("' + explore.wallpaper + '"', 'important' );
       $( explore.baseframe ).contents().find("aside").css( 'background-color', 'transparent', 'important');
@@ -1778,7 +1618,6 @@ function setBgmode( ) {
   }
 
 }
-
 
 function setupOptionBgmode() {
 
@@ -1850,7 +1689,6 @@ function setDarkmode() {
   }
 
 }
-
 
 function setupOptionDarkmode() {
 
@@ -2368,32 +2206,31 @@ async function updateValueInPanes( name, value ){
 
 }
 
-
 function updateLocale( l ){ // set from user-locale
 
-    explore.banana.setLocale( l );
+  explore.banana.setLocale( l );
 
-    if ( l === 'simple' ){
+  if ( l === 'simple' ){
 
-      l = 'en';
+    l = 'en';
 
-    }
+  }
 
-    if ( explore.locales.includes( l ) ){
+  if ( explore.locales.includes( l ) ){
 
-      explore.locale = l;
+    explore.locale = l;
 
-      fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + explore.banana.locale + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
+    fetch(explore.base + '/app/explore2/assets/i18n/conzept-' + explore.banana.locale + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
 
-        explore.banana.load( messages, explore.banana.locale)
-        updateLocaleInterface();
+      explore.banana.load( messages, explore.banana.locale)
+      updateLocaleInterface();
 
-        $('#locale').find('option[value="' + explore.locale + '"]').prop('selected', true);
-        $('#locale').formSelect();
+      $('#locale').find('option[value="' + explore.locale + '"]').prop('selected', true);
+      $('#locale').formSelect();
 
-      });
+    });
 
-    }
+  }
 
 }
 
@@ -2459,6 +2296,7 @@ async function updateLocaleInterface(){
   $('#app-menu-clone-tab').html( explore.banana.i18n('app-menu-clone-tab') );
   $('#app-menu-plant-identification').html( explore.banana.i18n('app-menu-plant-identification') );
   $('#app-menu-text-identification').html( explore.banana.i18n('app-menu-text-identification') );
+  //$('#app-menu-visual-identification').html( explore.banana.i18n('app-menu-visual-identification') ); // TODO: add to locales
   $('#app-menu-digital-libraries').html( explore.banana.i18n('app-menu-digital-libraries') );
   $('#app-menu-geography').html( explore.banana.i18n('app-menu-geography') );
   $('#app-menu-version').html( explore.banana.i18n('app-menu-version') );
@@ -2621,10 +2459,68 @@ async function setPersonas() {
 
     $('#persona-select').formSelect();
 
+    // activate GPS for tourists and nomads
+    if ( explore.personas.includes('nomad') || explore.personas.includes('tourist') ){
+
+      getLocation();
+
+      console.log( 'explore.position: ', explore.position );
+
+    }
+
   }
 
 };
 
+function setupOptionTutor() {
+
+  (async () => {
+
+    explore.tutor = await explore.db.get('tutor');
+    explore.tutor = ( explore.tutor === null || explore.tutor === '' ) ? 'default' : explore.tutor;
+
+    setTutor( explore.tutor );
+
+    $('#tutor').change(function() {
+
+      explore.tutor = $(this).val();
+
+      (async () => { await explore.db.set('tutor', $(this).val() ); })();
+
+      setTutor( explore.tutor );
+
+    })
+
+  })();
+
+}
+
+async function setTutor( t ) {
+
+  if ( explore.tutors.includes( t ) ){
+
+    explore.tutor = t;
+
+    $('#tutor').find('option[value="' + explore.tutor + '"]').prop('selected', true);
+    $('#tutor').formSelect();
+
+    // FIXME: Safari browser error in regex: "SyntaxError: Invalid regular expression: invalid group specifier name"
+    if ( explore.isSafari ){ return false; }
+
+    setupAIChat();
+
+    if ( explore.q === '' && explore.qid === '' && explore.type === '' ){
+      // do nothing on the start page
+    }
+    else { // only do this on the initial visit
+
+      refreshArticles();
+
+    }
+
+  }
+
+}
 
 function setupOptionPersonas() {
 
@@ -2651,8 +2547,6 @@ function setupOptionPersonas() {
 
 async function setCountry( country ) {
 
-  console.log( 'setCountry to: ', country );
-
   explore.country = country.toLowerCase();
 
 	$.each( Object.values( countries ), function( i, c ){
@@ -2665,15 +2559,13 @@ async function setCountry( country ) {
 
   });
 
-  console.log( explore.country );
-
   (async () => { await explore.db.set('country', explore.country ); })();
 
   $('#country-select').countrySelect('selectCountry', explore.country);
 
 }
 
-function setupOptionCountry() {
+function setupOptionCountry(){
 
   // see: https://github.com/mrmarkfrench/country-select-js
   $("#country-select").countrySelect({
@@ -2682,6 +2574,15 @@ function setupOptionCountry() {
     //preferredCountries: ['ca', 'gb', 'us'],
     responsiveDropdown: true
   });
+
+  $('#country-select').change(function(e) {{ 
+
+    console.log( 'country changed' );
+
+    setCountry( $('#country-select').countrySelect('getSelectedCountryData')['iso2']  );
+
+  }});
+
 
   (async () => {
 
@@ -2697,14 +2598,6 @@ function setupOptionCountry() {
 
         setCountry( explore.country );
 
-        $('#country-select').change(function(e) {{ 
-
-          console.log( 'country changed' );
-
-          setCountry( $('#country-select').countrySelect('getSelectedCountryData')['iso2']  );
-
-        }});
-
       }
       else {
 
@@ -2714,9 +2607,9 @@ function setupOptionCountry() {
 
     }
     else {
- 
-      // do nothing
 
+      setCountry( explore.country );
+ 
     }
 
   })();
@@ -2867,7 +2760,7 @@ function setupURL() {
 
     // set hash if needed
     //let hash = window.location.hash.substring(1) || '';
-    explore.hash = explore.hash.replace(/[ %{}|^~\[\]()`"'+<%'&\.\/?:@;=,]/g, '_').toLowerCase();
+    explore.hash = explore.hash.replace(/[ %{}|^~\[\]()`"'+<%'&\.\/?:@;=,]/g, '_').toLowerCase(); //`
 
     // set language 
     explore.language = window.language = getParameterByName('l');
@@ -2876,7 +2769,7 @@ function setupURL() {
     explore.type = getParameterByName('t');
 
     if ( explore.type === '' || explore.type === undefined ){
-      explore.type = 'wikipedia';
+      explore.type = 'string';
     }
 
     //console.log('moving backwards, type is: ', explore.type );
@@ -2895,7 +2788,7 @@ function setupURL() {
     explore.custom = getParameterByName('c');
 
     // FIXME: not yet using this info when going back
-    explore.uri = getParameterByName('u');
+    explore.uri = getParameterByName('u').replace(/%253C/g, '<').replace(/%253E/g, '>');
 
     // set query-builder data
     explore.query = getParameterByName('query');
@@ -2939,7 +2832,7 @@ function setReplaceState(){
     if ( explore.hash !== '' ){
 
       // TODO cleanup this duplicate hash-code into a utility function
-      const hash_ = explore.hash.replace(/[ %{}|^~\[\]()`"'+<>%'&\.\/?:@;=,]/g, '_').toLowerCase(); // NOTE: sync this replace-line with wikipedia-iframe.js
+      const hash_ = explore.hash.replace(/[ %{}|^~\[\]()`"'+<>%'&\.\/?:@;=,]/g, '_').toLowerCase(); // NOTE: `sync this replace-line with wikipedia-iframe.js
       const iframeEl = document.getElementById( explore.baseframe );
 
       if ( iframeEl === null ){
@@ -2972,2398 +2865,6 @@ function setReplaceState(){
 
     explore.replaceState = true;
   }
-
-}
-
-async function sparqlQueryCommand( args, view, list ){
-
-  let conditions = args.toString();
-  let sparql_conditions = [];
-
-  let sparql_strings		= [];
-  let sparql_filters		= [];
-
-  let sparql_url				= '';
-
-  if ( view === 'sidebar' ){ // wikidata-structured-query URL
-
-    sparql_url  = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20%3Fitem';
-
-  }
-  else { // Qid-fetching URL
-
-    sparql_url  = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Fitem%20WHERE%20%7B%20%3Fitem';
-
-  }
-
-  let sparql_url_web		= 'https://query.wikidata.org/embed.html#SELECT%20DISTINCT%20%3Fitem%20WHERE%20%7B%20%3Fitem';
-
-  // split conditions by comma
-  conditions = conditions.split(',');
-
-  //console.log( 'SPARQL query: ', conditions  );
-
-  conditions.forEach( ( c ) => {
-
-    //console.log( c.split(' ') );
-
-    sparql_conditions.push( c.replace(/\(|\)/g, '' ).split(' ') );
-
-    // [ "P31", "=", "Q146" ]
-    // ?item wdt:P31 wd:Q146 .
-
-  });
-
-  sparql_conditions.forEach( ( c, index ) => {
-
-    const comparator = c[1]; // =, >, <
-
-    // assume a qid for c[2] for now!
-
-    if ( comparator === '='){
-
-      // see also: https://www.w3.org/TR/sparql11-property-paths/
-      if ( c[0].includes('/') ){ // property path statement (assume just 1-level for now)
-
-        // P31/P279* Q123  ->  wdt:P31/wdt:P279* Q123
-
-        let property_paths  = c[0].split('/');
-        let string_         = '';
-
-        property_paths.forEach( ( p ) => {
-
-          string_ += ( '%20wdt%3A' + p + '%2F' );
-
-        });
-
-        // remove last '/'
-        string_ = string_.replace(/%2F$/, '');
-        string_ += '%20wd%3A' + c[2] + '%3B%0A%20';
-
-        sparql_strings.push( string_ );
-
-      }
-      else { // > or < 
-
-        sparql_strings.push( '%20wdt%3A' + c[0] + '%20wd%3A' + encodeURIComponent( c[2] ) + '%3B%0A%20' );
-
-      }
-
-    }
-    else {
-
-      //console.log( 'comparator: ', comparator );
-
-      sparql_strings.push( '%20wdt%3A' + c[0] + '%20' + '%3Fns' + index + '%3B%0A%20' );
-
-      // check type of compare-value
-      if ( ['P569', 'P570', 'P571', 'P574', 'P575', 'P576', 'P577', 'P578', 'P580', 'P582', 'P585', 'P606', 'P619', 'P620', 'P621', 'P622', 'P729', 'P730', 'P746', 'P813', 'P1191', 'P1249', 'P1317', 'P1319', 'P1326', 'P1619', 'P1636', 'P1734', 'P2031', 'P2032', 'P2285', 'P2310', 'P2311', 'P2669', 'P2754', 'P2913', 'P2960', 'P3893', 'P3999', 'P4566', 'P4602', 'P5017', 'P5204', 'P6949', 'P7103', 'P7104', 'P7124', 'P7125', 'P7295', 'P7588', 'P7589', 'P8554', 'P8555', 'P8556', 'P9052', 'P9448', 'P9667', 'P9905', 'P9946', 'P10135', 'P10673', 'P10786' ].includes( c[0] ) ){ // should be a timestamp
-
-        sparql_filters.push( '%20FILTER(%3Fns' + index + '%20' + encodeURIComponent( comparator ) + '%20%22' + c[2] + '%22%5E%5Exsd%3AdateTime)%20' );
-
-      } 
-      else { // number
-
-        sparql_filters.push( '%20FILTER(%3Fns' + index + '%20' + encodeURIComponent( comparator ) + '%20%22' + c[2] + '%22%5E%5Exsd%3Adecimal)%20' );
-
-      }
-
-    }
-
-  })
-
-  sparql_strings.forEach( ( c ) => {
-
-    sparql_url      += c;
-    sparql_url_web  += c;
-
-  })
-
-  if ( view === 'sidebar' ){ // show wikidata structured-search results
-
-    // TODO: is an "ORDER BY" useful here?
-    //  %20ORDER%20BY%20%3Fitem
-    sparql_url      += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
-    sparql_url_web  += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
-
-  }
-  else {
-
-    sparql_url      += sparql_filters.join('') + '%7D%20LIMIT%20' + explore.sparql_limit;
-    sparql_url_web  += sparql_filters.join('') + '%7D%20LIMIT%20' + explore.sparql_limit;
-
-  }
-
-  //console.log( sparql_conditions );
-  //console.log( sparql_query );
-  //console.log( sparql_strings );
-  console.log( sparql_url );
-  console.log( sparql_url_web );
-
-  if ( view === 'sidebar' ){ // show wikidata structured-search results
-
-    let query_json = '';
-
-    runQuery( '', sparql_url  );
-
-  }
-  else { // execute query (to fetch a list of Qids), then render the Qids as requested
-
-    $.ajax({ // fetch sparql-data
-
-      url: sparql_url,
-
-      // The name of the callback parameter, as specified by the YQL service
-      jsonp: "callback",
-
-      // Tell jQuery we're expecting JSONP
-      dataType: "json",
-
-      // Work with the response
-      success: function( response ) {
-
-        //console.log( response );
-
-        // TODO: check that we have valid results
-        let json = response.results.bindings || [];
-
-        if ( typeof json === undefined || typeof json === 'undefined' ){
-          $('#blink').hide();
-          return 1; // no more results
-        }
-        else if ( json.length === 0 ) { // no more results
-          $('#blink').hide();
-          return 0;
-        }
-
-        json.forEach(( v ) => {
-
-          //console.log( v );
-
-          list.push( v.item.value.replace( 'http://www.wikidata.org/entity/', '' ) );
-
-        });
-
-        renderShowCommand( view, list );
-
-      },  
-
-    });
-
-  }
-
-}
-
-
-async function fetchPresentationData( title, language ) {
-
-	// see also: https://dmitripavlutin.com/javascript-fetch-async-await/#5-parallel-fetch-requests
-  const [q1Response, q2Response] = await Promise.all([
-
-    fetch( `${base}/app/cors/raw?url=${ encodeURIComponent( "https://${language}.wikipedia.org/w/api.php?action=query&titles=${title}&prop=extlinks&format=json" ) }` ),
-
-  ]);
-
-  const q1 = await q1Response.json();
-  //const q2 = await q2Response.json();
-
-  return q1;
-  //return [q1, q2];
-
-}
-
-async function showPresentation( item, type ){
-
-  item = unpackString( item ); 
-  type = type.trim();
-
-  let languages = unpackString( item.languages ); 
-
-  //console.log('create presentation for: ', type,  item );
-
-  const start_date  = item.start_date ? parseInt( item.start_date ) : new Date().getFullYear() + 1;
-  const end_date    = item.end_date ? parseInt( item.end_date ) : new Date().getFullYear() + 1;
-
-  const date_obj = getDatingHTML( item, {} );
-
-  let dating = $('<p>' + date_obj.dating + '</p>').text();
-  //console.log( dating );
-
-  //console.log( start_date, end_date, date_obj );
-
-  // create Scheme-code for presentation
-  let code      = '( presentation\n';
-  let slides    = []; // code for each slide
-
-	let title_enc = encodeURIComponent( item.title );
-	let title     = encodeURIComponent( quoteTitle( item.title ) );
-
-  explore.q = item.title;
-
-  let desc      = '';
-
-  if ( valid( item.description ) ){
-
-    desc = `<h3>${ item.description }</h3>`;
-
-  }
-
-	// set background
-  let background= '';
-
-  explore.presentation_text_background_css = '';
-
-  // presentation configuration
-  if ( type === 'pubchem' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/003.svg"; }
-  else if ( type === 'mathematics' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/004.svg"; }
-  else { 
-
-    if ( valid( item.image ) ){
-
-      //console.log('before: ', item.image );
-
-      //background = decodeURIComponent( item.image );
-      //background = item.image.replace( /width=\d+px/g, 'width=600px' ).replace('(', '%28').replace(')', '%29');
-      background = item.image.replace( /width=\d+px/g, 'width=600px' )
-
-      //console.log('after: ', item.background );
-
-      // for text readability 
-      explore.presentation_text_background_css = 'background: rgba(0, 0, 0, 0.40) none repeat scroll 0% 0%; border-radius: 0.7em;';
-    }
-    else {
-
-			if ( type === 'organism' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/005.svg" };
-			if ( type === 'art-movement' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/001.svg" };
-			if ( type === 'art-movement' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/001.svg" };
-			if ( type === 'location' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/001.svg" };
-			if ( type === 'geographical-structure' ){ background = "#115699" };
-			if ( type === 'time' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/003.svg" };
-			if ( type === 'organization' ){ background = "#115699" };
-
-    }
-
-  }
-
-  if ( valid( background ) ){
-
-    code += `  ( set '( 'background \"${background}\" ) )\n`;
-
-  }
-
-	// store initial language, so we can restore after it changes
-  let language = explore.language;
-
-	let external_links = [];
-
-	// fetch API data
-	// see also: https://dmitripavlutin.com/javascript-fetch-async-await/#5-parallel-fetch-requests
-	/*
-	fetchPresentationData( item.title, language ).then(( q1 ) => {
-
-		if ( q1.query?.pages ){
-
-			if ( valid( q1.query.pages[ Object.keys( q1.query.pages )[0] ] ) ){
-
-				//console.log( q1.query.pages[ Object.keys( q1.query.pages )[0] ].extlinks );
-
-				external_links = q1.query.pages[ Object.keys( q1.query.pages )[0] ].extlinks;
-
-			}
-
-		}
-		*/
-
-		// frequently used ready-made slides
-		let video_slide                 = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/video/#/search/%22${ title_enc }%22" ) ) )\n`;
-		let linkgraph_slide             = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3><i class='fa-solid fa-diagram-project' title='link relations'></i></h3>"\n    ( show \'linkgraph \'( ${ item.qid } ) ) )\n`;
-		let open_library_meta_slide     = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Open Library (meta-data)<h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search?q=${title}&language=${explore.lang3}" ) ) )\n`;
-		let open_library_fulltext_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Open Library (fulltext)</h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search/inside?q=${title}&language=${explore.lang3}&has_fulltext=true" ) ) )\n`;
-		let libretext_chemistry         = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>LibreText</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://chem.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n`;
-		let oer_commons_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>OER Commons</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://www.oercommons.org/search?f.search=${title}&f.language=${language}" ) ) )\n`;
-		let scholia_slide               = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Scholia</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://scholia.toolforge.org/topic/${ item.qid }" ) ) )\n`;
-
-		let commons_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
-		let commons_time_music_slide    = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
-		let commons_country_music_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
-
-		let europeana_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		let europeana_time_music_slide    = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		let europeana_country_music_slide = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}" ) ) )\n`;
-
-		let bing_images_slide           = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?&q=${title}&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=${language}-${language}" ) ) )\n`;
-		let arxiv_slide = `  ( slide "${ item.title } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
-
-    let timeline_slide              = `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>timeline</h3> <h3><i class='fa-solid fa-timeline' title='Wikipedia article timeline'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/timeline/?t=${title_enc}" ) ) )\n`;
-
-    let quiz_location_slide         = `  ( slide "${ item.title } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/quiz/location/?${ item.qid }" ) ) )\n`;
-
-		let street_map_slide  = '';
-		let nearby_map_slide  = '';
-		let satellite_map     = '';
-
-		if ( valid( item.lat ) ){
-
-			street_map_slide  = `  ( slide "${ item.title } <h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
-			nearby_map_slide  = `  ( slide "${ item.title } <h3>nearby map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link-split \'( "/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${language}&layers=wikidata_image,wikidata_no_image,wikipedia" ) ) )\n`;
-
-			satellite_map     = `  ( slide "${ item.title } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
-
-		}
-
-		// START of slide content
-
-		// COMMON SLIDES
-		if ( language === 'en' ){
-
-			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ desc } <h3>${ dating }</h3> <h4>(simple)</h4>"\n    ( show \'link \'( "https://conze.pt/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
-
-		}
-
-		// note: we need to set the initial-language again before the next slide (since the previous "simple-language" slide might have changed the language)
-		slides.push( `  ( slide "${ item.title } ${ desc } <h3>${ dating }</h3> <h4>(wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
-
-		if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } <br><h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
-
-		// TOPICAL SLIDES
-		if ( type === 'pubchem' ){
-
-			slides.push( `  ( slide "${ item.title } <h2><span class='withborder'><a target='infoframe' style='text-decoration:none !important;' href='/app/wikipedia/?qid=Q83147'>${ ( valid( item.chemical_formula ) ? item.chemical_formula : '' ) }</a></span></h2>"\n    ( show \'chemical \'( ${ item.pubchem } ) ) )\n` );
-
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-
-			if ( language === 'en' ){ slides.push( libretext_chemistry ); }
-
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-
-			slides.push( `  ( slide "${ item.title } <h3>PubChem</h3>"\n    ( show \'link \'( "https://pubchem.ncbi.nlm.nih.gov/compound/${ item.pubchem }" ) ) )\n` );
-			if ( valid( item.chebi ) ){ slides.push( `  ( slide "${ item.title } <h3>ChEBI</h3>"\n    ( show \'link \'( "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:${ item.chebi }" ) ) )\n` ); }
-
-			slides.push( scholia_slide );
-			slides.push( arxiv_slide );
-
-		}
-		else if ( type === 'mathematics' ){
-
-			if ( item.mathworld ){ slides.push( `  ( slide "${ item.title } <br><h3>Wolfram MathWorld</h3>"\n    ( show \'link \'( "https://mathworld.wolfram.com/${item.mathworld}.html" ) ) )\n` ) };
-
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-
-			slides.push( `  ( slide "${ item.title } <h3>GeoGebra</h3>"\n    ( show \'link \'( "https://www.geogebra.org/search/${ title }" ) ) )\n` );
-
-			if ( language === 'en' ){ slides.push( `  ( slide "${ item.title } <h3>LibreText</h3>"\n    ( show \'link \'( "https://math.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n` ); }
-
-			slides.push( oer_commons_slide );
-
-			if ( item.msc2010_id ){ slides.push( `  ( slide "${ item.title } <h3>Mathematics Subject Classification</h3>"\n    ( show \'link \'( "https://mathscinet.ams.org/mathscinet/msc/msc2010.html?t=${ item.msc2010_id }" ) ) )\n` ) };
-
-			//slides.push( `  ( slide "${ item.title } <br><h3>Open Syllabus</h3>"\n    ( show \'link \'( "https://opensyllabus.org/results-list/titles?size=25&findWorks=${title}" ) ) )\n` );
-			slides.push( `  ( slide "${ item.title } <h3>Open Syllabus Galaxy</h3>"\n    ( show \'link \'( "https://galaxy.opensyllabus.org/#!search/courses/${title}" ) ) )\n` );
-
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-
-			slides.push( scholia_slide );
-			slides.push( arxiv_slide );
-
-			slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
-
-		}
-		else if ( type === 'organism' ){
-
-			// intro
-			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/response/gbif-map?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
-
-
-			slides.push( commons_slide );
-
-			slides.push( video_slide );
-
-			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
-
-			slides.push( linkgraph_slide );
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-			slides.push( scholia_slide );
-
-		}
-		else if ( type === 'art-movement' ){
-
-			slides.push( `  ( slide "${ item.title } <h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
-			slides.push( commons_time_music_slide );
-			slides.push( europeana_time_music_slide );
-			//slides.push( bing_images_slide );
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-			slides.push( scholia_slide );
-
-		}
-		else if ( type === 'location' ){
-
-			// FIXME: check if article-language is available
-			//if ( valid( item.topic_history ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-regular fa-clock' title='history'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/wikipedia/?t=&l=${language}&qid=${ item.topic_history }&dir=ltr" ) ) )\n` ); }
-
-			// FIXME: There may be an Qid for this location-culture, but we also need to check that the article-language is available for item.culture.
-			//  example: NL-language -> "Germany"-article-presentation -> culture-article does not exist in Dutch!
-			//if ( valid( item.culture ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-hand-holding-heart' title='culture'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) ) ( show \'link \'( "https://conze.pt/app/wikipedia/?t=&l=${language}&qid=${ item.culture }&dir=ltr" ) ) )\n` ); }
-
-			if ( valid( item.wikivoyage ) ){ slides.push( `  ( slide "${ item.title } <h3>Wikivoyage</h3><h3><i class='fa-solid fa-plane-departure' title='travel information'></i></h3>"\n    ( show \'link \'( "${ item.wikivoyage }" ) ) )\n` ); }
-
-			slides.push( commons_country_music_slide );
-			slides.push( europeana_country_music_slide );
-			slides.push( bing_images_slide );
-			slides.push( video_slide );
-
-			if ( valid( item.lat ) ){ slides.push( satellite_map ) };
-			if ( valid( item.lat ) ){ slides.push( street_map_slide ) };
-
-			// FIXME: field-URL required a "\n" before defaultView
-			if ( valid( item.country_l1_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } <h3>L1 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l1 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-1%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
-
-			// FIXME: field-URL required a "\n" before defaultView
-			if ( valid( item.country_l2_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } <h3>L2 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l2 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-2%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
-
-			slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
-
-			slides.push( nearby_map_slide );
-
-			slides.push( linkgraph_slide );
-
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-
-			slides.push( scholia_slide );
-
-		}
-		else if ( type === 'geographical-structure' ){
-
-			slides.push( commons_slide );
-
-			slides.push( video_slide );
-
-			slides.push( linkgraph_slide );
-
-      slides.push( quiz_location_slide );
-
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-
-			slides.push( scholia_slide );
-
-    }
-		else if ( type === 'organization' ){
-
-			if ( valid( item.subsidiary_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>subsidiaries</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P355/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.parent_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>parent</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P749/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.has_parts_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>has parts</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P527/${item.qid}" ) ) )\n` ); }
-
-			if ( valid( item.lat ) ){ slides.push( street_map_slide  ) };
-			if ( valid( item.lat ) ){ slides.push( nearby_map_slide  ) };
-
-			slides.push( commons_slide );
-
-			slides.push( video_slide );
-
-			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
-
-			slides.push( linkgraph_slide );
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-			slides.push( scholia_slide );
-
-		}
-
-		else if ( type === 'time' ){
-
-			// TODO: put this time-space-link code somewhere central
-			// not bullet-proof, but we need some 'relevance'-filters before showing the timspace-button (as most events don't have the required data to show a timeline)
-			if (  valid( item.category ) || ( valid( item.followed_by ) || valid( item.part_of ) || valid( item.has_parts ) || valid( item.list_of ) ) ){
-
-				let used_qid = item.qid;
-
-				if ( !valid( item.category ) && valid( item.part_of ) ){ // this is a fallible escape-hatch for using an alternative qid
-
-					//console.log( item.part_of )
-
-					if ( Array.isArray( item.part_of ) ){
-
-						used_qid = item.part_of[0];
-
-					}
-					else {
-
-						used_qid = item.part_of;
-
-					}
-
-				}
-
-				let limited_types = [
-					'3186692', '577', '578', '39911', '36507', // year, decade, century, milennium, 
-
-					// FIXME: how to better handle these:
-					'27020041', '82414', '159821', // sports events
-				];
-
-				let limited_query = '&limited=false';
-
-				if ( limited_types.includes( item.instance_qid ) ) { 
-
-					limited_query = '&limited=true';
-				}
-
-				let url = explore.base + '/app/timespace/?q=' + used_qid + '&l=' + explore.language + '&highlight=' + item.qid + limited_query;
-
-				slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>event cluster</h3> <h3><i class='fa-solid fa-hourglass-end' title='time-space view'></i></h3>"\n    ( show \'link-split \'( "${url}" ) ) )\n` );
-
-			}
-
-			if ( valid( item.significant_event_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>significant events</h3><h3><i class='fa-solid fa-sitemap' title='significant event tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P793/${item.qid}" ) ) )\n` ); }
-
-		  if ( language === 'en' && valid( item.wikipedia_timeline ) ){ slides.push( timeline_slide ); }
-
-			slides.push( commons_time_music_slide );
-			slides.push( europeana_time_music_slide );
-			slides.push( bing_images_slide );
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-			slides.push( scholia_slide );
-
-		}
-
-		/*
-		external_links.forEach( (l) => {
-
-			const extlink = l['*'];
-
-			slides.push( `  ( slide "${ item.title } <h4><a target='_blank' href='${ extlink }'>${extlink.replace('http://', '').replace('https://', '') }</a></h4><h4>(click on the above link, if it fails to open here)</h4><h3><i class='fa-solid fa-link' title='links'></i></h3>"\n    ( show \'link \'( "${ extlink }" ) ) )\n` );
-
-		});
-		*/
-
-		// END of slide content
-
-		//console.log( slides );
-
-		// add each slide-code to code
-		$.each( slides, function ( i, slide ) {
-
-			code += slide;
-
-		});
-
-		// finalize presentation code
-		code += ')\n';
-
-		// add code to editor
-		//explore.editor.setValue( beautify( code ) );
-		explore.editor.setValue( code );
-
-		//console.log('code: ', code );
-		//explore.commands = code;
-
-		runLISP( code );
-
-	//}).catch(error => { console.log('error fetching presentation data'); });
-
-}
-
-async function runEditorCode( code ){
-
-	// run commands
-	runLISP( code );
-
-	// go to tools-tab
-	explore.tabsInstance.select('tab-tools');
-
-	// open editor detail
-	$('#editor-detail').attr( 'open', '' );
-
-	// focus on editor
-	explore.editor.focus(); 
-
-}
-
-function getTitlefromImageURL( url ){
-
-	const url_dec = decodeURIComponent( url );
-
-	let name  = url_dec.split('FilePath/')[1] || '';
-
-	if ( name === '' ){ // no name yet
-
-		//console.log( url_dec );
-
-		name  = url_dec.substring( url_dec.lastIndexOf("/") + 1, url_dec.length) || '';
-
-	}
-
-	name = name.replace(/_/g, ' ' );
-	name = name.substr(0, name.lastIndexOf('.') ); // remove last file-extension
-
-	return name;
-
-}
-
-
-let lp;
-
-async function setupLispEnv(){
-
-  // see also: https://www.wikidata.org/wiki/Wikidata:REST_API_feedback_round
-
-  // to allow nested lisp code, to be implemented in JS, we use a "lips.Macro"
-  // IN:  scheme code in string form
-  // OUT: Lips-structured data
-  lips.env.set('query', new lips.Macro('query', function( code, { dynamic_scope, error }) {
-
-    const args = { env: this, error };
-    if (dynamic_scope) { args.dynamic_scope = this; }
-
-    //console.log( 'code.car: ', code.car );
-
-    // Take the relevant fields using "code.car" and such calls.
-    // In this case we create a new Lips-list from the list-argument supplied
-    let wrap = new lips.Pair(new lips.LSymbol('list'), code.car);
-  
-    // - take the wrapped-code and evaluate it
-    // - then return as a Lips-array
-    return this.get('list->array')( lips.evaluate(wrap, args));
-
-  }));
-
-  /*
-  lips.env.set('vector2', new lips.Macro('vector2', function( code, { dynamic_scope, error }) {
-
-    const args = { env: this, error };
-    if (dynamic_scope) { args.dynamic_scope = this; }
-
-    // Take the relevant fields using "code.car" and such calls.
-    // In this case we create a new Lips-list from the list-argument supplied
-    let wrap = new lips.Pair(new lips.LSymbol('list'), code.car);
-
-    console.log( 'code: ', code );
-    console.log( 'wrap: ', wrap );
-    console.log( 'lisp eval: ', lips.evaluate(wrap, args)  );
-    console.log( 'return: ', this.get('list->array')( lips.evaluate(wrap, args)) );
-
-    // - take the wrapped-code and evaluate it
-    // - then return as a Lips-array
-    return this.get('list->array')( lips.evaluate(wrap, args));
-
-  }));
-  */
-  lips.env.set('presentation', new lips.Macro('presentation', function( code, { dynamic_scope, error }) {
-
-    let meta = {};
-
-    meta.toc = true; // show table-of-contents
-
-    explore.presentation_building_mode = true;
-
-    const args = { env: this, error };
-    if (dynamic_scope) { args.dynamic_scope = this; }
-
-    //console.log('presentation slides: ', code.length(), code );
-
-    //console.log( 'code.car: ', code.car );
-
-    let i = 0;
-
-    // build slide commands list
-    code.map( ( slide, index ) => {
-
-      //console.log( slide, index);
-
-      // dont add "set" elements
-      if ( slide.car?.__name__ === 'set' ){
-
-        // parse set-data
-        let wrap  = new lips.Pair(new lips.LSymbol('list'), slide );
-        let set   = this.get('list->array')( lips.evaluate(wrap, args));
-
-        //console.log( set );
-        //lp = set[1];
-
-        let key = set[1].car.cdr.toString().replace(/\(|\)/g, '') || '';
-        let val = set[1].cdr.toString().replace( /^\(/, '' ).replace( /\)$/, '') || '';
-        //let val = set[1].cdr.toString().replace(/\(|\)/g, '') || '';
-
-        if (
-          key === 'background' ||
-          key === 'color' ||
-          key === 'autoslide'
-        ){
-
-          meta[ key ] = val;
-
-        }
-
-        //console.log( 'meta: ', meta );
-
-      }
-      else {
-      
-        // Take the relevant fields using "code.car" and such calls.
-        // In this case we create a new Lips-list from the list-argument supplied
-        let wrap = new lips.Pair(new lips.LSymbol('list'), slide );
-
-        explore.presentation_building_slide = i;
-
-        // create an empty slide-command-container
-        explore.presentation_commands[ explore.presentation_building_slide ]  = [];
-
-        i += 1;
-
-        // - take the wrapped-code and evaluate it
-        // - then return as a Lips-array
-        return this.get('list->array')( lips.evaluate(wrap, args));
-
-      }
-
-    });
-
-    let text_background_styling = '';
-    
-    if ( valid( explore.presentation_text_background_css ) ){
-
-      text_background_styling = `<style>.slides section { ${ explore.presentation_text_background_css } }</style>`;
-
-    }
-
-    // create HTML-start
-    let html = `<!DOCTYPE html>
-      <head>
-        <base target="_blank">
-        <link rel="stylesheet" href="../app/explore2/node_modules/reveal.js/dist/reveal.css?v4.3.1">
-        <link rel="stylesheet" href="../app/explore2/node_modules/reveal.js/dist/theme/black.css?v4.3.1">
-        <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css?v6.01" type="text/css">
-        <!--link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v${explore.version}" type="text/css"-->
-        <link rel="stylesheet" href="../app/explore2/css/conzept/revealjs_custom.css?v${explore.version}" type="text/css">
-        <script type="text/javascript" src="../app/explore2/node_modules/reveal.js/dist/reveal.js?v4.3.1"></script>
-        <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="../app/explore2/dist/core/utils.js"></script>
-        ${ text_background_styling }
-      </head>
-      <body>
-        <div class="reveal">
-          <div class="slides">
-      `;
-
-    let s = 0;
-
-    // add each slide-section HTML
-    code.map( ( slide ) => {
-
-      // dont add "set" elements
-      if ( slide.car?.__name__ === 'set' ){
-
-        //console.log( 'skip this element');
-        
-      }
-      else {
-
-        //console.log( 'slide title?: ', slide.cdr.car.toString() );
-
-        let title = slide.cdr.car.toString();
-
-        let elements = '';
-
-        // find commands which can be rendered by slide-html (eg. direct audio / video links)
-        $.each( explore.presentation_commands[ s ], function ( i, c ) {
-
-          const command = c[0];
-          const view		= c[1];
-          let   data		= c[2];
-
-          //console.log( 'command: ', command, view, data );
-
-          if ( view === 'audio' ){
-
-            //console.log( 'insert html-audio: ', c[2] );
-
-            elements += '<audio controls src="' + data + '"></audio>';
-
-          }
-          else if ( command === 'fragment' ){
-
-            //console.log( command, view, data );
-
-            let autoslide = '';
-
-            if ( valid( meta.autoslide ) ){
-
-              autoslide = ` data-autoslide="${ meta.autoslide }"`;
-
-            }
-
-            // replace markdown-links formatted as "(Q12345)" with: "(https://conze.pt/explore/&t=wikipedia&i=Q12345)"
-            data = data.replace( /\(\s*(Q\d+)\s*\)/g, '(https://conze.pt/explore/?&t=wikipedia-qid&i=$1)' );
-
-            elements += `<p class="fragment" ${autoslide} data-trigger="${ view }">${ data }</p>`;
-            // FIXME: markdown rendering caused all fragments of a slide to show at once
-            //elements += `<p class="fragment" ${autoslide} data-trigger="${ view }">${ marked.parse( data ) }</p>`;
-
-          }
-
-        });
-
-
-        // apply slide meta-data
-        //console.log('meta now: ', meta );
-
-        let options = {};
-
-        if ( valid( meta.color ) ){
-
-          options.color = ` color:${ meta.color } !important `;
-
-        }
-        else {
-          options.color = '';
-        }
-
-        if ( valid( meta.background ) ){
-
-          //console.log('using bg, before: ', meta.background );
-          //meta.background = decodeURIComponent( meta.background );
-          //console.log('using bg, after: ', meta.background );
-
-          let ext = meta.background.split('.');
-
-          if ( ext.length > 1 ){
-            ext = ext.pop();
-          }
-          else {
-            ext = '';
-          }
-
-          //console.log( meta.background, ext );
-
-          // see: https://revealjs.com/backgrounds/
-          if ( ext === 'mp4' ){ // video background
-
-            options.background = `data-background-video="${ meta.background }" data-background-video-loop data-background-video-muted`;
-
-          }
-          else if (
-            meta.background.startsWith('rgb') ||
-            meta.background.startsWith('hsl') ||
-            meta.background.startsWith('#')
-          ){ // color value
-
-            options.background = `data-background-color="${ meta.background }"`;
-
-          }
-          else if ( meta.background.includes( 'gradient' ) ){ // gradient definition
-
-            options.background = `data-background-gradient="${ meta.background }"`;
-
-          }
-          else { // image background
-
-            //console.log('final image: ', meta.background );
-            options.background = `data-background-image="${ decodeURIComponent( meta.background  ) }"`;
-
-          }
-
-        }
-
-        html += `<section style="${options.color}" ${ options.background }><h1> ${ title } </h1> ${ elements } </section>`;
-
-        s += 1;
-
-      }
-
-    });
-
-    //console.log( html );
-
-    // add HTML-end
-    html += `
-  <script type="text/javascript">
-
-		let slide_nr = 0;
-
-    let reveal_options = {
-      transition: "fade",
-      autoPlayMedia: true,
-      loop: false,
-      progress: true,
-      slideNumber: false,
-    };
-
-    //let reveal_plugins = [];
-
-    if ( valid( ${ meta.autoslide } ) ){
-
-      reveal_options[ 'autoSlide' ] = ${ meta.autoslide };
-
-      //$('p.fragment').addClass('visible'); // show all fragments at once
-
-    }
-
-    /*
-    if ( valid( ${ meta.toc } ) ){
-
-      console.log('show ToC'):
-
-      reveal_plugins.push( 'toc'  );
-
-    }
-    */
-
-    Reveal.initialize(
-
-      reveal_options,
-
-      //plugins : reveal_plugins,
-      
-    );
-
-    const parentref = parent; Reveal.on( "slidechanged", event => { parentref.postMessage({ event_id: "run-slide-commands", data: { slide : event.indexh } }, "*" ); });
-
-    Reveal.on( "ready", event => {
-
-      parentref.postMessage({ event_id: "run-slide-commands", data: { slide : 0 } }, "*" );
-
-      //Reveal.nextFragment(); // auto-show the first fragment
-
-    });
-
-    Reveal.on( "fragmentshown", event => {
-
-      //console.log( $( event.fragment ).data("trigger") );
-			//console.log( Reveal.getState() );
-
-      let trigger = $( event.fragment ).data("trigger").split(":") || [];
-
-      let trigger_command = trigger[0];
-
-      let goto_args = trigger;
-      goto_args.shift();
-      goto_args.join(':');
-
-      //console.log( trigger, trigger_command, goto_args );
-
-      if ( trigger_command === 'goto' ){ // trigger command in 'infoframe'
-
-        parent.postMessage({ event_id: 'goto', data: { value: goto_args } }, '*' );
-
-      }
-
-    });
-
-		Reveal.addEventListener( 'slidechanged', function( event ) {
-
-			// only when we go back a slide AND there is a fragment, we replay that last fragment
-			if ( ( event.indexh + 1 ) === slide_nr ){ // going back a slide
-
-				let state = Reveal.getState();
-
-				if ( state.indexf > 0 ){ // we are on a fragment (from a slide-change)
-
-					// we are at the end of all fragments, so replay the one before this fragment-position
-					let sel		= '.fragment[data-fragment-index="' + ( state.indexf - 1 ) + '"]';
-
-					let trigger = $( sel ).data("trigger").split(":") || [];
-
-          let trigger_command = trigger[0];
-
-          let goto_args = trigger.slice();
-          goto_args.shift();
-          goto_args.join(':');
-
-          //console.log( trigger, trigger_command, goto_args );
-
-					if ( trigger_command === 'goto' ){ // trigger command in 'infoframe'
-
-						// TODO: we should wait until the iframe has completely loaded, but how?
-						parent.postMessage({ event_id: 'goto', data: { value: goto_args } }, '*' );
-
-					}
-
-				}
-
-			}
-      else { // going forward a slide
-
-        //Reveal.nextFragment(); // auto-show the first fragment
-
-        //if ( valid( ${ meta.autoslide } ) ){
-
-          //$('p.fragment').addClass('visible'); // show all fragments at once
-
-        //}
-
-      }
-
-			slide_nr = event.indexh; // sync slide number
-
-		} );
-
-		Reveal.on( 'fragmenthidden', event => { // going back a fragment (without a slide-change!)
-
-			// replay the fragment before this one
-
-			let state = Reveal.getState();
-
-			if ( state.indexf >= 0 ){
-
-				let sel		= '.fragment[data-fragment-index="' + ( state.indexf ) + '"]';
-				//console.log( sel );
-
-				let trigger = $( sel ).data("trigger").split(":") || [];
-        //console.log('TRIGGER: ', trigger );
-
-        const trigger_command = trigger[0];
-
-        let goto_args = trigger.slice();
-        goto_args.shift();
-        goto_args.join(':');
-
-        //console.log( trigger, trigger_command, goto_args );
-
-				if ( trigger[0] === 'goto' ){ // trigger command in 'infoframe'
-
-					parent.postMessage({ event_id: 'goto', data: { value: goto_args } }, '*' );
-
-				}
-
-			}
-
-		} );
-
-  </script>
-</body> </html>`;
-
-    //console.log( html );
-
-    // show presentation
-		// insert HTML into iframe-srcdoc
-    $('iframe#presentation').attr( 'srcdoc', html );
-
-  	// go to tools-tab
-   	explore.tabsInstance.select('tab-tools');
-
-    console.log('open presentation detail');
-
-    // open presentation detail
-   	$('#presentation-detail').attr( 'open', '' );
-   	$('#editor-detail').removeAttr( 'open', '' );
-
-    explore.presentation_building_mode  = false;
-    explore.presentation_building_slide = undefined;
-    explore.presentation_text_background_css = ''; // reset
-
-    $('#blink').hide();
-
-  }));
-
-	lips.env.set('slide', function(...args) {
-
-    explore.keyboard_ctrl_pressed = false;
-
-    console.log('slide ...');
-
-  });
-
-
-	lips.env.set('show', function(...args) {
-
-    explore.keyboard_ctrl_pressed = false;
-
-    let view      = args.shift().toString();
-    let list      = [];
-
-    //console.log( args[0] );
-    
-    if ( !valid( args[0].car ) ) { // SPARQL-query (has multiple objects, where "car" is located 1-level deeper than for a simple array)
-
-			if ( explore.presentation_building_mode ){ // store command
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'sparqlQueryCommand', view, list, args ] );
-
-			}
-			else { // direct command execution
-
-        sparqlQueryCommand( args, view, list );
-
-        if ( view === 'sidebar' ){ // Wikidata-results in the sidebar
-
-          explore.tabsInstance.select('tab-topics');
-
-          return 0;
-
-        }
-
-      }
-
-    }
-    else if ( view === 'link' || view === 'link-split' ){ // simple command (no need to fetch any Qid-data with SPARQL)
-
-      list = args.shift().to_array() || [];
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-			}
-			else {
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : view,
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-					url       : list[0],
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'url' ){ // simple command (no need to fetch any Qid-data with SPARQL)
-
-      list = args.shift().to_array() || [];
-
-			if ( explore.presentation_building_mode ){
-
-        console.log( 'url: ', list, args );
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-			}
-			else {
-
-        //console.log( 'url: ', list[0], list );
-
-        // note: This does not work on first URL-visit, only after an user-interaction (such as a click).
-        openInNewTab( decodeURI( list[0] ) );
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'pdf' ){ // simple command (no need to fetch any Qid-data with SPARQL)
-
-      list = args.shift().to_array() || [];
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-			}
-			else {
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-					url       : `https://${ explore.host }/app/pdf/?file=https://${ explore.host }/app/cors/raw/?url=${ list[0]  }#page=0&zoom=page-width&phrase=true&pagemode=thumbs`,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'iiif' ){ // simple command (no need to fetch any Qid-data with SPARQL)
-
-      list = args.shift().to_array() || [];
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-			}
-			else {
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-					url       : `${explore.base}/app/iiif/#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( list[0] ) }`,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'audio-query' ){ // fetch audio-file-URLs from Archive.org or Europeana
-
-      // inception, end time, publication, ...
-
-      list = args.shift().to_array() || [];
-
-      //console.log( list );
-
-      list[0] = list[0].replace(/;$/, ''); 
-      let data = list[0].split(';');
-
-      let obj = {};
-
-      for ( let el of data ) {
-
-        let key_val = el.split(':');
-
-        if ( valid( key_val[0] && valid( key_val[1] ) ) ){
-
-          obj[key_val[0].trim()] = key_val[1].trim();
-
-        }
-
-      }
-
-      let song = '';
-
-      if ( obj.source === 'conzept' ){
-
-        let year;
-
-        if ( valid( obj.start ) ){ // time-period audio-query
-
-          // list of supported years
-          const supported_years = Object.keys( music_by_year ).map( function(item) { return parseInt(item, 10); } );
-
-          // list of requested years
-          let requested_years = [];
-
-          for (let y = obj.start; y <= obj.end; y++ ){
-            requested_years.push( parseInt( y ) )
-          }
-
-          // get the year matches of these two sets
-          const matching_years = requested_years.filter( y => supported_years.includes( y ) );
-
-          //console.log( supported_years, requested_years, matching_years, matching_years.length );
-
-
-          if ( matching_years.length === 0 ){ // no matches found, pick a random instead
-
-            //console.log('no year matches found' );
-            return 0;
-
-            //year = supported_years[ Math.floor( Math.random() * supported_years.length ) ];
-
-
-          }
-          else {
-
-            year = matching_years[ Math.floor( Math.random() * matching_years.length ) ];
-
-          }
-
-          // pick a random song from that year
-          song = music_by_year[ year ][ Math.floor(Math.random() * music_by_year[ year ].length ) ];
-
-        }
-        else if ( valid( obj.country ) ){ // country audio-query
-
-          let music_by_country = {}
-
-          // create a structure for music by country
-	        $.each( Object.values( music_by_year ), function( i, yearObj ){
-            
-            $.each( yearObj, function( j, songObj ){
-
-              if ( valid( music_by_country[ songObj.country ] ) ){  // structure already exists
-                // do nothing
-              }
-              else { // create structure
-
-                music_by_country[ songObj.country ] = [];
-
-              }
-
-              music_by_country[ songObj.country ].push( songObj );
-
-            });
-
-          });
-
-          //console.log( music_by_country, obj.country );
-
-          if ( valid( music_by_country[ obj.country ] ) ){
-
-            // pick a random song from that year
-            song = music_by_country[ obj.country ][ Math.floor(Math.random() * music_by_country[ obj.country ].length ) ];
-
-          }
-
-          if ( ! valid(song) ){ // no song found
-
-            return 0;
-
-          }
-
-        }
-
-      }
-      else {
-
-        return 0;
-
-      }
-
-      //console.log( song );
-
-      // TODO: Could we use Archive.org or Europeana for finding songs by year-range?
-      //
-      // create Europeana query:
-      //  see: https://pro.europeana.eu/page/search
-      //
-      //  can we find music in a date-range?
-      //  https://www.europeana.eu/api/v2/search.json?wskey=4ZViVZKMe&rows=10&query=music%201933%20mp3&media=true&qf=TYPE%3A%22SOUND%22
-      //
-      //  http://sparql.europeana.eu/?default-graph-uri=&query=PREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%3E%0D%0APREFIX+edm%3A+%3Chttp%3A%2F%2Fwww.europeana.eu%2Fschemas%2Fedm%2F%3E%0D%0APREFIX+ore%3A+%3Chttp%3A%2F%2Fwww.openarchives.org%2Fore%2Fterms%2F%3E%0D%0ASELECT+%3Ftitle+%3Fcreator+%3FmediaURL+%3Fdate%0D%0AWHERE+%7B%0D%0A++%3FCHO+edm%3Atype+%22SOUND%22+%3B%0D%0A++++++ore%3AproxyIn+%3Fproxy%3B%0D%0A++++++dc%3Atitle+%3Ftitle+%3B%0D%0A++++++dc%3Acreator+%3Fcreator+%3B%0D%0A++++++dc%3Adate+%3Fdate+.%0D%0A++%3Fproxy+edm%3AisShownBy+%3FmediaURL+.%0D%0A%7D%0D%0ALIMIT+100&should-sponge=&format=text%2Fhtml&timeout=0&debug=on
-
-      // Archive.org query:
-      //
-      // random 0-10 number (the URL requires a query-string)
-      // start time
-      // end time
-      //
-      // https://archive.org/advancedsearch.php?q=1&query=mediatype%3A(audio)%20AND%20date%3A[1920-01-01%20TO%201950-01-01]&output=json&rows=10&
-      //
-      // -> identifier: mp3.mp3_716
-      // -> get identifier file(s): https://archive.org/metadata/mp3.mp3_716
-      //   ...
-      //   Mp3.mp3
-      //   ...
-      // -> file URL: https://archive.org/download/IDENTIFIER/FILE 
-      //              https://archive.org/download/mp3.mp3_716/Mp3.mp3
-      //
-      //              https://archive.org/metadata/1-1-5
-      //              https://archive.org/download/1-1-5/Ba3th-1-15.ogg
-
-      // get query results
-
-      // use query results
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', 'audio', [ song.url ] ] );
-
-			}
-			else {
-
-				explore.autoplay = false;
-				$('.plSel').removeClass('plSel'); // remove fixed-playlist highlight
-
-				// insert audio-URL
-				document.getElementById('audio1').src = song.url;
-
-				// play audio
-				document.getElementById('audio1').play();
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'audio' ){
-
-      list = args.shift().to_array() || [];
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-			}
-			else {
-
-				explore.autoplay = false;
-				$('.plSel').removeClass('plSel'); // remove fixed-playlist highlight
-
-				// insert audio-URL
-				document.getElementById('audio1').src = list[0];
-
-				// play audio
-				document.getElementById('audio1').play();
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'image-set' ){ // simple command (no need to fetch any Qid-data with SPARQL)
-
-      list = args.shift().to_array() || [];
-      console.log( list );
-
-      let url = '';
-
-			if ( list.length === 1 ){ // single image
-
-				let img = list[0];
-
-				// create IIIF-link
-				let coll = { "images": [ ]};
-
-				let label		= encodeURIComponent( getTitlefromImageURL( img ) );
-				let desc    = encodeURIComponent( 'image description' );
-				let author  = encodeURIComponent( 'author' );
-				let source  = encodeURIComponent( 'source' );
-
-				// for each image add:
-				coll.images.push( [ img, label, desc, author, source ] );
-
-				if ( coll.images.length > 0 ){ // we found some images
-
-					// create an IIIF image-collection file
-					let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
-
-					let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
-
-					url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
-
-				}
-
-			}
-			else if ( list.length > 1 ) { // multiple images
-
-				let coll = { "images": [ ]};
-
-				$.each( list, function ( index, img ) {
-
-					let ctitle = encodeURIComponent( getTitlefromImageURL( img ) );
-
-					// license data retrieval: https://en.wikipedia.org/w/api.php?action=query&prop=imageinfo&iiprop=extmetadata&titles=File%3aBrad_Pitt_at_Incirlik2.jpg&format=json
-
-					coll.images.push( [ img, ctitle, ctitle, 'attribution: ...', '...' ] );
-
-				});
-
-			 // create an IIIF image-collection file
-				let iiif_manifest_link = '/app/response/iiif-manifest?l=en&t=' + encodeURIComponent( '...' ) + '&json=' + JSON.stringify( coll );
-
-				let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=0&manifest=' + encodeURIComponent( iiif_manifest_link );
-
-				url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
-
-			}
-			else {
-
-				console.log('warning: no image-URLs given');
-
-				return 0;
-
-			}
-  
-			if ( explore.presentation_building_mode ){
-
-				// note: we force a link view
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', 'link', [ url ] ] );
-
-			}
-			else {
-
-        // open IIIF-url
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-					url       : url,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'audio-waveform' ){
-
-      list = args.shift().to_array() || [];
-
-      let url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + list[0] ) }`
-
-      console.log('audio-waveform: ', view, list, url );
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list, url ] );
-
-			}
-			else {
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-          url       : url,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-    else if ( view === 'youtube' ){
-
-      list = args.shift().to_array() || [];
-
-      // target URL: /app/video/?wide=true#/view/zqNTltOGh5c/20/40
-
-      let url   = '';
-      let vid   = getParameterByName( 'v', list[0] ) || '';
-      let start = getParameterByName( 't', list[0] ) || '0';
-      let end   = '';
-
-      if ( vid === '' ){ // assume a short url: https://youtu.be/zqNTltOGh5c?t=104
-
-        vid = list[0].split('/').pop();
-        vid = vid.split('?')[0]; // remove any params left over in the string
-
-      }
-
-      if ( start === '0' ){ // also check for start/end times
-        start = getParameterByName( 'start', list[0] ) || '0';
-        end   = getParameterByName( 'end', list[0] ) || '';
-      }
-
-      // remove any "s" second-string on timestamps
-      start = start.replace('s', '');
-      end   = end.replace('s', '');
-
-      if ( valid( end ) ){
-
-        url = `${explore.base}/app/video/?wide=true#/view/${ vid }/${ start }/${ end }`;
-
-      }
-      else {
-
-        url = `${explore.base}/app/video/?wide=true#/view/${ vid }/${ start }`;
-
-      }
-
-      console.log('youtube: ', vid, start, end, url );
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list, url ] );
-
-			}
-			else {
-
-        //url       : `${explore.base}/app/wander/?videoId=${ list[0] }?&mute=false`,
-
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-          url       : url,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
-
-			}
-
-      return 0;
-
-    }
-
-    else {
-
-      list = args.shift().to_array() || [];
-
-			renderShowCommand( view, list );
-
-    }
-
-    /*
-		args.forEach( (arg) => {
-
-		  const qid = arg.toString();
-
-      if ( isQid( qid ) ){ list.push( qid ); }
-
-		});
-    */
-    
-	});
-
-	lips.env.set('search', function(...args) {
-
-    explore.keyboard_ctrl_pressed = false;
-
-    let view      = args.shift().toString();
-    let list      = args.shift().to_array() || [];
-
-    //console.log('view: ', view );
-    //console.log('list: ', list );
-
-    if ( view === 'explore' ){ // search Wikipedia by string or Qid
-
-      let promiseB = fetchLabel( list, explore.language ).then(function(result) {
-
-        let labels = [];
-
-        if ( valid( result.entities ) ){
-
-          Object.keys( result.entities ).forEach(( k, index ) => {
-
-            if ( result.entities[ k ]?.labels[ explore.language ] ){
-
-              labels.push( result.entities[ k ].labels[ explore.language ].value );
-
-            }
-
-          });
-
-        }
-
-        labels = labels.join(' ');
-
-        handleClick({ 
-          id        : 'n1-0',
-          type      : 'explore',
-          title     : labels,
-          language  : explore.language,
-          qid       : '',
-          url       : '',
-          tag       : '',
-          languages : '',
-          custom    : '',
-          target_pane : 'p0',
-        });
-
-      });
-
-    }
-    else if ( view === 'web' ){
-
-      let promiseB = fetchLabel( list, explore.language ).then(function(result) {
-
-        let labels = [];
-
-        if ( valid( result.entities ) ){
-
-          Object.keys( result.entities ).forEach(( k, index ) => {
-
-            if ( result.entities[ k ]?.labels[ explore.language ] ){
-
-              labels.push( result.entities[ k ].labels[ explore.language ].value );
-
-            }
-
-          });
-
-        }
-
-        labels = labels.join(' ');
-
-        handleClick({ 
-          id        : 'n1-0',
-          type      : 'link',
-          title     : '',
-          language  : explore.language,
-          qid       : '',
-          url       : `https://www.bing.com/search?q=${labels}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=${language}-${language}`,
-          tag       : '',
-          languages : '',
-          custom    : '',
-          target_pane : 'p1',
-        });
-
-      });
-
-    }
-    if ( view === 'image' ){
-
-      let promiseB = fetchLabel( list, language ).then(function(result) {
-
-        let labels = [];
-
-        if ( valid( result.entities ) ){
-
-          Object.keys( result.entities ).forEach(( k, index ) => {
-
-            if ( result.entities[ k ]?.labels[ explore.language ] ){
-
-              labels.push( result.entities[ k ].labels[ explore.language ].value );
-
-            }
-
-          });
-
-        }
-
-        labels = labels.join(' ');
-
-        handleClick({ 
-          id        : 'n1-0',
-          type      : 'link',
-          title     : '',
-          language  : explore.language,
-          qid       : '',
-          url       : `https://www.bing.com/images/search?&q=${labels}&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=${explore.language}-${explore.language}`,
-          tag       : '',
-          languages : '',
-          custom    : '',
-          target_pane : 'p1',
-        });
-
-      });
-
-    }
-    else if ( view === 'video' ){
-
-      let promiseB = fetchLabel( list, explore.language ).then(function(result) {
-
-        let labels = [];
-
-        if ( valid( result.entities ) ){
-
-          Object.keys( result.entities ).forEach(( k, index ) => {
-
-            if ( result.entities[ k ]?.labels[ explore.language ] ){
-
-              labels.push( result.entities[ k ].labels[ explore.language ].value );
-
-            }
-
-          });
-
-        }
-
-        labels = labels.join(' ');
-
-        handleClick({ 
-          id        : 'n1-0',
-          type      : 'link',
-          title     : '',
-          language  : explore.language,
-          qid       : '',
-          url       : `${explore.base}/app/video/#/search/${labels}`,
-          tag       : '',
-          languages : '',
-          custom    : '',
-          target_pane : 'p1',
-        });
-
-      });
-
-    }
-
-  });
-
-	lips.env.set('fragment', function(...args) {
-
-    //console.log( 'args: ', args );
-
-    let text		= args.shift().toString();
-		let trigger	= '';
-
-		if ( args.length > 0 ){ // action-trigger defined
-
-    	trigger		= args.shift().toString();
-
-			//console.log( 'fragment trigger: ', trigger );
-
-		}
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'fragment', trigger, text ] );
-
-    }
-    else {
-
-      // do nothing (not supported outside of presentations?)
-
-    }
-
-  });
-
-	lips.env.set('say', function(...args) {
-
-    let text = args.shift().toString();
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'say', '', text ] );
-
-    }
-    else {
-
-      if ( isQid( text ) ){
-
-        startSpeakingArticle( '',  text, explore.language );
-
-      }
-      else {
-
-        startSpeaking( text );
-
-      }
-
-    }
-
-	});
-
-	lips.env.set( 'set', function(...args) {
-
-    explore.keyboard_ctrl_pressed = false;
-
-    console.log('set commands: ', args );
-
-    let prop  = args.shift().toString();
-    let value = args.shift().toString();
-
-    console.log('set: ', prop, ' to: ', value );
-
-    if ( prop === 'language' ){
-
-			if ( explore.presentation_building_mode ){
-
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'set', prop, value ] );
-
-			}
-			else {
-
-        setLanguage( value );
-
-      }
-
-
-    }
-    else if ( prop === 'darkmode' ){
-
-      if ( value === 'system' ){ // TODO: not yet implemented in the settings
-        //... set darkmode to "system setting"
-        console.log('system-darkmode not yet supported.');
-      }
-      else {
-
-        explore.darkmode = valid( value );
-        setDarkmode();
-
-      }
-
-    }
-
-    return 0;
-
-	});
-
-}
-
-async function renderShowCommand( view, list ){
-
-	if ( view === 'image' || view === 'images' ){
-		view = 'ImageGrid'; 
-	}
-
-	//console.log('view: ', view );
-	//console.log('list: ', list );
-
-	if ( view === 'topic' ){
-
-    if ( explore.presentation_building_mode ){
-
-      if ( Array.isArray( list ) ){ // the provided second value should be a language
-
-        if ( explore.wp_languages.hasOwnProperty( list[1] ) ){ // valid language-code
-
-          explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list[0], list[1] ] );
-
-        }
-
-      }
-      else {
-
-        explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list ] );
-
-      }
-
-      //return 0;
-
-    }
-    else {
-
-      // check the optional provided language
-
-      if ( valid( list[1] ) ){
-
-        let l =  list[1].toString();
-
-        console.log( 'set language to: ', l );
-        setLanguage ( l );
-
-      }
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'wikipedia-qid',
-        title     : '',
-        qid       : list[0].toString(),
-        language  : explore.language,
-        //url       : explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + list[0].toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.has,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-    }
-
-	}
-	else if ( view === 'compare' ){
-
-    list.forEach( ( q ) => {
-
-      addToCompare( q.toString() );
-
-    });
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, [], [] ] );
-
-    }
-    else {
-
-      showCompare();
-
-    }
-
-	}
-	else if ( view === 'chemical' ){
-
-		const qid_list = []
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, qid_list, list[0] ] );
-
-    }
-    else {
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link',
-        title     : '',
-        language  : explore.language,
-        qid       : '',
-        url       : `${explore.base}/app/molview/?cid=${list[0].toString()}`,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-    }
-
-
-	}
-	else if ( view === 'ontology' ){
-
-		const qid_list = list.map( n => n.replace('', '') ).join('%252C').toString();
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, qid_list, list[0] ] );
-
-    }
-    else {
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link-split',
-        title     : '',
-        language  : explore.language,
-        qid       : '',
-        url       : `${explore.base}/app/ontology/?lang=${explore.language}&q=${list[0].toString()}&rp=P279`,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-      $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + list[0].toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-    }
-
-	}
-	else if ( view === 'linkgraph' ){
-
-		const qid_list = list.map( n => n.replace('', '') ).join('%252C').toString();
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, qid_list, list[0] ] );
-
-    }
-    else {
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link-split',
-        title     : '',
-        language  : explore.language,
-        qid       : '',
-        url       : `${explore.base}/app/links/?l=${explore.language}&t=&q=${qid_list}`,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-      $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + list[0].toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-    }
-
-	}
-	else if ( view === 'map3d' ){
-
-    const qid_list = list.map( n => n.replace('', '') ).join(',').toString();
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, qid_list, list[0] ] );
-
-    }
-    else {
-
-      //console.log( qid_list );
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link',
-        title     : '',
-        language  : explore.language,
-        qid       : '',
-        url       : `${explore.base}/app/map/?l=${explore.language}&qid=${qid_list}`,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-      $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + list[0].toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-     }
-
-	}
-	else if ( view === 'map3d-instance-of' ){
-
-    list.forEach(( qid ) => {
-
-      addToMapCompare( `https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3A${ qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable &quot;)addToMapCompare( &quot; https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3A${ qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable` );
-
-    });
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, [], [] ] );
-
-    }
-    else {
-
-      showMapCompare();
-
-      // TODO: allow the user to reset the data from the map-app
-      //explore.map_compares = [];
-
-    }
-
-	}
-	else { // use the sparql-query-view tool
-
-		// TODO: check that each item in the list is a valid entity-ID
-
-		const qid_list = list.map( n => n.replace('Q', 'wd%3AQ') ).join('%20').toString();
-
-    const url_ = `https://${ explore.host }${explore.base}/app/query/embed.html#SELECT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`;
-
-    console.log( url_ );
-
-    if ( explore.presentation_building_mode ){
-
-      explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, qid_list, list[0] ] );
-
-    }
-    else {
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link-split',
-        title     : '',
-        language  : explore.language,
-        qid       : '',
-        url       : `${explore.base}/app/query/embed.html#SELECT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-
-      $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + list[0].toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-    }
-
-	}
-
-}
-
-
-async function setupEditor() {
-
-  let langTools = ace.require("ace/ext/language_tools");
-
-	/*
-	// see: https://github.com/ajaxorg/ace/issues/3905#issuecomment-472091655
-	let TextHighlightRules = ace.require("ace/mode/text_highlight_rules").TextHighlightRules
-	TextHighlightRules.prototype.createKeywordMapper = function(
-			 map, defaultToken, ignoreCase, splitChar
-	) {
-	let keywords  = this.$keywords = Object.create(null);
-
-	explore.editor.session.$mode.$highlightRules.$keywords["foo"] = "variable.language
-	*/
-
-	//explore.editor = ace.edit("editor");
-	explore.editor.session.setMode("ace/mode/scheme");
-	explore.editor.setTheme("ace/theme/chaos");
-
-	//explore.editor.setKeyboardHandler("ace/keyboard/vim");
-
-	// Ace-editor options
-	explore.editor.setOptions({
-		enableBasicAutocompletion: true,
-		enableSnippets: true,
-		enableLiveAutocompletion: false,
-
-		//fontFamily: explore.font1,
-		fontSize: parseFloat( explore.fontsize ),
-
-		tabSize: 1,
-		useSoftTabs: true,
-	});
-
-  explore.editor.setShowPrintMargin(false);
-
-	if ( explore.editor.completer) {
-		explore.editor.completer.exactMatch = true;
-		explore.editor.completer.autoSelect = false;
-		//explore.editor.completer.keyboardHandler.removeCommand('Tab');
-	}
-
-	// custom autocomplete definition
-	let wikidataPropertyCompleter = {
-		getCompletions: function(editor, session, pos, prefix, callback) {
-			if (prefix.length === 0) { callback(null, []); return }
-
-			$.getJSON(
-
-				datasources.wikidata.instance_api + '?origin=*&action=wbsearchentities&format=json&limit=50&continue=0&language=' + explore.language + '&uselang=' + explore.language + '&search=' + prefix + '&type=property',
-
-				function( item ) {
-
-					callback(null, item.search.map(function( item, index ) {
-
-						//console.log( item, index );
-
-						return {
-							value:		item.id,
-              caption:	item.label,
-							meta:			item.description + ' (' + item.id + ')',
-              //score:    0,
-						}
-
-					}));
-
-				}
-
-			)
-		},
-
-	}
-
-	// custom autocomplete definition
-	let wikidataEntityCompleter = {
-		getCompletions: function(editor, session, pos, prefix, callback) {
-			if (prefix.length === 0) { callback(null, []); return }
-
-			$.getJSON(
-
-        datasources.wikidata.instance_api + '?origin=*&action=wbsearchentities&format=json&limit=50&continue=0&language=' + explore.language + '&uselang=' + explore.language + '&search=' + prefix + '&type=item',
-
-				function( item ) {
-
-					callback(null, item.search.map(function( item, index ) {
-
-						//console.log( item, index );
-
-						return {
-							value:		item.id,
-              caption:	item.label,
-							meta:			item.description + ' (' + item.id + ')',
-						}
-
-					}));
-
-				}
-
-			)
-		},
-
-	}
-
-	/*
-	// custom autocomplete definition
-	let rhymeCompleter = {
-		getCompletions: function(editor, session, pos, prefix, callback) {
-			if (prefix.length === 0) { callback(null, []); return }
-
-			$.getJSON( "http://rhymebrain.com/talk?function=getRhymes&word=" + prefix,
-
-				function(wordList) {
-					// wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
-					callback(null, wordList.map(function(ea) {
-						return {name: ea.word, value: ea.word, score: ea.score, meta: "rhyme"}
-					}));
-				}
-
-			)
-		}
-	}
-	*/
-
-	let conzeptCommandCompleter = {
-
-		getCompletions: function( editor, session, pos, prefix, callback){
-
-			let wordList = ['query', 'set', 'show', 'search'];
-
-			callback( null, wordList.map( function( word ){
-
-				return { caption: word, value: word, meta: "Conzept command function" };
-
-			}));
-
-		}
-
-	}
-
-	// add the custom autocomplete function
-	langTools.addCompleter( wikidataEntityCompleter );
-	langTools.addCompleter( wikidataPropertyCompleter );
-	langTools.addCompleter( conzeptCommandCompleter );
-
-	explore.editor.commands.addCommand({
-
-		name: 'execute',
-
-		bindKey: {
-			win: 'Ctrl-ENTER',
-			mac: 'Command-ENTER',
-		},
-
-		exec: function() {
-			runLISP( explore.editor.getValue() );
-		}
-
-	});
-
-}
-
-async function highlightLISP(){
-
-  // visually highlight entities
-  $('span.ace_identifier:contains("Q")').css({
-    'background': '#2e8d41b8',
-  });
-
-}
-
-async function runLISP( code ) {
-
-  "use strict";
-
-  //highlightLISP();
-
-  // FIXME: small hack (until there is some better UI for this)
-  stopSpeakingArticle();
-
-  // update URL command-param state
-  explore.commands = explore.editor.getValue();
-  setParameter( 'commands', encodeURIComponent( explore.commands ), explore.hash );
-  //setParameter( 'commands', encodeURIComponent( explore.commands.replace('<', '%253C').replace('>', '%253E') ), explore.hash );
-  //setParameter( 'commands', encodeURIComponent( JSON.stringify( explore.commands ) ), explore.hash );
-
-	//console.log( 'explore.commands now: ', explore.commands );
-	//console.log( 'commands paramater now: ', getParameterByName('commands') );
-
-	//console.log( 'in: ', code );
-
-	explore.lisp( code, true ).then( function( results ) {
-
-		console.log( 'results: ', results );
-
-		results.forEach( function(result) {
-
-			if ( valid( result ) ){
-
-				console.log( 'out: ', result );
-				//console.log( 'out: ', result.toString() );
-
-			}
-			else {
-
-				console.log( 'invalid: ', result );
-
-			}
-
-		});
-
-	});
 
 }
 
@@ -5458,1288 +2959,24 @@ async function setupUI() {
 
 // =======================
 
-async function showRandomTopicItem( prop, topic ) {
+/*
+async function exploreString( string ) {
 
-  let qid = '';
-
-  // the "topic" can be a Qid or an topic-indicator-string (requiring a lookup)
-	if ( isQid( topic ) ){
-
-    qid = topic;
-
-  }
-  else { // topic-string
-
-    // TODO: verify the topic-list is valid
-    qid = 'Q' + indicators[topic].value[ getRandomInt( indicators[topic].value.length ) ];
-
-  }
-
-  let item_qid    = '';
-  let item_label  = '';
-
-	const url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20(MD5(CONCAT(str(%3Fitem)%2Cstr(RAND())))%20as%20%3Frandom)%20%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3A' + prop + '%20wd%3A' + qid + '.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20%3Frandom%0ALIMIT%201';
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-
-		// The name of the callback parameter, as specified by the YQL service
-		jsonp: "callback",
-
-		// Tell jQuery we're expecting JSONP
-		dataType: "json",
-
-		// Work with the response
-		success: function( response ) {
-
-			console.log( response );
-
-			// TODO: check that we have valid results
-			let json = response.results.bindings || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-        $('#blink').hide();
-				return 0;
-			}
-
-			json.forEach(( v ) => {
-
-        if ( valid( v.itemLabel.value ) ){
-          item_label  = v.itemLabel.value;
-          item_qid    = v.item.value.replace( 'http://www.wikidata.org/entity/', '' );
-        }
-
-			});
-
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'explore',
-				title     : item_label,
-				language  : explore.language,
-				qid       : item_qid,
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-
-		},  
-  
-  }); 
-
-}
-
-async function showRandomOrganism( ){
-
-  const list = [ 'mammal', 'bird', 'reptile', 'fish', 'amphibian', 'insect', 'spider', 'plant', 'algae', 'fungus', 'protist', 'bacterium', 'archae', 'virus' ];
-  const nr  = Math.floor( Math.random() * list.length );
-
-  showRandomListItem( list[ nr ] );
-
-}
-
-async function showRandomRadioStation(){
-
-  $('#blink').show();
-
-  $.ajax({
-
-		url: 'https://nl1.api.radio-browser.info/json/stations/bylanguageexact/' + explore.language_name.toLowerCase(),
-
-		dataType: "json",
-
-		success: function( response ) {
-
-			let json = response || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-
-        $.toast({
-          heading: 'no results found',
-          text: '',
-          hideAfter : 2000,
-          stack : 1,
-          showHideTransition: 'slide',
-          icon: 'info'
-        })
-
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        $('#blink').hide();
-
-        $.toast({
-          heading: 'no results found',
-          text: '',
-          hideAfter : 2000,
-          stack : 1,
-          showHideTransition: 'slide',
-          icon: 'info'
-        })
-
-				return 0;
-
-			}
-
-      const nr      = Math.floor( Math.random() * json.length );
-      const station = json[ nr ];
-
-      // sidebar results
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'articles',
-        title     : station.name,
-        language  : explore.language,
-        qid       : '',
-        url       : '',
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p0',
-      });
-
-      // content pane
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'link',
-        title     : station.name,
-        language  : explore.language,
-        qid       : '',
-        url       : station.url_resolved,
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-    }
-
-  });
-
-}
-
-async function showRandomListItem( name ){
-
-  $('#blink').show();
-
-  // data creation steps:
-  //  wdtaxonomy Q7377 -P P171 --brief -f csv -o /tmp/foo.csv
-  //  sed -nr 's/.*,Q([0-9]*),.*$/\1/p' foo.csv | paste -sd "," - > NAME.json
-  //  scp -P22000 NAME.js jama@wikischool.org:/var/www/html/conze.pt' + explore.base + '/app/explore2/assets/json/lists/
-
-  let url = '';
-
-  if ( name === 'featured-article' ){ // non-standard URL
-
-    url = explore.base + '/app/explore2/assets/json/lists/featured-article/' + explore.language + '.json';
-
-  }
-  else if ( name === 'featured-portal' ){ // non-standard URL
-
-    url = explore.base + '/app/explore2/assets/json/lists/featured-portal/' + explore.language + '.json';
-
-  }
-  else { // standard URL
-
-    url = explore.base + '/app/explore2/assets/json/lists/' + name + '.json';
-
-  }
-
-  fetch( url )
-    .then(response => response.json())
-    .then( list => {
-
-      const nr  = Math.floor( Math.random() * list.length );
-      let qid = 'Q' + list[ nr ];
-      let other_id = '';
-
-      if ( name === 'country-map' ){ // split QID|OSMID
-
-        const fields = qid.split('|');
-        qid = fields[0];
-        other_id = fields[1];
-
-      }
-
-      let promiseB = fetchLabel([ qid ], explore.language ).then(function(result) {
-
-        let label = '';
-
-        if ( valid( result.entities ) ){
-
-          if ( result.entities[ qid ]?.labels[ explore.language ] ){
-
-            label = result.entities[ qid ].labels[ explore.language ].value;
-
-            // sidebar results
-            handleClick({ 
-              id        : 'n1-0',
-              type      : 'articles',
-              title     : label,
-              language  : explore.language,
-              qid       : '' + qid,
-              url       : '',
-              tag       : '',
-              languages : '',
-              custom    : '',
-              target_pane : 'p0',
-            });
-
-            // content pane info
-            if ( name === 'country-map' ){ // split QID|OSMID
-
-              handleClick({ 
-                id        : 'n1-0',
-                type      : 'link',
-                title     : label,
-                language  : explore.language,
-                qid       : '' + qid,
-                url       : `${explore.base}/app/map/?l=${explore.language}&bbox=&osm_id=${other_id}&qid=${qid}&title=${label}`,
-                tag       : '',
-                languages : '',
-                custom    : '',
-                target_pane : 'p1',
-              });
-
-            }
-            else {
-
-              handleClick({ 
-                id        : 'n1-0',
-                type      : 'wikipedia-qid',
-                title     : label,
-                language  : explore.language,
-                qid       : '' + qid,
-                url       : '',
-                tag       : '',
-                languages : '',
-                custom    : '',
-                target_pane : 'p1',
-              });
-
-            }
-
-          }
-          else {
-
-            handleClick({ 
-              id        : 'n1-0',
-              type      : 'wikipedia-qid',
-              title     : '',
-              language  : explore.language,
-              qid       : '' + qid,
-              url       : '',
-              tag       : '',
-              languages : '',
-              custom    : '',
-              target_pane : 'p1',
-            });
-
-          }
-
-        }
-        else {
-
-          $.toast({
-              heading: 'no results found',
-              text: '',
-              hideAfter : 2000,
-              stack : 1,
-              showHideTransition: 'slide',
-              icon: 'info'
-          })
-
-        }
-
-      });
-
-    });
-
-}
-
-async function showRandomLanguage(){
-
-  $('#blink').show();
-
-  const nr  = Math.floor( Math.random() * Object.keys( wp_languages ).length );
-  const qid = 'Q' + wp_languages[ Object.keys( wp_languages )[ nr ] ].qid;
-
-  let promiseB = fetchLabel([ qid ], explore.language ).then(function(result) {
-
-    let label = '';
-
-    if ( ! valid( result.entities[ qid ] ) ){
-
-      console.log('missing language-qid for: ', wp_languages[ Object.keys( wp_languages )[ nr ] ] );
-
-      return 1;
-
-    }
-
-    if ( result.entities[ qid ]?.labels[ explore.language ] ){
-
-      label = result.entities[ qid ].labels[ explore.language ].value;
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'articles',
-        title     : label,
-        language  : explore.language,
-        qid       : '' + qid,
-        url       : '',
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p0',
-      });
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'wikipedia-qid',
-        title     : label,
-        language  : explore.language,
-        qid       : '' + qid,
-        url       : '',
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-    }
-    else {
-
-      handleClick({ 
-        id        : 'n1-0',
-        type      : 'wikipedia-qid',
-        title     : '',
-        language  : explore.language,
-        qid       : '' + qid,
-        url       : '',
-        tag       : '',
-        languages : '',
-        custom    : '',
-        target_pane : 'p1',
-      });
-
-    }
-
-  });
-
-}
-
-async function showRandomCountry(){
-
-  const nr  = Math.floor( Math.random() * Object.keys( countries ).length );
-  const qid = Object.keys( countries )[ nr ];
-
-  let promiseB = fetchLabel([ qid ], explore.language ).then(function(result) {
-
-    const label = result.entities[ qid ].labels[ explore.language ].value;
-
-    // show results
-    handleClick({ 
-      id        : 'n1-0',
-      type      : 'explore',
-      title     : label,
-      language  : explore.language,
-      qid       : '' + qid,
-      url       : '',
-      tag       : '',
-      languages : '',
-      custom    : '',
-      target_pane : 'p0',
-    });
-
-  });
-
-}
-
-async function showRandomDocumentary(){
-
-  $('#blink').show();
-
-  const chance  = 10;
-  const rnd     = Math.random() * 100;
-
-  if ( rnd < chance ) {
-
-    showArchiveDocumentary();
-
-  }
-  else {
-
-    showRandomYoutubeDocumentary();
-
-  }
-
-}
-
-async function showRandomYoutubeDocumentary() {
-
-  const year = new Date().getFullYear() - getRandomInt( 600 );
-  const randomNumber = getRandomInt( 99 ) + 1;
-
-  const randomBCCentury = getRandomInt( 1100 );
-  const randomADCentury = getRandomInt( 1500 );
-
-  let explore_string  = 'documentary ';
-
-  const chance  = 10;
-  const rnd     = Math.random() * 100;
-
-  // random choice between century and year
-  if ( rnd < chance ) {
-
-    explore_string += randomBCCentury + ' BC';
-
-  }
-  else if ( rnd < chance * 2) {
-
-    explore_string += randomADCentury + ' AD';
-
-  }
-  else {
-
-    explore_string += year;
-
-  }
-
-  // show sidebar-results
   handleClick({ 
     id        : 'n1-0',
-    type      : 'articles',
-    title     : '' + explore_string.replace('documentary ', ''),
+    type      : 'explore',
+    title     : string,
     language  : explore.language,
     qid       : '',
     url       : '',
     tag       : '',
     languages : '',
     custom    : '',
-    target_pane : 'p0',
-  });
-
-  // open link in content-pane
-  handleClick({ 
-    id        : '0',
-    type      : 'wander',
-    title     : explore_string,
-    language  : explore.language,
-    qid       : '',
-    url       : '',
-    tag       : '',
-    languages : '',
-    custom    : 'long',
-    target_pane : 'p1',
+    //target_pane : 'p1',
   });
 
 }
-
-async function showArchiveDocumentary() {
-
-  let id              = '';
-  let explore_string  = ''; // author, work title
-
-	const year = new Date().getFullYear() - getRandomInt( 120 );
-  const randomNumber = getRandomInt( 99 ) + 1;
-
-	const url = 'https://archive.org/advancedsearch.php?q=(documentary ' + randomNumber + ')+and+mediatype%3Amovies+and+year%3A' + year + '+and+item_size%3A%5B%2250000000%22%20TO%2010000000000%5D' + '&rows=1&page=1&output=json';
-
-	console.log( url );
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-		jsonp: "callback",
-		dataType: "json",
-
-		success: function( response ) {
-
-			let json = response.response.docs || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        showArchiveDocumentary(); // search again
-				return 0;
-
-			}
-
-      const item = json[0];
-
-      if ( valid( item ) ){
-
-        // set explore-query-string
-        if ( valid( item.creator ) ){ // try creator-field
-
-          if ( Array.isArray( item.creator ) ){
-
-            explore_string = item.creator[0];
-
-          }
-          else {
-
-            explore_string = item.creator;
-
-          }
-
-        }
-
-        if ( explore_string === '' ){ // try "subject"-field
-
-          if ( valid( item.subject ) ){
-
-            if ( Array.isArray( item.subject ) ){
-
-              explore_string = item.subject[0];
-
-            }
-            else {
-
-              explore_string = item.subject;
-
-            }
-
-          }
-
-        }
-
-
-        if ( explore_string === '' ){ // try title-field
-
-          if ( valid( item.title ) ){
-
-            explore_string = item.title;
-
-          }
-
-        }
-
-        if ( explore_string === '' ){ // still no title-string
-
-          console.log( 'no usable title string found in this item: ',  item );
-          explore_string = 'documentary';
-
-        }
-
-        // set item ID
-        if ( valid( item.identifier ) ){
-
-          id = item.identifier;
-
-        }
-
-      }
-    
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'articles',
-				title     : explore_string,
-				language  : explore.language,
-				qid       : '',
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-
-			// open link in content-pane
-			handleClick({ 
-        id        : '0',
-				type      : 'link',
-				title     : explore_string,
-				language  : explore.language,
-				qid       : '',
-				url       : 'https://archive.org/details/' + id + '&autoplay=1',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p1',
-			});
-
-		},  
-  
-  }); 
-
-}
-
-async function showRandomMusic(){
-
-  $('#blink').show();
-
-  const chance  = 90;
-  const rnd     = Math.random() * 100;
-
-  if ( rnd < chance ) {
-
-    showArchiveMusic();
-
-  }
-  else {
-
-    showWikidataMusic();
-
-  }
-
-}
-
-async function showArchiveMusic() {
-
-  let id              = '';
-  let explore_string  = ''; // author, work title
-
-	const year = new Date().getFullYear() - getRandomInt( 100 );
-  const randomNumber = getRandomInt( 99 ) + 1;
-
-	const url = 'https://archive.org/advancedsearch.php?q=(' + randomNumber + ')+and+mediatype%3Aaudio+and+year%3A' + year + '&rows=1&page=1&output=json';
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-		jsonp: "callback",
-		dataType: "json",
-
-		success: function( response ) {
-
-			let json = response.response.docs || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        showRandomMusic(); // search again
-				return 0;
-
-			}
-
-      const item = json[0];
-
-      if ( valid( item ) ){
-
-        // set explore-query-string
-        if ( valid( item.creator ) ){ // try creator-field
-
-          if ( Array.isArray( item.creator ) ){
-
-            explore_string = item.creator[0];
-
-          }
-          else {
-
-            explore_string = item.creator;
-
-          }
-
-        }
-
-        if ( explore_string === '' ){ // try "subject"-field
-
-          if ( valid( item.subject ) ){
-
-            if ( Array.isArray( item.subject ) ){
-
-              explore_string = item.subject[0];
-
-            }
-            else {
-
-              explore_string = item.subject;
-
-            }
-
-          }
-
-        }
-
-
-        if ( explore_string === '' ){ // try title-field
-
-          if ( valid( item.title ) ){
-
-            explore_string = item.title;
-
-          }
-
-        }
-
-        if ( explore_string === '' ){ // still no title-string
-
-          explore_string = 'music';
-
-        }
-
-        // set item ID
-        if ( valid( item.identifier ) ){
-
-          id = item.identifier;
-
-        }
-
-      }
-    
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'articles',
-				title     : explore_string,
-				language  : explore.language,
-				qid       : '',
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-
-			// open link in content-pane
-			handleClick({ 
-        id        : '0',
-				type      : 'link',
-				title     : explore_string,
-				language  : explore.language,
-				qid       : '',
-				url       : 'https://archive.org/details/' + id + '&autoplay=1',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p1',
-			});
-
-		},  
-  
-  }); 
-
-}
-
-async function showWikidataMusic() {
-
-  $('#blink').show();
-
-  let audio_url   = '';
-
-  let title       = '';
-  let author      = '';
-  let author_qid  = '';
-
-  let item_qid    = '';
-  let item_label  = '';
-
-	const upper_year = new Date().getFullYear() - 70 - getRandomInt( 200 );
-	const lower_year = upper_year - getRandomInt( 50 );
-
-	const url = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Faudio%20%3Fcreator%20%3FcreatorLabel%20%3Finception%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ105543609%20.%0A%20%20%3Fitem%20wdt%3AP51%20%3Faudio%20.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP86%20%3Fcreator.%20%7D%20%0A%20%20%3Fitem%20wdt%3AP571%20%3Finception.%20%20%0A%20%20FILTER%20(%3Finception%20%3C%20%22' + upper_year + '-12-01T00%3A00%3A00Z%22%5E%5Exsd%3AdateTime)%0A%20%20FILTER%20(%3Finception%20%3E%20%22' + lower_year + '-01-01T00%3A00%3A00Z%22%5E%5Exsd%3AdateTime)%20%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%2Cen%22.%20%7D%0A%7D%20ORDER%20BY%20%3Finception%0ALIMIT%2010%0A%0A';
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-		jsonp: "callback",
-		dataType: "json",
-
-		success: function( response ) {
-
-			// TODO: check that we have valid results
-			let json = response.results.bindings || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        $('#blink').hide();
-        showRandomMusic(); // search again
-				return 0;
-
-			}
-
-      for (let i = 0; i < json.length; i++){
-
-        const v = json[i];
-
-        if ( valid( v.itemLabel.value ) ){
-          item_label  = v.itemLabel.value;
-          item_qid    = v.item.value.replace( 'http://www.wikidata.org/entity/', '' );
-        }
-
-        // TODO: handle items with multiple authors?
-        if ( valid( v.creatorLabel ) ){
-
-          if ( valid( v.creatorLabel.value ) ){
-
-            author_qid  = v.creatorLabel.value.replace( 'http://www.wikidata.org/entity/', '' );
-            author      = v.creatorLabel.value;
-
-          }
-
-        }
-
-        if ( valid( v.audio.value ) ){
-
-          let f = v.audio.value;
-
-          if (  f.toLowerCase().endsWith('.mid') || // unsupported audio formats
-                f.toLowerCase().endsWith('.midi')
-              ){
-
-				    continue;
-
-          }
-          else {
-
-            audio_url = encodeURIComponent( f.replace( 'http:', 'https:' ) );
-
-            break;
-
-          }
-
-        }
-
-			};
-
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'articles',
-				title     : author,
-				language  : explore.language,
-				qid       : author_qid,
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-
-			// open link in content-pane
-			handleClick({ 
-        id        : '0',
-				type      : 'link',
-				title     : author,
-				language  : explore.language,
-				qid       : item_qid,
-				url       : explore.base + '/app/audio/?url=' + encodeURIComponent( explore.base + '/app/cors/raw/?url=' + audio_url ),
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p1',
-			});
-
-		},  
-  
-  }); 
-
-}
-
-async function showRandomEuropeanaArtwork() {
-
-  $('#blink').show();
-
-	let view_url    = '';
-  let title       = '';
-  let item_qid    = '';
-  let author      = '';
-  let author_qid  = '';
-
-	const url = 'https://www.europeana.eu/api/v2/search.json?wskey=4ZViVZKMe&rows=50&query=' + encodeURIComponent( explore.country_name ) + '&theme=art';
-
-  console.log( url );
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-		jsonp: "callback",
-		dataType: "json",
-
-		success: function( response ) {
-
-      //console.log( response );
-
-			// TODO: check that we have valid results
-			let json = response.items || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        $('#blink').hide();
-				return 0;
-
-			}
-
-			const v = json.at( 2 );
-
-			console.log( v );
-
-			if ( valid( v.edmPreview ) ){
-
-				console.log( '0: ', v.edmPreview[0] );
-
-				//if ( valid( v.image  ) ){
-
-          let label     = '';
-          let label_url = '';
-          let img       = '';
-          let thumb     = '';
-          let view_url 	= '';
-          let desc      = '';
-          let desc_plain= '';
-          let subtitle  = '';
-
-          let authors       = '';
-          let authors_plain = '';
-
-          let provider      = '';
-
-					let attribution = '';
-  
-          if ( typeof v.title === undefined || typeof v.title === 'undefined' ){
-            label = '---';
-          }
-          else {
-
-            label  = v.title[0];
-
-          }
-
-          if ( valid( v.year ) ){
-
-            if ( valid( v.year[0] ) ){
-
-              desc = v.year[0];
-
-            }
-
-          }
-
-          if ( valid( v.edmIsShownAt ) ){
-
-            label_url  = v.edmIsShownAt[0];
-
-          }
-
-          if ( typeof v.dcDescription === undefined || typeof v.dcDescription === 'undefined' ){
-            // do nothing
-          }
-          else {
-
-            desc  += '';
-
-            desc_plain = encodeURIComponent( v.dcDescription[0] );
-
-          }
-
-          if ( typeof v.dcCreator === undefined || typeof v.dcCreator === 'undefined' ){
-            // do nothing
-          }
-          else {
-
-            $.each( v.dcCreator, function ( j, name ) {
-
-              if ( typeof name === undefined ){
-
-                console.log('author undefined! skipping...');
-
-                return 0;
-
-              }
-              else if ( name.startsWith( 'http' ) ){
-
-                return 0;
-
-              }
-
-              // TODO: needs more name cleanups
-              name = name.replace(/[#]/g, '').replace(/_/g, ' ').replace('Künstler/in', '').trim();
-
-              authors_plain += name;
-
-              let author_name = encodeURIComponent( name );
-
-            });
-
-          }
-
-          if ( typeof v.dataProvider === undefined || typeof v.dataProvider === 'undefined' ){
-            // do nothing
-          }
-          else {
-
-            subtitle = v.dataProvider[0];
-            provider = v.dataProvider[0];
-
-          }
-
-					console.log('1');
-
-					if ( valid( v.edmPreview[0] ) ){
-
-						console.log('2');
-
-						img = v.edmPreview[0];
-
-						// create IIIF-viewer-link
-						let coll = { "images": [ ]};
-
-						coll.images.push( [ img, label, desc_plain, authors_plain + '<br>', provider ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
-
-						if ( coll.images.length > 0 ){ // we found some images
-
-							// create an IIIF image-collection file
-							let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
-
-							view_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
-
-							console.log( view_url );
-
-							//view_url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
-
-						}
-
-					}
-
-				//}
-
-			};
-
-			// open link in content-pane
-
-			/*
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'articles',
-				title     : author,
-				language  : explore.language,
-				qid       : '', //author_qid,
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-			*/
-
-			console.log( view_url );
-
-      // show image in content-pane
-			handleClick({ 
-				id        : '000',
-				type      : 'link',
-				title     : '',
-				language  : explore.language,
-				qid       : '',
-				url       : view_url,
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p1',
-			});
-
-		},
-  
-  }); 
-
-
-}
-
-async function showRandomArtwork() {
-
-  $('#blink').show();
-
-	let view_url    = '';
-  let title       = '';
-  let item_qid    = '';
-  let author      = '';
-  let author_qid  = '';
-
-	const upper_year = new Date().getFullYear() - getRandomInt( 250 );
-	const lower_year = upper_year - getRandomInt( 20 );
-
-	const url = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Finception%20%3Fitem%20%3FcreatorLabel%20%3Fcreator%20%3FitemLabel%20%3Fimage%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fitem%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP170%20%3Fcreator.%20%7D%0A%20%20%3Fitem%20wdt%3AP571%20%3Finception.%0A%20%20FILTER%20(%3Finception%20%3C%20%22' + upper_year + '-12-01T00%3A00%3A00Z%22%5E%5Exsd%3AdateTime)%0A%20%20FILTER%20(%3Finception%20%3E%20%22' + lower_year + '-01-01T00%3A00%3A00Z%22%5E%5Exsd%3AdateTime)%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%2Cen%22%7D%0A%7D%20ORDER%20BY%20%3Finception%0ALIMIT%201%0A%23meta%3Aart%20%0A%23defaultView%3AImageGrid';
-
-  $.ajax({ // fetch sparql-data
-
-		url: url,
-		jsonp: "callback",
-		dataType: "json",
-
-		success: function( response ) {
-
-			// TODO: check that we have valid results
-			let json = response.results.bindings || [];
-
-			if ( typeof json === undefined || typeof json === 'undefined' ){
-        $('#blink').hide();
-				return 1; // no more results
-			}
-			else if ( json.length === 0 ) { // no more results
-
-        $('#blink').hide();
-				return 0;
-
-			}
-
-			json.forEach(( v ) => {
-
-				// use image to create an IIIF-link
-
-				if ( valid( v.image  ) ){
-
-					const img       = v.image.value;
-
-          let file_name   = img.replace( 'http://commons.wikimedia.org/wiki/Special:FilePath/', '' );
-					let commons_link= 'https://commons.wikimedia.org/wiki/File:' + file_name;
-
-					let label       = '';
-					let date        = '';
-					let desc        = '';
-
-					let attribution = '';
-  
-					if ( valid( v.itemLabel.value ) ){
-						label     = title = v.itemLabel.value;
-						item_qid  = v.item.value.replace( 'http://www.wikidata.org/entity/', '' );
-					}
-
-					if ( valid( v.inception.value ) ){
-						date = v.inception.value.split('-')[0];
-            label += ' (' + date + ')';
-					}
-
-          // TODO: handle items with multiple authors?
-					if ( valid( v.creatorLabel.value ) ){
-
-						author_qid  = v.creatorLabel.value.replace( 'http://www.wikidata.org/entity/', '' );
-						author      = v.creatorLabel.value;
-
-					}
-
-					// create IIIF-viewer-link
-					let coll = { "images": [ ]};
-
-          desc = '';
-
-          attribution = '<br>Source: ' + commons_link;
-        
-          // TODO: add an extra field to the IIIF-field for "url" using "v.links.web"?
-					coll.images.push( [ img, encodeURIComponent( label ), encodeURIComponent( desc ), encodeURIComponent( 'Author: ' + author ), encodeURIComponent( attribution ) ] );
-
-					if ( coll.images.length > 0 ){ // we found some images
-
-						// create an IIIF image-collection file
-						let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
-
-						let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
-
-						view_url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
-
-					}
-
-				}
-
-			});
-
-			// open link in content-pane
-
-      // show sidebar-results
-			handleClick({ 
-        id        : 'n1-0',
-				type      : 'articles',
-				title     : author,
-				language  : explore.language,
-				qid       : '', //author_qid,
-				url       : '',
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p0',
-			});
-
-      // show image in content-pane
-			handleClick({ 
-				id        : '000',
-				type      : 'link',
-				title     : author,
-				language  : explore.language,
-				qid       : '',
-				url       : view_url,
-				tag       : '',
-				languages : '',
-				custom    : '',
-				target_pane : 'p1',
-			});
-
-		},  
-  
-  }); 
-
-}
-
-async function showCurrentEventsPage() {
-
-  $('#blink').show();
-
-  $('#pager').hide();
-
-  handleClick({ 
-    id        : 'n1-0',
-    type      : 'wikipedia',
-
-    // TOFIX:
-    //  - rtl-scripts
-    //  - non-portal news articles
-    title     : explore.lang_portal + ':' + explore.lang_current_events_page,
-    language  : explore.language,
-    qid       : '',
-    url       : '',
-    tag       : '',
-    languages : '',
-    custom    : '',
-    target_pane : 'p1',
-  });
-
-}
-
-async function showRandomQuery() {
-
-  $('#blink').show();
-
-  $('#pager').hide();
-
-  handleClick({ 
-    id        : 'n1-0',
-    type      : 'random',
-    title     : '',
-    language  : explore.language,
-    qid       : '',
-    url       : '',
-    tag       : '',
-    languages : '',
-    custom    : '',
-    target_pane : 'p1',
-  });
-
-  explore.type = 'wikipedia';
-
-}
+*/
 
 async function exploreTopic( qid ) {
 
@@ -6822,17 +3059,23 @@ async function setDefaultDisplaySettings( cover, type ) {
         '<span id="app-guide-welcome-text"></span> &nbsp;' + 
         '<span id="app-social-icons">' + 
           '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository"><i class="fa-brands fa-github"></i></a> &nbsp;' + 
+          '<a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy"><i class="fa-solid fa-section"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://github.com/sponsors/waldenn?o=esb" title="GitHub sponsor" aria-label="GitHub sponsor"><i class="fa-solid fa-heart"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/conzept-encyclopedia-extension/" title="Firefox browser extension" aria-label="Firefox browser extension"><i class="fa-brands fa-firefox-browser"></i></a> &nbsp;' + 
-          '<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
+          //'<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fa-brands fa-twitter"></i></a> &nbsp;' + 
         '</span>' + 
       '</p>' + 
     
       '<div class="frontpage-grid-container">' +
-        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/user_manual" target="infoframe"><span class="icon"><i class="fa-solid fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
-        '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fa-solid fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' +
+
         '<div><a class="" title="random featured article" aria-label="random featured article" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
+
+        // show a geolocation-button or a random-button
+        ( valid( navigator.geolocation ) ? '<div><a class="" title="topics near me" aria-label="topics near me" href="javascript:void(0)" onclick="getLocation( showTopicsNearMe )"><span class="icon"><i class="fa-solid fa-map-location-dot fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-near-me">near me</span></span></a></div>' : '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fa-solid fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' ) +
+
+        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/user_manual" target="infoframe"><span class="icon"><i class="fa-solid fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
+
       '</div>' +
 
         '<details class="auto frontpage" style="" closed>' +
@@ -6843,6 +3086,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             // general culture
             '<div><a class="" title="random featured portal" aria-label="random featured portal" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-portal&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-portal">featured portal</span></span></a></div>' +
             '<div><a class="" title="current events" aria-label="current events" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
+            '<div><a class="" title="visual search" aria-label="visual search" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
 
             // geography
             '<div><a class="" title="random country map" aria-label="random country map" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fa-solid fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
@@ -6911,6 +3155,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random insect" aria-label="random insect" href="javascript:void(0)" onclick="showRandomListItem( &quot;insect&quot; )"><span class="icon"><i class="fa-solid fa-bug fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-insect"></span></span></a></div>' +
             '<div><a class="" title="random spider" aria-label="random spider" href="javascript:void(0)" onclick="showRandomListItem( &quot;spider&quot; )"><span class="icon"><i class="fa-solid fa-spider fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-spider"></span></span></a></div>' +
             '<div><a class="" title="random plant" aria-label="random plant" href="javascript:void(0)" onclick="showRandomListItem( &quot;plant&quot; )"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-plant"></span></span></a></div>' +
+            '<div><a class="" title="plant photo identification" aria-label="plant photo identification" href="javascript:void(0)" onclick="identifyPlant()"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-plant-identification"></span></span></a></div>' +
             '<div><a class="" title="random algae" aria-label="random algae" href="javascript:void(0)" onclick="showRandomListItem( &quot;algae&quot; )"><span class="icon"><i class="oma oma-black-fish-cake-with-swirl oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-algae"></span></span></a></div>' +
             '<div><a class="" title="random fungus" aria-label="random fungus" href="javascript:void(0)" onclick="showRandomListItem( &quot;fungus&quot; )"><span class="icon"><i class="oma oma-black-champignon-brown oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-fungus"></span></span></a></div>' +
             '<div><a class="" title="random protist" aria-label="random protist" href="javascript:void(0)" onclick="showRandomListItem( &quot;protist&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-protist">protist</span></span></a></div>' +
@@ -7014,6 +3259,7 @@ async function renderTopicCover( name ) {
 
       }
 
+      // TODO: async-await
       let promiseB = fetchLabel([ qid ], explore.language ).then(function(result) {
 
         let label = '';
@@ -7117,7 +3363,7 @@ async function renderTopicCover( name ) {
                     '<canvas id="canvas"></canvas>' +
                     //'</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
 
-                    '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=wikipedia&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
+                    '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
 
                     '<img id="color-test-image" src="" style="display:none;"></img>' +
                     '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions" style="display:none;"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
@@ -7188,8 +3434,8 @@ async function setPopularCover() {
   }
 
   let date          = new Date();
-  //let year          = '2021';
-  let year        = date.getFullYear();
+  //let year        = '2022'; // TEMP HACK
+  let year          = date.getFullYear();
   let day_of_month  = date.getDate();
 
   let month         = ''; 
@@ -7209,7 +3455,7 @@ async function setPopularCover() {
 
   }
 
-  //month = '12';
+  //month = '11'; // TEMP HACK
 
   // FIXME looks like something sets the language to 'eng' at times, research what is causing this.
   if ( explore.language === 'eng' ){
@@ -7297,7 +3543,7 @@ async function setPopularCover() {
             '</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
             '<canvas id="canvas"></canvas>' +
 
-            '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=wikipedia&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
+            '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
 
             '<img id="color-test-image" src="" style="display:none;"></img>' +
 						'<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions" style="display:none;"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
@@ -7400,259 +3646,6 @@ function getData( url, data, callback ) {
 
 }
 
-function processWikipediaResults( topicResults ) {
-
-  return new Promise(( resolve, reject ) => {
-
-    /* "topicResults" is now a list of these type of results:
-
-      <result nr>:
-        ns: 0
-        pageid: 47717515
-        size: 32590
-        snippet: "<span class=\"searchmatch\">Quranism</span> (Arabic: القرآنية‎; al-Qur'āniyya) comprises views that Islamic law and guidance should only be based on the Qur'an, thus opposing the religious"
-        timestamp: "2020-04-11T14:19:12Z"
-        title: "Quranism"
-        wordcount: 3797
-
-    */
-
-    const data_titles = [];
-
-    //console.log('processWikipediaResults: ', topicResults );
-
-    if ( topicResults.query === undefined || topicResults.query === 'undefined' ){
-
-      console.log('topicResults.query undefined');
-      //return 1;
-
-      console.log('no results found, promise: ', [], [] );
-      resolve( [ [], [] ] );
-    }
-
-    // create a list of titles from the "topicResults"
-    $.each( topicResults.query.search, function( i, item ) {
-
-      data_titles.push( item.title );
-      //data_titles.push( encodeURIComponent( item.title ) );
-
-    });
-
-    const data_titles_ = data_titles.join('|');
-
-    // fetch the wikipedia-with-qid data for each of those titles
-    $.ajax({
-
-      url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&prop=pageprops&titles=' + encodeURIComponent( data_titles_ ) + '&format=json',
-
-      dataType: "jsonp",
-
-      success: function( qdata ) {
-
-          /* "qdata" is a list containing results structured like this:
-
-            36922: (pageid)
-              title: "Quran"
-              ns: 0
-              pageid: 36922
-              pageprops:
-                page_image_free: "Opened_Qur'an.jpg"
-                wikibase-shortdesc: "The central religious text of Islam"
-                wikibase_item: "Q428"
-          */
-
-          // match the Wikipedia results with the "qdata"
-
-          // create empty qdata structures, if no qdata was found
-          if ( typeof qdata.query === undefined || typeof qdata.query === 'undefined' ){
-            qdata.query = {};
-            qdata.query.pages = [];
-
-            if ( explore.type === 'wikipedia-qid' ){ // TODO: check correctness
-
-              addRawTopicCard( explore.q );
-
-              return 0;
-            }
-
-          }
-
-          const qlist = [];
-          const qids  = [];
-
-          // add "pageid matching Q-IDs and image-URLs" to topicResults data
-          $.each( qdata.query.pages, function( j, item ) {
-
-            if ( typeof item.pageprops !== 'undefined' ){
-
-              const pid   = item.pageid || undefined; 
-              const qid   = item.pageprops.wikibase_item || ''; 
-              const thumb = item.pageprops.page_image_free || '';
-
-              qlist.push( { pid, qid, thumb } );
-
-              if ( qid !== '' ){
-
-                qids.push( qid );
-
-              }
-
-            }
-
-          });
-
-          // find matching page-IDs
-          $.each( topicResults.query.search, function( k, item ) {
-
-            const matched_obj = findObjectByKey( qlist, 'pid', item.pageid ); //[0].pid;
-
-            if ( typeof matched_obj !== undefined ){
-
-              if ( matched_obj[0] !== undefined ){
-
-                // insert "qid" and "thumb" fields
-                item.qid    = matched_obj[0].qid;
-                item.thumb  = matched_obj[0].thumb;
-
-                if ( item.thumb !== '' ){
-
-                  item.thumbnail_fullsize =  'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + item.thumb + '?width=3000';
-
-                }
-
-              }
-
-            }
-
-          });
-
-          if ( qids.length > 0 ){
-
-            let my_promises = [];
-
-            my_promises.push( fetchWikidata( qids, topicResults, 'wikipedia' ) );
-
-            // resolve my promises
-            Promise.allSettled( my_promises ).
-              then((results) => results.forEach((result) => {
-
-                // add meta structure
-                result.value[0].source.data.continue = { 'continue': "-||", 'sroffset': datasources['wikipedia'].pagesize, 'source': 'wikipedia' },
-
-                // set source in results (so we can distinguish between other sources in the rendering phase)
-                //console.log( 'FIXME?: ', result );
-                //result.value[0].source.data.continue.source = 'wikipedia';
-
-                //console.log( 'processWikipedia: ', result )
-
-                resolve( [ result ] );
-
-              }));
-
-          }
-          else { // no qids found
-
-            //console.log( 'processWikipedia: no Qids found' );
-            resolve( [ 'done' ] );
-
-          }
-
-      },
-
-      //timeout: 3000,
-
-    });
-
-  });
-
-}
-
-function getTitleFromQid( qid, target_pane ){
-
-  // QQQ TODO: check that the 'wikidata' source is correct in all cases
-  fetchWikidata( [ qid ], '', 'wikidata', target_pane );
-
-}
-
-function getWikidataFromTitle( title, allow_recheck, target_pane ){
-
-  explore.item = '';
-
-  // get qid and wikidata data
-  // https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&format=json&titles=Karachi
-
-  $.ajax({
-    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&titles=' + title,
-    dataType: "jsonp",
-
-    success: function( wd ) {
-
-      if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
-        // do nothing
-      }
-      else {
-        const qid = Object.keys( wd.entities )[0];
-
-        if ( qid.startsWith('Q') ){
-
-          fetchWikidata( [ qid ], '', 'wikipedia', target_pane );
-
-        }
-        else {
-
-          // determine if we should render someting else than the wikipedia artcle, eg: link
-          if ( explore.type === 'link' ){
-
-            if ( explore.uri !== '' ){ // use URL param
-
-              if ( document.getElementById('infoframeSplit2') === null ){ // single-content-frame
-                resetIframe();
-                $( explore.baseframe ).attr({"src": decodeURI( explore.uri ) });
-              }
-              else { // dual-content-frame
-
-		            if ( explore.isMobile ){
-
-                  $( explore.baseframe ).attr({"src": decodeURI( explore.uri ) });
-
-                }
-                else {
-
-                  $( '#infoframeSplit2' ).attr({"src": decodeURI( explore.uri ) });
-
-                }
-
-              }
-
-            }
-
-          }
-          else {
-
-            if ( target_pane === 'p0' || target_pane === 'p1' || document.getElementById('infoframeSplit2') === null ){ // single-content-frame
-
-              resetIframe();
-
-              $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-            }
-            else { // dual-content-frame
-
-              $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
-
-            }
-
-          }
-        }
-
-      }
-
-    },
-
-  });
-
-}
-
 function addRawTopicCard( title ){
 
   const args = { 
@@ -7669,22 +3662,18 @@ function addRawTopicCard( title ){
   }
 
   // set non-wikidata fields
-  let item_raw = { qid : '' };
+  let item_raw    = { qid : '' };
   setWikidata( item_raw, [ ], true, 'p1' );
-  item_raw.title = title;
-  item_raw.tags[0] = 'raw-query-string';
-  //console.log( item_raw );
+  item_raw.title  = title;
+  item_raw.tags[0]= 'raw-query-string';
 
   args.item = item_raw;
 
   const raw_entry = createItemHtml( args );
 
-  // non-wikipedia entry
-  if ( explore.page === 1 && explore.searchmode === 'wikipedia' ){
+  if ( explore.page === 1 && explore.searchmode === 'string' ){
     $('#results').append( raw_entry );
   }
-
-  //$('.no-wikipedia-entry').show();
 
 }
 
@@ -7795,6 +3784,11 @@ async function insertMultiValues( args ){
 					else if ( args.list.startsWith('unpaywall') ){
 
             fetchUnpaywall( args, null, 1, 'relevance' );
+
+          }
+					else if ( args.list.startsWith('elixir') ){
+
+            fetchElixir( args, null, 1, 'rel' );
 
           }
 					else if ( args.list.startsWith('ms-academic') ){
@@ -8127,6 +4121,98 @@ function showInlineIframe( args ){
 
 }
 
+
+function getSimilarSparqlURL( item ){
+
+  let url   = '';
+  let limit = 1000;
+
+  // TODO:
+  //  - choose table-view if non-geo-item-class, example: "Breaking Bad"
+
+  let country_condition           = '';
+
+  if ( valid( item.country ) ){ country_condition = '%0A%20%20%3Fitem%20wdt%3AP17%20wd%3A' + item.country[0] + '%20.'; }
+  else if ( valid( item.country_of_citizenship ) ){ country_condition = '%0A%20%20%3Fitem%20wdt%3AP27%20wd%3A' + item.country_of_citizenship[0] + '%20.'; }
+  else if ( valid( item.country_of_origin ) ){ country_condition = '%0A%20%20%3Fitem%20wdt%3AP495%20wd%3A' + item.country_of_origin + '%20.'; }
+  else if ( valid( item.country_of_registry ) ){ country_condition = '%0A%20%20%3Fitem%20wdt%3AP8047%20wd%3A' + item.country_of_registry + '%20.'; }
+
+  // instance/subclass specific-conditions
+  let industry_condition = '';
+  let part_of_condition = '';
+  let has_parts_condition = '';
+  let studied_by_condition = '';
+  let studies_condition = '';
+  let genre_condition = '';
+  let movement_condition = '';
+  let admin_condition = '';
+  let creator_condition = '';
+  let category_condition = '';
+  let performer_condition = '';
+  let composer_condition = '';
+  let author_condition = '';
+  let published_in_condition = '';
+  let main_subject_condition = '';
+
+  //if ( ! checkTag( item, 0, 'location' ) ){ // exclude from using special-conditions
+
+    if ( valid( item.industry ) ){ industry_condition = '%0A%20%20%3Fitem%20wdt%3AP452%20wd%3A' + item.industry[0] + '%20.'; }
+    else if ( valid( item.genre ) ){ genre_condition = '%0A%20%20%3Fitem%20wdt%3AP136%20wd%3A' + item.genre[0] + '%20.'; }
+    else if ( valid( item.movement ) ){ movement_condition = '%0A%20%20%3Fitem%20wdt%3AP135%20wd%3A' + item.movement[0] + '%20.'; }
+    else if ( valid( item.studied_by ) ){ studied_by_condition = '%0A%20%20%3Fitem%20wdt%3AP2579%20wd%3A' + item.studied_by[0] + '%20.'; }
+    else if ( valid( item.studies ) ){ studies_condition = '%0A%20%20%3Fitem%20wdt%3AP2578%20wd%3A' + item.studies[0] + '%20.'; }
+    else if ( valid( item.creator ) ){ creator_condition = '%0A%20%20%3Fitem%20wdt%3AP170%20wd%3A' + item.creator[0] + '%20.'; }
+    else if ( valid( item.composer ) ){ composer_condition = '%0A%20%20%3Fitem%20wdt%3AP86%20wd%3A' + item.composer[0] + '%20.'; }
+    else if ( valid( item.performer ) ){ performer_condition = '%0A%20%20%3Fitem%20wdt%3AP175%20wd%3A' + item.performer[0] + '%20.'; }
+    else if ( valid( item.main_subject ) ){ main_subject_condition = '%0A%20%20%3Fitem%20wdt%3AP921%20wd%3A' + item.main_subject[0] + '%20.'; }
+    //else if ( valid( item.published_in ) ){ published_in_condition = '%0A%20%20%3Fitem%20wdt%3AP1433%20wd%3A' + item.published_in[0] + '%20.'; }
+    //else if ( valid( item.author ) ){ author_condition = '%0A%20%20%3Fitem%20wdt%3AP50%20wd%3A' + item.author[0] + '%20.'; }
+    //else if ( valid( item.category ) ){ category_condition = '%0A%20%20%3Fitem%20wdt%3AP910%20wd%3A' + item.category + '%20.'; }
+    //else if ( valid( item.admin_entity ) ){ admin_condition = '%0A%20%20%3Fitem%20wdt%3AP131%20wd%3A' + item.admin_entity[0] + '%20.'; } // should only be used for larger areas?
+    //else if ( valid( item.part_of ) ){ part_of_condition = '%0A%20%20%3Fitem%20wdt%3AP361%20wd%3A' + item.part_of[0] + '%20.'; }
+    //else if ( valid( item.has_parts ) ){ has_parts_condition = '%0A%20%20%3Fitem%20wdt%3AP527%20wd%3A' + item.has_parts[0] + '%20.'; }
+
+  //}
+
+  //if ( checkTag( item, 1, 'music' ) ){ }
+
+  // build query URL
+
+  if ( checkTag( item, 0, 'person' ) ){
+
+    let occupation_condition = '';
+    let noble_title_condition = '';
+
+    if ( valid( item.occupations ) ){ occupation_condition = '%0A%20%20%3Fitem%20wdt%3AP106%20wd%3AQ' + item.occupations[0] + '%20.'; }
+    //if ( valid( item.noble_title ) ){ noble_title_condition = '%0A%20%20%3Fitem%20wdt%3AP97%20wd%3A' + item.noble_title[0] + '%20.'; }
+
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20' + occupation_condition + country_condition + noble_title_condition + /*genre_condition + movement_condition +*/ '%0A%20%20%3Fitem%20wdt%3AP19%20%3Fplace%20.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fplace%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%23meta%3Asimilar%20topics%0A%23defaultView%3AMap%0A';
+
+  }
+  /*
+  else if ( valid( item.instance_qid ) && valid( item.subclass_qid ) ){ 
+
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP279%20wd%3AQ' + item.subclass_qid + '%20.' + '%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + item.instance_qid + '%20.' + country_condition + studied_by_condition + studies_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+
+  }
+  */
+  else if ( valid( item.subclass_qid ) ){
+
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP279%20wd%3AQ' + item.subclass_qid + '%20.' + country_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+
+  }
+  else if ( valid( item.instance_qid ) ){
+
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + item.instance_qid + '%20.' + country_condition + industry_condition + part_of_condition + has_parts_condition + studied_by_condition + studies_condition + genre_condition + movement_condition + admin_condition + creator_condition + category_condition + performer_condition + composer_condition + author_condition + published_in_condition + main_subject_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+
+  }
+
+  //console.log( url );
+
+  return url;
+
+}
+
 async function showInlineSimilar( args ){
 
   let limit = 1000;
@@ -8139,9 +4225,23 @@ async function showInlineSimilar( args ){
   //  - choose table-view if non-geo-item-class, example: "Breaking Bad"
 
   let url = '';
+  let country_qid_condition = '';
+
+  //console.log( f );
+
+  if ( valid( f[4] ) ){ // country qid
+
+    country_qid_condition = '%0A%20%20%3Fitem%20wdt%3AP17%20wd%3A' + f[4] + '%20.';
+
+  }
+  else if ( valid( f[5] ) ){ // country_of_citizenship qid
+
+    country_qid_condition = '%0A%20%20%3Fitem%20wdt%3AP27%20wd%3A' + f[5] + '%20.';
+
+  }
 
   // TODO: remove this hack, when the tag works again
-  if ( valid( f[3] ) ){
+  if ( valid( f[3] ) ){ // instance qid
 
     if ( f[3] === '5' ){ // person
 
@@ -8156,7 +4256,7 @@ async function showInlineSimilar( args ){
 
       const qid = f[6];
 
-      url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP106%20wd%3AQ' + qid + '.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0ALIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+      url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP106%20wd%3AQ' + qid +  '%20.' + country_qid_condition + '%0A%20%20%20%20%3Fitem%20wdt%3AP19%20%3Fplace%20.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fplace%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%23meta%3Asimilar%20topics%0A%23defaultView%3AMap%0A';
 
     }
 
@@ -8165,7 +4265,7 @@ async function showInlineSimilar( args ){
 
     const qid = f[2];
 
-    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP279%20wd%3AQ' + qid + '.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0ALIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP279%20wd%3AQ' + qid + '%20.' + country_qid_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
 
 
   }
@@ -8173,7 +4273,8 @@ async function showInlineSimilar( args ){
 
     const qid = f[3];
 
-    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + qid + '.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0ALIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + qid + '%20.' + country_qid_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0ALIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+
 
   }
 
@@ -8480,85 +4581,7 @@ async function insertMultiValuesHTML( args, obj, meta ){
 
 }
 
-async function fetchWikidata( qids, topicResults, source, target_pane ){
-
-  return new Promise((resolve, reject) => {
-
-    let item_ = ''; // used for the single return value
-
-    const wikidata_url = window.wbk.getEntities({
-      ids: qids,
-      redirections: false,
-    })
-
-    //wbk.simplify.claims( entity.claims, { keepQualifiers: true })
-
-    // get wikidata json
-    fetch( wikidata_url )
-
-      .then( response => response.json() )
-      .then( window.wbk.parse.wd.entities )
-      //.then( data => window.wbk.simplify.entities(data.entities, { keepQualifiers: true } )) // TODO
-      .then( entities => {
-
-        //console.log( 'nr of wikidata results: ', topicResults.query.search.length );
-
-        if ( topicResults !== '' ){ // multiple results found with a matching qid
-
-          //if ( source === 'wikidata' ){
-            //console.log( 'more wikidata results?: ', topicResults );
-          //}
-
-          // add wikidata to respective wikiresult item
-          $.each( topicResults.query.search, function( k, item ) {
-
-            // make sure the item has a qid
-            if ( typeof item.qid === undefined || typeof item.qid === 'undefined'){
-              // do nothing
-            }
-            // AND make sure that there is an entity with this qid
-            else if ( typeof entities[ item.qid ] === undefined || typeof entities[ item.qid ] === 'undefined'){
-              // do nothing
-            }
-            else { // item with qid
-
-              if ( item.qid === entities[ item.qid ].id ){ // matching qid
-
-                // detect the relevant wikidata-data and put this info into each item
-                setWikidata( item, entities[ item.qid ], false, target_pane );
-
-              }
-
-            }
-
-          });
-
-          resolve( [ { source : { data: topicResults } } ] );
-
-        }
-        else { // single result
-
-          let item = { qid : qids[0] };
-
-          // detect the relevant wikidata-data and put this info into the item
-          setWikidata( item, entities[ item.qid ], true, target_pane );
-
-          // QQQ FIXME: how should we handle this? 
-          //console.log('fetchWikidata: single: ', source, ' fix needed?' );
-
-          resolve( [ { source : { data: item } } ] );
-
-        }
-
-    }) // end of qid entitie processing
-
-    //return item_;
-
-  });
-
-}
-
-async function renderTopics( inputs ) {
+async function renderTopics( inputs ){
 
   setDisplayForResults();
 
@@ -8618,7 +4641,7 @@ async function renderTopics( inputs ) {
   const raw_entry = createItemHtml( args );
 
   // non-wikipedia entry
-  if ( explore.page === 1 && explore.searchmode === 'wikipedia' ){
+  if ( explore.page === 1 && explore.searchmode === 'string' ){
     $('#results').append( raw_entry );
   }
 
@@ -8635,23 +4658,69 @@ async function renderTopics( inputs ) {
 
     Object.keys( inputs ).forEach(( key, index ) => {
 
+      //console.log( key, inputs[ key ].data.value[0].source.data.query.search  );
+
       addTopics( key, inputs[ key ].data.value[0].source.data.query.search );
 
     });
 
+    // click on the first topic of the first datasource (do this ONLY on the first result page, not later pages)
+    if ( explore.page === 1 ){
+
+      let checks = []; // list of bools (one per active datasource), indicating if a topic-element exists
+
+      $.each( explore.datasources, function( index, source ){ // for each active datasource
+
+        if ( $( `#n1-${ explore.datasources[index] }-0` ).length ){ // element exists
+
+          checks.push( true );
+
+        }
+        else { // element not found
+
+          checks.push( false );
+
+        }
+      
+      });
+
+      // get the first "true" element-check
+      const firstTrue = checks.findIndex( el => { if ( el === true ) { return true; } return false; });
+
+      // NOTE: the empty-type-case (with results) indicates a structured-query WITHOUT an "explore.q"
+      if ( explore.type === 'articles' ){
+        // do nothing
+      }
+      else if ( explore.type === 'string' || explore.type === '' ){
+
+        explore.replaceState = false;
+
+        if ( explore.preventSliding ){
+          // do nothing
+        }
+        else {
+
+          $( `#n1-${ explore.datasources[ firstTrue ] }-0 a:first` ).click(); 
+
+        }
+
+        explore.replaceState = true;
+
+      }
+      else {
+
+        markArticle( `n1-${ explore.datasources[ firstTrue ] }-0`, explore.type );
+
+      }
+
+    }
+
 		// calculate total nr of pages (and force to one when no results are found)
 	  $('#total-results').html( '<b>' + explore.totalRecords + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>');;
 
-    if ( explore.searchmode === 'wikidata' ){
+    //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 
-		  $('#total').html( Math.max( Math.ceil( explore.totalRecords / datasources.wikidata.pagesize ), 1) );
-
-    }
-    else { // wikipedia
-
-		  $('#total').html( Math.max( Math.ceil( explore.totalRecords / combined_pagesize ), 1) );
-
-    }
+		$('#total').html( Math.max( Math.ceil( explore.totalRecords / combined_pagesize ), 1) );
 
 		// hide next-page-button when there are no other pages available
 		if ( explore.totalRecords < combined_pagesize ){
@@ -8697,47 +4766,29 @@ async function renderTopics( inputs ) {
       const id      = $( ".entry:nth-child(2)" ).attr('id'); // 'n1'
       const q_      = getSearchValue().toLowerCase().replace(/^"|"$/g, '').trim();
       let show_raw  = false; // default
+      let show_raw_results = [];
 
-      // FIXME: clean up and make this "raw-entry display" work dynamically for all datasources
-      if ( valid( inputs['wikipedia'] ) ){
+      $.each( explore.datasources, function( index, source ){ // for each active datasource
 
-        // check if the names match of the non-wikipedia and wikipedia article
-        const c0 = ( q_ === inputs['wikipedia'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
-        const c1 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
-        const c2 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
-        const c3 = ( typeof inputs['wikipedia'].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs['wikipedia'].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
-        // check at least the first four (standard, category, book, portal) articles
-        if ( validAny( [c0, c1, c2, c3] ) ){
-          show_raw = false;
-        }
-        else {
-          show_raw = true;
-        }
 
-        // only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
-        if ( explore.firstAction ){ markArticle(id, explore.type ); }
+        let d = datasources[ Object.keys( datasources)[ index ] ];
 
-      }
-      /* FIXME
-      else if ( valid( inputs['wikidata'] ) ){
+				if ( valid( d.code_render_mark ) ){
 
-        const c0 = ( q_ === inputs['wikidata'].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
+					eval( `${ d.code_render_mark }` );
 
-        if ( ! c0 ){ show_raw = false; }
+				}
 
-        if ( explore.firstAction ){ markArticle(id, explore.type ); }
+      })
 
-      }
-      */
-      else { // mark on the "no-wikipedia-article"
-        //$('.no-wikipedia-entry').show();
-        show_raw = true;
-        markArticle('n0', explore.type );
-      }
+      // FIXME?
+      //console.log( inputs, show_raw_results );
+      //else { // mark on the "no-wikipedia-article"
+      //  show_raw_results.push( true );
+      //  markArticle('n0', explore.type );
+      //}
 
-      //console.log( 'show_raw: ', show_raw );
-
-      if ( show_raw ){
+      if ( valid( show_raw_results ) ){ // each datasource check holds true
         $('.no-wikipedia-entry').show();
       }
       else {
@@ -8767,7 +4818,7 @@ async function renderTopics( inputs ) {
   $('#blink').hide();
 
   // add note to the first detail-element
-  $('#n1-0 .bt:first').html('<span class="guiding-info"> &nbsp;&nbsp; <i class="fa-solid fa-long-arrow-alt-left"></span></i><span id="app-guide-see-more" class="notbold"> ' + explore.banana.i18n('app-guide-see-more') + '</span>');
+  $('.entry.articles').not('#n00').first().find('.bt:first').html('<span class="guiding-info"> &nbsp;&nbsp; <i class="fa-solid fa-long-arrow-alt-left"></span></i><span id="app-guide-see-more" class="notbold"> ' + explore.banana.i18n('app-guide-see-more') + '</span>');
 
   // if there is a fragment parameter: try to open the detail-fragment
   if ( valid( explore.fragment ) ){
@@ -8787,19 +4838,24 @@ async function renderTopics( inputs ) {
 
   $('#loader').hide();
 
+  explore.preventSliding = false;
+
 }
 
 function addTopics( source, list ){
 
-  // for each topic
-  $.each( list, function( i, item ) {
+  //console.log( source, list );
 
-    let title = encodeURIComponent( item.title );
-    let q   = encodeURIComponent( item.qid ) || 0;
-    let qid   = '';
-    let custom = '';
+  $.each( list, function( i, item ) { // for each topic
+
+    let title         = encodeURIComponent( item.title );
+    let q             = encodeURIComponent( item.qid ) || 0;
+    let qid           = '';
+    let custom        = '';
     let concept_class = '';
-    let thumb = encodeURIComponent( item.thumb ) || '';
+    let thumb         = encodeURIComponent( item.thumb ) || '';
+
+    //console.log( item, item.title, title );
 
     if ( thumb === 'undefined' ){ thumb = ''; }
 
@@ -8821,9 +4877,10 @@ function addTopics( source, list ){
     // cleanup "namespaces" in title (as this is better for some search-services)
     const title_ = minimizeTitle( title );
 
-    const id  = 'n' + explore.page + '-' + i; // entry ID
+    const id = 'n' + explore.page + '-' + source + '-' + i; // entry ID
 
     const scrollTriggerClass = ( i === ( list.length - 1) ) ? 'triggerLoading' : '';
+
 
     const args = { 
       id            : id,
@@ -8844,28 +4901,10 @@ function addTopics( source, list ){
     // wikipedia article
     $('#results').append( html_result_list );
 
-    if ( explore.type === 'articles'){ // dont re
-      explore.type = '';
-      return 0;
-    }
-
-    // do this ONLY on the first result page, not later pages
-    if ( explore.page === 1 && i === 0 ){  // we are at the first wikipedia result
-
-      if ( explore.type === 'wikipedia' || explore.type === '' ){ // NOTE: the empty-type-case (with results) indicates a structured-query WITHOUT an "explore.q"
-
-        explore.replaceState = false;
-
-        // no wikipedia article found for this title, so click on first article in result-list
-        $('#n1-0 a:first').click(); 
-
-        explore.replaceState = true;
-
-      }
-
-      markArticle('n1-0', explore.type );
-
-    }
+    //if ( explore.type === 'articles'){
+      //explore.type = '';
+      //return 0;
+    //}
 
   });
 
@@ -8920,7 +4959,7 @@ async function renderType( args ) {
   explore.archive_cached_sentences = '';
   explore.archive_cached_html = '';
 
-  if ( type === 'wikipedia' || type === ''){ // RIGHT-side: load new iframe content from wikipedia (default type)
+  if ( type === 'string' || type === ''){ // RIGHT-side: load new iframe content from wikipedia (default type)
 
     // FIXME don't do this for known items which lack a qid
     if ( typeof tag === undefined || typeof tag === 'undefined' ){ // try to get a qid first: if the qid exists: we try to fetch its wikidata 
@@ -8934,7 +4973,7 @@ async function renderType( args ) {
 
         resetIframe();
 
-        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&embedded=' + explore.embedded + '#' + explore.hash });
+        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else { // render with wikidata-info
@@ -8983,7 +5022,7 @@ async function renderType( args ) {
         }
         else { // user is coming from an internal click, which should have the wikidata already
 
-          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
+          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash );
 
         }
 
@@ -9018,7 +5057,7 @@ async function renderType( args ) {
     const title_nocat = removeCategoryFromTitle( title ); // TODO: also make this work for RTL-scripts
 
     // prevent this duplicate (loop-causing) call from happening when the 'explore'-view is triggered by replace State()
-    explore.type = 'wikipedia';
+    explore.type = 'string';
 
     $('#srsearch').val( decodeURIComponent( title_nocat ) );
 
@@ -9033,7 +5072,8 @@ async function renderType( args ) {
       explore.tabsInstance.select('tab-topics');
     }
 
-		markArticle('n1-0', explore.type );
+    // choose first active datasource as the default topic-marker
+    markArticle( `n1-${ explore.datasources[ 0 ] }-0`, explore.type );
 
 	}
 
@@ -9165,13 +5205,13 @@ async function renderType( args ) {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
 
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         $('.fixed-action-btn.direction-left').hide();
 
@@ -9279,8 +5319,6 @@ async function renderType( args ) {
       }
       else {
 
-        //console.log('slide active index: ', explore.preventSliding, explore.swiper.activeIndex );
-
         if ( !explore.preventSliding ){
 
           explore.swiper.slideTo( 1 );
@@ -9298,10 +5336,11 @@ async function renderType( args ) {
 
 }
 
-async function handleClick ( args ) {
+async function handleClick( args ) {
 
   //console.log( 'explore.keyboard_ctrl_pressed: ', explore.keyboard_ctrl_pressed );
   //console.log( 'event.ctrlKey: ', event.ctrlKey );
+  //console.trace();
 
   // check for CTRL-key, to open link in new tab
   if ( valid( [ explore.keyboard_ctrl_pressed, event ] ) ){
@@ -9553,7 +5592,7 @@ function updatePushState( title, mode ){
     }
 
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
-    const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');;
+    const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
     const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.d + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
@@ -9626,6 +5665,8 @@ function setJSONLD( ld ){
     //"image": ld.imageUrl,
     "url": ld.url,
     "mainEntityOfPage": ld.main_entity,
+    "significantLink": ld.significantLink,
+    //"relatedLink": ld.relatedLink,
     //"identifier": ld.identifier,
     "sameAs": [
       ld.wikipedia_link,
@@ -9680,6 +5721,7 @@ function updateJSONLD( ld ){
   jsonld.teaches        = valid( ld.tags )? ld.tags.map(n => n.replace('-', ' ') ) : [];
   jsonld.description    = ld.description;
   jsonld.text           = valid( ld.text )? ld.text : '';
+  jsonld.significantLink= valid( ld.website )? Object.values( ld.website ) : [];
 
   if ( valid( ld.image ) ){ jsonld.image = ld.image; } 
   if ( valid( ld.thumbnailUrl ) ){ jsonld.thumbnailUrl = ld.thumbnailUrl; } 
@@ -9693,9 +5735,6 @@ function updateJSONLD( ld ){
 }
 
 function buildURLParameters(){ // builds a URL state object from the current state
-
-  //console.log( 'explore.show_sidebar: ', explore.show_sidebar );
-  //console.log( 'explore.embedded: ', explore.embedded );
 
   // QUERY-DATA PARAMETERS
   let p = {};
@@ -9836,29 +5875,6 @@ function buildURLParameters(){ // builds a URL state object from the current sta
     }
 
   return p;
-
-}
-
-function tryFallbackToQid(){
-
-  if ( explore.type === 'wikipedia-qid' ){
-
-    if ( explore.qid.startsWith('Q') ){
-      explore.qid = explore.qid.substring(1); // always remove 'Q' from string
-    }
-
-    if ( document.getElementById('infoframeSplit2') === null ){ // single-content-frame
-
-      $( explore.baseframe ).attr({"src": explore.base + '/app/wikidata/?q=Q' + explore.qid + '&lang=' + explore.language });
-
-    }
-    else { // dual-content-frame
-
-      $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikidata/?q=Q' + explore.qid + '&lang=' + explore.language });
-
-    }
-
-  }
 
 }
 
@@ -10180,6 +6196,8 @@ function receiveMessage(event){
 
         if ( event.data.data.type === 'explore' ){
 
+          console.log( 'explore language: ', explore.language );
+
           explore.preventSliding = true;
           explore.swiper.slideTo( 0 ); // go back to sidebar on mobile when 'exploring'
 
@@ -10234,6 +6252,8 @@ function receiveMessage(event){
 
   }
   else if ( event.data.event_id === 'run-slide-commands' ){
+
+    // TODO: move this code to a function in "src/command/index.js"
 
     //$('#presentation').contents().find('div.reveal').focus();
 
@@ -10429,7 +6449,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'linkgraph' ){
@@ -10447,7 +6467,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'ontology' ){
@@ -10465,7 +6485,7 @@ function receiveMessage(event){
               target_pane : 'p1',
             });
 
-            $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+            $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'chemistry' ){
@@ -10509,7 +6529,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 
@@ -10762,196 +6782,6 @@ function receiveMessage(event){
 
 }
 
-async function runQuery( json, json_url ){
-
-  //console.log( 'runQuery: ', json, json_url );
-
-  // clear search-input
-  //$( '#srsearch' ).val('');
-
-  explore.searchmode    = 'wikidata';
-  explore.query         = json;
-  explore.topic_cursor  = 'n1-1';
-
-  updatePushState( explore.q , 'add' );
-
-  explore.page = 1;
-
-  $('#pager').hide();
-
-  explore.wikidata_query = json_url;
-
-  runWikidataQuery();
-
-}
-
-async function runWikidataQuery(){
-
-  $('#blink').show();
-  $('#pager').hide();
-  $('#results-label' ).empty();
-  $('#total-results').empty();
-  $('#scroll-end').hide();
-  $('#results').empty();
-
-  if ( explore.page === 1 ){ // first time fetch
-
-    explore.totalRecords = 0;
-
-    let count_query = explore.wikidata_query;
-    count_query = count_query.replace( /(.*)%20WHERE%20%7B/, 'SELECT%20%28COUNT%28%2a%29%20AS%20%3Fcount%29%7B');
-    count_query = count_query.replace( /ORDER%20BY(.*)/, '');
-
-    let count_url = datasources.wikidata.endpoint + '?format=json&query=' + count_query;
-    //console.log( 'count URL: ', count_url );
-    
-    // get total amount of results
-    fetch( count_url )
-      .then( response2 => response2.json() )
-      .then( count_json => {
-
-        if ( valid( count_json.results.bindings[0].count.value ) ){
-
-          if ( count_json.results.bindings[0].count.value > 0 ){
-
-            explore.totalRecords = count_json.results.bindings[0].count.value;
-
-            fetchWikidataQuery();
-
-          }
-          else {
-
-            $('#loader').hide();
-            $('#blink').hide();
-            $('#results-label' ).html('no results found');
-            $('#pager').show();
-
-          }
-
-        }
-        else {
-
-          $('#loader').hide();
-          $('#blink').hide();
-          $('#results-label' ).html('no results found');
-          $('#pager').show();
-
-        }
-
-    });
-
-  }
-
-}
-
-async function fetchWikidataQuery(){
-
-  return new Promise(( resolve, reject ) => {
-
-    //console.log( 'fetchWikidataQuery: ', explore.wikidata_query );
-
-    // fetch results
-    fetch( explore.wikidata_query )
-
-      .then( response => response.json() )
-      .then( entities => {
-
-        if ( entities.results.length === 0 ){ // no results found
-
-          $('#scroll-end').hide();
-          $('#loader').hide();
-          $('#blink').hide();
-          $('#results-label').html('no results found');
-
-        }
-        else { // results found
-
-          let [ qids, topicResults ] = prepareWikidata( entities );
-
-          let my_promises = [];
-
-          my_promises.push( fetchWikidata( qids, topicResults, 'wikipedia', 'p1' ) );
-
-          // resolve my promises
-          Promise.allSettled( my_promises ).
-            then((results) => results.forEach((result) => {
-
-              // set source in results (so we can distinguish between other sources in the rendering phase)
-              console.log( 'FIXME: ', result );
-              result.value[0].source.data.continue.source = 'wikidata';
-
-              resolve( [ result ] );
-
-            }));
-
-          //fetchWikidata( qids, topicResults, 'wikidata', 'p1' );
-
-          $('details#detail-structured-search').removeAttr("open");
-
-        }
-
-      })
-
-  });
-
-}
-
-function prepareWikidata( entities, source ){
-
-  let qids = [];
-
-  let topicResults = {
-
-    batchcomplete : '',
-    'continue' : {
-      'continue': "-||",
-      'sroffset': datasources.wikidata.pagesize,
-      'source': source,
-    },
-
-    query : {
-      search : [],
-      searchinfo : {
-        totalhits : datasources.wikidata.total,
-      },
-    }
-
-  };
-
-  $.each( entities.results.bindings , function( index, entity ){
-
-    qids.push( entity.item.value.substring( entity.item.value.lastIndexOf("/") + 1) );
-
-    let title = '';
-    let desc  = '';
-
-    if ( valid( entity.itemLabel.value ) ){
-
-      title = entity.itemLabel.value;
-
-    }
-
-    topicResults.query.search.push({
-
-      title: entity.itemLabel.value,
-      qid: entity.item.value.substring( entity.item.value.lastIndexOf("/") + 1),
-      ns: 0,
-      pageid: '',
-      size: 0,
-      snippet: desc,
-      timestamp: "2020-04-11T14:19:12Z",
-      wordcount: 0,
-      from_sparql: true,
-
-    });
-
-  });
-
-  return [ qids, topicResults ];
-
-}
-
-
 function setLanguageDirection(){
 
   const rtl_scripts = [ 'arab', 'hebr', 'syrc', 'nkoo', 'thaa' ];
@@ -11065,8 +6895,10 @@ async function afterLanguageUpdate(){
 
   updateQueryBuilder();
 
+  setupOptionActiveDatasources();
+
   // update show-live-edits link
-  // TODO: call funtion (too avoid code duplication)
+  // TODO: call function (too avoid code duplication)
   $('li#show-live-edits').html('<a href="https://wikistream.toolforge.org/#namespace=article&wiki=' + explore.language + '.wikipedia" target="infoframe" title="Wikipedia edits liveive" aria-label="Wikipedia edits live"><i class="fa-solid fa-edit"></i> &nbsp; Wikipedia edits live</a>');
 
 }
@@ -11077,7 +6909,6 @@ function markArticle( id, type ){
   $('.entry#' + id ).addClass('active');    // make entry active
 
 }
-
 
 function toggleSidebar() {
 
@@ -11184,6 +7015,39 @@ function setupSplitter( perc ){
 
 }
 
+function identifyOther( ) {
+
+  /*
+  handleClick({ 
+    id        : 'n1-0',
+    type      : 'link-split',
+    title     : '',
+    language  : explore.language,
+    qid       : '',
+    url       : encodeURI( explore.base + '/app/visual-identification/index.php?l=' + explore.language ),
+    tag       : '',
+    languages : '',
+    custom    : '',
+    target_pane : 'p1',
+  });
+  */
+
+  handleClick({ 
+    id        : 'n1-0',
+    type      : 'link',
+    title     : '',
+    language  : explore.language,
+    qid       : '',
+    //url       : encodeURI( 'https://reverseimage.net' ),
+    url       : encodeURI( 'https://www.bing.com/visualsearch' ),
+    tag       : '',
+    languages : '',
+    custom    : '',
+    target_pane : 'p1',
+  });
+
+}
+
 function identifyPlant( ) {
 
   handleClick({ 
@@ -11274,7 +7138,355 @@ function removeBookmark( event, id ) {
 
 }
 
-function addBookmark( e , action_type ) {
+function exportAppendBookmarks( output, b ){
+
+  //console.log( 'data: ',  b );
+
+  if ( valid( b.name ) ){
+
+    let pattern = /^((http|https):\/\/)/;
+    let url     = '';
+
+    // detect bookmark type
+    if ( pattern.test( b.url ) ) { // url
+
+      url = b.url;
+
+    }
+    else { // Conzept search-string
+
+      url = 'https://' + explore.host + explore.base + '/explore/' + encodeURIComponent( b.name ) + '?l=' + b.language + '&t=string' + '#';
+
+    }
+
+    let obj = {
+
+      'id':       b.id,
+      'name':     b.name,
+      'type':     b.type,
+      'url':      url,
+      'language': b.language,
+      'desc':     '',
+
+    };
+
+    if ( valid( b.geo ) ){
+
+      obj.loc = [ b.geo.split(';')[0], b.geo.split(';')[1] ];
+
+    }
+
+    output.push( obj );
+
+  }
+
+  if ( valid( b.children ) ){
+
+    b.children.forEach(( b2, index ) => {
+
+      exportAppendBookmarks( output, b2 );
+
+    });
+
+  }
+
+}
+
+function outputBookmarksHTML( output ){
+
+  let html = '<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"> <meta http-equiv="Content-Security-Policy" content="default-src "self"; script-src "none"; img-src data: *; object-src "none""></meta><title>Conzept bookmarks</title><DL><p>';
+
+  output.forEach(( b, index ) => {
+
+    html += `<DT><A HREF="${ b.url }">${ b.name }</A></DT>`;
+
+  });
+
+  html += '</DL>';
+
+  return html;
+
+}
+
+function outputBookmarksKML( output ){
+
+  const date = new Date().toISOString();
+
+  let kml = `<?xml version="1.0" encoding="UTF-8"?> <kml xmlns="http://earth.google.com/kml/2.2"> <Document> <Style id="placemark-red"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-red.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-blue"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-blue.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-purple"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-purple.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-yellow"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-yellow.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-pink"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-pink.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-brown"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-brown.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-green"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-green.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-orange"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-orange.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-deeppurple"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-deeppurple.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-lightblue"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-lightblue.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-cyan"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-cyan.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-teal"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-teal.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-lime"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-lime.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-deeporange"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-deeporange.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-gray"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-gray.png</href> </Icon> </IconStyle> </Style> <Style id="placemark-bluegray"> <IconStyle> <Icon> <href>https://omaps.app/placemarks/placemark-bluegray.png</href> </Icon> </IconStyle> </Style> <name>Conzept bookmarks</name> <visibility>1</visibility> <ExtendedData xmlns:mwm="https://omaps.app"> <mwm:name> <mwm:lang code="default">Conzept bookmarks</mwm:lang> </mwm:name> <mwm:annotation> </mwm:annotation> <mwm:description> </mwm:description> <mwm:lastModified>${date}</mwm:lastModified> <mwm:accessRules>Local</mwm:accessRules> </ExtendedData>`;
+
+  output.forEach(( b, index ) => {
+
+    if ( valid( b.loc ) ){
+
+      kml += `
+        <DT><A HREF="${ b.url }">${ b.name }</A></DT>`;
+
+      const geo_point = `<Point><coordinates>${ b.loc[1] },${ b.loc[0] }</coordinates></Point>`;
+
+      kml += `
+        <Placemark>
+          <name>${ b.name }</name>
+          <TimeStamp><when>${ date } </when></TimeStamp>
+          <styleUrl>#placemark-red</styleUrl>
+          ${geo_point}
+          <ExtendedData xmlns:mwm="https://omaps.app">
+            <mwm:name>
+              <mwm:lang code="default">${ b.name }</mwm:lang>
+              <mwm:lang code="${ b.language }">${ b.name }</mwm:lang>
+            </mwm:name>
+            <mwm:featureTypes>
+              <mwm:value>tourism-attraction</mwm:value>
+            </mwm:featureTypes>
+            <mwm:scale>17</mwm:scale>
+            <mwm:icon>Sights</mwm:icon>
+            <mwm:visibility>1</mwm:visibility>
+          </ExtendedData>
+        </Placemark>
+      `;
+
+    }
+
+  });
+
+  kml += '</Document></kml>';
+
+  kml = kml.replace(/&/g, '&amp;');
+
+  return kml;
+
+}
+
+function outputBookmarksGPX( output ){
+
+  const date = new Date().toISOString();
+
+  let gpx = `<?xml version="1.0" standalone="yes"?>
+  <gpx xmlns="http://www.topografix.com/GPX/1/1" creator="KML2GPX.COM" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <metadata>
+        <name><![CDATA[Conzept bookmarks]]></name>
+        <desc><![CDATA[Waypoints export ${date}]]></desc>
+                </metadata>
+`;
+
+  output.forEach(( b, index ) => {
+
+    let geo_point = '';
+
+    if ( valid( b.loc ) ){
+
+      geo_point = ` lat="${ b.loc[0] }" lon="${ b.loc[1] }"`;
+
+      gpx += `
+      <wpt ${geo_point}>
+          <ele>0</ele>
+          <name><![CDATA[${ b.name }]]></name>
+          <cmt><![CDATA[Waypoint no: ${index}]]></cmt>
+          <desc><![CDATA[This is waypoint no: ${index} (${ b.language })]]></desc>
+      </wpt>
+      `
+
+    }
+
+  });
+
+  gpx += '</gpx>';
+
+  gpx = gpx.replace(/&/g, '&amp;');
+
+  return gpx;
+
+}
+
+function handleJSONSubmit (event) {
+
+	console.log('json file upload');
+
+	// Stop the form from reloading the page
+	event.preventDefault();
+
+	let file = document.querySelector('#json-file');
+
+	// If there's no file, do nothing
+	if ( !file.value.length ) return;
+
+	// Create a new FileReader() object
+	let reader = new FileReader();
+
+	// Read the file
+	reader.readAsText( file.files[0] );
+
+  reader.onload = (e) => {
+
+    let json = e.target.result;
+
+		// TODO: check if this is a valid jqTree JSON-bookmark file
+		// ...
+
+    $('#tree').tree('loadData', JSON.parse( json ) );
+
+    (async () => {
+
+      await explore.db.set('bookmarks', $('#tree').tree('toJson') );
+
+      // update the bookmark-view in any other Conzept tabs
+			explore.broadcast_channel.postMessage('update_bookmark_view');
+
+    })();
+
+    // update current bookmarks data structure
+    explore.bookmarks = json;
+
+  };
+
+}
+
+function exportBookmarks( format ){
+
+  // formats: html, kml, gpx, ...
+
+  let output = [];
+
+  if ( format === 'html' ){
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportAppendBookmarks( output, b );
+
+      });
+
+      //console.log( output );
+
+      const data = outputBookmarksHTML( output );
+
+      writeToFile( data, format, 'bookmarks.html');
+
+    }
+
+  }
+  else if ( format === 'kml' ){
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportAppendBookmarks( output, b );
+
+      });
+
+      //console.log( output );
+
+      const data = outputBookmarksKML( output );
+
+      writeToFile( data, format, 'bookmarks.kml');
+
+    }
+
+  }
+  else if ( format === 'gpx' ){
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportAppendBookmarks( output, b );
+
+      });
+
+      //console.log( output );
+
+      const data = outputBookmarksGPX( output );
+
+      writeToFile( data, format, 'bookmarks.gpx');
+
+    }
+
+  }
+  else if ( format === 'json' ){
+
+    const json = $('#tree').tree('toJson');
+
+    writeToFile( json, format, 'bookmarks.json');
+
+  }
+
+}
+
+const writeToFile = (text, format, fileName) => {
+
+  let textFile = null;
+
+  const makeTextFile = (text) => {
+
+    let type = '';
+
+    if ( format === 'kml' ){
+      type = 'application/vnd.google-earth.kml+xml';
+    }
+    else if ( format === 'html' ){
+      type = 'text/html';
+    }
+    else if ( format === 'gpx' ){
+      type = 'application/gpx+xml';
+    }
+    else if ( format === 'json' ){
+      type = 'application/json';
+    }
+    else {
+      type = 'text/plain';
+    }
+
+    const data = new Blob([text], {
+      'type': type,
+    });
+
+    if (textFile !== null) {
+      window.URL.revokeObjectURL( textFile );
+    }
+
+    textFile = window.URL.createObjectURL(data);
+
+    return textFile;
+
+  };
+
+  const link = document.createElement('a');
+
+  link.setAttribute('download', fileName);
+  link.href = makeTextFile(text);
+  link.click();
+
+};
+
+function updateBookmarks(){ // TODO
+
+	return 0;
+
+	// remove old bookmark tree
+	//$('#tree').empty();
+
+	// get new bookmark data
+	(async () => {
+
+		// update current bookmarks data structure
+		explore.bookmarks = await explore.db.get('bookmarks');
+		explore.bookmarks = JSON.parse( explore.bookmarks );
+
+	})();
+
+	// render bookmarks again
+  renderBookmarks();
+
+}
+
+function addBookmark( e , action_type ){
 
   // TODO: implement bookmark-removal (if this bookmark already exists)
   // removeBookmark( event, node.id )
@@ -11293,10 +7505,6 @@ function addBookmark( e , action_type ) {
   }
   else {
 
-    // TODO re-sync bookmark data with browser-storage
-    // first re-read bookmark data
-    //bookmarks = await db.get('bookmarks');
-
     let link_       = $( explore.baseframe ).attr('src') || '';
 
     let language_   = explore.language;
@@ -11304,20 +7512,38 @@ function addBookmark( e , action_type ) {
     let title_      = decodeURIComponent( explore.curr_title ) || explore.q || '';
     let display_    = title_ + ' (' + language_ +')';
 
+    let geo_        = '';
+    let qid         = '';
+
     let type        = explore.type;
 
-    const video   = '\/video\/';
+    const video     = '\/video\/';
 
     if ( link_.match( video, 'g') ){ // video link
       type = 'video';
     }
 
-    if ( type === 'wikipedia' || type === 'explore' || type === 'articles' || type === 'bookmark' || type === '' ){
+    if ( explore.custom?.lat ){ // we have a geo-coordinate
+
+      geo_ = explore.custom.lat + ';' + explore.custom.lon;
+
+    }
+
+
+    if ( valid( explore.qid ) ){ // we have a geo-coordinate
+
+      qid = explore.qid;
+
+    }
+
+    // TODO: add datasource-type support (to support Wikidata topics with its own Wikidata-icon, etc.)
+
+    if ( type === 'string' || type === 'explore' || type === 'articles' || type === 'bookmark' || type === '' ){
 
       //language_ = $( explore.baseframe ).attr("data-language");
       display_  = decodeURIComponent( $( explore.baseframe ).attr("data-title") ) + ' (' + language_ + ')';
       link_     = title_;
-      type      = 'wikipedia';
+      type      = 'string';
 
     }
     else if ( type === 'video'){
@@ -11331,9 +7557,6 @@ function addBookmark( e , action_type ) {
     else if ( type === 'music' || type === 'musescore' ){
       type = 'music';
     }
-    else if ( type === 'wikischool' || type === 'wikischool-page' ){
-      type = 'wikischool';
-    }
     else if ( type === 'imagescc' ){
       type = 'images';
     }
@@ -11342,11 +7565,33 @@ function addBookmark( e , action_type ) {
     }
 
     // determine user-action
+
+    if ( action_type === 'extension' ){
+
+      // XXX
+      const data = JSON.parse( decodeURIComponent( explore.custom ) );
+
+      // URL, text-selection
+      // -> https://example.com/#:~:text=for
+
+      console.log( data.url, data.text );
+
+      explore.custom = ''; // reset custom value
+
+      title_    = data.text;
+      display_  = data.text;
+      link_     = data.url + '#:~:text=' + data.text;
+      type      = 'url';
+
+      console.log( display_, link_ );
+
+    }
+
     if ( action_type === 'dropped' ){
 
       const parent_id = event.target.parentNode.id;
       const new_id = createBookmarkId();
-      $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type }, $('#tree').tree('getNodeById', parent_id  ) );
+      $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type, geo: geo_, qid: qid }, $('#tree').tree('getNodeById', parent_id  ) );
 
     }
     else {
@@ -11355,7 +7600,7 @@ function addBookmark( e , action_type ) {
 
         const new_id = createBookmarkId();
 
-        $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type });
+        $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type, geo: geo_ });
 
         if ( !explore.isMobile ){
 
@@ -11376,11 +7621,15 @@ function addBookmark( e , action_type ) {
     }
 
     (async () => {
+
       await explore.db.set('bookmarks', $('#tree').tree('toJson') );
 
       // update current bookmarks data structure
       explore.bookmarks = await explore.db.get('bookmarks');
       explore.bookmarks = JSON.parse( explore.bookmarks );
+
+      // update the bookmark-view in any other Conzept tabs
+			explore.broadcast_channel.postMessage('update_bookmark_view');
 
     })();
 
@@ -11454,10 +7703,10 @@ function refreshArticles(){
  
   if ( explore.replaceState ){
 
-    // force-merge to 'wikipedia' type when refreshing articles, as that is the only type that can output anything in the content-pane later
+    // force-merge to 'string' type when refreshing articles, as that is the only type that can output anything in the content-pane later
     if ( explore.type === 'explore' || explore.type === 'articles' || explore.type === '' ){
 
-      explore.type = 'wikipedia';
+      explore.type = 'string';
 
     }
 
@@ -11476,16 +7725,13 @@ function refreshArticles(){
 
 function loadTopics( nextpage ){
 
-  // TODO: (note: loadNextPage() will have increased the page)
   if ( nextpage ){ // request for the next page of results
 
     $.each( explore.datasources, function( index, source ){ // for each active datasource
 
       // check if we should fetch more results
       if ( valid( datasources[ source ].done ) ){ // datasource already marked as "done"
-
         // do nothing
-
       }
       else if ( valid( datasources[ source ].total ) ){ // total results available
 
@@ -11527,14 +7773,12 @@ function loadTopics( nextpage ){
 
   fetchDatasources().then(( ret ) => {
 
-    //console.log( 'ret: ', ret );
-
     let struct  = ret[0];
     let data    = ret[1];
 
     let my_promises = [];
 
-    // collect my promise functions
+    // collect promise functions
     data.forEach(( r, index ) => {
 
       //console.log( struct[ index ].name, struct[ index ].count );
@@ -11542,47 +7786,19 @@ function loadTopics( nextpage ){
       if ( struct[ index ].count ){ // skip count-query data
         // do nothing
       }
-      else if ( struct[ index ].name === 'wikipedia' ){
+			else {
 
-        //console.log('Wikipedia: ', data[ index ] );
-        //console.log('Wikipedia results: ', data[index] );
+				let d = datasources[ struct[ index ].name ];
 
-        my_promises.push( processWikipediaResults( data[ index ] ) );
+				if ( valid( d.code_data_collect ) ){
 
-      }
-      else if ( struct[ index ].name === 'wikidata' ){
+					let topicResults = data[index];
 
-        //console.log( 'Wikidata: ', data[index], data[index].length, r );
+					eval( `${ d.code_data_collect }` );
 
-        // QQQ TODO: research and clear up the first two conditions here.
-        if ( data[index].length === 0 ){ // no results found
+				}
 
-          //console.log('Wikidata: no results found...');
-          //my_promises.push( Promise.resolve([]) ); // dummy call
-
-          datasources.wikidata.done = true; // dont fetch more from this datasource
-
-        }
-        else if ( !valid( data[index].results.bindings.length ) ){
-          //console.log('error: Wikidata: invalid result length, why?');
-          datasources.wikidata.done = true; // dont fetch more from this datasource
-        }
-        else if ( data[index].results.bindings.length === 0 ){
-          //console.log('no Wikidata results: 0 length');
-          datasources.wikidata.done = true; // dont fetch more from this datasource
-        }
-        else { // results found
-
-          let [ qids, topicResults ] = prepareWikidata( data[ index ], struct[ index ].name );
-
-          //console.log('Wikidata results found: ', struct[ index ].name, topicResults );
-          my_promises.push( fetchWikidata( qids, topicResults, struct[ index ].name, 'p1' ) );
-
-          $('details#detail-structured-search').removeAttr("open");
-
-        }
-
-      }
+			}
 
     });
 
@@ -11591,59 +7807,20 @@ function loadTopics( nextpage ){
     // call and resolve all my promise functions
     Promise.allSettled( my_promises )
 
-      .then((results) => results.forEach((result) => {
+      .then((results) => results.forEach( ( result, index ) => {
 
-        //console.log( result );
+				let d = datasources[ struct[ index ].name ];
 
-        if ( result.value[0]?.source ){ // wikidata
+				if ( valid( d.code_resolve ) ){
 
-          //console.log('wikidata');
+					eval( `${ d.code_resolve }` );
 
-          if ( result.value[0] === 'done' ){ // no results were found
-
-            datasources.wikidata.done = true; // dont fetch more from this datasource
-            //console.log('wikidata datasource is done');
-
-          }
-          else {
-
-            renderObject[ result.value[0].source.data.continue.source ] = { data : result };
-
-          }
-          
-        }
-        else { // wikipedia
-
-          //console.log('wikipedia check: ', result.value[0] );
-
-          if ( !valid( result.value[0] ) ){ // no results were found?
-
-            datasources.wikipedia.done = true; // dont fetch more from this datasource
-            //console.log('FIXME: wikipedia datasource is done (invalid results)');
-
-          }
-          else if ( result.value[0] === 'done' ){ // no results were found
-
-            datasources.wikipedia.done = true; // dont fetch more from this datasource
-            //console.log('wikipedia datasource is done (already marked as "done")');
-
-          }
-          else {
-
-            renderObject[ 'wikipedia' ] = { data : result.value[0] };
-            //renderObject[ result.value[0].value[0].source.data.continue.source ] = { data : result.value[0] };
-
-          }
-
-        }
-
-        //console.log( 'my promises results: ', result, result.status );
+				}
 
       }))
       .then((value) => {
 
-        // finally render all topics
-        renderTopics( renderObject );
+        renderTopics( renderObject ); // finally render all topics
 
       })
       .catch( error => {
@@ -11667,13 +7844,15 @@ async function fetchDatasources(){
   let fetches = []; // holds all fetch-function calls
   let done    = '';
 
+  let term = cleanText( explore.q );
+  term = term.replace(/&/g, ' ');
+
   // create a meta-structure (so we can align the list of fetch-results with the datasource)
   $.each( explore.datasources, function( index, source ){ // for each active datasource
 
     let d = datasources[ source ];
 
 		if ( explore.page === 1 ){ // on first page
-
 
       if ( d.protocol === 'sparql' ){ // SPARQL-fetch: first set the "count url"
 
@@ -11767,22 +7946,18 @@ async function fetchDatasources(){
 
       if ( struct[index].count ){ // count-query-fetch-result (SPARQL only)
 
-        // TODO: How to make this count-value-check dynamic?
-        if ( r.results?.bindings[0]?.count?.value ){ // Wikidata count value
+        let d = datasources[ struct[index].name ];
 
-          if ( r.results.bindings[0].count.value > 0 ){
+        if ( valid( d.code_count ) ){
 
-            datasources[ struct[index].name ].total = r.results.bindings[0].count.value;
-
-          }
+          eval( `${ d.code_count }` );
 
         }
 
       }
       else { // normal data-fetch
 
-          // TODO: How to make this count-value-check dynamic?
-          if ( r.query?.searchinfo?.totalhits ){ // Wikipedia count value
+          if ( r.query?.searchinfo?.totalhits ){
 
             if ( r.query.searchinfo.totalhits > 0 ){
 
@@ -12180,118 +8355,6 @@ async function addToMapCompare( url ) {
 
 }
 
-
-async function showMapCompare( ) {
-
-  let message = '';
-
-  if ( explore.map_compares.length >= 1 ){
-
-    let queries = [];
-
-    $.each( explore.map_compares, function( i, url_ ) {
-
-      let item = {
-        url   : url_,
-        title : 'foo',
-      };
-
-      queries.push( item );
-
-    });
-
-    queries = encodeURIComponent( JSON.stringify( queries ) );
-
-    //explore.custom = explore.compares;
-
-    handleClick({
-      id        : 'n1-0',
-      type      : 'link',
-      title     : explore.q.trim(),
-      language  : explore.language,
-      qid       : '',
-      url       : encodeURIComponent( `${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=&title=&query=${queries}` ),
-      tag       : '',
-      languages : '',
-      //ids     : explore.compares.join(), // TODO should we only pass this data to ONE field?
-      //custom  : explore.compares.join(),
-      target_pane : 'p1',
-    });
-
-    explore.custom = '';
-
-    message = 'showing map comparison of ' + explore.map_compares.length + ' topics';
-
-  }
-  //else {
-  //  message = 'Add at least one other topic to view the map comparision';
-  //}
-
-  $.toast({
-    heading: '<span class="icon"><i class="fa-solid fa-plus" title="add to map compare"></i></span> &nbsp; topic added to map compare list',
-    text: message,
-    hideAfter : 5000,
-    showHideTransition: 'slide',
-    icon: 'success',
-    stack: 1,
-  })
-
-}
-
-async function queryLocationTypeInstances( qid, country_qid ) {
-
-  qid = qid.trim();
-  country_qid = country_qid.trim();
-
-  if ( !qid.startsWith('Q') ){ qid  = 'Q' + qid; }
-  if ( !country_qid.startsWith('Q') ){ country_qid    = 'Q' + country_qid; }
-
-  let query_json = '{"conditions"%3A[{"propertyId"%3A"P31"%2C"propertyDataType"%3A"wikibase-item"%2C"propertyValueRelation"%3A"matching"%2C"referenceRelation"%3A"regardless"%2C"value"%3A"' + qid + '"%2C"subclasses"%3Atrue%2C"conditionRelation"%3Anull%2C"negate"%3Afalse}%2C{"propertyId"%3A"P17"%2C"propertyDataType"%3A"wikibase-item"%2C"propertyValueRelation"%3A"matching"%2C"referenceRelation"%3A"regardless"%2C"value"%3A"' + country_qid + '"%2C"subclasses"%3Atrue%2C"conditionRelation"%3A"and"%2C"negate"%3Afalse}]%2C"limit"%3A10%2C"useLimit"%3Atrue%2C"omitLabels"%3Afalse}';
-
-  let json_url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?itemDescription%20WHERE%20%7B%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%2Cen%2Ces%2Cfr%2Cde%2Cit%2Cru%2Cja%2Czh%2Cfa%2Car%2Cnl%2Cca%2Cel%22.%20%7D%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20?item%20WHERE%20%7B%0A%20%20%20%20%20%20?item%20p:P31%20?statement0.%0A%20%20%20%20%20%20?statement0%20(ps:P31/(wdt:P279*))%20wd:' + qid + '.%0A%20%20%20%20%20%20?item%20p:P17%20?statement1.%0A%20%20%20%20%20%20?statement1%20(ps:P17)%20wd:' + country_qid + '.%0A%20%20%20%20%7D%0A%20%20%20%20ORDER%20BY%20%3FitemLabel%0A%20OFFSET%200%20LIMIT%2010%0A%20%20%7D%0A%7D';
-
-  console.log( json_url );
-
-  runQuery( query_json, json_url  );
-
-}
-
-async function queryParentTaxonInstances( qid ) {
-
-  qid = qid.trim();
-
-  if ( !qid.startsWith('Q') ){
-
-    qid = 'Q' + qid;
-
-  }
-
-  let query_json = '{\"conditions\":[{\"propertyId\":\"P171\",\"propertyDataType\":\"wikibase-item\",\"propertyValueRelation\":\"matching\",\"referenceRelation\":\"regardless\",\"value\":\"Q185194\",\"subclasses\":true,\"conditionRelation\":null,\"negate\":false}],\"limit\":10,\"useLimit\":true,\"omitLabels\":false}';
-
-  let json_url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?itemDescription%20WHERE%20%7B%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22' + explore.language + '%2Cen%2Ces%2Cfr%2Cde%2Cit%2Cru%2Cja%2Czh%2Cfa%2Car%2Cnl%2Cca%2Cel%22.%20%7D%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20?item%20WHERE%20%7B%0A%20%20%20%20%20%20?item%20p:P171%20?statement0.%0A%20%20%20%20%20%20?statement0%20(ps:P171/(wdt:P171*))%20wd:' + qid + '.%0A%20%20%20%20%7D%0A%20%20%20%20ORDER%20BY%20%3FitemLabel%0A%20OFFSET%200%20LIMIT%2010%0A%20%20%7D%0A%7D';
-
-  runQuery( query_json, json_url  );
-
-}
-
-async function queryClassInstances( qid ) {
-
-  qid = qid.trim();
-
-  if ( !qid.startsWith('Q') ){
-
-    qid = 'Q' + qid;
-
-  }
-
-  let query_json = '{\"conditions\":[{\"propertyId\":\"P31\",\"propertyDataType\":\"wikibase-item\",\"propertyValueRelation\":\"matching\",\"referenceRelation\":\"regardless\",\"value\":\"' + qid + '\",\"subclasses\":true,\"conditionRelation\":null,\"negate\":false}],\"limit\":10,\"useLimit\":true,\"omitLabels\":false}';
-
-  let json_url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?itemDescription%20WHERE%20%7B%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22' + explore.language + '%2Cen%2Ces%2Cfr%2Cde%2Cit%2Cru%2Cja%2Czh%2Cfa%2Car%2Cnl%2Cca%2Cel%22.%20%7D%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20?item%20WHERE%20%7B%0A%20%20%20%20%20%20?item%20p:P31%20?statement0.%0A%20%20%20%20%20%20?statement0%20(ps:P31)%20wd:' + qid + '.%0A%20%20%20%20%7D%0A%20%20%20%20ORDER%20BY%20%3FitemLabel%0A%20OFFSET%200%20LIMIT%2010%0A%20%20%7D%0A%7D';
-
-  runQuery( query_json, json_url  );
-
-}
-
 function getSearchValue( string ) {
 
   if ( string !== undefined ){
@@ -12311,6 +8374,23 @@ function goExplore( title ){
 	handleClick({ 
 		id        : 'n1-0',
 		type      : 'explore',
+		title     : title,
+		language  : explore.language,
+		qid       : '',
+		url       : '',
+		tag       : '',
+		languages : '',
+		custom    : '',
+    target_pane : 'p1',
+	});
+
+}
+
+function updateSidebar( title ){
+
+	handleClick({ 
+		id        : 'n1-0',
+		type      : 'articles',
 		title     : title,
 		language  : explore.language,
 		qid       : '',
@@ -12362,7 +8442,11 @@ function pauseSpeaking(){
 
 async function stopSpeaking(){
 
-  explore.synth.cancel();
+  if ( valid( explore.synth ) ){
+
+    explore.synth.cancel();
+
+  }
 
 }
 
@@ -12388,7 +8472,7 @@ function startSpeakingArticle( title, qid, language ){
 
     explore.synth_paused = false;
 
-    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
+    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
   else { // resume existing utterence
@@ -12437,11 +8521,12 @@ function stopSpeakingArticle(){
 
 async function startSpeaking( text ){
 
-  if ( explore.synth.speaking ){
+  if ( explore.synth?.speaking ){
 
     stopSpeaking(); // already speaking, so stop speaking first
 
   }
+
 
   if ( valid( text ) ){ // speak full article
 
@@ -12451,17 +8536,21 @@ async function startSpeaking( text ){
 
   //console.log( text );
 
-  let utterance = new SpeechSynthesisUtterance( text );
+  if( valid( window['speechSynthesis'] ) ) {
 
-  utterance.lang  = explore.voice_code;
-  utterance.rate  = explore.voice_rate;
-  utterance.pitch = explore.voice_pitch;
+    let utterance = new SpeechSynthesisUtterance( text );
 
-  if ( explore.synth.speaking ){
-    // do nothing, already speaking
-  }
-  else {
-    explore.synth.speak( utterance );
+    utterance.lang  = explore.voice_code;
+    utterance.rate  = explore.voice_rate;
+    utterance.pitch = explore.voice_pitch;
+
+    if ( explore.synth.speaking ){
+      // do nothing, already speaking
+    }
+    else {
+      explore.synth.speak( utterance );
+    }
+
   }
 
 }
@@ -12545,7 +8634,7 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
       /*
       const buttons =
         '<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></span>';
-        //'<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="wikipedia" aria-label="wikipedia"' + setOnClick( Object.assign({}, args, { type: 'wikipedia', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-brands fa-wikipedia-w" style="position:relative;"></i></span></span>';
+        //'<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="wikipedia" aria-label="wikipedia"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-brands fa-wikipedia-w" style="position:relative;"></i></span></span>';
       */
 
       item
@@ -12568,7 +8657,7 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
           '<ul class="catmore multi-value" name="' + args.target + '">' +
             '<li><span class="mv-extra-buttons noindent">' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article"' + setOnClick( Object.assign({}, args, { type: 'wikipedia', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-align-justify" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-align-justify" style="position:relative;"></i></span></a>' +
 
               '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
 
@@ -12600,231 +8689,6 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
 
 });
 
-async function getQidsFromTitles( titles ){
-
-  let qids = [];
-  let titles_param = '';
-
-  titles.forEach(function( title ) {
-
-    titles_param += '|' + encodeURIComponent( title );
-
-  });
-
-  console.log( titles_param.substring(1) );
-  
-  // TODO
-  /*
-  const url = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&titles=' + title + '&format=json';
-
-  try {
-
-    const data = await $.ajax({
-        url: url,
-        type: 'GET',
-        jsonp: "callback",
-        dataType: "jsonp",
-    });
-
-		if ( typeof data.query.pages[ Object.keys( data.query.pages)[0] ] === undefined ){
-
-			console.log( 'no Qid found for this title: ', title );
-
-		}
-		else {
-
-			qid = data.query.pages[ Object.keys( data.query.pages)[0] ].pageprops.wikibase_item;
-
-			//console.log( qid );
-
-		}
-
-    return qid;
-
-  }
-  catch ( error ) {
-
-		console.error('Qid fetch error: ' + title, error );
-
-  }
-  */
-
-}
-
-async function getQidFromTitle( title ){
-
-  let qid = '';
-
-  const url = 'https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&titles=' + title + '&format=json';
-
-  try {
-
-    const data = await $.ajax({
-        url: url,
-        type: 'GET',
-        jsonp: "callback",
-        dataType: "jsonp",
-    });
-
-		if ( typeof data.query.pages[ Object.keys( data.query.pages)[0] ] === undefined ){
-
-			console.log( 'no Qid found for this title: ', title );
-
-		}
-		else {
-
-			qid = data.query.pages[ Object.keys( data.query.pages)[0] ].pageprops.wikibase_item;
-
-		}
-
-    return qid;
-
-  }
-  catch ( error ) {
-
-		console.error('Qid fetch error: ' + title, error );
-
-  }
-
-}
-
-async function showTopicCard( args ){ // creates the "onclick"-string for most dynamic-content links / buttons
-
-  if ( typeof args === 'string' ){ // args is a string
-
-    if ( args.startsWith('%7B%') ){ // args is an encoded string
-
-      args = JSON.parse( decodeURIComponent( args ) ); // decode args-string
-
-    }
-
-  }
-
-  const qid = await getQidFromTitle( args.title );
-
-	if ( isQid( qid ) ){
-
-		//console.log('show topic card for: ', qid, args.title, args );
-
-		// TODO
-		//getWikidata( qid );
-
-		/*
-		const id  = 'n' + explore.page + '-' + qid;
-
-		args.id			= id;
-		args.qid		= qid;
-		args.pid		= 'p' + explore.page;
-		args.title	= decodeURIComponent( args.title );
-		args.item		= { qid : qid };
-
-		args = { 
-			id            : id,
-			language      : explore.language,
-			qid           : qid,
-			pid           : 'p' + explore.page,
-			thumbnail     : '',
-			title         : title,
-			snippet       : '...',
-			extra_classes : '',
-			item          : item,
-			custom        : '',
-			source        : 'raw',
-		}
-		*/
-
-    //setWikidata( args.item, qid, true, 'p1', afterSetWikidata );
-
-		/*
-		const card_html = createItemHtml( args );
-
-		const sel = '#cat-' + hashCode( args.title  );
-
-		console.log( sel );
-
-		$( sel ).append( card_html );
-
-		//console.log( card_html );
-		*/
-
-	}
-
-}
-
-function getWikidata( qid ){
-  
-  //let item_ = ''; // used for the single return value
-
-  const wikidata_url = window.wbk.getEntities({
-    ids: [ qid ],
-    redirections: false,
-  })
-
-  //wbk.simplify.claims( entity.claims, { keepQualifiers: true })
-
-  // get wikidata json
-  fetch( wikidata_url )
-
-    .then( response => response.json() )
-    .then( window.wbk.parse.wd.entities )
-    //.then( data => window.wbk.simplify.entities(data.entities, { keepQualifiers: true } ))
-    .then( entities => {
-
-      //console.log( entities )
-
-      let item = { qid : qid };
-
-      // detect the relevant wikidata-data and put this info into the item
-      setWikidata( item, item.qid, true, 'p0', afterSetWikidata ); // TODO: use target_pane?
-
-  })
-
-}
-
-function afterSetWikidata( item ){
-
-	console.log( item );
-
-	return 0;
-
-}
-
-function setOnClickTopicCard( args ){ // creates the "onclick"-string for most dynamic-content links / buttons
-
-  delete args.item; // remove unneeded data
-
-  return ' onclick="showTopicCard( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" ';
-
-}
-
-async function insert_audio_chat_app(){
-
-  if ( $('#audio-chat-app').length === 0 ){ // check if app was already inserted
-
-    //$('#audio-chat-app-container').html( '<iframe id="audio-chat-app" src="https://jam.systems/Conzept" allow="microphone *;" width="90%" height="500"> </iframe>' );
-
-    const url = 'https://jam.systems/Conzept';
-
-    const min_height = explore.isMobile ? '300px' : '500px';
-
-    const html = '<ul class="multi-value"><li class="resizer"><iframe class="inline-iframe resized" style="min-height: ' + min_height + '; border:none;" src="' + url + '" width="100%" height="100%" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen allow-downloads allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock title="embedded widget: URL-content" role="application"></iframe></li></ul>'; 
-
-    $( '#audio-chat-app-container' ).html( html );
-
-  }
-
-}
-
-async function insert_MIDI_app(){
-
-  if ( $('#midi-music-app').length === 0 ){ // check if app was already inserted
-
-    $('#midi-music-app-container').html( '<p id="midi-music-app" class="mv-content"><ul class="multi-value"><li class="resizer"><iframe class="inline-iframe resized" title="embedded MIDI music app" role="application" style="min-height: 600px" src="https://mmontag.github.io/chip-player-js/?p=/browse" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="100%" height="100%" loading="lazy"></iframe></li></ul></p>' );
-
-  }
-
-}
-
 function stateResetCheck( event ){
 
   // discern user-click from synthetic-click
@@ -12834,6 +8698,235 @@ function stateResetCheck( event ){
     explore.hash    = '';
     explore.commands = '';
 
+  }
+
+}
+
+// fetch the list of voices and populate the voice options.
+function reloadVoices() {
+
+	if ('speechSynthesis' in window) {
+
+		// get the available voices.
+		let voices = window.speechSynthesis.getVoices();
+
+		$('#voices').empty();
+
+		$('#voices').append( `<option value="${explore.voice_code}"></option>` ); 
+
+		voices.forEach(function(voice, i) {
+
+			if ( voice.lang.startsWith( explore.language ) ){
+
+				$('#voices').append( `<option value="${voice.lang}">${voice.name}</option>` ); 
+
+			}
+
+		});
+
+    // use user-preference if the language matches
+    if ( explore.voice_code_selected.startsWith( explore.language ) ){
+
+      $('#voices option[value=' + explore.voice_code_selected + ']').attr('selected','selected');
+
+    }
+
+	}
+
+}
+
+async function setupAmbientAudio(){
+
+	let randomize = true;
+
+	Array.prototype.shuffle = function() {
+
+		let input = this;
+
+		for ( let i = input.length-1; i >=0; i-- ) {
+
+			let randomIndex = Math.floor(Math.random()*(i+1));
+			let itemAtIndex = input[randomIndex];
+
+			input[randomIndex] = input[i];
+			input[i] = itemAtIndex;
+
+		}
+
+		return input;
+
+	}
+
+  const supportsAudio = !! document.createElement('audio').canPlayType;
+
+  if ( supportsAudio ){
+
+    let keys = [];
+
+    for (let key in PLAYLIST){
+      keys.push(key);
+    }
+
+    if (randomize){
+      keys = keys.shuffle();
+    }
+
+    let tracks = [];
+
+    for (let i = 0; i < keys.length; i++) {
+      tracks = tracks.concat( PLAYLIST[ keys[i] ] );
+    }
+
+    let index = 0,
+
+      playing = false,
+
+      buildPlaylist = $.each(tracks, function(key, value) {
+
+        let trackNumber = key,
+          trackName = value.name,
+          trackLength = value.length;
+
+        if (trackNumber.toString().length === 1) {
+          trackNumber = '0' + trackNumber;
+        }
+        else {
+          trackNumber = '' + trackNumber;
+        }
+
+        $('#plList').append('<li><div class="plItem"><div class="plNum">' + trackNumber + '.</div><div class="plTitle" tabindex="0">' + trackName + '</div><div class="plLength">' + trackLength + '</div></div></li>'); 
+
+      }),
+
+      trackCount = tracks.length,
+      npAction = $('#npAction'),
+      npTitle = $('#npTitle'),
+
+      audio = $('#audio1').bind('play', function() {
+
+        playing = true;
+        npAction.text('Now Playing...');
+
+      })
+
+      .bind('pause', function() {
+
+        playing = false;
+        npAction.text('Paused...');
+
+      })
+
+      .bind('ended', function() {
+
+        npAction.text('Paused...');
+
+        if ((index + 1) < trackCount) { // still more tracks to play
+
+          if ( explore.autoplay ) {
+
+            index++;
+            loadTrack(index);
+            audio.play();
+
+          }
+
+        }
+        else {
+
+          audio.pause();
+          index = 0;
+          loadTrack(index);
+
+        }
+      })
+      .get(0),
+
+      btnPrev = $('#btnPrev').click(function() {
+
+        if ((index - 1) > -1) {
+
+          index--;
+          loadTrack(index);
+
+          if (playing) {
+            audio.play();
+          }
+
+        }
+        else {
+
+          audio.pause();
+          index = 0;
+          loadTrack(index);
+
+        }
+
+      }),
+
+      btnNext = $('#btnNext').click(function() {
+
+        if ((index + 1) < trackCount) {
+
+          index++;
+          loadTrack(index);
+
+          if (playing) {
+
+            audio.play();
+
+          }
+
+        }
+        else {
+
+          audio.pause();
+          index = 0;
+          loadTrack(index);
+
+        }
+
+      }),
+
+      li = $('#plList li').click(function() {
+
+        let id = parseInt($(this).index());
+
+        if (id !== index) {
+
+          playTrack(id);
+
+        }
+
+      }),
+
+      loadTrack = function(id) {
+
+        $('.plSel').removeClass('plSel');
+        $('#plList li:eq(' + id + ')').addClass('plSel');
+
+        npTitle.text(tracks[id].name);
+        index = id;
+        audio.src = tracks[id].file;
+
+      },
+
+      playTrack = function(id) {
+
+        loadTrack(id);
+        audio.play();
+
+      };
+
+    if ( explore.autoplay ) {
+
+      playTrack(index);
+
+    }
+    else {
+
+      loadTrack(index);
+
+    }
   }
 
 }

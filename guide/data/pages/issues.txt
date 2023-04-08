@@ -1,10 +1,5 @@
 ====== issues ======
 
-=====  container based install =====
-
-  * **Create a [[explore>Docker (software)|Docker container]]** to make the install process a lot easier. Help needed here!
-
-  * What about NixOS packaging? I've heard we can create Docker images from this packaging. (My current VPS does not support NiXOS however)
 
 =====  browser navigation =====
 
@@ -15,6 +10,13 @@
   * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
     * There is a need to have a better workflow & tooling to help with debugging these URL-issues.
 
+  * Allow for **datasources activation via an URL parameter** (so these searches can be linked to) and store these in a cookie.
+
+  * Add **persistent-linking to inline-views**
+    * When clicked on headline/section fields, set the fragment-parameter in the URL
+    * When a URL with a fragment is loaded, upon up the inline-view.
+    * Note: Make sure the used IDs are robust and durable.
+
   * **URL hash handling**
     * Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.
     * Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)
@@ -22,13 +24,11 @@
 
 ===== mobile browser compatibility and usability =====
 
-  * Fix bugs in mobile panel loading/clearing
-
-  * Cold-startup time (upon first use) is quite slow - sometimes more than 10-20 seconds on low-bandwidth networks
+  * Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.
 
   * The Apple iOS mobile browser needs more UX testing & fixing.
 
-  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices. Currently it has no ToC.
+  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
 
 
 
@@ -37,39 +37,36 @@
 
   * Accessibility (including keyboard-access) should be assessed and improved where needed.
     * Integrate an automated accessibility test system.
-    * Look into the [[https://www.carbondesignsystem.com/developing/frameworks/web-components|IBM Carbon]] web-component framework for accessible replacements (when needed)
+    * Maybe look into a web-component framework for accessible replacements (when needed).
 
   * Integrate an automated testing system.
 
   * Get more UX feedback from real users.
 ===== admin-dev workflows =====
 
-  * Make [[terms#topic_headline|topic-headline]] fields definable in the "[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|field.js]]" file.
+  * Improve the workflow for adding [[integrating_an_api|API integrations]].
+  * Improve the workflow for adding [[datasources]].
 
-  * Improve the workflow for [[integrating_an_api|adding API integrations]].
-
-===== field localization =====
+===== fields =====
 
   * Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
     * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
 
-  * Cleanup design any remaining inconsistencies of the field definitions.
+  * Clean up any issues with field definitions:
+    * Turn the the inline-API field-structure into an object (instead of a string)?
 ===== Wikidata/Wikipedia issues encountered =====
 
   * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with "GROUP BY")
   * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using wikibase-sdk (with claims).
-  * Integrating Wikidata localization data for properties.
-  * Abandoned Wikidata-based applications.
-  * Wikipedia: Image-loading blocking sometimes ("too many image requests")
+  * Abandoned Wikidata-based tools.
+  * Wikipedia: Image-loading failing sometimes ("too many image requests")
 
-===== other =====
+===== various =====
 
   * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
+
   * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
-
 ===== europeana notes =====
-
-  * FIXME: something broke the app as of October 2022.
 
   * Conzept currently uses the Europeana APIs for:
     * The **[[https://conze.pt/explore/Hendrick%20Avercamp?l=nl&t=link&i=Q212593&u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Hendrick%2520Avercamp%2522%26l%3Dnl%26t%3Dimages&s=true#|Europeana item viewer app]]** (REST API, [[https://github.com/petropok/europeanaproj/blob/main/public/scripts/search.js#L30-L117|not sparql]]) (code based on [[https://github.com/petropok/europeanaproj|this project]])

@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html id="page">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>View It!</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Conzept: Wikimedia Commons</title>
+    <link rel="stylesheet" href="css/style.css?v003">
     <meta name="description" content="The View It! tool lets you look up images related to a subject on Wikipedia."/>
-    <meta property="og:site_name" content="View It!"/>
-    <meta property="og:url" content="https://view-it.toolforge.org"/>
+    <meta property="og:site_name" content="Wikimedia Commons viewer"/>
+    <!--meta property="og:url" content="https://view-it.toolforge.org"/-->
     <meta property="og:description" content="The View It! tool lets you look up images related to a subject on Wikipedia."/>
 
     <!-- conzept resources -->
     CONZEPT_COMMON_HTML_INCLUDE
 
-    <script src="../explore2/libs/TinyGesture.js"></script>
-    <script src="../explore2/libs/lc/js/lc_lightbox.lite.js"></script>
-    <link rel="stylesheet" href="../explore2/libs/lc/css/lc_lightbox.min.css" />
-    <link rel="stylesheet" href="../explore2/libs/lc/skins/minimal.css" />
+    <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
+
+    <script src="../explore2/libs/lc/dist/js/lc_lightbox.lite.js"></script>
+    <link rel="stylesheet" href="../explore2/libs/lc/dist/css/lc_lightbox.css" />
+    <link rel="stylesheet" href="../explore2/libs/lc/dist/css/skins/minimal.css" />
     <script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
 
-    <script src="src/index.js"></script> 
+    <script src="src/index.js?v002"></script> 
     <script src="src/zooming.js"></script> 
   </head>
 
   <body>
     <div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
+
+    <img id="loader" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
+
     <!--div id="splash" class="splash">
       <div>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/View_it%21_Tool_%28transparent%29.png/240px-View_it%21_Tool_%28transparent%29.png" alt="View it!" width="150px">
@@ -57,10 +61,11 @@
         <small><span id="numResults">?</span> <a href="https://commons.wikimedia.org">Wikimedia Commons</a></small>
         <br /><br />
       </div>
-      <a id="returnToLink" href="">
-        <button>Return to article</button>
-      </a>
+      <a id="returnToLink" href=""> <button>Return to article</button> </a>
     </div>
+
+    <br/><br/><br/><div style="margin-bottom: 3rem;"></div>
+
   </body>
 </html>
 

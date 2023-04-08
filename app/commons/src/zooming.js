@@ -70,4 +70,3 @@ function fullyLoadedHandler() {
   $('#loader-openseadragon').hide();
 
 }
-

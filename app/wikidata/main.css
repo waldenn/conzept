@@ -64,6 +64,10 @@ div.mainbar thead {
 	margin-right: 5px;
 }
 
+#loader {
+  display: none;
+}
+
 .manual_description {
   font-size: 1.3em;
   font-weight: bold;

@@ -1,57 +1,5 @@
 var conzept_tags = {
 
-/*
-
-  1: set topic tags (tag1, tag2)
-  2: set icon for that tag
-
-  main subjects (classification guide):
-    academic disciplines
-    business
-    concepts
-    crime
-    culture
-    economy
-    education
-    energy
-    engineering
-    entertainment
-    events
-    food and drink
-    geography
-    government
-    health
-    history
-    human behavior
-    humanities
-    industry
-    knowledge
-    language
-    law
-    life
-    mass media
-    mathematics
-    military
-    mind
-    music
-    nature
-    objects
-    organizations
-    people
-    philosophy
-    policy
-    politics
-    religion
-    science
-    society
-    sports
-    technology
-    universe
-    world
-
-*/
-
-
 // raw-query-string topic
 
   "raw-query-string" : {
@@ -115,6 +63,22 @@ var conzept_tags = {
         text : "mountain",
         icon : ["fa-solid fa-mountain"],
       },
+      "watercourse" : {
+        text : "watercourse",
+        icon : ["fa-solid fa-water"],
+      },
+      "road" : {
+        text : "road",
+        icon : ["fa-solid fa-road"],
+      },
+      "itinerary" : {
+        text : "itinerary",
+        icon : ["fa-solid fa-shuffle"],
+      },
+      "railway-station" : {
+        text : "railway station",
+        icon : ["fa-solid fa-train"],
+      },
     },
   },
 
@@ -122,6 +86,11 @@ var conzept_tags = {
     text : "time / period / event",
     icon : ["fa-regular fa-clock"],
     sub : {
+      "period" : {
+        text : "period",
+        icon : ["fa-regular fa-clock"],
+        //icon : ["fa-solid fa-arrows-left-right-to-line"],
+      },
       "accident" : {
         text : "accident",
         icon : ["fa-solid fa-bolt"],
@@ -135,9 +104,21 @@ var conzept_tags = {
     text : "human organization",
     icon : ["fa-regular fa-handshake"],
     sub : {
+      "company" : {
+        text : "company",
+        icon : ["fa-solid fa-users-rectangle"],
+      },
       "business-chain" : {
         text : "business chain",
         icon : ["fa-solid fa-store"],
+      },
+      "university" : {
+        text : "university",
+        icon : ["fa-solid fa-building-columns"],
+      },
+      "national-library" : {
+        text : "national library",
+        icon : ["fa-solid fa-landmark-flag"],
       },
       "museum" : {
         text : "museum",
@@ -209,6 +190,10 @@ var conzept_tags = {
       "video-game" : {
         text : "video game",
         icon : ["fa-solid fa-gamepad"],
+      },
+      "music-instrument" : {
+        text : "music release",
+        icon : ["fa-solid fa-guitar"],
       },
       "music" : {
         text : "music release",
@@ -282,6 +267,10 @@ var conzept_tags = {
         text : "field-of-work or role",
         icon : ["fa-regular fa-address-card"],
       },
+      //"occupation" : {
+      //  text : "occupation",
+      //  icon : ["fa-solid fa-people-line"],
+      //},
      "rank" : { // TODO: may need some more thought/accuracy/work
         text : "position rank",
         icon : ["fa-regular fa-address-card"],
@@ -302,10 +291,6 @@ var conzept_tags = {
         text : "educational concept",
         icon : ["fa-solid fa-graduation-cap"],
       },
-      "road" : {
-        text : "road",
-        icon : ["fa-solid fa-road"],
-      },
       "network" : {
         text : "network",
         icon : ["fa-solid fa-network-wired"],
@@ -322,6 +307,7 @@ var conzept_tags = {
         text : "form of governement",
         icon : ["fa-solid fa-users-between-lines"],
       },
+
     },
   },
 
@@ -355,7 +341,7 @@ var conzept_tags = {
         text : "reptile",
         icon : ["oma oma-black-lizard"],
       },
-      "plant" : {
+      "plant" : { // includes trees
         text : "plant",
         icon : ["fa-brands fa-pagelines"],
       },
@@ -373,6 +359,10 @@ var conzept_tags = {
      "periodic-table-element" : {
         text : "periodic table element",
         icon : ["fa-brands fa-react"],
+      },
+     "protein" : {
+        text : "protein",
+        icon : ["fa-solid fa-dna"],
       },
      "chromosome" : {
         text : "chromosome",
@@ -480,12 +470,8 @@ var conzept_tag_names = Object.entries( conzept_tags );
 
 /*
 
-steps for un-classified topics:
-  - first get the "tag1"
-  - then optionally set the "tag2"
-  - ...
+main subjects (version A):
 
-main subjects:
   crime
   ?culture
   energy
@@ -506,6 +492,50 @@ main subjects:
   religion
   science
   society
+  technology
+  universe
+  world
+
+main subjects (version B)
+  academic disciplines
+  business
+  concepts
+  crime
+  culture
+  economy
+  education
+  energy
+  engineering
+  entertainment
+  events
+  food and drink
+  geography
+  government
+  health
+  history
+  human behavior
+  humanities
+  industry
+  knowledge
+  language
+  law
+  life
+  mass media
+  mathematics
+  military
+  mind
+  music
+  nature
+  objects
+  organizations
+  people
+  philosophy
+  policy
+  politics
+  religion
+  science
+  society
+  sports
   technology
   universe
   world

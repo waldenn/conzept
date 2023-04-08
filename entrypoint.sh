@@ -3,8 +3,6 @@
 
 [ "${DEBUG:-false}" == true ] && set -x
 
-
-
 initialize_system() {
   echo "Initializing Conzept container ..."
 

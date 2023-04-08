@@ -58,6 +58,7 @@
     "sunzi-color-thief": "^2.3.0",
     "swiper": "^7.3.0",
     "tinygesture": "^1.1.4",
-    "urijs": "^1.19.7"
+    "urijs": "^1.19.7",
+    "web-share-wrapper": "^0.2.2"
   }
 }

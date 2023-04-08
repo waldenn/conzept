@@ -20,13 +20,13 @@ Autocompletion of the Scheme-based command-language symbols (including the Wikid
   * To have **a good command API ([[explore>Domain-specific language|DSL]]) and command editor, for creating entity and media processing workflows** in Conzept.
 
   * The DSL should be usable for:
-    * [[explore>Data analysis]]
-    * [[explore>Data visualization]]
-    * [[explore>Storytelling]]
-    * [[explore>Education]]
+    * [[explore>Data analysis]] (not supported yet)
+    * [[explore>Data visualization]] (supported)
+    * [[explore>Storytelling]] (some support: presentations)
+    * [[explore>Education]] (not supported yet: gradual learning, experiences and quizzes)
 
   * Design priorities:
-    * useful
+    * **useful**
     * intuitive, **simple**, elegant
     * **composable**, coherent
     * robust, durable

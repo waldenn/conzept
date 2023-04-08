@@ -10,6 +10,8 @@
   * Released under the MIT license
   */
  
+let my_current_image = '';
+
 (function ($) {
 	lcl_objs 		= []; // array containing all initialized objects - useful for deeplinks
 	
@@ -43,12 +45,14 @@
 
 				'<div class="lcl_icon lcl_right_icon lcl_close" title="close"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_fullscreen" title="toggle fullscreen"></div>'+
-				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+ // CONZEPT PATCH
+				'<div class="lcl_icon lcl_right_icon lcl_filters_toggle toggle_menu" title="toggle filters"></div>'+
+				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
+				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_txt_toggle" title="toggle text"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_download" title="download"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_thumbs_toggle" title="toggle thumbnails"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_socials" title="toggle socials"></div>'+
-				'<div class="lcl_icon lcl_right_icon lcl_openseadragon" title="image zoom"></div>'+ // CONZEPT PATCH
+				'<div class="lcl_icon lcl_right_icon lcl_openseadragon" title="image zoom"></div>'+
 			'</div>'+
 			'<div id="lcl_contents_wrap">'+
 				'<div id="lcl_subj">'+
@@ -59,6 +63,33 @@
 		'</div>'+
 		'<div id="lcl_thumbs_nav" class="lcl_pre_tn_scroll"></div>'+
 		'<div id="lcl_overlay"></div>'+
+
+    '<div id="imageColorQuantization" style="display:none;">' +
+      '<canvas id="quantize-canvas" style="display:none;"></canvas>' +
+      '<div id="quantize-title">color palette</div>' +
+      '<div id="palette"></div>' +
+      '<div id="complementary" style="display:none;"></div>' +
+    '</div>' +
+
+    '<div id="mainImageEditArea" style="display:none;">' +
+      '<div id="mainImage"></div>' +
+      '<div id="filter-title"><p>filters</p></div>' +
+      '<div id="filter-reset"><div href="javascript:void(0)" onclick="resetFilters()">&#8634; reset</div></div>' +
+      '<div id="imageEditing">' +
+
+        '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>contrast</p><input min="0" max="300" value="100" class="contrast"  unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>saturate</p><input min="0" max="300" value="100" class="contrast"  unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>color rotation</p><input value="0" min="0" max="360" class="hue-rotate" unit="deg" type="range"></div>' +
+        '<div class="filter-input"><p>grayscale</p><input value="0" min="0" class="grayscale" unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>invert</p><input value="0" min="0" class="invert" unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>sepia</p><input value="0" min="0" class="sepia" unit="%" type="range"></div>' +
+        '<div class="filter-input"><p>blur</p><input value="0" min="0" max="10" class="blur" unit="px" type="range"></div>' +
+        '<div class="filter-input"><p>opacity</p><input min="0" value="100" class="opacity" unit="%" type="range"></div>' +
+
+      '</div>' +
+    '</div>' +
+
 	'</div>';
 	
 	
@@ -962,9 +993,10 @@
 			//////
 
 			$('#lcl_subj').removeClass('lcl_switching_el');
+
+			setupFilters();
+
 		};
-		
-		
 		
 		/* element has text ? */
 		var elem_has_txt = function(el) {
@@ -987,6 +1019,12 @@
 			switch(el.type) {
 				case 'image' :
 					$('#lcl_elem_wrap').css('background-image', 'url(\''+ el.src +'\')');
+          my_current_image = el.src;
+
+          //  quantize menu
+          $('#imageColorQuantization').hide();
+          $('#palette').empty();
+
 					break;
 				
 				default : // error message size
@@ -1901,7 +1939,6 @@
 							
 							bg = 'style="background-image: url(\''+ bg_img +'\');"';
 							
-							
 							// if is video - store as vid_poster
 							if( $.inArray(v.type, ['youtube', 'vimeo', 'dailymotion']) !== -1 && !v.poster) {
 								lcl_ai_vars.elems[i].vid_poster = bg_img;		
@@ -2548,7 +2585,7 @@
 		});
 		
 		
-		/* toggle fullscreen via button */
+		/* toggle fullscreen */
 		$(document).on('click', '.lcl_fullscreen', function(e) {
 			if(obj != lcl_curr_obj) {return true;}
 			
@@ -2558,7 +2595,23 @@
 				enter_fullscreen(true);	
 			}
 		});	
-		
+
+		// toggle image-filters
+		$(document).on('click', '.lcl_filters_toggle', function(e) {
+
+      $('#mainImageEditArea').toggle();
+
+		});	
+
+		// toggle image-color-quantization
+		$(document).on('click', '.lcl_filters_image_quantize_toggle', function(e) {
+
+      $('#palette').empty();
+      $('#palette').html('<span style=""><img id="loader2" alt="loading" width="36" height="36" src="/app/explore2/assets/images/loading.gif"/></span>');
+      $('#imageColorQuantization').toggle();
+      quantizeImage();
+
+		});	
 	
 		
 		/* thumbs navigator - toggle */
@@ -2880,3 +2933,453 @@
 		return obj;
 	};
 })(jQuery);
+
+var editValues = [];
+var editNames = [];
+var editUnits = [];
+
+function setupFilters(){
+
+  editValues = [];
+  editNames = [];
+  editUnits = [];
+
+  var allEditInputs = document.getElementById("imageEditing").getElementsByTagName("input");
+
+  for ( var i = 0;i < allEditInputs.length;i++){
+
+    allEditInputs[i].setAttribute("id",i);
+
+    editNames.push(allEditInputs[i].getAttribute("class"));
+    editUnits.push(allEditInputs[i].getAttribute("unit"));
+
+    if ( allEditInputs[i].value == ""){
+
+      allEditInputs[i].value = 0;
+
+    }
+
+    editValues.push(allEditInputs[i].value);
+
+    allEditInputs[i].oninput = function(){
+
+      if ( this.value == "" ){
+        this.value = 0;
+      }
+
+      editValues[this.getAttribute("id")] = this.value;
+
+      updateFilters();
+
+    }
+  }
+}
+
+function updateFilters(){
+
+  var cssCode = '';
+
+  editValues.forEach(function(item,index){
+    cssCode += editNames[index] + "(" + item + editUnits[index] + ") ";
+  });
+
+  //console.log( cssCode );
+
+  var image_el = document.querySelector('#lcl_subj');
+	image_el.style.filter = cssCode;
+
+  var openseadragon_el = document.querySelector('#openseadragon');
+	openseadragon_el.style.filter = cssCode;
+
+}
+
+function resetFilters(){
+
+  $('#imageEditing').html(
+    '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>contrast</p><input min="0" max="300" value="100" class="contrast"  unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>saturate</p><input min="0" max="300" value="100" class="contrast"  unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>color rotation</p><input value="0" min="0" max="360" class="hue-rotate" unit="deg" type="range"></div>' +
+    '<div class="filter-input"><p>grayscale</p><input value="0" min="0" class="grayscale" unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>invert</p><input value="0" min="0" class="invert" unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>sepia</p><input value="0" min="0" class="sepia" unit="%" type="range"></div>' +
+    '<div class="filter-input"><p>blur</p><input value="0" min="0" max="10" class="blur" unit="px" type="range"></div>' +
+    '<div class="filter-input"><p>opacity</p><input min="0" value="100" class="opacity" unit="%" type="range"></div>'
+  );
+
+  setupFilters();
+  updateFilters();
+
+}
+
+const buildPalette = (colorsList) => {
+
+  const paletteContainer = document.getElementById("palette");
+  const complementaryContainer = document.getElementById("complementary");
+  // reset the HTML in case you load various images
+  paletteContainer.innerHTML = "";
+  complementaryContainer.innerHTML = "";
+
+  const orderedByColor = orderByLuminance(colorsList);
+  const hslColors = convertRGBtoHSL(orderedByColor);
+
+  for (let i = 0; i < orderedByColor.length; i++) {
+    const hexColor = rgbToHex(orderedByColor[i]);
+
+    const hexColorComplementary = hslToHex(hslColors[i]);
+
+    if (i > 0) {
+      const difference = calculateColorDifference(
+        orderedByColor[i],
+        orderedByColor[i - 1]
+      );
+
+      // if the distance is less than 120 we ommit that color
+      if (difference < 120) {
+        continue;
+      }
+    }
+
+    // create the div and text elements for both colors & append it to the document
+    const colorElement = document.createElement("div");
+    colorElement.style.backgroundColor = hexColor;
+    colorElement.appendChild(document.createTextNode(hexColor));
+    paletteContainer.appendChild(colorElement);
+    // true when hsl color is not black/white/grey
+    if (hslColors[i].h) {
+      const complementaryElement = document.createElement("div");
+      complementaryElement.style.backgroundColor = `hsl(${hslColors[i].h},${hslColors[i].s}%,${hslColors[i].l}%)`;
+
+      complementaryElement.appendChild(
+        document.createTextNode(hexColorComplementary)
+      );
+      complementaryContainer.appendChild(complementaryElement);
+    }
+  }
+};
+
+//  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
+const rgbToHex = (pixel) => {
+  const componentToHex = (c) => {
+    const hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  };
+
+  return (
+    "#" +
+    componentToHex(pixel.r) +
+    componentToHex(pixel.g) +
+    componentToHex(pixel.b)
+  ).toUpperCase();
+};
+
+/**
+ * Convert HSL to Hex
+ * this entire formula can be found in stackoverflow, credits to @icl7126 !!!
+ * https://stackoverflow.com/a/44134328/17150245
+ */
+const hslToHex = (hslColor) => {
+  const hslColorCopy = { ...hslColor };
+  hslColorCopy.l /= 100;
+  const a =
+    (hslColorCopy.s * Math.min(hslColorCopy.l, 1 - hslColorCopy.l)) / 100;
+  const f = (n) => {
+    const k = (n + hslColorCopy.h / 30) % 12;
+    const color = hslColorCopy.l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+};
+
+/**
+ * Convert RGB values to HSL
+ * This formula can be
+ * found here https://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/
+ */
+const convertRGBtoHSL = (rgbValues) => {
+  return rgbValues.map((pixel) => {
+    let hue,
+      saturation,
+      luminance = 0;
+
+    // first change range from 0-255 to 0 - 1
+    let redOpposite = pixel.r / 255;
+    let greenOpposite = pixel.g / 255;
+    let blueOpposite = pixel.b / 255;
+
+    const Cmax = Math.max(redOpposite, greenOpposite, blueOpposite);
+    const Cmin = Math.min(redOpposite, greenOpposite, blueOpposite);
+
+    const difference = Cmax - Cmin;
+
+    luminance = (Cmax + Cmin) / 2.0;
+
+    if (luminance <= 0.5) {
+      saturation = difference / (Cmax + Cmin);
+    } else if (luminance >= 0.5) {
+      saturation = difference / (2.0 - Cmax - Cmin);
+    }
+
+    /**
+     * If Red is max, then Hue = (G-B)/(max-min)
+     * If Green is max, then Hue = 2.0 + (B-R)/(max-min)
+     * If Blue is max, then Hue = 4.0 + (R-G)/(max-min)
+     */
+    const maxColorValue = Math.max(pixel.r, pixel.g, pixel.b);
+
+    if (maxColorValue === pixel.r) {
+      hue = (greenOpposite - blueOpposite) / difference;
+    } else if (maxColorValue === pixel.g) {
+      hue = 2.0 + (blueOpposite - redOpposite) / difference;
+    } else {
+      hue = 4.0 + (greenOpposite - blueOpposite) / difference;
+    }
+
+    hue = hue * 60; // find the sector of 60 degrees to which the color belongs
+
+    // it should be always a positive angle
+    if (hue < 0) {
+      hue = hue + 360;
+    }
+
+    // When all three of R, G and B are equal, we get a neutral color: white, grey or black.
+    if (difference === 0) {
+      return false;
+    }
+
+    return {
+      h: Math.round(hue) + 180, // plus 180 degrees because that is the complementary color
+      s: parseFloat(saturation * 100).toFixed(2),
+      l: parseFloat(luminance * 100).toFixed(2),
+    };
+  });
+};
+
+/**
+ * Using relative luminance we order the brightness of the colors
+ * the fixed values and further explanation about this topic
+ * can be found here -> https://en.wikipedia.org/wiki/Luma_(video)
+ */
+const orderByLuminance = (rgbValues) => {
+  const calculateLuminance = (p) => {
+    return 0.2126 * p.r + 0.7152 * p.g + 0.0722 * p.b;
+  };
+
+  return rgbValues.sort((p1, p2) => {
+    return calculateLuminance(p2) - calculateLuminance(p1);
+  });
+};
+
+const buildRgb = (imageData) => {
+  const rgbValues = [];
+  // note that we are loopin every 4!
+  // for every Red, Green, Blue and Alpha
+  for (let i = 0; i < imageData.length; i += 4) {
+    const rgb = {
+      r: imageData[i],
+      g: imageData[i + 1],
+      b: imageData[i + 2],
+    };
+
+    rgbValues.push(rgb);
+  }
+
+  return rgbValues;
+};
+
+/**
+ * Calculate the color distance or difference between 2 colors
+ *
+ * further explanation of this topic
+ * can be found here -> https://en.wikipedia.org/wiki/Euclidean_distance
+ * note: this method is not accuarate for better results use Delta-E distance metric.
+ */
+const calculateColorDifference = (color1, color2) => {
+  const rDifference = Math.pow(color2.r - color1.r, 2);
+  const gDifference = Math.pow(color2.g - color1.g, 2);
+  const bDifference = Math.pow(color2.b - color1.b, 2);
+
+  return rDifference + gDifference + bDifference;
+};
+
+// returns what color channel has the biggest difference
+const findBiggestColorRange = (rgbValues) => {
+  /**
+   * Min is initialized to the maximum value posible
+   * from there we procced to find the minimum value for that color channel
+   *
+   * Max is initialized to the minimum value posible
+   * from there we procced to fin the maximum value for that color channel
+   */
+  let rMin = Number.MAX_VALUE;
+  let gMin = Number.MAX_VALUE;
+  let bMin = Number.MAX_VALUE;
+
+  let rMax = Number.MIN_VALUE;
+  let gMax = Number.MIN_VALUE;
+  let bMax = Number.MIN_VALUE;
+
+  rgbValues.forEach((pixel) => {
+    rMin = Math.min(rMin, pixel.r);
+    gMin = Math.min(gMin, pixel.g);
+    bMin = Math.min(bMin, pixel.b);
+
+    rMax = Math.max(rMax, pixel.r);
+    gMax = Math.max(gMax, pixel.g);
+    bMax = Math.max(bMax, pixel.b);
+  });
+
+  const rRange = rMax - rMin;
+  const gRange = gMax - gMin;
+  const bRange = bMax - bMin;
+
+  // determine which color has the biggest difference
+  const biggestRange = Math.max(rRange, gRange, bRange);
+  if (biggestRange === rRange) {
+    return "r";
+  } else if (biggestRange === gRange) {
+    return "g";
+  } else {
+    return "b";
+  }
+};
+
+/**
+ * Median cut implementation
+ * can be found here -> https://en.wikipedia.org/wiki/Median_cut
+ */
+const quantization = (rgbValues, depth) => {
+  const MAX_DEPTH = 4;
+
+  // Base case
+  if (depth === MAX_DEPTH || rgbValues.length === 0) {
+    const color = rgbValues.reduce(
+      (prev, curr) => {
+        prev.r += curr.r;
+        prev.g += curr.g;
+        prev.b += curr.b;
+
+        return prev;
+      },
+      {
+        r: 0,
+        g: 0,
+        b: 0,
+      }
+    );
+
+    color.r = Math.round(color.r / rgbValues.length);
+    color.g = Math.round(color.g / rgbValues.length);
+    color.b = Math.round(color.b / rgbValues.length);
+
+    return [color];
+  }
+
+  /**
+   *  Recursively do the following:
+   *  1. Find the pixel channel (red,green or blue) with biggest difference/range
+   *  2. Order by this channel
+   *  3. Divide in half the rgb colors list
+   *  4. Repeat process again, until desired depth or base case
+   */
+  const componentToSortBy = findBiggestColorRange(rgbValues);
+  rgbValues.sort((p1, p2) => {
+    return p1[componentToSortBy] - p2[componentToSortBy];
+  });
+
+  const mid = rgbValues.length / 2;
+  return [
+    ...quantization(rgbValues.slice(0, mid), depth + 1),
+    ...quantization(rgbValues.slice(mid + 1), depth + 1),
+  ];
+};
+
+const getBlobFromUrl = (myImageUrl) => {
+
+  return new Promise((resolve, reject) => {
+
+    let request = new XMLHttpRequest();
+
+    request.open('GET', myImageUrl, true);
+
+    request.responseType = 'blob';
+
+    request.onload = () => {
+      resolve(request.response);
+    };
+
+    request.onerror = reject;
+    request.send();
+
+  })
+
+}
+
+async function quantizeImage(){
+
+  //const imgFile = document.getElementById("imgfile");
+  const image = new Image();
+  const image_url = my_current_image; //imgFile.files[0];
+  //console.log( image_url );
+
+  const fileReader = new FileReader();
+
+  // Whenever file & image is loaded procced to extract the information from the image
+  fileReader.onload = () => {
+    image.onload = () => {
+
+      // Set the canvas size to be the same as of the uploaded image
+      const canvas = document.getElementById('quantize-canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+
+      /**
+       * getImageData returns an array full of RGBA values
+       * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
+       * (transparency). For array value consistency reasons,
+       * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
+       */
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      // Convert the image data to RGB values so its much simpler
+      const rgbArray = buildRgb(imageData.data);
+
+      /**
+       * Color quantization
+       * A process that reduces the number of colors used in an image
+       * while trying to visually maintin the original image as much as possible
+       */
+      const quantColors = quantization(rgbArray, 0);
+
+      // Create the HTML structure to show the color palette
+      buildPalette(quantColors);
+
+    };
+
+    image.src = fileReader.result;
+
+  };
+
+  try {
+    let myBlob = await getBlobFromUrl( image_url );
+
+    //console.log(myBlob)
+    //let myImageData = await getDataFromBlob(myBlob);
+    //console.log(myImageData)
+
+    fileReader.readAsDataURL( myBlob );
+
+    return myBlob;
+
+  } catch (err) {
+
+    //console.log(err);
+    return null;
+
+  }
+
+};

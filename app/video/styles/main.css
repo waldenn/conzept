@@ -236,6 +236,13 @@ body.dark .toogles-video h3{
   display: none;
 }
 
+#terms-of-service {
+  position: fixed;
+  bottom: 0.5em;
+  background: #fbfaf9;
+  width: 25%;
+}
+
 #wander-to-previous {
   position: absolute;
   right: 55%;
@@ -248,6 +255,15 @@ body.dark .toogles-video h3{
   position: absolute;
   right: 45%;
   bottom: -0.3em;
+  z-index: 9999;
+  color: white;
+}
+
+#wander-youtube-terms {
+  position: absolute;
+  font-size: smaller;
+  right: 25%;
+  bottom: 0.3em;
   z-index: 9999;
   color: white;
 }

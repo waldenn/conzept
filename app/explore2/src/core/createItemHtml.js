@@ -19,14 +19,17 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   let source_icon       = '';
 
+  //console.log( args );
   //console.log( 'datasources: ', datasources, source );
 
   if ( source === 'raw' ){
     source_icon = `<span class="article-title-icon" title="plain string topic">...</span>`;
   }
   else {
+
     //console.log( source, datasources[ source ].name, datasources[ source ].icon );
     source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic">${datasources[ source ].icon }</span>`;
+
   }
 
   let headline_buttons  = []; // list of headline objects
@@ -56,7 +59,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   const date_yyyy_mm_dd = new Date().toISOString().slice(0,10);
 
   let item          = args.item || {};
-  let snippet       = args.snippet;
+  let snippet       = valid( args.snippet )? args.snippet : '';
   let extra_classes = args.extra_classes;
   let custom        = valid ( args.custom )? args.custom : '';
   let subtitle      = valid ( item.subtitle )? args.subtitle : '';
@@ -89,7 +92,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   item.thumbnail = thumbnail; // store so we can use it in field-conditions
 
-  let type_ = 'wikipedia';
+  let type_ = 'string';
 
   if ( valid( item.from_sparql ) ){
 
@@ -788,7 +791,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   let flags = '';
 
-  if ( valid( item.countries ) ){
+  if ( item.countries ){
 
     item.countries.forEach(( country, i ) => { flags += country.flag; }); // collect all flags
 
@@ -807,7 +810,11 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   const headline_button_length = $( $.parseHTML( headline_html ) ).find('i').length; // check how many icons there are
 
-  const hide_headline = ( headline_button_length === 0 ) ? true : false; // if there are no icons, hide the headline
+  let hide_headline = false;
+
+  if ( source === 'wikipedia' ||  source === 'wikidata' ){ // TODO: still needed?
+    hide_headline = ( headline_button_length === 0 ) ? true : false; // if there are no icons, hide the headline
+  }
 
   if ( tag_icon !== '' ){ // set the final identifying icon
 
@@ -861,9 +868,15 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   let current_pane  = 'p0';
 
-  let topic_title   = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="wikipedia"' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
+  let topic_title   = ''
 
   let description   = '';
+
+  // TODO:
+  //  - add datasource filter
+  //  - add Wikidata "qid" to bookmark meteadata as "gid"
+  //  - for Wikidata datasource: check by "gid" also
+  const bookmark_class = findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ? 'bookmarked' : ''; // check if this item was bookmarked
 
   if ( args.id == 'n00' ){ // raw-search-string
 
@@ -872,7 +885,19 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
   }
 
-  if ( valid( item.description ) ){
+  if ( valid( item.display_url ) ){ // assume we can render an embedded page-link
+
+    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+
+  }
+  else { // assume wikipedia / wikidata render
+
+    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
+
+  }
+
+  if ( valid( item.description ) ){ // assume wikipedia / wikidata (FIXME: make this more general)
+
 
     description = '<a href="javascript:void(0)" class="summary-link" aria-label="topic description" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '><div class="topic-description">' + item.description + '</div></a>'; 
 
@@ -916,7 +941,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     description +
     motto_text +
 
-    '<a href="javascript:void(0)" class="summary-link" aria-label="wikipedia" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: 'wikipedia', current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' +
+    '<a href="javascript:void(0)" class="summary-link" aria-label="wikipedia" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: 'string', current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' +
       thumbnail +
       '<div class="summary ' + pid + '">' +
         snippet +

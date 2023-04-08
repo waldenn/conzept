@@ -98,7 +98,7 @@ const explore = {
   // global paging state
   page                : 1, // page number we are on
   wikidata_query      : '',
-  searchmode          : 'wikipedia', // wikipedia or wikidata
+  searchmode          : 'string', // string or wikidata
   totalRecords        : undefined,
   lastContinue        : {}, // object to track the paging state: { sroffset: 20, continue: "-||" }
   firstAction         : true,
@@ -178,9 +178,14 @@ const explore = {
   linkpreview         : undefined,
   darkmode            : undefined,
   bgmode              : undefined,
+
+  // personality options
   personas            : [],
   country             : '',
   country_name        : '',
+  tutors              : CONZEPT_AI_TUTORS.split(',').map( t => t.trim() ),
+  tutor               : undefined,
+
   colorfilter         : undefined,
   covertopic          : undefined,
   locale              : undefined,
@@ -229,9 +234,20 @@ const explore = {
 
   // command-editor
   editor                : ace.edit('editor'),
-  lisp                  : lips.exec,
+  lisp                  : ( typeof lips !== 'undefined' ? lips.exec : undefined ),
+
+  position              : undefined,
+  position_watch_id     : undefined,
+
+  broadcast_channel     : new BroadcastChannel('conzept') || undefined, // see: https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
+
+  openai_enabled        : valid( localStorage.getItem("APIKey") ) ? true : false,
+
 }
 
+if ( explore.type === 'wikipedia' ){ // rewrite legacy 'wikipedia'-type to 'string'-type
+  explore.type = 'string';
+}
 
 if ('serviceWorker' in navigator) {
 
@@ -282,7 +298,7 @@ $( document ).ready( function() {
 
     if ( valid( explore.uri ) ){ // first decode the URL param
 
-      explore.uri = decodeURI( explore.uri );
+      explore.uri = explore.uri.replace(/%253C/g, '<').replace(/%253E/g, '>');
 
     }
 
@@ -322,6 +338,7 @@ $( document ).ready( function() {
     setupOptionColorFilter();
     setupOptionPersonas();
     setupOptionCountry();
+    setupOptionTutor();
     //setupOptionAutocompleteToggle();
     //setupOptionMulticolumn();
     setupOptionLinkPreview();
@@ -334,12 +351,18 @@ $( document ).ready( function() {
 
     setupAutoStopAudio();
 
+    //setupAIChat();
+
     setupEditor();
     setupLispEnv();
 
     // this can trigger the URL-query-search (if there is a URL
     // query parameter) or just displays the cover photo screen
     triggerQueryForm();
+
+		// JSON-bookmark-file upload-event listener
+		let form = document.querySelector('#json-upload');
+		form.addEventListener( 'submit', handleJSONSubmit );
 
     $('#splash').hide();
 

@@ -1,5 +1,7 @@
 ====== field customization ======
 
+[{{ ::section-fields-1.jpg?direct|fields}}]
+
 This section describes what Conzept fields are and how they are structured.
 ===== introduction =====
 
@@ -11,14 +13,16 @@ There are several types of actions a field can trigger:
 
   * **__Open a link in a new browser tab__**. This is sometimes required when the website does not allow being embedded in a 3rd-party iframe or user-authentication is required.
 
-  * Inline view in the sidebar:
-    * **__Show a list of items from the Wikidata entity__**. (The field needs to have the multi-value key set to "true" in Conzept and also contain multiple values in Wikidata. If there is only one item in Wikidata the field will be rendered as a normal link to the Wikipedia/Wikidata page.)
+  * Show an inline view in the sidebar. There are some variations of this:
+    * **__Show a list of items from the Wikidata entity__**. (The field needs to have the multi-value key set to "true" in Conzept and also contain multiple values in Wikidata. If there is only one item in Wikidata, the field will be rendered as a single link to the Wikipedia/Wikidata page.)
     * **__Show a list of items fetched from an API__**. These type of actions also require some [[#adding_api_support|code support to fetch the API data]].
     * **__Show an inline iframe from an URL__**
 
   * **__Trigger some code to run__** when the link is clicked. Examples: create a new bookmark or start/stop playing an audio file.
 
-You can see all the fields used for the Conzept website in the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|src/data/field.js]]**" file. Once you have added one or more field definitions to this file, you only need to run "**npm run build**" in the "app/explore2/" directory to start using these new fields. To make sure all users use the most recent version, it is recommended to also update the [[configuration|version setting]].
+You can see all the fields used for the Conzept website in the "**[[https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js|src/data/field.js]]**" file. Once you have added one or more new field definitions to this file:
+  * Update the [[configuration|version setting]] in "/etc/conzept/settings.conf"
+  * Run "**npm run build**" in the "app/explore2/" directory.
 ===== field processing =====    
 
 The field list is processed in two phases. Normally, you wont need to understand the details of these stages, but sometimes understanding them can help how to create more complicated field definitions.
@@ -61,7 +65,11 @@ Here is a list of the properties that can be used to define fields:
 | **text** | <plain-string> | text under the icon (note: don't use long words here) | pre-render |
 | **section** | <plain-string %%|%% array-of-strings> | section(s) in which to place the link | render |
 | **rank** | <number %%|%% array-of-numbers> | position of the link (set for each section) | render |
-
+| **headline_create** | <eval-string> | condition to check whether to display the headline-field | render |
+| **headline_type** | <link %%|%% link-split %%|%% url %%|%% wikipedia-qid %%|%% symbol-number %%|%% symbol-string> | | render |
+| **headline_url** | <eval-string-to-url> | (when omitted, defaults to "url") | render |
+| **headline_icon** | <css-class-string> | icon class from [[https://fontawesome.com/v5.15/icons?d=gallery|FontAwesome]] or [[https://openmoji.org/library/|OpenMoji]] (when omitted,  defaults to "icon")  | render |
+| **headline_rank** | <number> | position of the field in the topic-headline-row | render |
 ===== field types =====
 
 These types are currently available in field-definitions:
@@ -81,7 +89,6 @@ These types are currently available in field-definitions:
 Conzept has various title-forms which can be used anywhere in the field definition values:
 
 ^ name  ^ description ^
-| **title** | title as-is|
 | **title_no_braces** | title without braces|
 | **title_no_braces_lowercase** | title without braces in lowercase|
 | **title_** | title without any Wikipedia namespace-prefix and braces (note: also the basis for all the titles below)|
@@ -98,6 +105,16 @@ There is currently one 'magic'-variable usable in field-definition values:
 
 ^ name  ^ description ^
 | **Xvalue** | Used to **automatically iterate over a list of values** (or just one value) coming from Wikidata. This makes it easy to use multi-values **to create multiple new strings**. See examples of its use [[#xvalue|here]]. |
+
+===== utility functions =====
+
+Here is a list of often used utility functions, to make the field definitions easier to write and maintain.
+
+^ name  ^ arguments ^ output ^ description ^ examples ^
+| **checkLC()** |**language** (string or array-of-strings of language-iso2-codes),\\ \\ **country** (string or list-of-strings of country-iso-codes) | boolean | Language and/or country check. \\ \\ This function is used for matching against a websites supported languages and/or countries. The country-argument can be omitted.  | **checkLC( ["fr","es","zh","hi"] )** -> true, if any one of these languages is the active user language \\ \\ **checkLC("","US")** -> true, if the user-country is "US" |
+| **checkTag()** | **item-object** (required),\\ \\ **[tag-field-index]** (required),\\ \\ **tag string** or list-of-strings | boolean | Check if a topic has either a certain main-[[topic classification|tag]] (0) or a certain sub-[[topic classification|tag]] (1) tag. | **checkTag(item, 0, "person")** -> true, if the topic's main-tag is "person" \\ \\ **checkTag( item, 1, ["writer", "written-work" ] )** -> true, if topic's sub-class is either "writer" or "work" |
+| **setTags()** |**item**, \\ \\ **[ main-tag-string, sub-tag-string ]** | (none) | Set main and/or sub-tag of a topic. If either of the tags is left as an empty string, this part will be skipped. | **setTags( item, [ "work", "painting" ] )** -> set the main-tag ("work") and the sub-tag "painting "| 
+| **listed()** |**list-of-reference-qids**, \\ \\ **list-of-provided-qids** | boolean | check if the provided Qid of the topic | **listed( item.instances, [ 3305213 ] )** -> check if the topic instance-Qids contains a Qid for [[https://www.wikidata.org/wiki/Q3305213|painting]] | 
 ===== types of fields =====
 
 
@@ -183,14 +200,14 @@ The "symbol-html"-type can be used to create customized HTML strings. This examp
 <html><span id="xvalue"></span></html>
 An example where the magic variable "**${Xvalue}**" is used to automatically iterate over a list of values (or just one value) coming from Wikidata. This makes it easy to use multi-values to create multiple new strings.
 
-The example below illustrates the rendering of multiple website URL(s), if there are multiple websites listed on Wikidata for that entity.
+The example below illustrates the rendering of one or more website URLs.
 
 <code>
 'website' : {
   title: 'official website',
   prop: '856',
-  type: 'url',
-  url: '${Xvalue}', // each website URL will be rendered as a link
+  type: 'url', // open links in a new tab
+  url: '${Xvalue}', // each website URL-value will be rendered as a link
   mv: true,
   icon: 'fas fa-home',
   text: 'site',
@@ -214,6 +231,46 @@ Another example using "${Xvalue}" for a part of the URL:
   text: 'Twitter topic',
   section: ['news-social','main'],
   rank: [34,9070],
+},
+</code>
+
+
+An example of a headline field:
+
+<code>
+'gbif_id' : {
+  title: 'gbif_id',
+  prop: '846',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: 'valid( item.gbif_id )', // create the headline if this value exists
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/response/gbif-map?l=${explore.language}&t=${title_enc}&id=${item.gbif_id}',
+  headline_icon: 'fa-solid fa-binoculars',
+  headline_rank: 275,
+},
+</code>
+
+
+When the field values are mostly the same for the headline, you can omit these:
+
+<code>
+'chemical_formula' : {
+  title: 'chemical formula',
+  prop: '274',
+  type: 'symbol-html',
+  mv: false,
+  string_format: '<span title="chemical formula">${item.chemical_formula}</span>', // this string will be re-used for the headline
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: true,
+  headline_rank: 350,
 },
 </code>
 ==== Derived fields ====
@@ -289,7 +346,7 @@ This will show the Russian Yandex search-engine link, but only if the users' lan
 
 <code>
 'yandex_ru' : {
-  create_condition: '"${explore.language}" === "ru"',
+  create_condition: 'checkLC( "ru" )', // check if the user-language is set to the Russian-language
   title: 'Yandex search',
   prop: '',
   type: 'url',

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./leaflet/leaflet.css">
   <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/leaflet-contextmenu/1.4.0/leaflet.contextmenu.min.css">
   <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./main_v3.css">
+  <link rel="stylesheet" href="./main_v3.css?v0.01">
   <!--<link rel="stylesheet" type="text/css" href="https://tools-static.wmflabs.org/magnustools/resources/css/common.css">-->
 
   <title tt='toolname'></title>
@@ -27,22 +27,27 @@
   <script src="https://tools-static.wmflabs.org/magnustools/resources/js/md5.js"></script>
   <script src="https://tools-static.wmflabs.org/magnustools/resources/js/wikidata.js"></script>
   <script src="https://tools-static.wmflabs.org/tooltranslate/tt.js"></script>
-  <script src="./main_v3.js?v1.00"></script>
+  <script src="./main_v3.js?v0.01"></script>
   <script src="./wsm_comm.js"></script>
 
 
 <script type='text/javascript'>
-$(document).ready ( function () {
-	wikishootme.init() ;
-} ) ;
 
-{
-var m = window.location.href.match(/\?(.+)$/) ;
-if ( m != null  ) {
-	var url = '/wikishootme/#' + m[1].replace(/\#/,'&') ;
-	window.location.href = url ;
-}
-}
+  $(document).ready ( function () {
+
+    wikishootme.init() ;
+
+  })
+
+  {
+    var m = window.location.href.match(/\?(.+)$/) ;
+    if ( m != null  ) {
+      var url = '/wikishootme/#' + m[1].replace(/\#/,'&') ;
+      window.location.href = url ;
+    }
+  }
+
+
 </script>
 
 </head>

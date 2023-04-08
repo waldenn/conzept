@@ -7,8 +7,7 @@ sudo apt install -y git unzip
 if [ ! -d "conzept" ]; then
   echo "Fetching the Conzept sources"
   # TODO: replace with Github source repo later
-  git clone -b "feature/docker-support" https://github.com/BrahimAfa/conzept.git conzept
-#  wget https://github.com/BrahimAfa/conzept/archive/refs/heads/feature/docker-support.zip
+  git clone -b "feature/docker-support" https://github.com/waldenn/conzept.git conzept
   unzip docker-support.zip -d conzept
 else
   echo "The 'conzept' directory already exists"

@@ -1,0 +1,45 @@
+body {
+  background: #fbfaf9;
+  overflow: scroll;
+  font-size: 15px;
+}
+
+.link {
+  color: blue;
+  text-decoration: underline;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+img.gallery {
+  padding: 0.5em;
+  border-radius: 1em;
+}
+
+img#input {
+  padding-top: 1em;
+  max-width: 35vw;
+  display: block;
+}
+
+label {
+  width: 100px;
+  display: inline-block;
+}
+
+#submit {
+  width: 250px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+form {
+  border: 2px solid black;
+  padding: 1em;
+  width: max-content;
+  border-radius: 0.3em;
+}
+
+

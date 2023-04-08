@@ -34,9 +34,16 @@ RESULT PHASE:
   - topical overviews
     - eg. for events --> timespace tool
     - eg. anatomy hierarchy tool
+  - triggers into structured-queries  (topic classification link)
+  - presentations
+  - experiences
+    - gamified challenges (explore challenges in domain, quiz about a topic/domain)
+      - chess problems
+      - geo-location guessing quiz)
+      - ?body browser -> find a body part
+    - social interactions (discussion, QA, presenting, etc.)
+    - offline-world application
   - TO IMPROVE: --> similar topics
-  - TO EXPLORE: triggers into structured-queries 
-  - TO EXPLORE: topic presentations
   - TO EXPLORE: recommendations based on:
     - user defined topics
     - user defined tags

@@ -112,6 +112,11 @@ function renderToPane( target_pane, url, moveto ){
 
 	if ( target_pane === '' || target_pane === 'p0' || target_pane === 'p1' ){
 
+    // only on mobile: with clicks from the sidebar, always blank "ps2" (as it may have stale content) 
+    if ( explore.isMobile && ( target_pane === '' || target_pane === 'p0' ) ){
+      $('#doc2').empty();
+    }
+
     if ( typeof resetIframe === 'function' ){ // TODO: check the logic here
 
       resetIframe();
@@ -129,6 +134,8 @@ function renderToPane( target_pane, url, moveto ){
 	else if ( target_pane === 'ps2' ){
 
 		$( '#infoframeSplit2' ).attr({"src": url });
+
+    if ( detectMobile() === true ){ explore.swiper.slideTo( 2 ); }
 
 	}
 
@@ -625,9 +632,23 @@ function getParameterByName( name, url ) {
   const regex   = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
   const results = regex.exec( url );
 
-  if (!results) return undefined;
+  //console.log( name, results );
 
-  if (!results[2]) return '';
+  if ( results === null ){
+
+    return undefined;
+
+  }
+  else if ( results[2] === 'false' ){
+
+    return 'false';
+
+  }
+  else if ( ! valid( results[2] ) ){
+
+    return '';
+
+  }
 
   let string = '';
 
@@ -899,13 +920,13 @@ function setOnMultiValueClick( args ){ // dynamically creates lists of "onclick"
   // remove unneeded data
   delete args.item;
 
-  if ( args.type !== 'wikipedia' ){ // only 'wikipedia' types need the sometimes large "languages" data-structure
+  if ( args.type !== 'string' ){ // only Wikipedia-topics need the sometimes large "languages" data-structure
     args.languages = '';
   }
 
   //console.log(args);
 
-  args.title = args.title.replace(/,/g, '_'); // hack to prevent the jQuery-selector from breaking
+  args.title = args.title.replace(/,|\//g, '_'); // keep special charatecters out of the jQuery-selector 
 
   return ' onclick="stateResetCheck( event ); insertMultiValues( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" data-title="' + args.title + '" ';
 
@@ -916,7 +937,7 @@ function setOnClick( args ){ // creates the "onclick"-string for most dynamic-co
   // remove unneeded data
   delete args.item;
 
-  if ( args.type !== 'wikipedia' ){ // only 'wikipedia' types need the sometimes large "languages" data-structure
+  if ( args.type !== 'string' ){ // only Wikipedia-topics types need the sometimes large "languages" data-structure
     args.languages = '';
   }
 
@@ -955,7 +976,7 @@ async function onMiddleClick( args ) {
     openInNewTab( new_url );
 
   }
-  else if ( type === 'wikipedia' || type === 'wikipedia-qid' ){
+  else if ( type === 'string' || type === 'wikipedia-qid' ){
 
     new_url = explore.base + '/explore/' + encodeURIComponent( title ) + '?l=' + lang + '&t=' + type + '&i=' + qid;
 
@@ -1079,13 +1100,21 @@ function setupAppKeyboardNavigation() {
 
       if (e.key === 'ArrowLeft') { // move to sidebar
 
-        window.parent.postMessage({ event_id: 'move-to-sidebar', data: { } }, '*' );
+        if ( ! $('input').is(':focus') ){
+
+          window.parent.postMessage({ event_id: 'move-to-sidebar', data: { } }, '*' );
+
+        }
 
       }
 
       if (e.key === 'ArrowRight') { // move to second content-pane
 
-        console.log('TODO: move to second content-pane');
+        if ( ! $('input').is(':focus') ){
+
+          console.log('TODO: move to second content-pane');
+
+        }
 
       }
 
@@ -1503,8 +1532,8 @@ function getDatingHTML( item, args ){
     date_obj.filter_year_start = start.getFullYear();
     date_obj.filter_year_end   = end.getFullYear();
 
-    dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'wikipedia', qid: ''  } ) ) + '>' + start.getFullYear() + '</a>' + dash +
-             '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'wikipedia', qid: '' } ) ) + '>' + end.getFullYear() + '</a>';
+    dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'string', qid: ''  } ) ) + '>' + start.getFullYear() + '</a>' + dash +
+             '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'string', qid: '' } ) ) + '>' + end.getFullYear() + '</a>';
 
     if ( isNaN( start.getFullYear() ) && isNaN( end.getFullYear() ) ){ // probably a complex date string, so just use the original strings
 
@@ -1526,7 +1555,7 @@ function getDatingHTML( item, args ){
 
     if ( ! isNaN( start.getFullYear() ) ){ // check to prevent very ancient dates to give a NaN result
 
-      dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + start.getFullYear() + '</a>' + dash;
+      dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: start.getFullYear().toString(), type: 'string' } ) ) + '>' + start.getFullYear() + '</a>' + dash;
 
     }
     else { // probably a complex date string, so just use the original string
@@ -1540,7 +1569,7 @@ function getDatingHTML( item, args ){
   else if ( end_date !== '' ){ // case 3: only end date
 
     const end   = new Date( end_date );
-    dating = dash + '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + end.getFullYear() + '</a>';
+    dating = dash + '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: end.getFullYear().toString(), type: 'string' } ) ) + '>' + end.getFullYear() + '</a>';
 
   }
 
@@ -1554,7 +1583,7 @@ function getDatingHTML( item, args ){
 
       if ( ! isNaN( date.getFullYear() ) ){ // check to prevent very ancient dates to give a NaN result
 
-        dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: date.getFullYear().toString(), type: 'wikipedia' } ) ) + '>' + date.getFullYear() + '</a>';
+        dating = '<a href="javascript:void(0)" ' + setOnClick( Object.assign({}, args, { title: date.getFullYear().toString(), type: 'string' } ) ) + '>' + date.getFullYear() + '</a>';
 
       }
     }
@@ -1573,6 +1602,123 @@ function getDatingHTML( item, args ){
 
 }
 
+function getLocation( callback ){
+
+  const options = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000
+  };
+
+  if ( navigator.geolocation ) {
+
+
+    if ( !valid( explore.position_watch_id ) ){
+
+      explore.position_watch_id = navigator.geolocation.watchPosition( setPosition, errorPosition, options);
+
+    }
+
+    if ( typeof callback == 'function' ){
+
+      const myTimeout = setTimeout( runLocationCallback(callback), 2000 );
+
+    }
+
+  }
+  else {
+
+    $.toast({
+        heading: 'Geolocation is not supported by this browser.',
+        text: '',
+        hideAfter : 3000,
+        stack : 1,
+        showHideTransition: 'slide',
+        icon: 'info'
+    })
+
+  }
+
+}
+
+function runLocationCallback( callback ){
+
+  if ( valid( explore.position?.coords?.latitude ) ){
+
+    //console.log( 'calling position callback...: ', explore.position.GeolocationCoordinates  );
+    callback();
+
+  }
+  else {
+
+    $.toast({
+        heading: 'Geolocation data not yet available, wait a few seconds and try again.',
+        text: '',
+        hideAfter : 3000,
+        stack : 1,
+        showHideTransition: 'slide',
+        icon: 'info'
+    })
+
+  }
+
+}
+
+function setPosition( pos ){
+
+  //console.log( pos.coords.latitude, pos.coords.longitude );
+
+  explore.position = pos;
+
+}
+
+function errorPosition( pos ) {
+
+  $.toast({
+      heading: 'Geolocation error. Is geolocation access permitted?',
+      text: '',
+      hideAfter : 3000,
+      stack : 1,
+      showHideTransition: 'slide',
+      icon: 'error'
+  })
+
+  //explore.position_watch_id = undefined;
+
+}
+
+/*
+function objectToString(obj){
+
+	let str = '{';
+
+	if ( typeof obj == 'object' ){
+
+		for ( let p in obj){
+
+			if ( obj.hasOwnProperty(p) ){
+
+				str += p + ':' + objectToString (obj[p]) + ',';
+
+			}
+		}
+
+	}
+	else {
+
+	 if ( typeof obj == 'string' ){
+			return '"'+obj+'"';
+		}
+		else {
+			return obj+'';
+		}
+
+	}
+
+	return str.substring(0,str.length-1)+"}";
+
+}
+*/
 
 /*
 function fixCountryData(){

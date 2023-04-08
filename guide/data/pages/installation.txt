@@ -4,6 +4,7 @@
 
 Conzept installation documention (written for Ubuntu 2020.04 LTS).
 
+(TODO: create a **[[docker]]**-based installation workflow)
 ===== OS setup =====
 
 - Install Ubuntu 20.04 LTS

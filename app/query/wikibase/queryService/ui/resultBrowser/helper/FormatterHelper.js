@@ -180,7 +180,7 @@ wikibase.queryService.ui.resultBrowser.helper.FormatterHelper = ( function( $, m
 
           var url = '/app/wikipedia/?t=&l=' + l + '&qid=' + qid;
 
-          mesg = JSON.stringify( { event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } } );
+          mesg = JSON.stringify( { event_id: 'handleClick', data: { type: 'link', title: '', hash: '', language: l, qid: qid, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } } );
 
         }
 

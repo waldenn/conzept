@@ -3922,6 +3922,8 @@ $(document).ready ( function () {
 					reasonator.loadThumb ( $(this) ) ;
 				} ) ;
 			} ) ;
+      //setupImageClicks();
+      //setupImageZoom();
 	
 			$('#main_content').hide() ;
 	//		document.title = 'Reasonator' ;
@@ -4048,7 +4050,7 @@ function gotoImages( newtab ){
 
 	let title = $('#main_title_label').text();
 
-  const url = 'https://www.bing.com/images/search?&q=' + title + '&qft=+filterui:photo-photo&FORM=IRFLTR';
+  const url = `https://${CONZEPT_HOSTNAME}/${CONZEPT_WEB_BASE}/app/commons/?q=${qid}&l=${language}`;
 
   if ( newtab ){
 
@@ -4124,6 +4126,7 @@ function gotoWikidata( newtab ){
 }
 
 
+/*
 function getParameterByName(name, url) {
 
   if ( !url ){
@@ -4188,3 +4191,4 @@ function fullyLoadedHandler() {
   $('#loader-openseadragon').hide();
 
 }
+*/

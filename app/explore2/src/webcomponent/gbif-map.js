@@ -284,7 +284,7 @@ class GBIFMap extends HTMLElement {
 			<link rel="stylesheet" href="/app/explore2/css/various/openlayers.css">
 			<link rel="stylesheet" href="/app/explore2/css/various/ol-ext.css" type="text/css">
 			<link rel="stylesheet" href="/app/explore2/css/various/climatemaps.css" type="text/css">
-			<link rel="stylesheet" href="/app/explore2/css/conzept/css/common.css?v001" type="text/css">
+			<link rel="stylesheet" href="/app/explore2/css/conzept/common.css?v001" type="text/css">
 
       <style>
 

@@ -7,23 +7,15 @@
 <h2 class="sectionedit2" id="specific_ideas">specific ideas</h2>
 <div class="level2">
 <ul>
+<li class="level1"><div class="li"> Better packaging: <strong>Create a <a href="/guide/docker" class="wikilink1" title="docker" data-wiki-id="docker">Docker image</a></strong>, to make the install and upgrade process a lot easier.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Finish the <a href="/guide/concept_stores" class="wikilink1" title="concept_stores" data-wiki-id="concept_stores">datasources roadmap</a> and <a href="/guide/datasources" class="wikilink1" title="datasources" data-wiki-id="datasources">document its use</a>.</strong></div>
+</li>
+</ul>
+<ul>
 <li class="level1"><div class="li"> Fix the items mentioned in <strong><a href="/guide/issues" class="wikilink1" title="issues" data-wiki-id="issues">issues</a></strong>.</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Design a <strong><a href="/guide/command_api" class="wikilink1" title="command_api" data-wiki-id="command_api">command API</a></strong> for scriptable entity-processing workflows. <code>(partly done)</code></div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Create a <strong><a href="/guide/browser_extension" class="wikilink1" title="browser_extension" data-wiki-id="browser_extension">browser extension</a></strong> for text-selection queries on 3rd party sites and entity-linking via JSON-LD.  <code>(work in progress)</code></div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Create a <strong>Docker image</strong> (and Nix?) for the whole of Conzept (Apache webserver, static site tree, ~4 services, 1 config directory + config file, setup script, …)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Support and document setting up <strong>Nginx as a webserver</strong> alternative for Apache2.</div>
 </li>
 </ul>
 <ul>
@@ -31,11 +23,19 @@
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Implement <strong>bookmark imported &amp; exporting</strong>.</div>
+<li class="level1 node"><div class="li"> Better <strong>bookmarking</strong> UX:</div>
+<ul>
+<li class="level2"><div class="li"> Cross-tab bookmark state-syncing</div>
+</li>
+<li class="level2"><div class="li"> Add datasource + datasource-global-ID support, when a topic is bookmarked</div>
+</li>
+<li class="level2"><div class="li"> Other idea: Being able to share bookmark-lists with others (like Spotify playlists)</div>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Add optional <strong>geolocation-support</strong>, so we could route a user from the current location to the location of a topic, using the <a href="https://twitter.com/conzept__/status/1490300622360518663" class="urlextern" target="_blank" title="https://twitter.com/conzept__/status/1490300622360518663" rel="ugc nofollow noopener">OSMR routing app</a>.</div>
+<li class="level1"><div class="li"> Add optional <strong>geolocation-support</strong>, so we could route a user from the current location to the location of a topic, using the <a href="https://twitter.com/conzept__/status/1490300622360518663" class="urlextern" target="_blank" title="https://twitter.com/conzept__/status/1490300622360518663" rel="ugc nofollow noopener">OSMR routing app</a>. See also: <a href="https://github.com/jamealg/KT-companion" class="urlextern" target="_blank" title="https://github.com/jamealg/KT-companion" rel="ugc nofollow noopener">offline hiking-maps app</a></div>
 </li>
 </ul>
 <ul>
@@ -44,11 +44,19 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;specific ideas&quot;,&quot;hid&quot;:&quot;specific_ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;24-1148&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;specific ideas&quot;,&quot;hid&quot;:&quot;specific_ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;24-1135&quot;} -->
 <h2 class="sectionedit3" id="general_ideas">general ideas</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> Allow 3rd-party SPARQL-based endpoints to be added as <strong>extra “<a href="/guide/concept_stores" class="wikilink1" title="concept_stores" data-wiki-id="concept_stores">concept stores</a>“</strong> (besides Wikipedia &amp; Wikidata).</div>
+<li class="level1 node"><div class="li"> Conzept development vision:</div>
+<ul>
+<li class="level2"><div class="li"> <strong>data-define software</strong> - rather than code-define - when possible. Often this first requires several code implementations/examples to explore the domain.</div>
+</li>
+<li class="level2"><div class="li"> Improve and maintain <strong>conceptual integrity</strong>, as vague and abstract as that term is.</div>
+</li>
+<li class="level2"><div class="li"> Related tweets: <a href="https://twitter.com/conzept__/status/1584360126894714880" class="urlextern" target="_blank" title="https://twitter.com/conzept__/status/1584360126894714880" rel="ugc nofollow noopener">1</a>, <a href="https://twitter.com/conzept__/status/1585286558336356354" class="urlextern" target="_blank" title="https://twitter.com/conzept__/status/1585286558336356354" rel="ugc nofollow noopener">2</a></div>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
@@ -72,7 +80,11 @@
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity)</div>
+<li class="level1 node"><div class="li"> ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).</div>
+<ul>
+<li class="level2"><div class="li"> Example apps: <a href="https://github.com/jamealg/KT-companion" class="urlextern" target="_blank" title="https://github.com/jamealg/KT-companion" rel="ugc nofollow noopener">hiking-map app</a></div>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
@@ -85,6 +97,38 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li class="level1 node"><div class="li"> Look into using more webcomponents:</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://design-system.w3.org/" class="urlextern" target="_blank" title="https://design-system.w3.org/" rel="ugc nofollow noopener">W3C design system</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="https://component.gallery/" class="urlextern" target="_blank" title="https://component.gallery/" rel="ugc nofollow noopener">component.gallery</a> (overview of webcomponents)</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <strong>SPARQL-endpoint explorer</strong> (eg. Sparklis → needs CORS-issue workarounds)</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://github.com/sebferre/sparklis" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis" rel="ugc nofollow noopener">git repo</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.irisa.fr/LIS/ferre/sparklis/examples.html" class="urlextern" target="_blank" title="http://www.irisa.fr/LIS/ferre/sparklis/examples.html" rel="ugc nofollow noopener">NLP query examples</a></div>
+</li>
+<li class="level2"><div class="li"> sparql-endpoint testing: <a href="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" class="urlextern" target="_blank" title="https://conze.pt/explore/?l=en&amp;t=&amp;s=true&amp;query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}" rel="ugc nofollow noopener">query all endpoints</a> (note: some endpoints are dead) → then open “sparql explorer 2” in the main-section </div>
+</li>
+<li class="level2"><div class="li"> Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)</div>
+</li>
+<li class="level2"><div class="li"> build steps <a href="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" class="urlextern" target="_blank" title="https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156" rel="ugc nofollow noopener">here</a></div>
+</li>
+<li class="level2 node"><div class="li"> See also: <strong><a href="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" class="urlextern" target="_blank" title="https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql" rel="ugc nofollow noopener">SparqlExplorer</a></strong></div>
+<ul>
+<li class="level3"><div class="li"> <a href="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" class="urlextern" target="_blank" title="https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/" rel="ugc nofollow noopener">git repo</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;general ideas&quot;,&quot;hid&quot;:&quot;general_ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1149-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;general ideas&quot;,&quot;hid&quot;:&quot;general_ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1136-&quot;} -->

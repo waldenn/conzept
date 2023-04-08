@@ -49,6 +49,12 @@ var wsm_comm = {
 	} ,
 	
 	checkUserStatus : function ( callback ) {
+
+		var me = this ;
+	  me.is_logged_in = false ;
+	  callback() ;
+
+    /*
 		var me = this ;
 		
 		if ( me.is_app ) {
@@ -68,6 +74,7 @@ var wsm_comm = {
 				callback() ;
 			} ) ;
 		}
+    */
 	} ,
 	
 	storeKey : function ( key , value ) {

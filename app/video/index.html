@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html id="page" class="no-js">
 <head>
     <meta charset="utf-8">
 
@@ -10,13 +10,15 @@
     <meta name="viewport" content="width=device-width">
 
     <!-- conzept resources -->
-    <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.213" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.213"></script><script src="/app/explore2/dist/core/utils.js?v0.51.213"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script>
+    <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.340" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.340"></script><script src="/app/explore2/dist/core/utils.js?v0.51.340"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
 
-    <script src="../explore2/libs/TinyGesture.js"></script>
+    <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
+
     <script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js"></script>
 
     <a href="javascript:void(0)" id="wander-to-previous" style="display:none;" title="view previous video"><i class="fas fa-left-long fa-2x"></i></a>
     <a href="javascript:void(0)" id="wander-to-next" style="display:none;" title="view next video"><i class="fas fa-right-long fa-2x"></i></a>
+    <a id="wander-youtube-terms" target="_blank" href="https://www.youtube.com/t/terms" style="display:none;" title="YouTube terms of use">YouTube terms</a>
 
     <link rel="stylesheet" href="styles/vendor.css?0.15">
     <link rel="stylesheet" href="styles/main.css?0.15">
@@ -55,8 +57,6 @@
       let db;
       let darkmode;
 
-      setupAppKeyboardNavigation();
-
       $( document ).ready(function() {
 
         ;(async () => {
@@ -81,7 +81,7 @@
       });
     </script>
 
-    <script src="bundle.js?v0.001"></script>
+    <script src="bundle.js?v0.002"></script>
 
 </body>
 </html>

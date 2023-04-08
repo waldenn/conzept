@@ -14,6 +14,7 @@ const processRequest = require('./app/process-request')
 
 function enableCORS(req, res, next) {
 
+  /*
   const whitelist = process.env.CONZEPT_CORS_PROXY_WHITELIST.split(',') || [];
 
   console.log( whitelist );
@@ -30,6 +31,7 @@ function enableCORS(req, res, next) {
 
   }
   else { // request is allowed
+  */
 
     res.header('Access-Control-Allow-Origin', req.headers.origin || '*')
     res.header('Access-Control-Allow-Credentials', true)
@@ -43,7 +45,9 @@ function enableCORS(req, res, next) {
     )
     res.header('Via', `allOrigins v${version}`)
 
+  /*
   }
+  */
 
   next()
 

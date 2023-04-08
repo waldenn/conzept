@@ -1,11 +1,10 @@
 ====== adding new Wikidata properties ======
 
-Conzept currently (as of February 2022) supports all these [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata property classes]]: **WikibaseItem** (1515), **ExternalId** (7089), **Url** (86), **String** (318) and **Quantity** (613).
+Conzept currently (2022) supports all these [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata property classes]]: **WikibaseItem** (1515), **ExternalId** (7089), **Url** (86), **String** (318) and **Quantity** (613).
 
 Only part of the following Wikidata classes are currently used on Conzept:  **CommonsMedia** (73), **GlobeCoordinate** (11). These fields often require manual integration for their proper use in the Conzept UI.
 
-As new fields are frequently added to Wikidata, Conzept has some tooling to collect these new properties and integrate them.
-
+As new fields are frequently added to Wikidata, Conzept has some [[https://github.com/waldenn/conzept/tree/master/app/explore2/tools|tooling]] to easily collect these new properties and integrate them properly.
 ===== process =====
 
 To add new Wikidata property fields to the Conzept fields, use the following process:

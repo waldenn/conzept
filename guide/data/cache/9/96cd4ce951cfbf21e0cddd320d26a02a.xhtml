@@ -6,8 +6,12 @@
 Conzept installation documention (written for Ubuntu 2020.04 LTS).
 </p>
 
+<p>
+(TODO: create a <strong><a href="/guide/docker" class="wikilink1" title="docker" data-wiki-id="docker">docker</a></strong>-based installation workflow)
+</p>
+
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;installation&quot;,&quot;hid&quot;:&quot;installation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-141&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;installation&quot;,&quot;hid&quot;:&quot;installation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-201&quot;} -->
 <h2 class="sectionedit2" id="os_setup">OS setup</h2>
 <div class="level2">
 
@@ -30,12 +34,12 @@ Conzept installation documention (written for Ubuntu 2020.04 LTS).
 <pre class="code">apt install apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php7.4 libapache2-mod-php libapache2-mod-uwsgi php-fpm snapd nodejs npm sed jq</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OS setup&quot;,&quot;hid&quot;:&quot;os_setup&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;142-530&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OS setup&quot;,&quot;hid&quot;:&quot;os_setup&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;202-590&quot;} -->
 <h2 class="sectionedit3" id="webserver_setup">webserver setup</h2>
 <div class="level2">
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;webserver setup&quot;,&quot;hid&quot;:&quot;webserver_setup&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:3,&quot;range&quot;:&quot;531-559&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;webserver setup&quot;,&quot;hid&quot;:&quot;webserver_setup&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:3,&quot;range&quot;:&quot;591-619&quot;} -->
 <h3 class="sectionedit4" id="install_certbot">Install Certbot</h3>
 <div class="level3">
 <pre class="code">snap install core; sudo snap refresh core</pre>
@@ -45,10 +49,11 @@ Conzept installation documention (written for Ubuntu 2020.04 LTS).
 <pre class="code">certbot renew --dry-run</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Install Certbot&quot;,&quot;hid&quot;:&quot;install_certbot&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:4,&quot;range&quot;:&quot;560-807&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Install Certbot&quot;,&quot;hid&quot;:&quot;install_certbot&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:4,&quot;range&quot;:&quot;620-867&quot;} -->
 <h3 class="sectionedit5" id="setup_apache2_with_php_and_http_2">setup Apache2 with PHP and HTTP/2</h3>
 <div class="level3">
 <pre class="code">a2enmod proxy proxy_http headers expires proxy_fcgi setenvif &amp;&amp; service apache2 restart</pre>
+<pre class="code">systemctl restart apache2</pre>
 <pre class="code">a2enconf php7.4-fpm &amp;&amp; service apache2 restart</pre>
 <pre class="code">a2dismod php7.4 &amp;&amp; service apache2 restart</pre>
 <pre class="code">a2dismod mpm_prefork &amp;&amp; a2enmod mpm_event &amp;&amp; service apache2 restart &amp;&amp; service php7.4-fpm restart</pre>
@@ -69,7 +74,7 @@ Remove the default Apache-server <abbr title="HyperText Markup Language">HTML</a
 <pre class="code">rm /var/www/html/index.html</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;setup Apache2 with PHP and HTTP\/2&quot;,&quot;hid&quot;:&quot;setup_apache2_with_php_and_http_2&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:5,&quot;range&quot;:&quot;808-1643&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;setup Apache2 with PHP and HTTP\/2&quot;,&quot;hid&quot;:&quot;setup_apache2_with_php_and_http_2&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:5,&quot;range&quot;:&quot;868-1742&quot;} -->
 <h2 class="sectionedit6" id="node_setup">Node setup</h2>
 <div class="level2">
 <pre class="code">exit</pre>
@@ -84,7 +89,7 @@ Remove the default Apache-server <abbr title="HyperText Markup Language">HTML</a
 <p>
 Install the node version manager (note: you can check for newer LTS vresions by running: nvm ls-remote):
 </p>
-<pre class="code">nvm install v16.13.1</pre>
+<pre class="code">nvm install v16.18.0</pre>
 <pre class="code">logout</pre>
 
 <p>
@@ -93,7 +98,7 @@ Install the node version manager (note: you can check for newer LTS vresions by 
 <pre class="code">sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild pm2</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Node setup&quot;,&quot;hid&quot;:&quot;node_setup&quot;,&quot;codeblockOffset&quot;:22,&quot;secid&quot;:6,&quot;range&quot;:&quot;1644-2203&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Node setup&quot;,&quot;hid&quot;:&quot;node_setup&quot;,&quot;codeblockOffset&quot;:23,&quot;secid&quot;:6,&quot;range&quot;:&quot;1743-2302&quot;} -->
 <h2 class="sectionedit7" id="conzept_setup">Conzept setup</h2>
 <div class="level2">
 <pre class="code">git clone https://github.com/waldenn/conzept.git</pre>
@@ -122,7 +127,7 @@ Add yourself to the “www-data” group (so you can make edits as yourself):
 </li>
 </ul>
 <ul>
-<li class="level1 node"><div class="li"> NOTE: any modifications to the CONZEPT_WEB_BASE also requires changing:</div>
+<li class="level1 node"><div class="li"> NOTE: any modifications to the CONZEPT_WEB_BASE setting also requires changing:</div>
 <ul>
 <li class="level2"><div class="li"> the Apache site config</div>
 </li>
@@ -135,7 +140,7 @@ Add yourself to the “www-data” group (so you can make edits as yourself):
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept setup&quot;,&quot;hid&quot;:&quot;conzept_setup&quot;,&quot;codeblockOffset&quot;:29,&quot;secid&quot;:7,&quot;range&quot;:&quot;2204-3086&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept setup&quot;,&quot;hid&quot;:&quot;conzept_setup&quot;,&quot;codeblockOffset&quot;:30,&quot;secid&quot;:7,&quot;range&quot;:&quot;2303-3193&quot;} -->
 <h2 class="sectionedit8" id="conzept_services_setup">Conzept services setup</h2>
 <div class="level2">
 <pre class="code">sudo su</pre>
@@ -159,17 +164,22 @@ su conzept -s /bin/sh -c &#039;$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -
 # any-file CORS-proxy (port 1458 on localhost only)
 su conzept -s /bin/sh -c &#039;cd &quot;$CONZEPT_SERVICES_DIR/allorigins&quot; &amp;&amp; npm start app.js &amp;&#039;
 
+# pm2 services (auto-startup not working for some reason)
+#pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
+#pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
+
 exit 0;</pre>
+
+<p>
+# manually startup some services
+</p>
+<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh</pre>
+<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh</pre>
 
 <p>
 Make it executable:
 </p>
 <pre class="code">chmod +x /etc/rc.local</pre>
-
-<p>
-Setup the pm2-process for the Entitree app:
-</p>
-<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh &amp;&amp; pm2 save &amp;&amp; pm2 startup ubuntu -u conzept</pre>
 
 <p>
 Setup crontab for periodic commands:
@@ -199,7 +209,7 @@ Startup the services by rebooting:
 <pre class="code">sudo reboot now</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept services setup&quot;,&quot;hid&quot;:&quot;conzept_services_setup&quot;,&quot;codeblockOffset&quot;:42,&quot;secid&quot;:8,&quot;range&quot;:&quot;3087-4764&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept services setup&quot;,&quot;hid&quot;:&quot;conzept_services_setup&quot;,&quot;codeblockOffset&quot;:43,&quot;secid&quot;:8,&quot;range&quot;:&quot;3194-5072&quot;} -->
 <h2 class="sectionedit9" id="dokuwiki">DokuWiki</h2>
 <div class="level2">
 
@@ -223,7 +233,7 @@ Change the admin password:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;DokuWiki&quot;,&quot;hid&quot;:&quot;dokuwiki&quot;,&quot;codeblockOffset&quot;:51,&quot;secid&quot;:9,&quot;range&quot;:&quot;4765-5124&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;DokuWiki&quot;,&quot;hid&quot;:&quot;dokuwiki&quot;,&quot;codeblockOffset&quot;:53,&quot;secid&quot;:9,&quot;range&quot;:&quot;5073-5432&quot;} -->
 <h2 class="sectionedit10" id="conzept-extra_setup_optional">Conzept-extra setup (optional)</h2>
 <div class="level2">
 
@@ -242,4 +252,4 @@ You can now modify, build and deploy out-of-tree Conzept apps. Just “cd” int
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept-extra setup (optional)&quot;,&quot;hid&quot;:&quot;conzept-extra_setup_optional&quot;,&quot;codeblockOffset&quot;:52,&quot;secid&quot;:10,&quot;range&quot;:&quot;5125-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept-extra setup (optional)&quot;,&quot;hid&quot;:&quot;conzept-extra_setup_optional&quot;,&quot;codeblockOffset&quot;:54,&quot;secid&quot;:10,&quot;range&quot;:&quot;5433-&quot;} -->

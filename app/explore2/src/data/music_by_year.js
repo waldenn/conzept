@@ -29,6 +29,7 @@ const music_by_year = {
 
   1720: [
     { url: 'https://vmirror.imslp.org/files/imglnks/usimg/5/5f/IMSLP323015-PMLP522958-vivaldi_bassonconcertoaminorRobisonGardnerRV497.mp3', info: 'https://imslp.org/wiki/Bassoon_Concerto_in_A_minor%2C_RV_497_(Vivaldi%2C_Antonio)', country: 'Q38' },
+    //{ url: 'https://www.dropbox.com/s/88bihwy8vhev3s9/Concerto%20a%27%204%20Violini%20No%202%20-%20Telemann.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
   ],
 
   1725: [
@@ -39,6 +40,18 @@ const music_by_year = {
   /*
   1729: [
     { url: 'http://conquest.imslp.info/files/imglnks/usimg/0/0c/IMSLP375165-PMLP400426-vivaldi_consordino_GardnerCO.mp3', info: 'https://imslp.org/wiki/Flute_Concerto_in_F_major%2C_RV_434_(Vivaldi%2C_Antonio)', country: 'Q38' },
+  ],
+  */
+
+  /*
+  1731: [
+    { url: 'https://www.dropbox.com/s/620qqip91g6td9t/Double%20Violin%20Concerto%201st%20Movement%20-%20J.S.%20Bach.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/6d7fprqn046igjd/Largo%20-%20J.S.%20Bach%20-%20from%20Concerto%20No.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/2aavvf32fgobq1g/Bach%20-%20Gavottes%201%20and%202%20from%20Cello%20Suite.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/n66hfubm63cj4re/Bach%20-%20Bourree%20from%20the%204th%20Lute%20Suite.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/36xah7dl1msqyfe/Courante-J.S.Bach-1st%20Cello%20Suite.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/u4vi3sioc9crxm0/Prelude%20-Cello%20Suite%203-%20JSBach.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
+    { url: 'https://www.dropbox.com/s/vm741n3ixh859kj/Gavotte%20en%20Roundeau-Bach-4th%20Lute%20Suite.mp3', info: 'https://www.freemusicpublicdomain.com/royalty-free-classical-music/', country: 'Q183' },
   ],
   */
 
@@ -81,9 +94,8 @@ const music_by_year = {
     { url: 'https://vmirror.imslp.org/files/imglnks/usimg/6/67/IMSLP419568-PMLP04215-Gymnopedie_N%C2%BA_1.mp3', info: 'https://imslp.org/wiki/3_Gymnop%C3%A9dies_(Satie%2C_Erik)', country: 'Q142' },
   ],
 
-  1890: [
-    { url: 'https://conquest.imslp.info/files/imglnks/usimg/0/06/IMSLP197806-PMLP02397-3-ClairDeLune-j.mp3', info: 'https://imslp.org/wiki/Suite_bergamasque_(Debussy,_Claude)', country: 'Q142' },
-  ],
+  //1890: [
+  //],
 
   1899: [
     { url: 'https://archive.org/download/YouDontStopTheWorldFromGoingRoundLenSpencer1899/You%20Dont%20Stop%20the%20World%20From%20Going%20Round.ogg', info: 'https://archive.org/details/YouDontStopTheWorldFromGoingRoundLenSpencer1899', country: 'Q30' },
