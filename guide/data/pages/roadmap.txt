@@ -2,26 +2,29 @@
 
 ===== specific ideas =====
 
+  * Better packaging: **Create a [[Docker|Docker image]]**, to make the install and upgrade process a lot easier.
+
+  * **Finish the [[concept_stores|datasources roadmap]] and [[datasources|document its use]].**
+
   * Fix the items mentioned in **[[issues|issues]]**.
-
-  * Design a **[[command API]]** for scriptable entity-processing workflows. ''(partly done)''
-
-  * Create a **[[browser extension]]** for text-selection queries on 3rd party sites and entity-linking via JSON-LD.  ''(work in progress)''
-
-  * Create a **Docker image** (and Nix?) for the whole of Conzept (Apache webserver, static site tree, ~4 services, 1 config directory + config file, setup script, ...)
-
-  * Support and document setting up **Nginx as a webserver** alternative for Apache2.
 
   * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
-  * Implement **bookmark imported & exporting**.
+  * Better **bookmarking** UX:
+    * Cross-tab bookmark state-syncing
+    * Add datasource + datasource-global-ID support, when a topic is bookmarked
+    * Other idea: Being able to share bookmark-lists with others (like Spotify playlists)
 
-  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]].
+  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
 
   * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)
+
 ===== general ideas =====
 
-  * Allow 3rd-party SPARQL-based endpoints to be added as **extra "[[concept stores]]"** (besides Wikipedia & Wikidata).
+  * Conzept development vision:
+    * **data-define software** - rather than code-define - when possible. Often this first requires several code implementations/examples to explore the domain.
+    * Improve and maintain **conceptual integrity**, as vague and abstract as that term is.
+    * Related tweets: [[https://twitter.com/conzept__/status/1584360126894714880|1]], [[https://twitter.com/conzept__/status/1585286558336356354|2]]
 
   * Research **educational-support enhancements**:
     * Collaborative & social learning features (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
@@ -32,9 +35,23 @@
     * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
     * Experiences: play Chess positions (done), ...
 
-  * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity)
+  * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
+    * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]
+
 
   * ? Research creating some kind of a simple web-application interface standard for input/output/event-handling:
     * URL parameter IO (iso2 language, search-string, ID, ...)
     * Event-handling (other view triggers, key-bindings, fullscreening, ...)
 
+  * Look into using more webcomponents:
+    * [[https://design-system.w3.org/|W3C design system]]
+    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
+
+  * **SPARQL-endpoint explorer** (eg. Sparklis -> needs CORS-issue workarounds)
+    * [[https://github.com/sebferre/sparklis|git repo]]
+    * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
+    * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 
+    * Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)
+    * build steps [[https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156|here]]
+    * See also: **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]**
+      * [[https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/|git repo]]

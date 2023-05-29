@@ -110,7 +110,7 @@ async function fetchWikiNews( args, url ){
 			},
       error: function (xhr, ajaxOptions, thrownError){
 
-				console.log( 'response: hmm...', response );
+				console.log( 'response: hmm...', thrownError);
 
       }
 

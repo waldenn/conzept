@@ -1,20 +1,20 @@
 
 <h1 class="sectionedit1" id="browser_extension">browser extension</h1>
 <div class="level1">
-
+<div class="thumb2 t"><div class="thumbinner"><a href="/guide/_media/extension_text_selection.jpg" class="media" target="_blank" title="extension_text_selection.jpg" rel="noopener"><img src="/guide/_media/extension_text_selection.jpg?w=1280&amp;h=800&amp;tok=8980a8" class="mediabox2" alt="" width="1280" height="800" /></a><div class="thumbcaption" style="max-width: 1274px">text-selection search</div></div></div><div class="thumb2 t"><div class="thumbinner"><a href="/guide/_media/extension_sidebar_1.jpg" class="media" target="_blank" title="extension_sidebar_1.jpg" rel="noopener"><img src="/guide/_media/extension_sidebar_1.jpg?w=1280&amp;h=800&amp;tok=0a217b" class="mediabox2" alt="" width="1280" height="800" /></a><div class="thumbcaption" style="max-width: 1274px">sidebar entity-view on a matching <abbr title="Uniform Resource Locator">URL</abbr></div></div></div>
 <p>
-<code>(work in progress)</code>
+The <strong>Conzept browser extension</strong> (<a href="https://github.com/waldenn/conzept-extension" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept-extension" rel="ugc nofollow noopener">source</a>) is a lightly-patched fork of the great <a href="https://github.com/fuddl/wd" class="urlextern" target="_blank" title="https://github.com/fuddl/wd" rel="ugc nofollow noopener">Wikidata-for-Web extension</a>.
 </p>
 
 <p>
-The <strong>Conzept browser extension</strong> is a (lightly-patched) fork of the great <a href="https://github.com/fuddl/wd" class="urlextern" target="_blank" title="https://github.com/fuddl/wd" rel="ugc nofollow noopener">Wikidata-for-Web extension</a>.
+The extension aims to <strong>semantically integrate any website</strong> with the Conzept encyclopedia. By “string” and by “thing” (semantic entity).
 </p>
 
 <p>
-This extension allows you to:
+The Conzept extension allows you to:
 </p>
 <ul>
-<li class="level1"><div class="li"> <strong>Text-selection search</strong>: Select some text on any website, then <em class="u">right-click for the context-menu</em> , which will show an option to search on Conzept. Even browser-viewed PDF files are supported!</div>
+<li class="level1"><div class="li"> Do a <strong>text-selection search</strong>: Select some text on any website, then <em class="u">right-click for the context-menu</em> , which will show an option to search on Conzept. Even browser-viewed PDF files are supported!</div>
 </li>
 </ul>
 <ul>
@@ -23,7 +23,7 @@ This extension allows you to:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser extension&quot;,&quot;hid&quot;:&quot;browser_extension&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-636&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser extension&quot;,&quot;hid&quot;:&quot;browser_extension&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-964&quot;} -->
 <h2 class="sectionedit2" id="install">install</h2>
 <div class="level2">
 
@@ -32,8 +32,34 @@ This extension allows you to:
 </p>
 
 <p>
-* <strong>Chrome version</strong> (soon)
+* <strong><a href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" class="urlextern" target="_blank" title="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" rel="ugc nofollow noopener">Chrome version</a></strong> (not yet published)
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;install&quot;,&quot;hid&quot;:&quot;install&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;637-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;install&quot;,&quot;hid&quot;:&quot;install&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;965-1215&quot;} -->
+<h2 class="sectionedit3" id="issues">issues</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I&#039;ve started some research what the best way forward is to improve the JSON-LD parser. See also: <a href="https://github.com/openlink/structured-data-sniffer/issues/25" class="urlextern" target="_blank" title="https://github.com/openlink/structured-data-sniffer/issues/25" rel="ugc nofollow noopener">1</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;issues&quot;,&quot;hid&quot;:&quot;issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1216-1884&quot;} -->
+<h2 class="sectionedit4" id="ideas">ideas</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Add multi-lingual support to the entity view (use a language switcher or take the language from somewhere else?)</div>
+</li>
+<li class="level1"><div class="li"> ? Name-entity-linking on 3rd-party webpages, how would the UX for this look?</div>
+</li>
+<li class="level1"><div class="li"> ? Take a look at the <a href="https://developer.apple.com/safari/extensions/" class="urlextern" target="_blank" title="https://developer.apple.com/safari/extensions/" rel="ugc nofollow noopener">Safari extension store</a> too, with an Xcode-requirement (which I don&#039;t have access too, but maybe there is some way to get that done as well).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;ideas&quot;,&quot;hid&quot;:&quot;ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1885-&quot;} -->

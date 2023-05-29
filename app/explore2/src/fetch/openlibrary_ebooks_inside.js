@@ -232,7 +232,8 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
 
             if (  valid( v.fields?.identifier ) ){
 
-              url = encodeURIComponent( JSON.stringify( 'https://archive.org/details/' + v.fields.identifier[0] + '?view=theater' ) );
+              url = encodeURIComponent( JSON.stringify( 'https://archive.org/details/' + v.fields.identifier[0] + '?view=theater&q=' + keyword ) );
+
               newtab = true; // TODO: research if there is a way to check if this ebook is open for all
 
             }
@@ -310,7 +311,7 @@ async function fetchEbooksInside( args, total_results, page, sortby ){
 			},
       error: function (xhr, ajaxOptions, thrownError) {
 
-				console.log( 'response: hmm...', response ); // server response
+				console.log( 'response: hmm...', thrownError); // server response
 
       }
 

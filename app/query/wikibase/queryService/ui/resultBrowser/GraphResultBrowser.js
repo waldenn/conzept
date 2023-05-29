@@ -92,7 +92,7 @@ wikibase.queryService.ui.resultBrowser.GraphResultBrowser = ( function( $, vis, 
         var l			= getParameterByName( 'l', window.location );
         var url		= '/app/wikipedia/?t=&l=' + l + '&qid=' + qid;
 
-        window.top.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } } );
+        window.top.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', language: l, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane() } } );
 
         // TODO: also make non-embed views work
         //window.open( properties.nodes[0], '_blank' );

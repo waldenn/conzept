@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.png" />
-          <span id="queryTitle"></span>
+          <script async src="https://platform.twitter.com/widgets.js" />
           <meta
             name="keywords"
             content="Family, Entity, Item, Tree, Taxonomy, Graph, Wikipedia, Wikidata, Diagram, Chart, D3, Hierarchy"

@@ -25,7 +25,7 @@
     ?>
     <head>
       <meta charset="utf-8">
-      <title>conzept plant identification</title>
+      <title>plant identification</title>
       <!--base target="_self"-->
 
       <!-- conzept resources -->
@@ -36,7 +36,7 @@
     </head>
 
     <body>
-        <h1>conzept plant identification</h1>
+        <h1>plant identification</h1>
 
             <?php
               echo '<form method="POST" action="index.php?l=' . $language . '" enctype="multipart/form-data">';

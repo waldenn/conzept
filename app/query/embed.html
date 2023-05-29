@@ -87,7 +87,7 @@ canvas:not(.leaflet-zoom-animated) {
   border-radius: 0.3em;
 }
 
-#key-loc, #key-lon, #key-lat, #key-coord, #key-img {
+#key-lon, #key-lat, #key-coord {
   display: none;
 }
 
@@ -194,6 +194,13 @@ body {
 
 .img-grid {
 	width: 95vw;
+}
+
+a.item-link img {
+  vertical-align: middle;
+  width: 100%;
+  max-height: 600px;
+  border-radius: 0.3em;
 }
 
 .wdqs-control-scroll-top {
@@ -608,6 +615,25 @@ body {
       console.log( qid );
     });
     */
+
+    // keyboard control
+    $(document).keydown(function(event) {
+
+      let key = (event.keyCode ? event.keyCode : event.which);
+
+      //console.log( event, key );
+
+      if (key == '70') { // "f"
+
+        if ($('textarea, input, select').is(':focus')) {
+          // do nothing
+        } else {
+          document.toggleFullscreen();
+        }
+
+      }
+
+    });
 
   </script>
   <!-- CONZEPT PATCH END -->

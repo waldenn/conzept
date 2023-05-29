@@ -24,6 +24,18 @@ conzept_fields = {
   rank: 1,
 },
 
+'non_free_artwork_image_url' : {
+  title: 'Non-free artwork image URL',
+  prop: '6500',
+  type: 'url',
+  mv: false,
+  url: '${ item.non_free_artwork_image_url }',
+  icon: 'fa-solid fa-link',
+  text: 'non-free artwork image URL',
+  section: ['main'],
+  rank: [96500],
+},
+
 'flag' : {
   title: 'Flag',
   prop: '163',
@@ -525,6 +537,19 @@ conzept_fields = {
   rank: [240,8860],
 },
 
+'aopwiki_search' : {
+  create_condition: 'valid( item.protein_id )',
+  title: 'Adverse Outcome Pathway Wiki',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://aopwiki.org/aops?utf8=%E2%9C%93&search=${title_quoted}&commit=Search&find_by_id=',
+  icon: 'fa-solid fa-atom',
+  text: 'AOP',
+  section: ['science-biology','main'],
+  rank: [290,8895],
+},
+
 'ebi_alphafold_protein_structure' : {
   create_condition: true,
   // FIXME
@@ -570,7 +595,7 @@ conzept_fields = {
   create_condition: 'listed( item.instances, [ 7187 ] )',
   title: 'NDEx Gene pathways search',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://www.ndexbio.org/iquery/?genes=${title_}',
   icon: 'fa-solid fa-dna',
@@ -585,9 +610,12 @@ conzept_fields = {
   type: 'url',
   mv: false,
   icon: 'fa-regular fa-file-alt',
-  text: 'doc',
+  text: 'full work',
   section: ['art','main'],
   rank: [265,1150],
+  headline_create: 'valid( item.full_work )',
+  headline_type: 'url',
+  headline_url: '${item.full_work}',
 },
 
 'doid' : {
@@ -600,6 +628,45 @@ conzept_fields = {
   text: 'Human disease',
   section: ['science-medical','main'],
   rank: [10,3130],
+},
+
+'human_phenotype_ontology_id' : {
+  title: 'Human Phenotype Ontology term',
+  prop: '3841',
+  type: 'link',
+  mv: false,
+  url_format: 'https://hpo.jax.org/app/browse/term/$1',
+  url: '',
+  icon: 'fa-solid fa-head-side-cough',
+  text: 'Human Phenotype term',
+  section: ['science-medical','main'],
+  rank: [20,3145],
+},
+
+'human_phenotype_ontology_search' : {
+  create_condition: 'checkTag( item, 1, ["human-disease","gene", "protein" ] )',
+  title: 'Human Phenotype Ontology search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://hpo.jax.org/app/browse/search?q=${title_}&navFilter=all',
+  icon: 'fa-solid fa-head-side-cough',
+  text: 'Human Phenotype search',
+  section: ['science-medical','main'],
+  rank: [21,3146],
+},
+
+'orthologous_matrix_search' : {
+  create_condition: 'checkTag( item, 1, ["gene", "protein" ] )',
+  title: 'Orthologous MAtrix search - genome orthology prediction',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://omabrowser.org/oma/search/?type=entry_id&query=${title_}',
+  icon: 'fa-solid fa-dna',
+  text: 'Orthologous MAtrix',
+  section: ['science-biology','main'],
+  rank: [197,8687],
 },
 
 /*
@@ -694,46 +761,19 @@ conzept_fields = {
   icon: 'fa-solid fa-map-pin',
   text: 'country',
   section: ['location-geography','main'],
-  rank: [5.9,5910],
+  rank: [5.90,5910],
 },
 
-/*
-// first country id
-'country_qid' : {
-  default_value: '',
-  create_condition: true,
-  render_condition: false,
-  title: 'country_qid',
-  prop: '',
-  type: '',
-  mv: false,
-  icon: '',
-  text: '',
-  section: '',
-  rank: 1,
+'country_of_citizenship' : {
+  title: 'Country of citizenship',
+  prop: '27',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-regular fa-circle',
+  text: 'country of citizenship',
+  section: ['location-geography','main'],
+  rank: [5.91,5911],
 },
-*/
-
-/*
-'country_qid_foo' : {
-  default_value: '',
-  create_condition: 'valid( item.country_qid )',
-  //value: 'item.instances[0]',
-  //value: 'wd.claims.P31[0].substring(1);',
-  //create_condition: true,
-  create_trigger: 'console.log( item.country_qid );',
-  //create_trigger: 'item.country_qid_foo = item.country_qid; console.log( "country qid: ", item.country_qid_foo );',
-  render_condition: false,
-  title: 'country qid',
-  prop: '',
-  type: '',
-  mv: false,
-  icon: '',
-  text: '',
-  section: '',
-  rank: 1,
-},
-*/
 
 'continent' : {
   title: 'Continent',
@@ -883,7 +923,7 @@ conzept_fields = {
   prop: '105',
   type: 'wikipedia-qid',
   mv: true,
-  icon: 'fa-regular fa-circle',
+  icon: 'fa-brands fa-screenpal',
   text: 'taxon rank',
   section: ['main'],
   rank: [7825],
@@ -1181,9 +1221,11 @@ conzept_fields = {
 'isbn_10' : {
   title: 'ISBN-10',
   prop: '957',
-  type: 'url',
+  type: 'link',
   mv: false,
-  url: 'https://wikidata.org/wiki/Special:BookSources/${item.isbn_10}',
+  url: 'https://openlibrary.org/search?q=${item.isbn_10}',
+  //url: 'https://isbnsearch.org/isbn/${item.isbn_10}',
+  //url: 'https://wikidata.org/wiki/Special:BookSources/${item.isbn_10}',
   icon: 'fa-solid fa-book',
   text: 'ISBN-10',
   section: ['library-identity','main'],
@@ -1193,9 +1235,11 @@ conzept_fields = {
 'isbn_13' : {
   title: 'ISBN-13',
   prop: '212',
-  type: 'url',
+  type: 'link',
   mv: false,
-  url: 'https://www.wikidata.org/wiki/Special:BookSources/${item.isbn_13}',
+  url: 'https://openlibrary.org/search?q=${item.isbn_13}',
+  //url: 'https://isbnsearch.org/isbn/${item.isbn_13}',
+  //url: 'https://www.wikidata.org/wiki/Special:BookSources/${item.isbn_13}',
   icon: 'fa-solid fa-book',
   text: 'ISBN-13',
   section: ['library-identity','main'],
@@ -1418,12 +1462,12 @@ conzept_fields = {
   rank: 1,
 },
 
-'is_business' : {
+'is_company' : {
   default_value: false,
-  create_condition: 'listed( item.instances, indicators.business.value )',
+  create_condition: 'listed( item.instances, indicators.company.value )',
   value: true,
   render_condition: false,
-  title: 'is_business',
+  title: 'is_company',
   prop: '',
   type: '',
   mv: false,
@@ -1495,7 +1539,7 @@ conzept_fields = {
   icon: 'fa-brands fa-google',
   text: 'Google KG',
   section: ['library-identity','web','main'],
-  rank: [300,3.01,6332],
+  rank: [300,3.01,9332],
 },
 
 'fandom_topic' : {
@@ -1557,7 +1601,7 @@ conzept_fields = {
   icon: 'fa-regular fa-newspaper',
   text: 'GoTriple',
   section: ['science-search-tools'],
-  rank: [170],
+  rank: [168],
 },
 
 'dimensions_publication' : {
@@ -1933,17 +1977,18 @@ conzept_fields = {
 },
 
 'doi' : {
-  title: 'doi',
+  title: 'Digital Object Identifier link',
   prop: '356',
-  type: '',
+  type: 'url',
   mv: false,
-  url: '',
+  url: 'https://doi.org/${item.doi}',
   icon: 'fa-regular fa-file',
   text: 'DOI',
-  section: '',
-  rank: '',
-  //section: ['library-identity'],
-  //rank: [21184],
+  section: ['library-general','main'],
+  rank: [6, 1150],
+  headline_create: 'valid( item.doi )',
+  headline_type: 'url',
+  headline_rank: 150,
 },
 
 'doi_prefix' : {
@@ -2322,6 +2367,8 @@ conzept_fields = {
   rank: 200021,
   headline_create: true,
   headline_rank: 112,
+  //headline_type: 'link',
+  //headline_url: '${explore.base}/app/overpass/map.html?Q=Q=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A(%0A%20%20relation(190840)%3B%0A)%3B%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%0A',
 },
 
 'elevation' : {
@@ -2351,7 +2398,7 @@ conzept_fields = {
   rank: 200040,
   headline_create: 'valid( item.hdi )',
   headline_rank: 104,
-  headline_type: 'link',
+  headline_type: 'link-split',
   headline_url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fcountry%20%3FcountryLabel%20%3Fhdi_value%20%3Finception%20%3Fcoordinate%20%3Fflag%20%3Fgeoshape%20WHERE%20%7B%0A%20%20%7B%20%3Fcountry%20wdt%3AP31%20wd%3AQ6256%20.%20%7D%20UNION%20%7B%20%3Fcountry%20wdt%3AP31%20wd%3AQ5119%20.%20%7D%20UNION%20%7B%20%3Fcountry%20wdt%3AP31%20wd%3AQ515%20.%20%7D%20UNION%20%7B%20%3Fcountry%20wdt%3AP31%20wd%3AQ1549591%20.%20%7D%20%20UNION%20%7B%20%3Fcountry%20wdt%3AP31%20wd%3AQ1637706%20.%20%7D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fcountry%20p%3AP1081%20%3Fhdi_statement.%0A%20%20%20%20%3Fhdi_statement%20ps%3AP1081%20%3Fhdi_value%3B%0A%20%20%20%20%20%20pq%3AP585%20%3Fhdi_date.%0A%20%20%7D%0A%20%20%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fcountry%20p%3AP1081%20%3Fhdi_statement.%0A%20%20%20%20%3Fhdi_statement%20ps%3AP1081%20%3Fhdi_value%3B%0A%20%20%20%20%20%20pq%3AP585%20%3Fhdi_date.%0A%20%20%7D%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP3896%20%3Fgeoshape.%20%7D%20%20%0A%20%20FILTER(NOT%20EXISTS%20%7B%0A%20%20%20%20%3Fcountry%20(p%3AP1081%2Fpq%3AP585)%20%3Fhdi_date_.%0A%20%20%20%20FILTER(%3Fhdi_date_%20%3E%20%3Fhdi_date)%0A%20%20%7D)%0A%20%20FILTER(%3Fhdi_value%20%3E%20%22${ ( parseFloat( item.hdi ) - 0.05 ) }%22%5E%5Exsd%3Adecimal)%0A%20%20FILTER(%3Fhdi_value%20%3C%20%22${ ( parseFloat( item.hdi ) + 0.05 ) }%22%5E%5Exsd%3Adecimal)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fhdi_value)%0A%23defaultView%3AMap%0A%23meta%3Alocations%20with%20a%20similar%20Human%20Development%20Index',
 },
 
@@ -2601,6 +2648,22 @@ conzept_fields = {
   rank: [20, 20],
 },
 
+'youtube_channel' : {
+  title: 'YouTube channel',
+  prop: '2397',
+  type: 'link',
+  url: '${explore.base}/app/video/#/user/${item.youtube_channel}',
+  mv: false,
+  icon: 'fa-brands fa-youtube',
+  text: 'YouTube channel',
+  section: ['media-video','main'],
+  rank: [19, 19],
+  headline_create: 'valid( item.youtube_channel )',
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/video/#/user/${item.youtube_channel}',
+  headline_rank: 201,
+},
+
 'topical_video_stream' : { // FIXME not rendering for raw-search-strings, why?
   create_condition: true,
   title: 'topical YouTube video stream',
@@ -2636,7 +2699,7 @@ conzept_fields = {
   icon: 'fa-solid fa-cube',
   text: 'IPFS',
   section: 'web',
-  rank: 6.1,
+  rank: 6.11,
 },
 
 'ipse' : {
@@ -2691,6 +2754,19 @@ conzept_fields = {
   rank: 3,
 },
 
+'archive_today_search' : {
+  create_condition: true,
+  title: 'Archive Today - webpage snapshot search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://archive.today/search/?q=${title_quoted}',
+  icon: 'fa-solid fa-archive',
+  text: 'Archive Today',
+  section: ['web', 'library-history'],
+  rank: [7.1, 205],
+},
+
 'metaphor' : {
   create_condition: true,
   title: 'Metaphor search',
@@ -2701,7 +2777,7 @@ conzept_fields = {
   icon: 'fa-brands fa-searchengin',
   text: 'Metaphor',
   section: 'web',
-  rank: 7,
+  rank: 7.2,
 },
 
 'millionshort' : {
@@ -2785,7 +2861,7 @@ conzept_fields = {
 },
 
 'yandex' : {
-  create_condition: '"${explore.language}" !== "ru"',
+  create_condition: '! checkLC( "ru" )',
   title: 'Yandex search',
   prop: '',
   type: 'url',
@@ -2876,6 +2952,20 @@ conzept_fields = {
   rank: [80,1080],
 },
 
+'haveibeentrained' : {
+  create_condition: true,
+  title: 'Have I Been Trained - AI dataset image search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://haveibeentrained.com/?search_text=${title_quoted}',
+  //icon: 'fa-brands fa-searchengin',
+  icon: 'fa-regular fa-images',
+  text: 'HIBT',
+  section: ['media-image'],
+  rank: [85],
+},
+
 'wikicommons_image_search' : {
   create_condition: 'valid( item.qid )',
   title: 'Wikimedia Commons images',
@@ -2887,7 +2977,7 @@ conzept_fields = {
   text: 'Commons',
   section: ['media-image','main'],
   rank: [51,1041],
-  headline_create: 'valid( item.qid ) && valid( item.thumbnail ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept" ] )', 
+  headline_create: 'valid( item.qid ) && ( valid( item.thumbnail ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.is_painter) ) ', 
   headline_type: 'link',
   headline_rank: 440,
 
@@ -2907,7 +2997,7 @@ conzept_fields = {
 },
 
 'xtools' : {
-  create_condition: true,
+  create_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'xTools page-edit history',
   prop: '',
   type: 'link',
@@ -2920,7 +3010,7 @@ conzept_fields = {
 },
 
 'wikirank' : {
-  create_condition: true,
+  create_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'wikiRank article quality and popularity',
   prop: '',
   type: 'link',
@@ -2932,6 +3022,7 @@ conzept_fields = {
   rank: 90,
 },
 
+/*
 'api_dashboard' : {
   create_condition: true,
   render_condition: 'checkTag(item, 1, "country")',
@@ -2945,6 +3036,7 @@ conzept_fields = {
   section: 'science-datasets-general',
   rank: 110,
 },
+*/
 
 /*
 'parlgov' : {
@@ -3016,8 +3108,22 @@ conzept_fields = {
   url: 'https://www.indeed.com/jobs?q=${title_quoted}&lang=${explore.language}',
   icon: 'fa-regular fa-address-card',
   text: 'Indeed',
-  section: 'news-jobs',
+  section: 'society-jobs',
   rank: 10,
+},
+
+'eu_eures_search' : {
+  create_condition: true,
+  title: 'EURES EU job search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://ec.europa.eu/eures/portal/jv-se/search?page=1&resultsPerPage=10&orderBy=BEST_MATCH&keywordsEverywhere=${title_quoted}&lang=${explore.language}',
+  icon: 'fa-solid fa-euro-sign',
+  //icon: 'fa-regular fa-address-card',
+  text: 'EURES',
+  section: 'society-jobs',
+  rank: 20,
 },
 
 'wiki_education' : {
@@ -3111,6 +3217,25 @@ conzept_fields = {
   rank: 192,
 },
 
+'elexir_inline' : {
+  value: 'elixir:${item.title}:true',
+  title: 'ELIXER',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  url: '',
+  icon: 'fa-solid fa-dna',
+  text: 'ELIXIR',
+  section: 'education-courses',
+  rank: 300,
+  /* FIXME: how to make inline-API views linkable?
+  headline_create: 'checkTag( item, 0, ["substance"] )', 
+  headline_type: 'code',
+  headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
+  headline_rank: 250,
+  */
+},
+
 'udemy' : {
   create_condition: true,
   title: 'Udemy',
@@ -3137,18 +3262,20 @@ conzept_fields = {
   rank: 170,
 },
 
+/*
 'learnawesome' : {
   create_condition: true,
   title: 'Learn Awesome',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://learnawesome.org/items/search?utf8=%E2%9C%93&q=${title_enc}&commit=Search',
+  url: 'https://learnawesome.org/items/search?utf8=%E2%9C%93&q=${title_}&commit=Search',
   icon: 'fa-regular fa-lightbulb',
   text: 'Learn Awesome',
   section: 'education-assistance',
   rank: 200,
 },
+*/
 
 'yc' : {
   create_condition: true,
@@ -3706,8 +3833,21 @@ conzept_fields = {
   mv: false,
   icon: 'fa-brands fa-mastodon',
   text: 'Mastodon address',
-  section: ['news-social','main'],
-  rank: [11,9070],
+  section: ['social','main'],
+  rank: [14.1,9070],
+},
+
+'mastodon_account_search' : {
+  create_condition: true,
+  title: 'Mastodon account search',
+  prop: '',
+  type: 'url',
+  url: "https://search.noc.social/?search=${title_quoted}",
+  mv: false,
+  icon: 'fa-brands fa-mastodon',
+  text: 'Mastodon accounts',
+  section: ['social'],
+  rank: [14.4],
 },
 
 'blog' : {
@@ -3748,7 +3888,7 @@ conzept_fields = {
   section: 'main',
   rank: 40,
   headline_create: true,
-  headline_rank: 114,
+  headline_rank: 95,
 },
 
 'online_catalog' : {
@@ -4132,7 +4272,7 @@ conzept_fields = {
   mv: true,
   icon: 'fa-brands fa-twitter',
   text: 'Twitter user',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [33,9060],
   headline_create: true,
   headline_rank: 115,
@@ -4146,7 +4286,7 @@ conzept_fields = {
   mv: true,
   icon: 'fa-brands fa-twitter',
   text: 'Twitter topic',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [34,9070],
 },
 
@@ -4158,7 +4298,7 @@ conzept_fields = {
   mv: false,
   icon: 'fa-brands fa-facebook',
   text: 'Facebook user',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [35,9071],
 },
 
@@ -4170,7 +4310,7 @@ conzept_fields = {
   mv: false,
   icon: 'fa-brands fa-pinterest-p',
   text: 'Pinterest user',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [99,9080],
 },
 
@@ -4182,7 +4322,7 @@ conzept_fields = {
   mv: true,  // TODO: make multi-value possible for strings which need processing towards URLs with a url-format // example: https://www.wikidata.org/wiki/Q13479982
   icon: 'fa-brands fa-reddit',
   text: 'Reddit forum',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [26,8920],
 },
 
@@ -4195,7 +4335,7 @@ conzept_fields = {
   url: '',
   icon: 'fa-brands fa-reddit',
   text: 'Reddit username',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [27,8921],
 },
 
@@ -4208,7 +4348,7 @@ conzept_fields = {
   mv: false,
   icon: 'fa-brands fa-reddit',
   text: 'Reddit search',
-  section: 'news-social',
+  section: 'social',
   rank: 27,
 },
 
@@ -4383,7 +4523,7 @@ conzept_fields = {
 // see: https://tools.wmflabs.org/Scholia/
 'scholia_author' : {
   create_condition: 'checkTag( item, 0, "person")',
-  title: 'Scholia author',
+  title: 'Scholia author research dashboard',
   prop: '',
   type: 'link',
   url: 'https://tools.wmflabs.org/scholia/author/${item.qid}',
@@ -4396,7 +4536,7 @@ conzept_fields = {
 
 'scholia_work' : {
   create_condition: 'checkTag(item, 0, "work")',
-  title: 'Scholia work',
+  title: 'Scholia work research dashboard',
   prop: '',
   type: 'link',
   mv: false,
@@ -4405,11 +4545,15 @@ conzept_fields = {
   text: 'Scholia work',
   section: 'science-search-tools',
   rank: 71,
+  headline_create: 'valid( item.scholia_work )',
+  headline_type: 'link',
+  headline_icon: 'fa-solid fa-graduation-cap',
+  headline_rank: 350,
 },
 
 'scholia_topic' : {
   create_condition: 'valid( item.qid )',
-  title: 'Scholia topic',
+  title: 'Scholia topic research dashboard',
   prop: '',
   type: 'link',
   mv: false,
@@ -4418,11 +4562,15 @@ conzept_fields = {
   text: 'Scholia topic',
   section: 'science-search-tools',
   rank: 74,
+  headline_create: 'valid( item.scholia_topic ) && ( listed( item.instances, [ 11862829, 849359, 1759955, 249542 ] ) || listed( item.subclasses, [ 11862829, 849359, 1759955, 249542 ] ) )',
+  headline_type: 'link',
+  headline_icon: 'fa-solid fa-graduation-cap',
+  headline_rank: 351,
 },
 
 'scholia_organization' : {
   create_condition: 'checkTag(item, 0, "organization")',
-  title: 'Scholia organization',
+  title: 'Scholia organization research dashboard',
   prop: '',
   type: 'link',
   mv: false,
@@ -4431,11 +4579,16 @@ conzept_fields = {
   text: 'Scholia org',
   section: 'science-search-tools',
   rank: 73,
+  headline_create: 'valid( item.scholia_organization ) && ( checkTag(item, 1, ["university","museum","national-library"]) || checkTag(item, 1, "company") && valid( [ item.employees, item.employees > 100 ] ) )',
+  headline_type: 'link',
+  headline_title: 'Scholia research dashboard',
+  headline_icon: 'fa-solid fa-graduation-cap',
+  headline_rank: 650,
 },
 
 'scholia_location' : {
   create_condition: 'checkTag(item, 0, "location")',
-  title: 'Scholia location',
+  title: 'Scholia location research dashboard',
   prop: '',
   type: 'link',
   mv: false,
@@ -4449,7 +4602,7 @@ conzept_fields = {
 'scholia_country' : {
   create_condition: 'checkTag( item, 0, "location")',
   render_condition: 'valid( item.iso2 )',
-  title: 'Scholia country',
+  title: 'Scholia country research dashboard',
   prop: '',
   type: 'link',
   mv: false,
@@ -4469,8 +4622,8 @@ conzept_fields = {
   url: 'https://www.delpher.nl/nl/platform/results?query=${title_quoted}',
   icon: 'fa-brands fa-mizuni',
   text: 'NL delpher',
-  section: 'library-general',
-  rank: 20,
+  section: ['library-history'],
+  rank: [100],
 },
 
 'svenska_dagstidningar' : {
@@ -4739,6 +4892,7 @@ conzept_fields = {
 //    - see eg.: reasonator/main.js which has implemented this
 'all_supclasses_query' : {
   value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fimage%0A%20WHERE%20%7B%0A%20%20%20%3Ftree0%20(wdt%3AP279)*%20%3Fitem%20.%20BIND%20(wd%3A${item.qid}%20AS%20%3Ftree0)%0A%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D',
+  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
   //value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fimage%0A%20WHERE%20%7B%0A%20%20%20%3Ftree0%20(wdt%3AP279)*%20%3Fitem%20.%20BIND%20(wd%3A${item.qid}%20AS%20%3Ftree0)%0A%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%20%7D%0AORDER%20BY%20%3FitemLabel%0ALIMIT%20200',
   //render_condition: '${item.qid}', // FIXME
   title: 'all super classes',
@@ -4768,7 +4922,7 @@ conzept_fields = {
 
 'main_subject_relations_query' : {
   value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP921%20wd%3A${item.qid}%20.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)',
-  //render_condition: 'valid( ${item.qid} )',
+  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
   title: 'main subject relations',
   prop: '0',
   type: 'wikipedia-qid-sparql',
@@ -4907,10 +5061,10 @@ conzept_fields = {
   prop: '9714',
   type: 'wikipedia-qid',
   mv: true,
-  icon: 'fa-solid fa-list-ul',
+  icon: 'fa-brands fa-screenpal',
   text: 'taxon range',
   section: ['science-biology','main'],
-  rank: [30, 1870],
+  rank: [71, 1911],
 },
 
 'taxon_synonym' : {
@@ -4918,7 +5072,7 @@ conzept_fields = {
   prop: '1420',
   type: 'wikipedia-qid',
   mv: true,
-  icon: 'fa-solid fa-list-ul',
+  icon: 'fa-brands fa-screenpal',
   text: 'taxon synonym',
   section: ['science-biology','main'],
   rank: [80, 1920],
@@ -5065,6 +5219,17 @@ conzept_fields = {
   text: 'publisher',
   section: ['business', 'main'],
   rank: [103, 2090],
+},
+
+'editor' : {
+  title: 'editor',
+  prop: '98',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-brands fa-accusoft',
+  text: 'editor',
+  section: ['main'],
+  rank: [2091],
 },
 
 'based_on' : {
@@ -5521,7 +5686,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fpoliticians%20%3Fdistrict%20%3FdistrictLabel%20%3Ftype%20%3FtypeLabel%20%3FlocatedIn%20%3FlocatedInLabel%20%3Fcoord%20%3Fgeoshape%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20%3Fdistrict%20(COUNT(DISTINCT%20%3Fstatement)%20AS%20%3Fpoliticians)%20%7B%0A%20%20%20%20%20%20%3Fperson%20p%3AP39%20%3Fstatement%20.%0A%20%20%20%20%20%20%3Fstatement%20ps%3AP39%2Fwdt%3AP279*%20wd%3A${ item.chamber1_members }%20%3B%20pq%3AP768%20%3Fdistrict%20.%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fdistrict%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP31%20%3Ftype%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP131%20%3FlocatedIn%20%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(%3Fpoliticians)%0A%23meta%3Aelectoral%20districts%201st%20chamber',
+  url: '${explore.base}/app/query/embed.html#%23defaultView%3AMap%0ASELECT%20DISTINCT%20%3Fpoliticians%20%3Fdistrict%20%3FdistrictLabel%20%3Ftype%20%3FtypeLabel%20%3FlocatedIn%20%3FlocatedInLabel%20%3Fcoord%20%3Fgeoshape%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20%3Fdistrict%20(COUNT(DISTINCT%20%3Fstatement)%20AS%20%3Fpoliticians)%20%7B%0A%20%20%20%20%20%20%3Fperson%20p%3AP39%20%3Fstatement%20.%0A%20%20%20%20%20%20%3Fstatement%20ps%3AP39%2Fwdt%3AP279*%20wd%3A${ item.chamber1_members }%20%3B%20pq%3AP768%20%3Fdistrict%20.%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fdistrict%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP31%20%3Ftype%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP131%20%3FlocatedIn%20%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(%3Fpoliticians)%0A%23meta%3Aelectoral%20districts%201st%20chamber',
   icon: 'fa-solid fa-check-to-slot',
   text: 'districts 1' ,
   section: ['government-legislature'],
@@ -5535,7 +5700,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fpoliticians%20%3Fdistrict%20%3FdistrictLabel%20%3Ftype%20%3FtypeLabel%20%3FlocatedIn%20%3FlocatedInLabel%20%3Fcoord%20%3Fgeoshape%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20%3Fdistrict%20(COUNT(DISTINCT%20%3Fstatement)%20AS%20%3Fpoliticians)%20%7B%0A%20%20%20%20%20%20%3Fperson%20p%3AP39%20%3Fstatement%20.%0A%20%20%20%20%20%20%3Fstatement%20ps%3AP39%2Fwdt%3AP279*%20wd%3A${ item.chamber2_members }%20%3B%20pq%3AP768%20%3Fdistrict%20.%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fdistrict%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP31%20%3Ftype%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP131%20%3FlocatedIn%20%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(%3Fpoliticians)%0A%23meta%3Aelectoral%20districts%202nd%20chamber',
+  url: '${explore.base}/app/query/embed.html#%23defaultView%3AMap%0ASELECT%20DISTINCT%20%3Fpoliticians%20%3Fdistrict%20%3FdistrictLabel%20%3Ftype%20%3FtypeLabel%20%3FlocatedIn%20%3FlocatedInLabel%20%3Fcoord%20%3Fgeoshape%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20%3Fdistrict%20(COUNT(DISTINCT%20%3Fstatement)%20AS%20%3Fpoliticians)%20%7B%0A%20%20%20%20%20%20%3Fperson%20p%3AP39%20%3Fstatement%20.%0A%20%20%20%20%20%20%3Fstatement%20ps%3AP39%2Fwdt%3AP279*%20wd%3A${ item.chamber2_members }%20%3B%20pq%3AP768%20%3Fdistrict%20.%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fdistrict%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP31%20%3Ftype%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fdistrict%20wdt%3AP131%20%3FlocatedIn%20%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%20%3Fdistrict%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(%3Fpoliticians)%0A%23meta%3Aelectoral%20districts%202nd%20chamber',
   icon: 'fa-solid fa-check-to-slot',
   text: 'districts 2' ,
   section: ['government-legislature'],
@@ -6172,7 +6337,20 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-clock',
   text: 'book words',
   section: 'science-language',
-  rank: 20,
+  rank: 20.1,
+},
+
+'danish_newspaper_word_history' : {
+  create_condition: 'checkLC( ["da"] )',
+  title: 'Timeline of term-usage in Danish newspapers',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://labs.statsbiblioteket.dk/smurf?q=${title_}',
+  icon: 'fa-regular fa-clock',
+  text: 'Danish word use',
+  section: 'science-language',
+  rank: 20.2,
 },
 
 'jain' : {
@@ -6405,6 +6583,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Gutenberg item',
   section: ['library-general','main'],
   rank: [130,1180],
+  headline_create: 'valid( item.gutenberg_book )',
+  headline_type: 'link',
+  headline_rank: 155,
 },
 
 'gutenberg_search' : {
@@ -6669,7 +6850,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'pageviews' : {
-  create_condition: true,
+  create_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'pageviews',
   prop: '',
   type: 'url',
@@ -6839,7 +7020,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   icon: 'fa-regular fa-comment-alt',
   text: 'Stack Overflow topic',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [20,8400],
 },
 
@@ -6851,7 +7032,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   icon: 'fa-brands fa-quora',
   text: 'Quora topic',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [300,8420],
 },
 
@@ -6964,25 +7145,9 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.document_file )}',
   mv: false,
   icon: 'fa-regular fa-file-pdf',
-  text: 'document',
+  text: 'Commons document',
   section: ['library-general','main'],
-  rank: [5,1170],
-},
-
-'youtube_channel' : {
-  title: 'YouTube channel',
-  prop: '2397',
-  type: 'link',
-  url: '${explore.base}/app/video/#/user/${encodeURIComponent( item.youtube_channel ) }',
-  mv: false,
-  icon: 'fa-solid fa-video',
-  text: 'YouTube channel',
-  section: ['media-video','main'],
-  rank: [19, 19],
-  headline_create: 'valid( item.youtube_channel )',
-  headline_type: 'link',
-  headline_url: '${ item.youtube_channel }',
-  headline_rank: 450,
+  rank: [5,1149],
 },
 
 'videolectures' : {
@@ -7310,10 +7475,36 @@ if ( valid( item.found_in_taxon ) ){
   rank: [530,7838],
 },
 
+'treegenes_search' : {
+  create_condition: 'checkTag( item, 1, ["plant" ] )',
+  title: 'TreeGenes search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://treegenesdb.org/tripal_elasticsearch/search_website/?search_box=${title_quoted}',
+  icon: 'fa-solid fa-tree',
+  text: 'TreeGenes',
+  section: ['science-biology','main'],
+  rank: [610,7900],
+},
+
+'plants_of_the_world_online' : {
+  title: 'Plants of the World online',
+  prop: '5037',
+  type: 'url',
+  mv: false,
+  url_format: 'http://www.plantsoftheworldonline.org/taxon/$1',
+  url: '',
+  icon: 'fa-brands fa-pagelines',
+  text: 'PotW',
+  section: ['science-biology','main'],
+  rank: [600,7890],
+},
+
 'wrms' : {
   title: 'World Register of Marine Species taxon',
   prop: '850',
-  type: 'link',
+  type: 'url',
   url: 'https://www.marinespecies.org/aphia.php?p=taxdetails&id=${item.wrms}',
   mv: false,
   icon: 'fa-solid fa-fish',
@@ -7513,7 +7704,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.outline )',
   headline_rank: 113,
   headline_type: 'link',
-  headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&qid=${item.outline}#${explore.hash}',
+  headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&qid=${item.outline}&tutor=${explore.tutor}#${explore.hash}',
 },
 
 'highway_system' : {
@@ -7614,6 +7805,31 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1650,
 },
 
+'musicbrainz_instrument' : {
+  create_trigger: 'setTags( item, [ "work", "music-instrument" ] )',
+  title: 'MusicBrainz instrument',
+  prop: '1330',
+  type: 'url',
+  mv: false,
+  url_format: 'https://musicbrainz.org/instrument/$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'MusicBrainz instrument',
+  section: ['library-identity'],
+  rank: [21330],
+},
+
+'instrumentation' : {
+  title: 'Instrumentation',
+  prop: '870',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-guitar',
+  text: 'instrumentation',
+  section: ['main'],
+  rank: [1651],
+},
+
 'time_period' : {
   title: 'time period',
   prop: '2348',
@@ -7638,7 +7854,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'subsidiaries_query' : {
   create_condition: false, // TODO
-  //create_condition: 'valid([ item.is_business, item.holds_subsidiaries ])', // TODO: check correctness: if the condition is only partially true
+  //create_condition: 'valid([ item.is_company, item.holds_subsidiaries ])', // TODO: check correctness: if the condition is only partially true
   title: 'subsidiaries graph',
   prop: '',
   type: 'link-split',
@@ -7696,11 +7912,148 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fperson%20%3FpersonLabel%20%3Fborn%20%3Fdied%20%3Fplace%20%3FplaceLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fperson%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20wdt%3AP106%20wd%3AQ483501%3B%0A%20%20%20%20wdt%3AP27%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP570%20%3Fdied.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP19%20%3Fplace.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20ASC(%3Fborn)%0ALIMIT%203000%0A%23defaultView%3AImageGrid%0A%23meta%3Aartists%20from%20${item.title}',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fperson%20%3FpersonLabel%20%3Fborn%20%3Fdied%20%3Fplace%20%3FplaceLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fperson%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20wdt%3AP106%20wd%3AQ483501%3B%0A%20%20%20%20wdt%3AP27%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP570%20%3Fdied.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP19%20%3Fplace.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20ASC(%3Fborn)%0ALIMIT%202000%0A%23defaultView%3AImageGrid%0A%23meta%3Aartists%20from%20${item.title}',
   icon: 'fa-solid fa-user-alt',
   text: 'country artists',
   section: ['art'],
   rank: [44],
+},
+
+'artist_work_timeline' : {
+  create_condition: 'valid( ${item.is_artist} )',
+  title: 'Geo-timeline of the work of this artist',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?title=${title_}%20%3A%20artworks&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP276%20%3Fplace%3B%0A%20%20%20%20wdt%3AP170%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP571%20%3Fstart.%0A%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fsitelinks)%0ALIMIT%20500',
+  icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline works',
+  section: ['art'],
+  rank: [10],
+  headline_create: true,
+  headline_rank: 550,
+},
+
+'role_timeline' : {
+  create_condition: 'checkTag(item, 1, "role") || valid( item.practiced_by) ',
+  title: 'Geo-timeline of people having this occupation, field of work or role',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?title=role%20%3A%20${title_}&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpointintime%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP106%20%7C%20wdt%3AP101)%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP569%20%3Fstart.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP19%20%3Fplace.%0A%20%20%20%20%3Fplace%20p%3AP625%20%3Fcoordinate.%0A%20%20%20%20%3Fcoordinate%20ps%3AP625%20%3Fcoord%3B%0A%20%20%20%20%20%20psv%3AP625%20%3Fcoordinate_node.%0A%20%20%20%20%3Fcoordinate_node%20wikibase%3AgeoLongitude%20%3Flon%3B%0A%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat.%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fend.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP856%20%3Flink.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fstart)%0ALIMIT%202000',
+  icon: 'fa-regular fa-address-card',
+  //icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline field of work',
+  section: ['location-demography'],
+  rank: [5],
+  headline_create: true,
+  headline_rank: 550,
+},
+
+'country_university_founding_timeline' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Geo-timeline of university foundings in this country',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?title=${title_}%20%3A%20universities&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP31%2F(wdt%3AP279*))%20wd%3AQ3918%3B%0A%20%20%20%20wdt%3AP17%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP571%20%3Fstart%3B%0A%20%20%20%20wdt%3AP131%20%3Fplace%3B%0A%20%20%20%20p%3AP625%20%3Fstatement.%0A%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP576%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fstart)%0ALIMIT%20500',
+  icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline universities',
+  section: ['library-history', 'education-courses'],
+  rank: [95, 6],
+},
+
+'period_timeline' : {
+  create_condition: 'checkTag(item, 1, "period") || listed( item.instances, indicators.movement.value )',
+  title: 'Geo-timeline of a period',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?duplicates=true&title=${title_}%20%3A%20period%20events&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpointintime%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%7B%20%3Fitem%20((wdt%3AP361*)%7C(wdt%3AP155*)%7C(wdt%3AP156*))%20wd%3A${item.qid}.%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP17%20%3Fplace.%0A%20%20%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP276%20%3Fplace.%0A%20%20%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20%7D%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20(wdt%3AP571%7Cwdt%3AP580)%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP585%20%3Fpointintime.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20(wdt%3AP18%7Cwdt%3AP3311)%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20(wdt%3AP570%7Cwdt%3AP576%7Cwdt%3AP582)%20%3Fend.%20%7D%0A%20%20FILTER(%20YEAR(%3Fstart)%20%3E%200%20%7C%7C%20YEAR(%3Fpointintime)%20%3E%200)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500',
+  icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline period',
+  section: ['library-history'],
+  rank: [15],
+  headline_create: true,
+  headline_rank: 283,
+},
+
+'event_parts_timeline' : {
+  create_condition: 'checkTag(item, 0, "time") && ( valid( item.lat ) || valid( item.location ) )',
+  //create_condition: '!checkTag(item, 1, "period") && checkTag(item, 0, "time") && ( valid( item.lat ) || valid( item.location ) )',
+  title: 'Geo-timeline of the event parts',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?duplicates=true&title=${title_}%20%3A%20events&duplicates=true&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpointintime%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%7B%20%3Fitem%20((wdt%3AP361*)%7C(wdt%3AP155*)%7C(wdt%3AP156*))%20wd%3A${item.qid}.%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP276%20%3Fplace%3B%0A%20%20%20%20%20%20(wdt%3AP577%7Cwdt%3AP571%7Cwdt%3AP580)%20%3Fstart.%0A%20%20%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20(wdt%3AP577%7Cwdt%3AP571%7Cwdt%3AP580)%20%3Fstart%3B%0A%20%20%20%20%20%20p%3AP625%20%3Fcoordinate.%0A%20%20%20%20%3Fcoordinate%20ps%3AP625%20%3Fcoord%3B%0A%20%20%20%20%20%20psv%3AP625%20%3Fcoordinate_node.%0A%20%20%20%20%3Fcoordinate_node%20wikibase%3AgeoLongitude%20%3Flon%3B%0A%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat.%0A%20%20%7D%0A%20%20FILTER%20(STRLEN(%3Flat)%20!%3D%200)%0A%20%20FILTER%20(STRLEN(%3Flon)%20!%3D%200)%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP585%20%3Fpointintime.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20(wdt%3AP18%7Cwdt%3AP3311)%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20(wdt%3AP570%7Cwdt%3AP576%7Cwdt%3AP582)%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fstart)%0ALIMIT%202000',
+  icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline event',
+  section: ['library-history'],
+  rank: [9],
+  headline_create: 'valid( item.event_parts_timeline )',
+  headline_rank: 281,
+  headline_type: 'link-split',
+},
+
+'born_here_timeline' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'timeline of people born in this location',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?title=people%20born%20in%20${title_}&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpointintime%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20(wdt%3AP19%2F(wdt%3AP131*))%20wd%3A${item.qid}%3B%0A%20%20%20%20wikibase%3Asitelinks%20%3Fsitelinks%3B%0A%20%20%20%20wdt%3AP19%20%3Fplace%3B%0A%20%20%20%20wdt%3AP569%20%3Fstart.%0A%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fend.%20%7D%0A%20%20FILTER%20(STRLEN(%3Flat)%20!%3D%200)%0A%20%20FILTER%20(STRLEN(%3Flon)%20!%3D%200)%0A%20%20FILTER%20(%3Fstart%20%3E%20%221000-01-01%22%5E%5Exsd%3AdateTime)%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fsitelinks)%0ALIMIT%20500',
+  icon: 'fa-solid fa-timeline',
+  text: 'timeline born here',
+  section: ['location-demography'],
+  rank: [5.99],
+},
+
+'born_here_query' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'people born in this location',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fbirth%20%3Fdeath%20%3Fsitelinks%20%3Floc%20%3FlocLabel%20%3Fpic%20%3Fcoord%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20(wdt%3AP19%2F(wdt%3AP131*))%20wd%3A${item.qid}%3B%0A%20%20%20%20wikibase%3Asitelinks%20%3Fsitelinks%3B%0A%20%20%20%20wdt%3AP19%20%3Floc%3B%0A%20%20%20%20wdt%3AP569%20%3Fbirth.%0A%20%20%3Floc%20wdt%3AP625%20%3Fcoord.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdeath%20%7D%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fsitelinks)%0ALIMIT%20500%0A%23defaultView%3AMap%0A%23meta%3Apeople%20born%20in%20${item.title})',
+  icon: 'fa-solid fa-baby',
+  text: 'born here',
+  section: ['location-demography'],
+  rank: [6.01],
+},
+
+'category_for_people_born_here' : {
+  title: 'category births here',
+  prop: '1464',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-baby',
+  text: 'category born',
+  section: ['location-demography'],
+  rank: [6.02],
+},
+
+'died_here_query' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'people who died in this location',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fbirth%20%3Fdeath%20%3Fsitelinks%20%3Floc%20%3FlocLabel%20%3Fpic%20%3Fcoord%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20(wdt%3AP20%2F(wdt%3AP131*))%20wd%3A${item.qid}%3B%0A%20%20%20%20wikibase%3Asitelinks%20%3Fsitelinks%3B%0A%20%20%20%20wdt%3AP20%20%3Floc%3B%0A%20%20%20%20wdt%3AP570%20%3Fdeath.%0A%20%20%3Floc%20wdt%3AP625%20%3Fcoord.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fbirth%20%7D%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fsitelinks)%0ALIMIT%20500%0A%23defaultView%3AMap%0A%23meta%3Apeople%20who%20died%20in%20${item.title})',
+  icon: 'fa-solid fa-skull-crossbones',
+  text: 'died here',
+  section: ['location-demography'],
+  rank: [6.10],
+},
+
+'category_for_people_who_died_here' : {
+  title: 'category died here',
+  prop: '1465',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-skull-crossbones',
+  text: 'category died',
+  section: ['location-demography'],
+  rank: [6.11],
 },
 
 'browse_country_museums' : {
@@ -9760,7 +10113,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   icon: 'fa-solid fa-quote-right',
-  text: 'wQuote',
+  text: 'wQuote topic',
   section: ['library-general','main'],
   rank: [91,303],
 },
@@ -9883,7 +10236,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  icon: 'fa-solid fa-plane-departure',
+  icon: 'fa-solid fa-suitcase-rolling',
   text: 'wVoyage',
   section: ['location-travel','main'],
   rank: [5,305],
@@ -10326,7 +10679,8 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/tree/${explore.language}/P171/${item.qid}',
-  icon: 'fa-solid fa-sitemap',
+  //icon: 'fa-solid fa-sitemap',
+  icon: 'fa-brands fa-screenpal',
   text: 'taxon tree',
   section: ['science-biology','main'],
   rank: [49, 1889],
@@ -10345,6 +10699,17 @@ if ( valid( item.found_in_taxon ) ){
   text: 'taxon tree',
   section: ['science-biology','main'],
   rank: [50, 1890],
+  // QQQ
+  /* 
+    presentation: {
+      slots: ['organism'],
+      ranks: [ 5 ],
+      subtitle: '', // if missing/empty, use default
+      icon: '',     // if missing/empty, use default
+      link: '',     // if emissing/mpty, use default
+      fallback_background: '/app/explore2/assets/svg/backgrounds/005.svg',
+
+  */
 },
 
 'species_query' : {
@@ -10377,7 +10742,7 @@ if ( valid( item.found_in_taxon ) ){
   title: 'parent taxon',
   prop: '171',
   type: 'wikipedia-qid',
-  mv: false, // TODO: make multi-value (and fix places where this data is also used)? 
+  mv: false, // TODO: make multi-value (and fix places where this data is also used)?
   icon: 'fa-solid fa-sort-amount-up-alt',
   text: 'parent taxon',
   section: ['science-biology','main'],
@@ -10807,35 +11172,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 100,
 },
 
-'weather_history' : {
-  title: 'weather history',
-  prop: '4150',
-  type: 'link',
-  url: 'https://commons.wikimedia.org/wiki/${ encodeURIComponent( item.weather_history )}?uselang=${explore.language}',
-  mv: false,
-  icon: 'fa-solid fa-cloud-sun',
-  text: 'weather history',
-  section: ['location-geography','main'],
-  rank: [60,7370],
-},
-
-/*
-'weather' : {
-  // during the "post-input-phase" this item will be activated (so the specific button will be rendered during the render-phase.)
-  create_condition: 'checkTag(item, 0, "location")',
-  //create_condition: '"${ item.tags[0] }" === "location"',
-  title: 'Yr weather',
-  prop: '',
-  type: 'url',
-  mv: false,
-  url: 'https://www.yr.no/soek/soek.aspx?sted=${title_}',
-  icon: 'fa-solid fa-cloud-sun',
-  text: 'Yr weather',
-  section: 'location-ecology',
-  rank: 380,
-},
-*/
-
 'plazi_search' : {
   title: 'Plazi treatments',
   prop: '',
@@ -10863,7 +11199,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'geo' : {
   create_condition: true,
-  render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"', // FIXME
+  render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined" && ! checkTag( item, 1, ["road", "itinerary", "watercourse" ] )', // FIXME
   title: 'map',
   prop: '',
   type: 'link',
@@ -10874,10 +11210,61 @@ if ( valid( item.found_in_taxon ) ){
   text: 'map',
   section: ['location-geography','main'],
   rank: [3,6350],
+  headline_create: 'valid( item.lat )',
+  headline_type: 'link',
+  headline_rank: 123,
+},
+
+'map_osm_road' : {
+  create_condition: 'valid( item.osm_relation_id ) && checkTag( item, 1, ["road"] )',
+  title: 'road map',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/overpass/map.html?Q=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A(%0A%20%20relation(${ item.osm_relation_id })%3B%0A)%3B%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%0A',
+  mv: false,
+  icon: 'fa-solid fa-globe-asia',
+  text: 'road map',
+  section: ['location-geography','main'],
+  rank: [4.1, 6351],
+  headline_create: 'valid( item.map_osm_road )',
+  headline_type: 'link',
+  headline_rank: 123,
+},
+
+'map_osm_itinerary' : {
+  create_condition: 'valid( item.osm_relation_id ) && checkTag( item, 1, ["itinerary"] )',
+  title: 'itinerary route map',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/overpass/map.html?Q=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A(%0A%20%20relation(${ item.osm_relation_id })%3B%0A)%3B%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%0A',
+  mv: false,
+  icon: 'fa-solid fa-globe-asia',
+  text: 'itinerary map',
+  section: ['location-geography','main'],
+  rank: [4.2, 6352],
+  headline_create: 'valid( item.map_osm_itinerary )',
+  headline_type: 'link',
+  headline_rank: 124,
+},
+
+'map_osm_watercourse' : {
+  create_condition: 'valid( item.osm_relation_id ) && checkTag( item, 1, ["watercourse"] )',
+  title: 'watercourse route map',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/overpass/map.html?Q=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A(%0A%20%20relation(${ item.osm_relation_id })%3B%0A)%3B%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%0A',
+  mv: false,
+  icon: 'fa-solid fa-globe-asia',
+  text: 'itinerary map',
+  section: ['location-geography','main'],
+  rank: [4.3, 6353],
+  headline_create: 'valid( item.map_osm_watercourse )',
+  headline_type: 'link',
+  headline_rank: 125,
 },
 
 'map3d' : {
-  create_condition: 'valid( ${item.lat} )',
+  create_condition: 'valid( ${item.lat} && ! checkTag( item, 1, ["road"] ) )',
   //default_value: '',
   title: 'satellite terrain map',
   prop: '',
@@ -10993,7 +11380,7 @@ if ( valid( item.found_in_taxon ) ){
   text: '',
   section: '',
   rank: 1,
-  headline_create: 'checkTag( item, 0, "time" )',
+  headline_create: 'checkTag( item, 0, "time" ) && valid( getTimeSpaceURL( item ) ) ',
   headline_type: 'link-split',
   headline_title: 'event cluster history',
   headline_icon: 'fa-regular fa-clock',
@@ -11013,7 +11400,7 @@ if ( valid( item.found_in_taxon ) ){
   section: '',
   rank: 1,
   //TODO?: ( tags[0] === 'work' && ! valid( item.is_written_work ) && !valid( item.openlibrary_id ) && tags[1] !== 'periodical' ) // show video for works, but not for some types of works
-  headline_create: 'checkTag( item, 0, ["location","time","group","organism","meta-concept","cultural-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","filmmaker","actor","musician"] )',
+  headline_create: 'checkTag( item, 0, ["location","time","group","organism","meta-concept","cultural-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","film","filmmaker","actor","musician","music-instrument"] )',
   headline_type: 'link',
   headline_title: 'video',
   headline_icon: 'fa-solid fa-video',
@@ -11040,6 +11427,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 230,
 },
 
+/*
 'map_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
   create_condition: 'valid( item.lat )',
   title: '',
@@ -11058,6 +11446,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_url: '${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : "" }&qid=${item.qid}&title=${ encodeURIComponent( item.title ) }',
   headline_rank: 120,
 },
+*/
 
 'satellite_map_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
   create_condition: 'valid( item.lat )',
@@ -11078,22 +11467,19 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 121,
 },
 
-'nearby_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
+'nearby' : { // only used for headline display (to create multiple geo-location-based URLs)
   create_condition: 'valid( item.lat )',
-  title: '',
+  title: 'nearby map',
   prop: '',
   type: 'link',
   mv: false,
-  url: '',
-  icon: '',
-  text: '',
-  section: '',
-  rank: 1,
+  url: '${explore.base}/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${explore.language}&layers=wikipedia', // ,wikidata_image,wikidata_no_image
+  icon: 'fa-solid fa-map-location-dot', // 'fa-solid fa-map-pin',
+  text: 'nearby map',
+  section: 'location-geography',
+  rank: 2,
   headline_create: 'valid( item.lat )',
   headline_type: 'link-split',
-  headline_title: 'nearby map',
-  headline_icon: 'fa-solid fa-map-pin',
-  headline_url: '${explore.base}/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${explore.language}&layers=wikidata_image,wikidata_no_image,wikipedia',
   headline_rank: 122,
 },
 
@@ -11130,7 +11516,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   url: '${explore.base}/app/map/?l=${explore.language}&bbox=&lat=&lon=&osm_id=&qid=${qid}&title=${ encodeURIComponent( item.title ) }&query=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Flat%20%3Flon%20WHERE%20%7B%0A%20%20%20%3Fitem%20p%3AP31%20%3Fstatement0.%0A%20%20%3Fstatement0%20(ps%3AP31)%20wd%3A${ item.qid }.%20%20%20%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%20%20%0A%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20500%0A%23meta%3Asimilar%20topics%20%23defaultView%3ATable',
   mv: false,
-  icon: 'fa-solid fa-map-marked-alt',
+  icon: 'fa-solid fa-map-location-dot', // 'fa-solid fa-map-marked-alt',
   text: '3D type map',
   section: ['location-geography','main'],
   rank: [51,5921],
@@ -11159,7 +11545,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fimg%20%3Fgeoshape%20%3Fcoords%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoords.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20(%3FitemLabel)%0ALIMIT%205000%0A%23meta%3A%20${title_}%20%23defaultView%3AMap%7B%22hide%22%3A%20%22%3Fcoords%22%7D',
   //url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fcoords%20%3Fpic%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoords.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20ASC%20(%3FitemLabel)%0ALIMIT%209000%0A%23meta%3A%20${title_}%20locations%0A%23defaultView%3AMap%7B%22hide%22%3A%20%22%3Fcoords%22%7D',
-  icon: 'fa-solid fa-map-marked-alt',
+  icon: 'fa-solid fa-map-pin', //'fa-solid fa-map-marked-alt',
   text: '2D type map',
   section: ['location-geography','main'],
   rank: [50,5920],
@@ -11211,6 +11597,22 @@ if ( valid( item.found_in_taxon ) ){
   rank: 12,
 },
 
+'f4map_map' : {
+  create_condition: 'valid( item.lat ) && ! checkTag( item, 1, ["road"] )',
+  title: 'F4map 3D map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://demo.f4map.com/#lat=${item.lat}&lon=${item.lon}&zoom=16', // &camera.theta=80&camera.phi=-141.234',
+  icon: 'fa-solid fa-mountain-city',
+  text: 'F4map 3D map',
+  section: 'location-geography',
+  rank: 13.1,
+  headline_create: 'checkTag( item, 0, "location") && valid( item.lat )',
+  headline_type: 'link',
+  headline_rank: 122,
+},
+
 'map_buildings' : {
   create_condition: 'valid( item.lat )',
   title: '3D buildings map',
@@ -11221,7 +11623,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-globe-asia',
   text: 'buildings map',
   section: 'location-geography',
-  rank: 13,
+  rank: 13.2,
 },
 
 'map_shade' : {
@@ -11477,6 +11879,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'graph_default' : {
   create_condition: true,
+  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
   title: 'root graph',
   prop: '',
   type: 'link-split',
@@ -11489,7 +11892,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'graph_item' : {
-  create_condition: true,
+  create_condition: 'valid( item.qid )',
   title: 'topic property graph',
   prop: '',
   type: 'link-split',
@@ -11508,7 +11911,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   url: '${explore.base}/app/map-search/?q=${title_}',
-  icon: 'fa-solid fa-map-marked-alt',
+  icon: 'fa-regular fa-map',
   text: 'old maps',
   section: 'location-geography',
   rank: 18,
@@ -11521,7 +11924,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'url',
   mv: false,
   url: 'https://www.oldmapsonline.org/en/${title_}', // TODO: research this weird search-site better
-  icon: 'fa-solid fa-map-marked-alt',
+  icon: 'fa-regular fa-map',
   text: 'OMO',
   section: 'location-geography',
   rank: 19,
@@ -11536,7 +11939,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://twitter.com/search?q=${title_quoted}',
   icon: 'fa-brands fa-twitter',
   text: 'Twitter search',
-  section: 'news-social',
+  section: 'social',
   rank: 35,
 },
 
@@ -11549,7 +11952,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://findspaces.vercel.app/?search=${title_}&state=all',
   icon: 'fa-brands fa-twitter',
   text: 'Twitter spaces',
-  section: ['news-social', 'media-audio'],
+  section: ['social', 'media-audio'],
   rank: [35.1, 109],
 },
 
@@ -11562,7 +11965,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.twitter-trending.com/${ item.country_name.replace(/ /g, "-").toLowerCase() }/${ explore.language }',
   icon: 'fa-brands fa-twitter',
   text: 'country trends',
-  section: 'news-social',
+  section: 'social',
   rank: 36,
 },
 
@@ -11630,7 +12033,6 @@ if ( valid( item.found_in_taxon ) ){
   section: 'media-image',
   rank: 211,
 },
-
 
 'creative_commons' : {
   create_condition: true,
@@ -11777,6 +12179,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 10.1,
 },
 
+/*
 'blogsurf' : {
   create_condition: true,
   title: 'Blog Surf blog search',
@@ -11789,7 +12192,9 @@ if ( valid( item.found_in_taxon ) ){
   section: 'news-tech',
   rank: 20,
 },
+*/
 
+/*
 'tech_blogs' : {
   create_condition: true,
   title: 'Blogosphere tech blogs',
@@ -11802,6 +12207,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'news-tech',
   rank: 21,
 },
+*/
 
 'sketchfab' : {
   create_condition: true,
@@ -11920,7 +12326,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://pinboard.in/search/?query=${title_quoted}&all=Search+All&lang=${explore.language}',
   icon: 'fa-solid fa-thumbtack',
   text: 'Pinboard',
-  section: 'news-social',
+  section: 'social',
   rank: 10,
 },
 
@@ -12011,8 +12417,21 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://markmail.org/search/?q=${title_quoted}',
   icon: 'fa-solid fa-envelope',
   text: 'MarkMail',
-  section: 'news-social',
+  section: 'social',
   rank: 11,
+},
+
+'matrix_public_rooms_search' : {
+  create_condition: true,
+  title: 'Matrix public rooms search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://view.matrix.org/?query=${title_}',
+  icon: 'fa-solid fa-m',
+  text: 'Matrix rooms',
+  section: 'social',
+  rank: 13,
 },
 
 'telegram_channels' : {
@@ -12024,7 +12443,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://telegramchannels.me/search?search=${title_}&type=all',
   icon: 'fa-brands fa-telegram-plane',
   text: 'Telegram Channels',
-  section: 'news-social',
+  section: 'social',
   rank: 15,
 },
 
@@ -12036,7 +12455,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://pinterest.com/search/pins/?q=${title_quoted}',
   icon: 'fa-brands fa-pinterest-p',
   text: 'Pinterest',
-  section: 'news-social',
+  section: 'social',
   rank: 100,
 },
 
@@ -12048,7 +12467,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.tiktok.com/@${item.tiktok_user}?lang=${explore.language}',
   icon: 'fa-brands fa-tiktok',
   text: 'TikTok user',
-  section: ['news-social','main'],
+  section: ['social','main'],
   rank: [45,9170],
 },
 
@@ -12061,7 +12480,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.tiktok.com/tag/${title_no_spaces}?lang=${explore.language}',
   icon: 'fa-brands fa-tiktok',
   text: 'TikTok',
-  section: 'news-social',
+  section: 'social',
   rank: 46,
 },
 
@@ -12074,7 +12493,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.quora.com/search?q=${title_quoted}',
   icon: 'fa-brands fa-quora',
   text: 'Quora',
-  section: 'news-social',
+  section: 'social',
   rank: 301,
 },
 
@@ -12087,7 +12506,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.linkedin.com/search/results/all/?keywords=${title_quoted}',
   icon: 'fa-brands fa-linkedin',
   text: 'LinkedIn keyword',
-  section: 'news-social',
+  section: 'social',
   rank: 304,
 },
 
@@ -12100,7 +12519,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.linkedin.com/pub/dir?firstName=${title_}&lastName=',
   icon: 'fa-brands fa-linkedin',
   text: 'LinkedIn name',
-  section: 'news-social',
+  section: 'social',
   rank: 305,
 },
 
@@ -12113,8 +12532,21 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://boardreader.com/s/${title_quoted}.html;language=${ explore.language_name_capitalized }',
   icon: 'fa-regular fa-comments',
   text: 'Board Reader',
-  section: 'news-social',
+  section: 'social',
   rank: 306,
+},
+
+'bookwyrm' : {
+  create_condition: true,
+  title: 'Bookwyrm - social reading and reviewing',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://bookwyrm.social/search?q=${title_quoted}',
+  icon: 'fa-regular fa-comment',
+  text: 'Bookwyrm',
+  section: 'social',
+  rank: 310,
 },
 
 'british_library_search' : {
@@ -12192,6 +12624,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Logo Search',
   section: 'media-image',
   rank: 270,
+},
+
+'figshare' : {
+  create_condition: true,
+  title: 'Figshare',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://figshare.com/search?q=${title_quoted}',
+  icon: 'fa-solid fa-draw-polygon',
+  text: 'Figshare',
+  section: 'media-image',
+  rank: 280,
 },
 
 'librivox_search' : {
@@ -12297,6 +12742,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Tidal',
   section: 'media-audio',
   rank: 190,
+},
+
+'audible_search' : {
+  create_condition: true,
+  title: 'Audible audio-book search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.audible.com/search?keywords=${title_quoted}',
+  icon: 'fa-brands fa-audible',
+  text: 'Audible',
+  section: 'media-audio',
+  rank: 199,
 },
 
 'amazon_music' : {
@@ -13113,10 +13571,12 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Finception%20%3FitemDescription%20%3Fimage%20%3Fcollection%20WHERE%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20%3Fwhat%20%3B%0A%20%20%20%20%20%20wdt%3AP195%2Fwdt%3AP361*%20%3Fcollection%20.%0A%0A%20%20%20%20FILTER%20(%20%3Fcollection%20%3D%20wd%3A${item.qid}%20)%0A%20%20%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception%20%7D%0A%20%20%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%5D%22%20%7D%0A%7D%0AORDER%20BY%20%3Finception%0ALIMIT%20' + 1000 + '%20%23meta%3Acollection%20of%20${title_}%0A%23defaultView%3AImageGrid',
-  icon: 'fa-solid fa-stream',
+  icon: 'fa-brands fa-windows',
   text: 'museum collection',
   section: 'art',
   rank: 520,
+  headline_create: 'valid( item.is_museum )',
+  headline_rank: 90,
 },
 
 'local_art_depicted_query' : {
@@ -13344,22 +13804,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 460,
 },
 
-'earth_weather' : {
-  create_condition: 'valid( item.lat )',
-  title: 'Earth weather',
-  prop: '',
-  type: 'link',
-  // FIXME: convert lat/lon to correct orthographic coordinates:               0..360 -90..90 0..15000
-  //   see also: https://gist.github.com/jezhalford/2480871
-  //url: 'https://earth.nullschool.net/#current/wind/surface/level/orthographic=-339.20,12.20,463/loc=${item.lon},${item.lat}',
-  url: 'https://earth.nullschool.net',
-  mv: false,
-  icon: 'fa-solid fa-cloud-sun',
-  text: 'Earth weather',
-  section: 'location-ecology',
-  rank: 450,
-},
-
 'iqair' : {
   create_condition: 'valid( item.iso2 )',
   title: 'IQAir air quality map',
@@ -13414,9 +13858,24 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+'openairport_map' : {
+  create_condition: 'valid( item.icao_airport_code )',
+  title: 'Open Airport Map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://openairportmap.org/${item.icao_airport_code}',
+  icon: 'fa-solid fa-plane-departure',
+  text: 'OpenAirport map',
+  section: ['location-geography', 'main'],
+  rank: [274.1, 7000 ] ,
+  headline_create: 'valid( item.openairport_map )',
+  headline_rank: 102,
+},
+
 'openrailway_map' : {
   create_condition: 'valid( item.lat )',
-  title: 'OpenRailwayMap',
+  title: 'Open Railway Map',
   prop: '',
   type: 'link',
   mv: false,
@@ -13424,7 +13883,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-train',
   text: 'OpenRailway map',
   section: 'location-geography',
-  rank: 274.0,
+  rank: 274.2,
 },
 
 'openinfra_map' : {
@@ -13437,7 +13896,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-bolt',
   text: 'OpenInfra map',
   section: 'location-geography',
-  rank: 274.1,
+  rank: 274.3,
 },
 
 'electricy_map' : {
@@ -13450,7 +13909,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-bolt',
   text: 'Electricy map',
   section: 'location-geography',
-  rank: 274.2,
+  rank: 274.4,
 },
 
 'gpsjam_map' : {
@@ -13463,7 +13922,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-bolt',
   text: 'GPSJam',
   section: 'location-geography',
-  rank: 274.3,
+  rank: 274.5,
 },
 
 'osm_query_hotels' : {
@@ -13571,7 +14030,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'url',
   mv: false,
-  url: 'https://www.wikiloc.com/wikiloc/map.do?sw=-89.9994860%2C-179.999&ne=89.999%2C179.999&q=${title_lowercase}&fitMapToTrails=1&page=1',
+  url: 'https://www.wikiloc.com/wikiloc/map.do?q=${title_lowercase}&fitMapToTrails=1&page=1',
   icon: 'fa-solid fa-hiking',
   text: 'Wikiloc',
   section: ['location-travel'],
@@ -13624,10 +14083,107 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   url: 'https://www.booking.com/region/${item.countries[0].iso2}/${title_lowercase}.${explore.language}.html',
-  icon: 'fa-regular fa-map',
+  icon: 'fa-solid fa-bed',
   text: 'Booking',
   section: 'location-travel',
   rank: 120,
+},
+
+'weather_history' : {
+  title: 'weather history',
+  prop: '4150',
+  type: 'link',
+  url: 'https://commons.wikimedia.org/wiki/${ encodeURIComponent( item.weather_history )}?uselang=${explore.language}',
+  mv: false,
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'weather history',
+  section: ['location-weather','main'],
+  rank: [20,7370],
+},
+
+/*
+'weather' : {
+  // during the "post-input-phase" this item will be activated (so the specific button will be rendered during the render-phase.)
+  create_condition: 'checkTag(item, 0, "location")',
+  //create_condition: '"${ item.tags[0] }" === "location"',
+  title: 'Yr weather',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.yr.no/soek/soek.aspx?sted=${title_}',
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'Yr weather',
+  section: 'location-ecology',
+  rank: 380,
+},
+*/
+
+'earth_weather' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Earth weather',
+  prop: '',
+  type: 'link',
+  // FIXME: convert lat/lon to correct orthographic coordinates:               0..360 -90..90 0..15000
+  //   see also: https://gist.github.com/jezhalford/2480871
+  //url: 'https://earth.nullschool.net/#current/wind/surface/level/orthographic=-339.20,12.20,463/loc=${item.lon},${item.lat}',
+  url: 'https://earth.nullschool.net',
+  mv: false,
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'Earth weather',
+  section: 'location-weather',
+  rank: 300,
+},
+
+'timeanddate_weather' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'TimeAndDate',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.timeanddate.com/weather/?query=${title_}',
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'TimeAndDate',
+  section: 'location-weather',
+  rank: 110,
+},
+
+'openweathermap_city' : {
+  title: 'OpenWeatherMap city',
+  prop: '7197',
+  type: 'url',
+  mv: false,
+  url_format: 'https://openweathermap.org/city/$1',
+  url: '',
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'OpenWeatherMap city',
+  section: ['location-weather'],
+  rank: [120],
+},
+
+'bookingcom_hotel' : {
+  title: 'Bookingcom hotel',
+  prop: '3607',
+  type: 'url',
+  mv: false,
+  url_format: 'https://www.booking.com/hotel/$1.html',
+  url: '',
+  icon: 'fa-solid fa-square-h',
+  text: 'Bookingcom hotel',
+  section: ['library-identity'],
+  rank: [121],
+},
+
+'expedia_hotel' : {
+  title: 'Expedia hotel',
+  prop: '5651',
+  type: 'url',
+  mv: false,
+  url_format: 'https://www.expedia.com/$1.Hotel-Information',
+  url: '',
+  icon: 'fa-solid fa-square-h',
+  text: 'Expedia hotel',
+  section: ['library-identity'],
+  rank: [125],
 },
 
 'airbnb_search' : {
@@ -13643,6 +14199,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 200,
 },
 
+'google_flights' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'Google Flights',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.google.com/search?q="google+flights"+${title_}&hl=${explore.language}',
+  icon: 'fa-brands fa-google',
+  text: 'Google Flights',
+  section: 'location-travel',
+  rank: 20,
+},
+
+/*
 'cheaptickets' : {
   create_condition: 'checkTag( item, 0, "location")',
   title: 'CheapTickets',
@@ -13653,8 +14223,9 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-plane-departure',
   text: 'Cheap Tickets',
   section: 'location-travel',
-  rank: 20,
+  rank: 21,
 },
+*/
 
 'nomadlist' : {
   create_condition: 'checkTag( item, 0, "location") && valid( explore.personas )',
@@ -13915,7 +14486,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://search.joinpeertube.org/search?search=${title_quoted}',
+  url: 'https://sepiasearch.org/search?search=${title_quoted}',
   icon: 'fa-solid fa-video',
   text: 'PeerTube',
   section: 'media-video',
@@ -13935,6 +14506,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 135,
 },
 
+'rumble' : {
+  create_condition: true,
+  title: 'Rumble',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://rumble.com/search/all?q=${title_quoted}',
+  icon: 'fa-solid fa-video',
+  text: 'Rumble',
+  section: 'media-video',
+  rank: 136,
+},
+
 'chaos_computer_club' : {
   create_condition: true,
   title: 'Chaos Computer Club',
@@ -13946,6 +14530,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'CCC',
   section: ['media-video','news-tech'],
   rank: [139,100],
+},
+
+'eu_video_search' : {
+  create_condition: true,
+  title: 'EU video search',
+  prop: '',
+  type: 'url',
+  url: 'https://tube.network.europa.eu/search?search=${title_}&searchTarget=local',
+  mv: false,
+  icon: 'fa-solid fa-euro-sign',
+  text: 'EU video',
+  section: ['media-video'],
+  rank: [199],
 },
 
 'twitch_search' : {
@@ -14540,6 +15137,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 165,
 },
 
+'zenodo_search' : {
+  create_condition: true,
+  title: 'Zenodo search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://zenodo.org/search?page=1&size=20&q=${title_quoted}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'Zenodo',
+  section: ['science-open-journals'],
+  rank: [20],
+},
+
 'scienceopen' : {
   create_condition: true,
   title: 'ScienceOpen',
@@ -15092,6 +15702,141 @@ if ( valid( item.found_in_taxon ) ){
   rank: 130,
 },
 
+// GENEALOGY by property
+
+'gedbas_genealogy_person' : {
+  title: 'Gedbas genealogy person',
+  prop: '4108',
+  type: 'link',
+  mv: false,
+  url_format: 'https://gedbas.genealogy.net/person/show/$1',
+  url: '',
+  icon: 'fa-solid fa-people-roof',
+  text: 'Gedbas person',
+  section: ['library-genealogy'],
+  rank: [10],
+},
+
+'genealogicsorg_person' : {
+  title: 'Genealogicsorg person',
+  prop: '1819',
+  type: 'link',
+  mv: false,
+  url_format: 'https://www.genealogics.org/getperson.php?personID=$1&tree=LEO',
+  url: '',
+  icon: 'fa-solid fa-people-roof',
+  text: 'Genealogics person',
+  section: ['library-genealogy'],
+  rank: [12],
+},
+
+'swedish_gravestone' : {
+  title: 'Swedish Gravestone',
+  prop: '5259',
+  type: 'link',
+  mv: false,
+  url_format: 'https://grav.genealogi.se/Gravsokview.php?g_id=$1',
+  url: '',
+  icon: 'fa-solid fa-people-roof',
+  text: 'Swedish Gravestone',
+  section: ['library-genealogy'],
+  rank: [14],
+},
+
+'genwiki' : {
+  title: 'GenWiki',
+  prop: '2503',
+  type: 'link',
+  mv: false,
+  url_format: 'http://wiki-de.genealogy.net/GOV:$1',
+  url: '',
+  icon: 'fa-solid fa-people-roof',
+  text: 'GenWiki',
+  section: ['library-genealogy'],
+  rank: [16],
+},
+
+'geneastar_person' : {
+  title: 'GeneaStar person',
+  prop: '8094',
+  type: 'link',
+  mv: false,
+  url_format: 'https://www.geneastar.org/genealogie/?refcelebrite=$1',
+  url: '',
+  icon: 'fa-solid fa-people-roof',
+  text: 'GeneaStar person',
+  section: ['library-genealogy'],
+  rank: [18],
+},
+
+// GENEALOGY by search
+
+'archive_org_genealogy' : {
+  create_condition: true,
+  //create_condition: 'checkTag( item, 0, ["group", "person", "disambiguation"] )',
+  title: 'Archive.org genealogy',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://archive.org/details/genealogy?query=${title_quoted}',
+  icon: 'fa-solid fa-people-roof',
+  text: 'Archive.org',
+  section: ['library-genealogy'],
+  rank: [100],
+},
+
+'genealogy_com' : {
+  create_condition: true,
+  title: 'Genealogy.com',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.genealogy.com/search/result?type=forumposts&keyword=${title_quoted}',
+  icon: 'fa-solid fa-people-roof',
+  text: 'Genealogy.com',
+  section: ['library-genealogy'],
+  rank: [110],
+},
+
+'usa_gov_genealogy' : {
+  create_condition: true,
+  title: 'USA Gov genealogy and family history',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://search.usa.gov/search?affiliate=usagov&query=${title_quoted}',
+  icon: 'fa-solid fa-people-roof',
+  text: 'USA Gov 🇺🇸',
+  section: ['library-genealogy'],
+  rank: [140],
+},
+
+'openarch' : {
+  create_condition: true,
+  title: 'OpenArchives: Genealogical data of Dutch and Belgian archives',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.openarch.nl/search.php?name=${title_quoted}',
+  icon: 'fa-solid fa-people-roof',
+  text: 'OpenArch 🇳🇱 🇧🇪',
+  section: ['library-genealogy'],
+  rank: [300],
+},
+
+'nederlab' : {
+  create_condition: 'checkLC( "nl" )',
+  title: 'Nederlab - Dutch language history archive',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.nederlab.nl/onderzoeksportaal/?action=results&searchtype=complex&expansies=off&words-and=${title_quoted}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'Nederlab',
+  section: 'library-history',
+  rank: 105,
+},
+
 'elephind' : {
   create_condition: true,
   title: 'Elephind',
@@ -15233,7 +15978,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.instagram.com/explore/tags/${title_no_spaces}',
   icon: 'fa-brands fa-instagram',
   text: 'Instagram',
-  section: 'news-social',
+  section: 'social',
   rank: 40,
 },
 
@@ -15246,7 +15991,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://medium.com/search?q=${title_quoted}',
   icon: 'fa-brands fa-medium',
   text: 'Medium',
-  section: 'news-social',
+  section: 'social',
   rank: 38,
 },
 
@@ -15259,7 +16004,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://substack.com/discover/${title_quoted}',
   icon: 'fa-solid fa-align-left',
   text: 'Substack',
-  section: 'news-social',
+  section: 'social',
   rank: 39,
 },
 
@@ -15289,6 +16034,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 140,
 },
 
+'eudp' : {
+  create_condition: true,
+  title: 'EU data portal: dataset search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://data.europa.eu/data/datasets?locale=${explore.language}&query=${title_quoted}',
+  icon: 'fa-solid fa-hockey-puck',
+  text: 'EU data',
+  section: 'science-datasets-general',
+  rank: 160,
+},
+
 'eudp_gov' : {
   create_condition: true,
   title: 'European data portal: government',
@@ -15299,33 +16057,20 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-hockey-puck',
   text: 'EU gov data',
   section: 'science-datasets-general',
-  rank: 150,
+  rank: 161,
 },
 
-'eudp' : {
+'eu_eurostat' : {
   create_condition: true,
-  title: 'European data',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://data.europa.eu/data/datasets?locale=${explore.language}&query=${title_quoted}',
-  icon: 'fa-solid fa-hockey-puck',
-  text: 'EU data1',
-  section: '',
-  rank: 1,
-},
-
-'euod' : {
-  create_condition: true,
-  title: 'EU Open Data',
+  title: 'EU Eurostat statistics',
   prop: '',
   type: 'url',
   mv: false,
-  url: 'https://data.europa.eu/euodp/en/data/dataset?q=${title_quoted}',
+  url: 'https://ec.europa.eu/eurostat/web/main/search/-/search/?text=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
-  text: 'EU data2',
+  text: 'EU eurostat',
   section: 'science-datasets-general',
-  rank: 160,
+  rank: 163,
 },
 
 'dataverse_harvard' : {
@@ -15356,15 +16101,28 @@ if ( valid( item.found_in_taxon ) ){
 
 'us_data' : {
   create_condition: 'checkLC("","US")',
-  title: 'United States data',
+  title: 'United States datasets',
   prop: '',
   type: 'url',
   mv: false,
   url: 'https://catalog.data.gov/dataset?q=${title_quoted}',
   icon: 'fa-solid fa-flag-usa',
-  text: 'US data',
+  text: 'US datasets',
   section: ['science-datasets-general','government-general'],
   rank: [201, 5010],
+},
+
+'us_census_search' : {
+  create_condition: 'checkLC("","US")',
+  title: 'United States census data',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://data.census.gov/all?q=${title_quoted}',
+  icon: 'fa-solid fa-flag-usa',
+  text: 'US census',
+  section: ['science-datasets-general','government-general'],
+  rank: [202, 5011],
 },
 
 'govdirectory' : {
@@ -15384,7 +16142,7 @@ if ( valid( item.found_in_taxon ) ){
 'open_parliament_tv_person' : {
   create_condition: 'checkLC( "de" ) && valid( item.member_of_political_party ) && valid( item.country_of_citizenship )',
   //render_condition: '"${item.country_of_citizenship}" === "Q183"', // FIXME: make this work for only german citizens
-  title: 'Open Parliament TV person ID (Germany)',
+  title: 'Open Parliament TV person',
   prop: '',
   type: 'link',
   mv: false,
@@ -15392,12 +16150,25 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-video',
   text: 'Parliament TV person',
   section: ['main', 'government-legislature', 'media-video'],
-  rank: [18, 20, 10],
+  rank: [31, 20, 59],
+},
+
+'open_parliament_tv_organization' : {
+  create_condition: 'checkLC( "de" ) && checkTag( item, 0, [ "group", "organization" ] )',
+  title: 'Open Parliament TV organization',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://de.openparliament.tv/organisation/${item.qid}',
+  icon: 'fa-solid fa-video',
+  text: 'Parliament TV org',
+  section: ['main', 'government-legislature', 'media-video'],
+  rank: [31, 20, 59],
 },
 
 'open_parliament_tv' : {
-  create_condition: 'checkLC("de")',
-  title: 'Open Parliament TV (Germany)',
+  create_condition: 'checkLC("de") && ! validAny( [ item.open_parliament_tv_person, item.open_parliament_tv_organization ] )',
+  title: 'Open Parliament TV search',
   prop: '',
   type: 'link',
   mv: false,
@@ -15836,6 +16607,32 @@ if ( valid( item.found_in_taxon ) ){
   rank: 8,
 },
 
+'ai_chat' : {
+  create_condition: true,
+  title: 'AI chat using ChatGPT',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${explore.tutor}',
+  icon: 'fa-solid fa-wand-sparkles',
+  text: 'AI chat',
+  section: ['meta', 'main'],
+  rank: [4, 9],
+},
+
+'ai_chat_quiz' : {
+  create_condition: 'checkLC("en")', // TODO: have a way of getting translations of "Quiz me on:"
+  title: 'AI chat quiz questions, using ChatGPT',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/chat/?m=Quiz%me%20on%20${title_}&l=${explore.language}&t=teacher',
+  icon: 'fa-solid fa-wand-sparkles',
+  text: 'AI chat quiz',
+  section: ['education-quizzes', 'meta'],
+  rank: [10, 4.2],
+},
+
 'compare' : {
   create_condition: 'valid( item.qid )',
   title: 'compare topic',
@@ -15940,7 +16737,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'search_by_date' : {
   value: 'dates:',
-  render_condition: true,
+  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
   //render_condition: 'valid( item.iso2 )',
   title: 'see topic by year',
   prop: '0',
@@ -15957,7 +16754,7 @@ if ( valid( item.found_in_taxon ) ){
 //  https://github.com/mnzpk/wikinav
 //  https://techblog.wikimedia.org/2021/09/17/analyzing-the-wikipedia-clickstream-just-got-easier-with-wikinav/
 'wikinav' : {
-  create_condition: true,
+  create_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'WikiNav - Wikipedia-reader click-navigation analysis',
   prop: '',
   type: 'link',
@@ -15969,8 +16766,27 @@ if ( valid( item.found_in_taxon ) ){
   rank: 110,
 },
 
+'similar_headline' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
+  title: '',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: '( checkTag( item, 0, ["location", "person", "group", "organization", "work", "natural-concept", "cultural-concept", "meta-concept"] ) || checkTag( item, 1, "geographical-structure") ) && valid( getSimilarSparqlURL( item ) )',
+  headline_type: 'link-split',
+  headline_title: 'similar topics',
+  headline_icon: 'fa-solid fa-rainbow',
+  headline_url: '${ getSimilarSparqlURL( item ) }',
+  headline_rank: 650,
+},
+
 'similar_inline' : {
-  value: 'iframe-url:similar:${item.subclass_qid}:${item.instance_qid}:${item.country_qid}:${item.country_of_origin}:${item.occupations[0]}',
+  value: 'iframe-url:similar:${item.subclass_qid}:${item.instance_qid}:${ valid( item.country ) ? item.country[0] : "" }:${ valid( item.country_of_citizenship ) ? item.country_of_citizenship[0] : "" }:${item.occupations[0]}',
   render_condition: 'valid( item.subclass_qid ) || valid( item.instance_qid ) ',
   title: 'inline view of similar items',
   prop: '0',
@@ -15984,7 +16800,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'linkgraph' : {
-  create_condition: true,
+  create_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'graph of outgoing links',
   prop: '',
   type: 'link-split',
@@ -16021,8 +16837,8 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikipedia_inline' : {
   // FIXME
-  value: 'iframe-url:${explore.host}${explore.base}/app/wikipedia/?t=${ encodeURIComponent( item.title ) }&l=${explore.language}&voice=${explore.voice_code}&qid=${item.qid}&embedded=true',
-  render_condition: 'valid( item.title ) && !explore.isMobile',
+  value: 'iframe-url:${explore.host}${explore.base}/app/wikipedia/?t=${ encodeURIComponent( item.title ) }&l=${explore.language}&voice=${explore.voice_code}&qid=${item.qid}&tutor=${explore.tutor}&embedded=true',
+  render_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.title ) && !explore.isMobile',
   title: 'inline Wikipedia article',
   prop: '0',
   type: 'rest-json', // TODO: change type
@@ -16033,35 +16849,6 @@ if ( valid( item.found_in_taxon ) ){
   section: 'main',
   rank: 18,
 },
-
-/*
-
-'similar_inline' : {
-  /*
-  value: {
-    name: 'iframe-url',
-    subclass_qid: item.subclass_qid,
-    instance_qid: item.instance_qid,
-    country_qid: item.country_qid,
-    country_of_origin: item.country_of_origin,
-  },
-  //value: 'iframe-url:${item.subclass_qid}:${item.instance_qid}:country_qid,${item.country_qid}:country_of_origin,${item.country_of_origin}',
-  value: 'iframe-url:${item.subclass_qid}:${item.instance_qid}:${item.country_qid}:${item.country_of_origin}',
-  create_condition: 'valid( item.subclass_qid ) || valid( item.instance_qid ) ',
-  create_trigger: 'console.log( "field: ", item.country_qid )',
-  //render_condition: 'valid( item.subclass_qid ) || valid( item.instance_qid ) ',
-  title: 'inline view of similar items',
-  prop: '0',
-  type: 'rest-json', // TODO: change type
-  mv: true,
-  url: '',
-  icon: 'fa-solid fa-rainbow',
-  text: 'inline similar',
-  section: '',
-  rank: 1,
-},
-
-*/
 
 /*
  * https://nl1.api.radio-browser.info/
@@ -16265,7 +17052,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'rest-json',
   mv: true,
   url: '',
-  icon: 'fa-solid fa-map-marked-alt',
+  icon: 'fa-solid fa-map-location-dot', // 'fa-solid fa-map-marked-alt',
   text: 'OSM tags',
   section: ['location-geography','main'],
   rank: [10,5900],
@@ -16284,6 +17071,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [21, 3160],
 },
 
+/* API no longer free to use
 'stock' : {
   value: 'stocks:${item.title}:${ valid( item.stock_exchange ) }',
   render_condition: 'valid( item.stock_exchange )',
@@ -16301,6 +17089,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 270,
 },
+*/
 
 'currentsapi' : {
   value: 'currentsapi:${item.title}:${ valid( item.stock_exchange ) }',
@@ -16514,20 +17303,20 @@ if ( valid( item.found_in_taxon ) ){
   mv: true,
   url: '',
   icon: 'fa-solid fa-scroll',
-  text: 'wSource',
+  text: 'wSource search',
   section: 'library-general',
   rank: 80,
 },
 
 'wikiquote_inline' : {
   value: 'wikiquote:${item.title}:true',
-  title: 'wikiQuote',
+  title: 'wikiQuote search',
   prop: '0',
   type: 'rest-json',
   mv: true,
   url: '',
   icon: 'fa-solid fa-quote-right',
-  text: 'wQuote',
+  text: 'wQuote search',
   section: 'library-general',
   rank: 90,
 },
@@ -16675,7 +17464,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'ebooks meta',
   section: ['library-general','main'],
   rank: [50,1210],
-  headline_create: 'valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] )',
+  headline_create: 'valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group", "time" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 260,
@@ -16784,6 +17573,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+/*
 'wikipedia_timeline' : {
   create_condition: 'checkLC("en") && valid( item.start_date )',
   render_condition: 'valid( item.start_date >= new Date( 1000, 0, 0 ).toISOString() )',
@@ -16791,15 +17581,16 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/timeline/?t=${item.title}&l=${explore.language}', // note: language is not supported by the timeline-API
+  url: '${explore.base}/app/timeline-wikipedia/?t=${item.title}&l=${explore.language}', // note: language is not supported by the timeline-API
   icon: 'fa-solid fa-timeline',
   text: 'timeline',
   section: ['library-history'],
   rank: [10],
-  headline_create: 'valid( item.wikipedia_timeline ) && valid( item.source === "wikipedia" ) && checkTag( item, 0, "time")', // TODO: add the "source" check in create_condition
-  //headline_trigger: 'console.log( item.source )',
+  headline_create: 'valid( item.wikipedia_timeline ) && valid( item.datasource === "wikipedia" ) && checkTag( item, 0, "time")', // TODO: add the "source" check in create_condition
+  //headline_trigger: 'console.log( item.datasource )',
   headline_rank: 400,
 },
+*/
 
 'us_archives_inline' : {
   value: 'us-archives:${item.title}:true',
@@ -16821,10 +17612,23 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   url: 'https://www.archivesportaleurope.net/directory/-/dir/ai/code/${item.archives_portal_europe}',
   mv: false,
-  icon: 'fa-regular fa-square',
-  text: 'Archives Portal',
-  section: ['library-history','main'],
+  icon: 'fa-solid fa-box-archive',
+  text: 'Archives Portal item',
+  section: ['library-history', 'main'],
   rank: [110,9500],
+},
+
+'archives_portal_europe_search' : {
+  create_condition: true,
+  title: 'Archives Portal Europe search',
+  prop: '',
+  type: 'link',
+  url: 'https://www.archivesportaleurope.net/advanced-search/search-in-archives/?term=${title_quoted}&using=default',
+  mv: false,
+  icon: 'fa-solid fa-box-archive',
+  text: 'Archives Portal',
+  section: ['library-history'],
+  rank: [210],
 },
 
 /*
@@ -16844,6 +17648,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'outlinks' : {
   value: 'outlinks:${item.title}:true',
+  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
   title: 'outgoing links',
   prop: '0',
   type: 'rest-json',
@@ -16852,15 +17657,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'out links',
   section: 'meta',
   rank: 60,
+  headline_create: 'listed( item.instances, [ 13406463 ] )', //'checkTag(item, 1, "list")'
+  headline_type: 'code',
+  headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
+  headline_rank: 200,
 },
 
 'wikidata_inlinks' : {
   value: 'wikidata-inlinks:${item.title}:true',
   //value: 'https://www.wikidata.org/w/api.php?&action=query&list=backlinks&bltitle=${item.qid}&blnamespace=0&bllimit=500&format=json',
+  render_condition: 'valid( item.qid )',
   title: 'incoming Wikidata links',
   prop: '0',
   type: 'rest-json',
-  render_condition: 'valid( item.qid )',
   mv: true,
   url: '',
   icon: 'fa-solid fa-link',
@@ -16871,6 +17680,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'inlinks' : {
   value: 'inlinks:${item.title}:true',
+  render_condition: 'valid( item.datasource === "wikipedia" )',
   title: 'incoming links',
   prop: '0',
   type: 'rest-json',
@@ -16921,8 +17731,8 @@ if ( valid( item.found_in_taxon ) ){
   mv: true,
   icon: 'fa-brands fa-mastodon',
   text: 'Mastodon',
-  section: 'news-social',
-  rank: 12,
+  section: 'social',
+  rank: 14.2,
   //headline_create: 'valid( item.mastodon )',
   //headline_rank: 116,
 },
@@ -17090,6 +17900,23 @@ if ( valid( item.found_in_taxon ) ){
 
 /* PRESENTATIONS */
 
+'presentation_work' : {
+  create_condition: 'checkTag( item, 0, "work")',
+  title: 'presentation',
+  prop: '',
+  type: 'code',
+  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; work &quot; )',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-chalkboard-user',
+  //icon: 'fa-brands fa-medium',
+  text: 'compound',
+  section: ['meta'],
+  rank: [2],
+  headline_create: 'valid( item.presentation_work )',
+  headline_rank: 722,
+},
+
 'presentation_pubchem' : {
   //create_condition: 'valid( item.tags[0] == "substance" )',
   create_condition: 'valid( item.pubchem )',
@@ -17157,6 +17984,22 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 715,
 },
 
+'presentation_cultural_concept' : {
+  create_condition: 'checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement )',
+  title: 'presentation',
+  prop: '',
+  type: 'code',
+  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; cultural-concept &quot; )',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'cultural-concept',
+  section: ['meta'],
+  rank: [2],
+  headline_create: 'valid( item.presentation_cultural_concept )',
+  headline_rank: 715,
+},
+
 'presentation_location' : {
   create_condition: 'checkTag( item, 0, "location") && valid( ${item.lat} )',
   title: 'presentation',
@@ -17207,7 +18050,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_organization' : {
-  create_condition: 'checkTag(item, 0, "organization")',
+  create_condition: 'checkTag(item, 0, "organization")', // && valid( item.datasource === "wikipedia")',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -17220,6 +18063,38 @@ if ( valid( item.found_in_taxon ) ){
   rank: [2],
   headline_create: 'valid( item.presentation_organization )',
   headline_rank: 735,
+},
+
+'presentation_person' : {
+  create_condition: 'checkTag(item, 0, "person")',
+  title: 'presentation',
+  prop: '',
+  type: 'code',
+  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; person &quot; )',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'org',
+  section: ['meta'],
+  rank: [2],
+  headline_create: 'valid( item.presentation_person )',
+  headline_rank: 740,
+},
+
+'presentation_group' : {
+  create_condition: 'checkTag(item, 0, "group")',
+  title: 'presentation',
+  prop: '',
+  type: 'code',
+  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; group &quot; )',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'org',
+  section: ['meta'],
+  rank: [2],
+  headline_create: 'valid( item.presentation_group )',
+  headline_rank: 740,
 },
 
 /* AUTOMATED FIELD INSERTIONS: WikibaseItems */
@@ -17257,18 +18132,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'sex or gender',
   section: ['main'],
   rank: [50021],
-  auto: true,
-},
-
-'country_of_citizenship' : {
-  title: 'Country of citizenship',
-  prop: '27',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'country of citizenship',
-  section: ['main'],
-  rank: [50027],
   auto: true,
 },
 
@@ -17365,18 +18228,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'sexual orientation',
   section: ['main'],
   rank: [50091],
-  auto: true,
-},
-
-'editor' : {
-  title: 'Editor',
-  prop: '98',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'editor',
-  section: ['main'],
-  rank: [50098],
   auto: true,
 },
 
@@ -19624,18 +20475,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'instrumentation' : {
-  title: 'Instrumentation',
-  prop: '870',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'instrumentation',
-  section: ['main'],
-  rank: [50870],
-  auto: true,
-},
-
 'printed_by' : {
   title: 'Printed by',
   prop: '872',
@@ -21147,30 +21986,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'standards body',
   section: ['main'],
   rank: [51462],
-  auto: true,
-},
-
-'category_for_people_born_here' : {
-  title: 'Category for people born here',
-  prop: '1464',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'category for people born',
-  section: ['main'],
-  rank: [51464],
-  auto: true,
-},
-
-'category_for_people_who_died_here' : {
-  title: 'Category for people who died here',
-  prop: '1465',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'category for people who',
-  section: ['main'],
-  rank: [51465],
   auto: true,
 },
 
@@ -37119,20 +37934,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'musicbrainz_instrument' : {
-  title: 'MusicBrainz instrument',
-  prop: '1330',
-  type: 'url',
-  mv: false,
-  url_format: 'https://musicbrainz.org/instrument/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'MusicBrainz instrument',
-  section: ['library-identity'],
-  rank: [21330],
-  auto: true,
-},
-
 'pace_member' : {
   title: 'PACE member',
   prop: '1331',
@@ -39325,20 +40126,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Kaiserhof',
   section: ['library-identity'],
   rank: [21818],
-  auto: true,
-},
-
-'genealogicsorg_person' : {
-  title: 'Genealogicsorg person',
-  prop: '1819',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.genealogics.org/getperson.php?personID=$1&tree=LEO',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'genealogicsorg person',
-  section: ['library-identity'],
-  rank: [21819],
   auto: true,
 },
 
@@ -43296,20 +44083,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Catalan Biographical Dictionary of',
   section: ['library-identity'],
   rank: [22498],
-  auto: true,
-},
-
-'historical_gazetteer_(gov)' : {
-  title: 'Historical Gazetteer (GOV)',
-  prop: '2503',
-  type: 'url',
-  mv: false,
-  url_format: 'http://wiki-de.genealogy.net/GOV:$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Historical Gazetteer (GOV)',
-  section: ['library-identity'],
-  rank: [22503],
   auto: true,
 },
 
@@ -52563,20 +53336,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'bookingcom_hotel' : {
-  title: 'Bookingcom hotel',
-  prop: '3607',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.booking.com/hotel/$1.html',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Bookingcom hotel',
-  section: ['library-identity'],
-  rank: [23607],
-  auto: true,
-},
-
 'eu_vat_number' : {
   title: 'EU VAT number',
   prop: '3608',
@@ -54954,20 +55713,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Tab4u artist',
   section: ['library-identity'],
   rank: [23839],
-  auto: true,
-},
-
-'human_phenotype_ontology' : {
-  title: 'Human Phenotype Ontology',
-  prop: '3841',
-  type: 'url',
-  mv: false,
-  url_format: 'https://hpo.jax.org/app/browse/term/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Human Phenotype Ontology',
-  section: ['library-identity'],
-  rank: [23841],
   auto: true,
 },
 
@@ -57672,20 +58417,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Framalibre',
   section: ['library-identity'],
   rank: [24107],
-  auto: true,
-},
-
-'gedbas_genealogy_person' : {
-  title: 'Gedbas genealogy person',
-  prop: '4108',
-  type: 'url',
-  mv: false,
-  url_format: 'https://gedbas.genealogy.net/person/show/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Gedbas genealogy person',
-  section: ['library-identity'],
-  rank: [24108],
   auto: true,
 },
 
@@ -67552,20 +68283,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'plants_of_the_world_online' : {
-  title: 'Plants of the World online',
-  prop: '5037',
-  type: 'url',
-  mv: false,
-  url_format: 'http://www.plantsoftheworldonline.org/taxon/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Plants of the World',
-  section: ['library-identity'],
-  rank: [25037],
-  auto: true,
-},
-
 'fogisse_player' : {
   render_condition: false,
   title: 'Fogisse player',
@@ -69450,20 +70167,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Czech Geomorphological Unit Code',
   section: ['library-identity'],
   rank: [25258],
-  auto: true,
-},
-
-'swedish_gravestone' : {
-  title: 'Swedish Gravestone',
-  prop: '5259',
-  type: 'url',
-  mv: false,
-  url_format: 'https://grav.genealogi.se/Gravsokview.php?g_id=$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Swedish Gravestone',
-  section: ['library-identity'],
-  rank: [25259],
   auto: true,
 },
 
@@ -73465,20 +74168,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Exoplanet Data Explorer exoplanet',
   section: ['library-identity'],
   rank: [25650],
-  auto: true,
-},
-
-'expedia_hotel' : {
-  title: 'Expedia hotel',
-  prop: '5651',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.expedia.com/$1.Hotel-Information',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Expedia hotel',
-  section: ['library-identity'],
-  rank: [25651],
   auto: true,
 },
 
@@ -89452,20 +90141,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'openweathermap_city' : {
-  title: 'OpenWeatherMap city',
-  prop: '7197',
-  type: 'url',
-  mv: false,
-  url_format: 'https://openweathermap.org/city/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'OpenWeatherMap city',
-  section: ['library-identity'],
-  rank: [27197],
-  auto: true,
-},
-
 'rautemusik_artist' : {
   title: 'RauteMusik artist',
   prop: '7198',
@@ -99639,20 +100314,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'EcuRed article',
   section: ['library-identity'],
   rank: [28092],
-  auto: true,
-},
-
-'geneastar_person' : {
-  title: 'GeneaStar person',
-  prop: '8094',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.geneastar.org/genealogie/?refcelebrite=$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'GeneaStar person',
-  section: ['library-identity'],
-  rank: [28094],
   auto: true,
 },
 
@@ -125510,19 +126171,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'charter URL',
   section: ['main'],
   rank: [96378],
-  auto: true,
-},
-
-'non-free_artwork_image_url' : {
-  title: 'Non-free artwork image URL',
-  prop: '6500',
-  type: 'url',
-  mv: false,
-  url: '${ item.non-free_artwork_image_url }',
-  icon: 'fa-solid fa-link',
-  text: 'non-free artwork image URL',
-  section: ['main'],
-  rank: [96500],
   auto: true,
 },
 

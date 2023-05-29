@@ -141,7 +141,15 @@ async function fetchArchiveScholar( args, total_results, page, sortby ){
 
             if ( valid( v.access[0].access_url ) ){
 
-              url = encodeURIComponent( JSON.stringify( v.access[0].access_url ) );
+              let source_link = v.access[0].access_url;
+
+              if (  source_link.startsWith( 'https://archive.org' ) ){ // add search-keyword parameter for Archive.org works
+
+                source_link += '?q=' + keyword;
+
+              }
+
+              url = encodeURIComponent( JSON.stringify( source_link ) );
 
             }
 
@@ -197,7 +205,7 @@ async function fetchArchiveScholar( args, total_results, page, sortby ){
 			},
       error: function (xhr, ajaxOptions, thrownError){
 
-				console.log( 'response: hmm...', response );
+				console.log( 'response: hmm...', thrownError );
 
       }
 

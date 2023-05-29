@@ -25,7 +25,7 @@ function expandEvent(params) { // Expand a node (with event handler)
       // show wikipedia page and mark the line where the link first occurs
       var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
 
-      window.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: link_href } }, '*' );
+      window.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: 'ps2', ids: link_href } }, '*' );
 
     }
 

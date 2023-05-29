@@ -28,7 +28,7 @@ function getOpenInNewTabLink( label, qid ){
   }
   else { // wikipedia
 
-    url = explore.hostname + '/explore/' + encodeURIComponent( label ) + '?t=wikipedia&l=' + explore.language;
+    url = explore.hostname + '/explore/' + encodeURIComponent( label ) + '?t=string&l=' + explore.language;
 
   }
 
@@ -42,12 +42,20 @@ function getBooksLink( args, label ){
 
 }
 
-function getImagesLink( args, label ){
+function getImagesLink( args, label, qid ){
 
-  return '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( label ), url: encodeURI( 'https://www.bing.com/images/search?&q=' + label + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + explore.language + '-' + explore.language ), language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>';
+  if ( valid( qid ) ){
+
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="Commons images" aria-label="Comons images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( label ), url: encodeURI( `${explore.base}/app/commons/?q=${qid}&l=${explore.language}` ), language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>';
+
+  }
+  else {
+
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing images" aria-label="Bing images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( label ), url: encodeURI( 'https://www.bing.com/images/search?&q=' + label + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + explore.language + '-' + explore.language ), language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>';
+
+  }
 
 }
-
 
 function getVideoLink( args, label ){
 

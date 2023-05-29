@@ -61,16 +61,20 @@ if ( $viewMode == '' ){ // no view mode set yet
 
 }
 
+// locales
 $locales = array_map('trim', explode(',', 'CONZEPT_LOCALES' ) );
-
 asort( $locales );
-
 $locale_options_html = '';
-
 foreach ($locales as &$loc) {
-
   $locale_options_html .= '<option value="' . $loc . '">' . $loc . '</option>';
+}
 
+// AI tutors
+$tutors = array_map('trim', explode(',', 'CONZEPT_AI_TUTORS' ) );
+asort( $tutors );
+$tutor_options_html = '';
+foreach ($tutors as &$tutor) {
+  $tutor_options_html .= '<option value="' . $tutor . '">' . $tutor . '</option>';
 }
 
 $main_css = '
@@ -123,9 +127,13 @@ $main_script = '
   <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
+  <script src="../app/explore2/node_modules/web-share-wrapper/dist/web-share-wrapper.min.js" async></script>
   <script src="../app/explore2/libs/s-express-beautify.js" async></script>
   <script src="../app/explore2/node_modules/marked/marked.min.js" async></script>
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
+
+  <!--script src="../app/explore2/dist/webcomponent/chat.js?vCONZEPT_VERSION" type="module"></script-->
+  <!--chat-ai data-message="bla bla"></chat-ai-->
 
   <!--script src="../app/explore2/libs/weaviate.js?vCONZEPT_VERSION" async></script--> <!-- no NPM dist-package yet -->
   <!--script src="../app/explore2/node_modules/compromise/builds/compromise.js" async></script-->
@@ -155,8 +163,16 @@ $main_script = '
 
   <!-- Conzept core scripts -->
   <script src="../app/explore2/dist/core/env.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/core/show.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/core/utils.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/core/setWikidata.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/command/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?vCONZEPT_VERSION"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
+
+  <!-- TODO: include by PHP foreach datasource from the Conzept settings -->
+  <script src="../app/explore2/dist/datasources/wikipedia/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/wikidata/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
+
   <script src="../app/explore2/dist/core/createItemHtml.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/core/fetch_lib.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/core/fetches.js?vCONZEPT_VERSION"></script>
@@ -377,21 +393,32 @@ $settings_html = '
                 <div id="country-setting">
                   <label style="display:inline;" for="country-select"><span id="app-menu-country-select"></span> &nbsp;</label></br>
                   <input type="text" id="country-select">
-                </div> <br/>
+                </div>
+                <br/>
 
                 <div id="persona-setting">
-
                   <label style="display:inline;" for="persona-select"><span id="app-menu-interests"></span> </br>&nbsp;</label>
-                  <select id="persona-select" width="20px" multiple>
-                    <option value="none">none</option>
-                    <option value="nomad">nomad</option>
-                    <option value="tourist">tourist</option>
-                    <option value="student">student</option>
-                    <option value="academic">academic</option>
-                  </select>
-
+                  <span class="indent-select-widget persona-indent-fix">
+                    <select id="persona-select" width="20px" multiple>
+                      <option value="none">none</option>
+                      <option value="nomad">nomad</option>
+                      <option value="tourist">tourist</option>
+                      <option value="student">student</option>
+                      <option value="academic">academic</option>
+                    </select>
+                  </span>
                 </div>
+                <br/>
 
+                <div id="tutor-setting">
+                  <label style="display:inline;" for="tutor"><!--span id="app-menu-tutor"></span-->AI tutor &nbsp;</label></br>
+                  <span class="indent-select-widget">
+                    <select id="tutor" width="20px" style="top: 0px !important;">
+                      <option value="">select AI tutor</option>' .
+                      $tutor_options_html .
+                    '</select>
+                  </span>
+                </div>
                 <br/>
 
               </div>
@@ -460,13 +487,20 @@ $settings_html = '
             <h4 class="tab-title" id="app-tab-topics-title" style="font-family: ' . $font . ' !important; padding-bottom: 0.3em;">topics</h4>
 
             <div class="overflow-content">
+              <details id="detail-structured-search" class="special-detail" tabindex="0" title="structured search" style="/*display:none;*/">
 
-              <details id="detail-structured-search" tabindex="0" title="structured search" style="/*display:none;*/">
-
-                <summary><i title="structured search" class="fa-solid fa-search" title="structured search"></i> <span id="app-structured-search-title"></span></summary>
+                <summary><i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span></summary>
 
                 <div id="app"></div>
                 <span id="query-builder-code">...</span>
+
+              </details>
+
+              <details id="detail-ai-chat" class="special-detail" tabindex="0" title="AI chat" style="/*display:none;*/">
+
+                <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>
+
+                  <div id="ai-chat-container" class="resizer"></div>
 
               </details>
 
@@ -510,8 +544,31 @@ $settings_html = '
             <div id="jsontree" class="jsontree" style="display:none;">...</div>
 
             <div id="bookmarks" class="noselect">
-
               <div id="tree" class="block-style droptarget" ondrop="addBookmark(event, &quot;dropped&quot;)" ondragover="bookmarkAllowDrop(event)"></div>
+            </div>
+
+            </br>
+
+            <div id="bookmarks-export" class="noselect">
+              <i class="fa-solid fa-file-export"></i>
+              <span id="app-menu-export-as" class="" title="export bookmarks" tabindex="0">export to:</span>
+                <a title="export bookmarks to JSON" tabindex="0" onclick="exportBookmarks(&quot;json&quot;)"><kbd>JSON</kbd></a>
+                <a title="export bookmarks to HTML" tabindex="0" onclick="exportBookmarks(&quot;html&quot;)"><kbd>HTML</kbd></a>
+                <a title="export location bookmarks to KML" tabindex="0" onclick="exportBookmarks(&quot;kml&quot;)"><kbd>KML</kbd></a>
+                <a title="export location bookmarks to GPX" tabindex="0" onclick="exportBookmarks(&quot;gpx&quot;)"><kbd>GPX</kbd></a>
+            </div>
+
+            </br>
+
+            <div id="bookmarks-import" class="noselect">
+              <i class="fa-solid fa-file-import"></i>
+              <span id="app-menu-import-as" class="" title="import bookmarks" tabindex="0">import JSON:</span>
+
+                <form id="json-upload">
+                  <input type="file" id="json-file" accept=".json">
+                  <button>upload</button>
+                </form>
+
             </div>
 
             <div style="margin-bottom:' . $content_bottom_margin . '"></div>
@@ -553,6 +610,12 @@ $settings_html = '
 
                       <!--li style="display:none;"><span id="identifyPlant"><a class="link" title="identify a plant using an image" aria-label="identify a plant using an image" onclick="identifyPlant()" tabindex="0"><i class="fa-solid fa-leaf"></i>&nbsp; <span id="app-menu-plant-identification"></span></a></span></li>
                       <li style="display:none;"><span id="identifyOCR"><a class="link" title="identify text using an image" aria-label="identify text using an image" onclick="identifyOCR()" tabindex="0"><i class="far fa-file-alt"></i>&nbsp; <span id="app-menu-text-identification"></span></a></span></li-->
+
+                      <li>
+                        <web-share-wrapper text="share" sharetext="share this">
+                          <!--a href="https://twitter.com/intent/tweet/?text=Check%20out%20%40philnashs%20web-share-wrapper%20web%20component&amp;url=https%3A%2F%2Fgithub.com%2Fphilnash%2Fweb-share-wrapper">Share on Twitter</a-->
+                        </web-share-wrapper>
+                      </li>
 
                     </ul>
                   </details> 
@@ -705,9 +768,10 @@ $settings_html = '
                   <li>&nbsp; <span id="app-menu-version"></span>: vCONZEPT_VERSION</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news">Twitter</a></li>
-                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="GitHub">GitHub</a></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                  <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/waldenn/conzept" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a></li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://github.com/sponsors/waldenn?o=esb" aria-label="GitHub sponsor"><i class="fa-solid fa-heart"></i> sponsor</a></li>
+                  <li>&nbsp; &nbsp; <a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy"><i class="fa-solid fa-section"></i> privacy policy</a></li>
                 </ul>
             </details>
 
@@ -819,7 +883,7 @@ if ( $viewMode == 'mobile' ){
   };
 
   echo '
-    <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css">
+    <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css?vCONZEPT_VERSION">
     <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?vCONZEPT_VERSION">
   </head>
 

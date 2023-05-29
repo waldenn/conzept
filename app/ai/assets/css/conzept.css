@@ -1,0 +1,10 @@
+body {
+  background: #fbfaf9;
+  font-family: Hind,
+}
+
+header, .navbar, #getting-started, .mt-3.mb-1, #usage, #examples, footer {
+
+  display: none;
+
+}

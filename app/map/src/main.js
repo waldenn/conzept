@@ -107,7 +107,7 @@ async function init(){
 
   var osm = new og.layer.XYZ("OpenStreetMap", {
       isBaseLayer: true,
-      url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       visibility: true,
       attribution: 'Data @ <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="http://www.openstreetmap.org/copyright">ODbL</a>'
   });
@@ -175,7 +175,7 @@ async function init(){
 
 		//console.log( 'picked: ', label, qid );
 
-    const url = 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( label ) + '?l=' + app.language + '&amp;t=wikipedia-qid&amp;i=' + qid + '&amp;s=false&amp;embedded=true';
+    const url = 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( label ) + '?l=' + app.language + '&amp;t=string&amp;i=' + qid + '&amp;s=false&amp;embedded=true';
 
     //console.log( url );
 
@@ -281,7 +281,7 @@ async function addOSM(){
 
   Object.entries( app.objects ).forEach(( [ qid, item ] ) => {
 
-    //console.log( qid );
+    //console.log( qid, item );
 
     if ( valid( item.osm_id ) ){
 
@@ -289,6 +289,19 @@ async function addOSM(){
       // https://nominatim.org/release-docs/latest/api/Reverse/
       //let url = 'https://nominatim.openstreetmap.org/reverse?osm_id=' + app.osm_id + '&osm_type=R&polygon_geojson=1&format=json&polygon_threshold=0.001';
       let url = 'https://nominatim.openstreetmap.org/reverse?osm_id=' + item.osm_id + '&osm_type=R&polygon_geojson=1&format=json&polygon_threshold=0.001';
+
+      // TODO: render roadway geo-line:
+      //console.log( `https://nominatim.openstreetmap.org/details.php?osmtype=W&osmid=${item.osm_id}&class=highway&addressdetails=1&hierarchy=0&group_hierarchy=1&polygon_geojson=1&format=json` );
+      // https://conze.pt/app/overpass/map.html?Q=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0A(%0A%20%20relation(190840)%3B%0A)%3B%0Aout%20body%3B%0A%3E%3B%0Aout%20skel%20qt%3B%0A
+      /*
+        [out:json][timeout:25];
+        (
+          relation(190840);
+        );
+        out body;
+        >;
+        out skel qt;
+      */
 
       //console.log( url );
 

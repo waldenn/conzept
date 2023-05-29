@@ -11,35 +11,41 @@
         <description></description>
         <link>https://conze.pt/guide/</link>
         <image rdf:resource="https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico" />
-       <dc:date>2022-10-09T01:13:04+00:00</dc:date>
+       <dc:date>2023-01-19T16:34:51+00:00</dc:date>
         <items>
             <rdf:Seq>
-                <rdf:li rdf:resource="https://conze.pt/guide/adding_an_app?rev=1643478298&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/adding_new_wikidata_properties?rev=1644325372&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/apps?rev=1661099427&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/architecture?rev=1663803530&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/browser_extension?rev=1660485299&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/build_system?rev=1643847093&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/code_structure?rev=1643846963&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/command_api?rev=1663863867&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/concept_stores?rev=1660485339&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/configuration?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/contributing?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/field_customization?rev=1660355653&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/foo?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/home?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/installation?rev=1646208066&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/integrating_an_api?rev=1643539075&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/issues?rev=1661962673&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/localization?rev=1644542470&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/roadmap?rev=1665123799&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/section_customization?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/sidebar?rev=1661099600&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/terms?rev=1644545468&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/topic_classification?rev=1644544518&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/upgrading?rev=1643455309&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/used_projects?rev=1664837746&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1665096967&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/adding_an_app?rev=1667148413&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/adding_new_wikidata_properties?rev=1667148126&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/apps?rev=1667149013&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/architecture?rev=1667480715&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/browser_extension?rev=1667333173&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/build_system?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/code_structure?rev=1667520365&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/command_api?rev=1667097197&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/configuration?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/container?rev=1667058905&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/contributing?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/datasources?rev=1667149832&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/field_customization?rev=1667257875&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/foo?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/history?rev=1668119527&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/home?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/installation?rev=1666973862&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/integrating_an_api?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/issues?rev=1668457657&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/json-ld?rev=1667500726&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/localization?rev=1667178963&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/old?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/section_customization?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/terms?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/topic_classification?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/upgrading?rev=1666973797&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/url_structure?rev=1667520090&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff"/>
             </rdf:Seq>
         </items>
     </channel>
@@ -48,36 +54,36 @@
         <link>https://conze.pt/guide/</link>
         <url>https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico</url>
     </image>
-    <item rdf:about="https://conze.pt/guide/adding_an_app?rev=1643478298&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/adding_an_app?rev=1667148413&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T18:44:58+00:00</dc:date>
+        <dc:date>2022-10-30T17:46:53+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>adding_an_app</title>
-        <link>https://conze.pt/guide/adding_an_app?rev=1643478298&amp;do=diff</link>
+        <link>https://conze.pt/guide/adding_an_app?rev=1667148413&amp;do=diff</link>
         <description>adding an app
 
 It is easy to integrate any existing (and future) statically-build web application into Conzept.
 
 Due to Conzepts use of iframes within the content panes, the execution and styling context of the app is completely isolated. Yet it is still easy to communicate with the iframed app via its</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/adding_new_wikidata_properties?rev=1644325372&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/adding_new_wikidata_properties?rev=1667148126&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-08T14:02:52+00:00</dc:date>
+        <dc:date>2022-10-30T17:42:06+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>adding_new_wikidata_properties</title>
-        <link>https://conze.pt/guide/adding_new_wikidata_properties?rev=1644325372&amp;do=diff</link>
+        <link>https://conze.pt/guide/adding_new_wikidata_properties?rev=1667148126&amp;do=diff</link>
         <description>adding new Wikidata properties
 
-Conzept currently (as of February 2022) supports all these Wikidata property classes: WikibaseItem (1515), ExternalId (7089), Url (86), String (318) and Quantity (613).
+Conzept currently (2022) supports all these Wikidata property classes: WikibaseItem (1515), ExternalId (7089), Url (86), String (318) and Quantity (613).
 
-Only part of the following Wikidata classes are currently used on Conzept:</description>
+Only part of the following Wikidata classes are currently used on Conzept:  CommonsMedia</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/apps?rev=1661099427&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/apps?rev=1667149013&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-21T18:30:27+00:00</dc:date>
+        <dc:date>2022-10-30T17:56:53+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>apps</title>
-        <link>https://conze.pt/guide/apps?rev=1661099427&amp;do=diff</link>
+        <link>https://conze.pt/guide/apps?rev=1667149013&amp;do=diff</link>
         <description>apps
 
 Conzept allows internal (self-hosted) URLs and some external URLs to be rendered into the content area.
@@ -90,41 +96,42 @@ wikipedia app
 
 The Wikipedia app renders the content from Wikipedia in Conzept (with its own styling and layout).</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/architecture?rev=1663803530&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/architecture?rev=1667480715&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-09-22T01:38:50+00:00</dc:date>
+        <dc:date>2022-11-03T14:05:15+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>architecture</title>
-        <link>https://conze.pt/guide/architecture?rev=1663803530&amp;do=diff</link>
+        <link>https://conze.pt/guide/architecture?rev=1667480715&amp;do=diff</link>
         <description>architecture
 
 The main architectural choices made in the Conzept application are:
 
-	*  Keep things simple, web native and fun to code and maintain.  Performance is secondary.
+	*  Keep things simple, web native, live and fun to code and maintain.  Performance is secondary.
 
 	*  Value the user experience above all else.
 
-	*  Use embedded iframes (and self-hosted app URLs) as a form of simple, well-isolated, micro-services. To the user it should</description>
+	*  Use embedded iframes (and self-hosted app URLs) as a form of very simple, well-isolated 'micro-services'. However, to the user Conzept should</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/browser_extension?rev=1660485299&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/browser_extension?rev=1667333173&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-14T15:54:59+00:00</dc:date>
+        <dc:date>2022-11-01T21:06:13+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>browser_extension</title>
-        <link>https://conze.pt/guide/browser_extension?rev=1660485299&amp;do=diff</link>
+        <link>https://conze.pt/guide/browser_extension?rev=1667333173&amp;do=diff</link>
         <description>browser extension
+URL
+The Conzept browser extension (source) is a lightly-patched fork of the great Wikidata-for-Web extension.
 
-Create/adapt a browser extension (such as eg. the wd extension) to be used for:
+The extension aims to semantically integrate any website with the Conzept encyclopedia. By “string” and by “thing” (semantic entity).
 
-	*  Allow for semantic-metadata (such as Qids) detection on 3rd-party sites and create a conzept-query.
-	*  Going from a text-selection on 3rd party sites, to a conzept string-query search (perhaps with some language-detection?).</description>
+The Conzept extension allows you to:</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/build_system?rev=1643847093&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/build_system?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-03T01:11:33+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>build_system</title>
-        <link>https://conze.pt/guide/build_system?rev=1643847093&amp;do=diff</link>
+        <link>https://conze.pt/guide/build_system?rev=1666973797&amp;do=diff</link>
         <description>build system
 
 When you run “npm run build” in the Conzept app directory (located in “app/explore2/”), the build.sh script is executed.
@@ -133,12 +140,12 @@ When this build script runs, the following things happen:
 
 	*  The existing build-directory (“dist”) is removed (if it exists).</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/code_structure?rev=1643846963&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/code_structure?rev=1667520365&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-03T01:09:23+00:00</dc:date>
+        <dc:date>2022-11-04T01:06:05+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>code_structure</title>
-        <link>https://conze.pt/guide/code_structure?rev=1643846963&amp;do=diff</link>
+        <link>https://conze.pt/guide/code_structure?rev=1667520365&amp;do=diff</link>
         <description>code structure
 
 Here is a high-level description of how the code in the Conzept project is structured.
@@ -159,17 +166,15 @@ root directory structure
 │
 └── services (background services started upon system boot)
    ├── allorigins (general CORS proxy)
-   └── json-proxy (JSON-only CORS proxy, also handl…</description>
+   └── json-proxy (JSON-only CORS proxy, which can …</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/command_api?rev=1663863867&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/command_api?rev=1667097197&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-09-22T18:24:27+00:00</dc:date>
+        <dc:date>2022-10-30T03:33:17+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>command_api</title>
-        <link>https://conze.pt/guide/command_api?rev=1663863867&amp;do=diff</link>
+        <link>https://conze.pt/guide/command_api?rev=1667097197&amp;do=diff</link>
         <description>command API
-
-(status: experimental)
 
 getting started
 
@@ -179,30 +184,31 @@ Then execute the commands:
 
 	*  By typing: [CTRL] + [ENTER]
 
-	*  Or by clicking the ▶ run</description>
+	*  Or by clicking the ▶ run button
+
+Open your browser console, to see any logging (if needed).</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/concept_stores?rev=1660485339&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-14T15:55:39+00:00</dc:date>
+        <dc:date>2022-11-23T11:33:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>concept_stores</title>
-        <link>https://conze.pt/guide/concept_stores?rev=1660485339&amp;do=diff</link>
+        <link>https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff</link>
         <description>concept stores
 
-Research how it would be possible to allow 3rd-party SPARQL-based endpoints to be added as a new “concept store” (besides Wikipedia and Wikidata).
+The idea is to allow any REST / SPARQL API to be added to a Conzept system and render topics in the sidebar.
 
-[ Note: This research follows from a Twitter discussion with Kingsley Uyi Idehen ]
+Features:
 
-Use cases:
-
-	*  An organization with a SPARQL-endpoint that wants to use the Conzept UI, to give people an integrated/customizable/augmented view of their knowledge base.</description>
+	*  Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output.
+	*  Make the</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/configuration?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/configuration?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>configuration</title>
-        <link>https://conze.pt/guide/configuration?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/configuration?rev=1666973797&amp;do=diff</link>
         <description>configuration
 
 The main settings of the Conzept system can be edited in “/etc/conzept/settings.conf”.
@@ -211,12 +217,27 @@ After editing the this file, go to the “$CONZEPT_WEB_DIR/app/explore2/” dire
 
 This build step will update the above settings in all the</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/contributing?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/container?rev=1667058905&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-10-29T17:55:05+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>container</title>
+        <link>https://conze.pt/guide/container?rev=1667058905&amp;do=diff</link>
+        <description>container
+
+	*  Create a Docker container to make the install process a lot easier.
+		*  What about NixOS packaging? I've heard we can create Docker images from this packaging. (My current VPS does not support NiXOS however)
+
+
+	*  project elements:
+		*  Apache webserver with (maybe switch to Nginx later?)</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/contributing?rev=1666973797&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>contributing</title>
-        <link>https://conze.pt/guide/contributing?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/contributing?rev=1666973797&amp;do=diff</link>
         <description>contributing
 
 
@@ -230,12 +251,27 @@ Feel free to submit an issue / pull-request via GitHub, or reach out on Twitter.
 
 	*   Twitter</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/field_customization?rev=1660355653&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/datasources?rev=1667149832&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-13T03:54:13+00:00</dc:date>
+        <dc:date>2022-10-30T18:10:32+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>datasources</title>
+        <link>https://conze.pt/guide/datasources?rev=1667149832&amp;do=diff</link>
+        <description>datasources
+
+(TODO: Document how the datasources system works and how it can be configured. Show the steps for a simple datasource integration.)
+
+See also:
+
+	*  datasources roadmap
+	*  src/data/datasources.js</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/field_customization?rev=1667257875&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-11-01T00:11:15+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>field_customization</title>
-        <link>https://conze.pt/guide/field_customization?rev=1660355653&amp;do=diff</link>
+        <link>https://conze.pt/guide/field_customization?rev=1667257875&amp;do=diff</link>
         <description>field customization
 
 This section describes what Conzept fields are and how they are structured.
@@ -244,31 +280,43 @@ introduction
 
 Each section of a topic-card can be populated by links. These links are constructed from declarative field . When a user clicks on such a link, it can trigger some kind of action.</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/foo?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/foo?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>foo</title>
-        <link>https://conze.pt/guide/foo?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/foo?rev=1666973797&amp;do=diff</link>
         <description>test test</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/home?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/history?rev=1668119527&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-11-10T23:32:07+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>history</title>
+        <link>https://conze.pt/guide/history?rev=1668119527&amp;do=diff</link>
+        <description>history
+
+This page documents the history of the Conzept project (for now only through user-interface screenshots).</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/home?rev=1666973797&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>home</title>
-        <link>https://conze.pt/guide/home?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/home?rev=1666973797&amp;do=diff</link>
         <description></description>
     </item>
-    <item rdf:about="https://conze.pt/guide/installation?rev=1646208066&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/installation?rev=1666973862&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-03-02T09:01:06+00:00</dc:date>
+        <dc:date>2022-10-28T18:17:42+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>installation</title>
-        <link>https://conze.pt/guide/installation?rev=1646208066&amp;do=diff</link>
+        <link>https://conze.pt/guide/installation?rev=1666973862&amp;do=diff</link>
         <description>installation
 
 Conzept installation documention (written for Ubuntu 2020.04 LTS).
+
+(TODO: create a container-based installation workflow)
 
 OS setup
 
@@ -282,46 +330,55 @@ vi /etc/hostname
 
 reboot now
 
-- Install additional packages:
-
-sudo su
-
-apt update
-
-apt install apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php7.4 libapache2-mod-php libapache2-mod-uwsgi php-fpm snapd nodejs npm sed jq</description>
+- Install additional packages:</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/integrating_an_api?rev=1643539075&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/integrating_an_api?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-30T11:37:55+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>integrating_an_api</title>
-        <link>https://conze.pt/guide/integrating_an_api?rev=1643539075&amp;do=diff</link>
+        <link>https://conze.pt/guide/integrating_an_api?rev=1666973797&amp;do=diff</link>
         <description>integrating an API
 API
 The easiest way to integrate a new API-endpoint is to copy a similar API-file from “app/explore2/src/fetch” and then making the necessary changes to it. You can choose how to present the results.
 
 For some APIs you might want to render zoomable IIIF images, for others you may just want a</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/issues?rev=1661962673&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/issues?rev=1668457657&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-31T18:17:53+00:00</dc:date>
+        <dc:date>2022-11-14T21:27:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>issues</title>
-        <link>https://conze.pt/guide/issues?rev=1661962673&amp;do=diff</link>
+        <link>https://conze.pt/guide/issues?rev=1668457657&amp;do=diff</link>
         <description>issues
+
+better packaging
+
+	*  Create a script to create a Docker container, to make the install and upgrade process a lot easier.
 
 browser navigation
 
 	*  Backwards &amp; Forwards history navigation has several issues.
-		*  note: The web standards community is working on improving the browser-history API, since many other “Single Page Applications” (SPA) are running into the same issues.
-		*</description>
+		*  note: The web standards community is working on improving the</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/localization?rev=1644542470&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/json-ld?rev=1667500726&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-11T02:21:10+00:00</dc:date>
+        <dc:date>2022-11-03T19:38:46+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>json-ld</title>
+        <link>https://conze.pt/guide/json-ld?rev=1667500726&amp;do=diff</link>
+        <description>JSON-LD
+OpenLink Structured Data Sniffer
+Conzept supports embeddeding JSON-LD information about topics into the page. This information may also use Wikidata-based augmentation. Note: Non-wikipedia datasources or other embedded-apps do not (yet) support setting/updating the JSON-LD information.
+
+JSON-LD, together with a commonly used ontology such</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/localization?rev=1667178963&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-10-31T02:16:03+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>localization</title>
-        <link>https://conze.pt/guide/localization?rev=1644542470&amp;do=diff</link>
+        <link>https://conze.pt/guide/localization?rev=1667178963&amp;do=diff</link>
         <description>localization
 
 Most of the Conzept interface can be localized, these parts include the main UI elements, such as menu-labels and the topic-card section-names.
@@ -330,30 +387,45 @@ Conzept also has basic support for right-to-left scripts, such as Arabic.
 
 The list of supported locales can be found in the Conzept settings file (</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/roadmap?rev=1665123799&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/old?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-10-07T08:23:19+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>old</title>
+        <link>https://conze.pt/guide/old?rev=1666973797&amp;do=diff</link>
+        <description>old notes
+
+[ note: this “old notes” page is a scratchpad of useful concepts, potential features and pesky issues ]
+
+abstract ideas
+
+	*  user controls the topic 'journey':
+		*  topic selection (by searching or browsing - and then perhaps filtering)</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-12-16T19:46:35+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>roadmap</title>
-        <link>https://conze.pt/guide/roadmap?rev=1665123799&amp;do=diff</link>
+        <link>https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff</link>
         <description>roadmap
 
 specific ideas
 
 	*  Fix the items mentioned in issues.
 
-	*  Design a command API for scriptable entity-processing workflows. (currently in progress)
+	*  Add claim-support to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
-	*  Create a browser extension for text-selection queries on 3rd party sites and entity-linking via JSON-LD.
-
-	*  Add claim-support</description>
+	*  Better bookmarking UX:
+		*  Exporting (working for HTML and KML)
+		*  Importing (preserve tree-structure?)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/section_customization?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/section_customization?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>section_customization</title>
-        <link>https://conze.pt/guide/section_customization?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/section_customization?rev=1666973797&amp;do=diff</link>
         <description>section customization
 
 The content in topic-cards is organized using a tree-structure of topic sections.
@@ -363,12 +435,12 @@ The structure and names of these sections comes from the “src/data/sections.js
 Each section can define the following fields:
  name       description        ID  ID-name, this is the section object-key by which the sections are processed in Conzept. This ID is also used for</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/sidebar?rev=1661099600&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-08-21T18:33:20+00:00</dc:date>
+        <dc:date>2022-11-10T23:30:34+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>sidebar</title>
-        <link>https://conze.pt/guide/sidebar?rev=1661099600&amp;do=diff</link>
+        <link>https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff</link>
         <description>Conzept guide
 
 user docs
@@ -376,6 +448,7 @@ user docs
 	*  user manual
 	*  apps
 	*  terms
+	*  browser extension
 
 admin docs
 
@@ -390,28 +463,30 @@ developer docs
 
 	*  contributing
 	*  architecture
+	*  url_structure
 	*  code structure
 	*  build system
 	*  used projects
 	*  adding an app
 	*  integrating an API
+	*  datasources
 	*  new Wikidata properties
 	*  topic classification
+	*  JSON-LD
+	*  history
 
 plans
 
 	*  issues
 	*  roadmap
-	*  command API
-	*  browser extension
-	*  concept stores</description>
+…</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/terms?rev=1644545468&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/terms?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-11T03:11:08+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>terms</title>
-        <link>https://conze.pt/guide/terms?rev=1644545468&amp;do=diff</link>
+        <link>https://conze.pt/guide/terms?rev=1666973797&amp;do=diff</link>
         <description>terms
 
 Here is a list of the most important terms used in the Conzept system.
@@ -425,23 +500,23 @@ These topic cards are a container for all information about a topic, including:
 	*  Title
 	*</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/topic_classification?rev=1644544518&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/topic_classification?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-02-11T02:55:18+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>topic_classification</title>
-        <link>https://conze.pt/guide/topic_classification?rev=1644544518&amp;do=diff</link>
+        <link>https://conze.pt/guide/topic_classification?rev=1666973797&amp;do=diff</link>
         <description>topic classification
 
-Topic-classification happens live on the client (in the users browser), for each search result topic with a Wikidata Qid.
-Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, while still be a flexible process.</description>
+Topic-classification happens live in the browser, for each search result topic with a Wikidata Qid.
+Doing the classification live, means it can react to any new topics on Wikipedia. Having the classification done in the browser means it can also happen fast, distributed and cheap, while still be a flexible process.</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/upgrading?rev=1643455309&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/upgrading?rev=1666973797&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-01-29T12:21:49+00:00</dc:date>
+        <dc:date>2022-10-28T18:16:37+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>upgrading</title>
-        <link>https://conze.pt/guide/upgrading?rev=1643455309&amp;do=diff</link>
+        <link>https://conze.pt/guide/upgrading?rev=1666973797&amp;do=diff</link>
         <description>upgrading conzept
 
 To upgrade your Conzept installation to the latest version in the Git repository, follow these steps:
@@ -450,12 +525,28 @@ To upgrade your Conzept installation to the latest version in the Git repository
 
 	*  Then run “git clone</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/used_projects?rev=1664837746&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/url_structure?rev=1667520090&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-10-04T00:55:46+00:00</dc:date>
+        <dc:date>2022-11-04T01:01:30+00:00</dc:date>
+        <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
+        <title>url_structure</title>
+        <link>https://conze.pt/guide/url_structure?rev=1667520090&amp;do=diff</link>
+        <description>URL structure
+
+Conzept is mainly based around URLs and iframes.
+
+Let's first look at some example URLs and then look at all the available parameters.
+
+example URLs
+
+	*  conze.pt/explore/Semantic_Web (Minimal URL with a search-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-11-25T14:18:44+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>used_projects</title>
-        <link>https://conze.pt/guide/used_projects?rev=1664837746&amp;do=diff</link>
+        <link>https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff</link>
         <description>used projects
 
 This is a list of the various software projects integrated into Conzept (called “apps” in this context).
@@ -465,12 +556,12 @@ background services
 	*  json-proxy - JSON CORS-proxy with support for secret-API-keys (MIT)
 	*  allOrigins - general CORS-proxy (any file type). (MIT)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/user_manual?rev=1665096967&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-10-07T00:56:07+00:00</dc:date>
+        <dc:date>2022-11-10T16:09:25+00:00</dc:date>
         <dc:creator>Anonymous (anonymous@undisclosed.example.com)</dc:creator>
         <title>user_manual</title>
-        <link>https://conze.pt/guide/user_manual?rev=1665096967&amp;do=diff</link>
+        <link>https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff</link>
         <description>user manual
 
 introduction

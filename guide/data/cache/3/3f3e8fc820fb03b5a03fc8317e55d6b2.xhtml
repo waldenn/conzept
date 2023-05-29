@@ -10,7 +10,7 @@ The main architectural choices made in the Conzept application are:
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Value the <strong><a href="https://conze.pt/explore/user experience?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/user experience?l=en&amp;t=wikipedia" rel="noopener">user experience</a> above all else.</strong></div>
+<li class="level1"><div class="li"> Value the <strong><a href="https://conze.pt/explore/user experience?l=en&amp;t=string" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/user experience?l=en&amp;t=string" rel="noopener">user experience</a> above all else.</strong></div>
 </li>
 </ul>
 <ul>
@@ -34,9 +34,9 @@ The main architectural choices made in the Conzept application are:
 <ul>
 <li class="level2"><div class="li"> jQuery - and the jQuery-dependent plugins - may be removed or replaced in the future, if possible and beneficial.</div>
 </li>
-<li class="level2"><div class="li"> When needed: use <a href="https://conze.pt/explore/WebAssembly?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/WebAssembly?l=en&amp;t=wikipedia" rel="noopener">WebAssembly</a> for performance-demanding, compute parts in the code.</div>
+<li class="level2"><div class="li"> When needed: use <a href="https://conze.pt/explore/WebAssembly?l=en&amp;t=string" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/WebAssembly?l=en&amp;t=string" rel="noopener">WebAssembly</a> for performance-demanding, compute parts in the code.</div>
 </li>
-<li class="level2"><div class="li"> If some (relatively complex) <abbr title="HyperText Markup Language">HTML</abbr>-widget needs to be used in many different places: consider creating a <strong><a href="https://conze.pt/explore/Web Components?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Web Components?l=en&amp;t=wikipedia" rel="noopener">web component</a></strong>. This was done for the <a href="/guide/apps#organism_occurrence_map" class="wikilink1" title="apps" data-wiki-id="apps">organism occurrence map</a>.</div>
+<li class="level2"><div class="li"> If some (relatively complex) <abbr title="HyperText Markup Language">HTML</abbr>-widget needs to be used in many different places: consider creating a <strong><a href="https://conze.pt/explore/Web Components?l=en&amp;t=string" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Web Components?l=en&amp;t=string" rel="noopener">web component</a></strong>. This was done for the <a href="/guide/apps#organism_occurrence_map" class="wikilink1" title="apps" data-wiki-id="apps">organism occurrence map</a>.</div>
 </li>
 </ul>
 </li>
@@ -46,127 +46,8 @@ The main architectural choices made in the Conzept application are:
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Allow the <strong>safe use of <a href="https://conze.pt/explore/Eval?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Eval?l=en&amp;t=wikipedia" rel="noopener">eval()</a></strong> needed for flexible <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field definitions</a>. This is safe, as only the admins/devs can update the field definitions. Conzept is also a mainly client-side application, with no user-data being stored on the server.</div>
+<li class="level1"><div class="li"> Allow the <strong>safe use of <a href="https://conze.pt/explore/Eval?l=en&amp;t=string" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Eval?l=en&amp;t=string" rel="noopener">eval()</a></strong> needed for flexible <a href="/guide/field_customization" class="wikilink1" title="field_customization" data-wiki-id="field_customization">field definitions</a>. This is safe, as only the admins/devs can update the field definitions. Conzept is also a mainly client-side application, with no user-data being stored on the server.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;architecture&quot;,&quot;hid&quot;:&quot;architecture&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-2766&quot;} -->
-<h2 class="sectionedit2" id="url_structure">URL structure</h2>
-<div class="level2">
-
-<p>
-Conzept is mainly based around URLs and iframes.
-</p>
-
-<p>
-Let&#039;s first look at some example URLs and then look at all the available parameters.
-</p>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;URL structure&quot;,&quot;hid&quot;:&quot;url_structure&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;2767-2928&quot;} -->
-<h3 class="sectionedit3" id="example_urls">example URLs</h3>
-<div class="level3">
-<ul>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/Semantic%20Web" class="urlextern" target="_blank" title="https://conze.pt/explore/Semantic%20Web" rel="ugc nofollow noopener">conze.pt/explore/Semantic_Web</a> (Minimal <abbr title="Uniform Resource Locator">URL</abbr> with a query-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/Semantic%20Web?l=en&amp;t=wikipedia&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/Semantic%20Web?l=en&amp;t=wikipedia&amp;s=true" rel="ugc nofollow noopener">conze.pt/explore/Semantic_Web?l=en&amp;t=wikipedia&amp;s=true</a> (Explicit request for the English language)</div>
-</li>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/Semantic%20Web?l=de&amp;t=wikipedia&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/Semantic%20Web?l=de&amp;t=wikipedia&amp;s=true" rel="ugc nofollow noopener">conze.pt/explore/Semantic_Web?l=de&amp;t=wikipedia&amp;s=true</a> (Explicit request for the German language)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/?l=en&amp;t=wikipedia-qid&amp;i=Q5483435&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/?l=en&amp;t=wikipedia-qid&amp;i=Q5483435&amp;s=true" rel="ugc nofollow noopener">conze.pt/explore/?l=en&amp;t=wikipedia-qid&amp;i=Q5483435&amp;s=true</a> (Load a certain Wikidata Q-ID topic. It will try to load it as a Wikipedia article, or else fallback to showing the Wikidata page.)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/Semantic%20Web?l=en&amp;t=link&amp;i=Q54837&amp;u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22Semantic%20Web%22&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/Semantic%20Web?l=en&amp;t=link&amp;i=Q54837&amp;u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22Semantic%20Web%22&amp;s=true" rel="ugc nofollow noopener">conze.pt/explore/Semantic_Web?l=en&amp;t=link&amp;i=Q54837&amp;u=/app/video/#/search/&quot;Semantic_web&quot;</a> (Loads the video-app in the content pane.)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> <a href="https://conze.pt/explore/Semantic%20Web?l=de&amp;t=link-split&amp;i=Q54837&amp;u=%2Fapp%2Flinks%2F%3Fl%3Dde%26t%3DSemantic%2520Web&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/Semantic%20Web?l=de&amp;t=link-split&amp;i=Q54837&amp;u=%2Fapp%2Flinks%2F%3Fl%3Dde%26t%3DSemantic%2520Web&amp;s=true" rel="ugc nofollow noopener">conze.pt/explore/Semantic_Web?l=de&amp;t=link-split&amp;i=Q54837&amp;u=/app/links/?l=de&amp;t=Semantic_Web&amp;s=true</a> (Link-split example loading the link-graph app, for the German language.)</div>
-</li>
-</ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;example URLs&quot;,&quot;hid&quot;:&quot;example_urls&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2929-4358&quot;} -->
-<h3 class="sectionedit4" id="url_parameters">URL parameters</h3>
-<div class="level3">
-
-<p>
-There are various parameters available to structure URLs.
-</p>
-<div class="table sectionedit5"><table class="inline">
-	<thead>
-	<tr class="row0">
-		<th class="col0 leftalign"> parameter  </th><th class="col1 leftalign"> description    </th><th class="col2 leftalign"> default value      </th>
-	</tr>
-	</thead>
-	<tr class="row1">
-		<td class="col0"> <strong>l</strong> </td><td class="col1"> language </td><td class="col2"> “en” </td>
-	</tr>
-	<tr class="row2">
-		<td class="col0"> <strong>t</strong> </td><td class="col1"> action-type </td><td class="col2"> “wikipedia” (note: will be renamed to “string” in the future) </td>
-	</tr>
-	<tr class="row3">
-		<td class="col0"> <strong>i</strong> </td><td class="col1"> entity ID (such as the Wikidata Q-identifier) </td><td class="col2"> </td>
-	</tr>
-	<tr class="row4">
-		<td class="col0 leftalign"> <strong>u</strong>  </td><td class="col1"> <abbr title="Uniform Resource Locator">URL</abbr>-string </td><td class="col2"> </td>
-	</tr>
-	<tr class="row5">
-		<td class="col0 leftalign"> <strong>c</strong>  </td><td class="col1"> custom data </td><td class="col2"> </td>
-	</tr>
-	<tr class="row6">
-		<td class="col0"> <strong>s</strong> </td><td class="col1"> sidebar visibility </td><td class="col2"> true </td>
-	</tr>
-	<tr class="row7">
-		<td class="col0"> <strong>v</strong> </td><td class="col1"> view-mode requested, can be “desktop” or “mobile” </td><td class="col2"> (note: automatically determined by the device type, but can be overruled) </td>
-	</tr>
-	<tr class="row8">
-		<td class="col0 leftalign"> <strong>c</strong>  </td><td class="col1"> custom data field (its format is not specified)</td><td class="col2"> </td>
-	</tr>
-</table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;4444-4963&quot;} -->
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;URL parameters&quot;,&quot;hid&quot;:&quot;url_parameters&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;4359-4965&quot;} -->
-<h2 class="sectionedit6" id="url_action_types">URL action types</h2>
-<div class="level2">
-
-<p>
-The types parameter (“<strong>t</strong>”) in Conzept URLs indicated what type of content should be loaded.
-</p>
-
-<p>
-The following action-types are available:
-</p>
-<div class="table sectionedit7"><table class="inline">
-	<thead>
-	<tr class="row0">
-		<th class="col0 leftalign"> type      </th><th class="col1"> argument data-type </th><th class="col2 leftalign"> description       </th>
-	</tr>
-	</thead>
-	<tr class="row1">
-		<td class="col0"> <strong>wikipedia</strong> </td><td class="col1"> string </td><td class="col2"> request the Wikipedia page </td>
-	</tr>
-	<tr class="row2">
-		<td class="col0"> <strong>wikipedia-qid</strong> </td><td class="col1"> Wikidata qid </td><td class="col2"> request the Wikipedia or the Wikidata page (in that order) </td>
-	</tr>
-	<tr class="row3">
-		<td class="col0"> <strong>link-split</strong> </td><td class="col1"> url </td><td class="col2">load two content panes and load the <abbr title="Uniform Resource Locator">URL</abbr> into the first content pane, in the second-content pane load the Wikipedia page for the search-string </td>
-	</tr>
-	<tr class="row4">
-		<td class="col0"> <strong>articles</strong> </td><td class="col1"> string </td><td class="col2"> (only used internally) to update the sidebar with a new string-search (and not update the content area) </td>
-	</tr>
-	<tr class="row5">
-		<td class="col0"> <strong>random</strong> </td><td class="col1"> string </td><td class="col2"> (only used internally) to load a random Wikipedia topic </td>
-	</tr>
-	<tr class="row6">
-		<td class="col0"> <strong>wander</strong> </td><td class="col1"> string </td><td class="col2"> loads the Wander-app to show a series of YouTube videos (note: this type may be removed in the future) </td>
-	</tr>
-</table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:7,&quot;range&quot;:&quot;5135-5854&quot;} -->
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;URL action types&quot;,&quot;hid&quot;:&quot;url_action_types&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;4966-&quot;} -->

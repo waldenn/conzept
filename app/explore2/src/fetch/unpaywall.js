@@ -151,7 +151,7 @@ async function fetchUnpaywall( args, total_results, page, sortby ){
 			},
       error: function (xhr, ajaxOptions, thrownError){
 
-				console.log( 'response: hmm...', response );
+				console.log( 'response: hmm...', thrownError);
 
       }
 

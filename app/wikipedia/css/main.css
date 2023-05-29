@@ -28,6 +28,24 @@ sup {
   color: #d65459;
 }
 
+#ai-tasks {
+  background-color: #303731e8 !important;
+  z-index: 9999999;
+  position: absolute;
+  top: 4em;
+  width: 300px;
+  right: 1em;
+  border-radius: 1em;
+  color: #fff;
+  max-width: 600px;
+}
+
+#ai-tasks .dropbtn {
+  width: 95%;
+  text-align: left;
+  color: white;
+}
+
 /* wikipedia preview styling */
 .wikipediapreview-header-wordmark:before {
   content: "" !important;
@@ -162,7 +180,8 @@ sup {
  */
 .thumbimage, .thumbinner /*, .tsingle*/ {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 100%;
+  /* height: min-content !important; */
 }
 
 .trow .tsingle {
@@ -233,7 +252,7 @@ blockquote {
 blockquote, .poem, .templatequote { /* p.sid ~ dl > dd */
   font-family: Verdana, sans-serif !important;
   font-weight: 400 !important;
-  font-size: 1rem;
+  font-size: inherit;
   /* font-style: oblique; */
 }
 
@@ -904,6 +923,21 @@ p:first-of-type:first-letter {
   margin-bottom: 0.3rem;
 }
 
+.navbox {
+  border: 1px solid black;
+  padding: 0.2rem;
+  margin: 1rem;
+}
+
+.navbox-block summary {
+  float: right;
+  width: 10em;
+}
+
+.vertical-navbox {
+  border-radius: 1rem;
+}
+
 .reference {
   font-family: Verdana;
   font-size: 0.8rem;
@@ -1156,10 +1190,6 @@ tbody {
 }
 */
 
-.vertical-navbox {
-  border-radius: 1rem;
-}
-
 table.infobox {
 
   max-width: 100% !important;
@@ -1394,12 +1424,6 @@ table.sidebar * {
   display:none;
 }
 */
-
-.navbox {
-  border: 1px solid black;
-  padding: 0.2rem;
-  margin: 1rem;
-}
 
 #article-banner {
   width: 99%;
@@ -1990,6 +2014,11 @@ body.rtl main.explore {
   text-decoration: underline !important;
 }
 
+.navbox-block {
+  float: right;
+  display: block;
+}
+
 /* Chart.js  */
 @keyframes chartjs-render-animation {
   from { opacity: 0.99; }
@@ -2088,6 +2117,10 @@ body.rtl main.explore {
   }
 
   aside {
+    display: none;
+  }
+
+  #newTab, #printPage, #showAI {  /* #gotoVideo */
     display: none;
   }
 

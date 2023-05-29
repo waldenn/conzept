@@ -241,11 +241,40 @@ $( document ).ready(function() {
 
 function setupLinks(){
 
-  $('a.external').each(function( index ){
+  const special_ref = wp_languages[ explore.language ].namespaces.special;
+  const isbn_ref    = wp_languages[ explore.language ].isbn; 
+  const isbn_sel    = 'a[href*="' + encodeURIComponent( special_ref ) + ':' + encodeURIComponent( isbn_ref ) + '"]';
+  //console.log( isbn_sel );
 
-    $(this).addClass('link');
+  // book ISBN links
+  $( isbn_sel ).each(function( index ){
+
+    let link = $(this).attr('href');
+    let ISBN = link.split('/').pop();
+    //console.log( 'ISBN: ', ISBN );
+
+    $(this).attr('href', 'https://openlibrary.org/search?q=' + ISBN );
+
+    $(this).addClass('link external ISBN');
 
   });
+
+  // FIXME? maybe use a language-property for ISBN detection?
+  // book ISBN links (NL, FR)
+  /*
+  $('.ISBN a', 'a.mw-magiclink-isbn' ).each(function( index ){
+
+    let link = $(this).attr('href');
+    let ISBN = link.split('/').pop();
+
+    $(this).attr('href', 'https://openlibrary.org/search?q=' + ISBN );
+
+    $(this).addClass('link external ISBN');
+
+  });
+  */
+
+
 
   // register links
   $('a').not('a.link.external').not('a.link.internal').each(function( index ){
@@ -283,7 +312,7 @@ function setupLinks(){
 		if ( title_ !== '' ){
 
 			const args = {
-        type      : 'wikipedia',
+        type      : 'string',
         title     : title_,
         language  : language,
       };
@@ -373,7 +402,7 @@ function setupClicks(){
     else {
 
       parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
-      parentref.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia', title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+      parentref.postMessage({ event_id: 'handleClick', data: { type: 'string', title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
 
     }
 
@@ -478,6 +507,7 @@ function setupArticleImages(){
         $(this).unwrap().unwrap().replaceWith( '<figure style="max-width:100% !important;"><video class="inline-video" width="100% !important" poster="' + thumb + '" controls><source src="' + file_url + '"></video>' + video_caption + '</figure>' );
 
       }
+      /*
 			else if ( file_url.endsWith('.stl.png') ){ // render as 3D model
 
         let thumb = src.replace( /\/\d+px\-/g, image_width_string );
@@ -507,6 +537,7 @@ function setupArticleImages(){
           .wrap( model_html );
 
       }
+      */
       else { // render as image
 
         src = src.replace( /\/\d+px\-/g, image_width_string );
@@ -535,7 +566,7 @@ function setupArticleImages(){
 
         //console.log( commons_file_name );
 
-				let commons_url = `https://commons.wikimedia.org/w/index.php?search=${commons_file_name}&title=Special:MediaSearch&go=Go&type=image`;
+				let commons_url = `https://commons.wikimedia.org/w/index.php?search=%22${commons_file_name}%22&title=Special:MediaSearch&go=Go&type=image`;
 
         $(this)
           .wrap( '<figure class="non-thumb-media"></figure>' )
@@ -907,7 +938,7 @@ function setupULS(){ // "Univerdsal Language Switcher" widget
 
 			for ( let [key, value] of Object.entries( languages ) ) {
 
-				if ( key.endsWith('wiki') ){ // use only the "wikipedia" links
+				if ( key.endsWith('wiki') ){ // use only the Wikimedia-sitelinks
 
 					key               = key.replace(/wiki$/, '');
 					languages_[ key ] = value;
@@ -940,7 +971,7 @@ function setupULS(){ // "Univerdsal Language Switcher" widget
       }
       else {
 
-			  window.parent.postMessage({ event_id: 'handleClick', data: { type: 'wikipedia', title: title_, hash: hash, language: language, languages: encodeURIComponent( JSON.stringify( languages_ ) ), current_pane: current_pane, target_pane: current_pane } }, '*' );
+			  window.parent.postMessage({ event_id: 'handleClick', data: { type: 'string', title: title_, hash: hash, language: language, languages: encodeURIComponent( JSON.stringify( languages_ ) ), current_pane: current_pane, target_pane: current_pane } }, '*' );
 
       }
 
@@ -1012,6 +1043,22 @@ function goExplore( newtab ){
   else {
 
     parentref.postMessage({ event_id: 'handleClick', data: { type: 'explore', title: title, hash: hash, language: language } }, '*' );
+
+  }
+
+}
+
+function gotoChat( newtab ){ // AI chat
+
+  console.log( 'tutor: ', explore.tutor );
+
+  const url = explore.base + '/app/chat/?m=' + encodeURIComponent( title ) + '&l=' + explore.language + '&t=' + explore.tutor;
+
+  if ( newtab ){ openInNewTab( url ); }
+  else if ( explore.embedded ){ location.href = url; }
+  else {
+
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'link-split', url: url , title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
 
   }
 
@@ -1153,6 +1200,48 @@ function addToCompare( ){
 
 }
 
+function showAI( newtab, task ){
+
+  // toggle AI task overview
+  $( '#ai-tasks' ).toggle();
+
+}
+
+function gotoAI( newtab, task ){
+
+  // workaround: to not make the iframe-context reload the large AI models each time
+  //newtab = true;
+
+  let text = $('p').text();
+
+  let arg2 = ''; // optional argument
+
+  if ( task === 'question-answering' ){
+
+    text = text.substring(0, 1700 );
+    arg2 = `What is ${title}?`;
+
+  }
+  else {
+
+    text = text.substring(0, 2000 );
+
+  }
+
+  //console.log( text );
+
+  const url = encodeURI( `${explore.base}/app/ai/?task=${task}&arg1=${ encodeURIComponent( text ) }&arg2=${ encodeURIComponent( arg2 ) }&l=${explore.language}` );
+
+  if ( newtab ){ openInNewTab( url ); }
+  else if ( explore.embedded ){ location.href = url; }
+  else {
+
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url, title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+
+  }
+
+}
+
 function gotoCommons( newtab ){
 
   const url = encodeURI( `${explore.base}/app/commons/?q=${qid}&l=${explore.language}` );
@@ -1169,7 +1258,7 @@ function gotoCommons( newtab ){
 
 function gotoWikidata( newtab ){
 
-  const url = encodeURI( 'https://www.wikidata.org/wiki/' + qid );
+  const url = encodeURI( 'https://www.wikidata.org/wiki/' + qid + '?uselang=' + explore.language );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }

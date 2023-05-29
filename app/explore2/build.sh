@@ -16,7 +16,7 @@ fi
 # create conzept user (used for running the proxy services)
 if ! id -u "$user" >/dev/null 2>&1; then
   echo 'creating conzept user'
-  sudo adduser --quiet --no-create-home --disabled-password --shell /bin/sh --gecos "User" conzept
+  sudo adduser --no-create-home --disabled-password --shell /bin/sh --gecos "User" conzept
 fi
 
 # TODO: check & create confdir
@@ -65,7 +65,7 @@ npm run build &&
 cd ../explore2 &&
 
 # build the main Conzept app
-esbuild src/core/* src/fetch/* src/data/* src/webcomponent/* --outdir=dist --minify &&
+esbuild src/core/* src/command/* src/datasources/*/* src/fetch/* src/data/* src/webcomponent/* --outdir=dist --minify &&
 
 # build CSS
 esbuild css/conzept/* css/openmoji/* css/various/* --outdir=dist/css/ --minify &&

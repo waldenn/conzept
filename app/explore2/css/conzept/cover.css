@@ -123,8 +123,7 @@ canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: brightness(1.1);
-  /*filter: sepia(10%);*/
+  filter: sepia(70%) brightness(130%);
   width: 100vw;
   height: 100vh;
 }

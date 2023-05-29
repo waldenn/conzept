@@ -48,7 +48,7 @@ html, body {
     width: 12%;
     max-width: 6em;
     margin: auto;
-    background-image: url("./data/precipitation/1_colorbar.png");
+    /*background-image: url("./data/precipitation/1_colorbar.png");*/
     background-size: contain;
     background-repeat: no-repeat;
     padding: 0.5em 0.5em 0.5em 0.5em;

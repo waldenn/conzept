@@ -60,6 +60,7 @@
             // show wander buttons
             $('#wander-to-next').show();
             $('#wander-to-previous').show();
+            $('#wander-youtube-terms').show();
 
           }
 
@@ -67,6 +68,8 @@
           $('#wander-to-previous').click(function(event) { window.top.postMessage({ event_id: 'previous-wander-video', data: {  } }, '*' ); });
 
         </script>
+
+        <div id="terms-of-service"><a href="https://www.youtube.com/t/terms" target="_blank">YouTube terms of service</a></div>
 
         <a title="go back" class="toggle-menu" onclick="goBack();"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></a>
         <!--a title="go home" class="hide-for-small back-menu" href="#/"><i class="fa fa-home"></i></a>
@@ -85,7 +88,7 @@
       <dd ng-class="{active: showRelated}"><a href="" ng-click="fetchRelated()" title="related"><i class="fas fa-layer-group"></i></a></dd>
     </dl>
     <div class="meta" ng-show="!showRelated">
-      <h3><a id="title" title="View on YouTube" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
+      <h3><a id="title" target="_blank" title="View on YouTube" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
       <div class="rating">
         <div class="like" style="width: {{averageRating(video.statistics.likeCount, video.statistics.dislikeCount)}}%;"></div>
       </div>
@@ -105,7 +108,7 @@
       <a class="icon" title="Go back" onclick="window.history.back();"><i class="far fa-arrow-alt-circle-left"></i></a>
       <a class="icon" title="Go home" href="#/"><i class="fa fa-home"></i></a>
       <a class="icon" title="Toggle sidebar" ng-click="showSidebar = false"><i class="fa fa-expand"></i></a>
-      <h3><a title="View on YouTube" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
+      <h3><a title="View on YouTube" target="_blank" href="https://youtube.com/watch?v={{video.id}}&toogles=0">{{video.snippet.title}}</a></h3>
     </div>
     <div ng-show="!video.restricted && !video.deleted" class="flex-video widescreen">
       <div id="player"></div>

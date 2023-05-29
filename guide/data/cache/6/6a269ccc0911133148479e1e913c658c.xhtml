@@ -3,21 +3,8 @@
 <div class="level1">
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;issues&quot;,&quot;hid&quot;:&quot;issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-22&quot;} -->
-<h2 class="sectionedit2" id="container_based_install">container based install</h2>
-<div class="level2">
-<ul>
-<li class="level1"><div class="li"> <strong>Create a <a href="https://conze.pt/explore/Docker (software)?l=en&amp;t=wikipedia" class="interwiki iw_explore" target="_blank" title="https://conze.pt/explore/Docker (software)?l=en&amp;t=wikipedia" rel="noopener">Docker container</a></strong> to make the install process a lot easier. Help needed here!</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> What about NixOS packaging? I&#039;ve heard we can create Docker images from this packaging. (My current VPS does not support NiXOS however)</div>
-</li>
-</ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;container based install&quot;,&quot;hid&quot;:&quot;container_based_install&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-326&quot;} -->
-<h2 class="sectionedit3" id="browser_navigation">browser navigation</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;issues&quot;,&quot;hid&quot;:&quot;issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-23&quot;} -->
+<h2 class="sectionedit2" id="browser_navigation">browser navigation</h2>
 <div class="level2">
 <ul>
 <li class="level1 node"><div class="li"> <strong>Backwards &amp; Forwards history navigation</strong> has several issues.</div>
@@ -38,6 +25,22 @@
 </li>
 </ul>
 <ul>
+<li class="level1"><div class="li"> Allow for <strong>datasources activation via an <abbr title="Uniform Resource Locator">URL</abbr> parameter</strong> (so these searches can be linked to) and store these in a cookie.</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Add <strong>persistent-linking to inline-views</strong></div>
+<ul>
+<li class="level2"><div class="li"> When clicked on headline/section fields, set the fragment-parameter in the <abbr title="Uniform Resource Locator">URL</abbr></div>
+</li>
+<li class="level2"><div class="li"> When a <abbr title="Uniform Resource Locator">URL</abbr> with a fragment is loaded, upon up the inline-view.</div>
+</li>
+<li class="level2"><div class="li"> Note: Make sure the used IDs are robust and durable.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
 <li class="level1 node"><div class="li"> <strong><abbr title="Uniform Resource Locator">URL</abbr> hash handling</strong></div>
 <ul>
 <li class="level2"><div class="li"> Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.</div>
@@ -51,15 +54,11 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;327-1494&quot;} -->
-<h2 class="sectionedit4" id="mobile_browser_compatibility_and_usability">mobile browser compatibility and usability</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;24-1581&quot;} -->
+<h2 class="sectionedit3" id="mobile_browser_compatibility_and_usability">mobile browser compatibility and usability</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> Fix bugs in mobile panel loading/clearing</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Cold-startup time (upon first use) is quite slow - sometimes more than 10-20 seconds on low-bandwidth networks</div>
+<li class="level1"><div class="li"> Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.</div>
 </li>
 </ul>
 <ul>
@@ -67,20 +66,20 @@
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> The Wikipedia-app needs a “Table of Content” system suited for mobile devices. Currently it has no ToC.</div>
+<li class="level1"><div class="li"> The Wikipedia-app needs a “Table of Content” system suited for mobile devices.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile browser compatibility and usability&quot;,&quot;hid&quot;:&quot;mobile_browser_compatibility_and_usability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1495-1891&quot;} -->
-<h2 class="sectionedit5" id="quality_assurance">quality assurance</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile browser compatibility and usability&quot;,&quot;hid&quot;:&quot;mobile_browser_compatibility_and_usability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1582-1906&quot;} -->
+<h2 class="sectionedit4" id="quality_assurance">quality assurance</h2>
 <div class="level2">
 <ul>
 <li class="level1 node"><div class="li"> Accessibility (including keyboard-access) should be assessed and improved where needed.</div>
 <ul>
 <li class="level2"><div class="li"> Integrate an automated accessibility test system.</div>
 </li>
-<li class="level2"><div class="li"> Look into the <a href="https://www.carbondesignsystem.com/developing/frameworks/web-components" class="urlextern" target="_blank" title="https://www.carbondesignsystem.com/developing/frameworks/web-components" rel="ugc nofollow noopener">IBM Carbon</a> web-component framework for accessible replacements (when needed)</div>
+<li class="level2"><div class="li"> Maybe look into a web-component framework for accessible replacements (when needed).</div>
 </li>
 </ul>
 </li>
@@ -95,21 +94,19 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;quality assurance&quot;,&quot;hid&quot;:&quot;quality_assurance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1892-2330&quot;} -->
-<h2 class="sectionedit6" id="admin-dev_workflows">admin-dev workflows</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;quality assurance&quot;,&quot;hid&quot;:&quot;quality_assurance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1907-2263&quot;} -->
+<h2 class="sectionedit5" id="admin-dev_workflows">admin-dev workflows</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> Make <a href="/guide/terms#topic_headline" class="wikilink1" title="terms" data-wiki-id="terms">topic-headline</a> fields definable in the “<a href="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/blob/master/app/explore2/src/data/fields.js" rel="ugc nofollow noopener">field.js</a>” file.</div>
+<li class="level1"><div class="li"> Improve the workflow for adding <a href="/guide/integrating_an_api" class="wikilink1" title="integrating_an_api" data-wiki-id="integrating_an_api">API integrations</a>.</div>
 </li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Improve the workflow for <a href="/guide/integrating_an_api" class="wikilink1" title="integrating_an_api" data-wiki-id="integrating_an_api">adding API integrations</a>.</div>
+<li class="level1"><div class="li"> Improve the workflow for adding <a href="/guide/datasources" class="wikilink1" title="datasources" data-wiki-id="datasources">datasources</a>.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;admin-dev workflows&quot;,&quot;hid&quot;:&quot;admin-dev_workflows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2331-2615&quot;} -->
-<h2 class="sectionedit7" id="field_localization">field localization</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;admin-dev workflows&quot;,&quot;hid&quot;:&quot;admin-dev_workflows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2264-2427&quot;} -->
+<h2 class="sectionedit6" id="fields">fields</h2>
 <div class="level2">
 <ul>
 <li class="level1 node"><div class="li"> Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.</div>
@@ -120,46 +117,46 @@
 </li>
 </ul>
 <ul>
-<li class="level1"><div class="li"> Cleanup design any remaining inconsistencies of the field definitions.</div>
+<li class="level1 node"><div class="li"> Clean up any issues with field definitions:</div>
+<ul>
+<li class="level2"><div class="li"> Turn the the inline-<abbr title="Application Programming Interface">API</abbr> field-structure into an object (instead of a string)?</div>
+</li>
+</ul>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;field localization&quot;,&quot;hid&quot;:&quot;field_localization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2616-2963&quot;} -->
-<h2 class="sectionedit8" id="wikidata_wikipedia_issues_encountered">Wikidata/Wikipedia issues encountered</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;fields&quot;,&quot;hid&quot;:&quot;fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2428-2820&quot;} -->
+<h2 class="sectionedit7" id="wikidata_wikipedia_issues_encountered">Wikidata/Wikipedia issues encountered</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with “GROUP BY”)</div>
 </li>
 <li class="level1"><div class="li"> Wikidata: claim-statements integration not done yet, because the data-access is more complex when using wikibase-sdk (with claims).</div>
 </li>
-<li class="level1"><div class="li"> Integrating Wikidata localization data for properties.</div>
+<li class="level1"><div class="li"> Abandoned Wikidata-based tools.</div>
 </li>
-<li class="level1"><div class="li"> Abandoned Wikidata-based applications.</div>
-</li>
-<li class="level1"><div class="li"> Wikipedia: Image-loading blocking sometimes (“too many image requests”)</div>
+<li class="level1"><div class="li"> Wikipedia: Image-loading failing sometimes (“too many image requests”)</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata\/Wikipedia issues encountered&quot;,&quot;hid&quot;:&quot;wikidata_wikipedia_issues_encountered&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2964-3521&quot;} -->
-<h2 class="sectionedit9" id="other">other</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata\/Wikipedia issues encountered&quot;,&quot;hid&quot;:&quot;wikidata_wikipedia_issues_encountered&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2821-3311&quot;} -->
+<h2 class="sectionedit8" id="various">various</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> How to detect if the field <abbr title="Uniform Resource Locator">URL</abbr> could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the <abbr title="Uniform Resource Locator">URL</abbr>, checking for CORS-errors?)</div>
 </li>
+</ul>
+<ul>
 <li class="level1"><div class="li"> JSON-LD enhancement: “Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values.” <a href="https://twitter.com/kidehen/status/1565006013350248449" class="urlextern" target="_blank" title="https://twitter.com/kidehen/status/1565006013350248449" rel="ugc nofollow noopener">*</a> (this is useful when there are multiple subjects, beyond the main subject)</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;other&quot;,&quot;hid&quot;:&quot;other&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;3522-4002&quot;} -->
-<h2 class="sectionedit10" id="europeana_notes">europeana notes</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;various&quot;,&quot;hid&quot;:&quot;various&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3312-3794&quot;} -->
+<h2 class="sectionedit9" id="europeana_notes">europeana notes</h2>
 <div class="level2">
-<ul>
-<li class="level1"><div class="li"> <img src="/guide/lib/images/smileys/fixme.gif" class="icon" alt="FIXME" />: something broke the app as of October 2022.</div>
-</li>
-</ul>
 <ul>
 <li class="level1 node"><div class="li"> Conzept currently uses the Europeana APIs for:</div>
 <ul>
@@ -288,4 +285,4 @@ LIMIT 100</pre>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;europeana notes&quot;,&quot;hid&quot;:&quot;europeana_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;4003-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;europeana notes&quot;,&quot;hid&quot;:&quot;europeana_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;3795-&quot;} -->

@@ -28,14 +28,15 @@
   "app-section-web": "web",
   "app-section-news": "news",
   "app-section-news-general": "general",
-  "app-section-news-social": "social",
+  "app-section-social": "social",
   "app-section-news-tech": "tech",
-  "app-section-news-jobs": "jobs",
+  "app-section-society-jobs": "jobs",
   "app-section-location": "location",
   "app-section-location-geography": "geography",
   "app-section-location-demography": "demography",
   "app-section-location-ecology": "ecology",
   "app-section-location-travel": "travel",
+  "app-section-location-weather": "weather",
   "app-section-location-real-estate": "real estate",
 
   "app-menu-actions": "actions",
@@ -113,6 +114,7 @@
   "app-section-library-general": "general",
   "app-section-library-manuscripts": "manuscripts",
   "app-section-library-history": "history",
+  "app-section-library-genealogy": "genealogy",
   "app-section-library-legal": "legal",
   "app-section-library-products": "products",
 
@@ -224,6 +226,8 @@
   "app-menu-run-code": "run",
   "app-menu-clear-editor": "clear",
   "app-menu-all-rights-reserved": "All rights reserved",
+
+  "app-menu-export-as": "export as",
 
   "app-foo": "foo bar baz"
 } 

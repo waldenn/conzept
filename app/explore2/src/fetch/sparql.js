@@ -90,7 +90,7 @@ async function fetchSparql( args, total_results, page, sortby ){
             explore_link:         encodeURIComponent( getExploreLink( args, label, qid ) ),
             video_link:           encodeURIComponent( getVideoLink( args, label ) ),
             wander_link:          encodeURIComponent( getWanderLink( args, label ) ),
-            images_link:          encodeURIComponent( getImagesLink( args, label ) ),
+            images_link:          encodeURIComponent( getImagesLink( args, label, qid ) ),
             books_link:           encodeURIComponent( getBooksLink( args, label ) ),
             websearch_link:       encodeURIComponent( getWebsearchLink( args, label ) ),
             compare_link:         encodeURIComponent( getCompareLink( qid ) ),

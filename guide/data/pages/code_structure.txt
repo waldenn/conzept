@@ -30,7 +30,7 @@ The Conzept-project root-directory also contains the following relevant files:
 
 ===== conzept main app =====
 
-The Conzept main app (the UI wrapping all the other apps) is located in the "**[[https://github.com/waldenn/conzept/tree/master/app/explore2|<root_directory>/app/explore2]]**" directory and has the following structure:
+The Conzept main app - **the UI wrapping all the other apps!** -  is located in the "**[[https://github.com/waldenn/conzept/tree/master/app/explore2|<root_directory>/app/explore2]]**" directory and has the following structure:
 
 <code>
 .
@@ -58,6 +58,8 @@ The Conzept main app (the UI wrapping all the other apps) is located in the "**[
 ├── src (Conzept source directory)
 │   ├── core (core code parts)
 │   ├── data (code which creates dynamic data structures)
+│   ├── datasources (code which functions to handle various datasources, such as "wikipedia" and "wikidata")
+│   ├── command ([[command API]] related code)
 │   ├── fetch (code which fetches API data, each API has its own file - see the section "API code" below)
 │   └── webcomponent (used for storing web-components)
 │

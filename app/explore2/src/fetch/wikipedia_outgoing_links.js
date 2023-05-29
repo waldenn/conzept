@@ -37,7 +37,7 @@ async function fetchOutlinks( args, url ){
 
           obj[ 'label-' + i ] = {
 
-            title_link : encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'wikipedia', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
+            title_link : encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'string', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
 
             thumb_link:           '',
 
@@ -71,7 +71,7 @@ async function fetchOutlinks( args, url ){
 			},
       error: function (xhr, ajaxOptions, thrownError){
 
-				console.log( 'response: hmm...', response );
+				console.log( 'response: hmm...', thrownError);
 
       }
 

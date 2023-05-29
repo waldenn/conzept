@@ -1,11 +1,34 @@
-const SITE_URL = 'https://view-it.toolforge.org/';
 const IMG_WIDTH = '800';
 const IMG_HEIGHT = '600';
 const NUM_RESULTS = 19;
 const USER_AGENT = 'View-it! [In Development] (https://view-it.toolforge.org/)';
 const ORIGIN = '*';
 
-let lang = ''; // CONZEPT PATCH
+// CONZEPT PATCH
+let lang				= '';
+let numResults	= 0;
+let offset			= 0;
+let qNum				= '';
+
+// CONZEPT PATCH
+// keyboard control
+$(document).keydown(function(event) {
+
+  let key = (event.keyCode ? event.keyCode : event.which);
+
+  //console.log( event, key );
+
+  if (key == '70') { // "f"
+
+    if ($('textarea, input, select').is(':focus')) {
+      // do nothing
+    } else {
+      document.toggleFullscreen();
+    }
+
+  }
+
+});
 
 function isInt(value) {
   return !isNaN(value) &&
@@ -15,7 +38,7 @@ function isInt(value) {
 
 function searchFromTextbox() {
   qNum = document.getElementById('qNumberInput').value;
-  window.location.href = SITE_URL + '?q=' + qNum;
+  //window.location.href = SITE_URL + '?q=' + qNum;
 }
 
 function startSearch() {
@@ -23,7 +46,7 @@ function startSearch() {
 
   // Gather window and URL params
   var url = new URL(window.location.href);
-  var qNum = url.searchParams.get("q");
+  qNum = url.searchParams.get("q");
   lang = url.searchParams.get("l") || 'en'; // CONZEPT PATCH
   var returnTo = url.searchParams.get("returnTo");
 
@@ -36,7 +59,6 @@ function startSearch() {
     if (qNum.substring(0, 1) === 'Q' && isInt(qNum.substring(1))) {
       generateHeader(qNum, returnTo);
 
-      var offset = 0;
       getImages(qNum, offset);
 
       setupImageClicks();
@@ -81,6 +103,9 @@ function generateHeader(qNum, returnTo) {
         resultsHeader.innerHTML = `<span id="topic-title">${label}</span> &nbsp; <span id="topic-link">(<a href="https://www.wikidata.org/wiki/${qNum}" target="_blank">${qNum}</a>)</span>`;
         //resultsHeader.innerHTML = '<a href="https://www.wikidata.org/wiki/' + qNum + '" target="_blank">' + qNum + '</a> (' + label + ')';
 
+      })
+      .catch( function () {
+        console.log("Promise Rejected");
       });
 
     // Show "back to article" button
@@ -93,6 +118,7 @@ function generateHeader(qNum, returnTo) {
 }
 
 function getImages(qNum, offset) {
+
   // Query Commons API for image titles
   const fetchImagesURL = new URL("https://commons.wikimedia.org/w/api.php");
   fetchImagesURL.searchParams.append("action", "query");
@@ -159,6 +185,9 @@ function getImages(qNum, offset) {
             var images = [];
 
             for (const image in pages) {
+
+              //console.log( pages[image] );
+
               images.push({
                 'name': pages[image]['title'].replace('File:', ''),
                 'thumb': pages[image]['imageinfo']['0']['thumburl'],
@@ -166,33 +195,19 @@ function getImages(qNum, offset) {
                 'height': pages[image]['imageinfo']['0']['thumbheight'],
                 'page': pages[image]['imageinfo']['0']['descriptionurl']
               });
+
             }
 
             // Display images on DOM
             for (var i = 0; i < images.length; i++) {
 
-              /*
-              <div class="imageContainer" style="width: 265.56px;">
-                <a href="https://commons.wikimedia.org/wiki/File:Calomyrmex_albertisi_casent0003286_profile_1.jpg" title="Calomyrmex albertisi casent0003286 profile 1.jpg" class="elem">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Calomyrmex_albertisi_casent0003286_profile_1.jpg/320px-Calomyrmex_albertisi_casent0003286_profile_1.jpg">
-                </a>
-                <div class="caption caption-bottom">Calomyrmex albertisi casent0003286 profile 1.jpg</div>
-              </div>
-
-
-              <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg/900px-CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg" class="elem" data-lcl-txt="Detail of the head (Solenopsis geminata)" data-articulate-ignore="" tabindex="0" onauxclick="" )">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg/900px-CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg" decoding="async" class="thumbimage enlargable" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/8/85/CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg/330px-CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/85/CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg/440px-CSIRO_ScienceImage_11133_Tropical_fire_ant.jpg 2x" data-file-width="1600" data-file-height="1200" loading="lazy">
-              </a>
-              */
-
-              // CONZEPT PATCH
-
+              // CONZEPT PATCH START
               let img_elem = $('<img>', {
                 class: 'thumbimage enlargable',
                 src : images[i].thumb,
                 //srcset : images[i].thumb,
                 decoding : "async",
-                laoding: "lazy"
+                loading: "lazy"
               });
 
               let txt = images[i]['name'].split('.').slice(0, -1).join('.')
@@ -209,48 +224,74 @@ function getImages(qNum, offset) {
 
               $('#results').append( a_elem );
 
-              /*
-              const container = document.createElement('div');
-              container.classList.add('imageContainer');
-              var ratio = IMG_HEIGHT / images[i].height;
-              container.style.width = (images[i].width * ratio) + 'px';
-
-              const a = document.createElement('a');
-              a.href = images[i].page;
-              a.title = images[i].name;
-              a.classList = 'elem';
-
-              var img = document.createElement('img');
-              img.src = images[i].thumb;
-
-              var captionBottom = document.createElement('div');
-              captionBottom.classList.add('caption');
-              captionBottom.classList.add('caption-bottom');
-              captionBottom.innerHTML = images[i]['name'];
-
-              a.appendChild(img);
-              container.appendChild(a);
-              container.appendChild(captionBottom);
-
-              resultsElement.appendChild(container);
-              */
+              // CONZEPT PATCH END
 
             }
 
+            $('#loader').hide();
+
             // Output pagination button as needed
             if (numResults > (offset + NUM_RESULTS)) {
+
               offset += 20;
               const paginationButton = document.createElement('button');
               paginationButton.id = 'paginationButton';
               paginationButton.title = 'load more images';
-              paginationButton.addEventListener("click", function () { getImages(qNum, offset) });
+              //paginationButton.addEventListener("click", function () { getImages(qNum, offset) }); // CONZEPT PATCH
               paginationButton.innerHTML = '<i title="load more images" class="fa-solid fa-circle-plus"></i>';
               resultsElement.appendChild(paginationButton);
+
+							$('#paginationButton').show();
+
+						  setupInfiniteScroll();
+
             }
+						else { // done
+
+							//console.log('done');
+							$('#paginationButton').hide();
+              $('#loader').hide();
+
+						}
+
           });
       }
+
     });
 }
+
+// CONZEPT PATCH START
+
+function loadNextPage(){
+
+	$('#paginationButton').hide();
+  $('#loader').show();
+
+	offset += 20;
+
+  getImages( qNum, offset);
+
+}
+
+async function setupInfiniteScroll(){
+
+  const sentinel = document.querySelector('#paginationButton'); // intersection-observer sensor
+
+  // see: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+  let intersectionObserver = new IntersectionObserver( entries => {
+
+    if ( entries[0].intersectionRatio <= 0 ) { // sentinel out of view
+      return;
+    }
+
+    loadNextPage(); // load in more results (if any)
+
+  });
+
+  intersectionObserver.observe( sentinel );
+
+}
+
 
 function goExplore( title, newtab ){
 
@@ -286,5 +327,6 @@ function goExplore( title, newtab ){
   }
 
 }
+// CONZEPT PATCH END
 
 window.onload = startSearch;

@@ -8,6 +8,8 @@
 
 **admin docs**
   * [[installation]]
+  * [[docker]]
+    * [[docker notes]]
   * [[configuration]]
   * [[section customization]]
   * [[field customization]]
@@ -17,6 +19,7 @@
 **developer docs**
   * [[contributing]]
   * [[architecture]]
+  * [[url_structure]]
   * [[code structure]]
   * [[build system]]
   * [[used projects|used projects]]
@@ -25,11 +28,13 @@
   * [[datasources]]
   * [[adding new Wikidata properties|new Wikidata properties]]
   * [[topic classification]]
+  * [[JSON-LD]]
+  * [[history]]
 
 **plans**
   * [[issues]]
   * [[roadmap]]
+  * [[container]]
   * [[command API]]
-  * [[concept stores]]
 
  ~~NOCACHE~~

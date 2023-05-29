@@ -8,6 +8,7 @@ function detectMobile(){
   return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|Mobile/i.test(navigator.userAgent) );
 }
 
+/*
 function detectSafari(){
 
   const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
@@ -17,6 +18,7 @@ function detectSafari(){
 
   return isSafari;
 }
+*/
 
 
 $( document ).ready(function() {
@@ -67,19 +69,17 @@ $( document ).ready(function() {
       type = 'explore';
     }
 
-    if ( detectSafari() ){ // Safari bug workaround: Safari opens link in iframe
-
-      window.parent.parent.window.location = 'https://wikischool.org/explore/' + encodeURIComponent( title ) + '?l=' + language;
-
-    }
-    else {
+    //if ( detectSafari() ){ // Safari bug workaround: Safari opens link in iframe
+    //  window.parent.parent.window.location = 'https://wikischool.org/explore/' + encodeURIComponent( title ) + '?l=' + language;
+    //}
+    //else {
 
       window.parent.postMessage({ event_id: 'handleClick', data: { title: title, language: language, type: type, hash: hash, } });
 
       hash = ''; // reset hash
       e.preventDefault();
 
-    }
+    //}
 
 
 	});

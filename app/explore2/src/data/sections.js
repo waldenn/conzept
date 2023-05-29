@@ -59,6 +59,10 @@ const sections = {
 				'icon' : 'fa-solid fa-hourglass-half',
 			},
 
+			'library-genealogy': {
+				'icon' : 'fa-solid fa-people-roof',
+			},
+
 			'library-religion': {
 				'icon' : 'fa-solid fa-dharmachakra',
 			},
@@ -228,6 +232,10 @@ const sections = {
 				'icon' : 'fa-solid fa-hiking',
 			},
 
+			'location-weather': {
+				'icon' : 'fa-solid fa-cloud-sun',
+			},
+
 			'location-real-estate': {
 				'icon' : 'fa-solid fa-home',
 			},
@@ -240,6 +248,10 @@ const sections = {
     'icon'  : '',
 
 		'sub'		: {
+
+			'society-jobs': {
+				'icon' : 'fa-regular fa-address-card',
+			},
 
       'society-events': {
         'icon'  : 'fa-regular fa-calendar-alt',
@@ -271,20 +283,16 @@ const sections = {
 				'icon' : '',
 			},
 
-			'news-social': {
-				'icon' : '',
-			},
-
 			'news-tech': {
-				'icon' : '',
-			},
-
-			'news-jobs': {
 				'icon' : '',
 			},
 
     },
 
+  },
+
+  'social': {
+    'icon' : '',
   },
 
   'web': {

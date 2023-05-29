@@ -37,6 +37,7 @@ const explore = {
   hash         	: location.hash.substring(1) || '',
 	qid						: getParameterByName('qid') || '',    // global identifier
 	embedded			: getParameterByName('embedded') || '', // signals to open links in the local iframe
+	tutor		      : getParameterByName('tutor') || 'default', // AI chat app tutor
 
   languages     : [],
 
@@ -208,6 +209,29 @@ $( document ).ready( function() {
       explore.qid = '';
     }
 
+		// allow for embedded-apps to trigger the Wikipedia-app with only a title (and no Qid), then check for a matching Qid.
+		if ( current_pane === 'ps2' && valid( explore.title )  ){ // only do this for second-content frame calls
+
+			let qid_ = await checkForQid();
+
+			if ( qid_.hasOwnProperty('entities') ){
+
+				const qid = Object.keys( qid_.entities )[0];
+
+				if ( isQid( qid ) ){
+
+					explore.qid = qid;
+
+          // now that we do have a Qid: add the nav-links.
+          $('#gotoWikipedia').before('<span id="gotoCommons"><button onclick="gotoCommons()" onauxclick="gotoCommons( true )" class="dropbtn" tabIndex="0" title="Wikimedia Commons images" aria-label="Wikimedia Commons images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ');
+          $('#gotoWikipedia').after('<span id="gotoWikidata"><button onclick="gotoWikidata()" onauxclick="gotoWikidata( true )"class="dropbtn" tabIndex="0" title="go to Wikidata" aria-label="go to Wikidata"><span class="icon"><i class="fa-solid fa-barcode"></i></span></button></span> ');
+
+				}
+
+			}
+
+		}
+
 		//console.log( 'title:', explore.title, '| language:', explore.language, '| hash:', explore.hash, '| qid:', explore.qid, '| locale:', explore.locale, '| font1:', explore.font1 );
 
     window.addEventListener("message", receiveMessage, false);
@@ -233,7 +257,7 @@ $( document ).ready( function() {
         getWikidata( explore.qid )
 
       }
-      else {
+      else { // use the title
 
         // get all the languages for this wikipedia-article
         // see: https://www.mediawiki.org/wiki/API:Langlinks
@@ -258,7 +282,7 @@ $( document ).ready( function() {
         const url = `https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json`;
         //const url = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + title + '&prop=langlinks&lllimit=500&format=json';
 
-        console.log( url );
+        //console.log( url );
 
         $.ajax({
           url: url,
@@ -327,6 +351,55 @@ $( document ).ready( function() {
 
 });
 
+function checkForQid(){
+
+	let title = '';
+
+	if ( explore.embedded ){
+
+		title = decodeURI( explore.title );
+
+	}
+	else {
+
+		title = encodeURIComponent( explore.title );
+
+	}
+
+	// get qid and wikidata data
+	// https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&format=json&titles=Karachi
+
+	return $.ajax({
+
+		url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&titles=' + title,
+		dataType: "jsonp",
+
+		success: function( wd ) {
+
+			//console.log( wd );
+
+			if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
+				// do nothing
+			}
+			else {
+
+				const qid = Object.keys( wd.entities )[0];
+
+				if ( qid.startsWith('Q') ){
+
+					let d = fetchWikidata( [ qid ], '', 'wikipedia', 'ps2' );
+
+				}
+
+			}
+
+		},
+
+	});
+
+}
+
+
 function getWikidata( qid ){
 
   const wikidata_url = window.wbk.getEntities({
@@ -378,10 +451,10 @@ function afterSetWikidata( item ){
     explore.ld.thumbnailUrl = valid( item.image )? item.image : '';
     explore.ld.image        = valid( item.image_full )? item.image_full : '';
     explore.ld.description  = valid( item.description )? item.description : '';
-
     explore.ld.google_kg    = valid( item.google_knowledge_graph )? item.google_knowledge_graph : '';
+    explore.ld.website      = valid( item.website )? Object.values( item.website ) : [];
 
-    //console.log( 'ld: ',  explore.ld );
+    //console.log( 'ld: ', item.website, explore.ld );
 
 		renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', item.qid, gbif_id, false, banner );
 
@@ -966,7 +1039,9 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       const wikidata_page_button = valid( explore.qid )? '<span id="gotoWikidata"><button onclick="gotoWikidata()" onauxclick="gotoWikidata( true )"class="dropbtn" tabIndex="0" title="go to Wikidata" aria-label="go to Wikidata"><span class="icon"><i class="fa-solid fa-barcode"></i></span></button></span> ' : '';
 
-      const commons_page_button = valid( explore.qid )? '<span id="gotoCommons"><button onclick="gotoCommons()" onauxclick="gotoCommons( true )"class="dropbtn" tabIndex="0" title="Wikimedia Commons images" aria-label="Wikimedia Commons images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' : '';
+      const commons_page_button = valid( explore.qid )? '<span id="gotoCommons"><button onclick="gotoCommons()" onauxclick="gotoCommons( true )" class="dropbtn" tabIndex="0" title="Wikimedia Commons images" aria-label="Wikimedia Commons images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' : '';
+
+      const ai_toggle_button = ( current_pane !== 'ps2' )? '<span id="showAI"><button onclick="showAI()" onauxclick="showAI()" class="dropbtn" tabIndex="0" title="show AI tasks" aria-label="show AI tasks"><span class="icon"><i class="fa-solid fa-wand-sparkles"></i></span></button>' : '';
 
       const class_bookmarked = ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ) ? 'bookmarked' : ''; 
 
@@ -985,11 +1060,28 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
             '<span id="newTab"><button onclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" onauxclick="openInNewTab( &quot;' + 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( title ) + '?l=' + explore.language + '&t=wikipedia&i=' + explore.qid + '&quot;)" class="dropbtn" tabIndex="0" title="open in new tab"><span class="icon"><i class="fa-solid fa-external-link-alt"></i></span></button></span>' +
             '<span id="bookmarkToggle"><button onclick="bookmarkToggle()" onauxclick="" class="dropbtn" tabIndex="0" title="bookmark topic" aria-label="bookmark topic"><span class="icon"><i class="bookmark-icon fa-solid fa-bookmark ' + class_bookmarked + '"></i></span></button></span> ' +
-            //'<span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" tabIndex="0" title="go to video" aria-label="go to video"><span class="icon"><i class="fa-solid fa-video"></i></span></button></span> ' +
+            '<span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" tabIndex="0" title="go to video" aria-label="go to video"><span class="icon"><i class="fa-solid fa-video"></i></span></button></span> ' +
             //'<span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" tabIndex="0" title="go to images" aria-label="go to images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' +
             //'<span id="gotoBooks"><button onclick="gotoBooks()"  onauxclick="gotoBooks( true )" class="dropbtn" tabIndex="0" title="go to books" aria-label="go to books"><span class="icon"><i class="fa-brands fa-mizuni"></i></span></button></span> ' +
             //'<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fa-solid fa-plus"></i></span></button></span> ' +
             '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fa-solid fa-print"></i></span></button></span> ' +
+
+            // AI task UI toggle
+            ai_toggle_button +
+
+            '</span>' +
+
+            // AI task actions
+            '<div id="ai-tasks" style="display:none;">' + 
+
+              '<div id="aiChat"><button onclick="gotoChat()" onauxclick="gotoChat(true)" class="dropbtn" tabIndex="0" title="AI chat" aria-label="AI chat"><span class="icon"><i class="fa-regular fa-comments"></i></span>&nbsp; AI chat (ChatGPT)</button></div>' +
+              '<div id="aiSummary"><button onclick="gotoAI( false, &quot;summarization&quot; )" onauxclick="gotoAI( false, &quot;summarization&quot; )" class="dropbtn" tabIndex="0" title="AI generated summary" aria-label="AI generated summary"><span class="icon"><i class="fa-regular fa-file-lines"></i></span>&nbsp; summary (in-browser)</button></div>' +
+              '<div id="aiQA"><button onclick="gotoAI( false, &quot;question-answering&quot; )" onauxclick="gotoAI( false, &quot;question-answering&quot; )" class="dropbtn" tabIndex="0" title="AI question-answering" aria-label="AI question-answering"><i class="fa-regular fa-circle-question"></i></span>&nbsp; QA (in-browser)</button></div>' +
+
+            '</div>' +
+
+            //summary_page_button +
+
             //talk_page_button +
             commons_page_button +
             '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to Wikipedia"><span class="icon"><i class="fa-brands fa-wikipedia-w"></i></span></button></span> ' +
@@ -1237,7 +1329,11 @@ function pauseSpeaking(){
 
 function stopSpeaking(){
 
-	explore.synth.cancel();
+  if ( valid( explore.synth ) ){
+
+    explore.synth.cancel();
+
+  }
 
   // also stop parent-frame speaking (if needed)
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
@@ -1268,14 +1364,20 @@ function cleanText( text ){
 
 function resumeSpeaking(){
 
-  explore.synth_paused = false;
-  explore.synth.resume();
+  if ( valid( explore.synth ) ){
+
+    explore.synth_paused = false;
+    explore.synth.resume();
+
+  }
 
 }
 
 function startSpeaking( text ){
 
   parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
+  
+  if ( ! valid( explore.synth ) ){ return 1; }
 
   if ( explore.synth_paused ){
 

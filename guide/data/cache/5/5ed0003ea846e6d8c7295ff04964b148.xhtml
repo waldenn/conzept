@@ -45,7 +45,7 @@ The Conzept-project root-directory also contains the following relevant files:
 <div class="level2">
 
 <p>
-The Conzept main app (the UI wrapping all the other apps) is located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2" rel="ugc nofollow noopener">&lt;root_directory&gt;/app/explore2</a></strong>” directory and has the following structure:
+The Conzept main app - <strong>the UI wrapping all the other apps!</strong> -  is located in the “<strong><a href="https://github.com/waldenn/conzept/tree/master/app/explore2" class="urlextern" target="_blank" title="https://github.com/waldenn/conzept/tree/master/app/explore2" rel="ugc nofollow noopener">&lt;root_directory&gt;/app/explore2</a></strong>” directory and has the following structure:
 </p>
 <pre class="code">.
 ├── assets
@@ -72,13 +72,15 @@ The Conzept main app (the UI wrapping all the other apps) is located in the “<
 ├── src (Conzept source directory)
 │   ├── core (core code parts)
 │   ├── data (code which creates dynamic data structures)
+│   ├── datasources (code which functions to handle various datasources, such as &quot;wikipedia&quot; and &quot;wikidata&quot;)
+│   ├── command ([[command API]] related code)
 │   ├── fetch (code which fetches API data, each API has its own file - see the section &quot;API code&quot; below)
 │   └── webcomponent (used for storing web-components)
 │
 └── tools (various tools used for: building, installing services, fetching monthly covers, etc.)</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1063-2609&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;conzept main app&quot;,&quot;hid&quot;:&quot;conzept_main_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1063-2789&quot;} -->
 <h2 class="sectionedit4" id="entry_point">entry point</h2>
 <div class="level2">
 
@@ -111,7 +113,7 @@ From “main.js”:
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2610-3560&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;entry point&quot;,&quot;hid&quot;:&quot;entry_point&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2790-3740&quot;} -->
 <h2 class="sectionedit5" id="explore_object">explore object</h2>
 <div class="level2">
 
@@ -153,9 +155,9 @@ Here are some of the important properties on this object:
 		<td class="col0"> explore.<strong>fragment</strong> </td><td class="col1"> sidebar topic-detail-fragment to go to, after loading the <abbr title="Uniform Resource Locator">URL</abbr> (<a href="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" class="urlextern" target="_blank" title="https://conze.pt/explore/London?l=en&amp;t=wikipedia&amp;f=category_tree&amp;s=true" rel="ugc nofollow noopener">example</a>) </td>
 	</tr>
 </table></div>
-<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3804-4472&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;3984-4652&quot;} -->
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3561-4473&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;explore object&quot;,&quot;hid&quot;:&quot;explore_object&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3741-4653&quot;} -->
 <h2 class="sectionedit7" id="api_code">API code</h2>
 <div class="level2">
 
@@ -186,4 +188,4 @@ To add a new <abbr title="Application Programming Interface">API</abbr>, see <st
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4474-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;API code&quot;,&quot;hid&quot;:&quot;api_code&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4654-&quot;} -->

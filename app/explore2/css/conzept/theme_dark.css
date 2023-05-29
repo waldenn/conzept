@@ -23,6 +23,10 @@ body.dark li.resizer {
   border: 1px solid #d4d4d4;
 }
 
+body.dark .article-title.bookmarked {
+  background: #4d2e2e;
+}
+
 body.dark .sticky-title {
   background: #121212;
 }
@@ -86,7 +90,7 @@ body.dark .moreactions {
 }
 
 body.dark .highlight, body.dark li em, body.dark .mv-extra-desc > .searchmatch > em {
-  background-color: #bf565638;
+  background-color: #bf565638 !important;
   font-style: normal;
 }
 

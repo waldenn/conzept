@@ -1,1 +1,7 @@
 *.swp
+settings.conf
+conzept-docker/
+.env
+node_modules
+data/
+guide/data/cache/**/*
