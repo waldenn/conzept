@@ -13,6 +13,8 @@ services:
     #   - conzept
   conzept:
     container_name: conzept
+    env_file:
+      - .env
     build:
       context: .
     volumes:

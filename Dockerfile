@@ -62,9 +62,11 @@ WORKDIR /var/www/html/
 # USER 1001
 COPY --chown=www-data:root ./app/ ./app/
 # RUN ls -la
-RUN cd app/explore2 && npm i && sh build.sh
+# RUN cd app/explore2 && npm i && sh build.sh
 
 COPY --chown=www-data:root . .
+
+RUN cd app/explore2 && npm i && sh build.sh
 # RUN chown -R www-data:root /var/www/html
 
 COPY conf/php-fpm-pool.conf /etc/php7/php-fpm.d/www.conf
@@ -81,3 +83,10 @@ RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf
 # USER root
 RUN chmod -v g+rwx /var/run/nginx.pid && \
     chmod -vR g+rw /usr/share/nginx/cache /var/cache/nginx /var/lib/nginx/ /etc/php7/php-fpm.d
+
+
+# # RUN THI COMMAND ON THE FIRST START
+# sh ./get_previous_month_covers.sh
+# ## and in every two months
+# 0 0 2 * * su - www-data -s /bin/sh -c . /etc/conzept/settings.conf ; cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh
+

@@ -13,10 +13,11 @@ initialize_system() {
 
 }
 
-start_system() {
+  start_system() {
   initialize_system
   echo "Starting Conzept! ..."
-  . /etc/conzept/settings.conf
+  chmod +x /var/www/html/settings.conf
+  . /var/www/html/settings.conf
   /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 }
 
