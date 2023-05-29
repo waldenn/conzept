@@ -2,7 +2,7 @@
    {
       "proxy": {
         "forward": {
-          "/video/(.*)": "https://www.googleapis.com/youtube/v3/$1&key=AIzaSyBUClo5OOfEA7jSS3CwZ20EoqWROc1UiQY",
+          "/video/(.*)": "https://www.googleapis.com/youtube/v3/$1&key=",
           "/scholar/(.*)": "https://scholar-qa.archive.org/search/?q=lang%3A$1"
         },
         "headers": {
