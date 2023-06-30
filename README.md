@@ -1,6 +1,6 @@
 # Conzept encyclopedia
 
-Conzept is an attempt to create an **encyclopedia for the 21st century**. A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the Global Biodiversity Information Facility and many other information sources. A semantic web app build for fun, education and research.
+Conzept is an attempt to create a flexible **topic exploration system for the 21st century**. The online encyclopedic version is based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the Global Biodiversity Information Facility and many other information sources. A semantic web app build for fun, education and research.
 
 Conzept allows you to explore any of the millions of topics on Wikipedia from many different angles - such as science, art, digital books and education - both as a defined semantic entity ("a thing") as well as a string.
 
