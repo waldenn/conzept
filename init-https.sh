@@ -44,6 +44,11 @@ echo
 echo "### Starting nginx ..."
 docker-compose up --force-recreate -d conzept
 echo
+# this is only for local development to use localhost certificate so the app can run with https in your local machine
+# exit if $domain is localhost otherwise continue
+if [ "$domains" == "localhost" ]; then
+  exit 0;
+fi
 sleep 20;
 echo "### Deleting dummy certificate for $domains ..."
 docker-compose run --rm --entrypoint "\

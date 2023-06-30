@@ -21,7 +21,8 @@ services:
       - sslvolume:/etc/ssl
       - ./data/certbot/conf:/etc/letsencrypt/
       - ./data/certbot/www:/var/www/certbot
-      - ./app:/var/www/html/app
+      # this volume mounting is only for development
+      # - app:/var/www/html/app
     ports:
       - 80:80
       - 443:443
@@ -30,5 +31,11 @@ services:
 
 volumes:
   sslvolume:
+  app:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./app
     #external: true
 
