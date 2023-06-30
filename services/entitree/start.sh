@@ -1,4 +1,4 @@
-#$!/bin/sh
+#!/bin/sh
 
 # source conzept environment variables
 . /etc/conzept/settings.conf
