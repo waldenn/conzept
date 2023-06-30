@@ -13,7 +13,7 @@ initialize_system() {
 
 }
 
-  start_system() {
+start_system() {
   initialize_system
   echo "Starting Conzept! ..."
   chmod +x /var/www/html/settings.conf

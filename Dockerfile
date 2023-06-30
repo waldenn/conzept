@@ -11,6 +11,7 @@ CMD ["/sbin/entrypoint.sh"]
 #   && apk add --no-cache npm
 
 RUN apk add --no-cache --update \
+    coreutils \
     php7 \
     php7-bcmath \
     php7-ctype \
@@ -56,18 +57,19 @@ RUN mkdir -p /var/www/html && \
     mkdir -p /usr/share/nginx/cache && \
     mkdir -p /var/cache/nginx && \
     mkdir -p /var/lib/nginx && \
+    mkdir -p /etc/conzept/ && \
+    mkdir -p /var/www/html/app/explore2/assets/json/covers/ && \
     chown -R www-data:root /var/www /usr/share/nginx/cache /var/cache/nginx /var/lib/nginx/
-
+    
 WORKDIR /var/www/html/
-# USER 1001
-COPY --chown=www-data:root ./app/ ./app/
-# RUN ls -la
-# RUN cd app/explore2 && npm i && sh build.sh
 
 COPY --chown=www-data:root . .
 
+COPY settings.conf /etc/conzept/settings.conf
+
+RUN . settings.conf && cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh
+
 RUN cd app/explore2 && npm i && sh build.sh
-# RUN chown -R www-data:root /var/www/html
 
 COPY conf/php-fpm-pool.conf /etc/php7/php-fpm.d/www.conf
 COPY conf/supervisord.conf /etc/supervisor/supervisord.conf
@@ -76,9 +78,9 @@ COPY conf/nginx-site.conf /etc/nginx/conf.d/default.conf
 COPY conf/.env.docker /var/www/html/.env
 COPY entrypoint.sh /sbin/entrypoint.sh
 
-RUN . settings.conf && grep -l "\$CONZEPT_CERT_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_CERT_NAME/$CONZEPT_HOSTNAME/g"
+RUN . settings.conf && grep -l "\$CONZEPT_CERT_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_CERT_NAME/$CONZEPT_HOSTNAME/g" /etc/nginx/conf.d/default.conf
 # RUN grep -l "\$CONZEPT_SERVER_NAME" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_SERVER_NAME/$CONZEPT_SERVER_NAME/g"
-RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_DOMAIN/$CONZEPT_HOSTNAME/g"
+RUN . settings.conf && grep -l "\$CONZEPT_DOMAIN" /etc/nginx/conf.d/default.conf | xargs sed -i "s/\$CONZEPT_DOMAIN/$CONZEPT_HOSTNAME/g" /etc/nginx/conf.d/default.conf
 
 # USER root
 RUN chmod -v g+rwx /var/run/nginx.pid && \
@@ -88,5 +90,6 @@ RUN chmod -v g+rwx /var/run/nginx.pid && \
 # # RUN THI COMMAND ON THE FIRST START
 # sh ./get_previous_month_covers.sh
 # ## and in every two months
+
 # 0 0 2 * * su - www-data -s /bin/sh -c . /etc/conzept/settings.conf ; cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh
 

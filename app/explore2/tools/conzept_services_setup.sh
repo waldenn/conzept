@@ -20,12 +20,17 @@ then
   cd ..
 fi
 
-# setup json-proxy service
-if ! [ -f "json-proxy.json" ]
+if ! [ -d "json-proxy/node_modules" ]
 then
+  echo "setting up json-proxy service Dependencies"
   cd json-proxy &&
   npm install &&
   cd ..
+fi
+
+# setup json-proxy service
+if ! [ -f "json-proxy.json" ]
+then
   echo "setting up json-proxy configuration file"
   echo "
    {

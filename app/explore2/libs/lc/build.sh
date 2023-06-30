@@ -7,7 +7,7 @@ rm -r dist
 esbuild js/* --outdir=dist/js/ --minify
 
 # CSS
-esbuild css/* --outdir=dist/css/ --minify
+esbuild css/*.css --outdir=dist/css/ --minify
 esbuild skins/* --outdir=dist/css/skins/ --minify
 
 # fonts
