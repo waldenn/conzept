@@ -70,6 +70,7 @@ COPY settings.conf /etc/conzept/settings.conf
 RUN . settings.conf && cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh
 
 RUN cd app/explore2 && npm i && sh build.sh
+RUN cd app/explore2/libs/lc && sh build.sh
 
 COPY conf/php-fpm-pool.conf /etc/php7/php-fpm.d/www.conf
 COPY conf/supervisord.conf /etc/supervisor/supervisord.conf
