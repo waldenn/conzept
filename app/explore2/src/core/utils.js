@@ -104,7 +104,11 @@ function renderToPane( target_pane, url, moveto ){
 
     if ( moveto === true ){
 
-      explore.swiper.slideTo( 1 );
+      if ( valid( explore.swiper ) ){ 
+
+        //explore.swiper.slideTo( 1 ); // ? TODO
+
+      }
 
     }
 
@@ -135,7 +139,15 @@ function renderToPane( target_pane, url, moveto ){
 
 		$( '#infoframeSplit2' ).attr({"src": url });
 
-    if ( detectMobile() === true ){ explore.swiper.slideTo( 2 ); }
+    if ( detectMobile() === true ){
+
+      if ( valid( explore.swiper ) ){ 
+
+        // explore.swiper.slideTo( 2 ); // ? TODO
+
+      }
+
+    }
 
 	}
 
@@ -636,7 +648,8 @@ function getParameterByName( name, url ) {
 
   if ( results === null ){
 
-    return undefined;
+    return '';
+    //return undefined;
 
   }
   else if ( results[2] === 'false' ){
@@ -924,8 +937,6 @@ function setOnMultiValueClick( args ){ // dynamically creates lists of "onclick"
     args.languages = '';
   }
 
-  //console.log(args);
-
   args.title = args.title.replace(/,|\//g, '_'); // keep special charatecters out of the jQuery-selector 
 
   return ' onclick="stateResetCheck( event ); insertMultiValues( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;)" data-title="' + args.title + '" ';
@@ -936,6 +947,8 @@ function setOnClick( args ){ // creates the "onclick"-string for most dynamic-co
 
   // remove unneeded data
   delete args.item;
+
+  //console.log(args);
 
   if ( args.type !== 'string' ){ // only Wikipedia-topics types need the sometimes large "languages" data-structure
     args.languages = '';
@@ -1065,6 +1078,28 @@ function setupSwipe( el ){ // used to set up TinyGesture-swiping for apps
     window.parent.postMessage({ event_id: 'slide-to-previous', data: { } }, '*' );
     //prevEl: ".swiper-button-prev",
   });
+
+}
+
+function packListOfObjects( loo ){
+
+  str = encodeURIComponent( JSON.stringify( loo ) );
+
+	return '"' + str + '"';
+
+}
+
+function unpackListOfObjects( str ){
+
+  let loo = '';
+
+  if ( valid( str ) ){
+
+    loo = decodeURIComponent( str );
+
+  }
+
+	return loo;
 
 }
 
@@ -1386,6 +1421,14 @@ function quoteTitle( title ){
 
 }
 
+function getSearchTerm(){
+
+  const searchterm = $('#srsearch').val();
+
+  return searchterm;
+
+}
+
 function getBoundingBox(lon, lat, delta){
 
   return `${lon - delta},${lat - delta},${lon + delta},${lat + delta}`;
@@ -1465,6 +1508,36 @@ function cleanText( text ){
 
 }
 
+
+function getTutor( item ){
+
+  let tutor = valid( explore.tutor )? explore.tutor : 'default'; // initial tutor
+
+  if ( tutor === 'auto-select' ){
+
+    // 2nd-level tags
+    if ( checkTag( item, 1, ['religion' ] ) ){ tutor = 'theologian'; }
+    else if ( checkTag( item, 1, ['mathematics' ] ) ){ tutor = 'mathematician'; }
+    else if ( checkTag( item, 1, ['painter','sculptor','musician','composer','musician','music-group','filmmaker','architect' ] ) ){ tutor = 'art-historian'; }
+    else if ( checkTag( item, 1, ['protein','chromosome','gene','anatomy' ] ) ){ tutor = 'scientist'; }
+
+    // 1st-level tags
+    else if ( checkTag( item, 0, ['location', 'organization', 'group', 'cultural-concept', 'natural-type', 'natural-concept' ] ) ){ tutor = 'professor'; }
+    else if ( checkTag( item, 0, ['time' ] ) ){ tutor = 'historian'; }
+    else if ( checkTag( item, 0, ['organism', ] ) ){ tutor = 'biologist';}
+    else if ( checkTag( item, 0, ['substance', ] ) ){ tutor = 'chemist';}
+    else if ( checkTag( item, 0, ['meta-concept', ] ) ){ tutor = 'philosopher';}
+    else if ( checkTag( item, 0, ['person' ] ) ){ tutor = 'historian'; }
+    else if ( checkTag( item, 0, ['work' ] ) ){ tutor = 'art-history'; }
+
+    //auto-select, examinator, default, teacher, historian, scientist, philosopher, mathematician, chemist, economist, politician, art-historian, artist, travel-guide, statistician, nutritionist, psychologist, legislator, theologian, poet, storyteller, biologist, doctor, investor, lifecoach, entrepreneur, farmer, ecologist, military-expert, financial-expert, engineer, professor, demographer, social-scientist, linguist
+
+  }
+
+  return tutor;
+
+}
+
 function getDatingHTML( item, args ){
 
   let start_date        = '';
@@ -1481,25 +1554,27 @@ function getDatingHTML( item, args ){
   // DATES
   if ( valid( item.start_date ) ){
 
-    start_date = item.start_date;
+    //console.log( item.start_date, typeof item.start_date );
+
+    start_date = String( item.start_date );
 
   }
   else if ( valid( item.date_inception ) ){
 
-    start_date = item.date_inception;
+    start_date = String( item.date_inception );
 
   }
 
   if ( valid( item.end_date) ){
 
-    end_date = item.end_date;
+    end_date = String( item.end_date );
 
   }
   else { // check any other possible end-date types
 
     if ( valid( item.dissolved_date ) ){
 
-      end_date = item.dissolved_date;
+      end_date = String( item.dissolved_date );
 
     }
 
@@ -1508,7 +1583,7 @@ function getDatingHTML( item, args ){
   // TODO: could we code this n-to-1 pointintime login in de fields file?
   if ( valid( item.date_pointintime ) ){
 
-    pointintime = item.date_pointintime;
+    pointintime = String( item.date_pointintime );
 
   }
 
@@ -1516,7 +1591,7 @@ function getDatingHTML( item, args ){
 
     if ( valid( item.date_release ) ){
 
-      pointintime = item.date_release;
+      pointintime = String( item.date_release );
 
     }
 
@@ -1684,6 +1759,19 @@ function errorPosition( pos ) {
   })
 
   //explore.position_watch_id = undefined;
+
+}
+
+function initialIsCapital( word ){
+
+  return word[0] !== word[0].toLowerCase();
+
+}
+
+
+function isEmbedded(){
+
+  return (window !== top);
 
 }
 

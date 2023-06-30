@@ -9,13 +9,14 @@
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 
 <!-- conzept resources -->
-<link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.340" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.340"></script><script src="/app/explore2/dist/core/utils.js?v0.51.340"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+<link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
 
 <!--script src="../explore2/libs/TinyGesture.js"></script-->
 <script src="../explore2/libs/lc/dist/js/lc_lightbox.lite.js"></script>
 <link rel="stylesheet" href="../explore2/libs/lc/dist/css/lc_lightbox.css" />
 <link rel="stylesheet" href="../explore2/libs/lc/dist/css/skins/minimal.css" />
 <script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+<script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.51.466"></script>
 
 <!--link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Reasonator_logo_proposal.png/16px-Reasonator_logo_proposal.png"-->
 
@@ -62,6 +63,7 @@
 
           <li id="wikipedia-menu" style="display:none;">
             <span id="exploreTopic"><button onclick="gotoExplore()" onauxclick="gotoExplore( true )" class="dropbtn" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span> 
+            <span id="bookmarkToggle"><button onclick="bookmarkToggle()" onauxclick="" class="dropbtn" tabIndex="0" title="bookmark topic" aria-label="bookmark topic"><span class="icon"><i class="bookmark-icon fa-solid fa-bookmark"></i></span></button></span>
             <span id="gotoVideo"><button onclick="gotoVideo()" onauxclick="gotoVideo( true )" class="dropbtn" title="go to video" aria-label="go to video"><span class="icon"><i class="fas fa-video"></i></span></button></span> 
             <span id="gotoImages"><button onclick="gotoImages()" onauxclick="gotoImages( true )" class="dropbtn" title="go to images" aria-label="go to images"><span class="icon"><i class="far fa-images"></i></span></button></span> 
             <span id="gotoBooks"><button onclick="gotoBooks()" onauxclick="gotoBooks( true )" class="dropbtn" title="go to books" aria-label="go to books"><span class="icon"><i class="fas fa-book"></i></span></button></span> 

@@ -1,6 +1,6 @@
 'use strict';
 
-function autocompletePreWikidata( r, dataset ){
+function autocompleteWikidata( r, dataset ){
 
   let json  = [];
   let wd    = [];
@@ -41,7 +41,7 @@ function countWikidata( r, struct, index ){
 
 }
 
-function processWikidataResults( my_promises, topicResults, struct, index ){
+function processResultsWikidata( my_promises, topicResults, struct, index ){
 
   if ( topicResults.length === 0 ){ // no results found
 
@@ -360,7 +360,7 @@ async function fetchWikidata( qids, topicResults, source, target_pane ){
           // detect the relevant wikidata-data and put this info into the item
           setWikidata( item, entities[ item.qid ], true, target_pane );
 
-          // QQQ FIXME: how should we handle this? 
+          // FIXME: how should we handle this? 
           //console.log('fetchWikidata: single: ', source, ' fix needed?' );
 
           resolve( [ { source : { data: item } } ] );
@@ -402,8 +402,15 @@ async function runQuery( json, json_url ){
 
   //console.log( 'runQuery: ', json, json_url );
 
-  // clear search-input
-  //$( '#srsearch' ).val('');
+  let paging_mode = true; // default
+
+  const output_type = $('#structured-query-output').val() || '';
+
+  if ( valid( output_type ) && output_type !== 'sidebar' ){
+
+    paging_mode = false; // fetch all results at once (with a limit)
+
+  }
 
   explore.searchmode    = 'wikidata';
   explore.query         = json;
@@ -417,11 +424,11 @@ async function runQuery( json, json_url ){
 
   explore.wikidata_query = json_url;
 
-  runWikidataQuery();
+  runWikidataQuery( paging_mode );
 
 }
 
-async function runWikidataQuery(){
+async function runWikidataQuery( paging_mode ){
 
   $('#blink').show();
   $('#pager').hide();
@@ -430,7 +437,7 @@ async function runWikidataQuery(){
   $('#scroll-end').hide();
   $('#results').empty();
 
-  if ( explore.page === 1 ){ // first time fetch
+ if ( explore.page === 1 ){ // first time fetch
 
     explore.totalRecords = 0;
 
@@ -452,9 +459,64 @@ async function runWikidataQuery(){
 
             explore.totalRecords = count_json.results.bindings[0].count.value;
 
-            let topicResults = await fetchWikidataQuery();
-            topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
-            renderTopics( { 'wikidata' : { data: topicResults[0] } } );
+            if ( ! paging_mode ){ // dont page results, but fetch as one batch, then render using the provided command.
+
+              const output_type = $('#structured-query-output').val() || '';
+
+              const limit       = 1000;
+
+              // change fetch URL
+              explore.wikidata_query = explore.wikidata_query.replace( /LIMIT%20[\d]*/, `LIMIT%20${limit}` );
+
+              let qids = await fetchWikidataBatchQuery();
+
+              // render output_type using the Command API
+						 	if ( qids.length > 0 ){
+
+								let command = '';
+
+  							const action = $('#structured-query-output').val() || '';
+
+								if ( action === 'video' || action === 'web' ){ // search-based commands
+
+									command = `(search '${action} '( ${ qids.join(' ') } ) )`;
+
+								}
+								else { // default command mode
+
+									command = `(show '${action} '( ${ qids.join(' ') } ) )`;
+
+								}
+
+								//console.log( command );
+
+								runLISP( command );
+
+							}
+							else { // no qids found
+
+								$.toast({
+									heading: 'no Wikidata Qid\'s found for these topics',
+									//heading: explore.banana.i18n('app-notification-too-few-compare-topics'),
+									text: '',
+									hideAfter : 10000,
+									stack : 1,
+									showHideTransition: 'slide',
+									icon: 'info'
+								})
+
+							}
+
+            }
+            else { // render topics into sidebar
+
+              let topicResults = await fetchWikidataQuery();
+
+              topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
+
+              renderTopics( { 'wikidata' : { data: topicResults[0] } } );
+
+            }
 
           }
           else {
@@ -486,13 +548,12 @@ async function fetchWikidataQuery(){
 
   return new Promise(( resolve, reject ) => {
 
-    //console.log( 'fetchWikidataQuery: ', explore.wikidata_query );
-
     // fetch results
     fetch( explore.wikidata_query )
 
       .then( response => response.json() )
       .then( entities => {
+
 
         if ( entities.results.length === 0 ){ // no results found
 
@@ -524,6 +585,40 @@ async function fetchWikidataQuery(){
           //fetchWikidata( qids, topicResults, 'wikidata', 'p1' );
 
           $('details#detail-structured-search').removeAttr("open");
+
+        }
+
+      })
+
+  });
+
+}
+
+async function fetchWikidataBatchQuery(){
+
+  return new Promise(( resolve, reject ) => {
+
+    // fetch results
+    fetch( explore.wikidata_query )
+
+      .then( response => response.json() )
+      .then( entities => {
+
+        if ( entities.results.length === 0 ){ // no results found
+
+          $('#scroll-end').hide();
+          $('#loader').hide();
+          $('#blink').hide();
+          $('#results-label').html('no results found');
+
+        }
+        else { // results found
+
+          let [ qids, topicResults ] = prepareWikidata( entities );
+
+          //$('details#detail-structured-search').removeAttr("open");
+
+          resolve( qids );
 
         }
 
@@ -588,7 +683,6 @@ function prepareWikidata( entities, source ){
 
 }
 
-
 async function queryLocationTypeInstances( qid, country_qid ) {
 
   qid = qid.trim();
@@ -601,7 +695,7 @@ async function queryLocationTypeInstances( qid, country_qid ) {
 
   let json_url = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20?item%20?itemLabel%20?itemDescription%20WHERE%20%7B%0A%20%20SERVICE%20wikibase:label%20%7B%20bd:serviceParam%20wikibase:language%20%22en%2Cen%2Ces%2Cfr%2Cde%2Cit%2Cru%2Cja%2Czh%2Cfa%2Car%2Cnl%2Cca%2Cel%22.%20%7D%0A%20%20%7B%0A%20%20%20%20SELECT%20DISTINCT%20?item%20WHERE%20%7B%0A%20%20%20%20%20%20?item%20p:P31%20?statement0.%0A%20%20%20%20%20%20?statement0%20(ps:P31/(wdt:P279*))%20wd:' + qid + '.%0A%20%20%20%20%20%20?item%20p:P17%20?statement1.%0A%20%20%20%20%20%20?statement1%20(ps:P17)%20wd:' + country_qid + '.%0A%20%20%20%20%7D%0A%20%20%20%20ORDER%20BY%20%3FitemLabel%0A%20OFFSET%200%20LIMIT%2010%0A%20%20%7D%0A%7D';
 
-  console.log( json_url );
+  //console.log( json_url );
 
   runQuery( query_json, json_url  );
 
@@ -702,5 +796,3 @@ function afterSetWikidata( item ){
 	return 0;
 
 }
-
-

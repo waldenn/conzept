@@ -34,7 +34,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
   let keyword = args.topic.replace(/\(.*?\)/g, '').trim();
   keyword			= removeCategoryFromTitle( keyword );
 
-  //let keyword_match = keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim();
+  let keyword_match = keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim();
 
   keyword = encodeURIComponent( '"' + keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() + '"' ); // add some extra spaces to avoid the API error message: "phrase too short".
 
@@ -192,7 +192,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
           }
           else {
 
-            desc  += '<details class="inline-abstract"><summary><small><i class="fa-solid fa-ellipsis-h"></i></small></summary>' + v.dcDescription[0] + '</details>';
+            desc += getAbstract( v.dcDescription[0], keyword_match, 'abstract' );
 
             desc_plain = encodeURIComponent( v.dcDescription[0] );
 

@@ -43,7 +43,7 @@ body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark 
   border-color: #066d98;
 }
 
-body .floatThead-container {
+body.dark .floatThead-container {
   background: rgba(255,255,255,0.9);
 }
 
@@ -98,10 +98,6 @@ body.dark table.toccolours { /* example: https://conze.pt/app/wikipedia/?t=Frans
 
 body.dark .tableFloatingHeaderOriginal {
   background-color: #5b7193;
-}
-
-body.dark .infobox *, body.dark table.sidebar *, .NavFrame * {
-  color: black !important;
 }
 
 /*
@@ -238,7 +234,7 @@ body.dark .infobox {
   background-color: #484848 !important;
 }
 
-body.dark .infobox *, body.dark table.sidebar *, .NavFrame * {
+body.dark .infobox *, body.dark table.sidebar *, body.dark .NavFrame * {
   color: white !important;
   background: transparent !important;
 }

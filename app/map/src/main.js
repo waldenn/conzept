@@ -138,7 +138,7 @@ async function init(){
   */
 
   app.markerLayer = new og.layer.Vector("Markers", {
-    clampToGround: true,
+    //clampToGround: true,
   })
 
   if ( valid( app.lon ) ){

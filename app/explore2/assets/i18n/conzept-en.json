@@ -57,7 +57,7 @@
   "app-menu-random-topic-key": "random topic",
   "app-menu-compare-topics": "compare topics",
   "app-menu-toggle-fullscreen": "toggle fullscreen",
-  "app-menu-bookmark-current-url": "bookmark current URL",
+  "app-menu-bookmark-current-view": "bookmark current view",
   "app-menu-clone-tab": "clone tab",
   "app-menu-plant-identification": "plant identification",
   "app-menu-text-identification": "text identification",
@@ -104,9 +104,9 @@
   "app-section-science-archeology": "archeology",
   "app-section-science-mathematics": "mathematics",
   "app-section-science-astronomy": "astronomy",
-  "app-section-science-datasets": "datasets",
-  "app-section-science-datasets-general": "general",
-  "app-section-science-datasets-topical": "topical",
+  "app-section-media-datasets": "datasets",
+  "app-section-media-datasets-general": "general",
+  "app-section-media-datasets-topical": "topical",
 
   "app-section-art": "art",
 

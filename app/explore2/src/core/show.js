@@ -1363,7 +1363,7 @@ async function showRandomQuery(){
 
 }
 
-async function showMapCompare( ){
+async function showMapCompare(){
 
   let message = '';
 

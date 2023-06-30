@@ -31,6 +31,10 @@ a, a:visited {
   color: #005799;
 }
 
+a:not(.elem):hover {
+  background: #ee6e735c;
+}
+
 #loader {
   position: fixed;
   margin: auto;

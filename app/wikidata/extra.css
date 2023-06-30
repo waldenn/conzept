@@ -32,6 +32,10 @@ body.dark #main_content a {
   color: #8bd9f1 !important;
 }
 
+body.dark .lead {
+  background: transparent !important;
+}
+
 .navbar-nav > li {
   float: right !important;
 }

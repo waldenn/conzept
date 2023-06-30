@@ -19,6 +19,10 @@ body.dark .category.main {
   border-color: white;
 }
 
+body.dark .bookmark-select.selected {
+  background: #59792f;
+}
+
 body.dark li.resizer {
   border: 1px solid #d4d4d4;
 }
@@ -236,6 +240,9 @@ body.dark .sidebar {
   background: #121212 !important;
 }
 
+body.dark .bordered {
+  border: 1px solid #fff6 !important;
+}
 body.dark #sidebar {
   background: #121212;
   color: #ffffffd1 !important;

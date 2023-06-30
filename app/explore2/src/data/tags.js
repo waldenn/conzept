@@ -57,7 +57,7 @@ var conzept_tags = {
     sub : {
       "country" : {
         text : "country",
-        icon : ["fa-solid fa-globe-americas"],
+        icon : ["fa-solid fa-map-marker-alt"],
       },
       "mountain" : {
         text : "mountain",
@@ -179,6 +179,10 @@ var conzept_tags = {
         text : "written work",
         icon : ["fa-solid fa-book"],
       },
+      "science-article" : {
+        text : "science article",
+        icon : ["fa-regular fa-newspaper"],
+      },
       "periodical" : {
         text : "periodical publication",
         icon : ["fa-regular fa-newspaper"],
@@ -198,6 +202,14 @@ var conzept_tags = {
       "music" : {
         text : "music release",
         icon : ["fa-solid fa-music"],
+      },
+      "data" : {
+        text : "data",
+        icon : ["fa-solid fa-database"],
+      },
+      "image" : {
+        text : "image",
+        icon : ["fa-regular fa-image"],
       },
       "film" : {
         text : "film",
@@ -223,6 +235,10 @@ var conzept_tags = {
       "software" : {
         text : "software",
         icon : ["fa-regular fa-window-restore"],
+      },
+      "3d-model" : {
+        text : "3D model",
+        icon : ["fa-brands fa-unity"],
       },
       "cryptocurrency" : {
         text : "cryptocurrency",
@@ -255,6 +271,10 @@ var conzept_tags = {
       "actor" : {
         text : "actor",
         icon : ["fa-solid fa-user-alt", "oma oma-black-performing-arts"],
+      },
+      "architect" : {
+        text : "architect",
+        icon : ["fa-solid fa-user-alt", "fa-regular fa-building"],
       },
     },
   }, 
@@ -315,7 +335,7 @@ var conzept_tags = {
 
   "organism" : {
     text : "organism",
-    icon : ["fa-solid fa-paw"],
+    icon : ["fa-solid fa-certificate"],
     sub : {
       "virus" : {
         text : "virus",
@@ -398,6 +418,10 @@ var conzept_tags = {
     text : "natural concept",
     icon : ["fa-solid fa-temperature-high"],
     sub : {
+     "biological-pathway" : {
+        text : "biological pathway",
+        icon : ["fa-solid fa-arrows-spin"],
+      },
      "chemistry" : {
         text : "chemistry",
         icon : ["fa-brands fa-react"],

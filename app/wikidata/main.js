@@ -4,6 +4,9 @@ if ( detectMobile() === true ){
   setupSwipe( 'wikidata-app' );
 }
 
+const explore = {};
+
+explore.db = ImmortalDB.ImmortalDB;
 
 let current_pane = getCurrentPane();
 
@@ -2103,7 +2106,6 @@ var reasonator = {
         // CONZEPT PATCH
         if ( project === 'current' || project === 'mainwp' || project === 'wiki' ){ // wikipedia -> conzept
 
-
           const wikipedia_url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + encodeURIComponent( site.page ) + '&l=' + site.code + '&qid=' + qid;
           //const conzept_url = '/explore/' + encodeURIComponent( site.page ) + '?l=' + site.code + '&t=wikipedia-qid&i=' + qid ;
 
@@ -3948,6 +3950,7 @@ let parentref		= '';
 let qid 				= getParameterByName('q') || '';
 let language 		= getParameterByName('lang') || 'en';
 let lang3       = getParameterByName('lang3') || '';
+let tags        = getParameterByName('tags') || '';
 //let title				= '';
 //let isMobile		= detectMobile();
 
@@ -4021,6 +4024,73 @@ function gotoUrl( url, newtab ){
 
   }
 
+}
+
+function bookmarkToggle(){
+
+	//console.log('bookmark: ', qid, language );
+
+  $('.icon .bookmark-icon').addClass('bookmarked');;
+  window.parent.postMessage({ event_id: 'add-bookmark', data: {
+
+    datasource: 'wikidata',
+    qid:        qid,
+    title:      $('#main_title_label').text(),
+    language:   language,
+    url:        document.URL,
+    tags:       tags,
+
+  } }, '*' );
+
+	//explore.bookmarks = [];
+
+  /*
+  (async () => {
+
+    explore.bookmarks = await explore.db.get('bookmarks');
+
+    console.log( explore.bookmarks );
+
+    explore.bookmarks = ( explore.bookmarks === null || explore.bookmarks === undefined ) ? [] : JSON.parse( explore.bookmarks );
+
+    console.log( 'add bookmark' );
+		//$('#main_title_label').text();
+
+    $('.icon .bookmark-icon').addClass('bookmarked');;
+    window.parent.postMessage({ event_id: 'add-bookmark', data: { } }, '*' );
+
+		console.log('bookmarkToggle(): add-bookmark');
+
+	})
+  */
+
+	/*
+  if (  $('.icon .bookmark-icon').hasClass('bookmarked') ){ // remove bookmark
+
+    console.log('TODO: implement remove bookmark: ', title );
+
+    var node = findObjectByKey( explore.bookmarks, 'name', title );
+
+    if ( valid( node[0]?.id ) ){
+
+      console.log( node[0].id );
+
+      window.parent.postMessage({ event_id: 'remove-bookmark', data: { id: node[0].id } }, '*' );
+
+    }
+
+    $('.icon .bookmark-icon').removeClass('bookmarked');
+
+  }
+  else { // add bookmark
+
+    console.log( 'add bookmark: ', title );
+
+    $('.icon .bookmark-icon').addClass('bookmarked');;
+    window.parent.postMessage({ event_id: 'add-bookmark', data: { } }, '*' );
+
+  }
+	*/
 
 }
 

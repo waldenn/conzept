@@ -100,7 +100,14 @@ function generateHeader(qNum, returnTo) {
         const resultsHeader = document.getElementById('imagesDepicting');
 
         // CONZEPT PATCH
-        resultsHeader.innerHTML = `<span id="topic-title">${label}</span> &nbsp; <span id="topic-link">(<a href="https://www.wikidata.org/wiki/${qNum}" target="_blank">${qNum}</a>)</span>`;
+        resultsHeader.innerHTML =
+          `<span id="topic-title">${label}</span> &nbsp;
+            <span id="topic-link">(
+              <a href="javascript:void(0)" title="explore topic" onclick=goExplore(&quot;${ encodeURIComponent( label ) }&quot;,false) onauxclick=goExplore(&quot;${ encodeURIComponent( label )}&quot;,true)><i class="fa-solid fa-retweet"></i></a>
+              <a href="https://www.wikidata.org/wiki/${qNum}" target="_blank">${qNum}</a>
+            )
+          </span>`;
+
         //resultsHeader.innerHTML = '<a href="https://www.wikidata.org/wiki/' + qNum + '" target="_blank">' + qNum + '</a> (' + label + ')';
 
       })

@@ -927,7 +927,6 @@ conzept_fields = {
   text: 'taxon rank',
   section: ['main'],
   rank: [7825],
-  auto: true,
 },
 
 'ICTV_virus_genome_composition' : {
@@ -1171,6 +1170,20 @@ conzept_fields = {
   rank: 1,
 },
 
+'is_architect' : {
+  create_condition: '!valid( item.has_only_subclass ) && listed( item.occupations, indicators.architect.value ) && checkTag(item, 0, "person")',
+  create_trigger: 'item.is_architect = true; setTags( item, [ "person", "architect" ] )',
+  render_condition: false,
+  title: 'is_architect',
+  prop: '',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 // TODO: how to handle mulitple occupations -> tags?
 'is_musician' : {
   default_value: false,
@@ -1377,21 +1390,6 @@ conzept_fields = {
   create_trigger: 'item.is_tv_series = true; setTags( item, [ "work", "tv-series" ] )',
   render_condition: false,
   title: 'is tv series',
-  prop: '',
-  type: '',
-  mv: false,
-  icon: '',
-  text: '',
-  section: '',
-  rank: 1,
-},
-
-'is_architect' : {
-  //default_value: false,
-  create_condition: 'listed( item.occupations, indicators.architect.value ) && checkTag(item, 1, "")', // TODO: research if the checkTag() is appropriate here, eg. against "superhero-architects"
-  create_trigger: 'item.is_artist = true; setTags( item, [ "", "architect" ] )',
-  render_condition: false,
-  title: 'is_architect',
   prop: '',
   type: '',
   mv: false,
@@ -1618,7 +1616,7 @@ conzept_fields = {
 
 'ulan_artist' : {
   title: 'Getty Union List of Artist Names ID',
-  create_trigger: 'item.is_artist = true',
+  create_trigger: 'checkTag(item, 0, "person")? item.is_artist = true : ""',
   prop: '245',
   type: 'link',
   url: 'https://www.getty.edu/vow/ULANFullDisplay?find=&role=&nation=&subjectid=${item.ulan_artist}',
@@ -1630,9 +1628,9 @@ conzept_fields = {
 },
 
 'rkd_artist' : {
-  title: 'NL Rijksbureau Kunsthistorische Documentatie artist ID',
+  title: '🇳🇱 Rijksbureau Kunsthistorische Documentatie artist ID',
   //create_condition: 'checkTag( item, 0, "person")',
-  create_trigger: 'item.is_artist = true',
+  create_trigger: 'checkTag(item, 0, "person")? item.is_artist = true : ""',
   prop: '650',
   type: 'url',
   url: 'https://rkd.nl/en/explore/artists/${item.rkd_artist}',
@@ -1644,7 +1642,7 @@ conzept_fields = {
 },
 
 'rkd_image' : {
-  title: 'NL Rijksbureau Kunsthistorische Documentatie image',
+  title: '🇳🇱 Rijksbureau Kunsthistorische Documentatie image',
   prop: '350',
   type: 'url',
   url: 'https://rkd.nl/en/explore/images/${item.rkd_image}',
@@ -1678,6 +1676,34 @@ conzept_fields = {
   section: ['art','main'],
   rank: [20,10100],
 },
+
+'nuts_code' : {
+  title: 'NUTS code',
+  prop: '605',
+  type: 'url',
+  mv: false,
+  url_format: 'http://dd.eionet.europa.eu/vocabularyconcept/common/nuts/$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'NUTS code',
+  section: ['library-identity'],
+  rank: [20605],
+},
+
+/*
+'nuts_code_stats' : {
+  title: 'EU EuroStat Atlas NUTS unit statistics',
+  prop: '605',
+  type: 'link',
+  mv: true,
+  url: 'https://ec.europa.eu/statistical-atlas/viewer/?nutsId=${Xvalue}',
+  //url: 'http://dd.eionet.europa.eu/vocabularyconcept/common/nuts/$${Xvalue}',
+  icon: 'fa-solid fa-globe',
+  text: 'NUTS stats',
+  section: ['location-demography','main'],
+  rank: [60,6330],
+},
+*/
 
 'industry' : {
   title: 'industry',
@@ -1917,7 +1943,7 @@ conzept_fields = {
 
 'gbif_id' : {
   //render_condition: false,
-  title: 'gbif_id',
+  title: 'taxon occurrence map - Global Biodiversity Information Facility',
   prop: '846',
   type: '',
   mv: false,
@@ -2245,6 +2271,57 @@ conzept_fields = {
   headline_rank: 270,
 },
 
+'audio_custom_link' : {
+  create_condition: 'valid( item.audio_link )',
+  title: 'audio link',
+  type: 'link',
+  url: '${ item.audio_link }',
+  mv: false,
+  icon: 'fa-solid fa-volume-up',
+  text: 'site',
+  section: 'main',
+  rank: 40,
+  headline_create: 'valid( item.audio_link )',
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio_link )}',
+  headline_title: 'audio tool',
+  headline_icon: 'fa-solid fa-volume-up',
+  headline_rank: 270.1,
+},
+
+'speech_audio_custom_link' : {
+  create_condition: 'valid( item.speech_audio_link )',
+  title: 'AI-based speech-audio transcription',
+  type: 'link',
+  url: '/app/speech/dist/?url=${ item.speech_audio_link }',
+  mv: false,
+  icon: 'pi pi-directory',
+  text: 'site',
+  section: 'main',
+  rank: 39,
+  headline_create: 'valid( item.speech_audio_link )',
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio_link )}',
+  headline_title: 'speech transcription',
+  headline_icon: 'pi pi-directory',
+  headline_rank: 269.1,
+},
+
+'audio_widget_custom' : {
+  create_condition: '${ valid( item.audio_link ) }', // FIXME the audio_widget is sometimes showing up for non-audio topics, why?
+  //create_trigger: 'console.log( item.audio_link );',
+  title: 'audio play',
+  prop: '',
+  type: 'symbol-html',
+  mv: false,
+  string_format: '<div id="audio-${item.gid}" class="audio-widget" title="audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${ item.audio_link }"> </audio></div>',
+  //string_format: '<div id="audio-${item.gid}" class="audio-widget" title="${item.datasource} audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio_link )}"> </audio></div>',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 'audio_widget' : {
   create_condition: '${ valid( item.audio ) }', // FIXME the audio_widget is sometimes showing up for non-audio topics, why?
   title: 'audio play',
@@ -2270,6 +2347,26 @@ conzept_fields = {
   section: ['media-audio','main'],
   rank: [10,30],
 },
+
+/*
+'3D_model_custom' : {
+  create_condition: 'valid( item.3D_model_link )',
+  title: '3D model view',
+  type: 'link',
+  url: '${ item.3D_model_link }',
+  mv: false,
+  icon: 'fa-solid fa-cube',
+  text: 'site',
+  section: 'main',
+  rank: 40,
+  headline_create: 'valid( item.3D_model_link )',
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/3D/#model=${ encodeURIComponent( "/app/cors/raw/?url=" + item.3D_model_link )}',
+  headline_title: '3D model view',
+  headline_icon: 'fa-solid fa-cube',
+  headline_rank: 285,
+},
+*/
 
 // TODO: implement claim-property access first to access this value
 /*
@@ -2847,6 +2944,19 @@ conzept_fields = {
   rank: 31,
 },
 
+'wikiindex_search' : {
+  create_condition: true,
+  title: 'WikiIndex search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://wikiindex.org/index.php?search=${title_quoted}',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Wiki Index',
+  section: 'web',
+  rank: 39,
+},
+
 'slideshare_search' : {
   create_condition: true,
   title: 'SlideShare search',
@@ -2931,7 +3041,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.bing.com/search?q=${title_quoted}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=${explore.language}-${explore.language}',
+  url: 'https://www.bing.com/search?q=${title}&search=Submit+Query&form=QBLH&setlang=${explore.language}',
   icon: 'fa-brands fa-searchengin',
   text: 'web',
   section: ['web','main'],
@@ -2944,7 +3054,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.bing.com/images/search?&q=${title_quoted}&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=${explore.language}-${explore.language}',
+  url: 'https://www.bing.com/images/search?&q=${title}&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=${explore.language}-${explore.language}',
   //icon: 'fa-brands fa-searchengin',
   icon: 'fa-regular fa-images',
   text: 'Bing',
@@ -2983,6 +3093,7 @@ conzept_fields = {
 
 },
 
+/*
 'europeana_image_search' : {
   create_condition: true,
   title: 'Europeana image search',
@@ -2995,6 +3106,7 @@ conzept_fields = {
   section: ['media-image', 'art'],
   rank: [95,101],
 },
+*/
 
 'xtools' : {
   create_condition: 'valid( item.datasource === "wikipedia" )',
@@ -3033,7 +3145,7 @@ conzept_fields = {
   url: 'https://www.api-dashboard.com/${item.iso2}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'API dashboard',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 110,
 },
 */
@@ -3891,6 +4003,34 @@ conzept_fields = {
   headline_rank: 95,
 },
 
+'website_custom_url' : {
+  create_condition: 'valid( item.web_url )',
+  title: 'website',
+  type: 'url',
+  url: '${ item.web_url }',
+  mv: false,
+  icon: 'fa-solid fa-home',
+  text: 'site',
+  section: 'main',
+  rank: 40,
+  headline_create: 'valid( item.web_url )',
+  headline_rank: 95,
+},
+
+'website_custom_link' : {
+  create_condition: 'valid( item.web_link )',
+  title: 'website',
+  type: 'link',
+  url: '${ item.web_link }',
+  mv: false,
+  icon: 'fa-solid fa-home',
+  text: 'site',
+  section: 'main',
+  rank: 40,
+  headline_create: 'valid( item.web_link )',
+  headline_rank: 94,
+},
+
 'online_catalog' : {
   title: 'online catalog',
   prop: '8768',
@@ -4468,6 +4608,19 @@ conzept_fields = {
   rank: 20,
 },
 
+'snomed_ct' : {
+  title: 'SNOMED CT - catalogue codes for diseases, symptoms and procedures',
+  prop: '5806',
+  type: 'link',
+  mv: false,
+  //url_format: 'http://snomed.info/id/$1',
+  url: 'https://browser.ihtsdotools.org/?perspective=full&conceptId1=${item.snomed_ct}',
+  icon: 'fa-solid fa-laptop-medical',
+  text: 'SNOMED',
+  section: ['library-identity', 'science-medical', 'main'],
+  rank: [25806, 22, 7000],
+},
+
 'patientplus' : {
   create_trigger: 'setTags( item, [ "natural-concept", "human-disease" ] )',
   title: 'Patientplus disease info',
@@ -4478,7 +4631,7 @@ conzept_fields = {
   icon: 'fa-solid fa-laptop-medical',
   text: 'Patient UK',
   section: 'science-medical',
-  rank: 21,
+  rank: 45,
 },
 
 'drugbank' : {
@@ -4522,7 +4675,7 @@ conzept_fields = {
 
 // see: https://tools.wmflabs.org/Scholia/
 'scholia_author' : {
-  create_condition: 'checkTag( item, 0, "person")',
+  create_condition: 'valid( item.qid ) && checkTag( item, 0, "person")',
   title: 'Scholia author research dashboard',
   prop: '',
   type: 'link',
@@ -4532,10 +4685,14 @@ conzept_fields = {
   text: 'Scholia author',
   section: 'science-search-tools',
   rank: 70,
+  headline_create: 'valid( item.scholia_author ) && checkTag( item, 1, ["scientist"] )',
+  headline_type: 'link',
+  headline_icon: 'fa-solid fa-graduation-cap',
+  headline_rank: 352,
 },
 
 'scholia_work' : {
-  create_condition: 'checkTag(item, 0, "work")',
+  create_condition: 'valid( item.qid ) && checkTag(item, 0, "work")',
   title: 'Scholia work research dashboard',
   prop: '',
   type: 'link',
@@ -4569,7 +4726,7 @@ conzept_fields = {
 },
 
 'scholia_organization' : {
-  create_condition: 'checkTag(item, 0, "organization")',
+  create_condition: 'valid( item.qid ) && checkTag(item, 0, "organization")',
   title: 'Scholia organization research dashboard',
   prop: '',
   type: 'link',
@@ -4587,7 +4744,7 @@ conzept_fields = {
 },
 
 'scholia_location' : {
-  create_condition: 'checkTag(item, 0, "location")',
+  create_condition: 'valid( item.qid ) && checkTag(item, 0, "location")',
   title: 'Scholia location research dashboard',
   prop: '',
   type: 'link',
@@ -4600,7 +4757,7 @@ conzept_fields = {
 },
 
 'scholia_country' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'valid( item.qid ) && checkTag( item, 0, "location")',
   render_condition: 'valid( item.iso2 )',
   title: 'Scholia country research dashboard',
   prop: '',
@@ -4615,15 +4772,28 @@ conzept_fields = {
 
 'nl_delpher_archive' : {
   create_condition: 'checkLC( "nl" )',
-  title: 'NL - Delpher archive search',
+  title: '🇳🇱 - Delpher archive search',
   prop: '',
   type: 'url',
   mv: false,
   url: 'https://www.delpher.nl/nl/platform/results?query=${title_quoted}',
   icon: 'fa-brands fa-mizuni',
-  text: 'NL delpher',
+  text: '🇳🇱 Delpher',
   section: ['library-history'],
-  rank: [100],
+  rank: [-100],
+},
+
+'nl_gemeente_amsterdam_stadsarchief' : {
+  create_condition: 'checkLC( "nl" )',
+  title: '🇳🇱 - Gemeente Amsterdam stadsarchief',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://archief.amsterdam/zoeken-door-alles?trefwoord=${title_quoted}',
+  icon: 'fa-brands fa-mizuni',
+  text: '🇳🇱 Amsterdam',
+  section: ['library-history'],
+  rank: [-90],
 },
 
 'svenska_dagstidningar' : {
@@ -4782,7 +4952,7 @@ conzept_fields = {
   url: 'https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
   icon: 'fa-solid fa-project-diagram',
   text: 'sparql explorer 1',
-  section: ['meta', 'science-datasets-topical', 'main'],
+  section: ['meta', 'media-datasets-topical', 'main'],
   rank: [ 49, 69, 63 ],
 },
 */
@@ -4796,7 +4966,7 @@ conzept_fields = {
   url: 'https://conze.pt/app/sparklis/osparklis.html?title=&endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
   icon: 'fa-solid fa-project-diagram',
   text: 'sparql',
-  section: ['meta', 'science-datasets-topical', 'main'],
+  section: ['meta', 'media-datasets-topical', 'main'],
   rank: [ 50, 70, 64 ],
 },
 
@@ -5593,6 +5763,23 @@ if ( valid( item.found_in_taxon ) ){
   rank: [2,7080],
 },
 
+'country_map_same_form_of_government' : {
+  create_condition: 'listed( item.instances, [ 1307214 ] )',
+  title: 'Countries with this form of government',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fcountry%20%3FcountryLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Ftypes%20%7B%0A%20%20%20%20wd%3A${ item.qid }%0A%20%20%7D%0A%20%20%3Fcountry%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20wdt%3AP122%20%3Ftypes%2C%20%3Ftype.%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Acountry%20forms%20of%20governement',
+  icon: 'fa-solid fa-globe',
+  text: 'countries.',
+  section: ['main'],
+  rank: [4999],
+  headline_create: 'valid( item.country_map_same_form_of_government )',
+  headline_type: 'link-split',
+  headline_rank: 270,
+},
+
+// FIXME?
 'map_similar_form_of_government' : {
   create_condition: 'valid( item.basic_form_of_government )',
   title: 'similar forms of government',
@@ -5609,7 +5796,7 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'map_instances_of_form_of_government' : {
-  create_condition: 'listed( item.instances, [ "Q1307214"] )',
+  create_condition: 'listed( item.instances, [ "1307214"] )',
   //create_condition: 'checkTag( item, 1, "form-of-government")',
   title: 'instances of this form of government',
   prop: '',
@@ -5663,7 +5850,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-users-between-lines',
   text: 'legislative 3',
   section: ['government-legislature','main'],
-  rank: [1001.12,7081.12],
+  rank: [1001.13,7081.13],
 },
 
 'timeline_legislative_terms' : {
@@ -5986,7 +6173,8 @@ if ( valid( item.found_in_taxon ) ){
   prop: '749',
   type: 'wikipedia-qid',
   mv: true,
-  icon: 'fa-solid fa-sitemap',
+  icon: 'pi pi-fediverse',
+  //icon: 'fa-solid fa-sitemap',
   text: 'parent org graph',
   section: ['business','main'],
   rank: [100,1980],
@@ -6140,7 +6328,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'European Union data portal: environment',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://data.europa.eu/data/datasets?categories=envi&page=1&locale=${explore.language}&query=${ title_quoted }',
   icon: 'fa-solid fa-euro-sign',
@@ -6379,6 +6567,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [800],
 },
 
+'open_buddhist_university' : {
+  create_condition: true,
+  title: 'The Open Buddist University',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://buddhistuniversity.net/search/?q=${title_quoted}',
+  icon: 'fa-solid fa-dharmachakra',
+  text: 'Buddhist University',
+  section: ['library-religion'],
+  rank: [805],
+},
+
 'suttah' : {
   create_condition: 'checkLC( "en" )',
   title: 'SuttaCentral: Tipiṭaka (early Buddhist texts) search',
@@ -6469,15 +6670,82 @@ if ( valid( item.found_in_taxon ) ){
 
 'nl_zoeken_in_transcripties' : {
   create_condition: 'checkLC( "nl" )',
-  title: 'NL - zoeken in transcripties',
+  title: '🇳🇱 - zoeken in transcripties',
   prop: '',
   type: 'link',
   mv: false,
   url: 'https://zoekintranscripties.nl/zoeken?query=${title_quoted}',
   icon: 'fa-solid fa-scroll',
-  text: 'NL transcript',
+  text: '🇳🇱 transcript',
   section: 'library-manuscripts',
-  rank: 80,
+  rank: -100,
+},
+
+'nl_verledentekst' : {
+  create_condition: 'checkLC( "nl" )',
+  title: 'VerledenTekst - historische bronnen 1600-1800s',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://verledentekst.nl/zoek/?naar=${title_quoted}',
+  icon: 'fa-solid fa-scroll',
+  text: '🇳🇱 VerledenTekst',
+  section: ['library-manuscripts', 'history'],
+  rank: [-90,-90],
+},
+
+/*
+'de_low_german_archives' : {
+  create_condition: 'checkLC( "de" )',
+  title: 'Low German archives',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://transkribus.eu/r/mining-hub/#/search?view=combined&f=1&t=${title_quoted}&p=1',
+  icon: 'fa-solid fa-scroll',
+  text: 'DE Low German',
+  section: ['library-manuscripts', 'history'],
+  rank: [-20,-20],
+},
+*/
+
+'sv_riksarkivet' : {
+  create_condition: 'checkLC( "sv" )',
+  title: '🇸🇪 Riksarkivet',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://transkribus.eu/r/archives-sweden/search?view=combined&f=1&t=${title_quoted}',
+  icon: 'fa-solid fa-scroll',
+  text: '🇸🇪 Riksarkivet',
+  section: ['library-manuscripts', 'history'],
+  rank: [-100,-100],
+},
+
+'de_historischer_roman' : {
+  create_condition: 'checkLC( "de" )',
+  title: 'DE Historischer Roman',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://transkribus.eu/r/historischer_roman/#/search?view=combined&f=1&t=${title_quoted}&p=1',
+  icon: 'fa-solid fa-scroll',
+  text: 'DE Historischer Roman',
+  section: ['library-manuscripts'],
+  rank: [-10,-10],
+},
+
+'europeana_transcribe' : {
+  create_condition: true,
+  title: 'Europeana Transcribe',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://europeana.transcribathon.eu/documents/?q=${title_}&view=stories',
+  icon: 'fa-solid fa-scroll',
+  text: 'Europeana Transcribe',
+  section: ['library-manuscripts', 'history'],
+  rank: [25,25],
 },
 
 /*
@@ -6599,6 +6867,32 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Gutenberg search',
   section: 'library-general',
   rank: 140,
+},
+
+'staatsbibliothek_berlin' : {
+  create_condition: 'checkLC("de")',
+  title: 'Staatsbibliothek Berlin',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://digital.staatsbibliothek-berlin.de/suche?queryString=${title_quoted}',
+  icon: 'fa-brands fa-mizuni',
+  text: 'Staatsb. Berlin',
+  section: 'library-general',
+  rank: 142,
+},
+
+'handschriftenportal' : {
+  create_condition: 'checkLC("de")',
+  title: 'Handschriftenportal',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://handschriftenportal.de/search?q=${title_quoted}&hl=true',
+  icon: 'fa-brands fa-mizuni',
+  text: 'Handschriften portal',
+  section: 'library-general',
+  rank: 144,
 },
 
 'standardebooks_search' : {
@@ -6945,7 +7239,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   icon: 'fa-solid fa-hockey-puck',
   text: 'KBpedia',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 130,
 },
 
@@ -7919,8 +8213,24 @@ if ( valid( item.found_in_taxon ) ){
   rank: [44],
 },
 
+'architect_work_timeline' : {
+  create_condition: 'valid( ${item.is_architect} )',
+
+  title: 'Geo-timeline of the work of this architect',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/timeline/?title=${title_}%20%3A%20architecture&l=${explore.language}&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flat%20%3Flon%20%3Fstart%20%3Fend%20%3Fpic%20%3Flink%20%3Fplace%20%3FplaceLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP276%20%3Fplace%3B%0A%20%20%20%20wdt%3AP84%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP571%20%3Fstart.%0A%20%20%3Fplace%20p%3AP625%20%3Fstatement.%0A%20%20%3Fstatement%20psv%3AP625%20%3Fnode.%0A%20%20%3Fnode%20wikibase%3AgeoLatitude%20%3Flat%3B%0A%20%20%20%20wikibase%3AgeoLongitude%20%3Flon.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fsitelinks)%0ALIMIT%20500',
+  icon: 'fa-solid fa-timeline',
+  text: 'geo-timeline works',
+  section: ['art'],
+  rank: [10],
+  headline_create: true,
+  headline_rank: 550,
+},
+
 'artist_work_timeline' : {
-  create_condition: 'valid( ${item.is_artist} )',
+  create_condition: 'valid( [ ${item.is_artist}, ! ${item.is_architect}, ! ${item.is_musician} ] )',
   title: 'Geo-timeline of the work of this artist',
   prop: '',
   type: 'link-split',
@@ -7993,6 +8303,19 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.event_parts_timeline )',
   headline_rank: 281,
   headline_type: 'link-split',
+},
+
+'map_world_population_density' : {
+  create_condition: 'valid( ${item.lat} )',
+  title: 'world population density map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://luminocity3d.org/WorldPopDen/#10/${item.lat}/${item.lon}',
+  icon: 'fa-solid fa-globe-asia',
+  text: 'population density map',
+  section: ['location-demography'],
+  rank: [4.5],
 },
 
 'born_here_timeline' : {
@@ -8653,7 +8976,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: true,
   icon: 'fa-solid fa-hockey-puck',
   text: 'data portal',
-  section: ['science-datasets-general','main'],
+  section: ['media-datasets-general','main'],
   rank: [100,9010],
 },
 
@@ -9357,6 +9680,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 100,
 },
 
+'unesco_media_search' : {
+  create_condition: true,
+  title: 'UNESCO media archive',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://digital.archives.unesco.org/en/collection/sound-recordings/?mode=gallery&view=list&q=${title_quoted}&rows=1&page=1&fq[]=search_s_linked_media:"Yes"',
+  icon: 'fa-solid fa-podcast',
+  text: 'UNESCO',
+  section: ['media-audio'],
+  rank: [80],
+},
+
 'chip_player' : {
   create_condition: true,
   title: 'Chiptune & video-game music library',
@@ -9837,15 +10173,18 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'wikipathways_id' : {
-  title: 'WikiPathways ID',
+  title: 'WikiPathways - biological pathway',
   prop: '2410',
   type: 'link',
   url: 'https://www.wikipathways.org/instance/${ item.wikipathways_id }',
   mv: false,
-  icon: 'fa-brands fa-battle-net',
-  text: 'wikiPathway',
+  icon: 'fa-solid fa-arrows-spin',
+  text: 'WikiPathways',
   section: ['science-biology','main'],
   rank: [300,8890],
+  headline_create: 'valid( item.wikipathways_id )',
+  headline_type: 'link',
+  headline_rank: 500,
 },
 
 'reactome_id' : {
@@ -9854,7 +10193,8 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   url: 'https://reactome.org/content/detail/${item.reactome_id}',
   mv: false,
-  icon: 'fa-brands fa-battle-net',
+  icon: 'fa-solid fa-arrows-spin',
+  //icon: 'fa-brands fa-battle-net',
   text: 'Reactome',
   section: ['science-biology','main'],
   rank: [310,8900],
@@ -9867,6 +10207,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.kegg.jp/entry/${item.kegg_id}',
   mv: false,
   icon: 'fa-brands fa-battle-net',
+  //icon: 'fa-solid fa-arrows-spin',
   text: 'KEGG',
   section: ['science-biology','main'],
   rank: [320,8910],
@@ -10237,7 +10578,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   icon: 'fa-solid fa-suitcase-rolling',
-  text: 'wVoyage',
+  text: 'wikiVoyage',
   section: ['location-travel','main'],
   rank: [5,305],
   headline_create: 'valid( item.wikivoyage )',
@@ -10540,7 +10881,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/tree/${explore.language}/P361/${item.qid}',
-  icon: 'fa-solid fa-sitemap',
+  icon: 'pi pi-podcasttaxonomy',
   text: 'part-of tree',
   section: ['library-history', 'main'],
   rank: [20, 7239],
@@ -10556,7 +10897,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/tree/${explore.language}/P527/${item.qid}',
-  icon: 'fa-solid fa-sitemap',
+  icon: 'pi pi-podcasttaxonomy',
   text: 'parts tree',
   section: ['main'],
   rank: [7238],
@@ -10664,7 +11005,8 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/tree/${explore.language}/P749/${item.qid}',
   //url: '${explore.base}/app/tree/${explore.language}/parent_organization/${item.qid}',
-  icon: 'fa-solid fa-sitemap',
+  icon: 'pi pi-fediverse',
+  //icon: 'fa-solid fa-sitemap',
   text: 'parent org',
   section: ['business','main'],
   rank: [10,1979],
@@ -10751,7 +11093,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'taxon_group_query' : {
   value: 'https://query.wikidata.org/sparql?format=json&query=PREFIX%20gas%3A%20%3Chttp%3A%2F%2Fwww.bigdata.com%2Frdf%2Fgas%23%3E%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3Fimage%20%7B%0A%20%20SERVICE%20gas%3Aservice%20%7B%0A%20%20%20%20gas%3Aprogram%20gas%3AgasClass%20%22com.bigdata.rdf.graph.analytics.SSSP%22%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Ain%20wd%3A${item.parent_taxon}%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AtraversalDirection%20%22Reverse%22%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Aout%20%3Fitem%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Aout1%20%3Fdepth%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AmaxIterations%201%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AlinkType%20wdt%3AP171%20.%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%0A',
-  render_condition: 'checkTag( item, 0, "organism")',
+  render_condition: 'valid( item.parent_taxon )',
   title: 'taxon group',
   prop: '0',
   type: 'wikipedia-qid-sparql',
@@ -11204,7 +11546,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${item.map}',
+  url: '${item.map}', // FIXME broken for datasource-topics
   icon: 'fa-solid fa-globe-asia',
   //icon: 'fa-solid fa-map-marked-alt',
   text: 'map',
@@ -11278,11 +11620,11 @@ if ( valid( item.found_in_taxon ) ){
   rank: [4.5],
 },
 
-'iiif' : {
+'iiif_wikidata' : {
   title: 'IIIF media viewer',
   prop: '6108',
   type: 'link',
-  url: '${explore.base}/app/iiif/#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif ) }',
+  url: '${explore.base}/app/iiif/#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif_wikidata ) }',
   mv: false,
   //mv: true,
   icon: 'fa-regular fa-eye',
@@ -11292,6 +11634,38 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.iiif )',
   headline_type: 'link',
   headline_rank: 460,
+},
+
+'iiif_custom' : {
+  create_condition: 'valid( item.iiif )',
+  title: 'IIIF media viewer',
+  type: 'link',
+  url: '${ item.iiif }',
+  mv: false,
+  //mv: true,
+  icon: 'fa-regular fa-eye',
+  text: 'IIIF view',
+  section: ['media-image','main'],
+  rank: [40,1030],
+  headline_create: 'valid( item.iiif )',
+  headline_type: 'link',
+  headline_rank: 460,
+},
+
+'model_view_url_custom' : {
+  create_condition: 'valid( item.model_view_url )',
+  title: '3D object viewer',
+  type: 'link',
+  url: '${ item.model_view_url }',
+  mv: false,
+  //mv: true,
+  icon: 'fa-brands fa-unity',
+  text: '3D view',
+  section: ['media-image','main'],
+  rank: [40,1030],
+  headline_create: 'valid( item.model_view_url )',
+  headline_type: 'link',
+  headline_rank: 462,
 },
 
 'photosphere' : { 
@@ -11349,7 +11723,6 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 600,
 },
 
-
 'archive_scholar_headline' : { // only used for headline display
   create_condition: true,
   title: 'Archive Scholar',
@@ -11400,7 +11773,7 @@ if ( valid( item.found_in_taxon ) ){
   section: '',
   rank: 1,
   //TODO?: ( tags[0] === 'work' && ! valid( item.is_written_work ) && !valid( item.openlibrary_id ) && tags[1] !== 'periodical' ) // show video for works, but not for some types of works
-  headline_create: 'checkTag( item, 0, ["location","time","group","organism","meta-concept","cultural-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","film","filmmaker","actor","musician","music-instrument"] )',
+  headline_create: 'checkTag( item, 0, ["location","time","group","organism","meta-concept","cultural-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","film","tv-series","filmmaker","actor","musician","music-instrument","software"] )',
   headline_type: 'link',
   headline_title: 'video',
   headline_icon: 'fa-solid fa-video',
@@ -11471,9 +11844,9 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: 'valid( item.lat )',
   title: 'nearby map',
   prop: '',
-  type: 'link',
+  type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${explore.language}&layers=wikipedia', // ,wikidata_image,wikidata_no_image
+  url: '${explore.base}/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${explore.language}&layers=wikipedia${ item.datasource === "wikidata"? ",wikidata_image,wikidata_no_image,wikipedia" : "" }',
   icon: 'fa-solid fa-map-location-dot', // 'fa-solid fa-map-pin',
   text: 'nearby map',
   section: 'location-geography',
@@ -11850,19 +12223,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
 },
 
-'wikidata' : {
-  create_condition: 'valid( item.qid )',
-  title: 'Wikidata',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/wikidata/?q=${item.qid}&lang=${explore.language}&lang3=${explore.lang3}',
-  icon: 'fa-solid fa-hockey-puck',
-  text: 'wikiData',
-  section: 'main',
-  rank: 9,
-},
-
 'submarine_cable' : {
   create_condition: 'listed( item.instances, [ 506572, 361047, 2395922, 5008719 ] )',
   create_trigger: 'setTags( item, [ "", "submarine-communications-cable" ] )',
@@ -12177,6 +12537,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Hacker News trends',
   section: 'news-tech',
   rank: 10.1,
+},
+
+'phind' : {
+  create_condition: true,
+  title: 'Phind tech search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.phind.com/search?q=${title_quoted}&c=&source=searchbox&init=true',
+  icon: 'fa-solid fa-p',
+  text: 'Phind',
+  section: 'news-tech',
+  rank: 50,
 },
 
 /*
@@ -13036,13 +13409,13 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'SearchCulture Greece - Art',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://www.searchculture.gr/aggregator/portal/search?sortResults=SCORE&facets%5bRIGHTS%5d.field=RIGHTS&facets%5bproxy_dc_subject%5d.field=proxy_dc_subject&_facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b0%5d.checked=on&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b0%5d.checked=true&facets%5bproxy_dc_type%5d.field=proxy_dc_type&temporalSearchMode=EKT_HISTORICAL_PERIOD&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b0%5d.yearTo=&keywords%5b0%5d.value=${title_quoted}&facets%5bLANGUAGE%5d.field=LANGUAGE&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b2%5d.year=&facets%5bTYPE%5d.field=TYPE&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b0%5d.value=http%3a%2f%2fsemantics.gr%2fauthorities%2fekt-item-types%2fdisdiastata-grafika&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b2%5d.checked=true&facets%5bproviderShortName%5d.field=providerShortName&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b2%5d.value=http%3a%2f%2fsemantics.gr%2fauthorities%2fekt-item-types%2ftrisdiastata-antikeimena--erga-texnhs&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.field=ekt_proxy_dc_type_hierarchy_uri&_strictPeriods=on&sortByCount=false&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b0%5d.year=&facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b2%5d.yearTo=&facets%5bekt_proxy_edm_year%5d.field=ekt_proxy_edm_year&facets%5bekt_proxy_dc_subject_hierarchy_uri%5d.field=ekt_proxy_dc_subject_hierarchy_uri&page.page=1&facets%5bekt_proxy_dcterms_temporal_overlaps_uri%5d.field=ekt_proxy_dcterms_temporal_overlaps_uri&_facets%5bekt_proxy_dc_type_hierarchy_uri%5d.values%5b2%5d.checked=on&language=en',
   icon: 'fa-solid fa-university',
   text: 'Culture Greece',
   section: 'art',
-  rank: 190,
+  rank: 217,
 },
 
 'victoria_and_albert_museum' : {
@@ -13155,15 +13528,16 @@ if ( valid( item.found_in_taxon ) ){
   rank: [300,9040],
 },
 
-'yale' : {
+'yale_lux' : {
   create_condition: true,
-  title: 'Yale art',
+  title: 'Yale LUX - cultural heritage collections',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://discover.odai.yale.edu/ydc/Search/Results?sort=relevance&join=AND&lookfor0[]=${title_quoted}&type0[]=AllFields&lookfor0[]=&type0[]=AllFields&lookfor0[]=&type0[]=AllFields&bool0[]=AND&filter[]=~language%3A"French"&illustration=-1&daterange[]=publishDate&publishDatefrom=&publishDateto=',
+  url: 'https://lux.collections.yale.edu/view/results/objects/?q={%22text%22%3A%22${title_no_braces}%22%2C%22_stemmed%22%3Afalse%2C%22_lang%22%3A%22en%22}',
+  //url: 'https://discover.odai.yale.edu/ydc/Search/Results?sort=relevance&join=AND&lookfor0[]=${title_quoted}&type0[]=AllFields&lookfor0[]=&type0[]=AllFields&lookfor0[]=&type0[]=AllFields&bool0[]=AND&filter[]=~language%3A"French"&illustration=-1&daterange[]=publishDate&publishDatefrom=&publishDateto=',
   icon: 'fa-solid fa-university',
-  text: 'Yale',
+  text: 'Yale LUX',
   section: 'art',
   rank: 140,
 },
@@ -13394,6 +13768,33 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Open Sanctions search',
   section: ['library-legal', 'business'],
   rank: [301, 451],
+},
+
+/*
+'lobbyfacts_search' : {
+  create_condition: '${ !valid( item.opensanctions_id ) }',
+  title: 'LobbyFacts EU - exposing lobbying in the European institutions',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-road-barrier',
+  text: 'LobbyFacts EU',
+  section: ['library-legal', 'business'],
+  rank: [301, 451],
+},
+*/
+
+'fibo_ontology' : {
+  create_condition: true,
+  title: 'FIBO - Financial Industry Business Ontology',
+  type: 'link',
+  mv: false,
+  url: 'https://spec.edmcouncil.org/fibo/ontology?search=${title_}&page=1',
+  icon: 'fa-solid fa-diagram-project',
+  text: 'FIBO',
+  section: ['library-legal', 'business'],
+  rank: [305, 455],
 },
 
 'manuzoid' : {
@@ -13687,7 +14088,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'erfgeo_search' : {
   create_condition: 'checkLC( "nl" )',
-  title: 'NL ErfGeo search',
+  title: '🇳🇱 ErfGeo search',
   prop: '',
   type: 'link',
   mv: false,
@@ -13791,11 +14192,12 @@ if ( valid( item.found_in_taxon ) ){
   rank: 300,
 },
 
+/*
 'nasa_worldview_events' : {
   create_condition: true,
   title: 'NASA WorldView events',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://worldview.earthdata.nasa.gov/?e=true',
   icon: 'fa-solid fa-globe-asia',
@@ -13803,6 +14205,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'location-ecology',
   rank: 460,
 },
+*/
 
 'iqair' : {
   create_condition: 'valid( item.iso2 )',
@@ -14118,20 +14521,59 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
-'earth_weather' : {
+'openweathermap_geolocation' : {
   create_condition: 'valid( item.lat )',
-  title: 'Earth weather',
+  title: 'Open Weather Map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=${item.lat}&lon=${item.lon}&zoom=10',
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'open weather map',
+  section: 'location-weather',
+  rank: 20,
+},
+
+'openweathermap_city' : {
+  title: 'OpenWeatherMap city',
+  prop: '7197',
+  type: 'link',
+  mv: false,
+  url_format: 'https://openweathermap.org/city/$1',
+  url: '',
+  icon: 'fa-solid fa-cloud-sun',
+  text: 'OpenWeatherMap city',
+  section: ['location-weather'],
+  rank: [21],
+},
+
+'earth_nullschool_wind' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Earth Nullschool: wind',
   prop: '',
   type: 'link',
   // FIXME: convert lat/lon to correct orthographic coordinates:               0..360 -90..90 0..15000
   //   see also: https://gist.github.com/jezhalford/2480871
-  //url: 'https://earth.nullschool.net/#current/wind/surface/level/orthographic=-339.20,12.20,463/loc=${item.lon},${item.lat}',
-  url: 'https://earth.nullschool.net',
+  //   url: 'https://earth.nullschool.net/#current/wind/surface/level/orthographic=-339.20,12.20,463/loc=${item.lon},${item.lat}',
+  url: 'https://earth.nullschool.net/#current/wind/surface/level/',
   mv: false,
   icon: 'fa-solid fa-cloud-sun',
-  text: 'Earth weather',
+  text: 'wind map',
   section: 'location-weather',
   rank: 300,
+},
+
+'earth_nullschool_particulates' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Earth Nullschool: particulates',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://earth.nullschool.net/#current/particulates/surface/level/overlay=pm2.5/loc=${item.lon},${item.lat}',
+  icon: 'fa-solid fa-smog',
+  text: 'particulates',
+  section: 'location-ecology',
+  rank: 80,
 },
 
 'timeanddate_weather' : {
@@ -14145,19 +14587,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'TimeAndDate',
   section: 'location-weather',
   rank: 110,
-},
-
-'openweathermap_city' : {
-  title: 'OpenWeatherMap city',
-  prop: '7197',
-  type: 'url',
-  mv: false,
-  url_format: 'https://openweathermap.org/city/$1',
-  url: '',
-  icon: 'fa-solid fa-cloud-sun',
-  text: 'OpenWeatherMap city',
-  section: ['location-weather'],
-  rank: [120],
 },
 
 'bookingcom_hotel' : {
@@ -14258,13 +14687,13 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'US Center for Disease',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://search.cdc.gov/search/index.html?query=${title_quoted}&sitelimit=&utf8=%E2%9C%93#content',
   icon: 'fa-solid fa-laptop-medical',
   text: 'CDC',
   section: 'science-medical',
-  rank: 40,
+  rank: 55,
 },
 
 'human_protein_atlas' : {
@@ -14303,7 +14732,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-laptop-medical',
   text: 'Merck',
   section: 'science-medical',
-  rank: 50,
+  rank: 25,
 },
 
 'mayo_clinic' : {
@@ -14438,7 +14867,6 @@ if ( valid( item.found_in_taxon ) ){
   section: 'media-video',
   rank: 67,
 },
-*/
 
 'europeana_video_search' : {
   create_condition: true,
@@ -14452,6 +14880,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['media-video'],
   rank: [67],
 },
+*/
 
 'vimeo_search' : {
   create_condition: true,
@@ -14615,7 +15044,8 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.cultureunplugged.com/documentary/watch-online/filmedia/search.php#q=${title_quoted}&label=movies',
+  url: 'https://www.cultureunplugged.com/filmedia/films.php#view=thumb&tags=${title_no_braces}',
+  //url: 'https://www.cultureunplugged.com/documentary/watch-online/filmedia/search.php#q=${title_quoted}&label=movies',
   icon: 'fa-solid fa-film',
   text: 'Culture Unplugged',
   section: 'media-video',
@@ -15624,30 +16054,94 @@ if ( valid( item.found_in_taxon ) ){
   rank: [10, 8500],
 },
 
-'export_trade_country' : {
+'resourcetrade_export_trade_country' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Resource Trade Earth: export trade statistics by Chatham House',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://resourcetrade.earth/?year=2020&exporter=${ countries[ item.qid ].chatham_house_id }&units=value&autozoom=1',
+  icon: 'fa-solid fa-right-from-bracket',
+  text: 'RTE export',
+  section: 'business',
+  rank: 386,
+  headline_create: 'valid( item.resourcetrade_export_trade_country )',
+  headline_type: 'link',
+  headline_rank: 223,
+},
+
+'resourcetrade_import_trade_country' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Resource Trade Earth: import trade statistics by Chatham House',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://resourcetrade.earth/?year=2020&importer=${ countries[ item.qid ].chatham_house_id }&units=value&autozoom=1',
+  icon: 'fa-solid fa-right-to-bracket',
+  text: 'RTE import',
+  section: 'business',
+  rank: 385,
+  headline_create: 'valid( item.resourcetrade_import_trade_country )',
+  headline_type: 'link',
+  headline_rank: 222,
+},
+
+'resourcetrade_export_trade_economic_region' : {
+  create_condition: 'valid( item.qid ) && valid( economic_regions[ item.qid ] )',
+  title: 'Resource Trade Earth: export trade statistics by Chatham House',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://resourcetrade.earth/?year=2020&exporter=${ economic_regions[ item.qid ].chatham_house_id }&units=value&autozoom=1',
+  icon: 'fa-solid fa-right-from-bracket',
+  text: 'RTE export',
+  section: 'business',
+  rank: 386,
+  headline_create: 'valid( item.resourcetrade_export_trade_economic_region )',
+  headline_type: 'link',
+  headline_rank: 223,
+},
+
+'resourcetrade_import_trade_economic_region' : {
+  create_condition: 'valid( item.qid ) && valid( economic_regions[ item.qid ] )',
+  title: 'Resource Trade Earth: import trade statistics by Chatham House',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://resourcetrade.earth/?year=2020&importer=${ economic_regions[ item.qid ].chatham_house_id }&units=value&autozoom=1',
+  icon: 'fa-solid fa-right-to-bracket',
+  text: 'RTE import',
+  section: 'business',
+  rank: 385,
+  headline_create: 'valid( item.resourcetrade_import_trade_economic_region )',
+  headline_type: 'link',
+  headline_rank: 222,
+},
+
+'trademap_export_trade_country' : {
   create_condition: 'valid( item.iso_3166_1_numeric_code )',
-  title: 'export trade statistics',
+  title: 'TradeMap: export trade statistics',
   prop: '',
   type: 'url',
   mv: false,
   url: 'https://www.trademap.org/Product_SelProductCountry.aspx?nvpm=1|${item.iso_3166_1_numeric_code}||||TOTAL|||2|1|1|2|1|1|1|1||1',
   icon: 'fa-solid fa-funnel-dollar',
-  text: 'export trade',
+  text: 'TradeMap export',
   section: 'business',
-  rank: 390,
+  rank: 391,
 },
 
-'import_trade_country' : {
+'trademap_import_trade_country' : {
   create_condition: 'valid( item.iso_3166_1_numeric_code )',
-  title: 'import trade statistics',
+  title: 'TradeMap: import trade statistics',
   prop: '',
   type: 'url',
   mv: false,
   url: 'https://www.trademap.org/Product_SelProductCountry.aspx?nvpm=1|${item.iso_3166_1_numeric_code}||||TOTAL|||2|1|1|1|1|1|1|1||1',
   icon: 'fa-solid fa-funnel-dollar',
-  text: 'import trade',
+  text: 'TradeMap import',
   section: 'business',
-  rank: 391,
+  rank: 390,
 },
 
 'offshore_leaks_country' : {
@@ -15876,6 +16370,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 150,
 },
 
+'luxembourg_newspaper' : {
+  create_condition: true,
+  title: 'National Library of Luxembourg: newspaper and periodical archive',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://eluxemburgensia.lu/${ selectLanguageFrom(["en","de"]) }/search?query=${title_quoted}&rows=20&start=0&contains=true&exact=false',
+  icon: 'fa-regular fa-newspaper',
+  text: 'Luxembourg newsp.',
+  section: 'library-history',
+  rank: 152,
+},
+
 'estonia_newspaper' : {
   create_condition: true,
   title: 'National Library of Estonia: newspaper and periodical archive',
@@ -16017,7 +16524,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://dbpedia.org/fct/facet.vsp?qxml=%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20%3F%3E%3Cquery%20inference%3D%22%22%20invfp%3D%22IFP_OFF%22%20same-as%3D%22SAME_AS_OFF%22%20view3%3D%22%22%20s-term%3D%22%22%20c-term%3D%22%22%20agg%3D%22%22%20limit%3D%2220%22%3E%3Ctext%3E${title_}%3C%2Ftext%3E%3Cview%20type%3D%22text-d%22%20limit%3D%2220%22%20offset%3D%22%22%20%2F%3E%3C%2Fquery%3E',
   icon: 'fa-solid fa-hockey-puck',
   text: 'DBpedia search',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 120,
 },
 
@@ -16030,7 +16537,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://datahub.io/search?q=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'DataHub',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 140,
 },
 
@@ -16043,7 +16550,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.europa.eu/data/datasets?locale=${explore.language}&query=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'EU data',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 160,
 },
 
@@ -16056,20 +16563,33 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.europa.eu/data/datasets?categories=gove&page=1&locale=${explore.language}&query=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'EU gov data',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 161,
+},
+
+'eu_eurostat_app' : {
+  create_condition: true,
+  title: 'EU Eurostat statistics - dataset app',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: 'https://conze.pt/app/eurostat/?s=${title_}',
+  icon: 'fa-solid fa-hockey-puck',
+  text: '🇪🇺 Eurostat app',
+  section: 'media-datasets-general',
+  rank: 162,
 },
 
 'eu_eurostat' : {
   create_condition: true,
-  title: 'EU Eurostat statistics',
+  title: 'EU Eurostat statistics - site search',
   prop: '',
   type: 'url',
   mv: false,
   url: 'https://ec.europa.eu/eurostat/web/main/search/-/search/?text=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
-  text: 'EU eurostat',
-  section: 'science-datasets-general',
+  text: '🇪🇺 Eurostat',
+  section: 'media-datasets-general',
   rank: 163,
 },
 
@@ -16082,7 +16602,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://dataverse.harvard.edu/dataverse/harvard?q=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'Harvard dataverse',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 500,
 },
 
@@ -16095,7 +16615,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://usafacts.org/search/?query=${title_quoted}',
   icon: 'fa-solid fa-flag-usa',
   text: 'USA facts',
-  section: ['science-datasets-general','government-general'],
+  section: ['media-datasets-general','government-general'],
   rank: [200, 5001],
 },
 
@@ -16108,7 +16628,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://catalog.data.gov/dataset?q=${title_quoted}',
   icon: 'fa-solid fa-flag-usa',
   text: 'US datasets',
-  section: ['science-datasets-general','government-general'],
+  section: ['media-datasets-general','government-general'],
   rank: [201, 5010],
 },
 
@@ -16121,7 +16641,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.census.gov/all?q=${title_quoted}',
   icon: 'fa-solid fa-flag-usa',
   text: 'US census',
-  section: ['science-datasets-general','government-general'],
+  section: ['media-datasets-general','government-general'],
   rank: [202, 5011],
 },
 
@@ -16222,13 +16742,13 @@ if ( valid( item.found_in_taxon ) ){
 
 'nl_searchdata' : {
   create_condition: 'checkLC("nl","NL")',
-  title: 'NL SearchData',
+  title: '🇳🇱 SearchData',
   prop: '',
   type: 'link',
   mv: false,
   url: 'https://searchdata.com/${title_dashed}',
   icon: 'fa-solid fa-hockey-puck',
-  text: 'NL data search',
+  text: '🇳🇱 data search',
   section: 'government-general',
   rank: 110,
 },
@@ -16241,7 +16761,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://data.overheid.nl/zoek?search=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
-  text: 'NL gov.',
+  text: '🇳🇱 gov.',
   section: 'government-general',
   rank: 111,
 },
@@ -16393,7 +16913,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://datasetsearch.research.google.com/search?query=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'Google',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 170,
 },
 
@@ -16406,7 +16926,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://fairsharing.org/search/?q=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'FAIR sharing',
-  section: 'science-datasets-general',
+  section: 'media-datasets-general',
   rank: 180,
 },
 
@@ -16419,7 +16939,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.systemanaturae.org/datasets/?wpv_post_search=${title_quoted}',
   icon: 'fa-solid fa-hippo',
   text: 'wildlife',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 20,
 },
 
@@ -16432,7 +16952,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://portal.hubmapconsortium.org/search?q=${title_quoted}&entity_type[0]=Dataset',
   icon: 'fa-solid fa-child',
   text: 'HuBMAP',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 50,
 },
 
@@ -16445,7 +16965,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://archive.materialscloud.org/search?page=1&size=20&q=${title_quoted}',
   icon: 'fa-solid fa-atom',
   text: 'Materials Cloud',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 60,
 },
 
@@ -16458,7 +16978,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://schema.org/docs/search_results.html?q=${title_quoted}',
   icon: 'fa-solid fa-project-diagram',
   text: 'Schema.org',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 70,
 },
 
@@ -16471,7 +16991,7 @@ if ( valid( item.found_in_taxon ) ){
   url: '',
   icon: 'fa-solid fa-project-diagram',
   text: 'LOD dataset',
-  section: ['main', 'library-identity', 'science-datasets-topical'],
+  section: ['main', 'library-identity', 'media-datasets-topical'],
   rank: [65, 28605, 75],
 },
 
@@ -16483,7 +17003,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://lod-cloud.net/datasets?search=${title_}',
   icon: 'fa-solid fa-project-diagram',
   text: 'LOD',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 76,
 },
 
@@ -16496,7 +17016,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://lov.linkeddata.es/dataset/lov/terms?q=${title_quoted}',
   icon: 'fa-solid fa-project-diagram',
   text: 'Linked Open Vocabularies',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 80,
 },
 
@@ -16509,7 +17029,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://geocodes.earthcube.org/#/search?q=${title_}',
   icon: 'fa-solid fa-globe-europe',
   text: 'GeoCODES',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 28,
 },
 
@@ -16522,7 +17042,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.pangaea.de/?q=${title_quoted}',
   icon: 'fa-solid fa-globe-europe',
   text: 'Pangaea',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 30,
 },
 
@@ -16535,7 +17055,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://portal.opentopography.org/dataSearch?search=${title_quoted}',
   icon: 'fa-solid fa-globe-europe',
   text: 'Open Topogr.',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 40,
 },
 
@@ -16548,7 +17068,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.unicef.org/?s=${title_quoted}',
   icon: 'fa-solid fa-baby',
   text: 'UNICEF',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 10,
 },
 
@@ -16561,7 +17081,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.humdata.org/search?q=${title_quoted}',
   icon: 'fa-solid fa-hockey-puck',
   text: 'UN HDX',
-  section: 'science-datasets-topical',
+  section: 'media-datasets-topical',
   rank: 9,
 },
 
@@ -16608,29 +17128,48 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: true,
-  title: 'AI chat using ChatGPT',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  title: 'AI chat with tutor',
+  //title: 'AI chat using ChatGPT',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${explore.tutor}',
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${ getTutor( item ) }',
+  //url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${explore.tutor}',
   icon: 'fa-solid fa-wand-sparkles',
   text: 'AI chat',
-  section: ['meta', 'main'],
-  rank: [4, 9],
+  section: ['main'],
+  rank: [9],
+  headline_create: 'valid( explore.openai_enabled )',
+  //headline_create: 'valid( item.ai_chat ) && valid( explore.personas.includes("student") || explore.personas.includes("academic") )',
+  headline_rank: 650,
+  headline_type: 'link-split',
 },
 
 'ai_chat_quiz' : {
-  create_condition: 'checkLC("en")', // TODO: have a way of getting translations of "Quiz me on:"
-  title: 'AI chat quiz questions, using ChatGPT',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkLC(["en","fr","nl"])',
+  title: 'AI quiz',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/chat/?m=Quiz%me%20on%20${title_}&l=${explore.language}&t=teacher',
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=examinator',
   icon: 'fa-solid fa-wand-sparkles',
-  text: 'AI chat quiz',
-  section: ['education-quizzes', 'meta'],
-  rank: [10, 4.2],
+  text: 'AI quiz',
+  section: ['education-quizzes'],
+  rank: [10],
+},
+
+'ai_chat_related_topics' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkLC(["en","fr","nl"])',
+  title: 'AI: related topics',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=advisor-related-topics',
+  icon: 'fa-solid fa-wand-sparkles',
+  text: 'related topics',
+  section: ['meta'],
+  rank: [45],
 },
 
 'compare' : {
@@ -16812,7 +17351,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 61,
   headline_create: 'valid( item.linkgraph ) && checkTag( item, 0, "disambiguation")',
   headline_rank: 114,
-  headline_type: 'link',
   headline_url: '${explore.base}/app/links/?l=${explore.language}&t=${title_linkgraph}',
 },
 
@@ -16850,8 +17388,34 @@ if ( valid( item.found_in_taxon ) ){
   rank: 18,
 },
 
+// FIXME: not showing up? update to BBC programme prop
+'bbc_genome_item' : {
+  title: 'BBC Genome media item',
+  prop: '1573',
+  type: 'link',
+  mv: true,
+  //url_format: 'http://genome.ch.bbc.co.uk/$1',
+  url: 'http://genome.ch.bbc.co.uk/${item.bbc_genome_item}',
+  icon: 'fa-solid fa-podcast',
+  text: 'BBC Genome item',
+  section: 'media-audio',
+  rank: 51,
+},
+
+'bbc_programme_search' : {
+  create_condition: true,
+  title: 'BBC programms search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://genome.ch.bbc.co.uk/search/0/20?q=${title_quoted}',
+  icon: 'fa-solid fa-podcast',
+  text: 'BBC programme',
+  section: 'media-audio',
+  rank: 52,
+},
+
 /*
- * https://nl1.api.radio-browser.info/
  *
  *  http://all.api.radio-browser.info/json/servers
  *
@@ -17189,6 +17753,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 70,
 },
 
+/*
 'searchculture_greece_inline' : {
   value: 'searchculture-greece:${item.title}:true',
   title: 'SearchCulture Greece',
@@ -17201,6 +17766,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'art',
   rank: 191,
 },
+*/
 
 'european_museums' : {
   create_condition: true,
@@ -17464,7 +18030,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'ebooks meta',
   section: ['library-general','main'],
   rank: [50,1210],
-  headline_create: 'valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group", "time" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] )',
+  headline_create: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && ( valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group", "time" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] ) )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 260,
@@ -17531,7 +18097,6 @@ if ( valid( item.found_in_taxon ) ){
   section: 'media-audio',
   rank: 34,
 },
-*/
 
 'europeana_audio_search' : {
   create_condition: true,
@@ -17545,6 +18110,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['media-audio'],
   rank: [35],
 },
+*/
 
 'smithsonian_inline' : {
   value: 'smithsonian:${item.title}:true',
@@ -17901,7 +18467,7 @@ if ( valid( item.found_in_taxon ) ){
 /* PRESENTATIONS */
 
 'presentation_work' : {
-  create_condition: 'checkTag( item, 0, "work")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "work") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -17919,7 +18485,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'presentation_pubchem' : {
   //create_condition: 'valid( item.tags[0] == "substance" )',
-  create_condition: 'valid( item.pubchem )',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.pubchem ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -17936,11 +18502,11 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_mathematics' : {
-  create_condition: 'checkTag( item, 1, "mathematics")',
+  create_condition: 'checkTag( item, 1, "mathematics") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
-  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; mathematics &quot; )',
+  code: 'showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; mathematics &quot; ) && !isEmbedded()',
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
@@ -17953,7 +18519,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_organism' : {
-  create_condition: 'checkTag( item, 0, "organism")',
+  create_condition: 'checkTag( item, 0, "organism") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -17969,7 +18535,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_art_movement' : {
-  create_condition: 'listed( item.instances, indicators.movement.value )',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && listed( item.instances, indicators.movement.value ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -17985,7 +18551,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_cultural_concept' : {
-  create_condition: 'checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement )',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18001,7 +18567,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_location' : {
-  create_condition: 'checkTag( item, 0, "location") && valid( ${item.lat} )',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18017,7 +18583,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_geographical_structure' : {
-  create_condition: 'checkTag( item, 1, "geographical-structure")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 1, "geographical-structure") && !isEmbedded()',
   //create_condition: 'checkTag( item, 1, "geographical-structure") && valid( item.instance_qid )',
   title: 'presentation',
   prop: '',
@@ -18034,7 +18600,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_time' : {
-  create_condition: 'checkTag( item, 0, "time")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "time") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18050,7 +18616,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_organization' : {
-  create_condition: 'checkTag(item, 0, "organization")', // && valid( item.datasource === "wikipedia")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "organization") && !isEmbedded()', // && valid( item.datasource === "wikipedia")',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18066,7 +18632,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_person' : {
-  create_condition: 'checkTag(item, 0, "person")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "person") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18082,7 +18648,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_group' : {
-  create_condition: 'checkTag(item, 0, "group")',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "group") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -18096,6 +18662,86 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.presentation_group )',
   headline_rank: 740,
 },
+
+'wikidata' : {
+  create_condition: 'valid( item.qid )',
+  title: 'Wikidata',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/wikidata/?q=${item.qid}&lang=${explore.language}&lang3=${explore.lang3}&tags=${ item.tags.join() }',
+  icon: 'fa-solid fa-hockey-puck',
+  text: 'wikiData',
+  section: 'main',
+  rank: 9,
+},
+
+'csv_file_urls_custom' : {
+  create_condition: 'valid( item.csv_file_urls )',
+  create_data: 'item.csv_file_urls_custom_loo = packListOfObjects( item.csv_file_urls )',
+  title: 'CSV file URLs',
+  prop: '0',
+  type: 'list-of-objects',
+  type_output: 'link',
+  url: '${Xvalue}',
+  mv: true,
+  icon: 'fa-solid fa-file-csv',
+  text: 'CSV data',
+  section: ['main'],
+  rank: [101],
+},
+
+'jsonstat_file_urls_custom' : {
+  create_condition: 'valid( item.jsonstat_file_urls )',
+  create_data: 'item.jsonstat_file_urls_custom_loo = packListOfObjects( item.jsonstat_file_urls )',
+  title: 'JSON-stat file URLs',
+  prop: '0',
+  type: 'list-of-objects', // [ { title : "<string>", url: "<url>", type: "<CSV|JSONSTAT|JSON|...>" }, {...} ]
+  type_output: 'link-split',
+  url: '${Xvalue}',
+  mv: true,
+  icon: 'fa-regular fa-file-excel',
+  text: 'JSON stat data',
+  section: ['main'],
+  rank: [102],
+  // TODO
+  //headline_create: 'valid( item.jsonstat_file_urls )',
+  //headline_type: 'link',
+  //headline_url: '${item.full_work}',
+},
+
+'json_file_urls_custom' : {
+  create_condition: 'valid( item.json_file_urls )',
+  create_data: 'item.json_file_urls_custom_loo = packListOfObjects( item.json_file_urls )',
+  title: 'JSON file URLs',
+  prop: '0',
+  type: 'list-of-objects',
+  type_output: 'link-split',
+  url: '${Xvalue}',
+  mv: true,
+  icon: 'fa-regular fa-file-excel',
+  text: 'JSON data',
+  section: ['main'],
+  rank: [103],
+},
+
+/*
+'atom_file_urls_custom' : {
+  create_condition: 'valid( item.atom_file_urls )',
+  create_data: 'item.atom_file_urls_custom_loo = packListOfObjects( item.atom_file_urls )',
+  title: 'Atom feed file URLs',
+  prop: '0',
+  type: 'list-of-objects',
+  type_output: 'link',
+  url: '${Xvalue}',
+  mv: true,
+  icon: 'fa-solid fa-rss',
+  //icon: 'fa-regular fa-file-excel',
+  text: 'Atom feed',
+  section: ['main'],
+  rank: [104],
+},
+*/
 
 /* AUTOMATED FIELD INSERTIONS: WikibaseItems */
 
@@ -34321,19 +34967,7 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'nuts_code' : {
-  title: 'NUTS code',
-  prop: '605',
-  type: 'url',
-  mv: false,
-  url_format: 'http://dd.eionet.europa.eu/vocabularyconcept/common/nuts/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'NUTS code',
-  section: ['library-identity'],
-  rank: [20605],
-  auto: true,
-},
+
 
 'e_number' : {
   title: 'E number',
@@ -38780,20 +39414,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'NIS/INS code',
   section: ['library-identity'],
   rank: [21567],
-  auto: true,
-},
-
-'bbc_genome' : {
-  title: 'BBC Genome',
-  prop: '1573',
-  type: 'url',
-  mv: false,
-  url_format: 'http://genome.ch.bbc.co.uk/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'BBC Genome',
-  section: ['library-identity'],
-  rank: [21573],
   auto: true,
 },
 
@@ -75615,20 +76235,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'VOR/DME identifier for airport',
   section: ['library-identity'],
   rank: [25803],
-  auto: true,
-},
-
-'snomed_ct' : {
-  title: 'SNOMED CT',
-  prop: '5806',
-  type: 'url',
-  mv: false,
-  url_format: 'http://snomed.info/id/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'SNOMED CT',
-  section: ['library-identity'],
-  rank: [25806],
   auto: true,
 },
 

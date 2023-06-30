@@ -89,6 +89,6 @@ function getLocalWebsiteLink( args, url ){
 
 function getWebsearchLink( args, label ){
 
-  return '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.bing.com/search?q=' + quoteTitle( args.topic ) + ' ' + label + '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org' + '&setlang=' + explore.language + '-' + explore.language, title: args.topic + ' ' + label, language : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-searchengin" style="position:relative;"></i></span></a>';
+  return '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.bing.com/search?q=' + quoteTitle( args.topic ) + ' ' + label + '&setlang=' + explore.language + '-' + explore.language, title: args.topic + ' ' + label, language : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-searchengin" style="position:relative;"></i></span></a>';
 
 }

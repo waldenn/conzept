@@ -241,6 +241,7 @@ body.dark .toogles-video h3{
   bottom: 0.5em;
   background: #fbfaf9;
   width: 25%;
+  font-size: smaller;
 }
 
 #wander-to-previous {

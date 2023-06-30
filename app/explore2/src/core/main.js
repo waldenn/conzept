@@ -11,6 +11,7 @@ const explore = {
                                     // and is then used to store the URL query-string state
                                     // (which is used for comparing the old and new URL query-string state)
   q_prev              : '', // previous query-term
+  q_qid               : '', // likely Qid for the query-term
   terms               : undefined, // query-term
 
   query               : '', // query-builder form-state
@@ -30,6 +31,10 @@ const explore = {
   splitter_direction  : 'ltr', // used to determine of splitter layout needs to be changed
   language_prev       :  '', // previous language 2-letter-code
   lang3               : undefined,
+
+  languages_with_variants : ['zh'], // TODO: check for more languages
+  language_variant    : getParameterByName('lv') || '', // indicator for language-variant (eg. used for the Chinese "zh" variants)
+
   iptv                : undefined,
   langcode_librivox   : undefined,
   lang_category       : undefined,
@@ -56,8 +61,10 @@ const explore = {
   type2               : getParameterByName('t2') || '', // type for second content-pane
   type_prev           : '',   // previous query-term
 
-  qid                 : getParameterByName('i') || '',  // global identifier
-  qid2                : getParameterByName('i2') || '', // global identifier for second content-pane
+  gid                 : getParameterByName('gid') || '',// global datasource identifier
+
+  qid                 : getParameterByName('i') || '',  // Wikidata identifier
+  qid2                : getParameterByName('i2') || '', // Wikidata identifier for second content-pane
 
   uri                 : getParameterByName('u') || '',  // URL
   uri2                : getParameterByName('u2') || '', // URL for second content-pane
@@ -68,7 +75,7 @@ const explore = {
   // other URL params
   fragment            : getParameterByName('f') || '',  // allow for going directly to a detail-fragment
 
-  direct              : getParameterByName('d') || '',  // allow for direct-title-linking on first action
+  datasource_selection: getParameterByName('d') || '',  // user-requested datasources
 
   marks               : getParameterByName('m') || '',  // list of linemarks (m=2-4,6,30-32)
 
@@ -97,6 +104,7 @@ const explore = {
 
   // global paging state
   page                : 1, // page number we are on
+  //total_pages         : 0, // total number of pages available
   wikidata_query      : '',
   searchmode          : 'string', // string or wikidata
   totalRecords        : undefined,
@@ -178,6 +186,7 @@ const explore = {
   linkpreview         : undefined,
   darkmode            : undefined,
   bgmode              : undefined,
+  gridmode            : undefined,
 
   // personality options
   personas            : [],
@@ -277,6 +286,8 @@ $( document ).ready( function() {
     // immortalDB: https://github.com/gruns/ImmortalDB
     explore.db = ImmortalDB.ImmortalDB;
 
+    setActiveDatasources();
+
     // i18n engine: https://github.com/wikimedia/banana-i18n
     // set default locale and locale-fallback, we will set the true user-locale later.
     explore.banana        = new Banana( 'en', { finalFallback: 'en' } ); // used for the UI interface
@@ -319,15 +330,13 @@ $( document ).ready( function() {
     setupKeyboardNavigation();
     setupKeyboardCombos();
 
-    explore.language = window.language = await explore.db.get('language');
-    explore.locale = await explore.db.get('locale');
+    explore.language  = window.language = await explore.db.get('language');
+    explore.locale    = await explore.db.get('locale');
     //explore.voice_code_selected = await explore.db.get( 'voice_code_selected' );
     setupLanguage();
 
     createSectionDOM();
 
-    updateActiveDatasources(); // TODO: also allow for user-storage-based activation
-    setupOptionActiveDatasources();
     setupSearch();
 
     // user-customizable options:
@@ -335,6 +344,7 @@ $( document ).ready( function() {
     setupOptionUnderlineLinks();
     setupOptionBgmode();
     setupOptionDarkmode();
+    setupOptionGridmode();
     setupOptionColorFilter();
     setupOptionPersonas();
     setupOptionCountry();

@@ -1,6 +1,6 @@
 'use strict';
 
-function autocompletePreWikipedia( r, dataset ){
+function autocompleteWikipedia( r, dataset ){
 
   if ( Array.isArray( r ) ){
 
@@ -25,7 +25,9 @@ function autocompletePreWikipedia( r, dataset ){
 
 }
 
-function processWikipediaResults( topicResults, struct, index ){
+function processResultsWikipedia( topicResults, struct, index ){
+
+  //console.log( 'processResultsWikipedia' );
 
   return new Promise(( resolve, reject ) => {
 
@@ -48,7 +50,7 @@ function processWikipediaResults( topicResults, struct, index ){
 
     if ( topicResults.query === undefined || topicResults.query === 'undefined' ){
 
-      console.log('no results found');
+      //console.log('no results found');
       resolve( [ [], [] ] );
     }
 
@@ -65,7 +67,7 @@ function processWikipediaResults( topicResults, struct, index ){
     // fetch the wikipedia-with-qid data for each of those titles
     $.ajax({
 
-      url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&prop=pageprops&titles=' + encodeURIComponent( data_titles_ ) + '&format=json',
+      url: `https://${explore.language}.wikipedia.org/w/api.php?action=query&prop=pageprops&titles=${encodeURIComponent( data_titles_ )}&variant=${explore.language_variant}&format=json`,
 
       dataType: "jsonp",
 
@@ -193,22 +195,30 @@ function processWikipediaResults( topicResults, struct, index ){
 
 function resolveWikipedia( result, renderObject ){
 
-  if ( !valid( result.value[0] ) ){ // no results were found
+  //console.log('resolveWikipedia 1: ', result, datasources );
 
-    datasources.wikipedia.done = true; // dont fetch more from this datasource
+  if ( ! Array.isArray( result.value[0] ) ){ // TOCHECK: skip this second Wikipedia-result-promise
+
+    if ( !valid( result.value[0] ) ){ // no results were found
+
+      //console.log( 'wikipedia datasource: no results found 1')
+      datasources.wikipedia.done = true; // dont fetch more from this datasource
+
+    }
+    else if ( result.value[0] === 'done' ){ // no results were found
+
+      //console.log( 'wikipedia datasource: no results found 2')
+      datasources.wikipedia.done = true; // dont fetch more from this datasource
+
+    }
+    else {
+
+      //console.log( 'wikipedia datasource: results: ', result.value[0] )
+      renderObject[ 'wikipedia' ] = { data : result.value[0] };
+
+    }
 
   }
-  else if ( result.value[0] === 'done' ){ // no results were found
-
-    datasources.wikipedia.done = true; // dont fetch more from this datasource
-
-  }
-  else {
-
-    renderObject[ 'wikipedia' ] = { data : result.value[0] };
-
-  }
-
 
 }
 
@@ -216,29 +226,31 @@ function renderMarkWikipedia( inputs, source, q_, show_raw_results, id ){
 
 	if ( valid( inputs[source] ) ){
 
-		// check if the names match of the non-wikipedia and wikipedia article
-		const c0 = ( q_ === inputs[source].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
-		const c1 = ( typeof inputs[source].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
-		const c2 = ( typeof inputs[source].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
-		const c3 = ( typeof inputs[source].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
+    if ( valid( inputs[source]?.data.value[0]?.source?.data?.query?.search[0] ) ){
 
-		// check at least the first four (standard, category, book, portal) articles
-		if ( validAny( [c0, c1, c2, c3] ) ){ // matching topic-title
-			show_raw_results.push( false );
-		}
-		else {
-			show_raw_results.push( true );
-		}
+      // check if the names match of the non-wikipedia and wikipedia article
+      const c0 = ( q_ === inputs[source].data.value[0].source.data.query.search[0].title.toLowerCase().trim() );
+      const c1 = ( typeof inputs[source].data.value[0].source.data.query.search[1] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[1].title.toLowerCase().trim() ) : ''
+      const c2 = ( typeof inputs[source].data.value[0].source.data.query.search[2] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[2].title.toLowerCase().trim() ) : ''
+      const c3 = ( typeof inputs[source].data.value[0].source.data.query.search[3] !== 'undefined' ) ? (q_ === inputs[source].data.value[0].source.data.query.search[3].title.toLowerCase().trim() ) : ''
 
-		// only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
-		if ( explore.firstAction ){
+      // check at least the first four (standard, category, book, portal) articles
+      if ( validAny( [c0, c1, c2, c3] ) ){ // matching topic-title
+        show_raw_results.push( false );
+      }
+      else {
+        show_raw_results.push( true );
+      }
 
-			markArticle(id, explore.type );
+      // only on the INITIAL app visit AND WITH wikipedia results: mark the "id" article
+      if ( explore.firstAction ){
 
-		}
+        markArticle(id, explore.type );
+
+      }
+
+    }
 
 	}
 
 }
-
-

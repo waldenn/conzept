@@ -1021,7 +1021,7 @@ function addCountries(){
 
     title: "country borders",
 
-    visible: false,
+    visible: true,
 
 		source: new ol.source.Vector({
 			url: '/app/explore2/assets/geojson/ne_50m_admin_0_countries.geojson',

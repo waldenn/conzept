@@ -128,6 +128,7 @@
         var self = $.extend(this, {
 
             refresh: function() {
+
                 var new_width = this.width();
                 var new_height = this.height();
                 if (width != new_width || height != new_height) {

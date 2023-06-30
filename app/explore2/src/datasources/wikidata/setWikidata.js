@@ -3,6 +3,9 @@
 function addItemCountries( item, list, former ){
 
   item.countries = item.countries || [];
+  //item.countries = unique( item.countries );
+
+  //console.log( item.countries );
 
   if ( former ){ // check for former-countries instead
 
@@ -107,6 +110,8 @@ function addItemCountries( item, list, former ){
 
 // detect the relevant wikidata-data and put this info into each item
 function setWikidata( item, wd, single, target_pane, callback ){
+
+  //console.log( 'setWikidata()' );
 
   // initialize fields that have a "default_value"
   conzept_field_names.forEach(( val, index ) => {
@@ -372,7 +377,8 @@ function setWikidata( item, wd, single, target_pane, callback ){
     v.render_trigger_enabled = false;
 
 		// check if this fields has a wikidata-property value
-    if ( ( typeof v.prop === undefined || typeof v.prop === 'undefined' || v.prop === '' ) && !(v.type === 'wikipedia-qid-sparql') && !(v.type === 'rest-json')  ){ // no property found
+    if ( ( typeof v.prop === undefined || typeof v.prop === 'undefined' || v.prop === '' ) &&
+      !(v.type === 'wikipedia-qid-sparql') && !(v.type === 'rest-json') && !(v.type === 'list-of-objects') ){ // no property found
       // do nothing
     }
     else { // wikidata property found
@@ -383,7 +389,9 @@ function setWikidata( item, wd, single, target_pane, callback ){
 			let pid = 'P' + v.prop;
 
 			// check that the wikidata-property is declared
-			if ( ( typeof wd.claims === undefined || typeof wd.claims === 'undefined' || typeof wd.claims[pid] === undefined || typeof wd.claims[pid] === "undefined" ) && !(v.type === 'wikipedia-qid-sparql') && !(v.type === 'rest-json') ){
+			if ( ( typeof wd.claims === undefined || typeof wd.claims === 'undefined' || typeof wd.claims[pid] === undefined || typeof wd.claims[pid] === "undefined" ) &&
+          !(v.type === 'wikipedia-qid-sparql') && !(v.type === 'rest-json' ) && !(v.type === 'list-of-objects') ){
+
 				// do nothing
 			}
 			else { // wikidata property found
@@ -402,6 +410,63 @@ function setWikidata( item, wd, single, target_pane, callback ){
                 let _url      = eval(`\`${ v.url }\``);
                 item[ name ]  = _url; // expand value variables of the URL
 
+                console.log( 'check: ', name );
+
+              }
+              else if ( v.type === 'list-of-objects' ){
+
+                if ( v.create_data ){
+
+                  let trigger = eval(`\`${ v.create_data }\``); // expand trigger-code variables into code
+
+                  eval( trigger ); // run trigger code
+
+                  //console.log('list-of-objects: ', v );
+
+                  if ( valid( item[ name + '_loo'] ) ){
+
+                    if ( valid( unpackListOfObjects( item[ name + '_loo'] ).replace(/^"/, '').replace(/"$/, '') ) ){
+
+                      let loo = JSON.parse( unpackListOfObjects( item[ name + '_loo'] ).replace(/^"/, '').replace(/"$/, '') ); 
+
+                      //console.log( 'loo: ', loo );
+
+                      let urls_obj  = {};
+
+                      if ( loo.length > 0 ){
+
+                        loo.forEach(( file_obj ) => {
+
+                          //console.log('  ', file_obj.type, file_obj.title, file_obj.url,  );
+
+                          //let Xvalue  = string_val;
+                          //let mv_url  = eval(`\`${ v.url }\``);
+
+                          let url_ = '';
+
+                          if ( file_obj.type.toUpperCase() === 'CSV' ){ url_ = `https://${explore.host}${explore.base}/app/rawgraphs?t=${ encodeURIComponent( item.title ) }&u=${encodeURIComponent( 'https://conze.pt/app/cors/raw/?url=' + file_obj.url )}`; }
+                          else if ( file_obj.type.toUpperCase() === 'JSON'){ url_ = `https://${explore.host}${explore.base}/app/rawgraphs?t=${ encodeURIComponent( item.title ) }&u=${encodeURIComponent( 'https://conze.pt/app/cors/raw/?url=' + file_obj.url )}`; }
+                          else if ( file_obj.type.toUpperCase() === 'JSONSTAT'){ url_ = `https://${explore.host}${explore.base}/app/json-stat/#/${encodeURIComponent( file_obj.url )}`; }
+                          else if ( file_obj.type.toUpperCase() === 'ATOM'){ url_ = `https://${explore.host}${explore.base}/app/feed/?t=${ encodeURIComponent( item.title ) }&url=${ encodeURIComponent( file_obj.url ) }`;}
+
+                          //console.log( loo, file_obj.type, file_obj.type.toUpperCase(), url_ );
+
+                          urls_obj[ file_obj.title.replace('"', '') ] = url_;
+
+                        });
+
+                        //console.log( urls_obj );
+
+                        item[ name + '_loo' ]  = urls_obj;
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
               }
               else if ( v.type === 'link' || v.type === 'url' ){ // URL multi-value
 
@@ -413,9 +478,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
                     let Xvalue  = string_val;
                     let mv_url  = eval(`\`${ v.url }\``);
-
                     //console.log( 'mv url: ', mv_url );
-
                     urls_obj[ string_val ] = mv_url;
 
                 });
@@ -478,6 +541,12 @@ function setWikidata( item, wd, single, target_pane, callback ){
                   item[ name ]  = _url; // expand value variables of the URL
 
                 }
+                else if ( v.type === 'list-of-objects' ){
+
+                  // TODO
+                  //console.log('handle list-of-objects: ', v );
+
+                }
                 else if ( v.type === 'link' || v.type === 'url' ){ // URL multi-value
 
                   let urls_obj  = {};
@@ -488,7 +557,6 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
                     let Xvalue  = string_val;
                     let mv_url  = eval(`\`${ v.url }\``);
-
                     urls_obj[ string_val ] = mv_url;
 
                   });
@@ -534,6 +602,8 @@ function setWikidata( item, wd, single, target_pane, callback ){
 			}
 
     }
+
+    //console.log( item );
 
   });
 
@@ -1224,14 +1294,14 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
             if ( valid( item.qid ) ){
 
-              renderWikidata( target_pane );
+              renderWikidata( target_pane, item.tags );
 
             }
 
           }
           else {
 
-            renderWikidata( target_pane );
+            renderWikidata( target_pane, item.tags );
 
           }
 
@@ -1266,13 +1336,14 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
 			if ( explore.type === 'wikipedia-qid' && explore.title === '' ){ // no wikipedia-language article found, we'll show the wikidata page
 
-				renderWikidata( target_pane );
+				renderWikidata( target_pane, item.tags );
 
 			}
 			else {
 
 				if ( typeof resetIframe === 'function'  ) { // call from the explore-app
 
+          /*
           if ( explore.isMobile ){
 
             // FIXME: why does this overwrite the main sidebar??
@@ -1281,9 +1352,13 @@ function setWikidata( item, wd, single, target_pane, callback ){
           }
           else {
 
-            renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
+            // only for Wikipedia/Wikidata content rendering in the 2nd content pane pane
+            //console.log( target_pane, explore.embedded, explore.title, item.qid );
+
+            //renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + explore.title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + item.qid + '&dir=' + explore.language_direction + '&embedded=' + explore.embedded + '#' + explore.hash );
 
           }
+          */
 
 				}
 				else { // from wikipedia-app
@@ -1311,18 +1386,16 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
 }
 
-async function renderWikidata( target_pane ){
-
-  console.log( explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language );
+async function renderWikidata( target_pane, tags ){
 
 	if ( typeof resetIframe === 'function'  ) { // call from the explore-app
 
-    renderToPane( target_pane, explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language );
+    renderToPane( target_pane, explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language + '&tags=' + tags.join() );
 
 	}
 	else { // call from the wikipedia-app
 
-    window.location.href = explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language;
+    window.location.href = explore.base + '/app/wikidata/?q=' + explore.qid + '&lang=' + explore.language + '&tags=' + tags.join();
 
 	}
 

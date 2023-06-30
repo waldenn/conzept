@@ -38,8 +38,12 @@ const explore = {
 	qid						: getParameterByName('qid') || '',    // global identifier
 	embedded			: getParameterByName('embedded') || '', // signals to open links in the local iframe
 	tutor		      : getParameterByName('tutor') || 'default', // AI chat app tutor
+  tags         	: valid( getParameterByName('tags') )? getParameterByName('tags').split(',') : [],
 
   languages     : [],
+
+	languages_with_variants : ['zh'], // TODO: check for more languages
+	language_variant : getParameterByName('ws') || '',     // currently only used for the "zh"-language (TODO: make more general)
 
   firstVisit    : true,
 
@@ -96,6 +100,8 @@ $( document ).ready( function() {
 
   current_pane = getCurrentPane();
 
+  $('#tutor-style').text( `${explore.tutor}` );
+
   setupAppKeyboardNavigation();
 
   setupAutoStopAudio();
@@ -147,10 +153,29 @@ $( document ).ready( function() {
 
       }
 
-      explore.bookmarks = await explore.db.get('bookmarks');
-      explore.bookmarks = ( explore.bookmarks === null || explore.bookmarks === undefined ) ? [] : JSON.parse( explore.bookmarks );
+    }
+
+    console.log('explore.language_variant: ', explore.language_variant );
+
+    // check if there is a preferred language-variant
+    if ( explore.language_variant === '' && explore.languages_with_variants.includes( explore.language ) ){ 
+
+			console.log('check writing-style from storage');
+
+      explore.language_variant = await explore.db.get('language-variant-' + explore.language );
+      explore.language_variant = ( explore.language_variant === null || explore.language_variant === undefined ) ? '' : explore.language_variant;
+
+      console.log('Wikipedia app: language variant from storage: ', explore.language_variant );
 
     }
+    else {
+
+      console.log('Wikipedia: language variant set to: ', explore.language_variant );
+
+    }
+
+    explore.bookmarks = await explore.db.get('bookmarks');
+    explore.bookmarks = ( explore.bookmarks === null || explore.bookmarks === undefined ) ? [] : JSON.parse( explore.bookmarks );
 
 		explore.lang3 = getLangCode3( explore.language );
 
@@ -182,7 +207,7 @@ $( document ).ready( function() {
       }
 
 			$('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
-			$( '#fontlink' ).replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
+			$('#fontlink').replaceWith( '<link id="fontlink" href="https://fonts.googleapis.com/css?family=' + explore.font1 + ':400,500&display=swap&subset=latin-ext" rel="stylesheet" type="text/css">' );
 
 			$( 'body').css( 'fontFamily', explore.font1 , '');
 
@@ -318,7 +343,7 @@ $( document ).ready( function() {
 
                 explore.languages = encodeURIComponent( JSON.stringify( languages ) );
 
-                renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', '', '', false, '' );
+                renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, explore.tags, '', '', false, '' );
 
               }
 
@@ -435,7 +460,18 @@ function afterSetWikidata( item ){
 
 	if ( valid( item.title ) ){
 
+	  if ( explore.tutor === 'auto-select' ){
+
+      explore.tutor = getTutor( item );
+
+    }
+
+    $('#tutor-style').text( `${explore.tutor}` );
+
 		explore.title = item.title;
+
+    explore.tags  = item.tags.filter(Boolean);
+    //console.log( 'tags set to: ', explore.tags );
 
     let gbif_id = '';
     let banner  = '';
@@ -456,7 +492,7 @@ function afterSetWikidata( item ){
 
     //console.log( 'ld: ', item.website, explore.ld );
 
-		renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, 'tag', item.qid, gbif_id, false, banner );
+		renderWikiArticle( explore.title, explore.language, explore.hash, explore.languages, explore.tags, item.qid, gbif_id, false, banner );
 
 	}
 	else { // no wikipedia article for this Qid, so just show the wikidata-page
@@ -499,7 +535,7 @@ function getTitleFromQid( qid ){
 }
 
 
-function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, allow_recheck, banner ){
+function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, allow_recheck, banner ){
 
   //console.log( 'gbif_id: ', gbif_id );
 
@@ -510,12 +546,13 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
   $.ajax({
 
-    // see: https://stackoverflow.com/questions/21211037/how-can-i-make-the-wikipedia-api-normalize-and-redirect-without-knowing-the-exac/22339407
-    // https://en.wikipedia.org/w/api.php?action=parse&page=Apaloderma%20vittatum&prop=text&formatversion=2&format=json&redirects=
-    // https://en.wikipedia.org/w/api.php?action=query&prop=revisions%7Cpageprops&rvprop=content&maxlag=5&rvslots=main&origin=*&format=json&redirects=true&titles=Apaloderma_vittatum
+    // see:
+    //  https://www.mediawiki.org/wiki/API:Main_page
+    //  https://stackoverflow.com/questions/21211037/how-can-i-make-the-wikipedia-api-normalize-and-redirect-without-knowing-the-exac/22339407
+    //  https://en.wikipedia.org/w/api.php?action=parse&page=Apaloderma%20vittatum&prop=text&formatversion=2&format=json&redirects=
+    //  https://en.wikipedia.org/w/api.php?action=query&prop=revisions%7Cpageprops&rvprop=content&maxlag=5&rvslots=main&origin=*&format=json&redirects=true&titles=Apaloderma_vittatum
 
-    url: `https://${explore.language}.${datasources.wikipedia.endpoint}?action=parse&page=${ encodeURIComponent( title ) }&prop=text&formatversion=2&format=json&redirects=`,
-    //url: 'https://' + explore.language + '.wikipedia.org/w/api.php?action=parse&page=' + encodeURIComponent( title ) + '&prop=text&formatversion=2&format=json&redirects=',
+    url: `https://${explore.language}.${datasources.wikipedia.endpoint}?action=parse&page=${ encodeURIComponent( title ) }&prop=text&formatversion=2&format=json&redirects=&variant=${explore.language_variant}`,
 
     dataType: "jsonp",
 
@@ -556,7 +593,7 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
           success: function( pages ) {
 
-            renderWikipediaHTML( title, lang, hash_, doc, 'category', pages.query.categorymembers, '', languages, tag, qid, gbif_id, banner );
+            renderWikipediaHTML( title, lang, hash_, doc, 'category', pages.query.categorymembers, '', languages, tags, qid, gbif_id, banner );
 
           },
 
@@ -640,7 +677,9 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
                   console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
 
-                  window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
+                  window.location.href = explore.base + '/blank.html';
+
+                  //window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
 
                   $('#loader').hide();
 
@@ -662,7 +701,7 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
                   explore.noWikipediaContentYet = false;
 
-                  renderWikipediaHTML( doc.title, lang, hash_, doc, 'standard-with-category', pages.query.categorymembers, '', languages, tag, qid, gbif_id, banner )
+                  renderWikipediaHTML( doc.title, lang, hash_, doc, 'standard-with-category', pages.query.categorymembers, '', languages, tags, qid, gbif_id, banner )
 
                 }
 
@@ -670,6 +709,7 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
               else { // if "title" is different from "doc.title()"
 
                 console.log('Hmmm... redirect found: fetch wikidata for it: ', doc.title, title );
+
 								return 0;
 
               }
@@ -693,14 +733,14 @@ function renderWikiArticle( title, lang, hash_, languages, tag, qid, gbif_id, al
 
 }
 
-function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_html, languages, tag, qid, gbif_id, banner ){
+function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_html, languages, tags, qid, gbif_id, banner ){
 
   const source_page       = 'https://' + lang + '.wikipedia.org/wiki/' + title;
   const contributors_page = 'https://' + lang + '.wikipedia.org/w/index.php?title=' + title + '&action=history';
 
 	const language_display = ( explore.isMobile ) ? lang : getNamefromLangCode2( explore.language ); // show the shorter ISO2 language-name on mobile
 
-  //console.log( 'renderWikipediaHTML: ', title, lang, hash_, doc, type, cat_members, raw_html, languages, tag, qid, gbif_id );
+  //console.log( 'renderWikipediaHTML: ', title, lang, hash_, doc, type, cat_members, raw_html, languages, tags, qid, gbif_id );
 
   // grab the whole HTML string of this article
   let html_ = '<body id="wikipedia-content"><h2 class="article-title">' + title + '</h2> <!--catheadline-->' + doc.html + '</body>';
@@ -1043,7 +1083,36 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       const ai_toggle_button = ( current_pane !== 'ps2' )? '<span id="showAI"><button onclick="showAI()" onauxclick="showAI()" class="dropbtn" tabIndex="0" title="show AI tasks" aria-label="show AI tasks"><span class="icon"><i class="fa-solid fa-wand-sparkles"></i></span></button>' : '';
 
-      const class_bookmarked = ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ) ? 'bookmarked' : ''; 
+      const language_variants_toggle_button = ( explore.language === 'zh' && current_pane !== 'ps2' )? '<span id="showLanguageVariants"><button onclick="showLanguageVariants()" onauxclick="showLanguageVariants()" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span class="icon"><i class="fa-solid fa-language"></i></span></button>' : '';
+
+      let class_bookmarked = '';
+
+      if ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ){
+
+        $.each( findObjectByKey( explore.bookmarks, 'name', title ), function( index, obj ){
+
+          if ( obj.language === explore.language ){
+
+            if ( valid( obj.qid ) ){
+              
+              if ( obj.qid === explore.qid ){
+
+                class_bookmarked = 'bookmarked'; 
+
+              }
+
+            }
+            else {
+
+              class_bookmarked = 'bookmarked'; 
+
+            }
+
+          }
+
+        });
+
+      }
 
       html_ = html_.replace(/<body id="wikipedia-content">/, fontlink_html +
 
@@ -1066,17 +1135,18 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             //'<span id="addToCompare"><button onclick="addToCompare()" class="dropbtn" tabIndex="0" title="add to compare" aria-label="add to compare"><span class="icon"><i class="fa-solid fa-plus"></i></span></button></span> ' +
             '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fa-solid fa-print"></i></span></button></span> ' +
 
-            // AI task UI toggle
-            ai_toggle_button +
+            ai_toggle_button + // AI task UI toggle
 
             '</span>' +
 
             // AI task actions
             '<div id="ai-tasks" style="display:none;">' + 
 
-              '<div id="aiChat"><button onclick="gotoChat()" onauxclick="gotoChat(true)" class="dropbtn" tabIndex="0" title="AI chat" aria-label="AI chat"><span class="icon"><i class="fa-regular fa-comments"></i></span>&nbsp; AI chat (ChatGPT)</button></div>' +
-              '<div id="aiSummary"><button onclick="gotoAI( false, &quot;summarization&quot; )" onauxclick="gotoAI( false, &quot;summarization&quot; )" class="dropbtn" tabIndex="0" title="AI generated summary" aria-label="AI generated summary"><span class="icon"><i class="fa-regular fa-file-lines"></i></span>&nbsp; summary (in-browser)</button></div>' +
-              '<div id="aiQA"><button onclick="gotoAI( false, &quot;question-answering&quot; )" onauxclick="gotoAI( false, &quot;question-answering&quot; )" class="dropbtn" tabIndex="0" title="AI question-answering" aria-label="AI question-answering"><i class="fa-regular fa-circle-question"></i></span>&nbsp; QA (in-browser)</button></div>' +
+              '<div id="aiChat"><button onclick="gotoChat(false)" onauxclick="gotoChat(true)" class="dropbtn" tabIndex="0" title="AI chat" aria-label="AI chat"><span class="icon"><i class="fa-regular fa-comments"></i></span>&nbsp; <span id="tutor-style"></span> tutor</button> (ChatGPT)</div>' +
+              '<div id="aiChat-related-topics"><button onclick="gotoChat(false, &quot;advisor-related-topics&quot;)" onauxclick="gotoChat(true, &quot;advisor-related-topics&quot;)" class="dropbtn" tabIndex="0" title="AI related topics" aria-label="AI related topics"><span class="icon"><i class="fa-solid fa-diagram-project"></i></span>&nbsp; related topics</button></div>' +
+              '<div id="aiChat-examinator"><button onclick="gotoChat(false, &quot;examinator&quot;)" onauxclick="gotoChat(true, &quot;examinator&quot;)" class="dropbtn" tabIndex="0" title="AI examinator" aria-label="AI examinator"><span class="icon"><i class="fa-regular fa-circle-question"></i></span>&nbsp; examinator</button></div>' +
+              //'<div id="aiSummary"><button onclick="gotoAI( false, &quot;summarization&quot; )" onauxclick="gotoAI( false, &quot;summarization&quot; )" class="dropbtn" tabIndex="0" title="AI generated summary" aria-label="AI generated summary"><span class="icon"><i class="fa-regular fa-file-lines"></i></span>&nbsp; summary (local)</button></div>' +
+              //'<div id="aiQA"><button onclick="gotoAI( false, &quot;question-answering&quot; )" onauxclick="gotoAI( false, &quot;question-answering&quot; )" class="dropbtn" tabIndex="0" title="AI question-answering" aria-label="AI question-answering"><i class="fa-regular fa-circle-question"></i></span>&nbsp; QA (local)</button></div>' +
 
             '</div>' +
 
@@ -1087,6 +1157,22 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             '<span id="gotoWikipedia"><button onclick="gotoWikipedia()" onauxclick="gotoWikipedia( true )"class="dropbtn" tabIndex="0" title="go to Wikipedia" aria-label="go to Wikipedia"><span class="icon"><i class="fa-brands fa-wikipedia-w"></i></span></button></span> ' +
             wikidata_page_button +
             '<span id="otherLanguage"><button onclick="showWikipediaLanguages()" class="dropbtn active uls-trigger" tabIndex="0" title="article in other languages"> '  + language_display + '</button></span>' +
+
+            language_variants_toggle_button + // language variant switcher
+
+            // language-variant actions
+            '<div id="language-variants" style="display:none;">' + 
+
+              // FIXME: dynamically insert language-variants for other languages (also: use a dropdown?)
+              '<div id="switch-to-zh"><button onclick="switchLanguageVariant(false, &quot;zh&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH</span> (traditional)</button></div>' +
+              '<div id="switch-to-zh-cn"><button onclick="switchLanguageVariant(false, &quot;zh-cn&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-cn&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-CN</span> (Mainland simplified)</button></div>' +
+              '<div id="switch-to-zh-hk"><button onclick="switchLanguageVariant(false, &quot;zh-hk&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-hk&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-HK</span> (Hong Kong traditional)</button></div>' +
+              '<div id="switch-to-zh-mo"><button onclick="switchLanguageVariant(false, &quot;zh-mo&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-mo&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-MO</span> (Macau traditional)</button></div>' +
+              '<div id="switch-to-zh-my"><button onclick="switchLanguageVariant(false, &quot;zh-my&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-my&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-MY</span> (Malaysia simplified)</button></div>' +
+              '<div id="switch-to-zh-sg"><button onclick="switchLanguageVariant(false, &quot;zh-sg&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-sg&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-SG</span> (Singapore simplified)</button></div>' +
+              '<div id="switch-to-zh-tw"><button onclick="switchLanguageVariant(false, &quot;zh-tw&quot;)" onauxclick="switchLanguageVariant(true, &quot;zh-tw&quot;)" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span id="writing-style-option">ZH-TW</span> (Taiwan style)</button></div>' +
+
+            '</div>' +
 
           '</div>' +
 

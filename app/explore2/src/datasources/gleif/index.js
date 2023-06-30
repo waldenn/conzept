@@ -1,6 +1,8 @@
 'use strict';
 
-function autocompletePreGleif( results, dataset ){
+function autocompleteGleif( results, dataset ){
+
+  const source = 'gleif';
 
   let list = [];
 
@@ -16,77 +18,80 @@ function autocompletePreGleif( results, dataset ){
 
 }
 
-function processGleifResults( topicResults, struct, index ){
+function processResultsGleif( topicResults, struct, index ){
+
+  const source = 'gleif';
 
   return new Promise(( resolve, reject ) => {
 
     if ( !valid( topicResults.data ) ){
 
-      console.log('done 1');
-
-      //datasources.gleif.done        = true;
-      //datasources[ 'gleif' ].total  = 0;
       resolve( [ [], [] ] );
 
     }
     else if ( topicResults.data.length === 0 ){
 
-      console.log('done 2');
-
-      //datasources.gleif.done        = true;
-      //datasources[ 'gleif' ].total  = 0;
       resolve( [ [], [] ] );
 
     }
-    else if ( ( Math.max( Math.ceil( topicResults.meta.pagination.total / ( datasources[ 'gleif' ].pagesize *  (explore.page - 1) ) ), 1) === 1 ) ){ // no more restults
+    else if ( ( Math.max( Math.ceil( topicResults.meta.pagination.total / ( datasources[ source ].pagesize *  (explore.page - 1) ) ), 1) === 1 ) ){ // no more results
 
-      console.log( 'total: ', datasources[ 'gleif' ].total , datasources[ 'gleif' ].pagesize *  explore.page );
-
-      //datasources.gleif.done        = true;
-      //datasources[ 'gleif' ].total  = 0;
       resolve( [ [], [] ] );
 
     }
     else {
 
-      datasources[ 'gleif' ].total = topicResults.meta.pagination.total;
+      datasources[ source ].total = topicResults.meta.pagination.total;
 
-      console.log('more...');
-
-      // setup the standard datasource-result structure (modelled after the Wikipedia API)
+      // standard result structure (modelled after the Wikipedia API)
       let result = {
 
-						source: {
-							data: {
-								batchcomplete: '',
-								continue: {
-									'continue': "-||",
-									'sroffset': datasources['gleif'].pagesize,
-									'source': 'gleif',
-								},
+        source: {
 
-								query: {
-									search : [],
-									searchinfo: {
-										totalhits: topicResults.meta.pagination.total,
-									},
-								},
+          data: {
 
-							},
+            batchcomplete: '',
 
-						},
+            continue: {
+              'continue': "-||",
+              'sroffset': datasources[ source ].pagesize,
+              'source': source,
+            },
 
-					};
+            query: {
+
+              search : [],
+
+              searchinfo: {
+                totalhits: datasources[ source ].total,
+              },
+
+            },
+
+          },
+
+        },
+
+      };
 
       $.each( topicResults.data, function( i, company ){
 
-				// fill any useful fields
+        // URL vars
+        let gid         = company.attributes.lei;
+        let qid         = '';
+        let language    = explore.language;
+
+        // setup URL
+        let url         = eval(`\`${ datasources[ source ].display_url }\``);
+
+				// fill fields
 				let item = {
-          source: 'gleif',
+          source: source,
 					title: company.attributes.entity.legalName.name,
 					lei: company.attributes.lei,
-					display_url: `https://www.lei-lookup.com/record/${company.attributes.lei}`, // link to render for each topic
-					qid: '',
+					gid: company.attributes.lei,  // datasource global-ID
+					display_url: url,             // link to render for each topic
+					qid: qid,
           countries: [],
           tags: [],
 				};
@@ -95,7 +100,7 @@ function processGleifResults( topicResults, struct, index ){
 
         if ( valid( company.attributes.entity.jurisdiction ) ){
 
-          Object.keys(countries).forEach( (qid) => {
+          Object.keys( countries ).forEach( (qid) => {
 
             if ( countries[ qid ].iso2 === company.attributes.entity.jurisdiction ){
 
@@ -128,28 +133,21 @@ function processGleifResults( topicResults, struct, index ){
 
 function resolveGleif( result, renderObject ){
 
+  const source = 'gleif';
+
   if ( !valid( result.value[0] ) ){ // no results were found
 
-    datasources.gleif.done = true;
+    datasources[ source ].done = true;
 
   }
   else if ( result.value[0] === 'done' ){ // done fetching results
 
-    datasources.gleif.done = true;
+    datasources[ source ].done = true;
 
   }
   else {
 
-    //console.log( datasources[ 'gleif' ].total,  explore.page * datasources[ 'gleif' ].pagesize, explore.page * datasources[ 'gleif' ].pagesize >= datasources[ 'gleif' ].total )
-    if ( explore.page * datasources[ 'gleif' ].pagesize >= datasources[ 'gleif' ].total ){ // done fetching, no more results
-
-      console.log('resolveGleif(): rendering, but done fetching, no more results');
-
-      //datasources.gleif.done = true;
-
-    }
-
-    renderObject[ 'gleif' ] = { data : result };
+    renderObject[ source ] = { data : result };
 
   }
 

@@ -78,16 +78,9 @@
   margin-bottom: 0.5em;
 }
 
-/*
-#detail-structured-search {
-  line-height: 2rem;
-  font-size: 1.3rem;
-}
-*/
-
 #app-guide-see-more { /* fix needed after fontawesome6 upgrade */
   vertical-align: middle;
-  font-size: smaller;
+  font-size: 0.7em;
 }
 
 .sentinel {
@@ -346,10 +339,10 @@ li {
 }
 
 ul.multi-value li {
-  font-size: 1.3rem !important;
+  font-size: 1.0rem !important;
   font-weight: 600;
   list-style: none !important;
-  line-height: 1.4rem;
+  line-height: 1.1rem;
   /* font-size: larger */;
   text-indent: 0.2rem;
   background-color: rgb(207, 230, 208);
@@ -465,6 +458,7 @@ details.inline-abstract {
   font-size: normal;
   font-weight: normal;
   text-align: left;
+  margin-left: 1rem;
 }
 
 details.inline-abstract summary, details.inline-abstract[open] summary {
@@ -671,7 +665,7 @@ body.rtl span.nobreak {
 .headline-left-half {
   /* flex: 0.05; */
   display: flex !important;
-  margin-left: 3%;
+  /*margin-left: 1%;*/
   align-items: first baseline;
 }
 
@@ -804,6 +798,10 @@ kbd {
   font-size: 1.8rem;
 }
 
+#bookmarks-actions kbd {
+  width: 100%;
+}
+
 .more-label {
   display: inline-block;
   width: 100px;
@@ -878,6 +876,7 @@ mark {
 
 .datasource-icon {
   height: 1em;
+  max-width: 2em;
 }
 
 .datasource-list-icon {
@@ -2172,6 +2171,7 @@ a:focus, a:hover, span.catbutton:hover {
 }
 
 a.summary-link, a.no-focus-outline {
+  margin-left: 0.8em;
   outline: 0 !important;
   border: none;
   color: black !important;
@@ -2226,15 +2226,21 @@ body.rtl .summary-thumb {
 }
 
 .thumbnail {
+  max-width: 100%;
   max-height: 9rem;
   margin-right: 0;
   border-radius: 0.3rem;
   margin-top: 0.4rem;
 }
 
+#results.grid .thumbnail {
+  /*max-height: 12rem;*/
+}
+
 .mv-thumb .thumbnail {
   width: 95%;
-  max-height: none;
+  max-height: fit-content;
+  /*max-height: 30rem;*/
   border-radius: .3rem;
   margin: auto;
   margin-top: 0.4rem;
@@ -2362,12 +2368,36 @@ h1 {
   margin-bottom: 0;
 }
 
+#json-file {
+  width: 14em;
+}
+
 .bookmark-remove {
   position: absolute;
   top: 2px;
-  right: 10px;
+  right: 5em;
   font-size: small;
   padding-top: 0.4rem;
+}
+
+#bookmark-deselect-all-container {
+  font-size: smaller;
+}
+
+.bookmark-select {
+  position: absolute;
+  top: 2px;
+  right: 1em;
+  font-size: 1.2em;
+  /*padding-top: 0.2rem;*/
+}
+
+.bookmark-select.selected {
+  background: #b1d97d;
+}
+
+#bookmark-selection-count {
+  font-weight: bold;
 }
 
 .bookmark-explore {
@@ -2375,6 +2405,17 @@ h1 {
   float: left;
   padding-left: 0.3rem;
   */
+}
+
+.menu-separator {
+  /*color: #57bee9b0;*/
+  width: 98%;
+  margin: 1.0em auto;
+}
+
+#bookmarks-actions a {
+  display: block;
+  margin: 0.6em 0.6em;
 }
 
 .indent-select-widget {
@@ -2392,6 +2433,11 @@ h1 {
 
 .country-select {
   margin-left: 0.4em !important;
+}
+
+.country-select .country-list .country {
+  background: white !important;
+  width: 250px;
 }
 
 ul.country-list li {
@@ -2545,6 +2591,20 @@ ul.country-list li {
   margin-top: 5px;
 }
 
+#results.grid { /* sidebar grid mode */
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+  /*grid-template-columns: auto auto auto;*/
+}
+
+.sidebar-grid-item {
+  display: grid;
+}
+
+.bordered {
+  border: 1px solid #00000036;
+}
+
 #results a {
   color: #3f3f3f;
 }
@@ -2555,6 +2615,8 @@ a:link {
 }
 
 .entry {
+  height: min-content;
+  /*overflow: hidden;*/
   color: #3f3f3f;
   margin: 0.312rem 0;
   padding: 1.25rem 1.875rem;
@@ -2717,17 +2779,30 @@ details[open].conf summary ~ * {
   margin-bottom: 0.5rem;
 }
 
+#structured-query-output-type {
+  margin-left: 1em;
+}
+
+.wikit-LookupInput__menu.wikit, .wikit .wikit-LookupInput__menu {
+  z-index: 999999999 !important;
+  width: 90%;
+}
+
 .summary, .topic-description {
   color: black;
-  font-size: 92%;
+  font-size: 97%;
   line-height: 130%;
   font-weight: 300;
   padding-bottom: 3px;
-  margin-left: 3%;
+  /*margin-left: 1%;*/
   margin-right: 2%;
   margin-top: 0.2rem;
   hyphens: auto;
   /*text-align: justify;*/
+}
+
+.item-description {
+  /*margin-left: 1%;*/
 }
 
 .topic-description {
@@ -2994,8 +3069,9 @@ details.frontpage summary {
 .frontpage-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(6em,1fr));
-  grid-gap: 1.4rem;
+  grid-gap: 1.2rem;
   padding-top: 1rem;
+  padding-bottom: 1em;
 }
 
 .frontpage-grid-container a {
@@ -3009,9 +3085,17 @@ details.frontpage summary {
 }
 
 .frontpage-grid-container > div {
-  margin: 1rem;
+  margin: 0.1rem;
   text-align: center;
   font-size: 140%;
+}
+
+.frontpage-grid-container > div.bookmark-action {
+  margin: -0.3em;
+}
+
+#bookmarks-actions-container {
+  width: 98%;
 }
 
 .alter-font {

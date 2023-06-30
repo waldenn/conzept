@@ -16,7 +16,7 @@ fi
 # create conzept user (used for running the proxy services)
 if ! id -u "$user" >/dev/null 2>&1; then
   echo 'creating conzept user'
-  sudo adduser --no-create-home --disabled-password --shell /bin/sh --gecos "User" conzept
+  sudo adduser --quiet --no-create-home --disabled-password --shell /bin/sh --gecos "User" conzept
 fi
 
 # TODO: check & create confdir

@@ -203,6 +203,8 @@ async function showPresentation( item, type ){
 
   let languages = unpackString( item.languages ); 
 
+  let sources = explore.datasources; // original datasource selection
+
   // FIXME: "inception" is not used when start_date is missing
   const start_date  = item.start_date ? parseInt( item.start_date ) : new Date().getFullYear() + 1;
   const end_date    = item.end_date ? parseInt( item.end_date ) : new Date().getFullYear() + 1;
@@ -345,6 +347,8 @@ async function showPresentation( item, type ){
 		let oer_commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OER Commons</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://www.oercommons.org/search?f.search=${title}&f.language=${language}" ) ) )\n`;
 		let scholia_slide               = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Scholia</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://scholia.toolforge.org/topic/${ item.qid }" ) ) )\n`;
 
+		let rijksmuseum_search_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Rijksmuseum</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'link \'( "https://conze.pt/explore/${title_enc}?l=en&t=string&d=rijksmuseum&s=true#" ) ) )\n`;
+
     let commons_slide               = '';
     let commons_time_music_slide    = '';
     let commons_country_music_slide = '';
@@ -357,19 +361,12 @@ async function showPresentation( item, type ){
 
     }
 
-
     let ai_chat_slide       = '';
     let ai_chat_quiz_slide  = '';
 
     if ( valid( explore.openai_enabled ) ){
 
-      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "https://conze.pt/app/chat/?m=${ title }&l=${explore.language}&t=${explore.tutor}" ) ) )\n`;
-
-		  if ( language === 'en' ){
-
-        ai_chat_quiz_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat quiz</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "https://conze.pt/app/chat/?m=Quiz%20me%20on%20${ title }&l=${explore.language}&t=${explore.tutor}" ) ) )\n`;
-
-      }
+      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "https://conze.pt/app/chat/?m=${ title }&l=${explore.language}&t=${ getTutor( item ) }" ) ) )\n`;
 
     }
 
@@ -388,9 +385,8 @@ async function showPresentation( item, type ){
 		let europeana_time_music_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
 		let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
 
-		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?&q=${title}&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=${language}-${language}" ) ) )\n`;
+		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${item.title}&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
 		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
-
 
     let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/quiz/location/?${ item.qid }" ) ) )\n`;
 
@@ -488,7 +484,7 @@ async function showPresentation( item, type ){
 			slides.push( video_slide );
 
 			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
-			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
+			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
 
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
@@ -627,6 +623,13 @@ async function showPresentation( item, type ){
 			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
 
 			slides.push( commons_slide );
+
+      if ( valid( item.is_painter ) ){
+
+        slides.push( rijksmuseum_search_slide );
+        //explore.datasources = sources; // reset datasources again to the original set
+
+      }
 
 			slides.push( video_slide );
 
@@ -1895,7 +1898,7 @@ async function setupLispEnv(){
           title     : '',
           language  : explore.language,
           qid       : '',
-          url       : `https://www.bing.com/search?q=${labels}++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=${language}-${language}`,
+          url       : `https://www.bing.com/search?q=${labels}&search=Submit+Query&form=QBLH&setlang=${explore.language}`,
           tag       : '',
           languages : '',
           custom    : '',
@@ -2311,7 +2314,7 @@ async function renderShowCommand( view, list ){
 
 		const qid_list = list.map( n => n.replace('Q', 'wd%3AQ') ).join('%20').toString();
 
-    const url_ = `https://${ explore.host }${explore.base}/app/query/embed.html#SELECT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`;
+    const url_ = `https://${ explore.host }${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`;
 
     console.log( url_ );
 
@@ -2328,7 +2331,7 @@ async function renderShowCommand( view, list ){
         title     : '',
         language  : explore.language,
         qid       : '',
-        url       : `${explore.base}/app/query/embed.html#SELECT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`,
+        url       : `${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`,
         tag       : '',
         languages : '',
         custom    : '',

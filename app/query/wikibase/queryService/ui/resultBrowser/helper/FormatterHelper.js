@@ -203,7 +203,7 @@ wikibase.queryService.ui.resultBrowser.helper.FormatterHelper = ( function( $, m
 					$link.click( this.handleCommonResourceItem );
 					$link.append(
 							$( '<img>' ).attr( 'src',
-									this.getCommonsResourceThumbnailUrl( value, '120' ) ) )
+									this.getCommonsResourceThumbnailUrl( value, '600' ) ) ) // CONZEPT PATCH
 							.width( '120' );
 				} else {
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Eurostat JSONstat</title>
+
+  <!-- conzept resources -->
+  <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+
+  <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@jsonstat">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jsonstat.com/eurostat/">
+  <meta property="og:title" content="Eurostat’s Swiss Army Knife">
+  <meta property="og:description" content="A single solution for all your Eurostat data needs">
+  <meta property="og:image" content="https://jsonstat.com/eurostat/esak200.png">
+
+  <link href="index_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="index_files/main200.css" rel="stylesheet">
+  <link href="index_files/css.css" rel="stylesheet">
+
+  <script src="index_files/jsonstat-suite.js?v3.3.0"></script>
+
+  <script src="index_files/highcharts.js?v001"></script>
+  <script src="index_files/hightables.js?v001"></script>
+
+</head>
+
+<body role="document">
+  <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <span class="navbar-brand"><a href="https://jsonstat.com/">jsonstat.com</a> / <a href="https://jsonstat.com/eurostat/">eurostat</a></span>
+    </div>
+  </nav>
+
+  <div class="container" role="main">
+    <div class="page-header"></div>
+	<p id="flag"><span>⚑</span> = very big dataset</p>
+    <ul id="languages">
+      <li><label><input type="radio" name="lang" value="en" checked="checked"> English</label></li>
+      <li><label><input type="radio" name="lang" value="fr"> Français</label></li>
+      <li><label><input type="radio" name="lang" value="de"> Deutsch</label></li>
+    </ul>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="panel panel-primary">
+			<input type="search" placeholder="Filter datasets by name or code">
+      <input type="submit" onclick="window.showResults" style="display:none;">
+
+			<div id="datasets">
+				<details class="bar" open="">
+					<summary>Data navigation tree <span class="glyphicon arrow"></span></summary>
+					<div class="cont"><ul><li><details><summary data-id="1">Database by themes</summary><ul id="i1"></ul></details></li><li><details><summary data-id="2">Tables by themes</summary><ul id="i2"></ul></details></li><li><details><summary data-id="3">Tables on EU policy</summary><ul id="i3"></ul></details></li><li><details><summary data-id="4">Cross cutting topics</summary><ul id="i4"></ul></details></li></ul></div>
+				</details>
+			</div>
+
+          <div id="dimensions" class="bar">
+            <article id="welcome">
+              <header class="clearfix">
+                <img src="index_files/knife.svg" alt="Swiss Army Knife">
+                <div>
+                  <h1>Eurostat’s Swiss Army Knife</h1>
+                  <div>A single solution for all your Eurostat data needs</div>
+                </div>
+              </header>
+
+              <p>Are you a data consumer that needs to <strong>browse data</strong> from Eurostat?</p>
+              <p>A data scientist that needs to <strong>download datasets</strong> to process them and analyze them?</p>
+              <p>A developer that needs to <strong>build a query</strong> to request data from Eurostat’s API?</p>
+
+              <div class="help">
+                <ol>
+                  <li><strong>Choose a language</strong>: you will not 
+be able to change it later. This selection will affect the language of 
+the dataset contents, not the language of this page.</li>
+                  <li><strong>Select a dataset</strong> from a list of 
+thousands of Eurostat datasets. Find datasets browsing the data 
+navigation tree, or type a fragment of the name or code of the dataset 
+you are looking for.</li>
+                  <li><strong>Filter the data</strong>: choose time, geographical areas, metrics and classification categories.</li>
+                  <li><strong>View</strong> or <strong>download</strong> data as CSV or JSON, or copy the <strong>API query</strong> to integrate Eurostat’s statistics in your app.<p></p>
+              </li></ol></div>
+
+              <p>Unique datasets: <span id="updated"><em>7,122</em> (list updated on 2023-05-09)</span></p>
+
+              <p id="credits">Eurostat dataset list, created, curated, maintained and formatted by <a href="https://twitter.com/zabov">Fabio Castelletti</a> and kindly stored by the <a href="https://opendata.marche.camcom.it/">Camera di Commercio delle Marche</a>. Application developed by <a href="https://xavierbadosa.com/">Xavier Badosa</a>. Swiss Army Knife image by <a href="https://thenounproject.com/maxinevsg/">MaxineVSG from the Noun Project</a>.</p>
+              <p>This page retrieves public data served by <a href="https://ec.europa.eu/eurostat/web/json-and-unicode-web-services">Eurostat’s Web Service</a>. This page is not affiliated with or endorsed by Eurostat.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="results"></div>
+    <div id="version">v. 2.0.1</div>
+  </div>
+
+  <script src="index_files/main201.max.js"></script>
+
+  <!-- CONZEPT PATCH -->
+  <script>
+  $( document ).ready(function() {
+
+    let s = getParameterByName( 's' ) || '';
+
+    if ( valid( s ) ){
+
+      $('input[type="search"]').val( s ).change();
+
+      $('input[type="submit"]').click();
+
+    }
+
+  });
+  </script>
+
+</body></html>

@@ -37,6 +37,10 @@ br {
   display:none;
 }
 
+.bookmarked {
+  color: #d65459;
+}
+
 table.sidebar-table {
 	width: 100%;
 	border: 0;

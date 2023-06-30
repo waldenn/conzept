@@ -1048,11 +1048,19 @@ function goExplore( newtab ){
 
 }
 
-function gotoChat( newtab ){ // AI chat
+function gotoChat( newtab, t ){ // AI chat
 
-  console.log( 'tutor: ', explore.tutor );
+  let tutor = explore.tutor; 
 
-  const url = explore.base + '/app/chat/?m=' + encodeURIComponent( title ) + '&l=' + explore.language + '&t=' + explore.tutor;
+  if ( valid( t ) ){
+
+    tutor = t;
+
+  }
+
+  //console.log( 'tutor: ', explore.tutor );
+
+  const url = explore.base + '/app/chat/?m=' + encodeURIComponent( title ) + '&l=' + explore.language + '&t=' + tutor;
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
@@ -1130,10 +1138,15 @@ function bookmarkToggle(){
   }
   else { // add bookmark
 
-    console.log( 'add bookmark: ', title );
+    //console.log( 'add bookmark: ', title, explore.qid, 'tags: ', explore.tags );
 
-    $('.icon .bookmark-icon').addClass('bookmarked');;  
-    window.parent.postMessage({ event_id: 'add-bookmark', data: { } }, '*' );
+    $('.icon .bookmark-icon').addClass('bookmarked');  
+    window.parent.postMessage({ event_id: 'add-bookmark', data: {
+      language:   explore.language,
+      qid:        explore.qid,
+      tags:       explore.tags,
+      datasource: 'wikipedia',
+    } }, '*' );
 
   }
 
@@ -1155,7 +1168,7 @@ function gotoVideo( newtab ){
 
 function gotoImages( newtab ){
 
-  const url = 'https://www.bing.com/images/search?&q=' + quoteTitle( title ) + '&qft=+filterui:photo-photo&FORM=IRFLTR';
+  const url = `https://www.bing.com/images/search?q=${title}&form=HDRSC2&setlang=${explore.language}&first=1`;
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
@@ -1200,10 +1213,52 @@ function addToCompare( ){
 
 }
 
+function switchLanguageVariant( newtab, lv ){
+
+  console.log('switch language-variant to: ', lv );
+
+  if ( valid( lv ) ){
+
+    explore.language_variant = lv;
+
+    parentref.postMessage({ event_id: 'update-language-variant', data: { language : explore.language, language_variant: explore.language_variant } }, '*' );
+
+    // store language-variant preference
+    (async () => { await explore.db.set( 'language-variant-' + explore.language, explore.language_variant ); })();
+
+    // goto Wikipedia-article with correct writing style
+    const url = `${explore.base}/app/wikipedia/?t=${ encodeURIComponent( title )}&l=${explore.language}&lv=${explore.language_variant}&voice=${explore.voice_code}&dir=${explore.language_direction}&tags=${explore.tags.join(',')}&tutor=${explore.tutor}&embedded=${explore.embedded}#${explore.hash}`;
+
+    if ( newtab ){ openInNewTab( url ); }
+    else if ( explore.embedded ){ location.href = url; }
+    else {
+
+      parentref.postMessage({ event_id: 'handleClick', data: { type: 'link', url: url , title: title, hash: hash, language: language, current_pane: current_pane, target_pane: current_pane } }, '*' );
+
+    }
+
+  }
+  else {
+
+    explore.language_variant = '';
+
+  }
+
+}
+
+function showLanguageVariants( newtab, task ){
+
+  console.log( 'show language variants' );
+
+  $('#language-variants').toggle();
+
+}
+
 function showAI( newtab, task ){
 
   // toggle AI task overview
-  $( '#ai-tasks' ).toggle();
+  $('#tutor-style').text( `${explore.tutor}` );
+  $('#ai-tasks').toggle();
 
 }
 
@@ -1272,7 +1327,15 @@ function gotoWikidata( newtab ){
 
 function gotoWikipedia( newtab ){
 
-  const url = encodeURI( 'https://' + language + '.wikipedia.org/wiki/' + title );
+  let directory = 'wiki'
+
+  if ( valid( explore.language_variant ) ){
+
+    directory = explore.language_variant;
+
+  }
+  
+  const url = encodeURI( `https://${language}.wikipedia.org/${directory}/${title}` );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
@@ -1424,3 +1487,24 @@ function addSectionTTS(){
   }
 
 } 
+
+// TODO:
+//  - https://codepen.io/erenkulaksiz/pen/GRQmYQq
+//  - https://codepen.io/onion2k/pen/qBxmVpR
+//  - https://www.cssscript.com/demo/bold-first-few-characters-words/
+//  - https://www.skypack.dev/view/splitting
+/*
+function anchorPoints() {
+
+  // add Times New Roman
+  // add line-height option
+
+	console.log('adding anchor points');
+
+  $('.mw-parser-output p');
+
+  const u = () => r.innerHTML.split(" ").map(w => `<b>${w.split("").slice(0,Math.ceil(w.length/2)).join("")}</b>${w.split("").slice(Math.ceil(w.length / 2),w.length).join("")} `).join(" ");
+  u();
+
+}
+*/

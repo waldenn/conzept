@@ -33,10 +33,54 @@ const sections = {
         'icon' : 'fa-regular fa-window-restore',
       },
 
+			'media-datasets': {
+				'icon' : 'fa-solid fa-hockey-puck',
+
+        'sub'		: {
+
+          'media-datasets-general': {
+            'icon' : '',
+          },
+
+          'media-datasets-topical': {
+            'icon' : '',
+          },
+
+        },
+
+			},
+
     },
 
   },
 
+  /*
+  'test-d0': {
+    'icon'  : '',
+
+    'sub'		: {
+
+			'test-d1': {
+				'icon' : 'fa-solid fa-hockey-puck',
+
+        'sub'		: {
+
+          'test-d2': {
+				    'icon' : 'fa-solid fa-hockey-puck',
+          },
+
+        },
+
+			},
+
+      'test2-d1': {
+        'icon' : 'fa-regular fa-window-restore',
+      },
+
+    },
+
+  },
+  */
 
   'library': {
     'icon'  : '',
@@ -138,23 +182,6 @@ const sections = {
 
 			'science-astronomy': {
 				'icon' : 'fa-regular fa-sun',
-			},
-
-			'science-datasets': {
-				'icon' : 'fa-solid fa-hockey-puck',
-
-        'sub'		: {
-
-          'science-datasets-general': {
-            'icon' : '',
-          },
-
-          'science-datasets-topical': {
-            'icon' : '',
-          },
-
-        },
-
 			},
 
     },

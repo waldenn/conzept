@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON-stat Explorer</title>
+
+    <script src="https://unpkg.com/jsonstat-toolkit@1.4.2"></script>
+    <script src="https://unpkg.com/jsonstat-suite@3.5.0"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link href="main.css" rel="stylesheet" />
+      <!-- conzept resources -->
+      <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+  </head>
+
+  <body>
+    <a id="skip" class="screenreader" href="#content">Skip to main content</a>
+    <div id="app"></div>
+    <div id="alert" class="screenreader" role="alert"></div>
+    <script src="main.js"></script>
+  </body>
+</html>

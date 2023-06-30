@@ -1,0 +1,157 @@
+@font-face {
+    font-family: "O3DVIcons";
+    src: url("./O3DVIcons.woff?5b9efabdc2c1ef6b3990e38a69a1fb39") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: O3DVIcons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow_down:before {
+    content: "\f101";
+}
+.icon-arrow_left:before {
+    content: "\f102";
+}
+.icon-arrow_right:before {
+    content: "\f103";
+}
+.icon-arrow_up:before {
+    content: "\f104";
+}
+.icon-camera_orthographic:before {
+    content: "\f105";
+}
+.icon-camera_perspective:before {
+    content: "\f106";
+}
+.icon-close:before {
+    content: "\f107";
+}
+.icon-collapse:before {
+    content: "\f108";
+}
+.icon-deisolate:before {
+    content: "\f109";
+}
+.icon-details:before {
+    content: "\f10a";
+}
+.icon-donate:before {
+    content: "\f10b";
+}
+.icon-download:before {
+    content: "\f10c";
+}
+.icon-expand:before {
+    content: "\f10d";
+}
+.icon-export:before {
+    content: "\f10e";
+}
+.icon-feedback:before {
+    content: "\f10f";
+}
+.icon-file_download:before {
+    content: "\f110";
+}
+.icon-files:before {
+    content: "\f111";
+}
+.icon-fit:before {
+    content: "\f112";
+}
+.icon-fix_up_off:before {
+    content: "\f113";
+}
+.icon-fix_up_on:before {
+    content: "\f114";
+}
+.icon-flat_list:before {
+    content: "\f115";
+}
+.icon-flip:before {
+    content: "\f116";
+}
+.icon-github:before {
+    content: "\f117";
+}
+.icon-hidden:before {
+    content: "\f118";
+}
+.icon-info:before {
+    content: "\f119";
+}
+.icon-isolate:before {
+    content: "\f11a";
+}
+.icon-materials:before {
+    content: "\f11b";
+}
+.icon-measure_angle:before {
+    content: "\f11c";
+}
+.icon-measure_distance_parallel:before {
+    content: "\f11d";
+}
+.icon-measure_distance:before {
+    content: "\f11e";
+}
+.icon-measure:before {
+    content: "\f11f";
+}
+.icon-meshes:before {
+    content: "\f120";
+}
+.icon-missing_files:before {
+    content: "\f121";
+}
+.icon-model:before {
+    content: "\f122";
+}
+.icon-open_url:before {
+    content: "\f123";
+}
+.icon-open:before {
+    content: "\f124";
+}
+.icon-print3d:before {
+    content: "\f125";
+}
+.icon-settings:before {
+    content: "\f126";
+}
+.icon-share:before {
+    content: "\f127";
+}
+.icon-snapshot:before {
+    content: "\f128";
+}
+.icon-tree_mesh:before {
+    content: "\f129";
+}
+.icon-tree_view:before {
+    content: "\f12a";
+}
+.icon-twitter:before {
+    content: "\f12b";
+}
+.icon-up_y:before {
+    content: "\f12c";
+}
+.icon-up_z:before {
+    content: "\f12d";
+}
+.icon-visible:before {
+    content: "\f12e";
+}
+.icon-warning:before {
+    content: "\f12f";
+}

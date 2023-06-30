@@ -22,9 +22,11 @@
     <script src="libs/texmath.js"></script>
 
     <!-- conzept resources -->
-    <link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.340" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.340"></script><script src="/app/explore2/dist/core/utils.js?v0.51.340"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+    <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
 
-    <link rel="stylesheet" href="css/main.css?v0.007">
+    <script src="../explore2/node_modules/immortal-db/dist/immortal-db.min.js"></script>
+
+    <link rel="stylesheet" href="css/main.css?v0.51.466">
 
   </head>
 
@@ -32,7 +34,196 @@
 
     <div id="chat">
         
-     
+      <div class="top_menu">
+        <div class="toggler" title="chat sessions">
+          <div class="button close"></div>
+          <div class="button minimize"></div>
+          <div class="button maximize"></div>
+        </div>
+        <div class="title"><i class="fa-solid fa-user-tag"> &nbsp;</i><span id="chat-title"></span></div>
+        <button id="setting">
+          <svg viewBox="0 0 100 100" style="display:block;" role="img" width="30" height="30">
+            <title>settings</title>
+            <circle cx="50" cy="20" r="10" fill="#e15b64" />
+            <circle cx="50" cy="50" r="10" fill="#f8b26a" />
+            <circle cx="50" cy="80" r="10" fill="#99c959" />
+          </svg>
+        </button>
+        <div id="setDialog" style="display:none;">
+          <div class="setSwitch">
+            <div data-id="convOption" class="activeSwitch">chat</div>
+            <!--div data-id="speechOption">speech</div>
+            <div data-id="recOption">speech recognition</div-->
+          </div>
+          <div id="convOption">
+            <div class="presetSelect presetModelCls">
+              <label for="preSetModel">GPT model</label>
+              <select id="preSetModel">
+                <option value="gpt-3.5-turbo">gpt-3.5</option>
+                <option value="gpt-4">gpt-4</option>
+                <option value="gpt-4-32k">gpt-4-32k</option>
+              </select>
+            </div>
+            <div>
+              <div>API host</div>
+              <input class="inputTextClass" placeholder="https://example.com/" id="apiHostInput" />
+            </div>
+            <div>
+              <div>API key (only stored in your browser)</div>
+              <input class="inputTextClass" type="password" placeholder="sk-xxxxxx" id="keyInput" style="-webkit-text-security: disc;" />
+            </div>
+            <div>
+              <div class="justSetLine presetSelect">
+                <div>system role</div>
+                <div>
+                  <label for="preSetSystem"></label>
+                  <select id="preSetSystem">
+                    <option value="">default</option>
+                  </select>
+                </div>
+              </div>
+              <textarea class="inputTextClass areaTextClass" placeholder="You are a helpful assistant, try to answer concisely" id="systemInput"></textarea>
+            </div>
+            <div>
+              <span>character</span>
+              <input type="range" id="top_p" min="0" max="1" value="1" step="0.05" />
+              <div class="selectDef">
+                <span>accurate</span>
+                <span>creative</span>
+              </div>
+            </div>
+            <div>
+              <span>answer quality</span>
+              <input type="range" id="temp" min="0" max="2" value="1" step="0.05" />
+              <div class="selectDef">
+                <span>repetitive</span>
+                <span>nonsense</span>
+              </div>
+            </div>
+            <div>
+              <span>writing speed</span>
+              <input type="range" id="textSpeed" min="0" max="100" value="88" step="1" />
+              <div class="selectDef">
+                <span>slow</span>
+                <span>fast</span>
+              </div>
+            </div>
+            <div>
+              <span class="inlineTitle">continuous dialogue</span>
+              <label class="switch-slide">
+                <input type="checkbox" id="enableCont" checked hidden />
+                <label for="enableCont" class="switch-slide-label"></label>
+              </label>
+            </div>
+            <div>
+              <span class="inlineTitle">long reply</span>
+              <label class="switch-slide">
+                <input type="checkbox" id="enableLongReply" hidden />
+                <label for="enableLongReply" class="switch-slide-label"></label>
+              </label>
+            </div>
+          </div>
+          <div id="speechOption" style="display: none;">
+            <div class="presetSelect presetModelCls">
+              <label for="preSetService">speech synthesis</label>
+              <select id="preSetService">
+                <option value="2" selected>Edge</option>
+                <option value="1" selected>System</option>
+                <option value="3">Azure</option>
+              </select>
+            </div>
+            <div class="presetSelect presetModelCls">
+              <label for="preSetAzureRegion">Azure 区域</label>
+              <select id="preSetAzureRegion"></select>
+            </div>
+            <div>
+              <div>Azure Access Key</div>
+              <input class="inputTextClass" type="password" placeholder="Azure Key" id="azureKeyInput" style="-webkit-text-security: disc;" />
+            </div>
+            <div id="checkVoiceLoad" style="display: none;">
+              <svg>
+                <use xlink:href="#loadingIcon" />
+              </svg>
+              <span>load voice</span>
+            </div>
+            <div id="speechDetail">
+              <div>
+                <div class="justSetLine">
+                  <div>voices</div>
+                  <div id="voiceTypes">
+                    <span data-type="0">question voice</span>
+                    <span data-type="1" class="selVoiceType">answer voice</span>
+                  </div>
+                </div>
+                <select id="preSetSpeech"></select>
+              </div>
+              <div class="justSetLine presetSelect" id="azureExtra" style="display:none;">
+                <div class="presetModelCls">
+                  <label for="preSetVoiceStyle">style</label>
+                  <select id="preSetVoiceStyle"></select>
+                </div>
+                <div class="presetModelCls">
+                  <label for="preSetVoiceRole">role</label>
+                  <select id="preSetVoiceRole"></select>
+                </div>
+              </div>
+              <div>
+                <span>volume</span>
+                <input type="range" id="voiceVolume" min="0" max="1" value="1" step="0.1" />
+                <div class="selectDef">
+                  <span>low</span>
+                  <span>high</span>
+                </div>
+              </div>
+              <div>
+                <span>rate</span>
+                <input type="range" id="voiceRate" min="0.1" max="2" value="1" step="0.1" />
+                <div class="selectDef">
+                  <span>low</span>
+                  <span>high</span>
+                </div>
+              </div>
+              <div>
+                <span>pitch</span>
+                <input type="range" id="voicePitch" min="0" max="2" value="1" step="0.1" />
+                <div class="selectDef">
+                  <span>low</span>
+                  <span>high</span>
+                </div>
+              </div>
+              <div>
+                <span class="inlineTitle">continuous reading</span>
+                <label class="switch-slide">
+                  <input type="checkbox" id="enableContVoice" checked hidden />
+                  <label for="enableContVoice" class="switch-slide-label"></label>
+                </label>
+              </div>
+              <div>
+                <span class="inlineTitle">automatic reading</span>
+                <label class="switch-slide">
+                  <input type="checkbox" id="enableAutoVoice" hidden />
+                  <label for="enableAutoVoice" class="switch-slide-label"></label>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div id="recOption" style="display: none;">
+            <div id="noRecTip" style="display: block;">Your browser does not support speech recognition</div>
+            <div id="yesRec" style="display: none;">
+              <div class="presetSelect presetModelCls">
+                <label for="selectLangOption">language</label>
+                <select id="selectLangOption"></select>
+              </div>
+              <div class="presetSelect presetModelCls">
+                <label for="selectDiaOption">dialect</label>
+                <select id="selectDiaOption"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
       <div style="display: none">
         <svg>
           <symbol viewBox="0 0 24 24" id="optionIcon">
@@ -115,238 +306,48 @@
           </svg>
         </div>
       </div>
+
+        <nav class="nav">
+        <div id="newChat">
+          <svg width="24" height="24">
+            <use xlink:href="#addIcon" />
+          </svg>
+          <span>new chat</span>
+        </div>
+        <div id="chatList"></div>
+        <div class="navFooter">
+          <div class="navFunc">
+            <div id="exportChat">
+              <svg width="24" height="24">
+                <use xlink:href="#exportIcon" />
+              </svg>
+              <span>export</span>
+            </div>
+            <label id="importChat" for="importChatInput">
+              <svg width="24" height="24">
+                <use xlink:href="#importIcon" />
+              </svg>
+              <span>import</span>
+            </label>
+            <input type="file" style="display: none;" id="importChatInput" accept="application/json" />
+            <div id="clearChat">
+              <svg width="24" height="24">
+                <use xlink:href="#clearAllIcon" />
+              </svg>
+              <span>clear all</span>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <!--div class="links"><a href="https://github.com/alitrack/gptweb" target="_blank"
+                        rel="noopener noreferrer">Github</a></div-->
+        </div>
+      </nav>
+
       <div class="chat_window">
         <div class="overlay"></div>
-        <nav class="nav">
-          <div id="newChat">
-            <svg width="24" height="24">
-              <use xlink:href="#addIcon" />
-            </svg>
-            <span>new chat</span>
-          </div>
-          <div id="chatList"></div>
-          <div class="navFooter">
-            <div class="navFunc">
-              <div id="exportChat">
-                <svg width="24" height="24">
-                  <use xlink:href="#exportIcon" />
-                </svg>
-                <span>export</span>
-              </div>
-              <label id="importChat" for="importChatInput">
-                <svg width="24" height="24">
-                  <use xlink:href="#importIcon" />
-                </svg>
-                <span>import</span>
-              </label>
-              <form><input type="file" style="display: none;" id="importChatInput" accept="application/json" /></form></form>
-              <div id="clearChat">
-                <svg width="24" height="24">
-                  <use xlink:href="#clearAllIcon" />
-                </svg>
-                <span>clear all</span>
-              </div>
-            </div>
-            <div class="divider"></div>
-            <!--div class="links"><a href="https://github.com/alitrack/gptweb" target="_blank"
-                          rel="noopener noreferrer">Github</a></div-->
-          </div>
-        </nav>
-        <div class="top_menu">
-          <div class="toggler" title="chat sessions">
-            <div class="button close"></div>
-            <div class="button minimize"></div>
-            <div class="button maximize"></div>
-          </div>
-          <div class="title"><span id="chat-title"></span></div>
-          <button id="setting">
-            <svg viewBox="0 0 100 100" style="display:block;" role="img" width="30" height="30">
-              <title>settings</title>
-              <circle cx="50" cy="20" r="10" fill="#e15b64" />
-              <circle cx="50" cy="50" r="10" fill="#f8b26a" />
-              <circle cx="50" cy="80" r="10" fill="#99c959" />
-            </svg>
-          </button>
-          <div id="setDialog" style="display:none;">
-            <div class="setSwitch">
-              <div data-id="convOption" class="activeSwitch">chat</div>
-              <div data-id="speechOption">speech</div>
-              <div data-id="recOption">speech recognition</div>
-            </div>
-            <div id="convOption">
-              <div class="presetSelect presetModelCls">
-                <label for="preSetModel">GPT model</label>
-                <select id="preSetModel">
-                  <option value="gpt-3.5-turbo">gpt-3.5</option>
-                  <option value="gpt-4">gpt-4</option>
-                  <option value="gpt-4-32k">gpt-4-32k</option>
-                </select>
-              </div>
-              <div>
-                <div>API host</div>
-                <form><input class="inputTextClass" placeholder="https://example.com/" id="apiHostInput" /></form>
-              </div>
-              <div>
-                <div>API key (only stored in your browser)</div>
-                <form><input class="inputTextClass" type="password" placeholder="sk-xxxxxx" id="keyInput" style="-webkit-text-security: disc;" /></form>
-              </div>
-              <div>
-                <div class="justSetLine presetSelect">
-                  <div>system role</div>
-                  <div>
-                    <label for="preSetSystem">default role</label>
-                    <select id="preSetSystem">
-                      <option value="">default</option>
-                    </select>
-                  </div>
-                </div>
-                <textarea class="inputTextClass areaTextClass" placeholder="You are a helpful assistant, try to answer concisely" id="systemInput"></textarea>
-              </div>
-              <div>
-                <span>character</span>
-                <form><input type="range" id="top_p" min="0" max="1" value="1" step="0.05" /></form>
-                <div class="selectDef">
-                  <span>accurate</span>
-                  <span>creative</span>
-                </div>
-              </div>
-              <div>
-                <span>answer quality</span>
-                <form><input type="range" id="temp" min="0" max="2" value="1" step="0.05" /></form>
-                <div class="selectDef">
-                  <span>repetitive</span>
-                  <span>nonsense</span>
-                </div>
-              </div>
-              <div>
-                <span>writing speed</span>
-                <form><input type="range" id="textSpeed" min="0" max="100" value="88" step="1" /></form>
-                <div class="selectDef">
-                  <span>slow</span>
-                  <span>fast</span>
-                </div>
-              </div>
-              <div>
-                <span class="inlineTitle">continuous dialogue</span>
-                <label class="switch-slide">
-                  <form><input type="checkbox" id="enableCont" checked hidden /></form>
-                  <label for="enableCont" class="switch-slide-label"></label>
-                </label>
-              </div>
-              <div>
-                <span class="inlineTitle">long reply</span>
-                <label class="switch-slide">
-                  <form><input type="checkbox" id="enableLongReply" hidden /></form>
-                  <label for="enableLongReply" class="switch-slide-label"></label>
-                </label>
-              </div>
-            </div>
-            <div id="speechOption" style="display: none;">
-              <div class="presetSelect presetModelCls">
-                <label for="preSetService">speech synthesis</label>
-                <select id="preSetService">
-                  <option value="2" selected>Edge</option>
-                  <option value="1" selected>System</option>
-                  <option value="3">Azure</option>
-                </select>
-              </div>
-              <div class="presetSelect presetModelCls">
-                <label for="preSetAzureRegion">Azure 区域</label>
-                <select id="preSetAzureRegion"></select>
-              </div>
-              <div>
-                <div>Azure Access Key</div>
-                <form><input class="inputTextClass" type="password" placeholder="Azure Key" id="azureKeyInput" style="-webkit-text-security: disc;" /></form>
-              </div>
-              <div id="checkVoiceLoad" style="display: none;">
-                <svg>
-                  <use xlink:href="#loadingIcon" />
-                </svg>
-                <span>load voice</span>
-              </div>
-              <div id="speechDetail">
-                <div>
-                  <div class="justSetLine">
-                    <div>voices</div>
-                    <div id="voiceTypes">
-                      <span data-type="0">question voice</span>
-                      <span data-type="1" class="selVoiceType">answer voice</span>
-                    </div>
-                  </div>
-                  <select id="preSetSpeech"></select>
-                </div>
-                <div class="justSetLine presetSelect" id="azureExtra" style="display:none;">
-                  <div class="presetModelCls">
-                    <label for="preSetVoiceStyle">style</label>
-                    <select id="preSetVoiceStyle"></select>
-                  </div>
-                  <div class="presetModelCls">
-                    <label for="preSetVoiceRole">role</label>
-                    <select id="preSetVoiceRole"></select>
-                  </div>
-                </div>
-                <div>
-                  <span>volume</span>
-                  <form><input type="range" id="voiceVolume" min="0" max="1" value="1" step="0.1" /></form>
-                  <div class="selectDef">
-                    <span>low</span>
-                    <span>high</span>
-                  </div>
-                </div>
-                <div>
-                  <span>rate</span>
-                  <form><input type="range" id="voiceRate" min="0.1" max="2" value="1" step="0.1" /></form>
-                  <div class="selectDef">
-                    <span>low</span>
-                    <span>high</span>
-                  </div>
-                </div>
-                <div>
-                  <span>pitch</span>
-                  <form><input type="range" id="voicePitch" min="0" max="2" value="1" step="0.1" /></form>
-                  <div class="selectDef">
-                    <span>low</span>
-                    <span>high</span>
-                  </div>
-                </div>
-                <div>
-                  <span class="inlineTitle">continuous reading</span>
-                  <label class="switch-slide">
-                    <form><input type="checkbox" id="enableContVoice" checked hidden /></form>
-                    <label for="enableContVoice" class="switch-slide-label"></label>
-                  </label>
-                </div>
-                <div>
-                  <span class="inlineTitle">automatic reading</span>
-                  <label class="switch-slide">
-                    <form><input type="checkbox" id="enableAutoVoice" hidden /></form>
-                    <label for="enableAutoVoice" class="switch-slide-label"></label>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div id="recOption" style="display: none;">
-              <div id="noRecTip" style="display: block;">Your browser does not support speech recognition</div>
-              <div id="yesRec" style="display: none;">
-                <div class="presetSelect presetModelCls">
-                  <label for="selectLangOption">language</label>
-                  <select id="selectLangOption"></select>
-                </div>
-                <div class="presetSelect presetModelCls">
-                  <label for="selectDiaOption">dialect</label>
-                  <select id="selectDiaOption"></select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="messages">
+
           <div id="chatlog"></div>
-          <div id="stopChat" title="stop">
-            <svg width="24" height="24">
-              <use xlink:href="#stopResIcon" />
-            </svg>
-          </div>
         </div>
         <div class="bottom_wrapper clearfix">
           <div class="message_input_wrapper">
@@ -367,22 +368,34 @@
               </div>
             </div>
           </div>
-          <button class="loaded" id="sendbutton" title="send message">
-            <span><i class="fa-solid fa-paper-plane"></i></span>
-            <svg style="margin:0 auto;height:40px;width:100%;">
-              <use xlink:href="#loadingIcon" />
-            </svg>
-          </button>
-          <button id="clearConv">
-            <svg style="margin:0 auto;display:block" role="img" width="20px" height="20px">
-              <title>clear session</title>
-              <use xlink:href="#deleteIcon" />
-            </svg>
-          </button>
+
+          <span id="input-button-bar">
+
+            <button id="stopChat" title="stop chat">
+              <span id="center-icon"><i class="fa-solid fa-stop"></i></span>
+              <!--svg style="margin:0 auto;display:block" width="24" height="24"> <use xlink:href="#stopResIcon" /> </svg-->
+            </button>
+
+            <button class="loaded" id="sendbutton" title="send message">
+              <span><i class="fa-solid fa-paper-plane"></i></span>
+              <svg style="margin:0 auto;height:40px;width:100%;">
+                <use xlink:href="#loadingIcon" />
+              </svg>
+            </button>
+
+            <button id="clearConv">
+              <svg style="margin:0 auto;display:block" role="img" width="20px" height="20px">
+                <title>clear session</title>
+                <use xlink:href="#deleteIcon" />
+              </svg>
+            </button>
+
+          </span>
+
         </div>
       </div>
       
-      <script src="src/main.js?v0.007"></script>
+      <script src="src/main.js?v0.51.466"></script>
 
     </div>
 

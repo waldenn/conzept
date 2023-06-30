@@ -14,6 +14,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let language          = args.language;
   let qid               = args.qid;
   let pid               = args.pid;
+  let gid               = args.gid;
   let title             = args.title;
   let source            = args.source;
 
@@ -101,6 +102,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   }
 
   item.date_obj = getDatingHTML( item, args );
+
   const dating  = ( valid( item.date_obj.dating )? item.date_obj.dating : '' ); // TODO: do this using a JSON-field
 
   let hide              = '';
@@ -112,6 +114,10 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let motto_text        = '';
 	let loader            = '<img class="mv-loader ' + id + '" alt="loading" width="36" height="36" src="' + explore.base + '/app/explore2/assets/images/loading.gif"/>';
 
+  //if ( valid( item.gid ) ){
+    //console.log( item.gid );
+  //}
+
   if ( valid ( item.languages ) ){
     languages = item.languages;
   }
@@ -120,6 +126,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     tags      = item.tags; // use the setWikidata() found tags
     args.tag  = tags[0];
+    args.tags  = item.tags.join(',');
 
   }
 
@@ -269,7 +276,31 @@ function createItemHtml( args ){ // creates the HTML-card for each result
       else if ( v.type === 'bookmark' ){
 
         if ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ){ // check if this item was bookmarked
-          v.icon = 'bookmark-icon fa-solid fa-bookmark bookmarked';
+
+          $.each( findObjectByKey( explore.bookmarks, 'name', title ), function( index, obj ){
+
+            if ( obj.language === explore.language ){
+
+              if ( valid( obj.qid ) ){
+
+                if ( obj.qid === item.qid ){
+
+                  v.icon = 'bookmark-icon fa-solid fa-bookmark bookmarked';
+
+                }
+
+              }   
+              else {
+
+                v.icon = 'bookmark-icon fa-solid fa-bookmark bookmarked';
+
+              }
+
+
+            }
+
+          });
+
         }
         else {
           v.icon = 'bookmark-icon fa-regular fa-bookmark bookmark';
@@ -289,7 +320,61 @@ function createItemHtml( args ){ // creates the HTML-card for each result
       else if ( v.mv ){ // MULTI-value button
 
         // check what type of multi-value we have
-        if ( Array.isArray( item[name] ) || ( v.type === 'wikipedia-qid-sparql' || v.type === 'rest-json' ) ){ // array-mv [ Q20, Q44, ...]
+        if ( v.type === 'list-of-objects' ){
+
+          let obj = item[name + '_loo' ];
+
+          //console.log( 'B: ', v, name, item[name], obj );
+
+          let mv_html = '';
+          let target  = '';
+          let newtab  = false;
+          let extra_class = '';
+
+          if ( Object.keys( obj ).length === 1 ){ // check how many values we actually have
+
+            //console.log('loo with one value: ', obj );
+
+            let label = Object.keys( obj )[0];
+            let url   = decodeURIComponent( Object.values( obj )[0] );
+
+            //console.log( url );
+            //console.log( label );
+            //console.log( label, v.type_output );
+
+            o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type_output, url: url, title: label } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+
+		        o[name + '_display_value'] = v.text;
+
+            //console.log( 'fixme: ', o[ name ] );
+
+          }
+          else {
+
+            console.log('TODO: loo with mulitple values: ', title, name, obj );
+
+            // get shorter display label for URLs
+            for ( let [label, url] of Object.entries( obj )) {
+
+              console.log(`${label}: ${url}`);
+
+              // remove protocol-string (if needed)
+              label = label.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
+
+              mv_html += '<li><a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type:  v.type_output, url: url , title: label } ) ) + '> ' + label + '</a></li>';
+
+              //mv_html += '<li><a class="mv-extra-topic ' + extra_class + '" ' + target + 'href="' + url + '" title="' + label + '" aria-label="' + label + '">' + label + '</a></li>';
+
+              o[name + '_display_value'] = '';
+
+            };
+
+            o[ name ]  = '<details title="' + v.title + '" aria-label="' + v.title + '" id="mv-' + id + '" class="multi-value"><summary class="multi-value"><span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span></summary> <p class="mv-content"><ul class="multi-value">' + mv_html + '</ul></p></details> ';
+
+          }
+
+        }
+        else if ( Array.isArray( item[name] ) || ( v.type === 'wikipedia-qid-sparql' || v.type === 'rest-json' ) ){ // array-mv [ Q20, Q44, ...]
 
           if ( item[name].length < 2 ){ // check how many values we actually have
 
@@ -503,6 +588,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
               // add to sections structure
               sections_struct[ s ].push({ name: name, rank: rank, html: o[ name ], });
 
+              //if ( v.type === 'list-of-objects' ){ console.log( 'rendering: ', o[ name ] ); }
+
             }
 
           });
@@ -514,6 +601,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
             // add to sections structure
             sections_struct[ v.section ].push({ name: name, rank: v.rank, html: o[ name ], });
+
+            //if ( v.type === 'list-of-objects' ){ console.log( 'rendering: ', o[ name ] ); }
 
           }
 
@@ -671,7 +760,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   });
 
-
   // set the topic-link values (where possible)
   if ( item.subclass_qid !== '' ){ // TODO: verify if this subclass-preference works well in most cases
 
@@ -820,7 +908,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( args.id == 'n00' ){ // raw-search-string topic 
 
-      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title_quoted + '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;">(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)</a>';
+      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '&setlang=' + explore.language + '-' + explore.language } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;">(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)</a>';
 
     }
     else {
@@ -876,30 +964,67 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   //  - add datasource filter
   //  - add Wikidata "qid" to bookmark meteadata as "gid"
   //  - for Wikidata datasource: check by "gid" also
-  const bookmark_class = findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ? 'bookmarked' : ''; // check if this item was bookmarked
+  let bookmark_class = '';
+
+  // check if this item was bookmarked
+  if ( findObjectByKey( explore.bookmarks, 'name', title ).length > 0 ){
+
+    $.each( findObjectByKey( explore.bookmarks, 'name', title ), function( index, obj ){
+
+      if ( obj.language === explore.language ){
+
+        if ( valid( obj.qid ) ){
+
+          if ( obj.qid === item.qid ){
+
+            bookmark_class = 'bookmarked';
+
+          }
+
+        }
+        else {
+
+          bookmark_class = 'bookmarked';
+
+        }
+
+      }
+
+    })
+
+  }
+
+  //console.log( 'args: ', args );
 
   if ( args.id == 'n00' ){ // raw-search-string
 
-    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title_quoted + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title.replace(/:/g, ': ') + '</a>';
+    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title_.replace(/:/g, ': ') + '</a>';
 
     item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
   }
 
-  if ( valid( item.display_url ) ){ // assume we can render an embedded page-link
+  if ( valid( item.display_url ) ){
 
-    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+    if ( valid( item.newtab ) ){ // open link in a new tab
+
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+
+      // FIXME
+      //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
+
+      // encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
+
+    }
+    else {
+
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+
+    }
 
   }
   else { // assume wikipedia / wikidata render
 
     topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
-
-  }
-
-  if ( valid( item.description ) ){ // assume wikipedia / wikidata (FIXME: make this more general)
-
-
-    description = '<a href="javascript:void(0)" class="summary-link" aria-label="topic description" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '><div class="topic-description">' + item.description + '</div></a>'; 
 
   }
 
@@ -931,26 +1056,63 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   const tts_buttons = ( source === 'wikipedia' ) ? '<div class="topic-tts-buttons">' + o.speak_article + o.pause_speaking_article + o.stop_speaking_article + '</div>' : '';
 
+  const grid_class = valid( explore.gridmode )? 'sidebar-grid-item' : '' ;
+
+  if ( valid( item.description ) ){
+
+    if ( valid( item.display_url ) ){ // assume we can render an embedded page-link
+
+      description =
+        // FIXME: the link-wrap breaks the "topic-card-div", why?
+        // TODO: separate the "topic-description" from the link-wrap
+        //`<a href="javascript:void(0)" class="summary-link aria-label="topic description" tabindex="-1" ` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) ) +
+          '<div class="topic-description">' +
+            '<span class="item-description">' + item.description + '</span>' +
+            thumbnail +
+            '<div class="summary ' + pid + '">' + snippet + '</div>' +
+          '</div>' ;
+        //'</a>';
+
+    }
+    else { // assume wikipedia / wikidata render
+
+      description =
+        //'<a href="javascript:void(0)" class="summary-link" aria-label="topic description" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) ) +
+          '<div class="topic-description">' +
+            '<span class="item-description">' + item.description + '</span>' +
+            thumbnail +
+            '<div class="summary ' + pid + '">'
+              + snippet +
+            '</div>' +
+          '</div>' ;
+        //'</a>'; 
+
+    }
+
+  }
+  else {
+
+    description = thumbnail;
+
+  }
+
+  if ( getGridColumns('#results') > 1 ){
+    extra_classes += ' bordered ';
+  } 
+
   // compose HTML output
-  const html_output = '<div id="' + id + '" class="entry articles box ' + extra_classes + '" style="' + hide + '">' + 
+  const html_output = '<div id="' + id + '" class="entry articles box ' + extra_classes + ' ' + grid_class + '" style="' + hide + '">' + 
 
     topic_title +
 
     '<div class="topic">' + headline + '</div>' +
     math_formulas.join('') +
-    description +
     motto_text +
-
-    '<a href="javascript:void(0)" class="summary-link" aria-label="wikipedia" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: 'string', current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' +
-      thumbnail +
-      '<div class="summary ' + pid + '">' +
-        snippet +
-      '</div>' +
-    '</a>' + 
+    description +
 
     tts_buttons +
+    o.audio_widget_string + o.audio_widget_custom_string +
 
-    o.audio_widget_string +
     '<div style="clear: both;"></div>' +
 
     explore.minimal_detail_open +
@@ -963,6 +1125,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     explore.minimal_detail_close +
 
   '</div>';
+
+  //console.log( html_output );
 
   return html_output;
 

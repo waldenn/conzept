@@ -43,6 +43,7 @@ const loadNextPage = async function() {
 
       let topicResults = await fetchWikidataQuery();
 
+      //console.log( 'explore.totalRecords structured query: ', explore.totalRecords );
       topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
 
       renderTopics( { 'wikidata' : { data: topicResults[0] } } );
@@ -56,7 +57,7 @@ const loadNextPage = async function() {
 
     let combined_pagesize = 0; // reset
 
-    $.each( explore.datasources, function( index, source ){ // for each active datasource
+    $.each( explore.datasources, async function( index, source ){ // for each active datasource
 
       if ( ! datasources[ source ].done ){
 
@@ -283,6 +284,8 @@ function triggerQueryForm(){
   }
   else if ( explore.query !== '' ){ // structured-query
 
+    //console.log('structured query');
+
     let check = setInterval(function() {
 
      if ( $('.querybuilder__run button').length > 0 ) {
@@ -309,6 +312,7 @@ function triggerQueryForm(){
       title     : explore.q,
       language  : explore.language,
       qid       : explore.qid,
+      gid       : explore.gid,
       url       : explore.uri,
       tag       : '',
       languages : '',
@@ -332,7 +336,9 @@ function triggerQueryForm(){
 
     $('.submitSearch').trigger('click'); // synthetic trigger submit
 
-    // show non-wikipedia types (if needed)
+    //console.log('trigger form: ', explore.q, explore.type, explore.qid, explore.gid, explore.uri );
+
+    /*
     if ( explore.type !== 'string' && explore.type !== '' ){
 
       handleClick({
@@ -341,6 +347,7 @@ function triggerQueryForm(){
         title     : explore.q,
         language  : explore.language,
         qid       : explore.qid,
+        gid       : explore.gid,
         url       : explore.uri,
         tag       : '',
         languages : '',
@@ -349,6 +356,7 @@ function triggerQueryForm(){
       });
 
     }
+    */
 
   }
   else if ( explore.q === '' && explore.type === 'wikipedia-qid' && explore.qid !== '' ){ // wikipedia-qid query
@@ -733,12 +741,14 @@ function init() {
     explore.uls_languages[ code ] =  langobj.name + ' - ' + langobj.title;
   }
 
+  /*
   if ( explore.direct === true || explore.direct === 'true' ){
     explore.direct = true;
   }
   else {
     explore.direct = false;
   }
+  */
 
   // pre-construct the HTML tag-select options, so we only have to do this once
   explore.osm_tag_options += '<option value=""></option>';
@@ -826,20 +836,32 @@ function renderBookmarks(){
 
 			let icon = '';
 
-			if ( node.type === 'string' ){
-				icon = '<i style="font-size: smaller; font-style: italic;" class="fa-brands fa-wikipedia-w"></i>:' + node.language ;
+			if ( valid( node.datasource ) ){ // datasource item
+
+        if ( node.datasource === 'raw' ){ // raw-item
+
+          icon = '<sub>' + node.language + '</sub> &nbsp;';
+
+        }
+        else { // real topic item
+
+          icon = '<small>' + datasources[ node.datasource ].icon + '</small><sub>' + node.language + '</sub> &nbsp;';
+
+        }
+
 			}
+      /*
 			else if ( node.type === 'video' ){
-				icon = '<span class="icon"><i class="fa-solid fa-video">';
+				icon = '<span class="icon"><i class="fa-solid fa-video"></i></span>';
 			}
 			else if ( node.type === 'music' ){
-				icon = '<span class="icon"><i class="fa-brands fa-itunes-note">';
+				icon = '<span class="icon"><i class="fa-brands fa-itunes-note"></i></span>';
 			}
 			else if ( node.type === 'images' ){
-				icon = '<span class="icon"><i class="fa-regular fa-images">';
+				icon = '<span class="icon"><i class="fa-regular fa-images"></i></span>';
 			}
 			else if ( node.type === 'book' || node.type === 'archive-book-pdf' || node.type === 'archive-book-html' ){
-				icon = '<span class="icon"><i class="fa-solid fa-book-open">';
+				icon = '<span class="icon"><i class="fa-solid fa-book-open"></i></span>';
 			}
 			else if ( node.type === 'archive' ){
 				icon = '<span class="icon"><i class="fa-solid fa-archive"></i></span>';
@@ -850,11 +872,12 @@ function renderBookmarks(){
 			else if ( node.type === 'compare' ){
 				icon = '<span class="icon"><i class="fa-solid fa-equals"></i></span>';
 			}
+      */
 			else if ( node.type === 'url' ){
 				icon = '<span class="icon"><i class="fa-solid fa-up-right-from-square"></i></span>';
 			}
-			else {
-				icon = '<span class="icon"><i class="fa-solid fa-link"></i></span>';
+			else { // link, link-split, ...
+				icon = '<span class="icon"><i class="fa-solid fa-link"></i></span><sub>' + node.language + '</sub>';
 			}
 
 			$li.find('.jqtree-title').before('<div class="bookmark-row">');
@@ -869,15 +892,18 @@ function renderBookmarks(){
 			else { // construct bookmark-element and its action-buttons
 
 				let explore_button  = '';
+				let tag_button      = '&nbsp;'; // '<span class="icon"><i class="fa-solid fa-o"></i></span>';
 				let geo_button      = '&nbsp;';
+
 				const qid           = valid( node.qid ) ? node.qid : '';
         const osm_relation_id = ''; // TODO: add this when a bookmark is added
 
-				if ( node.type === 'string' ){ // for wikipedia-bookmark add an explore-button
+				//if ( node.type === 'string' ){ // for wikipedia-bookmark add an explore-button
 
 					explore_button = '&nbsp;<a href="javascript:void(0)" aria-label="exploreBookmark" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
 
-				}
+
+				//}
 
 				if ( valid( node.geo ) ){ // has a geo-location
 
@@ -887,19 +913,85 @@ function renderBookmarks(){
           let geo_url = `${explore.base}/app/map/?l=${node.language}&bbox=${getBoundingBox( lon, lat, 0.05 )}&lat=${lat}&lon=${lon}&osm_id=${ valid( osm_relation_id )? osm_relation_id : "" }&qid=${qid}&title=${ encodeURIComponent( node.name ) }`;
 
           // FIXME: trigger click on lower element
-					geo_button = `<a title="show on map" target="infoframe" href="${ geo_url }"><i class="fa-solid fa-location-dot"></i></a> `;
+					//geo_button = `<a title="show on map" target="infoframe" href="${ geo_url }"><i class="fa-solid fa-location-dot"></i></a> `;
 					//geo_button = `<a title="show on map" aria-label="show on map" href="javascript:void(0)" onclick="openLink( event, &quot;${ geo_url }&quot; )"><i class="fa-solid fa-location-dot"></i></a> `;
 
 				}
 
-				$li.find('.jqtree-title.jqtree_common ').prepend( explore_button +  geo_button + icon + '&nbsp;' );
-				$li.find('.jqtree-element').append( '&nbsp;<a href="javascript:void(0)" aria-label="removeBookmark" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a> ');
+				if ( valid( node.tags ) ){ // has a tag class
+
+					let tags = [];
+
+          if ( ! Array.isArray( node.tags ) ){ // it is a comma-separated-string
+            tags = node.tags.split(',');
+          }
+          else { // array of tags
+
+            tags = node.tags;
+
+          }
+
+					// set tag_icon
+					if ( valid( conzept_tags[ tags[0] ] ) ){ // found a matching main-tag, now also check the sub-tags
+
+						let tag = conzept_tags[ tags[0] ];
+
+						let tag_icon = '';
+
+						if ( tags[1] !== '' ){ // a sub-tag is defined
+
+							// check if there is a matching sub-tag object
+							if ( valid( tag.sub[ tags[1] ] ) ){ // match
+
+								tag = conzept_tags[ tags[0] ].sub[ tags[1] ];
+
+								tag_icon = ' <i title="' + tag.text + '" class="tag-icon ' + tag.icon[0] + '"></i>';
+
+								if ( valid( tag.icon[1] ) ){ // also add the second icon-symbol
+									tag_icon += ' <i title="' + tag.text + '" class="tag-icon ' + tag.icon[1] + '"></i>';
+								}
+
+							}
+							else { // no matching sub-tag object
+
+								tag_icon = ' <i title="' + tag.text + '" class="tag-icon ' + tag.icon[0] + '"></i>';
+
+								if ( valid( tag.icon[1] ) ){ // also add the second icon-symbol
+									tag_icon += ' <i title="' + tag.text + '" class="tag-icon ' + tag.icon[1] + '"></i>';
+								}
+
+							}
+
+						}
+						else { // set icon from root-class
+
+							tag_icon = ' <i title="' + tag.text + '" class="tag-icon ' + tag.icon[0] + '"></i>';
+
+						}
+
+						tag_button += tag_icon + ' ';
+
+					}
+
+        }
+
+				// check bookmark-select status
+				const bookmark_selected		= valid( node.selected )? 'selected' : ''; 
+				const bookmark_icon_class = valid( node.selected )? 'fa-square-check' : 'fa-square'; 
+
+				$li.find('.jqtree-title.jqtree_common ').prepend( explore_button + tag_button + geo_button + icon + '&nbsp;' );
+				$li.find('.jqtree-element').append(
+          '<a href="javascript:void(0)" aria-label="removeBookmark" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a>' +
+          '<a href="javascript:void(0)" aria-label="selectBookmark" title="select bookmark" onclick="event.stopPropagation(); selectBookmark( event, &quot;'+ node.id +'&quot;)" class="bookmark-select '+ bookmark_selected +'" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-regular '+ bookmark_icon_class +'"></i></span></a>'
+        );
+
 			}
 
 			$li.find('b').after( node.custom_i + '</div>' );
 			$li.attr('id', node.id);
 			$li.attr('data-type', node.type);
-			$li.attr('title', node.display );
+			$li.attr('title', `${node.name} (${ valid(node.datasource)? node.datasource : 'link view'}, ${node.language})` );
+			$li.attr('data-select', false );
 
 			$li.keypress( function( event ){
 
@@ -914,6 +1006,31 @@ function renderBookmarks(){
 		}
 
 	});
+
+  updateSelectedBookmarksCounter();
+
+	/*
+	// triggered when a tree node is selected or deselected.
+	t.on( 'tree.select', function(event) {
+
+			if ( event.node ){ // node was selected
+
+				let node = event.node;
+				console.log( 'bookmark selected: ', node.name, node.id );
+
+			}
+			else { // a node was deselected
+
+				// event.previous_node contains the deselected node
+				let node = event.previous_node;
+				console.log( 'bookmark deselected: ', node.name, node.id );
+
+			}
+
+		}
+
+	);
+	*/
 
 }
 
@@ -933,7 +1050,7 @@ function openLink( event, url ){
 }
 */
 
-function setupBookmarks() {
+function setupBookmarks(){
 
   const t = $('#tree');
 
@@ -965,12 +1082,15 @@ function setupBookmarks() {
 
     //$('#collapse').click(function() {
       let tree = t.tree('getTree');
+
       tree.iterate(function(node) {
 
         if (node.hasChildren()) {
           t.tree('closeNode', node, true);
         }
+
         return true;
+
       });
     //});
 
@@ -1007,10 +1127,12 @@ function openBookmark( event, newtab ) {
 
   let node = event.node; // clicked node
 
+  //console.log( 'openBookmark', node );
+
   // items can be:
-  //		URL (new handleClick type?) --> IF its an iframe-safe URL: load this URL in the iframe 
+  //		URL (new handleClick type?) --> IF its an iframe-safe URL: load this URL in the link/link-split iframe(s)
   //		                            --> ELSE: load this URL in a new tab 
-  //  	string											--> construct: type, title, language 
+  //  	string											--> construct: datasource, type, title, language 
 
   // detect bookmark type
 
@@ -1018,7 +1140,18 @@ function openBookmark( event, newtab ) {
 
   setLanguage ( node.language );
 
-  console.log( 'url: ', node.url );
+  let datasource = valid( node.datasource ) ? node.datasource : '';
+
+  if ( valid( datasource ) ){
+
+    updateActiveDatasources( [ datasource ]  );
+
+  }
+  else {
+
+    updateActiveDatasources( [ 'wikipedia' ]  ); // fallback
+
+  }
 
   if ( pattern.test(node.url) ) { // check if bookmark-type is a link (internal or external)
 
@@ -1029,7 +1162,7 @@ function openBookmark( event, newtab ) {
     }
     else if ( newtab ){ // user wants URL to open in a new tab
 
-      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=link&u=' + encodeURIComponent( node.url );
+      const url = 'https://' + explore.host + explore.base + '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=link&u=' + encodeURIComponent( node.url );
 
       openInNewTab( url );
 
@@ -1038,11 +1171,12 @@ function openBookmark( event, newtab ) {
 
       handleClick({ 
         id        : 'n1-0',
-        type      : 'link',
+        type      : valid( node.type === 'link-split' )? 'link-split' : 'link',
         title     : node.name,
         language  : node.language,
+        source    : datasource,
         qid       : '',
-        url       : encodeURI( node.url ),
+        url       : node.url,
         tag       : '',
         languages : '',
         custom    : '',
@@ -1052,29 +1186,77 @@ function openBookmark( event, newtab ) {
     }
 
   }
-  else { // wikipedia title-string
+  else { // non-link bookmark: string / qid / gid
 
-    if ( newtab ){
+    //console.log( node );
 
-      const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=string' + '#' + explore.hash;
+    if ( node.datasource === 'wikipedia' ){ // wikipedia title-string
 
-      openInNewTab( url );
+      if ( newtab ){
+
+        const url = '/explore/' + encodeURIComponent( node.name ) + '?l=' + explore.language + '&t=string' + '#' + explore.hash;
+
+        openInNewTab( url );
+
+      }
+      else {
+
+        handleClick({ 
+          id          : 'n1-0',
+          type        : 'string',
+          title       : node.name,
+          language    : node.language,
+          source      : datasource,
+          qid         : '',
+          url         : '',
+          tag         : '',
+          languages   : '',
+          custom      : '',
+          target_pane : 'p1',
+        });
+
+      }
 
     }
-    else {
+    else if ( valid( datasources[ node.datasource ]) ){ // some other datasource title / ID
 
-      handleClick({ 
-        id          : 'n1-0',
-        type        : 'string',
-        title       : node.name,
-        language    : node.language,
-        qid         : '',
-        url         : '',
-        tag         : '',
-        languages   : '',
-        custom      : '',
-        target_pane : 'p1',
-      });
+      // TODO: QQQ use "qid" or "gid"
+
+      //console.log( node.datasource, node );
+
+      // URL-substitution variables
+      let language    = node.language;
+      let qid         = valid( node.qid )? node.qid : '';
+      let gid         = valid( node.gid )? node.gid : '';
+
+      let url_format  = datasources[ node.datasource ].display_url;
+      let url         = eval(`\`${ url_format }\``);
+
+      console.log( url );
+
+      if ( newtab ){
+
+        openInNewTab( url );
+
+      }
+      else {
+
+        handleClick({ 
+          id          : 'n1-0',
+          type        : 'link',
+          title       : node.name,
+          language    : node.language,
+          source      : datasource,
+          qid         : valid( node.qid )? node.qid : '',
+          gid         : valid( node.gid )? node.gid : '',
+          url         : url,
+          tag         : '',
+          languages   : '',
+          custom      : '',
+          target_pane : 'p1',
+        });
+
+      }
 
     }
 
@@ -1082,9 +1264,103 @@ function openBookmark( event, newtab ) {
 
 }
 
-function updateActiveDatasources(){
+function setActiveDatasources(){
 
   explore.datasources = []; // reset
+
+  if ( valid( explore.datasource_selection ) ){ // datasources requested
+
+    $.each( explore.datasource_selection.split(',') , function( index, source ){ // for each active datasource
+
+      if ( valid( datasources[source] ) ){
+
+        let d = datasources[source];
+
+        d.active = true;
+
+      }
+
+    });
+
+    explore.datasource_selection = ''; // reset
+
+    activateDatasources();
+
+  }
+  else { // no datasources requested
+
+    if ( ! valid( explore.datasources ) ){
+
+      (async () => { // first check browser storage for datasources
+
+        let ds = await explore.db.get( 'datasources' );
+
+        if ( ! valid( ds ) ){ // no browser storage datasources found
+
+          // use default datasources
+          explore.datasources = [ 'wikipedia', 'wikidata' ]; //TODO: define these defaults via the datasources.js file
+
+        }
+        else {
+
+          explore.datasources = ds.split(',');
+
+        }
+
+        // activate datasources
+        $.each( explore.datasources, function( index, source ){ // for each active datasource
+
+          if ( valid( datasources[source] ) ){
+
+            let d = datasources[source];
+
+            d.active = true;
+
+          }
+
+        });
+
+        activateDatasources();
+
+      })();
+
+    }
+
+  }
+
+}
+
+function updateActiveDatasources( list ){
+
+  explore.datasources = []; // reset
+
+  // reset
+  Object.keys( datasources ).forEach(( key, index ) => {
+
+    let d = datasources[key];
+
+    d.active = false;
+
+  });
+
+  // set again
+  $.each( list, function( index, source ){
+
+    if ( valid( datasources[source] ) ){
+
+      let d = datasources[source];
+
+      d.active = true;
+
+    }
+
+  });
+
+  activateDatasources();
+
+}
+
+function activateDatasources(){
 
   Object.keys( datasources ).forEach(( key, index ) => {
 
@@ -1097,6 +1373,14 @@ function updateActiveDatasources(){
     }
 
   });
+
+  explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
+
+  setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+  (async () => { await explore.db.set( 'datasources', explore.datasources.join(',') ); })();
+
+  setupOptionActiveDatasources(); // update datasource toggles
 
 }
 
@@ -1127,7 +1411,7 @@ function setupOptionActiveDatasources(){
           <span class="lever"></span>
           <span class="datasource-list-icon">${d.icon} </span>
           <span class="datasource-name"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
-          <span class="datasource-description"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description}) </span>
+          <span class="datasource-description"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description})</a></span>
         </label>
       </div>`;
 
@@ -1139,13 +1423,37 @@ function setupOptionActiveDatasources(){
 
 async function toggleDatasource( source ) {
 
+  // activate datasources
   if ( valid( datasources[ source ]) ){
 
     datasources[ source ].active = $( '#datasource-' + source ).prop("checked");
 
   }
 
-  updateActiveDatasources();
+  explore.datasources = []; // reset
+
+  // collect active datasources
+  Object.keys( datasources ).forEach(( key, index ) => {
+
+    if ( datasources[ key ].active ){
+
+      explore.datasources.push( key );
+
+    }
+
+  });
+
+  explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
+
+  setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+  (async () => {
+
+    //console.log( 'setting browser-storage to: ', explore.datasources );
+
+    await explore.db.set( 'datasources', explore.datasources.join(',') );
+
+  })();
 
 }
 
@@ -1160,7 +1468,7 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    if ( valid( d.autocomplete_active ) ){ // active autocomplete
+    if ( valid( d.active && d.autocomplete_active ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
 
@@ -1198,9 +1506,9 @@ async function fetchAutocompleteData( term ) {
       }
       else {
 
-        if ( valid( d.code_autocomplete_pre ) ){
+        if ( valid( d.code_autocomplete ) ){
 
-          eval( `${ d.code_autocomplete_pre }` );
+          eval( `${ d.code_autocomplete }` );
 
         }
 
@@ -1255,6 +1563,7 @@ function setupSearch() {
           if ( explore.isMobile ){
 
             explore.preventSliding = true;
+
           }
 
           $('.submitSearch').click();
@@ -1320,7 +1629,6 @@ function setupSearch() {
     */
 
   });
-
 
   $('.searchbox').on( 'autocompleteselect', function( event, ui ){
 
@@ -1400,15 +1708,17 @@ function setupSearch() {
 
   });
 
-  $('a.submitSearch').on( 'click', function (e){
+  $('a.submitSearch').on( 'click', async function(e){
 
     let q = getSearchValue();
 
-    //console.log( q, explore.q, $( '#srsearch' ).val() );
+    //console.log( 'search: ', q, explore.q, $( '#srsearch' ).val() );
 
     // FIXME
     $('.searchbox').autocomplete('close');
     $('#srsearch').blur();
+
+    explore.openai_enabled = valid( localStorage.getItem("APIKey") ) ? true : false;
 
     explore.searchmode = 'string';
 
@@ -1497,16 +1807,14 @@ function setupSearch() {
 
           const m = explore.q.replace( '!chat ', '' );
 
-          const url = `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${explore.tutor}`;
-
           handleClick({ 
             id        : 'n1-0',
             type      : 'link-split',
-            panelwidth : 70,
+            //panelwidth : 70,
             title     : m,
             language  : explore.language,
             qid       : '',
-            url       : encodeURI( url ),
+            url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${explore.tutor}` ),
             tag       : '',
             languages : '',
             custom    : '',
@@ -1517,6 +1825,33 @@ function setupSearch() {
 
       }
       else { // normal query results
+
+				// TODO: make this optional/depend on a datasource which requires a Qid as input
+				// lookup the Wikidata Qid for the search term
+				// (required for the Wikimedia Commons datasource)
+				let qid_ = await checkForQid( explore.q );
+
+				if ( qid_.hasOwnProperty('entities') ){
+
+					const qid = Object.keys( qid_.entities )[0];
+
+					if ( isQid( qid ) ){
+
+						//console.log( 'Qid found: ', qid );
+						explore.q_qid = qid;
+
+					}
+					else {
+
+						if ( valid( explore.q_qid ) ){
+
+							explore.q_qid = ''; // reset
+
+						}
+
+					}
+
+				}
 
         // TODO: verify this is URL update is correct in all cases
         updatePushState( explore.q, 'add' );
@@ -1733,6 +2068,74 @@ function setupOptionDarkmode() {
         (async () => { await explore.db.set('darkmode', false); })();
         explore.darkmode = false;
         setDarkmode();
+
+      }
+
+    })
+
+  })();
+
+}
+
+function setGridmode() {
+
+  // also check user preference for gridmode
+  if ( explore.gridmode ){
+    $('#gridmode').prop('checked', true);
+    $('#results').addClass('grid');
+    $('#results .entry').addClass('sidebar-grid-item'); // also update existing sidebar results
+  }
+  else {
+    $('#gridmode').prop('checked', false);
+    $('#results').removeClass('grid');
+    $('#results .entry').removeClass('sidebar-grid-item'); // also update existing sidebar results
+  }
+
+}
+
+function setupOptionGridmode() {
+
+  (async () => {
+
+    explore.gridmode = await explore.db.get('gridmode');
+
+    let prefersGridMode   = '';
+    let gridmode_was_set  = false;
+
+    gridmode_was_set = ( explore.gridmode === null ) ? false : true;
+
+    if ( !gridmode_was_set ){ // no gridmode was set previously
+
+      // follow prefersGridmode
+      //prefersGridMode = window.matchMedia('(prefers-color-scheme: grid)').matches;
+
+      if ( prefersGridMode ) {
+        explore.gridmode = true;
+      }
+
+    }
+    else { // use the set gridmode
+
+        explore.gridmode = ( explore.gridmode === null || explore.gridmode === 'false' ) ? false : true;
+
+    }
+
+    setGridmode();
+
+    $('#gridmode').change(function() {
+
+      if ( $('#gridmode').prop('checked') ){
+
+        (async () => { await explore.db.set('gridmode', true); })();
+        explore.gridmode = true;
+        setGridmode();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('gridmode', false); })();
+        explore.gridmode = false;
+        setGridmode();
 
       }
 
@@ -2024,6 +2427,24 @@ function setupLanguage() {
 
     }
 
+    // check if there is a preferred language-variant
+    if ( explore.languages_with_variants.includes( explore.language ) ){
+
+      console.log( 'Global app: checking language-variant in storage...');
+
+      (async () => {
+
+        explore.language_variant = await explore.db.get('language-variant-' + explore.language );
+        explore.language_variant = ( explore.language_variant === null || explore.language_variant === undefined ) ? '' : explore.language_variant;
+
+        console.log('Global app: writing style from storage: ', explore.language_variant );
+
+      })();
+
+      console.log( 'Global app: done checking: ', explore.language_variant );
+
+    }
+
     updateLocaleNative();
 
   }
@@ -2292,7 +2713,7 @@ async function updateLocaleInterface(){
   $('#app-menu-random-topic').html( explore.banana.i18n('app-menu-random-topic') );
   $('#app-menu-compare-topics').html( explore.banana.i18n('app-menu-compare-topics') );
   $('#app-menu-toggle-fullscreen').html( explore.banana.i18n('app-menu-toggle-fullscreen') );
-  $('#app-menu-bookmark-current-url').html( explore.banana.i18n('app-menu-bookmark-current-url') );
+  $('#app-menu-bookmark-current-view').html( explore.banana.i18n('app-menu-bookmark-current-view') );
   $('#app-menu-clone-tab').html( explore.banana.i18n('app-menu-clone-tab') );
   $('#app-menu-plant-identification').html( explore.banana.i18n('app-menu-plant-identification') );
   $('#app-menu-text-identification').html( explore.banana.i18n('app-menu-text-identification') );
@@ -2477,7 +2898,7 @@ function setupOptionTutor() {
   (async () => {
 
     explore.tutor = await explore.db.get('tutor');
-    explore.tutor = ( explore.tutor === null || explore.tutor === '' ) ? 'default' : explore.tutor;
+    explore.tutor = ( explore.tutor === null || explore.tutor === '' ) ? 'auto-select' : explore.tutor;
 
     setTutor( explore.tutor );
 
@@ -2509,14 +2930,16 @@ async function setTutor( t ) {
 
     setupAIChat();
 
+    /*
     if ( explore.q === '' && explore.qid === '' && explore.type === '' ){
       // do nothing on the start page
     }
     else { // only do this on the initial visit
 
-      refreshArticles();
+      //refreshArticles();
 
     }
+    */
 
   }
 
@@ -2774,6 +3197,7 @@ function setupURL() {
 
     //console.log('moving backwards, type is: ', explore.type );
 
+    /*
     // set direct title
     explore.direct = getParameterByName('d');
 
@@ -2783,6 +3207,7 @@ function setupURL() {
     else {
       explore.direct = false;
     }
+    */
 
     // set custom data
     explore.custom = getParameterByName('c');
@@ -3217,15 +3642,53 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   }
 
+  // TODO: check why this is needed
+  setParameter( 'd', explore.datasources.join(','), explore.hash );
+
 }
 
-async function renderTopicCover( name ) {
+async function renderTopicCover( name ){
 
   $('#blink').show();
 
   let url = '';
 
-  if ( name === 'featured-article' ){ // non-standard URL
+  if ( name === 'bookmarks' ){ // use bookmarks
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportAllBookmarkTopics( topics, b );
+
+      });
+
+    }
+    
+    // get random topic
+    const topic = topics[ Math.floor(Math.random() * topics.length ) ];
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'wikipedia-qid',
+      title     : topic,
+      language  : explore.language,
+      qid       : '',
+      url       : '',
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+    return 0; // done
+
+  }
+  else if ( name === 'featured-article' ){ // non-standard URL
 
     url = explore.base + '/app/explore2/assets/json/lists/featured-article/' + explore.language + '.json';
 
@@ -4326,7 +4789,7 @@ async function insertSelectMenuDates( args, fields ){
           '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video"' + setOnClick( Object.assign({}, args, { type: 'wander', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( 'https://www.bing.com/images/search?&q=' + new_title_quoted + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + explore.language + '-' + explore.language ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( `https://www.bing.com/search?q=${new_title}&search=Submit+Query&form=QBLH&setlang=${explore.language}` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( 'https://openlibrary.org/search?q=' + new_title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.bing.com/search?q=' + new_title_quoted + '&setlang=' + explore.language + '-' + explore.language, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-searchengin" style="position:relative;"></i></span></a>' +
         '</span>' +
@@ -4592,10 +5055,20 @@ async function renderTopics( inputs ){
 
   Object.keys( inputs ).forEach(( key, index ) => {
 
-    explore.totalRecords += parseInt( inputs[ key ].data.value[0].source.data.query.searchinfo.totalhits );
-    combined_pagesize += parseInt( datasources[ key ].pagesize );
+    //console.log( key, inputs[ key ].data.value[0].source.data.query.searchinfo.totalhits, datasources[ key ].pagesize );
+
+    //console.log( key, inputs[ key ].data.value[0].source.data.query );
+
+    explore.totalRecords  += parseInt( inputs[ key ].data.value[0].source.data.query.searchinfo.totalhits );
+
+    combined_pagesize     += parseInt( datasources[ key ].pagesize );
+
+    //console.log( index, explore.totalRecords, combined_pagesize );
 
   });
+
+  // QQQ
+  console.log( 'explore.totalRecords set to: ', explore.totalRecords, ', combined_pagesize: ', combined_pagesize );
 
   if ( explore.totalRecords === 0 ){
 
@@ -4617,6 +5090,7 @@ async function renderTopics( inputs ){
     id            : 'n00',
     language      : explore.language,
     qid           : '',
+    gid           : '',
     pid           : 'p' + explore.page, // page ID
     thumbnail     : '',
     title         : title,
@@ -4640,7 +5114,7 @@ async function renderTopics( inputs ){
 
   const raw_entry = createItemHtml( args );
 
-  // non-wikipedia entry
+  // append raw-entry
   if ( explore.page === 1 && explore.searchmode === 'string' ){
     $('#results').append( raw_entry );
   }
@@ -4731,6 +5205,9 @@ async function renderTopics( inputs ){
       $('#scroll-end').show();
 			$('#next').css("display", "inline-block");
     }
+ 
+    // QQQ
+    //console.log( 'explore.totalRecords: ', explore.totalRecords, ', combined_pagesize: ', combined_pagesize, ', explore.remaining_topics: ', '...', ', page: ', explore.page );
 
     // FIXME why does the highlighting not work when the following "instance" line is moved to the to top the function?
     const markjs_instance = new Mark( document.querySelectorAll( '.p' + explore.page ) ) ;
@@ -4769,7 +5246,6 @@ async function renderTopics( inputs ){
       let show_raw_results = [];
 
       $.each( explore.datasources, function( index, source ){ // for each active datasource
-
 
         let d = datasources[ Object.keys( datasources)[ index ] ];
 
@@ -4836,6 +5312,30 @@ async function renderTopics( inputs ){
 
   }
 
+  //console.log('renderTopics: ', explore.q, explore.type, explore.qid, explore.gid, explore.uri );
+
+  if (explore.page === 1 ){
+
+    if ( validAny( [ explore.uri, explore.gid, explore.qid ] ) ){
+
+      handleClick({
+        id        : 'n1-0',
+        type      : explore.type,
+        title     : explore.q,
+        language  : explore.language,
+        qid       : explore.qid,
+        gid       : explore.gid,
+        url       : explore.uri,
+        tag       : '',
+        languages : '',
+        custom    : explore.custom,
+        target_pane : 'p1',
+      });
+
+    }
+
+  }
+
   $('#loader').hide();
 
   explore.preventSliding = false;
@@ -4859,7 +5359,23 @@ function addTopics( source, list ){
 
     if ( thumb === 'undefined' ){ thumb = ''; }
 
-    const thumbnail = ( thumb.length > 0 )? '<div class="summary-thumb"><img class="thumbnail" src="' + 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=150' + '" alt="" /></div>' : '';
+    let thumbnail = '';
+
+    if ( thumb.length > 0 ){
+
+      if ( item.datasource === 'wikipedia' ){
+
+        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=150' + '" alt="" /></div>';
+
+      }
+      else {
+
+        //console.log( thumb );
+        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + decodeURIComponent( thumb ) + '" alt="" /></div>';
+
+      }
+
+    }
 
     if ( q.length > 1 ){
       qid  = q.substring(1);
@@ -4889,6 +5405,7 @@ function addTopics( source, list ){
       pid           : 'p' + explore.page,
       thumbnail     : thumbnail,
       title         : item.title,
+      gid           : item.gid,
       snippet       : item.snippet,
       extra_classes : '',
       item          : item,
@@ -4920,17 +5437,21 @@ async function renderType( args ) {
   let url       = args.url;
   let qid       = args.qid; // with 'Q' character
   let qid_      = '';       // without 'Q' character
+  let gid       = args.gid; // with 'Q' character
   let current_pane = args.current_pane;
   let target_pane = args.target_pane;
   let id        = args.id;
   let ids       = args.ids;
   let tag       = args.tag;
+  let tags      = args.tags;
   let languages = args.languages;
   let custom    = args.custom;
   let gbif_id   = args.gbif_id;
   let banner    = args.page_banner;
   let panelwidth= args.panelwidth || '';
   let slide     = args.slide      || '';
+  let datasource= args.datasource || '';
+  //let gid       = args.gid        || ''; //  TODO QQQ
   // TODO should we also add a "hash" argument?
 
   //console.log( 'args: ', args );
@@ -4955,6 +5476,10 @@ async function renderType( args ) {
     qid = qid.substring(1); // remove 'Q' from string, which is needed for some types
   }
 
+  if ( ! valid( tag ) ){
+    tag = '';
+  }
+
   // reset cache fields
   explore.archive_cached_sentences = '';
   explore.archive_cached_html = '';
@@ -4973,7 +5498,7 @@ async function renderType( args ) {
 
         resetIframe();
 
-        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+        $( explore.baseframe ).attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction  + '&tags=' + tag + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else { // render with wikidata-info
@@ -5022,7 +5547,7 @@ async function renderType( args ) {
         }
         else { // user is coming from an internal click, which should have the wikidata already
 
-          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash );
+          renderToPane( target_pane, explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid + '&dir=' + explore.language_direction + '&tags=' + tag + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash );
 
         }
 
@@ -5088,6 +5613,14 @@ async function renderType( args ) {
 
   }
 	else if ( type === 'bookmark' ){
+
+		event.data = { 
+			data : {
+				tags:       valid( tags )? tags : [ tag ],
+				datasource: datasource,
+				gid:        gid,
+			}
+		}
 
     addBookmark( event, 'clicked' );
 
@@ -5205,7 +5738,7 @@ async function renderType( args ) {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
 
-        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+        $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&tags=' + tag + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
       }
       else {
@@ -5281,7 +5814,7 @@ async function renderType( args ) {
   }
 
   explore.uri     = '';
-  explore.direct  = false;
+  //explore.direct  = false;
 
   /*
 
@@ -5321,7 +5854,7 @@ async function renderType( args ) {
 
         if ( !explore.preventSliding ){
 
-          explore.swiper.slideTo( 1 );
+          //explore.swiper.slideTo( 1 ); // ? TODO
 
         }
 
@@ -5393,9 +5926,12 @@ async function handleClick( args ) {
   let title         = args.title;
   let lang          = args.language;
   let qid           = args.qid;
+  let gid           = valid( args.gid )? args.gid : '';
   let url           = args.url;
   let tag           = args.tag;
+  let tags          = valid( args.tags )? args.tags : '';
   let languages     = args.languages;
+  let datasource    = valid( args.source )? args.source : '';
 
   let current_pane  = '';
   let target_pane   = '';
@@ -5465,7 +6001,15 @@ async function handleClick( args ) {
     setLanguage ( 'en' ); // FIXME: find out where language was not being set, then fix it.
   }
   else {
-    setLanguage ( lang.trim() );
+
+    if ( lang.trim() !== explore.language ){ // only updated when different
+
+      console.log( 'language update: ', lang.trim(), explore.language );
+
+      setLanguage ( lang.trim() );
+
+    }
+
   }
 
 	title = title.replace(/%3A/, ':'); // FIXME why is this needed? any other problematic character encodings?
@@ -5520,14 +6064,17 @@ async function handleClick( args ) {
     title_quoted  : title_quoted,
     url           : url,
     qid           : explore.qid,
+    gid           : gid,
     current_pane  : current_pane,
     target_pane   : target_pane,
     id            : id,
     tag           : tag,
+    tags          : tags,
     languages     : languages,
     ids           : ids,
     custom        : custom,
     gbif_id       : gbif_id,
+    datasource    : datasource,
     panelwidth    : panelwidth,
   };
 
@@ -5594,9 +6141,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.d + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -5745,7 +6292,14 @@ function buildURLParameters(){ // builds a URL state object from the current sta
     p.t2 = '&t2=' + explore.type2;
   }
 
-  // ID (qid or something else)
+  // global ID (used for the non-qid, datasource ID)
+  p.gid = '';
+
+  if ( explore.gid === '' || explore.gid === 'undefined' || explore.gid === undefined ){ explore.gid = ''; } else {
+    p.gid = '&gid=' + explore.gid;
+  }
+
+  // ID (used for the qid)
   p.i = '';
 
   if ( explore.qid === '' || explore.qid === 'undefined' || explore.qid === undefined ){ explore.qid = ''; } else {
@@ -5853,11 +6407,11 @@ function buildURLParameters(){ // builds a URL state object from the current sta
       p.f = '&f=' + explore.fragment;
     }
 
-    // direct title parameter
+    // datasources parameter
     p.d = '';
 
-    if ( explore.direct === true ){ p.d = '&d=' + explore.direct; } else {
-      explore.direct = false;
+    if ( explore.datasources.length === 0 ){ explore.datasources = '' } else {
+      p.d = '&d=' + explore.datasources.join(',');
     }
 
     // line marks parameter
@@ -6167,11 +6721,19 @@ function receiveMessage(event){
 		let languages     = '';
 		let panelwidth    = '';
 
-    if ( event.data.data.current_pane !== '' ){  current_pane = event.data.data.current_pane }
+    if ( event.data.data.current_pane !== '' ){ current_pane = event.data.data.current_pane }
 
-    if ( event.data.data.target_pane !== '' ){  target_pane = event.data.data.target_pane }
+    if ( event.data.data.target_pane !== '' ){ target_pane = event.data.data.target_pane }
 
-    if ( event.data.data.language !== '' ){ setLanguage( event.data.data.language ); }
+    if ( event.data.data.language !== '' ){
+
+      if ( event.data.data.language !== explore.language ){
+
+        setLanguage( event.data.data.language );
+
+      }
+
+    }
 
     if ( event.data.data.qid !== '' ){ explore.qid = event.data.data.qid; }
 
@@ -6449,7 +7011,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tags=&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'linkgraph' ){
@@ -6467,7 +7029,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tags=&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'ontology' ){
@@ -6485,7 +7047,7 @@ function receiveMessage(event){
               target_pane : 'p1',
             });
 
-            $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+            $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tags=&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 				else if ( view === 'chemistry' ){
@@ -6529,7 +7091,7 @@ function receiveMessage(event){
             target_pane : 'p1',
           });
 
-          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+          $( '#infoframeSplit2' ).attr({"src": explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + first.toString() + '&dir=' + explore.language_direction + '&tags=&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
 
         }
 
@@ -6551,6 +7113,19 @@ function receiveMessage(event){
 			}
 
 		});
+
+  }
+  else if ( event.data.event_id === 'update-language-variant' ){
+
+    console.log( 'update-language-variant', event.data.data );
+
+    if ( valid( event.data.data.language_variant ) ){
+
+      console.log( 'updating explore.language_variant to: ', event.data.data.language_variant );
+
+      explore.language_variant = event.data.data.variant;
+
+    }
 
   }
   else if ( event.data.event_id === 'update-jsonld' ){
@@ -6582,6 +7157,7 @@ function receiveMessage(event){
 
     // NOTE: use this logging to see the used "Query Builder" data
     //console.log('structure query: ', event.data.data );
+
 
     // first-time fetch of SPARQL results
     if ( event.data.data.json_url !== '' ){ 
@@ -6763,9 +7339,16 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'add-bookmark' ){
 
-    console.log('add bookmark...');
+    if ( event.data.data.language !== '' ){
 
-    addBookmark(event, 'clicked' );
+      addBookmark(event, 'clicked', false, event.data.data.language );
+
+    }
+    else {
+
+      addBookmark(event, 'clicked', false );
+
+    }
 
   }
   else if ( event.data.event_id === 'remove-bookmark' ){
@@ -6865,6 +7448,8 @@ function renderLanguageDirection(){
 }
 
 function setLanguage( language ){
+
+  if ( !valid( language ) || language === explore.language ){ return 0; }
 
   // change language settings
   explore.language    = window.language = language;
@@ -6989,6 +7574,13 @@ function resizeEmbeddedSplitter( ){
 
   }
 
+  if ( getGridColumns('#results') === 1 ){ // remove topic-card borders in 1-column mode
+    $('.sidebar-grid-item').removeClass( 'bordered' );
+  }
+  else {
+    $('.sidebar-grid-item').addClass( 'bordered' );
+  }
+
 }
 
 function setupSplitter( perc ){
@@ -7015,7 +7607,7 @@ function setupSplitter( perc ){
 
 }
 
-function identifyOther( ) {
+function identifyOther() {
 
   /*
   handleClick({ 
@@ -7097,14 +7689,30 @@ function bookmarkAllowDrop(event) { // "something is being dragged and could get
 function exploreBookmark(event, id) { 
 
   event.preventDefault();
+  event.stopPropagation();
 
   let node = $('#tree').tree('getNodeById', id );
+
+  let datasource = valid( node.datasource ) ? node.datasource : '';
+
+  if ( valid( datasource ) ){
+
+    updateActiveDatasources( [ datasource ]  );
+
+  }
+  else {
+
+    updateActiveDatasources( [ 'wikipedia' ]  ); // fallback
+
+  }
+  
 
   handleClick({ 
     id        : 'n1-0',
     type      : 'explore',
     title     : node.name,
     language  : node.language,
+    source    : datasource,
     qid       : '',
     url       : '',
     tag       : '',
@@ -7113,7 +7721,118 @@ function exploreBookmark(event, id) {
     target_pane : 'p1',
   });
 
-  //console.log( node );
+}
+
+function deselectAllBookmarks( event ){
+
+  event.preventDefault();
+
+  // get selected bookmarks
+  let bookmarks = $('#tree').find('a.bookmark-select.selected')
+
+  let nodes = [];
+
+  $.each( bookmarks, function( index, b ){ // for each selected bookmark
+
+    nodes.push( $(b).attr('data-node-id') );
+
+  });
+
+  $.each( nodes, function( index, id ){ // for each node ID
+
+    // mark each child-bookmark with the same state
+
+    let el = $('#bookmarks li#' + id );
+
+    el.find('a.bookmark-select i').removeClass('fa-square-check').addClass('fa-square');
+    el.find('a.bookmark-select').removeClass('selected');
+
+    let child_node = $('#tree').tree('getNodeById', id );
+    child_node.selected = false;
+
+  });
+
+  // store bookmark state
+  (async () => {
+
+    await explore.db.set('bookmarks', $('#tree').tree('toJson') );
+
+    // update current bookmarks data structure
+    explore.bookmarks = await explore.db.get('bookmarks');
+    explore.bookmarks = JSON.parse( explore.bookmarks );
+
+    // update the bookmark-view in any other Conzept tabs
+    explore.broadcast_channel.postMessage('update_bookmark_view');
+
+    updateSelectedBookmarksCounter();
+
+  })();
+
+}
+
+function selectBookmark( event, id ) { 
+
+  event.preventDefault();
+
+	if ( id !== 1 ){
+
+    let bookmark	= $('#tree').tree('getNodeById', id );
+
+    let el				= $('#bookmarks li#' + id );
+
+    // check select status
+    if ( valid( bookmark.selected ) ){ // turn off
+
+      bookmark.selected = false; // clicked bookmark
+
+			// mark each child-bookmark with the same state
+
+			el.find('a.bookmark-select i').removeClass('fa-square-check').addClass('fa-square');
+      el.find('a.bookmark-select').removeClass('selected');
+
+			el.find('li').each(function( index ) {
+
+				let child_node = $('#tree').tree('getNodeById', $(this).attr('id') );
+				child_node.selected = false;
+
+			});
+
+    }
+    else { // turn on
+
+      bookmark.selected = true; // clicked bookmark
+
+			// mark each child-bookmark with the same state
+
+			el.find('a.bookmark-select i').removeClass('fa-square').addClass('fa-square-check');
+      el.find('a.bookmark-select').addClass('selected');
+
+			el.find('li').each(function( index ) {
+
+				let child_node = $('#tree').tree('getNodeById', $(this).attr('id') );
+				child_node.selected = true;
+
+			});
+
+    }
+
+    // store bookmark state
+    (async () => {
+
+      await explore.db.set('bookmarks', $('#tree').tree('toJson') );
+
+      // update current bookmarks data structure
+      explore.bookmarks = await explore.db.get('bookmarks');
+      explore.bookmarks = JSON.parse( explore.bookmarks );
+
+      // update the bookmark-view in any other Conzept tabs
+			explore.broadcast_channel.postMessage('update_bookmark_view');
+
+      updateSelectedBookmarksCounter();
+
+    })();
+
+	}
 
 }
 
@@ -7130,7 +7849,8 @@ function removeBookmark( event, id ) {
 
       // update current bookmarks data structure
       explore.bookmarks = await explore.db.get('bookmarks');
-      explore.bookmarks = JSON.parse( explore.bookmarks );
+
+      updateSelectedBookmarksCounter();
 
     })();
 
@@ -7297,9 +8017,7 @@ function outputBookmarksGPX( output ){
 
 }
 
-function handleJSONSubmit (event) {
-
-	console.log('json file upload');
+function handleJSONSubmit(event) {
 
 	// Stop the form from reloading the page
 	event.preventDefault();
@@ -7336,9 +8054,312 @@ function handleJSONSubmit (event) {
     // update current bookmarks data structure
     explore.bookmarks = json;
 
+    updateSelectedBookmarksCounter();
+
   };
 
 }
+
+function updateSelectedBookmarksCounter(){
+
+	let topics = []; // list of topics
+
+	const obj = $('#tree').tree('getTree');
+
+	if ( valid( obj.children ) ){
+
+		obj.children.forEach(( b, index ) => {
+
+			exportSelectedBookmarkTopics( topics, b );
+
+		});
+
+	}
+
+  //console.log( topics );
+
+  $('#bookmark-selection-count').text( topics.length );
+
+}
+
+function exportAllBookmarkTopics( output, b ){
+
+  //console.log( 'data: ',  b );
+
+  if ( valid( b.name ) ){
+
+    output.push( b.name );
+
+  }
+
+  if ( valid( b.children ) ){
+
+    b.children.forEach(( b2, index ) => {
+
+      exportAllBookmarkTopics( output, b2 );
+
+    });
+
+  }
+
+}
+
+function exportSelectedBookmarkTopics( output, b ){
+
+  //console.log( 'data: ',  b );
+
+  if ( valid( b.name && valid( b.selected ) ) ){
+
+    output.push( b.name );
+
+  }
+
+  if ( valid( b.children ) ){
+
+    b.children.forEach(( b2, index ) => {
+
+      exportSelectedBookmarkTopics( output, b2 );
+
+    });
+
+  }
+
+}
+
+function exportBookmarkQids( output, b ){
+
+  //console.log( 'data: ',  b );
+
+  if ( valid( b.qid && valid( b.selected ) ) ){
+
+    output.push( b.qid );
+
+  }
+
+  if ( valid( b.children ) ){
+
+    b.children.forEach(( b2, index ) => {
+
+      exportBookmarkQids( output, b2 );
+
+    });
+
+  }
+
+}
+
+function checkSelectedBookmarks( action ){
+
+	let topics = []; // list of topics
+
+	const obj = $('#tree').tree('getTree');
+
+	if ( valid( obj.children ) ){
+
+		obj.children.forEach(( b, index ) => {
+
+			exportSelectedBookmarkTopics( topics, b );
+
+		});
+
+	}
+
+	//console.log( topics.length, topics );
+
+}
+
+
+function getQidsFromBookmarks(){
+
+  let qids = [];
+
+  const obj = $('#tree').tree('getTree');
+
+  if ( valid( obj.children ) ){
+
+    obj.children.forEach(( b, index ) => {
+
+      exportBookmarkQids( qids, b );
+
+    });
+
+  }
+
+  explore.compares = [];
+
+  qids.forEach(( qid, index ) => {
+
+    qid = qid.trim();
+
+    if ( !qid.startsWith('Q') ){
+      qid = 'Q' + qid; // add 'Q' to qid-string
+    }
+
+    qids.push( qid );
+
+  });
+
+  return [...new Set( qids )]; // use only the unique values
+
+}
+
+function runBookmarkAction( action ){
+
+  /*
+  if ( action === 'compare' ){
+
+    explore.compares = getQidsFromBookmarks();
+
+    showCompare();
+
+  }
+  */
+
+  if ( action.startsWith( 'command-' ) ){ // command API action
+
+    action = action.replace('command-', '');
+
+    let qids = getQidsFromBookmarks();
+
+    if ( qids.length > 0 ){
+
+      let command = '';
+
+      if ( action === 'video' || action === 'web' ){ // search-based commands
+
+        command = `(search '${action} '( ${ qids.join(' ') } ) )`;
+
+      }
+      else { // default command mode
+
+        command = `(show '${action} '( ${ qids.join(' ') } ) )`;
+
+      }
+
+      console.log( command );
+
+      runLISP( command );
+
+    }
+    else { // no qids found
+
+      $.toast({
+        heading: 'no Wikidata Qid\'s found for these topics',
+        //heading: explore.banana.i18n('app-notification-too-few-compare-topics'),
+        text: '',
+        hideAfter : 10000,
+        stack : 1,
+        showHideTransition: 'slide',
+        icon: 'info'
+      })
+
+    }
+
+  }
+  else if ( action.startsWith( 'video' ) ){
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    //console.log( topics );
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : topics.join(', '),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `https://${explore.host}/app/video/#/search/${ topics.join(', ') }` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
+  else if ( action.startsWith( 'openlibrary' ) ){
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    //console.log( topics );
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : topics.join(', '),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `https://openlibrary.org/search?q=${ topics.join(', ') }&language=${explore.lang3}` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
+  else if ( explore.tutors.includes( action ) ){
+
+    // collect bookmark titles
+    //const json = $('#tree').tree('toJson');
+    //console.log( json );
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    //console.log( topics );
+
+    let m = JSON.stringify( topics );
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link-split',
+      title     : topics.join(', '),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${action}` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
+
+} 
 
 function exportBookmarks( format ){
 
@@ -7486,7 +8507,7 @@ function updateBookmarks(){ // TODO
 
 }
 
-function addBookmark( e , action_type ){
+function addBookmark( e, action_type, bookmark_current_view, lang ){
 
   // TODO: implement bookmark-removal (if this bookmark already exists)
   // removeBookmark( event, node.id )
@@ -7505,17 +8526,22 @@ function addBookmark( e , action_type ){
   }
   else {
 
-    let link_       = $( explore.baseframe ).attr('src') || '';
+    let language_   = valid( lang )? lang : explore.language;
 
-    let language_   = explore.language;
+    let link_       = $( explore.baseframe ).attr('src') || ''; // default link-data
 
     let title_      = decodeURIComponent( explore.curr_title ) || explore.q || '';
-    let display_    = title_ + ' (' + language_ +')';
+    //let display_    = title_ + ' (' + language_ +')';
 
     let geo_        = '';
-    let qid         = '';
+    let qid         = ''; // wikidata ID
+    let gid         = ''; // general datasource ID
+    let datasource  = '';
+    let tags        = '';
 
     let type        = explore.type;
+
+    bookmark_current_view = valid( bookmark_current_view )? true : false;
 
     const video     = '\/video\/';
 
@@ -7529,19 +8555,53 @@ function addBookmark( e , action_type ){
 
     }
 
+    if ( event.data?.data?.qid ){
 
-    if ( valid( explore.qid ) ){ // we have a geo-coordinate
+      qid = event.data.data.qid;
+
+    }
+    else if ( valid( explore.qid ) ){ // TODO: check if this works correctly
 
       qid = explore.qid;
 
     }
 
-    // TODO: add datasource-type support (to support Wikidata topics with its own Wikidata-icon, etc.)
+    if ( event.data?.data?.gid ){
+
+      gid = event.data.data.gid;
+
+    }
+
+    if ( event.data?.data?.tags ){
+
+      tags = event.data.data.tags;
+
+      //console.log('tag data: ', tags );
+
+    }
+
+    //console.log( event.data );
+
+    if ( event.data?.data?.datasource ){
+
+      datasource = event.data.data.datasource;
+
+    }
+
+    // override link-data for non-Wikipedia datasource items
+    if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
+
+      // URL-substitution variables
+      // Note: "qid" and "gid" were already defined above.
+      let language    = language_;
+
+      let url_format  = datasources[ datasource ].display_url;
+      link_           = eval(`\`${ url_format }\``);
+
+    }
 
     if ( type === 'string' || type === 'explore' || type === 'articles' || type === 'bookmark' || type === '' ){
 
-      //language_ = $( explore.baseframe ).attr("data-language");
-      display_  = decodeURIComponent( $( explore.baseframe ).attr("data-title") ) + ' (' + language_ + ')';
       link_     = title_;
       type      = 'string';
 
@@ -7564,8 +8624,7 @@ function addBookmark( e , action_type ){
       type = 'compare';
     }
 
-    // determine user-action
-
+    // modify data based on action-context
     if ( action_type === 'extension' ){
 
       // XXX
@@ -7579,7 +8638,7 @@ function addBookmark( e , action_type ){
       explore.custom = ''; // reset custom value
 
       title_    = data.text;
-      display_  = data.text;
+      //display_  = data.text;
       link_     = data.url + '#:~:text=' + data.text;
       type      = 'url';
 
@@ -7587,20 +8646,66 @@ function addBookmark( e , action_type ){
 
     }
 
+    // modify data based on action-context
+    if ( bookmark_current_view ){
+
+      link_ = valid( getParameterByName('u') )? getParameterByName('u') : '';
+
+      if ( ! valid( link_ ) ){ // assume Wikipedia topic
+
+        link_ =  'https://' + explore.host + explore.base + '/app/wikipedia/?t=' + title_ + '&l=' + language_ + '&qid=' + qid + '#' + explore.hash;
+
+      }
+
+      if ( ! link_.startsWith('http') ){ // make link fully-qualified
+
+        link_ = 'https://' + explore.host + link_;
+
+      }
+
+    }
+
     if ( action_type === 'dropped' ){
 
       const parent_id = event.target.parentNode.id;
+
       const new_id = createBookmarkId();
-      $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type, geo: geo_, qid: qid }, $('#tree').tree('getNodeById', parent_id  ) );
+
+      $('#tree').tree( 'appendNode', {
+        name:         title_,
+        //display:      display_,
+        url:          link_,
+        id:           new_id,
+        language:     language_,
+        type:         type,
+        geo:          geo_,
+        qid:          qid,
+        gid:          gid,
+        selected:     false,
+        datasource:   datasource,
+      }, $('#tree').tree('getNodeById', parent_id  ) );
 
     }
-    else {
+    else { // default bookmark add
 
       if ( title_ !== '' && type !== '' ){
 
         const new_id = createBookmarkId();
 
-        $('#tree').tree( 'appendNode', { name: title_, display: display_, url: link_, id: new_id, language: language_, type: type, geo: geo_ });
+        $('#tree').tree( 'appendNode', {
+          name:       title_,
+          //display:    display_,
+          url:        link_,
+          id:         new_id,
+          language:   language_,
+          type:       type,
+          geo:        geo_,
+          qid:        qid,
+          gid:        gid,
+          tags:       tags,
+          selected:   false,
+          datasource:   datasource,
+        });
 
         if ( !explore.isMobile ){
 
@@ -7731,6 +8836,9 @@ function loadTopics( nextpage ){
 
       // check if we should fetch more results
       if ( valid( datasources[ source ].done ) ){ // datasource already marked as "done"
+
+        console.log('datasource already marked as "done"');
+
         // do nothing
       }
       else if ( valid( datasources[ source ].total ) ){ // total results available
@@ -7741,6 +8849,8 @@ function loadTopics( nextpage ){
 
         }
         else { // no more to fetch
+
+          console.log( 'loadTopics: no more to fetch...', datasources );
 
           datasources[ source ].done = true;
 
@@ -7809,7 +8919,24 @@ function loadTopics( nextpage ){
 
       .then((results) => results.forEach( ( result, index ) => {
 
-				let d = datasources[ struct[ index ].name ];
+        //console.log( 'results: ', results );
+
+        // determine source name
+        let name = '';
+
+        if ( valid( result.value[0]?.source ) ){
+
+          name = result.value[0].source.data.continue.source;
+
+        }
+        else { // wikipedia struct
+
+          name = 'wikipedia'; // FIXME: can we make the struct the same?
+
+        }
+
+				let d = datasources[ name ];
+				//let d = datasources[ struct[ index ].name ];
 
 				if ( valid( d.code_resolve ) ){
 
@@ -7838,6 +8965,40 @@ function loadTopics( nextpage ){
 
 }
 
+function checkForQid( title ){ // get qid and wikidata data
+
+  return $.ajax({
+
+    // https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&format=json&normalize=&titles=vermeer
+    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&normalize=true&true&titles=' + title,
+
+    dataType: "jsonp",
+
+    success: function( wd ) {
+
+      //console.log( wd );
+
+      if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
+        // do nothing
+      }
+      else {
+
+        const qid = Object.keys( wd.entities )[0];
+
+			  if ( isQid( qid ) ){
+
+          let d = fetchWikidata( [ qid ], '', 'wikipedia', 'ps2' );
+
+        }
+
+      }
+
+    },
+
+  });
+
+}
+
 async function fetchDatasources(){
 
   let struct  = []; // structure to map the array of fetch results to the datasources
@@ -7848,7 +9009,7 @@ async function fetchDatasources(){
   term = term.replace(/&/g, ' ');
 
   // create a meta-structure (so we can align the list of fetch-results with the datasource)
-  $.each( explore.datasources, function( index, source ){ // for each active datasource
+  $.each( explore.datasources, async function( index, source ){ // for each active datasource
 
     let d = datasources[ source ];
 
@@ -7870,6 +9031,8 @@ async function fetchDatasources(){
 
       if ( d.done ){ // done fetching for this datasource
 
+        console.log( 'done fetching for this datasource: ', source );
+
         done = true;
 
       }
@@ -7883,7 +9046,9 @@ async function fetchDatasources(){
   // setup fetch-calls
   $.each( explore.datasources, function( index, source ){ // for each active datasource
 
-    let d = datasources[ source ];
+    let d		= datasources[ source ];
+
+		let qid = '';
 
 		if ( explore.page === 1 && d.protocol === 'sparql' ){ // SPARQL-fetch: first set the "count url"
 
@@ -8090,7 +9255,7 @@ function markSentence( t, sid, inSideFrame ){
 
       if ( explore.swiper.activeIndex === 0 ){
 
-        explore.swiper.slideTo( 1 );
+        //explore.swiper.slideTo( 1 ); // ? TODO
 
       }
 
@@ -8665,8 +9830,10 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video"' + setOnClick( Object.assign({}, args, { type: 'wander', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' ) +
 
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="audio" aria-label="audio"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://archive.org/search.php?query=' + title_quoted + '&and[]=mediatype%3A%22audio%22&and[]=mediatype%3A%22etree%22', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-music" style="position:relative;"></i></span></a>' ) +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://www.bing.com/images/search?&q=' + title_quoted + '&qft=+filterui:photo-photo&FORM=IRFLTR&setlang=' + explore.language + '-' + explore.language ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( `https://www.bing.com/images/search?q=${title}&form=HDRSC2&setlang=${explore.language}&first=1` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://openlibrary.org/search?q=' + title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
+
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
 
             '</span></li>' +
 
@@ -8928,5 +10095,46 @@ async function setupAmbientAudio(){
 
     }
   }
+
+}
+
+/*
+function getGridLayout( sel ){
+
+  if ( valid( sel ) ){
+
+    const el			= window.getComputedStyle($( sel )[0] );
+    const rows		= el.getPropertyValue("grid-template-rows").split(" ").length;
+    const columns = el.getPropertyValue("grid-template-columns").split(" ").length;
+
+    return [ rows, columns ];
+
+  }
+  else {
+
+    return [];
+
+  }
+
+}
+*/
+
+function getGridColumns( sel ){
+
+  let ret = 1; // default
+
+  if ( valid( sel ) ){
+
+    const el = window.getComputedStyle($( sel )[0] );
+
+    if ( valid( el ) ){
+
+      ret = el.getPropertyValue("grid-template-columns").split(" ").length;
+
+    }
+
+  }
+
+  return ret;
 
 }

@@ -28,7 +28,7 @@ sup {
   color: #d65459;
 }
 
-#ai-tasks {
+#ai-tasks, #language-variants {
   background-color: #303731e8 !important;
   z-index: 9999999;
   position: absolute;
@@ -40,7 +40,7 @@ sup {
   max-width: 600px;
 }
 
-#ai-tasks .dropbtn {
+#ai-tasks .dropbtn, #language-variants .dropbtn {
   width: 95%;
   text-align: left;
   color: white;
