@@ -8,7 +8,7 @@
   "name": "Conzept encyclopedia",
   "short_name": "Conzept encyclopedia",
   "orientation" : "any",
-  "description": "Conzept is an encyclopedia for the 21st century. A modern topic-exploration tool based on Wikipedia, Wikidata, Open Library and many other information sources.",
+  "description": "Conzept is a topic-exploration system for the 21st century.",
   "icons": [
     {     
         "src": "/assets/icons/logo.svg",

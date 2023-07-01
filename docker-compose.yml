@@ -28,7 +28,6 @@ services:
       - 443:443
     restart: on-failure
 
-
 volumes:
   sslvolume:
   app:
@@ -38,4 +37,3 @@ volumes:
       type: none
       device: ./app
     #external: true
-
