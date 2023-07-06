@@ -9,3 +9,5 @@ This project has been funded by the [NLnet Foundation](https://nlnet.nl/project/
 The online version called "[Conzept encyclopedia](https://conze.pt)" is based on: Wikipedia, Wikidata, the Open Library, Archive.org and many other information sources.
 
 Conzept encyclopedia allows you to explore any of the millions of topics on Wikipedia from many different angles - such as science, art, digital books and education - both as a defined semantic entity ("a thing") as well as a string.
+
+![screenshot](https://conze.pt/guide/_media/explore-screenshot-011.jpg)
