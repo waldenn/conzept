@@ -74,7 +74,7 @@ async function fetchUnpaywall( args, total_results, page, sortby ){
 
           if ( valid( v.response.journal_name ) ){
 
-            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.response.journal_name, qid: '', language  : explore.language } ) ) + '">' + v.response.journal_name + '</a></div>';
+            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.response.journal_name, qid: '', language  : explore.language } ) ) + '">' + v.response.journal_name + '</a></div>';
 
           }
 
@@ -113,7 +113,7 @@ async function fetchUnpaywall( args, total_results, page, sortby ){
      
           obj[ 'label-' + i ] = {
 
-            title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 + desc ),
+            title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 + desc ),
 
             thumb_link:           '',
 

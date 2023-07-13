@@ -139,7 +139,7 @@ async function fetchRijksmuseum( args, total_results, page, sortby ){
 
           if ( valid( v.principalOrFirstMaker ) ){
 
-            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.principalOrFirstMaker, qid: '', language  : explore.language } ) ) + '">' + v.principalOrFirstMaker + '</a></div>';
+            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.principalOrFirstMaker, qid: '', language  : explore.language } ) ) + '">' + v.principalOrFirstMaker + '</a></div>';
 
           }
 
@@ -172,9 +172,9 @@ async function fetchRijksmuseum( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + subtitle2 ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + subtitle2 ),
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         '',
             video_link:           '',

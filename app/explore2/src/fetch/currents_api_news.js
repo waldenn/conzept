@@ -57,7 +57,7 @@ async function fetchCurrentsAPI( args, url ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" onclick="openInNewTab( &quot;' + url + '&quot;)" onauxclick="openInNewTab( &quot;' + url + '&quot;)"> ' + label + '</a>' + desc ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + url + '&quot;)" onauxclick="openInNewTab( &quot;' + url + '&quot;)"> ' + label + '</a>' + desc ),
 
             thumb_link:           '',
 

@@ -187,6 +187,7 @@ const explore = {
   darkmode            : undefined,
   bgmode              : undefined,
   gridmode            : undefined,
+  bread               : undefined, // reading help using bolded word beginnings
 
   // personality options
   personas            : [],
@@ -345,6 +346,7 @@ $( document ).ready( function() {
     setupOptionBgmode();
     setupOptionDarkmode();
     setupOptionGridmode();
+    setupOptionBread();
     setupOptionColorFilter();
     setupOptionPersonas();
     setupOptionCountry();

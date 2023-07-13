@@ -267,7 +267,7 @@ function insertQidTopics( args, list ){
 
             obj[ qid ] = {
 
-              title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
+              title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '" role="button"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
               thumb_link:           '',
               explore_link:         encodeURIComponent( getExploreLink( args, label, qid ) ),
               video_link:           encodeURIComponent( getVideoLink( args, label ) ),

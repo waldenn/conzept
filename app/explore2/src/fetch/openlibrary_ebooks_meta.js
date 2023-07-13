@@ -186,8 +186,8 @@ async function fetchEbooksMeta( args, total_results, page, sortby, type ){
               let author_url  = 'https://openlibrary.org/authors/' + v.author_key[j];
 
               subtitle += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author + '</a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author + '</a>' +
                 '</div>';
 
             });
@@ -233,8 +233,8 @@ async function fetchEbooksMeta( args, total_results, page, sortby, type ){
               let author_url  = 'https://openlibrary.org/search/authors?q=' + author_name;
 
               subtitle += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
                 '</div>';
 
             });
@@ -259,16 +259,16 @@ async function fetchEbooksMeta( args, total_results, page, sortby, type ){
 
           if ( newtab === true ){
 
-            title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
+            title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
 
-            thumb_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> <div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>');
+            thumb_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> <div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>');
 
           }
           else {
 
-						title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
+						title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
 
-            thumb_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: JSON.parse( decodeURI( url ) ), title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' );
+            thumb_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: JSON.parse( decodeURI( url ) ), title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' );
 
           }
 

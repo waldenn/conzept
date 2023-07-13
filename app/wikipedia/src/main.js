@@ -54,6 +54,7 @@ const explore = {
   darkmode     	: getParameterByName('darkmode') || false,
   //linkpreview  	: getParameterByName('lp') || false,
   isMobile     	: getParameterByName('mobile') || detectMobile(),
+  bread         : false,
 
 	db						: undefined, // persistent client-side storage using immortalDB
 
@@ -155,7 +156,11 @@ $( document ).ready( function() {
 
     }
 
-    console.log('explore.language_variant: ', explore.language_variant );
+    // reading help: bold words
+    explore.bread = await explore.db.get('bread');
+    explore.bread = ( explore.bread === null || explore.bread === undefined ) ? false : explore.bread;
+
+    //console.log('explore.language_variant: ', explore.language_variant );
 
     // check if there is a preferred language-variant
     if ( explore.language_variant === '' && explore.languages_with_variants.includes( explore.language ) ){ 
@@ -1357,6 +1362,31 @@ function receiveMessage(event){
 
 	  //console.log( 'set-value: ', event.data.data[0], event.data.data[1] );
     explore[ event.data.data[0] ] = event.data.data[1];
+
+    if ( event.data.data[0] === 'bread' ){
+
+	    console.log( 'set-value: ', event.data.data[0], event.data.data[1] );
+
+      if ( valid( event.data.data[1] ) ){ // turn on
+
+        if ( valid( explore.bread ) && $('.bread').length === 0  ){ // not bolded yet --> bold wordparts
+
+          processNode( document.querySelector('.mw-parser-output') );
+
+        }
+
+        $('.bread').attr('style', 'font-weight: bolder !important');
+        //$('.bread').css('font-weight', 'bolder');
+
+      }
+      else { // turn off
+
+        $('.bread').attr('style', 'font-weight: unset !important');
+        //$('.bread').css('font-weight', 'normal');
+
+      }
+
+    }
 
   }
   else if ( event.data.event_id === 'pause-speaking' ){ // signal from main-app to pause any speech

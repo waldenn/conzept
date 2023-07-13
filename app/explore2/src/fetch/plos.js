@@ -149,8 +149,8 @@ async function fetchPLOS( args, total_results, page, sortby, type ){
               let author_url  = encodeURIComponent( JSON.stringify( 'https://journals.plos.org/plosone/search?q=author:' + v.author_display[j] ) );
 
               subtitle += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'url', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author + '</a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works" role="button"' + setOnClick( Object.assign({}, args, { type: 'url', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author + '</a>' +
                 '</div>';
 
             });
@@ -159,7 +159,7 @@ async function fetchPLOS( args, total_results, page, sortby, type ){
 
           obj[ 'label-' + i ] = {
 
-						title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc ),
+						title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc ),
 						thumb_link:           '',
 
             explore_link:         '',

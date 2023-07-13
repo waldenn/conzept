@@ -67,7 +67,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   args.languages    = item.languages;
 
-  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms_image', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
+  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'aerial_view', 'satellite_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms_image', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
 
   let thumbnail = '';
 
@@ -235,7 +235,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 		    o[name + '_nr'] = '&nbsp;<span title="' + v.title + '" class="nowrap"><i class="' + v.icon + '"></i>&#8239;' + '<span class="headline-symbol-value">' + nr_value + '</span></span>';
 
         // render these fields as a list of: "key: value"
-        o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value number" title="' + v.title + '" aria-label="' + v.title + '">' + nr_value + '</div>';
+        o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + v.title + '</div><div class="field-info field-info-value number" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + nr_value + '</div>';
 
 			}
       if ( v.type === 'symbol-string' ){ // string symbol
@@ -243,12 +243,12 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 				if ( typeof v.string_format === undefined || typeof v.string_format === 'undefined' || v.string_format === '' ){ // plain string
 
 		      o[name + '_display_value']  = item[name];
-          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '">' + item[name] + '</div>'; // render these fields as a list of: "key: value"
+          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + item[name] + '</div>'; // render these fields as a list of: "key: value"
 
 				}
 				else { // constructed string
 
-          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '">' + eval(`\`${ v.string_format }\``)  + '</div>';
+          o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + eval(`\`${ v.string_format }\``)  + '</div>';
 
 		      o[name + '_display_value'] = eval(`\`${ v.string_format }\``);
 
@@ -312,7 +312,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
 				let code = eval(`\`${ v.code }\``); // expand condition variables into code
 
-        o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" onclick="' + code + '"> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+        o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" role="button" onclick="' + code + '"> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		    o[name + '_display_value'] = v.text;
 
@@ -342,7 +342,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
             //console.log( label );
             //console.log( label, v.type_output );
 
-            o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type_output, url: url, title: label } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+            o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.type_output, url: url, title: label } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		        o[name + '_display_value'] = v.text;
 
@@ -361,15 +361,15 @@ function createItemHtml( args ){ // creates the HTML-card for each result
               // remove protocol-string (if needed)
               label = label.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
 
-              mv_html += '<li><a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type:  v.type_output, url: url , title: label } ) ) + '> ' + label + '</a></li>';
+              mv_html += '<li><a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type:  v.type_output, url: url , title: label } ) ) + '> ' + label + '</a></li>';
 
-              //mv_html += '<li><a class="mv-extra-topic ' + extra_class + '" ' + target + 'href="' + url + '" title="' + label + '" aria-label="' + label + '">' + label + '</a></li>';
+              //mv_html += '<li><a class="mv-extra-topic ' + extra_class + '" ' + target + 'href="' + url + '" title="' + label + '" aria-label="' + label + '" role="button">' + label + '</a></li>';
 
               o[name + '_display_value'] = '';
 
             };
 
-            o[ name ]  = '<details title="' + v.title + '" aria-label="' + v.title + '" id="mv-' + id + '" class="multi-value"><summary class="multi-value"><span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span></summary> <p class="mv-content"><ul class="multi-value">' + mv_html + '</ul></p></details> ';
+            o[ name ]  = '<details title="' + v.title + '" aria-label="' + v.title + '" role="button" id="mv-' + id + '" class="multi-value"><summary class="multi-value"><span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span></summary> <p class="mv-content"><ul class="multi-value">' + mv_html + '</ul></p></details> ';
 
           }
 
@@ -381,7 +381,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
             // FIXME: explore-title not updated in URL, when these are clicked
             // issue: currently we don't fetch the label for these single-multi-values, so we can't pass the correct title upon clicking.
             // possible solution: fetch the label upon click and then pass the correct title?
-            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type, qid: item[name][0] } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.type, qid: item[name][0] } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		        o[name + '_display_value'] = v.text;
 
@@ -423,14 +423,14 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
                 url = encodeURI( url );
 
-                o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '" onclick="openInNewTab( &quot;' + url + '&quot;)"> <span class="icon newtab"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+                o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '" role="button" onclick="openInNewTab( &quot;' + url + '&quot;)"> <span class="icon newtab"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		            o[name + '_display_value'] = v.text;
 
               }
               else { 
 
-                o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type, url: url, title: label } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+                o[ name ] = '<a href="javascript:void(0)" class="' + extra_class + '" title="' + v.title + '" aria-label="' + v.title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.type, url: url, title: label } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		            o[name + '_display_value'] = v.text;
 
@@ -446,13 +446,13 @@ function createItemHtml( args ){ // creates the HTML-card for each result
                 label = label.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
 
                 // add newtab-class to external-URLSs
-                mv_html += '<li><a class="mv-extra-topic ' + extra_class + '" ' + target + 'href="' + url + '" title="' + label + '" aria-label="' + label + '">' + label + '</a></li>';
+                mv_html += '<li><a class="mv-extra-topic ' + extra_class + '" ' + target + 'href="' + url + '" title="' + label + '" aria-label="' + label + '" role="button">' + label + '</a></li>';
 
 		            o[name + '_display_value'] = '';
 
               });
 
-              o[ name ]  = '<details title="' + v.title + '" aria-label="' + v.title + '" id="mv-' + id + '" class="multi-value"><summary class="multi-value"><span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span></summary> <p class="mv-content"><ul class="multi-value">' + mv_html + '</ul></p></details> ';
+              o[ name ]  = '<details title="' + v.title + '" aria-label="' + v.title + '" role="button" id="mv-' + id + '" class="multi-value"><summary class="multi-value"><span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span></summary> <p class="mv-content"><ul class="multi-value">' + mv_html + '</ul></p></details> ';
 
             }
 
@@ -515,14 +515,14 @@ function createItemHtml( args ){ // creates the HTML-card for each result
           // build button html
           if ( newtab ){
 
-            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" onclick="openInNewTab( &quot;' + item.url + '&quot;)"> <span class="icon newtab"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" role="button" onclick="openInNewTab( &quot;' + item.url + '&quot;)"> <span class="icon newtab"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		        o[name + '_display_value'] = v.text;
 
           }
           else {
 
-            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, { type: v.type, url: item.url } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+            o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.type, url: item.url } ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		        o[name + '_display_value'] = v.text;
 
@@ -545,7 +545,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
           }
           
           // build button html
-          o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '"' + setOnClick( Object.assign({}, args, custom_args ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
+          o[ name ] = '<a href="javascript:void(0)" title="' + v.title + '" aria-label="' + v.title + '" role="button"' + setOnClick( Object.assign({}, args, custom_args ) ) + '> <span class="icon"><i class="' + v.icon + '" style="position:relative;"><span class="subtext">' + v.text + '</span></i></span> </a>';
 
 		      o[name + '_display_value'] = v.text;
 
@@ -674,7 +674,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
               let code = eval(`\`${ v.headline_code }\``);
 
-              headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" onclick="' + code + '"><span title="' + hover_title + '" class="icon"><i class="' + icon + '" style="position:relative;"></i></span><span class="headline-link-text">' + link_text + '</span></a> ', rank: v.headline_rank });
+              headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" role="button" onclick="' + code + '"><span title="' + hover_title + '" class="icon"><i class="' + icon + '" style="position:relative;"></i></span><span class="headline-link-text">' + link_text + '</span></a> ', rank: v.headline_rank });
 
             }
             else if ( v.headline_type === 'link' || v.headline_type === 'link-split' || v.headline_type === 'url' ){ // for any link-type
@@ -724,12 +724,12 @@ function createItemHtml( args ){ // creates the HTML-card for each result
               // build button html
               if ( newtab ){
 
-                headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" onclick="openInNewTab( &quot;' + item.headline_url + '&quot;)"> <span class="icon newtab"><i class="' + icon + '" style="position:relative;"><span class="subtext">' + link_display_value + '</span></i></span> <span class="headline-link-text">' + link_text + '<span></a>', rank: v.headline_rank });
+                headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" role="button" onclick="openInNewTab( &quot;' + item.headline_url + '&quot;)"> <span class="icon newtab"><i class="' + icon + '" style="position:relative;"><span class="subtext">' + link_display_value + '</span></i></span> <span class="headline-link-text">' + link_text + '<span></a>', rank: v.headline_rank });
 
               }
               else {
 
-                headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '"' + setOnClick( Object.assign({}, args, { type: v.headline_type, url: item.headline_url } ) ) + '> <span class="icon"><i class="' + icon + '" style="position:relative;"></i>' + link_display_value + '</span> <span class="headline-link-text">' + link_text + '</span></a>', rank: v.headline_rank });
+                headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.headline_type, url: item.headline_url } ) ) + '> <span class="icon"><i class="' + icon + '" style="position:relative;"></i>' + link_display_value + '</span> <span class="headline-link-text">' + link_text + '</span></a>', rank: v.headline_rank });
 
               }
 
@@ -869,7 +869,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
       const tex = removeWords( formula, list );
 
-      const formula_html = '<div class="topic-description formula" title="mathematical formula" aria-label="mathematical formula">' + katex.renderToString( tex, { throwOnError: false }) + '</div>';
+      const formula_html = '<div class="topic-description formula" title="mathematical formula" aria-label="mathematical formula" role="math">' + katex.renderToString( tex, { throwOnError: false }) + '</div>';
 
       math_formulas.push( formula_html );
 
@@ -908,7 +908,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( args.id == 'n00' ){ // raw-search-string topic 
 
-      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '&setlang=' + explore.language + '-' + explore.language } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;">(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)</a>';
+      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="Bing web search" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '&setlang=' + explore.language + '-' + explore.language } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;">(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)</a>';
 
     }
     else {
@@ -921,12 +921,12 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
       if ( valid( topic_onclick ) ){ // with topic-class-link
 
-        headline = '<span class="headline-left-half icon"><a href="javascript:void(0)" class="topic-class ' + topic_label + '" aria-label="topic class ' + topic_label + '" ' + topic_onclick + '>' + tag_icon + ' </a></span>' + '<span class="headline-right-half">' + headline_html + '</span>';
+        headline = '<span class="headline-left-half icon"><a href="javascript:void(0)" class="topic-class ' + topic_label + '" aria-label="topic class ' + topic_label + '" role="button" ' + topic_onclick + '>' + tag_icon + ' </a></span>' + '<span class="headline-right-half">' + headline_html + '</span>';
 
       }
       else { // without topic-class-lik
 
-        headline = '<span class="headline-left-half icon"><span class="topic-class" aria-label="topic class">' + tag_icon + ' </span></span>' + '<span class="headline-right-half">' + headline_html + '</span>';
+        headline = '<span class="headline-left-half icon"><span class="topic-class" aria-label="topic class" role="button">' + tag_icon + ' </span></span>' + '<span class="headline-right-half">' + headline_html + '</span>';
 
       }
 
@@ -948,7 +948,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     o.mark = '';
 
     // override the normal wikidata-page-button with a wikidata-search-button
-    o.wikidata = '<a href="javascript:void(0)" title="Wikidata search" aria-label="Wikidata search"' + setOnClick( Object.assign({}, args, { type: 'link', url: encodeURI( explore.base + '/app/wikidata/?find=' + title_ + '&lang=' + explore.language ) } ) ) + '"> <span class="icon"><i class="fa-solid fa-hockey-puck" style="position:relative;"><span class="subtext">wData</span></i></span> </a>';
+    o.wikidata = '<a href="javascript:void(0)" title="Wikidata search" aria-label="Wikidata search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: encodeURI( explore.base + '/app/wikidata/?find=' + title_ + '&lang=' + explore.language ) } ) ) + '"> <span class="icon"><i class="fa-solid fa-hockey-puck" style="position:relative;"><span class="subtext">wData</span></i></span> </a>';
 
     o.linkgraph = ''; // reset fields not usable for this raw-type
 
@@ -998,7 +998,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   if ( args.id == 'n00' ){ // raw-search-string
 
-    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title_.replace(/:/g, ': ') + '</a>';
+    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title_.replace(/:/g, ': ') + '</a>';
 
     item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
   }
@@ -1007,24 +1007,24 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( valid( item.newtab ) ){ // open link in a new tab
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
 
       // FIXME
-      //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
+      //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
 
-      // encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
+      // encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
 
     }
     else {
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
 
     }
 
   }
   else { // assume wikipedia / wikidata render
 
-    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
+    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia" role="button"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
 
   }
 
@@ -1065,7 +1065,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
       description =
         // FIXME: the link-wrap breaks the "topic-card-div", why?
         // TODO: separate the "topic-description" from the link-wrap
-        //`<a href="javascript:void(0)" class="summary-link aria-label="topic description" tabindex="-1" ` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) ) +
+        //`<a href="javascript:void(0)" class="summary-link aria-label="topic description" role="button" tabindex="-1" ` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) ) +
           '<div class="topic-description">' +
             '<span class="item-description">' + item.description + '</span>' +
             thumbnail +
@@ -1077,7 +1077,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     else { // assume wikipedia / wikidata render
 
       description =
-        //'<a href="javascript:void(0)" class="summary-link" aria-label="topic description" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) ) +
+        //'<a href="javascript:void(0)" class="summary-link" aria-label="topic description" role="button" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) ) +
           '<div class="topic-description">' +
             '<span class="item-description">' + item.description + '</span>' +
             thumbnail +
@@ -1117,7 +1117,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     explore.minimal_detail_open +
     '<span class="medialinks" style="display:block;">' +
-      '<details id="sections" class="more-details" " title="show more links" aria-label="show more links">' +
+      '<details id="sections" class="more-details" " title="show more links" aria-label="show more links" role="button">' +
         '<summary class="more bt"></summary>' +
           all_section_html +
       '</details>' +

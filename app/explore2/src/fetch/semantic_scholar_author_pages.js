@@ -76,7 +76,7 @@ async function fetchSemanticScholarAuthorPapers( args, url ){
  
           obj[ 'label-' + i ] = {
 
-						title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + desc + date ),
+						title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + desc + date ),
 
             thumb_link: 					'',
 

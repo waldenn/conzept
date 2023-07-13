@@ -902,6 +902,10 @@ mark {
   border-bottom: 1px solid #000;
 }
 
+select:focus {
+  border: 2px solid #26a69a !important;
+}
+
 select.browser-default {
   display: inline !important;
   width: 80%;
@@ -2963,7 +2967,7 @@ div#swipe-4 li {
 .tabs .tab a {
   color: #000;
   padding: 0 1.2rem !important;
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
 }
 .tabs .tab a.active, .tabs .tab a:hover {
   color: #ee6e7396;

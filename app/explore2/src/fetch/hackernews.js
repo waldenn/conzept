@@ -150,7 +150,7 @@ async function fetchHackerNews( args, total_results, page, sortby ){
 
             const comments_url = 'https://news.ycombinator.com/item?id=' + v.objectID;
 
-            comments_link = '<div class="mv-extra-date" title="comments"><a href="javascript:void(0)" class="mv-extra-icon" title="comments" aria-label="comments" onclick="openInNewTab( &quot;' + comments_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"><i class="fa-brands fa-hacker-news"></i></a> &nbsp;' + date + '<div>';
+            comments_link = '<div class="mv-extra-date" title="comments"><a href="javascript:void(0)" class="mv-extra-icon" title="comments" aria-label="comments" role="button" onclick="openInNewTab( &quot;' + comments_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"><i class="fa-brands fa-hacker-news"></i></a> &nbsp;' + date + '<div>';
 
           }
 
@@ -164,7 +164,7 @@ async function fetchHackerNews( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + label + '</a>' + comments_link + desc ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + label + '</a>' + comments_link + desc ),
 
             thumb_link:           '',
 

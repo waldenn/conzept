@@ -259,7 +259,7 @@ async function fetchArxiv( args, total_results, page, sortby ){
         //  https://github.com/dginev/ar5iv
         let pdf_html_url = 'https://conze.pt/app/cors/raw/?url=' + encodeURIComponent( url_tmp.replace('/arxiv\.org/', '/ar5iv.org/') );
 
-        pdf_html_link = '&nbsp;&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="view PDF as HTML" aria-label="view PDF as HTML"' + setOnClick( Object.assign({}, args, { type: 'link', url: pdf_html_url, title: '', qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-brands fa-html5" style="position:relative;"></i></span></a>';
+        pdf_html_link = '&nbsp;&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="view PDF as HTML" aria-label="view PDF as HTML" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: pdf_html_url, title: '', qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-brands fa-html5" style="position:relative;"></i></span></a>';
 
       }
 
@@ -309,9 +309,9 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
 					authors_html += '<div class="mv-extra-desc">' +
 
-							'<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+							'<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
 
-							'<a href="javascript:void(0)" class="mv-extra-icon" title="author search" aria-label="author search" onclick="openInNewTab( &quot;' + author_url + '&quot;)" onauxclick="openInNewTab( &quot;' + author_url + '&quot;)"> ' + decodeURIComponent( author_name ) + '</a>' +
+							'<a href="javascript:void(0)" class="mv-extra-icon" title="author search" aria-label="author search" role="button" onclick="openInNewTab( &quot;' + author_url + '&quot;)" onauxclick="openInNewTab( &quot;' + author_url + '&quot;)"> ' + decodeURIComponent( author_name ) + '</a>' +
 
 						'</div>';
 
@@ -338,9 +338,9 @@ async function fetchArxiv( args, total_results, page, sortby ){
 
       obj[ 'label-' + i ] = {
 
-        title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="document" aria-label="document"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '> ' + label + '</a>' + date + desc + authors ),
+        title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="document" aria-label="document" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '> ' + label + '</a>' + date + desc + authors ),
 
-        //title_link:            encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + label + '</a>' + date + desc + authors ),
+        //title_link:            encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + label + '</a>' + date + desc + authors ),
 
         thumb_link: 					'',
 

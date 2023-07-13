@@ -175,7 +175,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
 
             if ( valid( v.year[0] ) ){
 
-              desc = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.year[0], qid: '', language  : explore.language } ) ) + '">' + v.year[0] + '</a></div>';
+              desc = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.year[0], qid: '', language  : explore.language } ) ) + '">' + v.year[0] + '</a></div>';
 
             }
 
@@ -228,8 +228,8 @@ async function fetchEuropeana( args, total_results, page, sortby ){
               let author_url  = '/app/wikipedia/?t=' + author_name + '&l=' + explore.language + '&voice=' + explore.voice_code;
 
               authors += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + name + '</a>' +
                 '</div>';
 
             });
@@ -242,7 +242,7 @@ async function fetchEuropeana( args, total_results, page, sortby ){
           }
           else {
 
-            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.dataProvider[0], qid: '', language  : explore.language } ) ) + '"> &nbsp;@ ' + v.dataProvider[0] + '</a></div>';
+            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.dataProvider[0], qid: '', language  : explore.language } ) ) + '"> &nbsp;@ ' + v.dataProvider[0] + '</a></div>';
 
             provider = v.dataProvider[0];
 
@@ -279,9 +279,9 @@ async function fetchEuropeana( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + desc + authors + subtitle ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + label_url + '&quot;)" onauxclick="openInNewTab( &quot;' + label_url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + desc + authors + subtitle ),
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         '',
             video_link:           '',

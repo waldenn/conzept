@@ -14,6 +14,12 @@
 					const csv_data = sessionStorage.getItem('csv') || '';
 					console.log('csv data: ', csv_data );
 
+					const csv_title = sessionStorage.getItem('csv_title') || '';
+					console.log('csv title: ', csv_title );
+
+          // add title
+          $('body').prepend( `<span id="data_title">${ csv_title }</span>` );
+
 					// use CSV data
 					$('.input-mode-paste').click();
 					$('textarea').val( csv_data ).change();
@@ -36,4 +42,23 @@
 
 		});
 
-</script></html>
+</script>
+
+<!-- CONZEPT PATCH -->
+<style>
+  #data_title {
+    position: sticky;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    top: .4em;
+    z-index: 9999;
+    color: black;
+    font-weight: bold;
+    background: #fbfaf9c9;
+    padding: 0px 0.3em;
+    border-radius: 0.3em;
+  }
+</style>
+
+</html>

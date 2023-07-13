@@ -123,8 +123,8 @@ async function fetchSemanticScholarQuery( args, total_results, page, sortby ){
               let author_url = encodeURIComponent( JSON.stringify( 'https://www.semanticscholar.org/author/' + author_name + '/' + author.authorId ) );
 
               authors += '<div class="mv-extra-desc">' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works"' + setOnClick( Object.assign({}, args, { type: 'url', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author.name + '</a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="explore author" aria-label="explore author" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author_name, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                  '<a href="javascript:void(0)" class="mv-extra-icon" title="author works" aria-label="author works" role="button"' + setOnClick( Object.assign({}, args, { type: 'url', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author.name + '</a>' +
                 '</div>';
 
             });
@@ -142,7 +142,7 @@ async function fetchSemanticScholarQuery( args, total_results, page, sortby ){
  
           obj[ 'label-' + i ] = {
 
-						title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + date + venue + authors + desc ),
+						title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'url', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + date + venue + authors + desc ),
 
             thumb_link: 					'',
 

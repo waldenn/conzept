@@ -334,6 +334,8 @@ function triggerQueryForm(){
     $('#srsearch').val( explore.q );
     explore.q = getSearchValue();
 
+    if ( explore.isSafari ){ console.log('triggerQueryForm() ', explore.q ); }
+
     $('.submitSearch').trigger('click'); // synthetic trigger submit
 
     //console.log('trigger form: ', explore.q, explore.type, explore.qid, explore.gid, explore.uri );
@@ -900,7 +902,7 @@ function renderBookmarks(){
 
 				//if ( node.type === 'string' ){ // for wikipedia-bookmark add an explore-button
 
-					explore_button = '&nbsp;<a href="javascript:void(0)" aria-label="exploreBookmark" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
+					explore_button = '&nbsp;<a href="javascript:void(0)" aria-label="exploreBookmark" role="button" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
 
 
 				//}
@@ -914,7 +916,7 @@ function renderBookmarks(){
 
           // FIXME: trigger click on lower element
 					//geo_button = `<a title="show on map" target="infoframe" href="${ geo_url }"><i class="fa-solid fa-location-dot"></i></a> `;
-					//geo_button = `<a title="show on map" aria-label="show on map" href="javascript:void(0)" onclick="openLink( event, &quot;${ geo_url }&quot; )"><i class="fa-solid fa-location-dot"></i></a> `;
+					//geo_button = `<a title="show on map" aria-label="show on map" role="button" href="javascript:void(0)" onclick="openLink( event, &quot;${ geo_url }&quot; )"><i class="fa-solid fa-location-dot"></i></a> `;
 
 				}
 
@@ -981,8 +983,8 @@ function renderBookmarks(){
 
 				$li.find('.jqtree-title.jqtree_common ').prepend( explore_button + tag_button + geo_button + icon + '&nbsp;' );
 				$li.find('.jqtree-element').append(
-          '<a href="javascript:void(0)" aria-label="removeBookmark" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a>' +
-          '<a href="javascript:void(0)" aria-label="selectBookmark" title="select bookmark" onclick="event.stopPropagation(); selectBookmark( event, &quot;'+ node.id +'&quot;)" class="bookmark-select '+ bookmark_selected +'" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-regular '+ bookmark_icon_class +'"></i></span></a>'
+          '<a href="javascript:void(0)" aria-label="removeBookmark" role="button" title="remove bookmark" onclick="removeBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-remove" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-trash-alt"></i></span></a>' +
+          '<a href="javascript:void(0)" aria-label="selectBookmark" role="button" title="select bookmark" onclick="event.stopPropagation(); selectBookmark( event, &quot;'+ node.id +'&quot;)" class="bookmark-select '+ bookmark_selected +'" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-regular '+ bookmark_icon_class +'"></i></span></a>'
         );
 
 			}
@@ -1410,8 +1412,8 @@ function setupOptionActiveDatasources(){
           <input type="checkbox" ${checked} id="datasource-${key}" onclick="toggleDatasource( &quot;${key}&quot;)">
           <span class="lever"></span>
           <span class="datasource-list-icon">${d.icon} </span>
-          <span class="datasource-name"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
-          <span class="datasource-description"><a class="" title="more info" aria-label="more info" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description})</a></span>
+          <span class="datasource-name"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
+          <span class="datasource-description"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description})</a></span>
         </label>
       </div>`;
 
@@ -1549,6 +1551,16 @@ function setupSearch() {
 
           explore.type  = 'string'; // set to default type
 
+          // ZZZ
+          if ( explore.isSafari ){
+
+            explore.q = getSearchValue();
+            //$('#srsearch').val( ui.item.label );
+
+            console.log( 'Safari: ', explore.q,  getSearchValue() );
+
+          }
+
           if ( explore.q.charAt(0) === '!' ){ // form-query-command
 
             if ( explore.q.startsWith( '!graph' ) ){ 
@@ -1566,7 +1578,8 @@ function setupSearch() {
 
           }
 
-          $('.submitSearch').click();
+          //$('.submitSearch').click();
+          $('.submitSearch').trigger('click');
 
           // TODO always close autocomplete-result upon ENTER
           $('.searchbox').autocomplete('close');
@@ -1667,6 +1680,7 @@ function setupSearch() {
 
     }
 
+    // ZZZ
     // trigger submit
     $('.submitSearch').trigger('click');
 
@@ -1710,7 +1724,11 @@ function setupSearch() {
 
   $('a.submitSearch').on( 'click', async function(e){
 
+    if ( explore.isSafari ){ console.log( 'Safari 1a: ', explore.q ); }
+
     let q = getSearchValue();
+
+    if ( explore.isSafari ){ console.log( 'Safari 1b: ', explore.q ); }
 
     //console.log( 'search: ', q, explore.q, $( '#srsearch' ).val() );
 
@@ -1853,10 +1871,19 @@ function setupSearch() {
 
 				}
 
+        // ZZZ
+        if ( explore.isSafari ){ console.log( 'Safari 2: ', explore.q ); }
+
         // TODO: verify this is URL update is correct in all cases
         updatePushState( explore.q, 'add' );
 
         refreshArticles(); // render the list of sidebar-topics
+
+        if ( explore.isSafari ){
+
+          console.log( 'Safari 3: ', explore.q );
+
+        }
 
         $('#blink').show();
 
@@ -2144,6 +2171,55 @@ function setupOptionGridmode() {
   })();
 
 }
+
+function setBread() {
+
+  if ( explore.bread ){
+    $('#bread').prop('checked', true);
+  }
+  else {
+    $('#bread').prop('checked', false);
+  }
+
+}
+
+function setupOptionBread(){
+
+  (async () => {
+
+    explore.bread = await explore.db.get('bread');
+
+    explore.bread = ( explore.bread === null || explore.bread === 'false' ) ? false : true;
+
+    setBread();
+
+    $('#bread').change(function() {
+
+      if ( $('#bread').prop('checked') ){
+
+        (async () => { await explore.db.set('bread', true); })();
+        explore.bread = true;
+
+        updateValueInPanes( 'bread', true );
+        setBread();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('bread', false); })();
+        explore.bread = false;
+
+        updateValueInPanes( 'bread', false );
+        setBread();
+
+      }
+
+    })
+
+  })();
+
+}
+
 
 function setBold() {
 
@@ -3483,23 +3559,23 @@ async function setDefaultDisplaySettings( cover, type ) {
       '<p>' + 
         '<span id="app-guide-welcome-text"></span> &nbsp;' + 
         '<span id="app-social-icons">' + 
-          '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository"><i class="fa-brands fa-github"></i></a> &nbsp;' + 
-          '<a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy"><i class="fa-solid fa-section"></i></a> &nbsp;' + 
-          '<a target="_blank" rel="noopener" href="https://github.com/sponsors/waldenn?o=esb" title="GitHub sponsor" aria-label="GitHub sponsor"><i class="fa-solid fa-heart"></i></a> &nbsp;' + 
-          '<a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/conzept-encyclopedia-extension/" title="Firefox browser extension" aria-label="Firefox browser extension"><i class="fa-brands fa-firefox-browser"></i></a> &nbsp;' + 
-          //'<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
-          '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news"><i class="fa-brands fa-twitter"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository" role="button"><i class="fa-brands fa-github"></i></a> &nbsp;' + 
+          '<a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy" role="button"><i class="fa-solid fa-section"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://github.com/sponsors/waldenn?o=esb" title="GitHub sponsor" aria-label="GitHub sponsor" role="button"><i class="fa-solid fa-heart"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/conzept-encyclopedia-extension/" title="Firefox browser extension" aria-label="Firefox browser extension" role="button"><i class="fa-brands fa-firefox-browser"></i></a> &nbsp;' + 
+          //'<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension" role="button"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
+          '<a target="_blank" rel="noopener" href="https://twitter.com/conzept__" title="Twitter news" aria-label="Twitter news" role="button"><i class="fa-brands fa-twitter"></i></a> &nbsp;' + 
         '</span>' + 
       '</p>' + 
     
       '<div class="frontpage-grid-container">' +
 
-        '<div><a class="" title="random featured article" aria-label="random featured article" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
+        '<div><a class="" title="random featured article" aria-label="random featured article" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-article&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-article">featured article</span></span></a></div>' +
 
         // show a geolocation-button or a random-button
-        ( valid( navigator.geolocation ) ? '<div><a class="" title="topics near me" aria-label="topics near me" href="javascript:void(0)" onclick="getLocation( showTopicsNearMe )"><span class="icon"><i class="fa-solid fa-map-location-dot fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-near-me">near me</span></span></a></div>' : '<div><a class="link random" title="go to a random topic" aria-label="random topic" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fa-solid fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' ) +
+        ( valid( navigator.geolocation ) ? '<div><a class="" title="topics near me" aria-label="topics near me" role="button" href="javascript:void(0)" onclick="getLocation( showTopicsNearMe )"><span class="icon"><i class="fa-solid fa-map-location-dot fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-near-me">near me</span></span></a></div>' : '<div><a class="link random" title="go to a random topic" aria-label="random topic" role="button" href="javascript:void(0)" onclick="showRandomQuery()"><span class="icon"><i class="fa-solid fa-map-signs fa-2x" style="transform:rotate(5deg);"></i></span><br><span class="frontpage-icon"><span id="app-guide-topic"></span></span></a></div>' ) +
 
-        '<div><a class="link random" title="documentation" aria-label="documentation" href="/guide/user_manual" target="infoframe"><span class="icon"><i class="fa-solid fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
+        '<div><a class="link random" title="documentation" aria-label="documentation" role="button" href="/guide/user_manual" target="infoframe"><span class="icon"><i class="fa-solid fa-question fa-2x" style=""></i></span><br><span class="frontpage-icon"><span id="app-guide-help">help</span></span></a></div>' +
 
       '</div>' +
 
@@ -3509,53 +3585,53 @@ async function setDefaultDisplaySettings( cover, type ) {
           '<div class="frontpage-grid-container">' +
 
             // general culture
-            '<div><a class="" title="random featured portal" aria-label="random featured portal" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-portal&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-portal">featured portal</span></span></a></div>' +
-            '<div><a class="" title="current events" aria-label="current events" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
-            '<div><a class="" title="visual search" aria-label="visual search" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
+            '<div><a class="" title="random featured portal" aria-label="random featured portal" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-portal&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-portal">featured portal</span></span></a></div>' +
+            '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
+            '<div><a class="" title="visual search" aria-label="visual search" role="button" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
 
             // geography
-            '<div><a class="" title="random country map" aria-label="random country map" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fa-solid fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
-            '<div><a class="" title="random country" aria-label="random country" href="javascript:void(0)" onclick="showRandomCountry()"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country"></span></span></a></div>' +
-            '<div><a class="" title="random historical country" aria-label="random historical country" href="javascript:void(0)" onclick="showRandomListItem( &quot;historical-country&quot; )"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-historical-country"></span></span></a></div>' +
-            '<div><a class="" title="random capitol" aria-label="random capitol" href="javascript:void(0)" onclick="showRandomListItem( &quot;capitol&quot; )"><span class="icon"><i class="fa-solid fa-map-marker-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-capitol">capitol</span></span></a></div>' +
-            '<div><a class="" title="random form of government" aria-label="random form of government" href="javascript:void(0)" onclick="showRandomListItem( &quot;form-of-government&quot; )"><span class="icon"><i class="fa-solid fa-balance-scale-right fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-form-of-government">form of gov.</span></span></a></div>' +
-            '<div><a class="" title="random ethnic group" aria-label="random ethnic group" href="javascript:void(0)" onclick="showRandomListItem( &quot;ethnic-group&quot; )"><span class="icon"><i class="fa-solid fa-hand-holding-heart fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ethnic-group"></span></span></a></div>' +
-            '<div><a class="" title="random language" aria-label="random language" href="javascript:void(0)" onclick="showRandomLanguage()"><span class="icon"><i class="fa-solid fa-language fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-language"></span></span></a></div>' +
-            '<div><a class="" title="random religion" aria-label="random religion" href="javascript:void(0)" onclick="showRandomListItem( &quot;religion&quot; )"><span class="icon"><i class="fa-solid fa-dharmachakra fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-religion">religion</span></span></a></div>' +
+            '<div><a class="" title="random country map" aria-label="random country map" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fa-solid fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
+            '<div><a class="" title="random country" aria-label="random country" role="button" href="javascript:void(0)" onclick="showRandomCountry()"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country"></span></span></a></div>' +
+            '<div><a class="" title="random historical country" aria-label="random historical country" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;historical-country&quot; )"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-historical-country"></span></span></a></div>' +
+            '<div><a class="" title="random capitol" aria-label="random capitol" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;capitol&quot; )"><span class="icon"><i class="fa-solid fa-map-marker-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-capitol">capitol</span></span></a></div>' +
+            '<div><a class="" title="random form of government" aria-label="random form of government" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;form-of-government&quot; )"><span class="icon"><i class="fa-solid fa-balance-scale-right fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-form-of-government">form of gov.</span></span></a></div>' +
+            '<div><a class="" title="random ethnic group" aria-label="random ethnic group" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;ethnic-group&quot; )"><span class="icon"><i class="fa-solid fa-hand-holding-heart fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ethnic-group"></span></span></a></div>' +
+            '<div><a class="" title="random language" aria-label="random language" role="button" href="javascript:void(0)" onclick="showRandomLanguage()"><span class="icon"><i class="fa-solid fa-language fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-language"></span></span></a></div>' +
+            '<div><a class="" title="random religion" aria-label="random religion" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;religion&quot; )"><span class="icon"><i class="fa-solid fa-dharmachakra fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-religion">religion</span></span></a></div>' +
 
             // history
-            '<div><a class="" title="random period" aria-label="random period" href="javascript:void(0)" onclick="showRandomListItem( &quot;period&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-period">period</span></span></a></div>' +
-            '<div><a class="" title="random aspect of history" aria-label="random aspect of history" href="javascript:void(0)" onclick="showRandomListItem( &quot;history-aspect&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-history-aspect">history aspect</span></span></a></div>' +
-            '<div><a class="" title="random revolution" aria-label="random revolution" href="javascript:void(0)" onclick="showRandomListItem( &quot;revolution&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-revolution">revolution</span></span></a></div>' +
-            '<div><a class="" title="random war" aria-label="random war" href="javascript:void(0)" onclick="showRandomListItem( &quot;war&quot; )"><span class="icon"><i class="fa-solid fa-crosshairs fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-war">war</span></span></a></div>' +
-            '<div><a class="" title="random battle" aria-label="random battle" href="javascript:void(0)" onclick="showRandomListItem( &quot;battle&quot; )"><span class="icon"><i class="fa-solid fa-crosshairs fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-battle">battle</span></span></a></div>' +
+            '<div><a class="" title="random period" aria-label="random period" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;period&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-period">period</span></span></a></div>' +
+            '<div><a class="" title="random aspect of history" aria-label="random aspect of history" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;history-aspect&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-history-aspect">history aspect</span></span></a></div>' +
+            '<div><a class="" title="random revolution" aria-label="random revolution" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;revolution&quot; )"><span class="icon"><i class="fa-solid fa-history fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-revolution">revolution</span></span></a></div>' +
+            '<div><a class="" title="random war" aria-label="random war" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;war&quot; )"><span class="icon"><i class="fa-solid fa-crosshairs fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-war">war</span></span></a></div>' +
+            '<div><a class="" title="random battle" aria-label="random battle" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;battle&quot; )"><span class="icon"><i class="fa-solid fa-crosshairs fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-battle">battle</span></span></a></div>' +
 
             // film
-            '<div><a class="" title="random documentary" aria-label="random documentary" href="javascript:void(0)" onclick="showRandomDocumentary()"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary"></span></span></a></div>' +
-            '<div><a class="" title="random documentary title" aria-label="random documentary title" href="javascript:void(0)" onclick="showRandomListItem( &quot;documentary&quot; )"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary-title">documentary title</span></span></a></div>' +
-            '<div><a class="" title="random film title" aria-label="random film title" href="javascript:void(0)" onclick="showRandomListItem( &quot;film&quot; )"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-film-title">film title</span></span></a></div>' +
+            '<div><a class="" title="random documentary" aria-label="random documentary" role="button" href="javascript:void(0)" onclick="showRandomDocumentary()"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary"></span></span></a></div>' +
+            '<div><a class="" title="random documentary title" aria-label="random documentary title" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;documentary&quot; )"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-documentary-title">documentary title</span></span></a></div>' +
+            '<div><a class="" title="random film title" aria-label="random film title" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;film&quot; )"><span class="icon"><i class="fa-solid fa-film fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-film-title">film title</span></span></a></div>' +
 
             // arts
-            '<div><a class="" title="random art movement" aria-label="random art movement" href="javascript:void(0)" onclick="showRandomListItem( &quot;art-movement&quot; )"><span class="icon"><i class="fa-brands fa-uncharted fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-art-movement">art movement</span></span></a></div>' +
-            '<div><a class="" title="random artwork" aria-label="random artwork" href="javascript:void(0)" onclick="showRandomArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-artwork"></span></span></a></div>' +
-            //'<div><a class="" title="random Europeana artwork" aria-label="random Europeana artwork" href="javascript:void(0)" onclick="showRandomEuropeanaArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon">Europeana</span></a></div>' +
-            '<div><a class="" title="random music" aria-label="random music" href="javascript:void(0)" onclick="showRandomMusic()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-music"></span></span></a></div>' +
-            '<div><a class="" title="random radio station" aria-label="random radio station" href="javascript:void(0)" onclick="showRandomRadioStation()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-radio">radio</span></span></a></div>' +
-            '<div><a class="" title="random musical instrument" aria-label="random musical instrument" href="javascript:void(0)" onclick="showRandomListItem( &quot;musical-instrument&quot; )"><span class="icon"><i class="fa-solid fa-guitar fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-musical-instrument">instrument</span></span></a></div>' +
-            '<div><a class="" title="random music composer" aria-label="random music composer" href="javascript:void(0)" onclick="showRandomListItem( &quot;composer&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-composer">composer</span></span></a></div>' +
-            '<div><a class="" title="random painter" aria-label="random painter" href="javascript:void(0)" onclick="showRandomListItem( &quot;painter&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-painter">painter</span></span></a></div>' +
-            '<div><a class="" title="random poet" aria-label="random poet" href="javascript:void(0)" onclick="showRandomListItem( &quot;poet&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-poet">poet</span></span></a></div>' +
-            '<div><a class="" title="random philosopher" aria-label="random philosopher" href="javascript:void(0)" onclick="showRandomListItem( &quot;philosopher&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-philosopher">philosopher</span></span></a></div>' +
-            '<div><a class="" title="random architect" aria-label="random architect" href="javascript:void(0)" onclick="showRandomListItem( &quot;architect&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-architect">architect</span></span></a></div>' +
+            '<div><a class="" title="random art movement" aria-label="random art movement" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;art-movement&quot; )"><span class="icon"><i class="fa-brands fa-uncharted fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-art-movement">art movement</span></span></a></div>' +
+            '<div><a class="" title="random artwork" aria-label="random artwork" role="button" href="javascript:void(0)" onclick="showRandomArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-artwork"></span></span></a></div>' +
+            //'<div><a class="" title="random Europeana artwork" aria-label="random Europeana artwork" role="button" href="javascript:void(0)" onclick="showRandomEuropeanaArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon">Europeana</span></a></div>' +
+            '<div><a class="" title="random music" aria-label="random music" href="javascript:void(0)" role="button" onclick="showRandomMusic()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-music"></span></span></a></div>' +
+            '<div><a class="" title="random radio station" aria-label="random radio station" role="button" href="javascript:void(0)" onclick="showRandomRadioStation()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-radio">radio</span></span></a></div>' +
+            '<div><a class="" title="random musical instrument" aria-label="random musical instrument" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;musical-instrument&quot; )"><span class="icon"><i class="fa-solid fa-guitar fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-musical-instrument">instrument</span></span></a></div>' +
+            '<div><a class="" title="random music composer" aria-label="random music composer" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;composer&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-composer">composer</span></span></a></div>' +
+            '<div><a class="" title="random painter" aria-label="random painter" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;painter&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-painter">painter</span></span></a></div>' +
+            '<div><a class="" title="random poet" aria-label="random poet" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;poet&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-poet">poet</span></span></a></div>' +
+            '<div><a class="" title="random philosopher" aria-label="random philosopher" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;philosopher&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-philosopher">philosopher</span></span></a></div>' +
+            '<div><a class="" title="random architect" aria-label="random architect" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;architect&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-architect">architect</span></span></a></div>' +
 
             // industry
-            '<div><a class="" title="random inventor" aria-label="random inventor" href="javascript:void(0)" onclick="showRandomListItem( &quot;inventor&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-inventor">inventor</span></span></a></div>' +
-            '<div><a class="" title="random software" aria-label="random software" href="javascript:void(0)" onclick="showRandomListItem( &quot;software&quot; )"><span class="icon"><i class="fa-regular fa-window-maximize fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-software">software</span></span></a></div>' +
-            '<div><a class="" title="random area of mathematics" aria-label="random area of mathematics" href="javascript:void(0)" onclick="showRandomListItem( &quot;mathematics&quot; )"><span class="icon"><i class="fa-solid fa-square-root-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mathematics">mathematics</span></span></a></div>' +
+            '<div><a class="" title="random inventor" aria-label="random inventor" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;inventor&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-inventor">inventor</span></span></a></div>' +
+            '<div><a class="" title="random software" aria-label="random software" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;software&quot; )"><span class="icon"><i class="fa-regular fa-window-maximize fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-software">software</span></span></a></div>' +
+            '<div><a class="" title="random area of mathematics" aria-label="random area of mathematics" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;mathematics&quot; )"><span class="icon"><i class="fa-solid fa-square-root-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mathematics">mathematics</span></span></a></div>' +
 
             // various
-            '<div><a class="" title="random tourist attraction" aria-label="random tourist attraction" href="javascript:void(0)" onclick="showRandomListItem( &quot;tourist-attraction&quot; )"><span class="icon"><i class="fa-solid fa-gopuram fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-tourist-attraction">tourist attraction</span></span></a></div>' +
-            '<div><a class="" title="random dish" aria-label="random dish" href="javascript:void(0)" onclick="showRandomListItem( &quot;dish&quot; )"><span class="icon"><i class="fa-solid fa-utensils fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-dish">dish</span></span></a></div>' +
+            '<div><a class="" title="random tourist attraction" aria-label="random tourist attraction" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;tourist-attraction&quot; )"><span class="icon"><i class="fa-solid fa-gopuram fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-tourist-attraction">tourist attraction</span></span></a></div>' +
+            '<div><a class="" title="random dish" aria-label="random dish" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;dish&quot; )"><span class="icon"><i class="fa-solid fa-utensils fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-dish">dish</span></span></a></div>' +
 
           '</div>' +
 
@@ -3565,31 +3641,31 @@ async function setDefaultDisplaySettings( cover, type ) {
           '<summary><span id="app-menu-nature">nature</span></summary>' +
 
           '<div class="frontpage-grid-container">' +
-            '<div><a class="" title="random sea" aria-label="random sea" href="javascript:void(0)" onclick="showRandomListItem( &quot;sea&quot; )"><span class="icon"><i class="fa-solid fa-water fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-sea">sea</span></span></a></div>' +
-            '<div><a class="" title="random continent" aria-label="random continent" href="javascript:void(0)" onclick="showRandomListItem( &quot;continent&quot; )"><span class="icon"><i class="fa-brands fa-firstdraft fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-continent">continent</span></span></a></div>' +
-            '<div><a class="" title="random bioregion" aria-label="random bioregion" href="javascript:void(0)" onclick="showRandomListItem( &quot;bioregion&quot; )"><span class="icon"><i class="fa-brands fa-firstdraft fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bioregion">bioregion</span></span></a></div>' +
-            '<div><a class="" title="random mountain range" aria-label="random mountain range" href="javascript:void(0)" onclick="showRandomListItem( &quot;mountain-range&quot; )"><span class="icon"><i class="fa-solid fa-mountain fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mountain-range">mountain range</span></span></a></div>' +
-            '<div><a class="" title="random national park" aria-label="random national park" href="javascript:void(0)" onclick="showRandomListItem( &quot;national-park&quot; )"><span class="icon"><i class="fa-solid fa-mountain fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-national-park"></span></span></a></div>' +
-            '<div><a class="" title="random disease" aria-label="random disease" href="javascript:void(0)" onclick="showRandomListItem( &quot;disease&quot; )"><span class="icon"><i class="fa-solid fa-head-side-cough fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-disease">disease</span></span></a></div>' +
-            '<div><a class="" title="random organism" aria-label="random organism" href="javascript:void(0)" onclick="showRandomOrganism()"><span class="icon"><i class="fa-solid fa-paw fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-organism">organism</span></span></a></div>' +
-            '<div><a class="" title="random mammal" aria-label="random mammal" href="javascript:void(0)" onclick="showRandomListItem( &quot;mammal&quot; )"><span class="icon"><i class="fa-solid fa-otter fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mammal"></span></span></a></div>' +
-            '<div><a class="" title="random bird" aria-label="random bird" href="javascript:void(0)" onclick="showRandomListItem( &quot;bird&quot; )"><span class="icon"><i class="fa-solid fa-crow fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bird"></span></span></a></div>' +
-            '<div><a class="" title="random reptile" aria-label="random reptile" href="javascript:void(0)" onclick="showRandomListItem( &quot;reptile&quot; )"><span class="icon"><i class="oma oma-black-snake oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-reptile"></span></span></a></div>' +
-            '<div><a class="" title="random fish" aria-label="random fish" href="javascript:void(0)" onclick="showRandomListItem( &quot;fish&quot; )"><span class="icon"><i class="fa-solid fa-fish fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-fish"></span></span></a></div>' +
-            '<div><a class="" title="random fish" aria-label="random amphibian" href="javascript:void(0)" onclick="showRandomListItem( &quot;amphibian&quot; )"><span class="icon"><i class="fa-solid fa-frog fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-amphibian"></span></span></a></div>' +
-            '<div><a class="" title="random insect" aria-label="random insect" href="javascript:void(0)" onclick="showRandomListItem( &quot;insect&quot; )"><span class="icon"><i class="fa-solid fa-bug fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-insect"></span></span></a></div>' +
-            '<div><a class="" title="random spider" aria-label="random spider" href="javascript:void(0)" onclick="showRandomListItem( &quot;spider&quot; )"><span class="icon"><i class="fa-solid fa-spider fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-spider"></span></span></a></div>' +
-            '<div><a class="" title="random plant" aria-label="random plant" href="javascript:void(0)" onclick="showRandomListItem( &quot;plant&quot; )"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-plant"></span></span></a></div>' +
-            '<div><a class="" title="plant photo identification" aria-label="plant photo identification" href="javascript:void(0)" onclick="identifyPlant()"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-plant-identification"></span></span></a></div>' +
-            '<div><a class="" title="random algae" aria-label="random algae" href="javascript:void(0)" onclick="showRandomListItem( &quot;algae&quot; )"><span class="icon"><i class="oma oma-black-fish-cake-with-swirl oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-algae"></span></span></a></div>' +
-            '<div><a class="" title="random fungus" aria-label="random fungus" href="javascript:void(0)" onclick="showRandomListItem( &quot;fungus&quot; )"><span class="icon"><i class="oma oma-black-champignon-brown oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-fungus"></span></span></a></div>' +
-            '<div><a class="" title="random protist" aria-label="random protist" href="javascript:void(0)" onclick="showRandomListItem( &quot;protist&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-protist">protist</span></span></a></div>' +
-            '<div><a class="" title="random bacterium" aria-label="random bacterium" href="javascript:void(0)" onclick="showRandomListItem( &quot;bacterium&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bacterium"></span></span></a></div>' +
-            '<div><a class="" title="random archae" aria-label="random archae" href="javascript:void(0)" onclick="showRandomListItem( &quot;archae&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-archae">archae</span></span></a></div>' +
-            '<div><a class="" title="random cell type" aria-label="random cell type" href="javascript:void(0)" onclick="showRandomListItem( &quot;cell-type&quot; )"><span class="icon"><i class="oma oma-black-hollow-red-circle oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-cell-type">cell type</span></span></a></div>' +
-            '<div><a class="" title="random virus" aria-label="random virus" href="javascript:void(0)" onclick="showRandomListItem( &quot;virus&quot; )"><span class="icon"><i class="fa-solid fa-virus fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-virus"></span></span></a></div>' +
-            '<div><a class="" title="random protein" aria-label="random protein" href="javascript:void(0)" onclick="showRandomListItem( &quot;protein&quot; )"><span class="icon"><i class="fa-solid fa-dna fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-protein">protein</span></span></a></div>' +
-            '<div><a class="" title="random atomic element" aria-label="random atomic element" href="javascript:void(0)" onclick="showRandomListItem( &quot;element&quot; )"><span class="icon"><i class="fa-solid fa-atom fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-atom">atom</span></span></a></div>' +
+            '<div><a class="" title="random sea" aria-label="random sea" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;sea&quot; )"><span class="icon"><i class="fa-solid fa-water fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-sea">sea</span></span></a></div>' +
+            '<div><a class="" title="random continent" aria-label="random continent" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;continent&quot; )"><span class="icon"><i class="fa-brands fa-firstdraft fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-continent">continent</span></span></a></div>' +
+            '<div><a class="" title="random bioregion" aria-label="random bioregion" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;bioregion&quot; )"><span class="icon"><i class="fa-brands fa-firstdraft fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bioregion">bioregion</span></span></a></div>' +
+            '<div><a class="" title="random mountain range" aria-label="random mountain range" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;mountain-range&quot; )"><span class="icon"><i class="fa-solid fa-mountain fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mountain-range">mountain range</span></span></a></div>' +
+            '<div><a class="" title="random national park" aria-label="random national park" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;national-park&quot; )"><span class="icon"><i class="fa-solid fa-mountain fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-national-park"></span></span></a></div>' +
+            '<div><a class="" title="random disease" aria-label="random disease" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;disease&quot; )"><span class="icon"><i class="fa-solid fa-head-side-cough fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-disease">disease</span></span></a></div>' +
+            '<div><a class="" title="random organism" aria-label="random organism" role="button" href="javascript:void(0)" onclick="showRandomOrganism()"><span class="icon"><i class="fa-solid fa-paw fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-organism">organism</span></span></a></div>' +
+            '<div><a class="" title="random mammal" aria-label="random mammal" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;mammal&quot; )"><span class="icon"><i class="fa-solid fa-otter fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mammal"></span></span></a></div>' +
+            '<div><a class="" title="random bird" aria-label="random bird" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;bird&quot; )"><span class="icon"><i class="fa-solid fa-crow fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bird"></span></span></a></div>' +
+            '<div><a class="" title="random reptile" aria-label="random reptile" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;reptile&quot; )"><span class="icon"><i class="oma oma-black-snake oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-reptile"></span></span></a></div>' +
+            '<div><a class="" title="random fish" aria-label="random fish" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;fish&quot; )"><span class="icon"><i class="fa-solid fa-fish fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-fish"></span></span></a></div>' +
+            '<div><a class="" title="random fish" aria-label="random amphibian" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;amphibian&quot; )"><span class="icon"><i class="fa-solid fa-frog fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-amphibian"></span></span></a></div>' +
+            '<div><a class="" title="random insect" aria-label="random insect" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;insect&quot; )"><span class="icon"><i class="fa-solid fa-bug fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-insect"></span></span></a></div>' +
+            '<div><a class="" title="random spider" aria-label="random spider" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;spider&quot; )"><span class="icon"><i class="fa-solid fa-spider fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-spider"></span></span></a></div>' +
+            '<div><a class="" title="random plant" aria-label="random plant" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;plant&quot; )"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-plant"></span></span></a></div>' +
+            '<div><a class="" title="plant photo identification" aria-label="plant photo identification" role="button" href="javascript:void(0)" onclick="identifyPlant()"><span class="icon"><i class="fa-brands fa-pagelines fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-plant-identification"></span></span></a></div>' +
+            '<div><a class="" title="random algae" aria-label="random algae" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;algae&quot; )"><span class="icon"><i class="oma oma-black-fish-cake-with-swirl oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-algae"></span></span></a></div>' +
+            '<div><a class="" title="random fungus" aria-label="random fungus" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;fungus&quot; )"><span class="icon"><i class="oma oma-black-champignon-brown oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-fungus"></span></span></a></div>' +
+            '<div><a class="" title="random protist" aria-label="random protist" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;protist&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-protist">protist</span></span></a></div>' +
+            '<div><a class="" title="random bacterium" aria-label="random bacterium" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;bacterium&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-bacterium"></span></span></a></div>' +
+            '<div><a class="" title="random archae" aria-label="random archae" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;archae&quot; )"><span class="icon"><i class="fa-solid fa-bacterium fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-archae">archae</span></span></a></div>' +
+            '<div><a class="" title="random cell type" aria-label="random cell type" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;cell-type&quot; )"><span class="icon"><i class="oma oma-black-hollow-red-circle oma-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-cell-type">cell type</span></span></a></div>' +
+            '<div><a class="" title="random virus" aria-label="random virus" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;virus&quot; )"><span class="icon"><i class="fa-solid fa-virus fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-virus"></span></span></a></div>' +
+            '<div><a class="" title="random protein" aria-label="random protein" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;protein&quot; )"><span class="icon"><i class="fa-solid fa-dna fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-protein">protein</span></span></a></div>' +
+            '<div><a class="" title="random atomic element" aria-label="random atomic element" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;element&quot; )"><span class="icon"><i class="fa-solid fa-atom fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-atom">atom</span></span></a></div>' +
           '</div>' +
         '</details>' +
 
@@ -3826,7 +3902,7 @@ async function renderTopicCover( name ){
                     '<canvas id="canvas"></canvas>' +
                     //'</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
 
-                    '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
+                    '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" role="button" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
 
                     '<img id="color-test-image" src="" style="display:none;"></img>' +
                     '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions" style="display:none;"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
@@ -4006,7 +4082,7 @@ async function setPopularCover() {
             '</head><body style="' + cover_css_extra + ' font-family: ' + explore.default_font + '; font-size: ' + explore.fontsize + 'px">' + 
             '<canvas id="canvas"></canvas>' +
 
-            '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
+            '<div class="bgimg-1"><div class="caption btn animated fadeIn delay-1s"><span class="border"><a id="topiclink" href="javascript:void(0)" onauxclick="openInNewTab( &quot;' + '/explore/' + encodeURIComponent( cover_name ) + '?t=string&l=' + explore.language + '&quot;)">' + cover_name.trim() + '</a></span></div> </div> <span id="copyright-notice"><a id="image-source" title="source" aria-label="source" role="button" target="_blank" href="https://en.wikipedia.org"><span class="icon"><i class="fa-regular fa-copyright fa-2x"></i></span></a></span>' + 
 
             '<img id="color-test-image" src="" style="display:none;"></img>' +
 						'<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions" style="display:none;"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
@@ -4780,18 +4856,18 @@ async function insertSelectMenuDates( args, fields ){
     let new_title_quoted = '%22' + args.topic + '%22%20' + tag;
 
     // create topic html
-		let title_link = '<a href="javascript:void(0)" class="mv-extra-topic" title="' + new_title + '" aria-label="' + new_title + '"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '> ' + decodeURIComponent( new_title ) + '</a><br>';
+		let title_link = '<a href="javascript:void(0)" class="mv-extra-topic" title="' + new_title + '" aria-label="' + new_title + '" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '> ' + decodeURIComponent( new_title ) + '</a><br>';
 
     let topic_html = 
       '<ul class="multi-value mv-select-card" name="' + args.target + '"><li>' +
         title_link +
         '<span class="mv-extra-buttons">' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video"' + setOnClick( Object.assign({}, args, { type: 'wander', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( `https://www.bing.com/search?q=${new_title}&search=Submit+Query&form=QBLH&setlang=${explore.language}` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( 'https://openlibrary.org/search?q=' + new_title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing web search" aria-label="Bing web search"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.bing.com/search?q=' + new_title_quoted + '&setlang=' + explore.language + '-' + explore.language, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-searchengin" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( `https://www.bing.com/search?q=${new_title}&search=Submit+Query&form=QBLH&setlang=${explore.language}` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( 'https://openlibrary.org/search?q=' + new_title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="Bing web search" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.bing.com/search?q=' + new_title_quoted + '&setlang=' + explore.language + '-' + explore.language, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-searchengin" style="position:relative;"></i></span></a>' +
         '</span>' +
       '</li></ul>';
 
@@ -4865,7 +4941,7 @@ function insertQidTopics( args, list ){
 
             obj[ qid ] = {
 
-              title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
+              title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="' + label + '" aria-label="' + label + '" role="button"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '>' + label + '</a><br>' ),
               thumb_link:           '',
               explore_link:         encodeURIComponent( getExploreLink( args, label, qid ) ),
               video_link:           encodeURIComponent( getVideoLink( args, label ) ),
@@ -5012,7 +5088,7 @@ async function insertMultiValuesHTML( args, obj, meta ){
 
         }
 
-        html += '<a href="javascript:void(0)" class="mv-extra-topic fetch-more" title="more results" aria-label="more results" onclick="' + meta.call + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, ' + meta.total_results + ',' +  ( meta.page + 1 )  + ', &quot;' + meta.sortby + '&quot; ' + cursor_string + qid_string + '); $(this).remove();" data-title="' + args.title + '"><i class="fa-solid fa-ellipsis-h"></i></a>';
+        html += '<a href="javascript:void(0)" class="mv-extra-topic fetch-more" title="more results" aria-label="more results" role="button" onclick="' + meta.call + '( &quot;' + encodeURIComponent( JSON.stringify( args ) ) + '&quot;, ' + meta.total_results + ',' +  ( meta.page + 1 )  + ', &quot;' + meta.sortby + '&quot; ' + cursor_string + qid_string + '); $(this).remove();" data-title="' + args.title + '"><i class="fa-solid fa-ellipsis-h"></i></a>';
 
       }
 
@@ -5585,6 +5661,8 @@ async function renderType( args ) {
     explore.type = 'string';
 
     $('#srsearch').val( decodeURIComponent( title_nocat ) );
+
+    if ( explore.isSafari ){ console.log('L+R: ', explore.q ); }
 
     explore.q = getSearchValue();
     $('.submitSearch').click();
@@ -7476,7 +7554,7 @@ async function afterLanguageUpdate(){
   $('html').attr('lang', explore.language );
 
   //TODO: do this via some JS API for ULS
-  $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; <span title="' + explore.language_name + '" aria-label="' + explore.language_name + '">' + getNamefromLangCode2( explore.language ) + '</span>' );
+  $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; <span title="' + explore.language_name + '" aria-label="' + explore.language_name + '" role="button">' + getNamefromLangCode2( explore.language ) + '</span>' );
 
   updateQueryBuilder();
 
@@ -7484,7 +7562,7 @@ async function afterLanguageUpdate(){
 
   // update show-live-edits link
   // TODO: call function (too avoid code duplication)
-  $('li#show-live-edits').html('<a href="https://wikistream.toolforge.org/#namespace=article&wiki=' + explore.language + '.wikipedia" target="infoframe" title="Wikipedia edits liveive" aria-label="Wikipedia edits live"><i class="fa-solid fa-edit"></i> &nbsp; Wikipedia edits live</a>');
+  $('li#show-live-edits').html('<a href="https://wikistream.toolforge.org/#namespace=article&wiki=' + explore.language + '.wikipedia" target="infoframe" title="Wikipedia edits liveive" aria-label="Wikipedia edits live" role="button"><i class="fa-solid fa-edit"></i> &nbsp; Wikipedia edits live</a>');
 
 }
 
@@ -9798,8 +9876,8 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
 
       /*
       const buttons =
-        '<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></span>';
-        //'<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="wikipedia" aria-label="wikipedia"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-brands fa-wikipedia-w" style="position:relative;"></i></span></span>';
+        '<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></span>';
+        //'<span href="javascript:void(0)" class="mv-extra-icon catbutton" title="wikipedia" aria-label="wikipedia" role="button"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( text ), qid: '', language  : explore.language } ) ) + '"> <span class="icon" style="text-indent: 0em;"><i class="fa-brands fa-wikipedia-w" style="position:relative;"></i></span></span>';
       */
 
       item
@@ -9821,26 +9899,26 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
         let more_html = 
           '<ul class="catmore multi-value" name="' + args.target + '">' +
             '<li><span class="mv-extra-buttons noindent">' +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-align-justify" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article" role="button"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-align-justify" style="position:relative;"></i></span></a>' +
 
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
 
               // hide these buttons on mobile (screen is too narrow)
-              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video"' + setOnClick( Object.assign({}, args, { type: 'wander', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' ) +
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' ) +
 
-              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="audio" aria-label="audio"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://archive.org/search.php?query=' + title_quoted + '&and[]=mediatype%3A%22audio%22&and[]=mediatype%3A%22etree%22', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-music" style="position:relative;"></i></span></a>' ) +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( `https://www.bing.com/images/search?q=${title}&form=HDRSC2&setlang=${explore.language}&first=1` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://openlibrary.org/search?q=' + title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="audio" aria-label="audio" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://archive.org/search.php?query=' + title_quoted + '&and[]=mediatype%3A%22audio%22&and[]=mediatype%3A%22etree%22', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-music" style="position:relative;"></i></span></a>' ) +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( `https://www.bing.com/images/search?q=${title}&form=HDRSC2&setlang=${explore.language}&first=1` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://openlibrary.org/search?q=' + title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
 
-              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
 
             '</span></li>' +
 
             '<li><span class="mv-extra-buttons noindent audio-buttons">' +
-              '<a href="javascript:void(0)" title="speak article" aria-label="speak article" onclick="startSpeakingArticle( &apos;' + title + '&apos;, &apos;&apos;, &apos;' + explore.language + '&apos; )"> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
-              '<a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
-              '<a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick="startSpeakingArticle( &apos;' + title + '&apos;, &apos;&apos;, &apos;' + explore.language + '&apos; )"> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
             '</span></li>' +
           '</ul>';
 

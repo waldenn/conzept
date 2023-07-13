@@ -269,12 +269,12 @@ function fetchUSArchive( args, total_results, page, sortby ){
 
           if ( newtab === true ){
 
-            title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + desc );
+            title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + desc );
 
           }
           else {
 
-						title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + desc );
+						title_link = encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + desc );
 
           }
 
@@ -282,7 +282,7 @@ function fetchUSArchive( args, total_results, page, sortby ){
 
 						title_link:						title_link,
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: viewer_url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + thumb + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: viewer_url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + thumb + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         '',
             video_link:           '',

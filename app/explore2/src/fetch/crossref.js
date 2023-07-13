@@ -150,7 +150,7 @@ async function fetchCrossRef( args, total_results, page, sortby, cursor ){
           }
           else {
 
-            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.publisher, qid: '', language  : explore.language } ) ) + '">' + v.publisher + '</a></div>';
+            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.publisher, qid: '', language  : explore.language } ) ) + '">' + v.publisher + '</a></div>';
 
           }
 
@@ -193,7 +193,7 @@ async function fetchCrossRef( args, total_results, page, sortby, cursor ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + subtitle2 + desc ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + subtitle2 + desc ),
 
             thumb_link:           '',
 

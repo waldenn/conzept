@@ -140,7 +140,7 @@ function fetchSmithsonian( args, total_results, page, sortby ){
 
                 let name = name_.split(/,/).reverse().join(' ').replace(/\s\s+/g, ' ');;
 
-                subtitle += '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: name, qid: '', language  : explore.language } ) ) + '">' + name + '</a></div>';
+                subtitle += '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: name, qid: '', language  : explore.language } ) ) + '">' + name + '</a></div>';
 
               });
 
@@ -158,7 +158,7 @@ function fetchSmithsonian( args, total_results, page, sortby ){
             }
             else {
 
-              subtitle2 = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.content.descriptiveNonRepeating.data_source, qid: '', language  : explore.language } ) ) + '"> source: ' + v.content.descriptiveNonRepeating.data_source + '</a></div>';
+              subtitle2 = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.content.descriptiveNonRepeating.data_source, qid: '', language  : explore.language } ) ) + '"> source: ' + v.content.descriptiveNonRepeating.data_source + '</a></div>';
 
             }
 
@@ -208,9 +208,9 @@ function fetchSmithsonian( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + url + '&quot;)"> ' + label + '</a>' + subtitle + subtitle2 + desc ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + url + '&quot;)"> ' + label + '</a>' + subtitle + subtitle2 + desc ),
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="opens in new tab" aria-label="opens in new tab" onclick="openInNewTab( &quot;' + url + '&quot;)"> <div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>'),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + url + '&quot;)"> <div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>'),
 
             explore_link:         '',
             video_link:           '',

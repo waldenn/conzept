@@ -112,7 +112,7 @@ async function fetchArchiveScholar( args, total_results, page, sortby ){
 
             if ( valid( v.biblio.container_name ) ){
 
-              subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.biblio.container_name, qid: '', language  : explore.language } ) ) + '">' + v.biblio.container_name + '</a></div>';
+              subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.biblio.container_name, qid: '', language  : explore.language } ) ) + '">' + v.biblio.container_name + '</a></div>';
 
             }
 
@@ -167,9 +167,9 @@ async function fetchArchiveScholar( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 + desc ),
+            title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 + desc ),
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail allow-invert" src="' + img + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail allow-invert" src="' + img + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         '',
             video_link:           '',

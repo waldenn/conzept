@@ -115,7 +115,7 @@ async function fetchBHL( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" onclick="openInNewTab( &quot;' + url + '&quot;)" onauxclick="openInNewTab( &quot;' + url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + date ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + url + '&quot;)" onauxclick="openInNewTab( &quot;' + url + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + subtitle + date ),
 
             thumb_link:           '',
 

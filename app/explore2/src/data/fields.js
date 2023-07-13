@@ -179,6 +179,32 @@ conzept_fields = {
   rank: 1,
 },
 
+'aerial_view' : {
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8592[0] )}?width=150px',
+  render_condition: false,
+  title: 'aerial view',
+  prop: '8592',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
+'satellite_view' : {
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11832[0] )}?width=150px',
+  render_condition: false,
+  title: 'satellite view',
+  prop: '11832',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 'schematic' : {
   value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5555[0] )}?width=150px',
   render_condition: false,
@@ -201,7 +227,7 @@ conzept_fields = {
   prop: '',
   type: 'symbol-string',
   mv: false,
-  string_format:'<div id="${item.qid}" class="schematic-widget" title="legislature diagram" aria-label="legislature diagram"><img class="inline-schematic" src="${item.schematic}"></div>',
+  string_format:'<div id="${item.qid}" class="schematic-widget" title="legislature diagram" aria-label="legislature diagram" role="button"><img class="inline-schematic" src="${item.schematic}"></div>',
   icon: '',
   text: 'legislative diagram',
   section: ['government-legislature'],
@@ -2314,8 +2340,7 @@ conzept_fields = {
   prop: '',
   type: 'symbol-html',
   mv: false,
-  string_format: '<div id="audio-${item.gid}" class="audio-widget" title="audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${ item.audio_link }"> </audio></div>',
-  //string_format: '<div id="audio-${item.gid}" class="audio-widget" title="${item.datasource} audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio_link )}"> </audio></div>',
+  string_format: '<div id="audio-${item.gid}" class="audio-widget" title="audio" aria-label="audio" role="button"><audio class="inline-audio" controls> <source src="${ item.audio_link }"> </audio></div>',
   icon: '',
   text: '',
   section: '',
@@ -2328,7 +2353,7 @@ conzept_fields = {
   prop: '',
   type: 'symbol-html',
   mv: false,
-  string_format: '<div id="${item.qid}" class="audio-widget" title="audio" aria-label="audio"><audio class="inline-audio" controls> <source src="${item.audio}"> </audio></div>',
+  string_format: '<div id="${item.qid}" class="audio-widget" title="audio" aria-label="audio" role="button"><audio class="inline-audio" controls> <source src="${item.audio}"> </audio></div>',
   icon: '',
   text: '',
   section: '',
@@ -2389,7 +2414,7 @@ conzept_fields = {
   prop: '',
   type: 'symbol-html',
   mv: false,
-  string_format: '<div id="${item.qid}" class="audio-widget" title="audio anthem" aria-label="audio anthem"><audio class="inline-audio" controls> <source src="${item.audio_anthem}"> </audio></div>',
+  string_format: '<div id="${item.qid}" class="audio-widget" title="audio anthem" aria-label="audio anthem" role="button"><audio class="inline-audio" controls> <source src="${item.audio_anthem}"> </audio></div>',
   icon: '',
   text: '',
   section: '',
@@ -4810,7 +4835,7 @@ conzept_fields = {
 },
 
 'ddb_zeitungsportal' : {
-  create_condition: 'checkLC( ["en","de"] )',
+  create_condition: 'checkLC( ["de"] )',
   title: 'Deutsche Digitale Bibliothek: Zeitungsportal',
   prop: '',
   type: 'url',
@@ -4820,6 +4845,32 @@ conzept_fields = {
   text: 'DDB zeitungen',
   section: 'library-history',
   rank: 145,
+},
+
+'odeuropa_smell_explorer' : {
+  create_condition: true,
+  title: 'Odeuropa: Smell Explorer',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://explorer.odeuropa.eu/smells?q=${title_quoted}&sort=time%7CDESC&page=1',
+  icon: 'fa-solid fa-spray-can-sparkles',
+  text: 'Odeuropa',
+  section: 'library-history',
+  rank: 315,
+},
+
+'silknow' : {
+  create_condition: true,
+  title: 'SILKNOW: European silk heritage from the 15th to the 19th century',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://ada.silknow.org/object?q=${title_}&sort=type&page=1',
+  icon: 'fa-solid fa-route',
+  text: 'SILKNOW',
+  section: 'library-history',
+  rank: 317,
 },
 
 'global_sea_routes' : {
@@ -5519,12 +5570,12 @@ if ( valid( item.found_in_taxon ) ){
 
 		const topic_title  = 'found_in';
 
-		found_in_taxon_link = '&nbsp;<a href="javascript:void(0)" title="found in taxon" aria-label="found in taxon" onclick="openInline( &quot;' + encodeURIComponent( item.title ) + '&quot;,&quot;' + topic_id + '&quot;,&quot;' + topic_title + '&quot;)"><span title="found in taxon" class="icon"><i class="oma oma-black-leaf-fluttering-in-wind" style="position:relative;"></i></span></a> ';
+		found_in_taxon_link = '&nbsp;<a href="javascript:void(0)" title="found in taxon" aria-label="found in taxon" role="button" onclick="openInline( &quot;' + encodeURIComponent( item.title ) + '&quot;,&quot;' + topic_id + '&quot;,&quot;' + topic_title + '&quot;)"><span title="found in taxon" class="icon"><i class="oma oma-black-leaf-fluttering-in-wind" style="position:relative;"></i></span></a> ';
 
 	}
 	else { // single value
 
-		found_in_taxon_link = '&nbsp;<a href="javascript:void(0)" title="found in taxon" aria-label="found in taxon"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&qid=' + item.found_in_taxon + '&voice=' + explore.voice_code  } ) ) + '"><span title="found in taxon" class="icon"><i class="oma oma-black-leaf-fluttering-in-wind" style="position:relative;"></i></span></a> ';
+		found_in_taxon_link = '&nbsp;<a href="javascript:void(0)" title="found in taxon" aria-label="found in taxon" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/wikipedia/?t=&l=' + explore.language + '&qid=' + item.found_in_taxon + '&voice=' + explore.voice_code  } ) ) + '"><span title="found in taxon" class="icon"><i class="oma oma-black-leaf-fluttering-in-wind" style="position:relative;"></i></span></a> ';
 
 	}
 
@@ -7622,7 +7673,7 @@ if ( valid( item.found_in_taxon ) ){
 'buildings_query' : {
   create_condition: 'valid( item.is_architect )',
   render_condition: true,
-  //render_trigger: 'console.log("render_trigger running"); item.quizzes.push( "<li><a href=&quot;javascript:void(0)&quot; title=&quot;quiz architect building&quot; aria-label=&quot;quiz architect building&quot;" + setOnClick( Object.assign({}, args, { type: "link", url: encodeURI( "/app/quiz/?m=gallery&q=Q11303&p1=P84&q1=${item.qid}&l=${explore.language}" ) } ) ) + "> &mdash; architect </a> </li>" )',
+  //render_trigger: 'console.log("render_trigger running"); item.quizzes.push( "<li><a href=&quot;javascript:void(0)&quot; title=&quot;quiz architect building&quot; aria-label=&quot;quiz architect building&quot; role="button" + setOnClick( Object.assign({}, args, { type: "link", url: encodeURI( "/app/quiz/?m=gallery&q=Q11303&p1=P84&q1=${item.qid}&l=${explore.language}" ) } ) ) + "> &mdash; architect </a> </li>" )',
   title: 'buildings',
   prop: '',
   type: 'link-split',
@@ -11929,7 +11980,7 @@ if ( valid( item.found_in_taxon ) ){
 
 // TODO: type_query fallback when ${item.is_geo_object} === false
 // let url_ = '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fcoords%20%3Fpic%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A' + item.qid + '.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoords.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20ASC%20(%3FitemLabel)%0ALIMIT%2030000%0A%23meta%3A%20' + title_ + '%20locations%0A%23defaultView%3AMap%7B%22hide%22%3A%20%22%3Fcoords%22%7D';
-// type_query_button = type_map_query_button = '<a href="javascript:void(0)" title="' + title_ + ' locations" aria-label="' + title_ + ' locations"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: encodeURI( url_ ) } ) ) + '"> <span class="icon"><i class="fa-solid fa-map-marked-alt" style="position:relative;"><span class="subtext">type</span></i></span> </a>';
+// type_query_button = type_map_query_button = '<a href="javascript:void(0)" title="' + title_ + ' locations" aria-label="' + title_ + ' locations" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: encodeURI( url_ ) } ) ) + '"> <span class="icon"><i class="fa-solid fa-map-marked-alt" style="position:relative;"><span class="subtext">type</span></i></span> </a>';
 
 'google_earth' : {
   create_condition: 'valid( ${item.lat} )',
@@ -12820,6 +12871,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 15,
 },
 
+'kbin_search' : {
+  create_condition: true,
+  title: 'Kbin search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://kbin.social/search?q=${title_quoted}',
+  icon: 'fa-regular fa-comment',
+  text: 'Kbin',
+  section: 'social',
+  rank: 17,
+},
+
 'pinterest_search' : {
   title: 'Pinterest search',
   prop: '',
@@ -12920,6 +12984,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Bookwyrm',
   section: 'social',
   rank: 310,
+},
+
+'lemmy_search' : {
+  create_condition: true,
+  title: 'Lemmy - social forum',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://lemmy.ml/search?q=${title_}&type=Communities&listingType=All&page=1&sort=TopAll',
+  icon: 'fa-regular fa-comment',
+  text: 'lemmy',
+  section: 'social',
+  rank: 315,
 },
 
 'british_library_search' : {
@@ -13326,7 +13403,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'deutsche_digitale_bibliothek' : {
-  create_condition: 'checkLC( ["en","de"] )',
+  create_condition: 'checkLC( ["de"] )',
   title: 'Deutsche Digitale Bibliothek search',
   prop: '',
   type: 'url',
@@ -16371,7 +16448,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'luxembourg_newspaper' : {
-  create_condition: true,
+  create_condition: 'checkLC( ["lb"] )',
   title: 'National Library of Luxembourg: newspaper and periodical archive',
   prop: '',
   type: 'url',
@@ -16384,7 +16461,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'estonia_newspaper' : {
-  create_condition: true,
+  create_condition: 'checkLC( ["et"] )',
   title: 'National Library of Estonia: newspaper and periodical archive',
   prop: '',
   type: 'url',
@@ -16806,7 +16883,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'australia_government' : {
-  create_condition: 'checkLC("","AU")',
+  create_condition: 'checkLC("en","AU")',
   title: 'Australian government data',
   prop: '',
   type: 'link',
@@ -16819,7 +16896,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'new_zealand_government' : {
-  create_condition: 'checkLC("","NZ")',
+  create_condition: 'checkLC("en","NZ")',
   title: 'New Zealand government data',
   prop: '',
   type: 'url',

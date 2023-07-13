@@ -1133,7 +1133,11 @@ function setupAppKeyboardNavigation() {
 
     document.addEventListener('keydown', e => {
 
+      console.log('key down: ', e.key );
+
       if (e.key === 'ArrowLeft') { // move to sidebar
+
+        console.log('  move to sidebar');
 
         if ( ! $('input').is(':focus') ){
 
@@ -1144,6 +1148,8 @@ function setupAppKeyboardNavigation() {
       }
 
       if (e.key === 'ArrowRight') { // move to second content-pane
+
+        console.log('  move to content-pane');
 
         if ( ! $('input').is(':focus') ){
 

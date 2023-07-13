@@ -602,6 +602,7 @@ function getMeta(big,query){
             //  https://www.javascripttutorial.net/web-apis/javascript-sessionstorage/
             //  https://github.com/jsonstat/suite/blob/master/docs/tocsv.md
             sessionStorage.setItem( 'csv', JSONstatUtils.toCSV( _ESAK_.data, { delimiter: ',', rich: false, na: ' ' }) );
+            sessionStorage.setItem( 'csv_title', $('#datasets summary').text() );
 
             // open RawGraphs
             const url = CONZEPT_WEB_BASE + `/app/rawgraphs/?t=&u=local-csv-data`;

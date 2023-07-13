@@ -196,8 +196,8 @@ async function fetchMET( args, total_results, page, sortby ){
 				              let wiki_url = encodeURIComponent( JSON.stringify( '/app/wikipedia/?t=&qid=' + c_qid + '&l=' + explore.language + '&voice=' + explore.voice_code ) );
 
                       constituents += '<div class="mv-extra-desc">' +
-                          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore constituent" aria-label="explore constituent"' + setOnClick( Object.assign({}, args, { type: 'explore', title: c_name, qid: c_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-                          '<a href="javascript:void(0)" class="mv-extra-icon" title="constituent info" aria-label="constituent info"' + setOnClick( Object.assign({}, args, { type: 'link', title: c_name, url: wiki_url, qid: c_qid, language : explore.language } ) ) + '">' + c_name + '</a>' + c_role +
+                          '<a href="javascript:void(0)" class="mv-extra-icon" title="explore constituent" aria-label="explore constituent" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: c_name, qid: c_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
+                          '<a href="javascript:void(0)" class="mv-extra-icon" title="constituent info" aria-label="constituent info" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: c_name, url: wiki_url, qid: c_qid, language : explore.language } ) ) + '">' + c_name + '</a>' + c_role +
                         '</div>';
 
                     }
@@ -213,8 +213,8 @@ async function fetchMET( args, total_results, page, sortby ){
 
                   subtitle =
                     '<div class="mv-extra-desc">' +
-                      '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.artistDisplayName, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
-                     '<a href="javascript:void(0)" class="" title="author" aria-label="author"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.metmuseum.org/art/collection/search#!?q=' + encodeURIComponent( v.artistDisplayName ) + '&perPage=20&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&searchField=ArtistCulture', title: v.artistDisplayName } ) ) + '>' + v.artistDisplayName + '</a>' + 
+                      '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: v.artistDisplayName, qid: '', language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
+                     '<a href="javascript:void(0)" class="" title="author" aria-label="author" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: 'https://www.metmuseum.org/art/collection/search#!?q=' + encodeURIComponent( v.artistDisplayName ) + '&perPage=20&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&searchField=ArtistCulture', title: v.artistDisplayName } ) ) + '>' + v.artistDisplayName + '</a>' + 
                     '</div>';
 
                   desc2 += v.artistDisplayName;
@@ -249,9 +249,9 @@ async function fetchMET( args, total_results, page, sortby ){
 
                 obj[ 'label-' + i ] = {
 
-                  title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: label_url , title: args.topic } ) ) + '> ' + label + '</a>' + desc + subtitle ),
+                  title_link:						encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: label_url , title: args.topic } ) ) + '> ' + label + '</a>' + desc + subtitle ),
 
-                  thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
+                  thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + img + '" alt="" loading="lazy"></div></a>' ),
 
                   explore_link:         '',
                   video_link:           '',

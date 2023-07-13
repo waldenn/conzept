@@ -149,7 +149,7 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
             date = new Date( v.date.value ).getFullYear();
 
-            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: '/app/wikipedia/?t=' + date.toString() + '&l=' + explore.language + '&voice=' + explore.voice_code  } ) ) + '">' + date + '</a></div>';
+            subtitle = '<div class="mv-extra-desc"><a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: '/app/wikipedia/?t=' + date.toString() + '&l=' + explore.language + '&voice=' + explore.voice_code  } ) ) + '">' + date + '</a></div>';
 
           }
 
@@ -168,8 +168,8 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
             subtitle2 =
               '<div class="mv-extra-desc">' +
-                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author, qid: author_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
-               '<a href="javascript:void(0)" class="" title="author" aria-label="author"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: author_qid, title: author } ) ) + '>' + author + '</a>' + 
+                '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: author, qid: author_qid, language : explore.language } ) ) + '"><span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></a> ' +
+               '<a href="javascript:void(0)" class="" title="author" aria-label="author" role="button"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: author_qid, title: author } ) ) + '>' + author + '</a>' + 
               '</div>';
 
           }
@@ -201,9 +201,9 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'wikipedia-qid', qid: qid, title: label } ) ) + '> ' + label + '</a>' + subtitle + subtitle2 ),
 
-            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + thumb + '" alt="" loading="lazy"></div></a>' ),
+            thumb_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url, title: args.topic } ) ) + '><div class="mv-thumb"><img class="thumbnail" src="' + thumb + '" alt="" loading="lazy"></div></a>' ),
 
             explore_link:         '',
             video_link:           '',

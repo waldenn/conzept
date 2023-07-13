@@ -46,6 +46,10 @@ sup {
   color: white;
 }
 
+.bread {
+  font-weight: bolder !important;
+}
+
 /* wikipedia preview styling */
 .wikipediapreview-header-wordmark:before {
   content: "" !important;
