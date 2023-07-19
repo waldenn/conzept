@@ -6,7 +6,7 @@ This page describes how to install, maintain and develop Conzept on your own sys
 
 <code>sudo apt install -y git unzip</code>
 
-<code>git clone --depth 1 --branch 2023.07 https://github.com/waldenn/conzept.git</code>
+<code>git clone --depth 1 https://github.com/waldenn/conzept.git</code>
 
 <code>cd conzept</code>
 
