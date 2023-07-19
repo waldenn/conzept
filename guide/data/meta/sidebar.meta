@@ -1,4 +1,4 @@
-a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1622121682;s:8:"modified";i:1677067710;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";a:8:{s:4:"date";i:1677067710;s:2:"ip";s:13:"84.241.206.36";s:4:"type";s:1:"E";s:2:"id";s:7:"sidebar";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:23;}s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}s:8:"relation";a:2:{s:10:"references";a:30:{s:4:"home";b:1;s:11:"user_manual";b:1;s:4:"apps";b:1;s:5:"terms";b:1;s:17:"browser_extension";b:1;s:12:"installation";b:1;s:6:"docker";b:1;s:12:"docker_notes";b:1;s:13:"configuration";b:1;s:21:"section_customization";b:1;s:19:"field_customization";b:1;s:12:"localization";b:1;s:9:"upgrading";b:1;s:12:"contributing";b:1;s:12:"architecture";b:1;s:13:"url_structure";b:1;s:14:"code_structure";b:1;s:12:"build_system";b:1;s:13:"used_projects";b:1;s:13:"adding_an_app";b:1;s:18:"integrating_an_api";b:1;s:11:"datasources";b:1;s:30:"adding_new_wikidata_properties";b:1;s:20:"topic_classification";b:1;s:7:"json-ld";b:1;s:7:"history";b:1;s:6:"issues";b:1;s:7:"roadmap";b:1;s:9:"container";b:0;s:11:"command_api";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:0;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:503:"Conzept guide
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1622121682;s:8:"modified";i:1688164201;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";a:8:{s:4:"date";i:1688164201;s:2:"ip";s:12:"89.205.131.1";s:4:"type";s:1:"E";s:2:"id";s:7:"sidebar";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:-15;}s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}s:8:"relation";a:2:{s:10:"references";a:28:{s:4:"home";b:1;s:11:"user_manual";b:1;s:4:"apps";b:1;s:5:"terms";b:1;s:17:"browser_extension";b:1;s:12:"installation";b:1;s:13:"configuration";b:1;s:21:"section_customization";b:1;s:19:"field_customization";b:1;s:12:"localization";b:1;s:9:"upgrading";b:1;s:12:"contributing";b:1;s:12:"architecture";b:1;s:13:"url_structure";b:1;s:14:"code_structure";b:1;s:12:"build_system";b:1;s:13:"used_projects";b:1;s:13:"adding_an_app";b:1;s:18:"integrating_an_api";b:1;s:11:"datasources";b:1;s:11:"command_api";b:1;s:30:"adding_new_wikidata_properties";b:1;s:20:"topic_classification";b:1;s:7:"json-ld";b:1;s:7:"history";b:1;s:6:"issues";b:1;s:7:"roadmap";b:1;s:9:"container";b:0;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:0;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:503:"Conzept guide
 
 user docs
 
@@ -10,9 +10,6 @@ user docs
 admin docs
 
 	*  installation
-	*  docker
-		*  docker notes
-
 	*  configuration
 	*  section customization
 	*  field customization
@@ -30,9 +27,12 @@ developer docs
 	*  adding an app
 	*  integrating an API
 	*  datasources
+	*  command API
 	*  new Wikidata properties
 	*  topic classification
 	*  JSON-LD
 	*  history
 
-…";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1622121682;s:8:"modified";i:1677067710;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";a:8:{s:4:"date";i:1677067710;s:2:"ip";s:13:"84.241.206.36";s:4:"type";s:1:"E";s:2:"id";s:7:"sidebar";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:23;}s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}}}
+plans
+
+	*  iss…";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1622121682;s:8:"modified";i:1688164201;}s:7:"creator";s:5:"Admin";s:4:"user";s:5:"admin";s:11:"last_change";a:8:{s:4:"date";i:1688164201;s:2:"ip";s:12:"89.205.131.1";s:4:"type";s:1:"E";s:2:"id";s:7:"sidebar";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:-15;}s:11:"contributor";a:1:{s:5:"admin";s:5:"Admin";}}}

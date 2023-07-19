@@ -9,3 +9,4 @@
 #
 # Format:
 # login:passwordhash:Real Name:email:groups,comma,separated
+admin:$2y$10$8RXpR8ufxrSOTQJKCT8cduyJVqhQpABZT44.oX3iP/WMTgQNU3mou:Admin:info@conze.pt:admin,user

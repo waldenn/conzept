@@ -2,21 +2,31 @@
 
 ===== introduction =====
 
+**[[https://conze.pt|Conzept]] is an attempt to create a flexible topic exploration system for the 21st century.** It is a flexible, multi-lingual, semantic web tool build for **fun, education and research purposes**.
+
+Main features:
+  * Use any REST and SPARQL based **[[datasources|datasource]]** API.
+  * Easily **[[uses projects|embed apps]]** (including websites), either self-hosted or remotely hosted.
+  * A **[[field_customization|data-defined]] software approach**, which allows for easy JSON-based configuration and administration of many parts of Conzept.
+
+The Conzept project is [[explore>free software]], licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets).
+
+The development repository is hosted on **[[https://github.com/waldenn/conzept/|GitHub]]**. Project news is announced on **[[https://twitter.com/conzept__|Twitter]]**.
+
+====Conzept encyclopedia====
+
 [{{::homepage.jpg?direct|home page (with a random cover topic)}}]
 
-[{{::screenshot_from_2022-01-16_13-53-19.jpg?direct|search results page}}]
+[{{::explore-screenshot-011.jpg?direct|search results page}}]
 
-**[[https://conze.pt|Conzept]] is an attempt to create an [[explore>encyclopedia]] for the 21st century.**
+The online Conzept showcase called "**Conzept encyclopedia**" is based on based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for [[explore>fun]], [[explore>education]] and [[explore>research]].
 
-A modern topic-exploration tool based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for [[explore>fun]], [[explore>education]] and [[explore>research]].
+Conzept encyclopedia allows you to explore any of the millions of topics on Wikipedia (and topics from other [[datasources]]) from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity (a "thing") as well as a "string".
 
-Conzept allows you to explore any of the millions of topics on Wikipedia from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity (a "thing") as well as a "string".
+Client-side [[topic classification|topic-classification]] in addition, allows for a fast, higher-level semantic logic, throughout the whole user experience. The user-interface supports any of the ~[[explore>List of Wikipedias|300 Wikipedia languages]] and even some language-variants (such as the Chinese language variants).
 
-Client-side [[topic classification|topic-classification]] in addition, allows for a fast, higher-level logic, throughout the whole user experience.
 
-The integrated user-interface gives you a clean view of all this information, in any of the ~[[explore>List of Wikipedias|300 Wikipedia languages]], without "[[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]]".
 
-The Conzept project is [[explore>free software]], licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets). The development repository is hosted on [[https://github.com/waldenn/conzept/|GitHub]]. Project news is announced on [[https://twitter.com/conzept__|Twitter]].
 
 ===== thanks =====
 
@@ -45,18 +55,18 @@ Each Wikipedia "article" actually relates to a multi-faceted concept, which we i
 
 The main goals of Conzept are:
 
-  * A more **holistic presentation of the encyclopedic information** contained within Wikipedia and Wikidata, by integrating and linking with other information sources.
+  * A more **holistic presentation of the information** contained within datasources (such as Wikipedia and Wikidata), by integrating and linking with other information sources, semantic entities and application views. Aiming to allow you to 'forget' where the information is coming from and instead explore //that// which you are interested in.
 
-  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce the cognitive-load and making the experience as fun and inspiring as possible.
+  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce various cognitive-loads (eg. [[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]], relational discovery and understanding, topic revisiting using bookmarks), and making the experience as fun and inspiring as possible.
 
   * **Innovate** where that is both possible and useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
 
-  * Build the project as **free software** and make its use and development accessible for all. Make it free of advertising, but find sustainable ways to support its maintenance, development and collaboration. One way to support this project is to become a [[https://github.com/sponsors/waldenn|GitHub sponsor]].
+  * Build the project as **free software** and make its use and development accessible for all. Keep it free of advertising, but find sustainable ways to support its maintenance, development and collaboration. One way to support this project is to become a [[https://github.com/sponsors/waldenn|GitHub sponsor]].
 
 
 Secondary goals:
 
-  * **Generalize the UI and data-processes**, to expand beyond the Wikipedia & Wikidata spheres using flexible [[concept_stores|datasources]]. This will hopefully open the way for other digital archives to also use the Conzept system for their knowledge base and domain.
+  * **Generalize the UI and data-processes**, to expand beyond the Wikipedia & Wikidata spheres, using flexible [[concept_stores|datasources]]. This opens the way for other digital archives to also use the Conzept system for their knowledge base and domain.
 
   * Allow for **social learning** (using eg. peer-to-peer audio-chat rooms for each topic). Doing things together can be more motivating, inspiring and fun!
 
@@ -67,9 +77,9 @@ Secondary goals:
 ===== inspiration & motivation =====
 
 Some points of inspiration for this project were:
-  * A Dutch youth encyclopedia I enjoyed reading when I was a child. [{{ :spectrum_jeugd_encyclopedie.png?direct|Dutch youth encyclopedia}}]
+  * A Dutch youth encyclopedia I enjoyed reading when I was a child. [{{ :spectrum_jeugd_encyclopedie.jpg?direct|Dutch youth encyclopedia}}]
 
-  * The Microsoft [[explore>Encarta]] encyclopedia CD-ROM in the 1990's. [{{ :encarta_1.png?direct|[[explore>Encarta]] screenshot}}]
+  * The Microsoft [[explore>Encarta]] encyclopedia CD-ROM experience in the 1990's. [{{ :encarta_1.png?direct|[[explore>Encarta]] screenshot}}]
 
   * The children and adolescents I work with as a teacher at the [[https://spirare.org|Spirare]] organization for gifted children.
 
@@ -82,7 +92,7 @@ Some points of inspiration for this project were:
 [{{ :app_layout.jpg?direct|application layout}}]
 
 The layout of Conzept consists of two main areas:
-  * The **[[#conzept sidebar|sidebar]]**, which is used for showing the [[#string search|search interface]], the language selection and various tabs.
+  * The **[[#conzept sidebar|sidebar]]** ("core app"), which is used for showing the [[#string search|search interface]], the language selection and various tabs.
 
   * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
 ==== conzept sidebar ====
@@ -91,17 +101,20 @@ The layout of Conzept consists of two main areas:
 
 From the sidebar you can:
 
-  * Click on the "conzept" name, to **clear the search query and return to the homescreen.** On the homescreen there are also various topicical links available.
+  * Click on the "conzept" name, to **clear the search query and return to the homescreen.** On the homescreen there are also various interesting topical-links available.
 
-  * <html><i class="fas fa-caret-right"></i>&nbsp;</html> **Change the content language** to any of the ~300 Wikipedia-supported languages
+  * <html><i class="fas fa-caret-right"></i>&nbsp;</html> **Change the content language** to any of the ~300 Wikipedia-supported languages.
 
   * <html><i class="fas fa-search"></i>&nbsp;</html> **Enter a [[#string_search|search string]], [[#structured_search|structured search query]] or a [[#commands|command]].**
 
   * <html><i class="fas fa-stream"></i>&nbsp;</html> **Browse the search results** in the topics-tab.
     * More [[terms#topic_card|topics]] will be loaded in the sidebar as you scroll down to the bottom of the search results.
 
-  * <html><i class="far fa-bookmark"></i>&nbsp;</html> **Manage your [[#bookmarks|bookmarks]]** in the bookmarks-tab
+  * <html><i class="far fa-sticky-note"></i></html> **Manage your [[#bookmarks|bookmarks]]** in the bookmarks-tab
     * This allows for quick access to previously bookmarked topics.
+
+   * <html><i class="far fa-bookmark"></i>&nbsp;</html> **Add an URL-bookmark** to your bookmarks. This creates a URL-bookmark of the app view-state, not a topic bookmark.
+     * Note: A topical bookmark can be created by going into the topic-card and then clicking the bookmarking-icon.
 
   * <html><i class="fas fa-wrench"></i>&nbsp;</html> **Use additional tools** from the tools-tab, allowing you to:
     * Go to a random topic
@@ -140,7 +153,7 @@ Philosophically speaking, a single content-pane view is a sort of **1st-degree p
 Some embedded apps have a  2nd-degree presention inside of a single-pane (eg. the map app through a modal popup). Simply having 1st and 2nd-degree presentations can cover most information relations quite well, while still limiting the cognitive load and view-management efforts of the user. 
 ===== string search =====
 
-{{ :search_1.jpg?direct|search suggestions}}
+{{ :autocomplete.png?direct|search autocomplete-suggestions}}
 
 To find topics of your interest, you can enter a search string into the search bar.
 While typing your string you will get back topic suggestions.
@@ -163,9 +176,25 @@ Structured search can be accessed by:
   - Clicking on the "structured search" detail-element in the topics-tab. \\ \\
   - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
   - Then click the "run query" button. \\ \\
-===== commands =====
 
-(TODO: show an example use cases of the **[[command API]]**)
+[ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
+===== AI chat =====
+
+(TODO: describe the AI-chat app functionality)
+===== command API =====
+
+(TODO: show an example use case of the **[[command API]]**)
+
+===== search commands =====
+
+These are "**!**"-prefixed command-words which can change the normal search behavior, into some other defined action. So instead of doing a search for the plain-string, a search-command can do a special action.
+
+The following search-commands are currently supported:
+  * **[[https://conze.pt/explore/!chat%20branches%20of%20civil%20engineering?l=en#|!chat]]**, AI chat system (based on OpenAI chatGPT (Note: This requires you to enter your OpenAI API-key in the chat app config menu. This key is only stored locally in your browser.) \\ \\
+  * **[[https://conze.pt/explore/!graph%20f(x,y)%20=%20sin(x*y)?l=en&t=link&u=%2Fapp%2Fxrgraph%2F%3Ffunction%3Df(x%2Cy)%2520%25253D%2520sin(x*y)&s=true|!graph]]**, 2D/3D function plotter (with WebXR capabilities), ([[https://github.com/marlon360/xr-graph|xr-graph]], MIT)
+
+See also the **[[command API]]**, which is the future of Conzept command scripting and presentations. The above search-command-words can also be used in the command API.
+
 ===== bookmarks =====
 
 [{{ ::bookmark_1.jpg?direct|adding a bookmark}}]
@@ -180,14 +209,17 @@ From the bookmark manager you can delete and drag-and-drop the bookmarks into yo
 The bookmarks are only stored locally in the browser (using a browser cookie), and not on any server.
 
 Your bookmarks can also be:
-  * Imported and exported as a JSON file. This is currently the only option to share bookmarks between devices and browsers.
-  * Exported to several external formats: HTML, KML (for geo-apps), GPX (for geo-apps). Note: these formats export any tree-hierarchy to a flat structure.
+  * **Imported and exported as a JSON file.** This is currently the only option to share bookmarks between devices and browsers.
+
+  * **Exported to several external formats**: HTML, KML (for geo-apps), GPX (for geo-apps). Note: these formats export any tree-hierarchy to a flat structure.
 
 ===== settings =====
 
 [{{::settings.jpg?direct|settings tab}}]
 
 The following settings are available:
+
+  * Set the active **[[datasources]]**
 
   * Set the **font size**
 
@@ -196,12 +228,14 @@ The following settings are available:
   * Set the **interface language** (locale)
     * Note: This is different from the content-language setting. This //only// affects the Conzept UI interface.
 
-  * Set the **theme** (light / dark mode, link previews, color filters)
+  * Set the **theme** (light / dark mode, link previews)
 
-  * Set **personal info**
-    * **Country** (automatically set from the browser-locale, but can be changed)
-    * Optional: **Interest** tags. This allows Conzept to better suit the user-interface to your needs. Eg. to show map links for hotels and walking-routes, with the tourist-tag.
-    * Optional: **AI tutor style** for the AI chat system. This sets up a different system-role context (example: historian, scientist, storyteller).
+  * Set **reading-help** options (word-start bolding, color filters)
+
+  * Set **persona info** \\ \\
+    * **AI tutor style** for the AI chat system. This sets up a different system-role context (example: historian, scientist, storyteller). \\ \\ When the "auto-select" tutor is chosen, Conzept will automatically derive the best suited tutor for a topic, based on its classification. \\ \\ To use the AI chat, make sure you enter an OpenAI key in the chat app settings-menu first. Note that this key is only stored locally in your browser, for safety reasons.\\ \\
+    * **Country** (automatically derived from your browser-locale, but can be changed). This allows Conzept to show country-specific links for topics. \\ \\
+    * **Interest** tags. This allows Conzept to better suit the user-interface to your needs. Eg. to show map links for hotels and walking-routes, with the tourist-tag.
 
   * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
 ===== keyboard shortcuts =====
@@ -226,6 +260,7 @@ Here is an overview of the available keyboard shortcuts:
 
 [ note 1: only available when the focus is on the sidebar or a Wikipedia article ]
 </html>
+
 
 
 ===== terms of service =====

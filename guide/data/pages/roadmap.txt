@@ -1,10 +1,6 @@
 ====== roadmap ======
 
-===== specific ideas =====
-
-  * Better packaging: **Create a [[Docker|Docker image]]**, to make the install and upgrade process a lot easier.
-
-  * **Finish the [[concept_stores|datasources roadmap]] and [[datasources|document its use]].**
+===== frontend ideas =====
 
   * Fix the items mentioned in **[[issues|issues]]**.
 
@@ -12,12 +8,20 @@
 
   * Better **bookmarking** UX:
     * Cross-tab bookmark state-syncing
-    * Add datasource + datasource-global-ID support, when a topic is bookmarked
-    * Other idea: Being able to share bookmark-lists with others (like Spotify playlists)
+    * Future idea: Being able to share bookmark-lists with others (like Spotify playlists)
 
   * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
+===== admin-dev workflows =====
 
-  * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)
+  * Improve the workflow for adding [[integrating_an_api|API integrations]].
+
+  * Improve the workflow for adding [[datasources]].
+
+  * Clean up any issues with field definitions:
+    * Turn the the inline-API field-structure into an object (instead of a string)?
+
+  * Field-translation support: Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
+    * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
 
 ===== general ideas =====
 
@@ -35,23 +39,45 @@
     * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
     * Experiences: play Chess positions (done), ...
 
-  * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
-    * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]
+  * **Multi-modal bookmarks**:
+    * Formats:
+      * Image (including self-drawn using Excalidraw)
+      * Audio (music, nature sounds, speech)
+      * DOI
+      * ISBN
+      * Custom text notes
+    * Connect these bookmark-types to new actions (eg: find similar images, detect plant type, perform speech-to-text, ...)
 
-
-  * ? Research creating some kind of a simple web-application interface standard for input/output/event-handling:
-    * URL parameter IO (iso2 language, search-string, ID, ...)
-    * Event-handling (other view triggers, key-bindings, fullscreening, ...)
+  * **structured search (beyond Wikidata)**
+    * ontology classes
+    * ontology properties
+    * autocompletion
+    * multi-lingual labels
+    * handle CORS issues
 
   * Look into using more webcomponents:
     * [[https://design-system.w3.org/|W3C design system]]
     * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
 
-  * **SPARQL-endpoint explorer** (eg. Sparklis -> needs CORS-issue workarounds)
-    * [[https://github.com/sebferre/sparklis|git repo]]
+  * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
+    * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]
+
+  * ? Research creating some kind of a simple web-application interface standard for input/output/event-handling:
+    * URL parameter IO (iso2 language, search-string, ID, ...)
+    * Event-handling (other view triggers, key-bindings, fullscreening, ...)
+
+  * ? [[https://github.com/sebferre/sparklis|Sparklis]] / [[https://github.com/epoz/shmarql|shmarql]] -> needs CORS-issue workarounds)
     * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
     * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 
     * Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)
     * build steps [[https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156|here]]
     * See also: **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]**
       * [[https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/|git repo]]
+
+===== various =====
+
+  * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
+
+  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
+
+  * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)

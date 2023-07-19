@@ -3,15 +3,54 @@
 <div class="level1">
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;issues&quot;,&quot;hid&quot;:&quot;issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-23&quot;} -->
-<h2 class="sectionedit2" id="browser_navigation">browser navigation</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;issues&quot;,&quot;hid&quot;:&quot;issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-22&quot;} -->
+<h2 class="sectionedit2" id="browser_compatibility">browser compatibility</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser compatibility&quot;,&quot;hid&quot;:&quot;browser_compatibility&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-146&quot;} -->
+<h2 class="sectionedit3" id="keyboard_navigation">keyboard navigation</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <strong>ULS language-selector</strong> not reachable via the keyboard.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Main <strong>bookmark links</strong> are not reachable via the keyboard.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Font-type input-element</strong> does not allow for keyboard-based font-selection (UP / DOWN).</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Pane-switching</strong>: Keyboard access to iframe only works from the core-app to the content-pane but not back (something broke this mechanism).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;keyboard navigation&quot;,&quot;hid&quot;:&quot;keyboard_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;147-549&quot;} -->
+<h2 class="sectionedit4" id="touch_navigation">touch navigation</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> TODO: Note the core app &amp; embedded app parts that fail for touch-interactions.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;touch navigation&quot;,&quot;hid&quot;:&quot;touch_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;550-662&quot;} -->
+<h2 class="sectionedit5" id="browser_navigation">browser navigation</h2>
 <div class="level2">
 <ul>
 <li class="level1 node"><div class="li"> <strong>Backwards &amp; Forwards history navigation</strong> has several issues.</div>
 <ul>
-<li class="level2"><div class="li"> note: The web standards community is working on improving the <a href="https://github.com/WICG/app-history" class="urlextern" target="_blank" title="https://github.com/WICG/app-history" rel="ugc nofollow noopener">browser-history API</a>, since many other “Single Page Applications” (SPA) are running into the same issues.</div>
+<li class="level2"><div class="li"> note: The web standards community is working on improving the <a href="https://github.com/whatwg/html/pull/8502" class="urlextern" target="_blank" title="https://github.com/whatwg/html/pull/8502" rel="ugc nofollow noopener">browser-history API</a>, since many other “Single Page Applications” (SPA) are running into the same issues.</div>
 </li>
-<li class="level2"><div class="li"> See also: <strong><a href="https://wicg.github.io/app-history/" class="urlextern" target="_blank" title="https://wicg.github.io/app-history/" rel="ugc nofollow noopener">App History API</a></strong> (proposal)</div>
+<li class="level2"><div class="li"> See also: <strong><a href="https://github.com/whatwg/html/pull/8502" class="urlextern" target="_blank" title="https://github.com/whatwg/html/pull/8502" rel="ugc nofollow noopener">App History API</a></strong> (proposal)</div>
 </li>
 </ul>
 </li>
@@ -21,11 +60,9 @@
 <ul>
 <li class="level2"><div class="li"> There is a need to have a better workflow &amp; tooling to help with debugging these <abbr title="Uniform Resource Locator">URL</abbr>-issues.</div>
 </li>
-</ul>
+<li class="level2"><div class="li"> Examples: …</div>
 </li>
 </ul>
-<ul>
-<li class="level1"><div class="li"> Allow for <strong>datasources activation via an <abbr title="Uniform Resource Locator">URL</abbr> parameter</strong> (so these searches can be linked to) and store these in a cookie.</div>
 </li>
 </ul>
 <ul>
@@ -37,9 +74,15 @@
 </li>
 <li class="level2"><div class="li"> Note: Make sure the used IDs are robust and durable.</div>
 </li>
+<li class="level2"><div class="li"> BUG: same ID used multiple times per page. Solution: add field-ID-name to current ID–&gt; update all inline-field-handling code with this prepend:</div>
+</li>
 </ul>
 </li>
 </ul>
+<pre class="code">     for each topic-card:
+       &lt;details title=&quot;europeana_inline&quot; id=&quot;europeana_inline_mv-n00&quot;
+       &lt;details title=&quot;pexels&quot; id=&quot;pexels_mv-n00&quot;
+       ...</pre>
 <ul>
 <li class="level1 node"><div class="li"> <strong><abbr title="Uniform Resource Locator">URL</abbr> hash handling</strong></div>
 <ul>
@@ -54,9 +97,13 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;24-1581&quot;} -->
-<h2 class="sectionedit3" id="mobile_browser_compatibility_and_usability">mobile browser compatibility and usability</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser navigation&quot;,&quot;hid&quot;:&quot;browser_navigation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;663-2448&quot;} -->
+<h2 class="sectionedit6" id="mobile_usability">mobile usability</h2>
 <div class="level2">
+<ul>
+<li class="level1"><div class="li"> The <a href="https://swiperjs.com" class="urlextern" target="_blank" title="https://swiperjs.com" rel="ugc nofollow noopener">SwiperJS</a> library - used for mobile swiping - is an older, somewhat broken version (page hangs occur between animations). The newer version breaks all rendering (for some reason). Todo: Figure out how to upgrade this library correctly.</div>
+</li>
+</ul>
 <ul>
 <li class="level1"><div class="li"> Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.</div>
 </li>
@@ -71,63 +118,34 @@
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile browser compatibility and usability&quot;,&quot;hid&quot;:&quot;mobile_browser_compatibility_and_usability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1582-1906&quot;} -->
-<h2 class="sectionedit4" id="quality_assurance">quality assurance</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;mobile usability&quot;,&quot;hid&quot;:&quot;mobile_usability&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;2449-3015&quot;} -->
+<h2 class="sectionedit7" id="datasources">datasources</h2>
 <div class="level2">
 <ul>
-<li class="level1 node"><div class="li"> Accessibility (including keyboard-access) should be assessed and improved where needed.</div>
-<ul>
-<li class="level2"><div class="li"> Integrate an automated accessibility test system.</div>
-</li>
-<li class="level2"><div class="li"> Maybe look into a web-component framework for accessible replacements (when needed).</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Integrate an automated testing system.</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> Get more UX feedback from real users.</div>
+<li class="level1"><div class="li"> BUG: Fix <a href="/guide/datsources" class="wikilink2" title="datsources" rel="nofollow" data-wiki-id="datsources">datasource</a>-starvation causing a wrong total result count: <a href="https://conze.pt/explore/krmo?l=en&amp;t=string&amp;d=wikipedia,wikidata,europeana" class="urlextern" target="_blank" title="https://conze.pt/explore/krmo?l=en&amp;t=string&amp;d=wikipedia,wikidata,europeana" rel="ugc nofollow noopener">total is wrongly modified</a>, <a href="https://conze.pt/explore/krmo?l=en&amp;t=string&amp;d=wikipedia,wikidata,europeana" class="urlextern" target="_blank" title="https://conze.pt/explore/krmo?l=en&amp;t=string&amp;d=wikipedia,wikidata,europeana" rel="ugc nofollow noopener">another example</a></div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;quality assurance&quot;,&quot;hid&quot;:&quot;quality_assurance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1907-2263&quot;} -->
-<h2 class="sectionedit5" id="admin-dev_workflows">admin-dev workflows</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;datasources&quot;,&quot;hid&quot;:&quot;datasources&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;3016-3328&quot;} -->
+<h2 class="sectionedit8" id="browser_extension">browser extension</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> Improve the workflow for adding <a href="/guide/integrating_an_api" class="wikilink1" title="integrating_an_api" data-wiki-id="integrating_an_api">API integrations</a>.</div>
+<li class="level1"><div class="li"> Re-implement the extension with <strong><a href="https://developer.chrome.com/docs/extensions/mv3/intro/" class="urlextern" target="_blank" title="https://developer.chrome.com/docs/extensions/mv3/intro/" rel="ugc nofollow noopener">Manifest v3</a> support</strong> (MV3). This is a requirement for the Chrome extension store.</div>
 </li>
-<li class="level1"><div class="li"> Improve the workflow for adding <a href="/guide/datasources" class="wikilink1" title="datasources" data-wiki-id="datasources">datasources</a>.</div>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I&#039;ve started some research what the best way forward to improve the JSON-LD parser.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;admin-dev workflows&quot;,&quot;hid&quot;:&quot;admin-dev_workflows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2264-2427&quot;} -->
-<h2 class="sectionedit6" id="fields">fields</h2>
-<div class="level2">
-<ul>
-<li class="level1 node"><div class="li"> Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.</div>
-<ul>
-<li class="level2"><div class="li"> Allow the <a href="/guide/adding_new_wikidata_properties" class="wikilink1" title="adding_new_wikidata_properties" data-wiki-id="adding_new_wikidata_properties">json2fields</a> script to fetch and store property translations too.</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Clean up any issues with field definitions:</div>
-<ul>
-<li class="level2"><div class="li"> Turn the the inline-<abbr title="Application Programming Interface">API</abbr> field-structure into an object (instead of a string)?</div>
-</li>
-</ul>
-</li>
-</ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;fields&quot;,&quot;hid&quot;:&quot;fields&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2428-2820&quot;} -->
-<h2 class="sectionedit7" id="wikidata_wikipedia_issues_encountered">Wikidata/Wikipedia issues encountered</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;browser extension&quot;,&quot;hid&quot;:&quot;browser_extension&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;3329-4109&quot;} -->
+<h2 class="sectionedit9" id="wikidata_sparql_issues">Wikidata / SPARQL issues</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with “GROUP BY”)</div>
@@ -136,153 +154,16 @@
 </li>
 <li class="level1"><div class="li"> Abandoned Wikidata-based tools.</div>
 </li>
-<li class="level1"><div class="li"> Wikipedia: Image-loading failing sometimes (“too many image requests”)</div>
-</li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata\/Wikipedia issues encountered&quot;,&quot;hid&quot;:&quot;wikidata_wikipedia_issues_encountered&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2821-3311&quot;} -->
-<h2 class="sectionedit8" id="various">various</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wikidata \/ SPARQL issues&quot;,&quot;hid&quot;:&quot;wikidata_sparql_issues&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;4110-4512&quot;} -->
+<h2 class="sectionedit10" id="various">various</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> How to detect if the field <abbr title="Uniform Resource Locator">URL</abbr> could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the <abbr title="Uniform Resource Locator">URL</abbr>, checking for CORS-errors?)</div>
-</li>
-</ul>
-<ul>
-<li class="level1"><div class="li"> JSON-LD enhancement: “Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values.” <a href="https://twitter.com/kidehen/status/1565006013350248449" class="urlextern" target="_blank" title="https://twitter.com/kidehen/status/1565006013350248449" rel="ugc nofollow noopener">*</a> (this is useful when there are multiple subjects, beyond the main subject)</div>
+<li class="level1"><div class="li"> Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;various&quot;,&quot;hid&quot;:&quot;various&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3312-3794&quot;} -->
-<h2 class="sectionedit9" id="europeana_notes">europeana notes</h2>
-<div class="level2">
-<ul>
-<li class="level1 node"><div class="li"> Conzept currently uses the Europeana APIs for:</div>
-<ul>
-<li class="level2 node"><div class="li"> The <strong><a href="https://conze.pt/explore/Hendrick%20Avercamp?l=nl&amp;t=link&amp;i=Q212593&amp;u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Hendrick%2520Avercamp%2522%26l%3Dnl%26t%3Dimages&amp;s=true#" class="urlextern" target="_blank" title="https://conze.pt/explore/Hendrick%20Avercamp?l=nl&amp;t=link&amp;i=Q212593&amp;u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Hendrick%2520Avercamp%2522%26l%3Dnl%26t%3Dimages&amp;s=true#" rel="ugc nofollow noopener">Europeana item viewer app</a></strong> (REST <abbr title="Application Programming Interface">API</abbr>, <a href="https://github.com/petropok/europeanaproj/blob/main/public/scripts/search.js#L30-L117" class="urlextern" target="_blank" title="https://github.com/petropok/europeanaproj/blob/main/public/scripts/search.js#L30-L117" rel="ugc nofollow noopener">not sparql</a>) (code based on <a href="https://github.com/petropok/europeanaproj" class="urlextern" target="_blank" title="https://github.com/petropok/europeanaproj" rel="ugc nofollow noopener">this project</a>)</div>
-<ul>
-<li class="level3"><div class="li"> </div>
-</li>
-</ul>
-</li>
-<li class="level2"><div class="li"> The <strong>inline Europeana media-query for images</strong> (REST <abbr title="Application Programming Interface">API</abbr>)</div>
-</li>
-<li class="level2"><div class="li"> TODO: audio-query in SPARQL/REST (used for dynamically fetching audio in the auto-generated <a href="https://conze.pt/guide/command_api#presentation_examples" class="urlextern" target="_blank" title="https://conze.pt/guide/command_api#presentation_examples" rel="ugc nofollow noopener">presentations</a>) (see below)</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Europeana SPARQL links:</div>
-<ul>
-<li class="level2"><div class="li"> <a href="https://pro.europeana.eu/page/sparql" class="urlextern" target="_blank" title="https://pro.europeana.eu/page/sparql" rel="ugc nofollow noopener">https://pro.europeana.eu/page/sparql</a> (docs)</div>
-</li>
-<li class="level2"><div class="li"> <a href="http://sparql.europeana.eu" class="urlextern" target="_blank" title="http://sparql.europeana.eu" rel="ugc nofollow noopener">http://sparql.europeana.eu</a> (online query tool)</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> Specific SPARQL-questions:</div>
-<ul>
-<li class="level2"><div class="li"> Show a SPARQL query to fetch audio-URLs (in MP3 or Ogg Vorbis format) from a certain creation year (with a source link for attribution).</div>
-</li>
-</ul>
-</li>
-</ul>
-
-<p>
-How to get the license info: also from the Aggregator object?
-</p>
-<ul>
-<li class="level1"><div class="li"> edm:rights <em> “The rights statement that applies to the digital representation (…)”
-  * dc:rights  </em> “Information about rights held in and over the resource.”</div>
-</li>
-</ul>
-<pre class="code">PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;
-PREFIX ore: &lt;http://www.openarchives.org/ore/terms/&gt;
-SELECT ?title ?creator ?mediaURL ?date
-WHERE {
-  ?CHO edm:type &quot;SOUND&quot; ;
-      ore:proxyIn ?proxy;
-      dc:title ?title ;
-      dc:creator ?creator ;
-      #dc:source ?source . 
-      #dc:license ?license ;
-      dc:date ?date .
-  ?proxy edm:isShownBy ?mediaURL .
-  FILTER (?date &gt; &quot;1960&quot; &amp;&amp; ?date &lt; &quot;1970&quot;) .
-  FILTER(regex(str(?mediaURL), &quot;.mp3&quot; ) )
-}
-LIMIT 100</pre>
-<ul>
-<li class="level1"><div class="li"> The same query as above, but for a certain country.</div>
-</li>
-</ul>
-
-<p>
-How to get country string?
-</p>
-<pre class="code">PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;
-PREFIX ore: &lt;http://www.openarchives.org/ore/terms/&gt;
-SELECT ?title ?creator ?mediaURL ?date ?country
-WHERE {
-
-  # ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
-  #    edm:country &quot;France&quot; .
-      
-  ?CHO edm:type &quot;SOUND&quot; ;
-      ore:proxyIn ?proxy;
-      dc:title ?title ;
-      dc:creator ?creator ;
-
-  ?proxy edm:isShownBy ?mediaURL .
-}
-LIMIT 100</pre>
-
-<p>
-working “country” example:
-</p>
-<pre class="code">PREFIX ore: &lt;http://www.openarchives.org/ore/terms/&gt;
-PREFIX edm: &lt;http://www.europeana.eu/schemas/edm/&gt;
-
-SELECT DISTINCT ?year ?country
-WHERE {
-  ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
-      edm:country ?country .
-  ?Proxy ore:proxyFor ?ProvidedCHO ;
-      edm:year ?year .
-  FILTER (?year &gt; &quot;1700&quot; &amp;&amp; ?year &lt; &quot;2020&quot;)
-}
-ORDER BY asc(?year)
-LIMIT 100</pre>
-<ul>
-<li class="level1 node"><div class="li"> General remarks on the SPARQL service:</div>
-<ul>
-<li class="level2"><div class="li"> Add <strong><a href="https://sparql.europeana.eu" class="urlextern" target="_blank" title="https://sparql.europeana.eu" rel="ugc nofollow noopener">https</a>-support</strong> (besides http) to the <a href="http://sparql.europeana.eu/" class="urlextern" target="_blank" title="http://sparql.europeana.eu/" rel="ugc nofollow noopener">SPARQL-endpoint</a> (web applications hosted on https require that, because of the secure-browser context strictness these days).</div>
-</li>
-<li class="level2"><div class="li"> what is the <strong>SPARQL data freshness</strong> (I&#039;ve heard the data is 2+ years old) and what is the <strong>data completeness</strong> (amount of items, compared to the REST <abbr title="Application Programming Interface">API</abbr>)?</div>
-</li>
-<li class="level2 node"><div class="li"> It would be nice to have better <strong>ontology documentation</strong>, especially an overview of the high-level concepts.</div>
-<ul>
-<li class="level3"><div class="li"> For example provide an entity overview like <a href="https://makg.org" class="urlextern" target="_blank" title="https://makg.org" rel="ugc nofollow noopener">this</a> and a visual relation-tree like <a href="https://makg.org/schema-linked-dataset-descriptions/" class="urlextern" target="_blank" title="https://makg.org/schema-linked-dataset-descriptions/" rel="ugc nofollow noopener">this</a>.</div>
-</li>
-<li class="level3"><div class="li"> Plus anything that would make the mental-map-to-ontology translation easier for users.</div>
-</li>
-</ul>
-</li>
-<li class="level2"><div class="li"> Provide a low-barrier REST/SPARQL <abbr title="Application Programming Interface">API</abbr> <strong>query-support via a wiki or forum</strong> similar (this is what Wikidata is doing)</div>
-</li>
-<li class="level2"><div class="li"> Provide a community wiki-page with lots of <strong>linked query examples</strong> (with a short explanation and if needed comments in the SPARQL-query) </div>
-</li>
-<li class="level2"><div class="li"> Provide a <strong>better online query-tool</strong>, like: <a href="https://query.wikidata.org" class="urlextern" target="_blank" title="https://query.wikidata.org" rel="ugc nofollow noopener">https://query.wikidata.org</a> (this tool is free and open to use, this is <a href="https://conze.pt/app/query/" class="urlextern" target="_blank" title="https://conze.pt/app/query/" rel="ugc nofollow noopener">also</a> used for Conzept)</div>
-</li>
-</ul>
-</li>
-</ul>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;europeana notes&quot;,&quot;hid&quot;:&quot;europeana_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;3795-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;various&quot;,&quot;hid&quot;:&quot;various&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;4513-&quot;} -->

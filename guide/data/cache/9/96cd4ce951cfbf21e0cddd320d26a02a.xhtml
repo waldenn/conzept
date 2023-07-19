@@ -1,255 +1,187 @@
 
 <h1 class="sectionedit1" id="installation">installation</h1>
 <div class="level1">
-<div class="thumb2 tright"><div class="thumbinner"><a href="/guide/_media/ubuntu_logo.png" class="media" target="_blank" title="ubuntu_logo.png" rel="noopener"><img src="/guide/_media/ubuntu_logo.png?w=225&amp;h=225&amp;tok=a46983" class="mediabox2" alt="" width="225" height="225" /></a><div class="thumbcaption" style="max-width: 219px">Ubuntu logo</div></div></div>
-<p>
-Conzept installation documention (written for Ubuntu 2020.04 LTS).
-</p>
 
 <p>
-(TODO: create a <strong><a href="/guide/docker" class="wikilink1" title="docker" data-wiki-id="docker">docker</a></strong>-based installation workflow)
+This page describes how to install, maintain and develop Conzept on your own system(s).
 </p>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;installation&quot;,&quot;hid&quot;:&quot;installation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-201&quot;} -->
-<h2 class="sectionedit2" id="os_setup">OS setup</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;installation&quot;,&quot;hid&quot;:&quot;installation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-117&quot;} -->
+<h2 class="sectionedit2" id="step_1get_the_conzept_source">step 1: Get the Conzept source</h2>
 <div class="level2">
-
-<p>
-- Install Ubuntu 20.04 LTS
-</p>
-
-<p>
-- Set the hostname:
-</p>
-<pre class="code">sudo su</pre>
-<pre class="code">vi /etc/hostname</pre>
-<pre class="code">reboot now</pre>
-
-<p>
-- Install additional packages:
-</p>
-<pre class="code">sudo su</pre>
-<pre class="code">apt update</pre>
-<pre class="code">apt install apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php7.4 libapache2-mod-php libapache2-mod-uwsgi php-fpm snapd nodejs npm sed jq</pre>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OS setup&quot;,&quot;hid&quot;:&quot;os_setup&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;202-590&quot;} -->
-<h2 class="sectionedit3" id="webserver_setup">webserver setup</h2>
-<div class="level2">
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;webserver setup&quot;,&quot;hid&quot;:&quot;webserver_setup&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:3,&quot;range&quot;:&quot;591-619&quot;} -->
-<h3 class="sectionedit4" id="install_certbot">Install Certbot</h3>
-<div class="level3">
-<pre class="code">snap install core; sudo snap refresh core</pre>
-<pre class="code">snap install --classic certbot</pre>
-<pre class="code">ln -s /snap/bin/certbot /usr/bin/certbot</pre>
-<pre class="code">certbot --apache</pre>
-<pre class="code">certbot renew --dry-run</pre>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Install Certbot&quot;,&quot;hid&quot;:&quot;install_certbot&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:4,&quot;range&quot;:&quot;620-867&quot;} -->
-<h3 class="sectionedit5" id="setup_apache2_with_php_and_http_2">setup Apache2 with PHP and HTTP/2</h3>
-<div class="level3">
-<pre class="code">a2enmod proxy proxy_http headers expires proxy_fcgi setenvif &amp;&amp; service apache2 restart</pre>
-<pre class="code">systemctl restart apache2</pre>
-<pre class="code">a2enconf php7.4-fpm &amp;&amp; service apache2 restart</pre>
-<pre class="code">a2dismod php7.4 &amp;&amp; service apache2 restart</pre>
-<pre class="code">a2dismod mpm_prefork &amp;&amp; a2enmod mpm_event &amp;&amp; service apache2 restart &amp;&amp; service php7.4-fpm restart</pre>
-<pre class="code">cd /etc/apache2/sites-enabled/</pre>
-<pre class="code">wget -O 000-default-le-ssl.conf https://raw.githubusercontent.com/waldenn/conzept/master/000-default-le-ssl.conf.example</pre>
-
-<p>
-Change the YOUR_SERVER_NAME and YOUR_SERVER_HOST values:
-</p>
-<pre class="code">vi 000-default-le-ssl.conf</pre>
-<pre class="code">a2enmod http2</pre>
-<pre class="code">apachectl configtest</pre>
-<pre class="code">service apache2 restart</pre>
-
-<p>
-Remove the default Apache-server <abbr title="HyperText Markup Language">HTML</abbr> file:
-</p>
-<pre class="code">rm /var/www/html/index.html</pre>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;setup Apache2 with PHP and HTTP\/2&quot;,&quot;hid&quot;:&quot;setup_apache2_with_php_and_http_2&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:5,&quot;range&quot;:&quot;868-1742&quot;} -->
-<h2 class="sectionedit6" id="node_setup">Node setup</h2>
-<div class="level2">
-<pre class="code">exit</pre>
-<pre class="code">cd</pre>
-<pre class="code">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash</pre>
-<pre class="code">logout</pre>
-
-<p>
-(then log in again, to reload the shell environment)
-</p>
-
-<p>
-Install the node version manager (note: you can check for newer LTS vresions by running: nvm ls-remote):
-</p>
-<pre class="code">nvm install v16.18.0</pre>
-<pre class="code">logout</pre>
-
-<p>
-(then log in again, to reload the shell environment)
-</p>
-<pre class="code">sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild pm2</pre>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Node setup&quot;,&quot;hid&quot;:&quot;node_setup&quot;,&quot;codeblockOffset&quot;:23,&quot;secid&quot;:6,&quot;range&quot;:&quot;1743-2302&quot;} -->
-<h2 class="sectionedit7" id="conzept_setup">Conzept setup</h2>
-<div class="level2">
-<pre class="code">git clone https://github.com/waldenn/conzept.git</pre>
+<pre class="code">sudo apt install -y git unzip</pre>
+<pre class="code">git clone --depth 1 --branch 2023.07 https://github.com/waldenn/conzept.git</pre>
 <pre class="code">cd conzept</pre>
-<pre class="code">sudo su</pre>
-<pre class="code">cp -r * /var/www/html/</pre>
-<pre class="code">cp .htaccess /var/www/html/</pre>
-<pre class="code">chown -R www-data:www-data /var/www/html</pre>
-<pre class="code">chmod -R g+rw /var/www/html</pre>
-
-<p>
-Add yourself to the “www-data” group (so you can make edits as yourself):
-</p>
-<pre class="code">usermod -a -G www-data YOUR_USER_ID</pre>
-<pre class="code">exit</pre>
-<pre class="code">logout</pre>
-
-<p>
-(then log in again, to reload the shell environment)
-</p>
-<pre class="code">cd /var/www/html/app/explore2</pre>
-<pre class="code">npm install</pre>
-<pre class="code">npm run build</pre>
-<ul>
-<li class="level1"><div class="li"> OPTIONAL: edit the settings in “/etc/conzept/settings.conf” and run “npm run build” again</div>
-</li>
-</ul>
-<ul>
-<li class="level1 node"><div class="li"> NOTE: any modifications to the CONZEPT_WEB_BASE setting also requires changing:</div>
-<ul>
-<li class="level2"><div class="li"> the Apache site config</div>
-</li>
-<li class="level2"><div class="li"> the root .htaccess file</div>
-</li>
-<li class="level2"><div class="li"> the root manifest.json file</div>
-</li>
-</ul>
-</li>
-</ul>
+<pre class="code">cp settings.conf.example settings.conf</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept setup&quot;,&quot;hid&quot;:&quot;conzept_setup&quot;,&quot;codeblockOffset&quot;:30,&quot;secid&quot;:7,&quot;range&quot;:&quot;2303-3193&quot;} -->
-<h2 class="sectionedit8" id="conzept_services_setup">Conzept services setup</h2>
-<div class="level2">
-<pre class="code">sudo su</pre>
-
-<p>
-Create a services startup script (using the example below)
-</p>
-<pre class="code">vi /etc/rc.local</pre>
-
-<p>
-Example:
-</p>
-<pre class="file">#!/bin/sh -e
-
-# read conzept settings
-. /etc/conzept/settings.conf
-
-# JSON CORS-proxy (with secret-API-key support, port 50001 on localhost only)
-su conzept -s /bin/sh -c &#039;$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 50001 -c $CONZEPT_SERVICES_DIR/json-proxy.json &amp;&#039;
-
-# any-file CORS-proxy (port 1458 on localhost only)
-su conzept -s /bin/sh -c &#039;cd &quot;$CONZEPT_SERVICES_DIR/allorigins&quot; &amp;&amp; npm start app.js &amp;&#039;
-
-# pm2 services (auto-startup not working for some reason)
-#pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
-#pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
-
-exit 0;</pre>
-
-<p>
-# manually startup some services
-</p>
-<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh</pre>
-<pre class="code">. /etc/conzept/settings.conf &amp;&amp; pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh</pre>
-
-<p>
-Make it executable:
-</p>
-<pre class="code">chmod +x /etc/rc.local</pre>
-
-<p>
-Setup crontab for periodic commands:
-</p>
-<pre class="code">crontab -e</pre>
-
-<p>
-Example:
-</p>
-<pre class="file"># check every day at 10:30 if a certificate renewal is needed
-30 10 * * * sudo certbot renew &gt;&gt; /tmp/certbot-cron.log &gt; /dev/null 2&gt;&amp;1
-
-# read conzept settings daily
-0 5 * * * . /etc/conzept/settings.conf
-
-# fetch conzept-cover-data for the previous month (we wait until the second day of the month, so the Wikipedia stats are available)
-0 0 2 * * su - www-data -s /bin/sh -c cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ &amp;&amp; sh ./get_previous_month_covers.sh</pre>
-
-<p>
-Manually fetch the initial covers once:
-</p>
-<pre class="code">. /etc/conzept/settings.conf &amp;&amp; sudo su - www-data -s /bin/sh -c &quot;cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ &amp;&amp; sh ./get_previous_month_covers.sh&quot;</pre>
-
-<p>
-Startup the services by rebooting:
-</p>
-<pre class="code">sudo reboot now</pre>
-
-</div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept services setup&quot;,&quot;hid&quot;:&quot;conzept_services_setup&quot;,&quot;codeblockOffset&quot;:43,&quot;secid&quot;:8,&quot;range&quot;:&quot;3194-5072&quot;} -->
-<h2 class="sectionedit9" id="dokuwiki">DokuWiki</h2>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;step 1: Get the Conzept source&quot;,&quot;hid&quot;:&quot;step_1get_the_conzept_source&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;118-373&quot;} -->
+<h2 class="sectionedit3" id="step_2configure_conzept">step 2: Configure Conzept</h2>
 <div class="level2">
 
 <p>
-Modify the DokuWiki base-<abbr title="Uniform Resource Locator">URL</abbr> setting in “guide/conf/local.php”:
+Now edit the Conzept settings file for your system. The available settings are described <a href="/guide/configuration" class="wikilink1" title="configuration" data-wiki-id="configuration">here</a>.
 </p>
-<pre class="code">$conf[&#039;baseurl&#039;] = &#039;https://YOUR_HOSTNAME&#039;;</pre>
 
 <p>
-Change the admin password:
+You must set the “<strong>CONZEPT_HOSTNAME</strong>” and “<strong>CONZEPT_EMAIL</strong>” (required for the HTTPS certificate).
+</p>
+<pre class="code">vi settings.conf</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;step 2: Configure Conzept&quot;,&quot;hid&quot;:&quot;step_2configure_conzept&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:3,&quot;range&quot;:&quot;374-660&quot;} -->
+<h2 class="sectionedit4" id="step_3install_docker">step 3: Install docker</h2>
+<div class="level2">
+<div class="thumb2 tright"><div class="thumbinner"><a href="/guide/_media/docker_logo.png" class="media" target="_blank" title="docker_logo.png" rel="noopener"><img src="/guide/_media/docker_logo.png?w=1202&amp;h=309&amp;tok=edccda" class="mediabox2" alt="" width="1202" height="309" /></a><div class="thumbcaption" style="max-width: 1196px">Docker logo</div></div></div><pre class="code">./docker_install.sh</pre>
+
+<p>
+[ NOTE: <strong><em class="u">You now need to logout and then login again after running this script</em></strong>, to make sure the group permission are active. ]
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;step 3: Install docker&quot;,&quot;hid&quot;:&quot;step_3install_docker&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:4,&quot;range&quot;:&quot;661-911&quot;} -->
+<h2 class="sectionedit5" id="step_4build_the_docker_image">step 4: Build the docker image</h2>
+<div class="level2">
+
+<p>
+Go to the Conzept directory:
+</p>
+<pre class="code">cd conzept</pre>
+
+<p>
+Build the Conzept docker image:
+</p>
+<pre class="code">docker-compose build</pre>
+
+<p>
+Run the docker image (with a correct HTTPs certificate)
+</p>
+<pre class="code">sudo ./init-https.sh</pre>
+
+<p>
+Alternatively, you can build <em>and</em> run the Conzept docker-image in one step:
+</p>
+<pre class="code">docker-compose up -d</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;step 4: Build the docker image&quot;,&quot;hid&quot;:&quot;step_4build_the_docker_image&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:5,&quot;range&quot;:&quot;912-1281&quot;} -->
+<h2 class="sectionedit6" id="docker-based_development">docker-based development</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;docker-based development&quot;,&quot;hid&quot;:&quot;docker-based_development&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:6,&quot;range&quot;:&quot;1282-1319&quot;} -->
+<h3 class="sectionedit7" id="local_development">local development</h3>
+<div class="level3">
+
+<p>
+[ TODO ]
 </p>
 <ul>
-<li class="level1"><div class="li"> Go to: <a href="https://YOUR_HOSTNAME/guide/home?do=login" class="urlextern" target="_blank" title="https://YOUR_HOSTNAME/guide/home?do=login" rel="ugc nofollow noopener">https://YOUR_HOSTNAME/guide/home?do=login</a> </div>
+<li class="level1"><div class="li"> map app:/var/www/html/app</div>
 </li>
-<li class="level1"><div class="li"> Login as admin (password: “admin”)</div>
+<li class="level1"><div class="li"> docker build</div>
 </li>
-<li class="level1"><div class="li"> Go to <a href="https://YOUR_HOSTNAME/guide/home?do=profile" class="urlextern" target="_blank" title="https://YOUR_HOSTNAME/guide/home?do=profile" rel="ugc nofollow noopener">https://YOUR_HOSTNAME/guide/home?do=profile</a></div>
+<li class="level1"><div class="li"> docker up</div>
 </li>
-<li class="level1"><div class="li"> Change the password using the form</div>
+<li class="level1"><div class="li"> change staging to “1” “init-https.sh”</div>
 </li>
 </ul>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;DokuWiki&quot;,&quot;hid&quot;:&quot;dokuwiki&quot;,&quot;codeblockOffset&quot;:53,&quot;secid&quot;:9,&quot;range&quot;:&quot;5073-5432&quot;} -->
-<h2 class="sectionedit10" id="conzept-extra_setup_optional">Conzept-extra setup (optional)</h2>
-<div class="level2">
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;local development&quot;,&quot;hid&quot;:&quot;local_development&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:7,&quot;range&quot;:&quot;1320-1462&quot;} -->
+<h3 class="sectionedit8" id="updating_production">updating production</h3>
+<div class="level3">
 
 <p>
-This setup part is only required if you want to build and modify certain NPM-build conzept apps (there are currently seven apps and one library in this repo).
+[ TODO ]
 </p>
-<pre class="code">git clone https://github.com/waldenn/conzept-extra.git</pre>
-<pre class="code">cd conzept-extra</pre>
-
-<p>
-You can now modify, build and deploy out-of-tree Conzept apps. Just “cd” into each directory and follow the build instructions. Then use the “npm run conzept-deploy” within each app directory, to insert the build-artifacts into the Conzept web directory.
-</p>
-
-<p>
-(TODO: read Conzept environment file and use these settings for the “conzept-deploy” action.)
-</p>
+<ul>
+<li class="level1 node"><div class="li"> First commit the changes to Git</div>
+<ul>
+<li class="level2"><div class="li"> If needed: Set “staging” to “0” in “init-https.sh”</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> On the production server:</div>
+</li>
+</ul>
+<pre class="code">git pull</pre>
+<ul>
+<li class="level1"><div class="li"> TODO: Handle existing settings</div>
+</li>
+</ul>
+<pre class="code">...</pre>
+<ul>
+<li class="level1"><div class="li"> Rebuild the Docker image:</div>
+</li>
+</ul>
+<pre class="code">docker-compose up -d</pre>
 
 </div>
-<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conzept-extra setup (optional)&quot;,&quot;hid&quot;:&quot;conzept-extra_setup_optional&quot;,&quot;codeblockOffset&quot;:54,&quot;secid&quot;:10,&quot;range&quot;:&quot;5433-&quot;} -->
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;updating production&quot;,&quot;hid&quot;:&quot;updating_production&quot;,&quot;codeblockOffset&quot;:10,&quot;secid&quot;:8,&quot;range&quot;:&quot;1463-1776&quot;} -->
+<h2 class="sectionedit9" id="common_docker_commands">common docker commands</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Build an image:</div>
+<ul>
+<li class="level2"><div class="li"> docker-compose build</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Fetch an image:</div>
+<ul>
+<li class="level2"><div class="li"> docker pull [image-name:image-version]</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> List installed images:</div>
+<ul>
+<li class="level2"><div class="li"> docker images</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Create a new container (from an image)</div>
+<ul>
+<li class="level2"><div class="li"> docker run -d –name conzept</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Start/stop a container:</div>
+<ul>
+<li class="level2"><div class="li"> docker stop conzept</div>
+</li>
+<li class="level2"><div class="li"> docker start conzept</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> List running containers:</div>
+<ul>
+<li class="level2"><div class="li"> docker ps</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Run a command within a container (note: no data persistence between start/stops):</div>
+<ul>
+<li class="level2"><div class="li"> docker exec -it conzept /bin/bash</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;common docker commands&quot;,&quot;hid&quot;:&quot;common_docker_commands&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:9,&quot;range&quot;:&quot;1777-&quot;} -->

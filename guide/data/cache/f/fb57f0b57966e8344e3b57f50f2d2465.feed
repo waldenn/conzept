@@ -11,15 +11,14 @@
         <description></description>
         <link>https://conze.pt/guide/</link>
         <image rdf:resource="https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico" />
-       <dc:date>2023-01-19T16:34:47+00:00</dc:date>
+       <dc:date>2023-04-13T18:36:18+00:00</dc:date>
         <items>
             <rdf:Seq>
-                <rdf:li rdf:resource="https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/issues?rev=1668457657&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/history?rev=1668119527&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/docker_notes?rev=1681250961&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1681209501&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/used_projects?rev=1681138946&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/docker?rev=1680948531&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-002.jpg&amp;ns=&amp;rev=1668118966&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-001.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-003.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
@@ -30,10 +29,11 @@
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-009.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-010.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-008.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=nlnet.svg&amp;ns=&amp;rev=1668092428&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=eu.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
                 <rdf:li rdf:resource="https://conze.pt/guide/?image=nlnet.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
             </rdf:Seq>
         </items>
     </channel>
@@ -42,30 +42,42 @@
         <link>https://conze.pt/guide/</link>
         <url>https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico</url>
     </image>
-    <item rdf:about="https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/docker_notes?rev=1681250961&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-12-16T19:46:35+00:00</dc:date>
+        <dc:date>2023-04-12T00:09:21+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>roadmap - [specific ideas] </title>
-        <link>https://conze.pt/guide/roadmap?rev=1671216395&amp;do=diff</link>
-        <description>roadmap
+        <title>docker_notes - [final tests] </title>
+        <link>https://conze.pt/guide/docker_notes?rev=1681250961&amp;do=diff</link>
+        <description>docker notes
 
-specific ideas
+To finish the Docker packaging we should work on the issues below.
 
-	*  Fix the items mentioned in issues.
+1) Conzept environment and build
 
-	*  Add claim-support to the Wikidata-data fetching (and support for claim-data in the field-definitions).
-
-	*  Better bookmarking UX:
-		*  Exporting (working for HTML and KML)
-		*  Importing (preserve tree-structure?)</description>
+	*  Make sure we have the correct Conzept “settings.conf” (located in the root of the source-tree, the version in “explore2” should be removed) to</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/user_manual?rev=1681209501&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-25T14:18:44+00:00</dc:date>
+        <dc:date>2023-04-11T12:38:21+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>user_manual - [settings] </title>
+        <link>https://conze.pt/guide/user_manual?rev=1681209501&amp;do=diff</link>
+        <description>user manual
+
+introduction
+
+Conzept is an attempt to create an encyclopedia for the 21st century.
+
+A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the GBIF and many other information sources. A semantic web app build for fun, education and research.
+
+Conzept allows you to explore any of the millions of topics on Wikipedia from many</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/used_projects?rev=1681138946&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2023-04-10T17:02:26+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
         <title>used_projects - [embedded apps] </title>
-        <link>https://conze.pt/guide/used_projects?rev=1669382324&amp;do=diff</link>
+        <link>https://conze.pt/guide/used_projects?rev=1681138946&amp;do=diff</link>
         <description>used projects
 
 This is a list of the various software projects integrated into Conzept (called “apps” in this context).
@@ -75,93 +87,33 @@ background services
 	*  json-proxy - JSON CORS-proxy with support for secret-API-keys (MIT)
 	*  allOrigins - general CORS-proxy (any file type). (MIT)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/docker?rev=1680948531&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-23T11:33:37+00:00</dc:date>
+        <dc:date>2023-04-08T12:08:51+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>concept_stores - [status] </title>
-        <link>https://conze.pt/guide/concept_stores?rev=1669199617&amp;do=diff</link>
-        <description>concept stores
+        <title>docker - [build the conzept docker image] </title>
+        <link>https://conze.pt/guide/docker?rev=1680948531&amp;do=diff</link>
+        <description>Docker
 
-The idea is to allow any REST / SPARQL API to be added to a Conzept system and render topics in the sidebar.
+[ WORK IN PROGRESS ]
 
-Features:
+get the conzept source
 
-	*  Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output.
-	*  Make the</description>
+sudo apt install -y git unzip
+
+git clone https://github.com/waldenn/conzept.git &amp;&amp; cd conzept
+
+cp settings.conf.example settings.conf
+
+Now edit the “settings.conf” file for your system context.</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/issues?rev=1668457657&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-14T21:27:37+00:00</dc:date>
+        <dc:date>2023-02-22T12:16:56+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>issues - [browser navigation] </title>
-        <link>https://conze.pt/guide/issues?rev=1668457657&amp;do=diff</link>
-        <description>issues
-
-better packaging
-
-	*  Create a script to create a Docker container, to make the install and upgrade process a lot easier.
-
-browser navigation
-
-	*  Backwards &amp; Forwards history navigation has several issues.
-		*  note: The web standards community is working on improving the</description>
-    </item>
-    <item rdf:about="https://conze.pt/guide/history?rev=1668119527&amp;do=diff">
-        <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:32:07+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>history</title>
-        <link>https://conze.pt/guide/history?rev=1668119527&amp;do=diff</link>
-        <description>history
-
-This page documents the history of the Conzept project (for now only through user-interface screenshots).</description>
-    </item>
-    <item rdf:about="https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff">
-        <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:30:34+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>sidebar</title>
-        <link>https://conze.pt/guide/sidebar?rev=1668119434&amp;do=diff</link>
-        <description>Conzept guide
-
-user docs
-
-	*  user manual
-	*  apps
-	*  terms
-	*  browser extension
-
-admin docs
-
-	*  installation
-	*  configuration
-	*  section customization
-	*  field customization
-	*  localization
-	*  upgrading
-
-developer docs
-
-	*  contributing
-	*  architecture
-	*  url_structure
-	*  code structure
-	*  build system
-	*  used projects
-	*  adding an app
-	*  integrating an API
-	*  datasources
-	*  new Wikidata properties
-	*  topic classification
-	*  JSON-LD
-	*  history
-
-plans
-
-	*  issues
-	*  roadmap
-…</description>
+        <title>datasources.jpg - created</title>
+        <link>https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/datasources.jpg?w=333&amp;h=500&amp;t=1677064616&amp;amp;tok=79e9f0&quot; alt=&quot;datasources.jpg&quot; /&gt;</description>
     </item>
     <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-002.jpg&amp;ns=&amp;rev=1668118966&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
@@ -243,22 +195,6 @@ plans
         <link>https://conze.pt/guide/?image=explore-screenshot-008.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
         <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-008.jpg?w=500&amp;h=281&amp;t=1668118961&amp;amp;tok=664669&quot; alt=&quot;explore-screenshot-008.jpg&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff">
-        <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T16:09:25+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>user_manual - [project goals] </title>
-        <link>https://conze.pt/guide/user_manual?rev=1668092965&amp;do=diff</link>
-        <description>user manual
-
-introduction
-
-Conzept is an attempt to create an encyclopedia for the 21st century.
-
-A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the GBIF and many other information sources. A semantic web app build for fun, education and research.
-
-Conzept allows you to explore any of the millions of topics on Wikipedia from many</description>
-    </item>
     <item rdf:about="https://conze.pt/guide/?image=nlnet.svg&amp;ns=&amp;rev=1668092428&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
         <dc:date>2022-11-10T16:00:28+00:00</dc:date>
@@ -282,5 +218,21 @@ Conzept allows you to explore any of the millions of topics on Wikipedia from ma
         <title>nlnet.png - created</title>
         <link>https://conze.pt/guide/?image=nlnet.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
         <description>&lt;img src=&quot;https://conze.pt/guide/_media/nlnet.png?w=190&amp;h=80&amp;t=1668092352&amp;amp;tok=061f95&quot; alt=&quot;nlnet.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-11-03T16:31:28+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>json-ld.png - created</title>
+        <link>https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/json-ld.png?w=500&amp;h=380&amp;t=1667489488&amp;amp;tok=34b706&quot; alt=&quot;json-ld.png&quot; /&gt;</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+        <dc:format>text/html</dc:format>
+        <dc:date>2022-10-30T12:31:27+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>2.jpg - created</title>
+        <link>https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description></description>
     </item>
 </rdf:RDF>

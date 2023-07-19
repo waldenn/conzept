@@ -91,10 +91,12 @@ Here are some of the important properties on this object:
 ^ property      ^ description  ^
 | explore.**q** | query string |
 | explore.**language** | content language |
+| explore.**language_variant** | content language variant (currently only used with the Chinese language) |
 | explore.**locale** | [[localization|locale]] (interface) language ) |
 | explore.**qid** | Wikidata Qid (if any, of the current active topic) |
 | explore.**db** | persistent storage object using [[https://github.com/gruns/ImmortalDB|ImmortalDB]]|
 | explore.**query_param** | [[user_manual#structured_search|structured search]] query-URL |
+| explore.**command** | Conzept [[command_api|Command API]] instructions |
 | explore.**hash** | current URL-fragment |
 | explore.**fragment** | sidebar topic-detail-fragment to go to, after loading the URL ([[https://conze.pt/explore/London?l=en&t=wikipedia&f=category_tree&s=true|example]]) |
 

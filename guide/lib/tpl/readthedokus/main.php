@@ -25,6 +25,7 @@ $showSidebar = page_findnearest($conf['sidebar']);
     <?php tpl_includeFile('tpl_parts/tpl_meta.html') ?>
     <?php tpl_includeFile('meta.html') ?>
 
+    <!--link rel="stylesheet" href="/assets/fonts/fontawesome/css/fontawesome.min.css" type="text/css"-->
     <link rel="stylesheet" href="/app/explore2/node_modules/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
 
 </head>

@@ -8,7 +8,7 @@ The idea is to **allow any REST or SPARQL API to be added to a Conzept system** 
 Features:
   * Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output.
   * Make the API search results show up in the same style and results paging mechanics, as the other datasources.
-  * Let the topic results be augmented from Wikidata, if a Qid for the topic is provided.
+  * Let the topic results be augmented from Wikidata (if a Qid is provided for the topic).
   * Have auto-completion work too (if wanted and possible).
   * Allow the user to choose which datasources to use.
 
@@ -17,23 +17,22 @@ Features:
   * **Allow for adding extra "data sources" to a Conzept system**, so other concepts - beyond Wikipedia and Wikidata - can also be presented.
   *  **Any organization that wants to use the Conzept user-interface for showing and augmenting their own knowledge base.**
 
-==== status ====
+===== status =====
 
-[{{::datasources.jpg?direct|datasources options for the user}}]
+[{{::datasources.png?direct|datasource options for the user}}]
 
-  * The **[[datasources]]** system is now somewhat working (configuration example: **[[https://conze.pt/app/explore2/src/data/datasources.js|src/data/datasources.js]]**), with these remaining issues:
-    * BUG: There is a paging logic bug in the current code, which needs to be found and fixed.
-    * BUG: Indicate when there are "no results found" for a search, or when a datasource is "unreachable"
-    * Cleanup the access function API (see the "technical roadmap" notes below)
+  * The **[[datasources]]** system is now working (configuration example: **[[https://conze.pt/app/explore2/src/data/datasources.js|src/data/datasources.js]]**) and has been tested with various datasources (with REST and SPARQL access).
 
-  * Technical roadmap:
-    * Research how to further **generalize the datasource integration**, using the common result-format used on Conzept (based on the Wikipedia API result structure)
+  * See: **[[issues#datasources|datasource issues]]**.
+
+  * Future improvements:
+    * **Add global search options** like: **sort-key** (relevance, date-asc, date-desc) and **media-types filter** (text, image, audio, video, 3d, etc.).
+    * Indicate when a datasource is "unreachable".
     * Add hooks for pre- and post-processing of the API data.
     * Add hooks to enrich the API data (with Wikipedia and Wikidata information)
-    * Test the datasource system on other real datasources (Sparql and REST).
-    * Allow for datasource activation via an URL parameter (so these searches can be linked to) and store these in a cookie.
+    * Research support for self-hosted, data files used as a datasource: JSON, Parquet, CSV, RDF
 
-==== adding a new datasource ====
+===== adding a new datasource =====
 
   - Add the new datasource to the datasource-configuration file here: [[https://conze.pt/app/explore2/src/data/datasources.js|src/data/datasources.js]]
   - Add a new datasource directory (using the name of the datasource, eg. "gleif")

@@ -2,18 +2,16 @@
 
 The main architectural choices made in the Conzept application are:
 
-  * Keep things **__simple__**, **web native**, **live** and **fun to code and maintain.**  Performance is secondary.
- 
-  * Value the **[[explore>user experience]] above all else.**
+  * **__Value the [[explore>user experience]] above all else__.** Keep things **simple**, **web native**, **live**, **accessible**, **[[https://calmtech.com|calm]]**, **performant** and **fun to code and maintain.**
 
-  * Use **embedded iframes** (and self-hosted app URLs) as a form of very simple, well-isolated 'micro-services'. However, to the user Conzept should //feel// as one application. The benefits this simple composition mechanism brings, is very good compatibility with most of the web-tools already written and the ones still to be written! See also: [[https://github.com/oilshell/oil/wiki/Perlis-Thompson-Principle|Perlis-Thompson principle]], [[https://www.oilshell.org/blog/2022/02/diagrams.html|narrow-waist concept]].
+  * Use **__embedded iframes__** (and self-hosted app URLs) as a form of very simple, well-isolated 'micro-services'. However, to the user Conzept should //feel// as one application. The benefits this simple composition mechanism brings, is very good compatibility with most of the web-tools already written and the ones still to be written! See also: [[https://github.com/oilshell/oil/wiki/Perlis-Thompson-Principle|Perlis-Thompson principle]], [[https://www.oilshell.org/blog/2022/02/diagrams.html|narrow-waist concept]].
 
-  * Use **declarative data definitions** where possible (examples: [[section_customization|sections]], [[field_customization|fields]], topic headlines, [[topic_classification|topic tags and indicators]]). Avoid code duplication (low entropy, horizontal/planer code growth) where possible, instead use use expressive data structures parsed by minimal code. Editing textual data-structures is also a lot easier than editing code, and also allows for text-tools to automate some of these tasks.
-
-  * The communication between Conzept and [[used_projects#embedded_apps|embedded apps]] is done using **URL-parameters** (examples: title-string, entity ID, ISO2/3 language code, URL) and **postMessage() function calls**.
+  * The communication between Conzept and [[used_projects#embedded_apps|embedded apps]] is done using **__[[url_structure|URL-parameters]]__** (examples: title, entity ID, language code, URL) and **__postMessage() calls__**.
     * Note: Some styling of embedded apps is also applied by directly setting common CSS classes on the body-element of the iframe (such as the "dark" class for dark-mode styles, or the "rtl" class for right-to-left language-scripts).
 
-  * **Use vanilla JS** (avoid complex [[https://catonmat.net/frameworks-dont-make-sense|frameworks]] inverting control), with jQuery for managing the DOM.
+  * Use **__declarative data definitions__** where possible (examples: [[section_customization|sections]], [[field_customization|fields]], topic headlines, [[topic_classification|topic tags and indicators]]). Avoid code duplication where possible, instead use use expressive data structures parsed by minimal code. Editing textual data-structures is also a lot easier than editing code. This approach also allows for text-tools to automate some of these tasks.
+
+  * **Use vanilla JS** (avoid complex [[https://catonmat.net/frameworks-dont-make-sense|frameworks]] inverting control), with jQuery (or plain JS) for managing the DOM.
     * jQuery - and the jQuery-dependent plugins - may be removed or replaced in the future, if possible and beneficial.
     * When needed: use [[explore>WebAssembly]] for performance-demanding, compute parts in the code.
     * If some (relatively complex) HTML-widget needs to be used in many different places: consider creating a **[[explore>Web Components|web component]]**. This was done for the [[apps#organism_occurrence_map|organism occurrence map]].

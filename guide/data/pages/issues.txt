@@ -1,28 +1,52 @@
 ====== issues ======
 
+===== browser compatibility =====
 
+  * Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term.
+
+===== keyboard navigation =====
+
+  * **ULS language-selector** not reachable via the keyboard.
+
+  * Main **bookmark links** are not reachable via the keyboard.
+
+  * **Font-type input-element** does not allow for keyboard-based font-selection (UP / DOWN).
+
+  * **Pane-switching**: Keyboard access to iframe only works from the core-app to the content-pane but not back (something broke this mechanism).
+
+===== touch navigation =====
+
+  * TODO: Note the core app & embedded app parts that fail for touch-interactions.
 =====  browser navigation =====
 
   * **Backwards & Forwards history navigation** has several issues.
-    * note: The web standards community is working on improving the [[https://github.com/WICG/app-history|browser-history API]], since many other "Single Page Applications" (SPA) are running into the same issues.
-    * See also: **[[https://wicg.github.io/app-history/|App History API]]** (proposal)
+    * note: The web standards community is working on improving the [[https://github.com/whatwg/html/pull/8502|browser-history API]], since many other "Single Page Applications" (SPA) are running into the same issues.
+    * See also: **[[https://github.com/whatwg/html/pull/8502|App History API]]** (proposal)
 
   * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
     * There is a need to have a better workflow & tooling to help with debugging these URL-issues.
-
-  * Allow for **datasources activation via an URL parameter** (so these searches can be linked to) and store these in a cookie.
+    * Examples: ...
 
   * Add **persistent-linking to inline-views**
     * When clicked on headline/section fields, set the fragment-parameter in the URL
     * When a URL with a fragment is loaded, upon up the inline-view.
     * Note: Make sure the used IDs are robust and durable.
+    * BUG: same ID used multiple times per page. Solution: add field-ID-name to current ID--> update all inline-field-handling code with this prepend:
+    <code>
+     for each topic-card:
+       <details title="europeana_inline" id="europeana_inline_mv-n00"
+       <details title="pexels" id="pexels_mv-n00"
+       ...
+</code>
 
   * **URL hash handling**
     * Fix the hash-handling conflict between the inline-category widget and Wikipedia ToC clicks.
     * Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)
     * Scroll-position / section alignment issue for Wikipedia ([[https://conze.pt/app/wikipedia/?t=Benin%20City&l=en&voice=en-US&qid=320704&dir=ltr&embedded=#references|example]])
 
-===== mobile browser compatibility and usability =====
+===== mobile usability =====
+
+  * The [[https://swiperjs.com|SwiperJS]] library - used for mobile swiping - is an older, somewhat broken version (page hangs occur between animations). The newer version breaks all rendering (for some reason). Todo: Figure out how to upgrade this library correctly.
 
   * Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.
 
@@ -32,127 +56,24 @@
 
 
 
+===== datasources =====
 
-===== quality assurance =====
+  * BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
 
-  * Accessibility (including keyboard-access) should be assessed and improved where needed.
-    * Integrate an automated accessibility test system.
-    * Maybe look into a web-component framework for accessible replacements (when needed).
+===== browser extension =====
 
-  * Integrate an automated testing system.
+  * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
 
-  * Get more UX feedback from real users.
-===== admin-dev workflows =====
+  * Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I've started some research what the best way forward to improve the JSON-LD parser.
 
-  * Improve the workflow for adding [[integrating_an_api|API integrations]].
-  * Improve the workflow for adding [[datasources]].
+  * The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.
 
-===== fields =====
-
-  * Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
-    * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
-
-  * Clean up any issues with field definitions:
-    * Turn the the inline-API field-structure into an object (instead of a string)?
-===== Wikidata/Wikipedia issues encountered =====
+===== Wikidata / SPARQL issues =====
 
   * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with "GROUP BY")
   * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using wikibase-sdk (with claims).
   * Abandoned Wikidata-based tools.
-  * Wikipedia: Image-loading failing sometimes ("too many image requests")
 
 ===== various =====
 
-  * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
-
-  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
-===== europeana notes =====
-
-  * Conzept currently uses the Europeana APIs for:
-    * The **[[https://conze.pt/explore/Hendrick%20Avercamp?l=nl&t=link&i=Q212593&u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Hendrick%2520Avercamp%2522%26l%3Dnl%26t%3Dimages&s=true#|Europeana item viewer app]]** (REST API, [[https://github.com/petropok/europeanaproj/blob/main/public/scripts/search.js#L30-L117|not sparql]]) (code based on [[https://github.com/petropok/europeanaproj|this project]])
-      * 
-    * The **inline Europeana media-query for images** (REST API)
-    * TODO: audio-query in SPARQL/REST (used for dynamically fetching audio in the auto-generated [[https://conze.pt/guide/command_api#presentation_examples|presentations]]) (see below)
-
-  * Europeana SPARQL links:
-    * https://pro.europeana.eu/page/sparql (docs)
-    * http://sparql.europeana.eu (online query tool)
-
-  * Specific SPARQL-questions:
-    * Show a SPARQL query to fetch audio-URLs (in MP3 or Ogg Vorbis format) from a certain creation year (with a source link for attribution).
-
-How to get the license info: also from the Aggregator object?
-  * edm:rights // "The rights statement that applies to the digital representation (...)"
-  * dc:rights  // "Information about rights held in and over the resource."
-
-<code>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX edm: <http://www.europeana.eu/schemas/edm/>
-PREFIX ore: <http://www.openarchives.org/ore/terms/>
-SELECT ?title ?creator ?mediaURL ?date
-WHERE {
-  ?CHO edm:type "SOUND" ;
-      ore:proxyIn ?proxy;
-      dc:title ?title ;
-      dc:creator ?creator ;
-      #dc:source ?source . 
-      #dc:license ?license ;
-      dc:date ?date .
-  ?proxy edm:isShownBy ?mediaURL .
-  FILTER (?date > "1960" && ?date < "1970") .
-  FILTER(regex(str(?mediaURL), ".mp3" ) )
-}
-LIMIT 100
-</code>
-
-
-    * The same query as above, but for a certain country.
-
-How to get country string?
-<code>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX edm: <http://www.europeana.eu/schemas/edm/>
-PREFIX ore: <http://www.openarchives.org/ore/terms/>
-SELECT ?title ?creator ?mediaURL ?date ?country
-WHERE {
-
-  # ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
-  #    edm:country "France" .
-      
-  ?CHO edm:type "SOUND" ;
-      ore:proxyIn ?proxy;
-      dc:title ?title ;
-      dc:creator ?creator ;
-
-  ?proxy edm:isShownBy ?mediaURL .
-}
-LIMIT 100
-</code>
-
-working "country" example:
-
-<code>
-PREFIX ore: <http://www.openarchives.org/ore/terms/>
-PREFIX edm: <http://www.europeana.eu/schemas/edm/>
-
-SELECT DISTINCT ?year ?country
-WHERE {
-  ?Aggregation edm:aggregatedCHO ?ProvidedCHO ;
-      edm:country ?country .
-  ?Proxy ore:proxyFor ?ProvidedCHO ;
-      edm:year ?year .
-  FILTER (?year > "1700" && ?year < "2020")
-}
-ORDER BY asc(?year)
-LIMIT 100
-</code> 
-
-  * General remarks on the SPARQL service:
-    * Add **[[https://sparql.europeana.eu|https]]-support** (besides http) to the [[http://sparql.europeana.eu/|SPARQL-endpoint]] (web applications hosted on https require that, because of the secure-browser context strictness these days).
-    * what is the **SPARQL data freshness** (I've heard the data is 2+ years old) and what is the **data completeness** (amount of items, compared to the REST API)?
-    * It would be nice to have better **ontology documentation**, especially an overview of the high-level concepts.
-      * For example provide an entity overview like [[https://makg.org|this]] and a visual relation-tree like [[https://makg.org/schema-linked-dataset-descriptions/|this]].
-      * Plus anything that would make the mental-map-to-ontology translation easier for users.
-    * Provide a low-barrier REST/SPARQL API **query-support via a wiki or forum** similar (this is what Wikidata is doing)
-    * Provide a community wiki-page with lots of **linked query examples** (with a short explanation and if needed comments in the SPARQL-query) 
-    * Provide a **better online query-tool**, like: https://query.wikidata.org (this tool is free and open to use, this is [[https://conze.pt/app/query/|also]] used for Conzept)
+  * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.

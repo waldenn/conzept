@@ -8,8 +8,6 @@
 
 **admin docs**
   * [[installation]]
-  * [[docker]]
-    * [[docker notes]]
   * [[configuration]]
   * [[section customization]]
   * [[field customization]]
@@ -26,6 +24,7 @@
   * [[adding an app]]
   * [[integrating an API]]
   * [[datasources]]
+  * [[command API]]
   * [[adding new Wikidata properties|new Wikidata properties]]
   * [[topic classification]]
   * [[JSON-LD]]
@@ -35,6 +34,5 @@
   * [[issues]]
   * [[roadmap]]
   * [[container]]
-  * [[command API]]
 
  ~~NOCACHE~~

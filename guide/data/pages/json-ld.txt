@@ -1,0 +1,12 @@
+====== JSON-LD ======
+
+[{{::json-ld.png?direct|JSON-LD metadata, as shown by the [[https://osds.openlinksw.com/|OpenLink Structured Data Sniffer]] extension}}]
+
+Conzept supports embeddeding **[[explore>JSON-LD]]** information about topics into the page. This information may also use Wikidata-based augmentation. Note: Non-wikipedia [[datasources]] or other embedded-apps do not (yet) support setting/updating the JSON-LD information.
+
+JSON-LD, together with a commonly used ontology such **[[https://schema.org/WebPage|schema:WebPage]]** from [[https://schema.org|Schema.org]], allows 'smart' semantic web agents to discover web metadata and make use of it, in a standardized and automated way.
+
+===== todo =====
+
+  * Fix the [[browser extension]] to be able to parse and use this meta-data
+  * Add [[https://schema.org/Action|Action]] / [[https://schema.org/potentialAction|potentialActions]] URLs for [[Command API]] URLs (such as topic presentations). See also: [[https://twitter.com/kidehen/status/1588180647369412608|1]]

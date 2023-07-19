@@ -11,29 +11,29 @@
         <description></description>
         <link>https://conze.pt/guide/</link>
         <image rdf:resource="https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico" />
-       <dc:date>2023-04-07T13:28:00+00:00</dc:date>
+       <dc:date>2023-07-10T10:39:21+00:00</dc:date>
         <items>
             <rdf:Seq>
-                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1680801379&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/docker?rev=1680439071&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/docker_notes?rev=1680257407&amp;do=diff"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-002.jpg&amp;ns=&amp;rev=1668118966&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-001.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-003.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-004.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-005.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-007.jpg&amp;ns=&amp;rev=1668118963&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-006.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-009.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-010.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-008.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=nlnet.svg&amp;ns=&amp;rev=1668092428&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=eu.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=nlnet.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
-                <rdf:li rdf:resource="https://conze.pt/guide/?image=1.jpg&amp;ns=&amp;rev=1667129330&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/user_manual?rev=1688762048&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/issues?rev=1688761343&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/architecture?rev=1688747779&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/browser_extension?rev=1688745282&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/datasources?rev=1688744834&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/apps?rev=1688744499&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/configuration?rev=1688742550&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/terms?rev=1688742425&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/code_structure?rev=1688728676&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/url_structure?rev=1688728642&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/roadmap?rev=1688727165&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=content_panes_3_mark.jpg&amp;ns=&amp;rev=1688726442&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/used_projects?rev=1688726315&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/installation?rev=1688725963&amp;do=diff"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=autocomplete.png&amp;ns=&amp;rev=1688721400&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=search_1.jpg&amp;ns=&amp;rev=1688721154&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=homepage.jpg&amp;ns=&amp;rev=1688720978&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=sidebar_screenshot_1.jpg&amp;ns=&amp;rev=1688717903&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/?image=explore-screenshot-011.jpg&amp;ns=&amp;rev=1688633891&amp;tab_details=history&amp;mediado=diff&amp;do=media"/>
+                <rdf:li rdf:resource="https://conze.pt/guide/history?rev=1688633730&amp;do=diff"/>
             </rdf:Seq>
         </items>
     </channel>
@@ -42,196 +42,282 @@
         <link>https://conze.pt/guide/</link>
         <url>https://conze.pt/guide/lib/tpl/readthedokus/images/favicon.ico</url>
     </image>
-    <item rdf:about="https://conze.pt/guide/user_manual?rev=1680801379&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/user_manual?rev=1688762048&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2023-04-06T19:16:19+00:00</dc:date>
+        <dc:date>2023-07-07T22:34:08+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>user_manual - [settings] </title>
-        <link>https://conze.pt/guide/user_manual?rev=1680801379&amp;do=diff</link>
+        <title>user_manual - [search commands] </title>
+        <link>https://conze.pt/guide/user_manual?rev=1688762048&amp;do=diff</link>
         <description>user manual
 
 introduction
 
-Conzept is an attempt to create an encyclopedia for the 21st century.
+Conzept is an attempt to create a flexible topic exploration system for the 21st century. It is a flexible, multi-lingual, semantic web tool build for fun, education and research purposes.
 
-A modern topic-exploration tool based on: Wikipedia, Wikidata, the Open Library, Archive.org, YouTube, the GBIF and many other information sources. A semantic web app build for fun, education and research.
+Main features:
 
-Conzept allows you to explore any of the millions of topics on Wikipedia from many</description>
+	*  Use any REST and SPARQL based</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/docker?rev=1680439071&amp;do=diff">
+    <item rdf:about="https://conze.pt/guide/issues?rev=1688761343&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2023-04-02T14:37:51+00:00</dc:date>
+        <dc:date>2023-07-07T22:22:23+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>docker - [open questions] </title>
-        <link>https://conze.pt/guide/docker?rev=1680439071&amp;do=diff</link>
-        <description>Docker install
+        <title>issues - [touch navigation] </title>
+        <link>https://conze.pt/guide/issues?rev=1688761343&amp;do=diff</link>
+        <description>issues
 
-[ WORK IN PROGRESS ]
+browser compatibility
 
-prepare the system for docker
+	*  Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term.
 
-sudo su
+keyboard navigation
 
-apt update
+	*  ULS language-selector not reachable via the keyboard.
 
-apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+	*  Main bookmark links are not reachable via the keyboard.</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/architecture?rev=1688747779&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2023-07-07T18:36:19+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>architecture</title>
+        <link>https://conze.pt/guide/architecture?rev=1688747779&amp;do=diff</link>
+        <description>architecture
 
-	*  TOFIX: GPG-key issue: “W: &lt;https://download.docker.com/linux/ubuntu/dists/jammy/InRelease&gt;: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.</description>
-    </item>
-    <item rdf:about="https://conze.pt/guide/docker_notes?rev=1680257407&amp;do=diff">
-        <dc:format>text/html</dc:format>
-        <dc:date>2023-03-31T12:10:07+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>docker_notes - [common commands] </title>
-        <link>https://conze.pt/guide/docker_notes?rev=1680257407&amp;do=diff</link>
-        <description>docker notes
+The main architectural choices made in the Conzept application are:
 
-[ notes on implementing Docker for Conzept ]
+	*  Value the user experience above all else. Keep things simple, web native, live, accessible, calm, performant and fun to code and maintain.
 
-milestones
+	*  Use embedded iframes (and self-hosted app URLs) as a form of very simple, well-isolated 'micro-services'. However, to the user Conzept should</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/browser_extension?rev=1688745282&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2023-07-07T17:54:42+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>browser_extension - [install] </title>
+        <link>https://conze.pt/guide/browser_extension?rev=1688745282&amp;do=diff</link>
+        <description>browser extension
+URL
+The Conzept browser extension (source) is a lightly-patched fork of the great Wikidata-for-Web extension.
 
-m1
+The extension aims to semantically integrate any website with the Conzept encyclopedia. By “string” and by “thing” (semantic entity).
 
-[ basic Docker image ]
+The Conzept extension allows you to:</description>
+    </item>
+    <item rdf:about="https://conze.pt/guide/datasources?rev=1688744834&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2023-07-07T17:47:14+00:00</dc:date>
+        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
+        <title>datasources - [status] </title>
+        <link>https://conze.pt/guide/datasources?rev=1688744834&amp;do=diff</link>
+        <description>datasources
 
-	*  Allow the user to build a basic Conzept Docker image and run it:
-		*  First install Docker
-		*  Ubuntu 2022.04 LTS, Nginx, HTTPv2, PHP, HTTPs (using Lets Encrypt and a custom web domain)</description>
+(TODO: Document how the datasources system works and how it can be configured. Show the steps for a simple datasource integration.)
+
+The idea is to allow any REST or SPARQL API to be added to a Conzept system and render topics in the sidebar.</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/apps?rev=1688744499&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2023-02-22T12:16:56+00:00</dc:date>
+        <dc:date>2023-07-07T17:41:39+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>datasources.jpg - created</title>
-        <link>https://conze.pt/guide/?image=datasources.jpg&amp;ns=&amp;rev=1677064616&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/datasources.jpg?w=333&amp;h=500&amp;t=1677064616&amp;amp;tok=79e9f0&quot; alt=&quot;datasources.jpg&quot; /&gt;</description>
+        <title>apps - [apps] </title>
+        <link>https://conze.pt/guide/apps?rev=1688744499&amp;do=diff</link>
+        <description>apps
+
+Conzept allows internal URLs (self-hosted) and CORS-enabled external URLs to be rendered into the content area.
+
+The internal URLs are used for embedding apps. There are currently about 40 of such apps.
+
+Below is an overview of the most relevant apps.
+
+wikipedia app
+
+The Wikipedia app renders the content from Wikipedia in Conzept (with its own styling and layout).</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-002.jpg&amp;ns=&amp;rev=1668118966&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/configuration?rev=1688742550&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:46+00:00</dc:date>
+        <dc:date>2023-07-07T17:09:10+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-002.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-002.jpg&amp;ns=&amp;rev=1668118966&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-002.jpg?w=500&amp;h=271&amp;t=1668118966&amp;amp;tok=293c9b&quot; alt=&quot;explore-screenshot-002.jpg&quot; /&gt;</description>
+        <title>configuration</title>
+        <link>https://conze.pt/guide/configuration?rev=1688742550&amp;do=diff</link>
+        <description>configuration
+
+The main settings of the Conzept system can be edited in “/etc/conzept/settings.conf”.
+
+[NOTE: After editing the this file, go to the “$CONZEPT_WEB_DIR/app/explore2/” directory and execute “npm run build”. 
+
+This build step will update the above settings in all the</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-001.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/terms?rev=1688742425&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:45+00:00</dc:date>
+        <dc:date>2023-07-07T17:07:05+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-001.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-001.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-001.jpg?w=500&amp;h=280&amp;t=1668118965&amp;amp;tok=25a8b3&quot; alt=&quot;explore-screenshot-001.jpg&quot; /&gt;</description>
+        <title>terms - [topic sections] </title>
+        <link>https://conze.pt/guide/terms?rev=1688742425&amp;do=diff</link>
+        <description>terms
+
+Here is a list of the most important terms used in the Conzept system.
+
+topic card
+
+The search results are rendered in the sidebar as a scrollable list of topic cards.
+
+These topic cards are a container for all information about a topic, including:
+
+	*  Title
+	*</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-003.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/code_structure?rev=1688728676&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:45+00:00</dc:date>
+        <dc:date>2023-07-07T13:17:56+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-003.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-003.jpg&amp;ns=&amp;rev=1668118965&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-003.jpg?w=500&amp;h=281&amp;t=1668118965&amp;amp;tok=2ce9a9&quot; alt=&quot;explore-screenshot-003.jpg&quot; /&gt;</description>
+        <title>code_structure - [explore object] </title>
+        <link>https://conze.pt/guide/code_structure?rev=1688728676&amp;do=diff</link>
+        <description>code structure
+
+Here is a high-level description of how the code in the Conzept project is structured.
+You can also browse it online here.
+
+root directory structure
+
+
+.
+├── app (all ~40 embedded apps, including the Conzept main app, see next section)
+│  ├── ...
+│  ├── ...
+│  └── ...
+│
+├── assets (globally shared assets)
+│  ├── icons
+│  └── fonts
+│
+└── services (background services started upon system boot)
+   ├── allorigins (general CORS proxy)
+   └── json-proxy (JSON-only CORS proxy, which can …</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-004.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/url_structure?rev=1688728642&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:44+00:00</dc:date>
+        <dc:date>2023-07-07T13:17:22+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-004.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-004.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-004.jpg?w=499&amp;h=259&amp;t=1668118964&amp;amp;tok=cd757f&quot; alt=&quot;explore-screenshot-004.jpg&quot; /&gt;</description>
+        <title>url_structure - [URL parameters] </title>
+        <link>https://conze.pt/guide/url_structure?rev=1688728642&amp;do=diff</link>
+        <description>URL structure
+
+Conzept is mainly based around URLs and iframes.
+
+Let's first look at some example URLs and then look at all the available parameters.
+
+example URLs
+
+	*  conze.pt/explore/Semantic_Web (Minimal URL with a search-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-005.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/roadmap?rev=1688727165&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:44+00:00</dc:date>
+        <dc:date>2023-07-07T12:52:45+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-005.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-005.jpg&amp;ns=&amp;rev=1668118964&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-005.jpg?w=500&amp;h=258&amp;t=1668118964&amp;amp;tok=664260&quot; alt=&quot;explore-screenshot-005.jpg&quot; /&gt;</description>
+        <title>roadmap - [admin-dev workflows] </title>
+        <link>https://conze.pt/guide/roadmap?rev=1688727165&amp;do=diff</link>
+        <description>roadmap
+
+frontend ideas
+
+	*  Fix the items mentioned in issues.
+
+	*  Add claim-support to the Wikidata-data fetching (and support for claim-data in the field-definitions).
+
+	*  Better bookmarking UX:
+		*  Cross-tab bookmark state-syncing
+		*  Future idea: Being able to share bookmark-lists with others (like Spotify playlists)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-007.jpg&amp;ns=&amp;rev=1668118963&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=content_panes_3_mark.jpg&amp;ns=&amp;rev=1688726442&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:43+00:00</dc:date>
+        <dc:date>2023-07-07T12:40:42+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-007.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-007.jpg&amp;ns=&amp;rev=1668118963&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-007.jpg?w=500&amp;h=281&amp;t=1668118963&amp;amp;tok=2af562&quot; alt=&quot;explore-screenshot-007.jpg&quot; /&gt;</description>
+        <title>content_panes_3_mark.jpg - created</title>
+        <link>https://conze.pt/guide/?image=content_panes_3_mark.jpg&amp;ns=&amp;rev=1688726442&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/content_panes_3_mark.jpg?w=500&amp;h=281&amp;t=1688726442&amp;amp;tok=6df6a2&quot; alt=&quot;content_panes_3_mark.jpg&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-006.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/used_projects?rev=1688726315&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:42+00:00</dc:date>
+        <dc:date>2023-07-07T12:38:35+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-006.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-006.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-006.jpg?w=500&amp;h=281&amp;t=1668118962&amp;amp;tok=cfd141&quot; alt=&quot;explore-screenshot-006.jpg&quot; /&gt;</description>
+        <title>used_projects - [embedded apps] </title>
+        <link>https://conze.pt/guide/used_projects?rev=1688726315&amp;do=diff</link>
+        <description>used projects
+
+This is a list of the various software projects integrated into Conzept (called “apps” in this context).
+
+background services
+
+	*  json-proxy - JSON CORS-proxy with support for secret-API-keys (MIT)
+	*  allOrigins - general CORS-proxy (any file type). (MIT)</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-009.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/installation?rev=1688725963&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:42+00:00</dc:date>
+        <dc:date>2023-07-07T12:32:43+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-009.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-009.jpg&amp;ns=&amp;rev=1668118962&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-009.jpg?w=500&amp;h=281&amp;t=1668118962&amp;amp;tok=b11f6b&quot; alt=&quot;explore-screenshot-009.jpg&quot; /&gt;</description>
+        <title>installation - [step 3: Install docker] </title>
+        <link>https://conze.pt/guide/installation?rev=1688725963&amp;do=diff</link>
+        <description>installation
+
+This page describes how to install, maintain and develop Conzept on your own system(s).
+
+step 1: Get the Conzept source
+
+sudo apt install -y git unzip
+
+git clone --depth 1 --branch 2023.07 https://github.com/waldenn/conzept.git
+
+cd conzept</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-010.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=autocomplete.png&amp;ns=&amp;rev=1688721400&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:41+00:00</dc:date>
+        <dc:date>2023-07-07T11:16:40+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-010.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-010.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-010.jpg?w=500&amp;h=281&amp;t=1668118961&amp;amp;tok=3a057e&quot; alt=&quot;explore-screenshot-010.jpg&quot; /&gt;</description>
+        <title>autocomplete.png - created</title>
+        <link>https://conze.pt/guide/?image=autocomplete.png&amp;ns=&amp;rev=1688721400&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/autocomplete.png?w=500&amp;h=359&amp;t=1688721400&amp;amp;tok=01c2e2&quot; alt=&quot;autocomplete.png&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-008.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=search_1.jpg&amp;ns=&amp;rev=1688721154&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T23:22:41+00:00</dc:date>
+        <dc:date>2023-07-07T11:12:34+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>explore-screenshot-008.jpg - created</title>
-        <link>https://conze.pt/guide/?image=explore-screenshot-008.jpg&amp;ns=&amp;rev=1668118961&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-008.jpg?w=500&amp;h=281&amp;t=1668118961&amp;amp;tok=664669&quot; alt=&quot;explore-screenshot-008.jpg&quot; /&gt;</description>
-    </item>
-    <item rdf:about="https://conze.pt/guide/?image=nlnet.svg&amp;ns=&amp;rev=1668092428&amp;tab_details=history&amp;mediado=diff&amp;do=media">
-        <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T16:00:28+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>nlnet.svg - created</title>
-        <link>https://conze.pt/guide/?image=nlnet.svg&amp;ns=&amp;rev=1668092428&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <title>search_1.jpg</title>
+        <link>https://conze.pt/guide/?image=search_1.jpg&amp;ns=&amp;rev=1688721154&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
         <description></description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=eu.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=homepage.jpg&amp;ns=&amp;rev=1688720978&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T15:59:12+00:00</dc:date>
+        <dc:date>2023-07-07T11:09:38+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>eu.png - created</title>
-        <link>https://conze.pt/guide/?image=eu.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/eu.png?w=400&amp;h=267&amp;t=1668092352&amp;amp;tok=e976e6&quot; alt=&quot;eu.png&quot; /&gt;</description>
+        <title>homepage.jpg</title>
+        <link>https://conze.pt/guide/?image=homepage.jpg&amp;ns=&amp;rev=1688720978&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/homepage.jpg?w=500&amp;h=281&amp;t=1688720978&amp;amp;tok=85827d&quot; alt=&quot;homepage.jpg&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=nlnet.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=sidebar_screenshot_1.jpg&amp;ns=&amp;rev=1688717903&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-10T15:59:12+00:00</dc:date>
+        <dc:date>2023-07-07T10:18:23+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>nlnet.png - created</title>
-        <link>https://conze.pt/guide/?image=nlnet.png&amp;ns=&amp;rev=1668092352&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/nlnet.png?w=190&amp;h=80&amp;t=1668092352&amp;amp;tok=061f95&quot; alt=&quot;nlnet.png&quot; /&gt;</description>
+        <title>sidebar_screenshot_1.jpg</title>
+        <link>https://conze.pt/guide/?image=sidebar_screenshot_1.jpg&amp;ns=&amp;rev=1688717903&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/sidebar_screenshot_1.jpg?w=295&amp;h=499&amp;t=1688717903&amp;amp;tok=bb0534&quot; alt=&quot;sidebar_screenshot_1.jpg&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/?image=explore-screenshot-011.jpg&amp;ns=&amp;rev=1688633891&amp;tab_details=history&amp;mediado=diff&amp;do=media">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-11-03T16:31:28+00:00</dc:date>
+        <dc:date>2023-07-06T10:58:11+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>json-ld.png - created</title>
-        <link>https://conze.pt/guide/?image=json-ld.png&amp;ns=&amp;rev=1667489488&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description>&lt;img src=&quot;https://conze.pt/guide/_media/json-ld.png?w=500&amp;h=380&amp;t=1667489488&amp;amp;tok=34b706&quot; alt=&quot;json-ld.png&quot; /&gt;</description>
+        <title>explore-screenshot-011.jpg</title>
+        <link>https://conze.pt/guide/?image=explore-screenshot-011.jpg&amp;ns=&amp;rev=1688633891&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
+        <description>&lt;img src=&quot;https://conze.pt/guide/_media/explore-screenshot-011.jpg?w=500&amp;h=281&amp;t=1688633891&amp;amp;tok=37fd06&quot; alt=&quot;explore-screenshot-011.jpg&quot; /&gt;</description>
     </item>
-    <item rdf:about="https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media">
+    <item rdf:about="https://conze.pt/guide/history?rev=1688633730&amp;do=diff">
         <dc:format>text/html</dc:format>
-        <dc:date>2022-10-30T12:31:27+00:00</dc:date>
+        <dc:date>2023-07-06T10:55:30+00:00</dc:date>
         <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>2.jpg - created</title>
-        <link>https://conze.pt/guide/?image=2.jpg&amp;ns=&amp;rev=1667129487&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description></description>
-    </item>
-    <item rdf:about="https://conze.pt/guide/?image=1.jpg&amp;ns=&amp;rev=1667129330&amp;tab_details=history&amp;mediado=diff&amp;do=media">
-        <dc:format>text/html</dc:format>
-        <dc:date>2022-10-30T12:28:50+00:00</dc:date>
-        <dc:creator>admin (admin@undisclosed.example.com)</dc:creator>
-        <title>1.jpg - created</title>
-        <link>https://conze.pt/guide/?image=1.jpg&amp;ns=&amp;rev=1667129330&amp;tab_details=history&amp;mediado=diff&amp;do=media</link>
-        <description></description>
+        <title>history</title>
+        <link>https://conze.pt/guide/history?rev=1688633730&amp;do=diff</link>
+        <description>history
+
+This page documents the history of the Conzept project (for now only through user-interface screenshots).</description>
     </item>
 </rdf:RDF>

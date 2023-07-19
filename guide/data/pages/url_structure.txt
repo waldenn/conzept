@@ -1,0 +1,48 @@
+====== URL structure ======
+
+Conzept is mainly based around URLs and iframes.
+
+Let's first look at some example URLs and then look at all the available parameters.
+===== example URLs =====
+
+  * [[https://conze.pt/explore/Semantic%20Web|conze.pt/explore/Semantic_Web]] (Minimal URL with a search-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)
+
+  * [[https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=en&t=string&s=true]] (datasources search for the English language)
+  * [[https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=de&t=string&s=true]] (datasources search for the German language)
+
+  * [[https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true|conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true]] (load a certain Wikidata Q-ID topic. This will try to load it as a Wikipedia article, or else fallback to showing the Wikidata page.)
+
+  * [[https://conze.pt/explore/Semantic%20Web?l=en&t=link&i=Q54837&u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22Semantic%20Web%22&s=true|conze.pt/explore/Semantic_Web?l=en&t=link&i=Q54837&u=/app/video/#/search/"Semantic_web"]] (Loads the video-app in the content pane.)
+
+  * [[https://conze.pt/explore/Semantic%20Web?l=de&t=link-split&i=Q54837&u=%2Fapp%2Flinks%2F%3Fl%3Dde%26t%3DSemantic%2520Web&s=true|conze.pt/explore/Semantic_Web?l=de&t=link-split&i=Q54837&u=/app/links/?l=de&t=Semantic_Web&s=true]] (Link-split example loading the link-graph app, for the German language.)
+
+
+===== URL parameters =====
+
+There are various parameters available to structure URLs.
+
+^ parameter  ^ description    ^ default value      ^
+| **l** | language | "en" |
+| **lv** | language variant | "zh-my" |
+| **t** | action-type | "string" |
+| **i** | entity ID (such as the Wikidata Q-identifier) | |
+| **u**  | URL-string | |
+| **s** | sidebar visibility | true |
+| **v** | view-mode requested, can be "desktop" or "mobile" | (note: automatically determined by the device type, but can be overruled with this parameter) |
+| **c**  | custom data field (its format is not specified)| |
+| **query** | [[user_manual#structured_search|structured search]] query in JSON | |
+| **commands** | [[command API]] DSL code in Scheme Lisp (as used for [[command_api#presentation_commands|presentations]]) | |
+
+===== URL action types =====
+
+The types parameter ("**t**") in Conzept URLs indicated what type of content should be loaded.
+
+The following action-types are available:
+
+^ type      ^ argument data-type ^ description       ^
+| **string** | search-term string | string-based search in the active datasources |
+| **wikipedia-qid** | Wikidata Qid | request the Wikipedia or the Wikidata page of an entity (in that order) |
+| **link-split** | url |load two content panes and load the URL into the first content pane, in the second-content pane load the Wikipedia page for the search-string |
+| **articles** | search-term string | (only used internally) to update the sidebar with a new string-search (and not update the content area) |
+| **random** | (none) | (only used internally) to load a random Wikipedia topic |
+| **wander** | search-term string | loads the video-app to //stream a series// of YouTube videos |

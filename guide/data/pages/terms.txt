@@ -36,7 +36,7 @@ The topic headline shows the most essential links and info (if available / appli
 
 The main idea behind Conzept is to help you **see topics of interest from different viewpoints**.
 
-These are some of the available viewpoints:
+These are some of the available viewpoints in the Conzept encyclopedia:
   * Wikidata information
   * Video / audio / image archives
   * Digital books
@@ -52,6 +52,8 @@ These are some of the available viewpoints:
 **On Conzept these viewpoints are the topic-sections and the links they contain.**
 
 Not all these viewpoints are relevant all the time for topics ofcourse. In some cases Conzept can hide sections or show extra sections automatically, depending on a certain context.
+
+Note: The section and field structures can be customized by editing the [[section customization|section file]] and the [[field customization|fields file]].
 
 [ Experimental: You can configure some of this context with the "persona-tags" setting. For example: If you have a "nomad" persona tag, you will see a link to walking routes in the topic-headline, when viewing a location topic. If you have a tourist-persona tag, then you will see a link to hotel locations. ]
 ===== topic fields =====

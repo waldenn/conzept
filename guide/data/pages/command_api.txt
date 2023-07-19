@@ -1,5 +1,29 @@
 ====== command API ======
 
+The Conzept Command API is a [[https://lips.js.org|LIPS scheme]] based [[explore>domain-specific language|domain-specific language]] (DSL) interface, for accessing various Conzept [[#commands|capabilities]].
+
+The API is currently being used for:
+  * Auto-creation of presentations for topics.
+  * Various bookmark-selection actions.
+
+===== goals =====
+
+  * Provide an **easy environment for creating entity and media processing workflows** in Conzept.
+
+  * The DSL should be usable for:
+    * [[explore>Data analysis]] (not supported yet)
+    * [[explore>Data visualization]] (supported)
+    * [[explore>Storytelling]] (some support: presentations)
+    * [[explore>Education]] (not supported yet) (ideas: gradual learning, experiences and quizzes)
+
+  * Design priorities:
+    * **useful**
+    * intuitive, **simple**, elegant
+    * **composable**, coherent
+    * robust, durable
+
+  * Aimed at Wikidata (but could perhaps also made suitable for use with other SPARQL-endpoints in the future)
+
 ===== getting started =====
 
 You can start building and running Conzept commands by opening the command-editor (located in the tools-tab).
@@ -15,23 +39,6 @@ Open your browser console, to see any logging (if needed).
 Check this example to get started: ''[[https://conze.pt/explore/?&t=&i=Q333&s=true&commands=(show%20%27topic%20%27(%20Q333%20)%20)#|(show 'topic '( Q333 ) )]]''
 
 Autocompletion of the Scheme-based command-language symbols (including the Wikidata properties and entities) are available by pressing: **[CTRL] + [SPACE]** (note: there are still some autocomplete and editing [[#notes|issues]])
-===== purpose =====
-
-  * To have **a good command API ([[explore>Domain-specific language|DSL]]) and command editor, for creating entity and media processing workflows** in Conzept.
-
-  * The DSL should be usable for:
-    * [[explore>Data analysis]] (not supported yet)
-    * [[explore>Data visualization]] (supported)
-    * [[explore>Storytelling]] (some support: presentations)
-    * [[explore>Education]] (not supported yet: gradual learning, experiences and quizzes)
-
-  * Design priorities:
-    * **useful**
-    * intuitive, **simple**, elegant
-    * **composable**, coherent
-    * robust, durable
-
-  * Aimed at Wikidata, but could perhaps also made suitable for use with other SPARQL-endpoints in the future.
 
 
 ===== commands =====
@@ -52,7 +59,7 @@ Autocompletion of the Scheme-based command-language symbols (including the Wikid
       * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27map%20(%20query%20(%20%27(P31%20%3D%20Q6256)%20%27(P361%20%3D%20Q18)%20)%20)%20)#|(show 'map ( query ( '(P31 = Q6256) '(P361 = Q18) ) ) )]]'' (countries on the South American continent)
       * ''[[https://conze.pt/explore/?&s=true&commands=(show 'image ( query ( '( P171 %3D%20 Q681374 ) ) ) )#|(show 'image ( query ( '( P171 =  Q681374 ) ) ) )]]'' (taxons with parent taxon "Monarchidae")
       * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27timeline%20(%20query%20(%20%27(%20P106%20%3D%20Q82594%20)%20%27(%20P21%20%3D%20Q6581072%20)%20)%20)%20)#|(show 'timeline ( query ( '( P106 = Q82594 ) '( P21 = Q6581072 ) ) ) )]]'' (female computer scientists)
-      * ''[[https://conze.pt/explore/?&&s=true&commands=(show 'map3d (query ( %0A%20 '( P31 %3D Q12570 )%0A%20 '( P2043 > 2500 )%0A%20 ) ) )%0A%0A#|(show 'map3d (query ( '( P31 = Q12570 ) '( P2043 > 2500 ) ) ) )]]'' (suspension-bridges longer than 2500 (note: unit specification not supported)
+      * ''[[https://conze.pt/explore/?&&s=true&commands=(show 'map3d (query ( %0A%20 '( P31 %3D Q12570 )%0A%20 '( P2043 > 2500 )%0A%20 ) ) )%0A%0A#|(show 'map3d (query ( '( P31 = Q12570 ) '( P2043 > 2500 ) ) ) )]]'' (suspension-bridges longer than 2500 (note: unit specification not supported) (FIXME)
       * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27image%20(%20query%20(%20%27(%20P31%2FP279*%20%3D%20Q204832)%20%27(%20P571%20%253C%201990%20)%20)%20)%20)#|(show 'image ( query ( '( P31/P279* = Q204832) '( P571 < 1990 ) ) ) )
 ]]'' (instances or instances of sub-classes of roller-coasters, build before the year 1990)
   * ? **entity**
@@ -298,7 +305,7 @@ Fragments examples with "goto-triggers":
     * [[https://github.com/UniversalViewer/universalviewer/wiki/UV-Examples|wiki]]
     * [[https://github.com/UniversalViewer/universalviewer/issues|issues]]
     * control tips: [[https://github.com/UniversalViewer/universalviewer/issues/562|uv.set/getContentState]]
-==== other links ====
+==== other relevant links ====
 
   * "[[https://dl.acm.org/doi/pdf/10.1145/359131.359133|Beyond programming languages]]" (pdf)
   * "[[https://f1000researchdata.s3.amazonaws.com/manuscripts/4790/2f1ec514-203b-4ee8-b033-4ca7d69bb93b_3978%20-%20konrad%20hinsen_v2.pdf|Computational science: shifting the focus from tools to

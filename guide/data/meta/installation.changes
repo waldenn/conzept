@@ -198,3 +198,43 @@
 1666973797	127.0.0.1	E	installation		external edit		-122
 1666973862	84.241.201.215	E	installation	admin	[installation] 		63
 1677067164	84.241.206.36	E	installation	admin	[installation] 		-3
+1688163708	89.205.131.1	E	installation	admin			-4123
+1688163912	89.205.131.1	E	installation	admin	[installation] 		-1
+1688166495	89.205.131.1	E	installation	admin			71
+1688166529	89.205.131.1	E	installation	admin	[step 4: build the conzept docker image] 		-8
+1688166565	89.205.131.1	E	installation	admin	[step 4: build the docker image] 		0
+1688166605	89.205.131.1	E	installation	admin	[step 4: build the docker image] 		2
+1688166669	89.205.131.1	E	installation	admin	[step 1: get the Conzept source] 		0
+1688166677	89.205.131.1	E	installation	admin	[step 2: configure Conzept] 		0
+1688166687	89.205.131.1	E	installation	admin	[step 3: install docker] 		0
+1688166696	89.205.131.1	E	installation	admin	[step 4: build the docker image] 		0
+1688166765	89.205.131.1	E	installation	admin	[step 3: Install docker] 		4
+1688166800	89.205.131.1	E	installation	admin	[step 2: Configure Conzept] 		-3
+1688167112	89.205.131.1	E	installation	admin	[step 2: Configure Conzept] 		61
+1688168481	89.205.131.1	E	installation	admin	[step 3: Install docker] 		5
+1688168502	89.205.131.1	E	installation	admin	[step 3: Install docker] 		4
+1688168519	89.205.131.1	E	installation	admin	[step 3: Install docker] 		1
+1688168539	89.205.131.1	E	installation	admin	[step 4: Build the docker image] 		-16
+1688168566	89.205.131.1	E	installation	admin	[step 4: Build the docker image] 		-29
+1688168587	89.205.131.1	E	installation	admin	[step 4: Build the docker image] 		29
+1688196677	89.205.133.223	E	installation	admin			0
+1688196715	89.205.133.223	E	installation	admin	[step 1: Get the Conzept source] 		11
+1688197663	89.205.133.223	E	installation	admin	[step 2: Configure Conzept] 		83
+1688197751	89.205.133.223	E	installation	admin	[installation] 		78
+1688197792	89.205.133.223	E	installation	admin	[installation] 		10
+1688233382	2a02:a46c:3bee:1:4639:3326:f72f:9806	E	installation	admin	[step 1: Get the Conzept source] 		27
+1688233418	2a02:a46c:3bee:1:4639:3326:f72f:9806	E	installation	admin	[step 1: Get the Conzept source] 		-2291
+1688338713	89.205.133.135	R	installation	admin	old revision restored (2023/07/01 19:43)	1688233382	2292
+1688338728	89.205.133.135	E	installation	admin	[step 1: Get the Conzept source] 		-17
+1688338830	89.205.133.135	E	installation	admin	[step 2: Configure Conzept] 		-10
+1688338856	89.205.133.135	E	installation	admin	[step 2: Configure Conzept] 		-8
+1688338912	89.205.133.135	E	installation	admin	[step 2: Configure Conzept] 		37
+1688338921	89.205.133.135	E	installation	admin	[step 2: Configure Conzept] 		-7
+1688341609	89.205.133.135	E	installation	admin	[step 1: Get the Conzept source] 		17
+1688505384	89.205.132.182	E	installation	admin	[local development] 		-7
+1688505390	89.205.132.182	E	installation	admin	[update production] 		-7
+1688505444	89.205.132.182	E	installation	admin	[development] 		13
+1688505475	89.205.132.182	E	installation	admin	[update production] 		2
+1688725920	84.241.193.19	E	installation	admin	[step 2: Configure Conzept] 		0
+1688725933	84.241.193.19	E	installation	admin	[step 2: Configure Conzept] 		0
+1688725963	84.241.193.19	E	installation	admin	[step 3: Install docker] 		1

@@ -1,0 +1,15 @@
+====== history ======
+
+[{{::explore-screenshot-001.jpg?direct|1999}}]
+[{{::explore-screenshot-002.jpg?direct|1999}}]
+[{{::explore-screenshot-003.jpg?direct|2020}}]
+[{{::explore-screenshot-004.jpg?direct|2020}}]
+[{{::explore-screenshot-005.jpg?direct|2021}}]
+[{{::explore-screenshot-006.jpg?direct|2021}}]
+[{{::explore-screenshot-007.jpg?direct|2021}}]
+[{{::explore-screenshot-008.jpg?direct|2022}}]
+[{{::explore-screenshot-009.jpg?direct|2022}}]
+[{{::explore-screenshot-010.jpg?direct|2022}}]
+[{{::explore-screenshot-011.jpg?direct|2023.07}}]
+
+This page documents the history of the Conzept project (for now only through user-interface screenshots).

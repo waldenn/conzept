@@ -1,0 +1,110 @@
+1677065500	84.241.206.36	C	docker	admin	created		698
+1677065552	84.241.206.36	E	docker	admin			22
+1677065564	84.241.206.36	E	docker	admin			6
+1677065624	84.241.206.36	E	docker	admin			94
+1677065660	84.241.206.36	E	docker	admin			-2
+1677065677	84.241.206.36	E	docker	admin			8
+1677065691	84.241.206.36	E	docker	admin			-7
+1677067051	84.241.206.36	E	docker	admin			35
+1677067099	84.241.206.36	E	docker	admin			-22
+1677067110	84.241.206.36	E	docker	admin			0
+1677067127	84.241.206.36	E	docker	admin			-96
+1677067546	84.241.206.36	E	docker	admin			24
+1677067688	84.241.206.36	E	docker	admin			56
+1677082201	84.241.206.36	E	docker	admin			-4
+1677082246	84.241.206.36	E	docker	admin			0
+1677082269	84.241.206.36	E	docker	admin			1
+1677082373	84.241.206.36	E	docker	admin			77
+1677082384	84.241.206.36	E	docker	admin			1
+1677082449	84.241.206.36	E	docker	admin			37
+1677082494	84.241.206.36	E	docker	admin			13
+1677103671	84.241.202.238	E	docker	admin			85
+1677148944	84.241.202.197	E	docker	admin			-46
+1677150380	84.241.202.197	E	docker	admin			-130
+1680252639	84.241.202.216	E	docker	admin			501
+1680252866	84.241.202.216	E	docker	admin			183
+1680253478	84.241.202.216	E	docker	admin			715
+1680253497	84.241.202.216	E	docker	admin	[configure and build the conzept docker image] 		9
+1680254248	84.241.202.216	e	docker	admin	[configure and build the conzept docker image] 		67
+1680256126	84.241.202.216	E	docker	admin	[configure and build the conzept docker image] 		2335
+1680256166	84.241.202.216	E	docker	admin	[prepare the system for docker] 		-49
+1680256201	84.241.202.216	E	docker	admin	[configure and build the conzept docker image] 		49
+1680256249	84.241.202.216	E	docker	admin	[configure and build the conzept docker image] 		14
+1680256630	84.241.202.216	E	docker	admin			-607
+1680256682	84.241.202.216	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		35
+1680256691	84.241.202.216	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		2
+1680257232	84.241.202.216	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		-1
+1680257246	84.241.202.216	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		1
+1680257292	84.241.202.216	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		19
+1680257329	84.241.202.216	E	docker	admin	[prepare the system for docker] 		15
+1680257376	84.241.202.216	E	docker	admin	[see also] 		3
+1680257449	84.241.202.216	E	docker	admin	[see also] 		573
+1680257481	84.241.202.216	E	docker	admin	[common commands] 		7
+1680287152	84.241.202.216	E	docker	admin	[see also] 		-17
+1680287374	84.241.202.216	E	docker	admin	[prepare the system for docker] 		-51
+1680287547	84.241.202.216	E	docker	admin	[see also] 		101
+1680438908	84.241.203.250	E	docker	admin	[fetch, configure, build and start the conzept docker image] 		26
+1680438972	84.241.203.250	E	docker	admin	[build and run the docker container] 		38
+1680438984	84.241.203.250	E	docker	admin	[build and run the docker container] 		2
+1680439071	84.241.203.250	E	docker	admin	[open questions] 		-2
+1680895373	84.241.201.20	E	docker	admin	[prepare the system for docker] 		-901
+1680896452	84.241.201.20	E	docker	admin	[build and run the docker container] 		-2711
+1680896472	84.241.201.20	E	docker	admin	[build and run the docker container] 		7
+1680896808	84.241.201.20	E	docker	admin	[build and run the docker container] 		-4
+1680896876	84.241.201.20	E	docker	admin	[build and run the docker image] 		29
+1680896891	84.241.201.20	E	docker	admin	[prepare the system for docker] 		-15
+1680896904	84.241.201.20	E	docker	admin	[Docker install] 		-8
+1680896995	84.241.201.20	E	docker	admin	[build and run the docker image] 		30
+1680897045	84.241.201.20	E	docker	admin	[build and run the docker image] 		35
+1680898342	84.241.201.20	E	docker	admin	[build and run the docker image] 		93
+1680902030	84.241.201.20	E	docker	admin	[build and run the docker image] 		5
+1680907539	84.241.201.20	E	docker	admin	[build and run the docker image] 		-67
+1680907673	84.241.201.20	E	docker	admin	[build and run the docker image] 		29
+1680907905	84.241.201.20	E	docker	admin	[build and run the docker image] 		52
+1680907960	84.241.201.20	E	docker	admin	[build and run the docker image] 		35
+1680944379	89.205.139.225	E	docker	admin			185
+1680944486	89.205.139.225	E	docker	admin	[fetch conzept source] 		29
+1680944506	89.205.139.225	E	docker	admin	[fetch conzept source] 		-4
+1680944530	89.205.139.225	E	docker	admin	[fetch conzept source] 		2
+1680944695	89.205.139.225	E	docker	admin	[get the conzept source] 		6
+1680944724	89.205.139.225	E	docker	admin	[get the conzept source] 		-64
+1680945201	89.205.139.225	E	docker	admin	[build the conzept docker image] 		26
+1680945243	89.205.139.225	E	docker	admin			-2
+1680945373	89.205.139.225	E	docker	admin	[build the conzept docker image] 		40
+1680945453	89.205.139.225	E	docker	admin	[build the conzept docker image] 		-5
+1680945656	89.205.139.225	E	docker	admin	[build the conzept docker image] 		154
+1680945696	89.205.139.225	E	docker	admin	[common docker commands] 		-48
+1680946310	89.205.139.225	E	docker	admin	[build the conzept docker image] 		83
+1680948517	89.205.139.225	E	docker	admin	[build the conzept docker image] 		-212
+1680948531	89.205.139.225	E	docker	admin	[build the conzept docker image] 		4
+1685389507	84.241.201.126	E	docker	admin	[build the conzept docker image] 		46
+1685389557	84.241.201.126	E	docker	admin	[update conzept docker image] 		-6
+1685389577	84.241.201.126	E	docker	admin	[update conzept docker] 		18
+1685389602	84.241.201.126	E	docker	admin	[update the running conzept docker image] 		37
+1685389659	84.241.201.126	E	docker	admin	[update the running conzept docker image] 		2
+1685389670	84.241.201.126	E	docker	admin	[local development] 		2
+1688156189	89.205.131.1	E	docker	admin	[local development] 		62
+1688156289	89.205.131.1	E	docker	admin	[local development] 		35
+1688156654	89.205.131.1	E	docker	admin	[local development] 		-3
+1688157976	89.205.131.1	E	docker	admin	[local development] 		-131
+1688157992	89.205.131.1	E	docker	admin	[update the running conzept docker image] 		133
+1688158276	89.205.131.1	E	docker	admin	[build the conzept docker image] 		-61
+1688158342	89.205.131.1	E	docker	admin	[get the conzept source] 		8
+1688158374	89.205.131.1	E	docker	admin	[install docker] 		-181
+1688158448	89.205.131.1	E	docker	admin	[step 1: get the conzept source] 		181
+1688158481	89.205.131.1	E	docker	admin			16
+1688158508	89.205.131.1	E	docker	admin	[Docker] 		-15
+1688158583	89.205.131.1	E	docker	admin	[step 2: install docker] 		4
+1688161002	89.205.131.1	E	docker	admin	[step 2: install docker] 		-5
+1688161057	89.205.131.1	E	docker	admin	[step 3: build the conzept docker image] 		58
+1688161991	89.205.131.1	E	docker	admin	[update the running conzept docker image] 		233
+1688162246	89.205.131.1	E	docker	admin	[update the running conzept docker image] 		30
+1688162271	89.205.131.1	E	docker	admin	[update the running conzept docker image] 		17
+1688162297	89.205.131.1	E	docker	admin	[local development] 		18
+1688162317	89.205.131.1	E	docker	admin	[local development] 		-1
+1688162449	89.205.131.1	E	docker	admin	[update the running conzept docker image] 		-22
+1688162557	89.205.131.1	E	docker	admin			-105
+1688162654	89.205.131.1	D	docker	admin	removed		-1991
+1688162741	89.205.131.1	C	docker	admin	created		1915
+1688162762	89.205.131.1	E	docker	admin	[step 1: get the conzept source] 		4
+1688163640	89.205.131.1	D	docker	admin	removed		-1919

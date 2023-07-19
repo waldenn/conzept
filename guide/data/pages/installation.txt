@@ -1,178 +1,94 @@
 ====== installation ======
 
-[{{ ::ubuntu_logo.png?direct|Ubuntu logo}}]
+This page describes how to install, maintain and develop Conzept on your own system(s).
 
-Conzept installation documention (written for Ubuntu 2020.04 LTS).
+===== step 1: Get the Conzept source =====
 
-(TODO: create a **[[docker]]**-based installation workflow)
-===== OS setup =====
+<code>sudo apt install -y git unzip</code>
 
-- Install Ubuntu 20.04 LTS
+<code>git clone --depth 1 --branch 2023.07 https://github.com/waldenn/conzept.git</code>
 
-- Set the hostname:
-<code>sudo su</code>
-<code>vi /etc/hostname</code>
-<code>reboot now</code>
-
-- Install additional packages:
-<code>sudo su</code>
-<code>apt update</code>
-<code>apt install apache2 apache2-bin apache2-data apache2-utils libapache2-mod-php7.4 libapache2-mod-php libapache2-mod-uwsgi php-fpm snapd nodejs npm sed jq</code>
-
-===== webserver setup =====
-
-==== Install Certbot ====
-
-<code>snap install core; sudo snap refresh core</code>
-<code>snap install --classic certbot</code>
-<code>ln -s /snap/bin/certbot /usr/bin/certbot</code>
-<code>certbot --apache</code>
-<code>certbot renew --dry-run</code>
-
-==== setup Apache2 with PHP and HTTP/2 ====
-
-<code>a2enmod proxy proxy_http headers expires proxy_fcgi setenvif && service apache2 restart</code>
-<code>systemctl restart apache2</code>
-<code>a2enconf php7.4-fpm && service apache2 restart</code>
-<code>a2dismod php7.4 && service apache2 restart</code>
-<code>a2dismod mpm_prefork && a2enmod mpm_event && service apache2 restart && service php7.4-fpm restart</code>
-<code>cd /etc/apache2/sites-enabled/</code>
-<code>wget -O 000-default-le-ssl.conf https://raw.githubusercontent.com/waldenn/conzept/master/000-default-le-ssl.conf.example</code>
-
-Change the YOUR_SERVER_NAME and YOUR_SERVER_HOST values:
-<code>vi 000-default-le-ssl.conf</code>
-
-<code>a2enmod http2</code>
-<code>apachectl configtest</code>
-<code>service apache2 restart</code>
-
-Remove the default Apache-server HTML file:
-<code>rm /var/www/html/index.html</code> 
-===== Node setup =====
-
-<code>exit</code>
-<code>cd</code>
-<code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash</code>
-
-<code>logout</code>
-
-(then log in again, to reload the shell environment)
-
-Install the node version manager (note: you can check for newer LTS vresions by running: nvm ls-remote):
-
-<code>nvm install v16.18.0</code>
-
-<code>logout</code>
-
-(then log in again, to reload the shell environment)
-
-<code>sudo npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild pm2</code>
-===== Conzept setup =====
-
-<code>git clone https://github.com/waldenn/conzept.git</code>
 <code>cd conzept</code>
-<code>sudo su</code>
-<code>cp -r * /var/www/html/</code>
-<code>cp .htaccess /var/www/html/</code>
-<code>chown -R www-data:www-data /var/www/html</code>
-<code>chmod -R g+rw /var/www/html</code>
 
-Add yourself to the "www-data" group (so you can make edits as yourself):
-<code>usermod -a -G www-data YOUR_USER_ID</code>
-<code>exit</code>
-<code>logout</code>
+<code>cp settings.conf.example settings.conf</code>
 
-(then log in again, to reload the shell environment)
+===== step 2: Configure Conzept =====
 
-<code>cd /var/www/html/app/explore2</code>
-<code>npm install</code>
-<code>npm run build</code>
+Now edit the Conzept settings file for your system. The available settings are described [[configuration|here]].
 
-  * OPTIONAL: edit the settings in "/etc/conzept/settings.conf" and run "npm run build" again
+You must set the "**CONZEPT_HOSTNAME**" and "**CONZEPT_EMAIL**" (required for the HTTPS certificate).
 
-  * NOTE: any modifications to the CONZEPT_WEB_BASE setting also requires changing:
-    * the Apache site config
-    * the root .htaccess file
-    * the root manifest.json file
-===== Conzept services setup =====
+<code>vi settings.conf</code>
 
-<code>sudo su</code>
+===== step 3: Install docker =====
 
-Create a services startup script (using the example below)
-<code>vi /etc/rc.local</code>
+[{{ ::docker_logo.png?direct|Docker logo}}]
 
-Example:
+<code>./docker_install.sh</code>
 
-<file>
-#!/bin/sh -e
+[ NOTE: **__You now need to logout and then login again after running this script__**, to make sure the group permission are active. ]
 
-# read conzept settings
-. /etc/conzept/settings.conf
+===== step 4: Build the docker image =====
 
-# JSON CORS-proxy (with secret-API-key support, port 50001 on localhost only)
-su conzept -s /bin/sh -c '$CONZEPT_SERVICES_DIR/json-proxy/bin/json-proxy -p 50001 -c $CONZEPT_SERVICES_DIR/json-proxy.json &'
+Go to the Conzept directory:
+<code>cd conzept</code>
 
-# any-file CORS-proxy (port 1458 on localhost only)
-su conzept -s /bin/sh -c 'cd "$CONZEPT_SERVICES_DIR/allorigins" && npm start app.js &'
+Build the Conzept docker image:
+<code>docker-compose build</code>
 
-# pm2 services (auto-startup not working for some reason)
-#pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh
-#pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh
+Run the docker image (with a correct HTTPs certificate)
+<code>sudo ./init-https.sh</code>
 
-exit 0;
-</file>
+Alternatively, you can build //and// run the Conzept docker-image in one step:
+<code>docker-compose up -d</code>
 
-# manually startup some services
-<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/entitree/start.sh</code>
-<code>. /etc/conzept/settings.conf && pm2 start $CONZEPT_SERVICES_DIR/europeana/start.sh</code>
+===== docker-based development =====
 
-Make it executable:
-<code>chmod +x /etc/rc.local</code>
+==== local development ====
 
-Setup crontab for periodic commands:
+[ TODO ]
 
-<code>crontab -e</code>
+  * map app:/var/www/html/app
+  * docker build
+  * docker up
+  * change staging to "1" "init-https.sh"
 
-Example:
+==== updating production ====
 
-<file>
-# check every day at 10:30 if a certificate renewal is needed
-30 10 * * * sudo certbot renew >> /tmp/certbot-cron.log > /dev/null 2>&1
+[ TODO ]
 
-# read conzept settings daily
-0 5 * * * . /etc/conzept/settings.conf
+  * First commit the changes to Git
+    * If needed: Set "staging" to “0” in “init-https.sh”
 
-# fetch conzept-cover-data for the previous month (we wait until the second day of the month, so the Wikipedia stats are available)
-0 0 2 * * su - www-data -s /bin/sh -c cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh
-</file>
+  * On the production server:
+<code>git pull</code>
 
-Manually fetch the initial covers once:
-<code>. /etc/conzept/settings.conf && sudo su - www-data -s /bin/sh -c "cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh"</code>
+  * TODO: Handle existing settings
+<code>...</code>
 
-Startup the services by rebooting:
-<code>sudo reboot now</code>
+  * Rebuild the Docker image:
+<code>docker-compose up -d</code>
 
-===== DokuWiki =====
+===== common docker commands =====
 
-Modify the DokuWiki base-URL setting in "guide/conf/local.php":
+  * Build an image:
+    * docker-compose build
 
-<code>
-$conf['baseurl'] = 'https://YOUR_HOSTNAME';
-</code>
+  * Fetch an image:
+    * docker pull [image-name:image-version]
 
-Change the admin password:
-  * Go to: https://YOUR_HOSTNAME/guide/home?do=login 
-  * Login as admin (password: "admin")
-  * Go to https://YOUR_HOSTNAME/guide/home?do=profile
-  * Change the password using the form
-===== Conzept-extra setup (optional)=====
+  * List installed images:
+    * docker images
 
-This setup part is only required if you want to build and modify certain NPM-build conzept apps (there are currently seven apps and one library in this repo).
+  * Create a new container (from an image)
+    * docker run -d --name conzept
 
-<code>git clone https://github.com/waldenn/conzept-extra.git</code>
+  * Start/stop a container:
+    * docker stop conzept
+    * docker start conzept
 
-<code>cd conzept-extra</code>
+  * List running containers:
+    * docker ps
 
-You can now modify, build and deploy out-of-tree Conzept apps. Just "cd" into each directory and follow the build instructions. Then use the "npm run conzept-deploy" within each app directory, to insert the build-artifacts into the Conzept web directory.
-
-(TODO: read Conzept environment file and use these settings for the "conzept-deploy" action.)
+  * Run a command within a container (note: no data persistence between start/stops):
+    * docker exec -it conzept /bin/bash

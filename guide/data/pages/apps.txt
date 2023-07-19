@@ -1,6 +1,6 @@
 ====== apps ======
 
-Conzept allows internal (self-hosted) URLs and some external URLs to be rendered into the [[user_manual#content_panes|content area]].
+Conzept allows **internal URLs** (self-hosted) and [[explore>Cross-origin resource sharing|CORS-enabled]] **external URLs** to be rendered into the [[user_manual#content_panes|content area]].
 
 The internal URLs are used for **[[used_projects#embedded_apps|embedding apps]]**. There are currently about 40 of such apps.
 
@@ -91,7 +91,16 @@ This app helps you see the nearby points of interest for topics with a geo-locat
 
 [{{ ::content_panes_2_mark.jpg?direct|[[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|example]] }}]
 
-The time-space app allows you to view series of related events, both in the time dimension as well as the spatial dimension.
+The time-space app allows you to view "//series of related events//", both in the time dimension as well as the spatial dimension.
+
+===== timeline app =====
+
+[{{ ::content_panes_3_mark.jpg?direct|[[https://conze.pt/explore/Santiago%20Calatrava?l=en&d=wikipedia,wikidata&t=link-split&i=Q168482&u=%2Fapp%2Ftimeline%2F%3Ftitle%3DSantiago%2520Calatrava%252520%25253A%252520architecture%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP276%252520%25253Fplace%25253B%25250A%252520%252520%252520%252520wdt%25253AP84%252520wd%25253AQ168482%25253B%25250A%252520%252520%252520%252520wdt%25253AP571%252520%25253Fstart.%25250A%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fstatement.%25250A%252520%252520%25253Fstatement%252520psv%25253AP625%252520%25253Fnode.%25250A%252520%252520%25253Fnode%252520wikibase%25253AgeoLatitude%252520%25253Flat%25253B%25250A%252520%252520%252520%252520wikibase%25253AgeoLongitude%252520%25253Flon.%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Fsitelinks)%25250ALIMIT%252520500&s=true#|example]] }}]
+
+
+The timeline app also allows you to view events / creations / etc, both in the time dimension as well as the spatial dimension.
+
+Note: The timeline app has more of a focus on the "//map locations//" compared to the time-space app, which focuses more on the "//series of related events//".
 
 ===== filter-browse app =====
 

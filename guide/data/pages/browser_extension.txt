@@ -18,13 +18,12 @@ The Conzept extension allows you to:
 
 * **[[https://addons.mozilla.org/addon/conzept-encyclopedia-extension/|Firefox version]]**
 
-* **[[https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB|Chrome version]]** (not yet published)
+* **[[https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB|Chrome version]]** (TODO. Not yet published, first requires conversion to "[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]]")
+
 
 ===== issues =====
 
-  * Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I've started some research what the best way forward is to improve the JSON-LD parser. See also: [[https://github.com/openlink/structured-data-sniffer/issues/25|1]]
-
-  * The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.
+  * See: **[[issues#browser_extension|extension issues]]**
 
 ===== ideas =====
 
