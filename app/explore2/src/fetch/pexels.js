@@ -143,7 +143,7 @@ async function fetchPexels( args, total_results, page, sortby ){
             if ( coll.images.length > 0 ){ // we found some images
 
               // create an IIIF image-collection file
-              let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+              let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
               let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 

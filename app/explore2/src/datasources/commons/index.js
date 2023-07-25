@@ -191,7 +191,7 @@ function processResultsCommons( topicResults, struct, index ){
 					if ( coll.images.length > 0 ){ // we found some images
 
 						// create an IIIF image-collection file
-						let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + encodeURIComponent( item.title ) + '&json=' + JSON.stringify( coll );
+						let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + encodeURIComponent( item.title ) + '&json=' + JSON.stringify( coll );
 
 						let iiif_viewer_url = `https://${explore.host}${explore.base}/app/iiif/#?c=&m=&s=&cv=&manifest=${ encodeURIComponent( iiif_manifest_link ) }`;
 
