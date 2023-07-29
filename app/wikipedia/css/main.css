@@ -185,6 +185,7 @@ sup {
 .thumbimage, .thumbinner /*, .tsingle*/ {
   width: 100% !important;
   max-width: 100%;
+  float: right !important;
   /* height: min-content !important; */
 }
 
@@ -642,7 +643,7 @@ gbif-map {
   a.elem:focus, a.elem:hover {
     border: none;
     outline: #ee8585 solid 5px !important;
-    display: block;
+    /*display: block;*/
   }
 
   .infobox a.elem:focus, .infobox a.elem:hover {
@@ -1729,6 +1730,11 @@ figcaption {
   border-bottom: 1px solid #0006;
   width: 99%;
   margin: 0.2rem auto 2rem auto;
+  clear: both;
+}
+
+figure .elem {
+  justify-content: center;
 }
 
 .enlargable {
