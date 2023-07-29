@@ -34,31 +34,29 @@ Go to the Conzept directory:
 <code>cd conzept</code>
 
 Build the Conzept docker image:
-<code>docker-compose build</code>
+<code>docker compose build</code>
 
-Run the docker image (with a correct HTTPs certificate)
+Run the docker image (with a correct HTTPs certificate). Only do this once!
 <code>sudo ./init-https.sh</code>
 
-Alternatively, you can build //and// run the Conzept docker-image in one step:
-<code>docker-compose up -d</code>
+===== docker-based local-development =====
 
-===== docker-based development =====
+Set "CONZEPT_HOSTNAME=localhost" in settings.conf
 
-==== local development ====
+Build the Conzept docker image:
+<code>docker compose build</code>
 
-[ TODO ]
+While development mode, you can update the running image with this command:
+<code>docker compose up -d</code>
 
-  * map app:/var/www/html/app
-  * docker build
-  * docker up
-  * change staging to "1" "init-https.sh"
+Optionally: Prevent fetching the Wikipedia-covers, by setting "CONZEPT_PREVENT_COVER_FETCH" to "1".
+
+Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" command.
 
 ==== updating production ====
 
-[ TODO ]
-
-  * First commit the changes to Git
-    * If needed: Set "staging" to “0” in “init-https.sh”
+  * Commit any production changes to the Git first.
+    * Check: Set "staging" to “0” in “init-https.sh”
 
   * On the production server:
 <code>git pull</code>
@@ -66,19 +64,25 @@ Alternatively, you can build //and// run the Conzept docker-image in one step:
   * TODO: Handle existing settings
 <code>...</code>
 
-  * Rebuild the Docker image:
-<code>docker-compose up -d</code>
+  * Build the Conzept docker image:
+<code>docker compose build</code>
+
+  * Restart the Docker image:
+<code>docker compose up -d</code>
 
 ===== common docker commands =====
-
-  * Build an image:
-    * docker-compose build
 
   * Fetch an image:
     * docker pull [image-name:image-version]
 
   * List installed images:
     * docker images
+
+  * Build an image:
+    * docker-compose build
+
+  * Remove an image:
+    * docker rmi -f conzept
 
   * Create a new container (from an image)
     * docker run -d --name conzept
@@ -92,3 +96,6 @@ Alternatively, you can build //and// run the Conzept docker-image in one step:
 
   * Run a command within a container (note: no data persistence between start/stops):
     * docker exec -it conzept /bin/bash
+
+  * Restart Docker
+    * sudo systemctl restart docker

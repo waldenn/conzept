@@ -10,7 +10,7 @@ Overview of the Conzept settings:
 ^ name      ^ description       ^ required ^
 | **CONZEPT_HOSTNAME** | DNS name of the webserver (eg. 'conze.pt') | ✔ |
 | **CONZEPT_EMAIL**    | Email address (eg. 'info@example.org') | ✔ |
-| **CONZEPT_WEB_BASE** | Optional: web-base path (can be used to change the base web URL location) (note: needs more testing) |  |
+| **CONZEPT_WEB_BASE** | Web-base path (can be used to change the base web URL location) (note: needs more testing) |  |
 | **CONZEPT_WEB_DIR**  | File system path to the root of the web directory (eg. '/var/www/html') | ✔ |
 | **CONZEPT_SERVICES_DIR** | File system path to the services directory (eg. '/var/www/html/services') | ✔ |
 | **CONZEPT_VERSION** | Conzept version string | ✔ |
@@ -19,6 +19,8 @@ Overview of the Conzept settings:
 | **CONZEPT_AI_TUTORS** | List of supported AI-prompts |  |
 | **CONZEPT_COMMON_HTML_INCLUDE** | Common HTML-string which will be included in the [[used_projects#embedded_apps|embedded apps]] | ✔ |
 | **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY** | Same as above, but without jQuery (some apps already include jQuery by themselves) | ✔ |
-| **CONZEPT_YOUTUBE_API_KEY** | Optional: [[https://developers.google.com/youtube/v3/getting-started|YouTube API]] key |  |
-| **CONZEPT_TRACKER_HTML_INCLUDE** | Optional: common tracker HTML string |  |
+| **CONZEPT_YOUTUBE_API_KEY** | [[https://developers.google.com/youtube/v3/getting-started|YouTube API]] key |  |
+| **CONZEPT_TRACKER_HTML_INCLUDE** | common tracker HTML string |  |
+| **CONZEPT_PREVENT_COVER_FETCH** | Development-mode switch: Avoid fetching Wikipedia-covers during development-builds | |
+| **CONZEPT_STAGING** | Development-mode switch: Avoid hitting CertBot request-limits | |
 

@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if ! [ -x "$(command -v docker-compose)" ]; then
-  echo 'Error: docker-compose is not installed.' >&2
-  exit 1
-fi
-
 . "$PWD/settings.conf"
 
 domains="$CONZEPT_HOSTNAME"
 email="$CONZEPT_EMAIL"
-staging="$CONZEPT_STAGING" # Set to 1 if you're testing your setup to avoid hitting request limits
+staging="$CONZEPT_STAGING"
 rsa_key_size=4096
 data_path="./data/certbot"
 
@@ -31,7 +26,7 @@ fi
 echo "### Creating dummy certificate for $domains ..."
 path="/etc/letsencrypt/live/$domains"
 mkdir -p "$data_path/conf/live/$domains"
-docker-compose run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   openssl req -x509 -nodes -newkey rsa:$rsa_key_size -days 1\
     -keyout '$path/privkey.pem' \
     -out '$path/fullchain.pem' \
@@ -39,7 +34,7 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Starting nginx ..."
-docker-compose up --force-recreate -d conzept
+docker compose up --force-recreate -d conzept
 echo
 # this is only for local development to use localhost certificate so the app can run with https in your local machine
 # exit if $domain is localhost otherwise continue
@@ -48,7 +43,7 @@ if [ "$domains" == "localhost" ]; then
 fi
 sleep 20;
 echo "### Deleting dummy certificate for $domains ..."
-docker-compose run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   rm -Rf /etc/letsencrypt/live/$domains && \
   rm -Rf /etc/letsencrypt/archive/$domains && \
   rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
@@ -65,9 +60,9 @@ case "$email" in
 esac
 
 # Enable staging mode if needed
-if [ $staging != "0" ]; then staging_arg="--staging"; fi
+if [ $staging != "false" ]; then staging_arg="--staging"; fi
 
-docker-compose run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   certbot certonly --webroot -w /var/www/certbot \
     $staging_arg \
     $email_arg \
@@ -78,4 +73,4 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Reloading nginx ..."
-docker-compose exec conzept nginx -s reload
+docker compose exec conzept nginx -s reload
