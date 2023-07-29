@@ -1366,6 +1366,8 @@ table.sidebar * {
 .infobox td[colspan="2"] figure {
   max-width: 100% !important;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 /*
@@ -1631,6 +1633,7 @@ figure {
   clear: both;
   padding-left: 15px;
   position: relative;
+  display: table;
 }
 
 body.rtl figure {
@@ -1737,8 +1740,13 @@ figure .elem {
   justify-content: center;
 }
 
+figure figure {
+  display: flex;
+  justify-content: center;
+}
+
 .enlargable {
-  width: 100%;
+  /*width: 100%;*/
   object-fit: contain;
   filter: drop-shadow(0 0.15rem 0.15rem gray);
   border-radius: 0.2rem;
