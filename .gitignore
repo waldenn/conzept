@@ -3,5 +3,5 @@ settings.conf
 conzept-docker/
 .env
 node_modules
-data/
+data/certbot
 guide/data/cache/**/*
