@@ -1643,6 +1643,8 @@ body.rtl figure {
 .infobox figure, .wikitable figure {
   max-width: 100% !important;
   width: 100% !important;
+  display: flex;
+  justify-content: center;
 }
 
 .tmulti figure, .gallery figure {
