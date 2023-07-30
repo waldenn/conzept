@@ -35,14 +35,6 @@ fi
 # source environment variables
 . "$confdir/settings.conf" &&
 
-# check for htaccess file
-if ! [ -f "$CONZEPT_WEB_DIR/.htaccess" ] 
-then
-  echo "inserting .htaccess file"
-  cp htaccess.example "$CONZEPT_WEB_DIR/.htaccess"
-  exit 0
-fi
-
 # run some tools
   cd tools &&
 
