@@ -100,7 +100,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
 
             if (  source_link.startsWith( 'https://archive.org' ) ){ // add search-keyword parameter for Archive.org works
 
-              source_link += '?q=%22' + term + '%22';
+              source_link += '?q=%22' + term + '%22#' + term;
 
             }
 
