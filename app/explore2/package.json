@@ -28,6 +28,10 @@
     "url": "https://github.com/waldenn/conzept/issues"
   },
   "homepage": "https://conze.pt",
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@jcubic/lips": "^1.0.0-beta.16",
