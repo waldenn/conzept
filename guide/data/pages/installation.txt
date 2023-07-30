@@ -100,5 +100,8 @@ Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-li
   * Run a command within a container (note: no data persistence between start/stops):
     * docker exec -it conzept /bin/bash
 
-  * Restart Docker
+  * start/stop/restart Docker:
+    * sudo service docker stop
+    * sudo rm /var/lib/docker/network/files/local-kv.db  (use in case of connection-already-in-use)
+    * sudo service docker start
     * sudo systemctl restart docker

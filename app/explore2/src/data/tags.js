@@ -244,6 +244,10 @@ var conzept_tags = {
         text : "cryptocurrency",
         icon : ["fa-brands fa-bitcoin"],
       },
+      "monument" : {
+        text : "monument",
+        icon : ["fa-solid fa-monument"],
+      },
     },
   },
 
