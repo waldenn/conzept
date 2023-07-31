@@ -24,9 +24,11 @@ You must set the "**CONZEPT_HOSTNAME**" and "**CONZEPT_EMAIL**" (required for th
 
 [{{ ::docker_logo.png?direct|Docker logo}}]
 
-<code>./docker_install.sh</code>
+<code>./docker_install_ubuntu.sh</code>
 
 [ NOTE: **__You now need to logout and then login again after running this script__**, to make sure the group permission are active. ]
+
+[ TODO: Add support for Apple macOS ]
 
 ===== step 4: Build the docker image =====
 
@@ -43,10 +45,16 @@ Run the docker image (with a correct HTTPs certificate). Only do this once!
 
 Set "CONZEPT_HOSTNAME=localhost" in settings.conf
 
+In "docker-compose.yml" uncomment this line during development:
+
+<code>
+      - app:/var/www/html/app # only use this during local development, not in production
+</code>
+
 Build the Conzept docker image:
 <code>docker compose build</code>
 
-While development mode, you can update the running image with this command:
+While in development mode, you can update the running image with this command:
 <code>docker compose up -d</code>
 
 Optionally: Prevent fetching the Wikipedia-covers, by setting "CONZEPT_PREVENT_COVER_FETCH" to "1".
@@ -91,6 +99,7 @@ Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-li
     * docker run -d --name conzept
 
   * Start/stop a container:
+    * docker compose down
     * docker stop conzept
     * docker start conzept
 
@@ -105,3 +114,10 @@ Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-li
     * sudo rm /var/lib/docker/network/files/local-kv.db  (use in case of connection-already-in-use)
     * sudo service docker start
     * sudo systemctl restart docker
+
+  * "permission denied" issues on Ubuntu ([[https://javahowtos.com/guides/124-docker/414-solved-cannot-kill-docker-container-permission-denied.html|*]]):
+    * sudo aa-remove-unknown
+    * docker container kill $(docker ps -q)
+
+  * completely empty your docker system
+    * docker system prune --all --volumes

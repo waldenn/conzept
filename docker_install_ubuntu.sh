@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# DOCKER INSTALL
+# Ubuntu-Linux Docker-install script
 
-printf "\nInstalling Docker and its dependencies...\n"
+printf "\nInstalling Docker and its dependencies on Ubuntu Linux...\n"
 
-docker_compose_version="v2.17.2" # see latest: https://github.com/docker/compose/tags
+docker_compose_version="v2.20.2" # see latest: https://github.com/docker/compose/tags
 
 user=$(echo $USER)
 

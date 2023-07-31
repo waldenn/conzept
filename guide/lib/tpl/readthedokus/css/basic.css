@@ -33,14 +33,22 @@ body
 a
 {
 	color: __link__;
-	text-decoration: none;
+	text-decoration: underline;
 	cursor: pointer;
+}
+
+.aside a {
+  text-decoration: none !important;
 }
 
 a:active,
 a:hover
 {
 	outline: 0
+}
+
+ul.keyboard-shortcuts li {
+  margin-bottom: 1.5em;
 }
 
 .mediabox2:hover {
@@ -461,7 +469,8 @@ body {
 
 kbd {
   font-size: 150% !important;
-  color: #55a5d9;
+  color: #165177;
+  padding: 0.15em 0.3em;
 }
 
 table td {

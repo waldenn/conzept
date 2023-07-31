@@ -21,8 +21,7 @@ services:
       - sslvolume:/etc/ssl
       - ./data/certbot/conf:/etc/letsencrypt/
       - ./data/certbot/www:/var/www/certbot
-      # this volume mounting is only for development
-      # - app:/var/www/html/app
+      #- app:/var/www/html/app # only use this for quicker local development (never commit this mapping actively to Git nor use in production!)
     ports:
       - 80:80
       - 443:443

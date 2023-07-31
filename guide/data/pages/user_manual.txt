@@ -243,19 +243,19 @@ The following settings are available:
 Here is an overview of the available keyboard shortcuts:
 
 <html>
-<ul style="list-style:none;">
-  <li><kbd>f</kbd> &nbsp; <b><span id="app-menu-fullscreen-active-pane">fullscreen the active pane</span></b></li><br/>
+<ul class="keyboard-shortcuts" style="list-style:none;">
+  <li><kbd>f</kbd> &nbsp; <b><span id="app-menu-fullscreen-active-pane">fullscreen the active pane</span></b></li>
 
-  <li><kbd>↓</kbd> &nbsp; <b><span id="app-menu-goto-next-topic">go to next topic (in the sidebar results)</span></b></li><br/>
+  <li><kbd>↓</kbd> &nbsp; <b><span id="app-menu-goto-next-topic">go to next topic (in the sidebar results)</span></b></li>
 
   <li><kbd>↑</kbd> &nbsp; <b><span id="app-menu-goto-previous-topic">go to previous topic (in the sidebar results)</span>
-  </b></li><br/>
-  <li><kbd>→</kbd> &nbsp; <b><span id="app-menu-goto-next-pane">go to next pane</span></b></li><br/>
-  <li><kbd>←</kbd> &nbsp; <b><span id="app-menu-goto-previous-pane">go to previous pane</span></b></li><br/>
-  <li><kbd>Alt</kbd> + <kbd>x</kbd> &nbsp; <b><span id="app-menu-new-search">new search</span></b> <sup>1</sup></li><br/>
-  <li><kbd>Alt</kbd> + <kbd>y</kbd> &nbsp; <b><span id="app-menu-toggle-sidebar">toggle the sidebar</span></b> <sup>1</sup></li><br/>
-  <li><kbd>Alt</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark">add bookmark</span></b> <sup>1</sup></li><br/>
-  <li><kbd>Alt</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key">random topic</span></b> <sup>1</sup></li><br/>
+  </b></li>
+  <li><kbd>→</kbd> &nbsp; <b><span id="app-menu-goto-next-pane">go to next pane</span></b></li>
+  <li><kbd>←</kbd> &nbsp; <b><span id="app-menu-goto-previous-pane">go to previous pane</span></b></li>
+  <li><kbd>Alt</kbd> + <kbd>x</kbd> &nbsp; <b><span id="app-menu-new-search">new search</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>y</kbd> &nbsp; <b><span id="app-menu-toggle-sidebar">toggle the sidebar</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark">add bookmark</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key">random topic</span></b> <sup>1</sup></li>
 </ul>
 
 [ note 1: only available when the focus is on the sidebar or a Wikipedia article ]
