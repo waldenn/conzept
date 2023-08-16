@@ -4,7 +4,7 @@
   "description": "Show GeoJSON objects on a timeline",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc && webpack",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && tsc && webpack",
     "postbuild": "cp dist/leaflet.timeline.js docs/examples/leaflet.timeline.js",
     "test": "jest",
     "update-docs": "typedoc && touch ./docs/.nojekyll",

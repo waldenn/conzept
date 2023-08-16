@@ -87,10 +87,10 @@ Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-li
     * docker images
 
   * Build an image:
-    * docker-compose build
+    * docker compose build
 
   * Build an image, without any cache:
-    * docker-compose build --no-cache
+    * docker compose build --no-cache
 
   * Remove an image:
     * docker rmi -f conzept
