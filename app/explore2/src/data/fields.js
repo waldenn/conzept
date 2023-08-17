@@ -617,11 +617,24 @@ conzept_fields = {
   rank: [225,8840],
 },
 
-'ndexbio_gene_search' : {
-  create_condition: 'listed( item.instances, [ 7187 ] )',
-  title: 'NDEx Gene pathways search',
+'ndexbio_gene_symbol_search' : {
+  create_condition: 'listed( item.instances, [ 7187 ] ) && valid( item.hgnc_gene_symbol )',
+  title: 'NDEx Gene pathways symbol-search',
   prop: '',
-  type: 'url',
+  type: 'link',
+  mv: false,
+  url: 'https://www.ndexbio.org/iquery/?genes=${ item.hgnc_gene_symbol }',
+  icon: 'fa-solid fa-dna',
+  text: 'NDEx gene pathways',
+  section: ['science-biology','main'],
+  rank: [194,8684],
+},
+
+'ndexbio_gene_name_search' : {
+  create_condition: 'listed( item.instances, [ 7187 ] ) && ! valid( item.hgnc_gene_symbol )',
+  title: 'NDEx Gene pathways name-search',
+  prop: '',
+  type: 'link',
   mv: false,
   url: 'https://www.ndexbio.org/iquery/?genes=${title_}',
   icon: 'fa-solid fa-dna',
@@ -1995,6 +2008,18 @@ conzept_fields = {
   text: 'occurence map',
   section: ['location-ecology', 'science-biology','main'],
   rank: [10, 400,7900],
+},
+
+'hgnc_gene_symbol' : {
+  title: 'HGNC gene symbol',
+  prop: '353',
+  type: 'symbol-string',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'HGNC gene symbol',
+  section: 'info',
+  rank: '311916',
 },
 
 'position_in_forsyth_edwards_notation' : {
@@ -40035,6 +40060,8 @@ if ( valid( item.found_in_taxon ) ){
   rank: '311916',
   auto: true,
 },
+
+
 
 /* END OF AUTOMATED FIELDS */
 

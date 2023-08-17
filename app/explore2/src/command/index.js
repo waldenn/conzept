@@ -179,7 +179,7 @@ async function sparqlQueryCommand( args, view, list ){
 
 }
 
-async function fetchPresentationData( title, language ) {
+async function fetchPresentationData( title, language ){
 
 	// see also: https://dmitripavlutin.com/javascript-fetch-async-await/#5-parallel-fetch-requests
   const [q1Response, q2Response] = await Promise.all([
