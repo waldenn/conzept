@@ -477,7 +477,7 @@ async function showPresentation( item, type ){
 		}
 		else if ( type === 'organism' ){
 
-			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/response/gbif-map?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
+			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/response/gbif-map.php?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
 
 			slides.push( commons_slide );
 
@@ -1634,7 +1634,7 @@ async function setupLispEnv(){
 				if ( coll.images.length > 0 ){ // we found some images
 
 					// create an IIIF image-collection file
-					let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+					let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
 					let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
@@ -1658,7 +1658,7 @@ async function setupLispEnv(){
 				});
 
 			 // create an IIIF image-collection file
-				let iiif_manifest_link = '/app/response/iiif-manifest?l=en&t=' + encodeURIComponent( '...' ) + '&json=' + JSON.stringify( coll );
+				let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&t=' + encodeURIComponent( '...' ) + '&json=' + JSON.stringify( coll );
 
 				let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=0&manifest=' + encodeURIComponent( iiif_manifest_link );
 

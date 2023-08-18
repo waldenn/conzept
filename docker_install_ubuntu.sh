@@ -4,13 +4,13 @@
 
 printf "\nInstalling Docker and its dependencies on Ubuntu Linux...\n"
 
-docker_compose_version="v2.20.2" # see latest: https://github.com/docker/compose/tags
+docker_compose_version="v2.20.3" # see latest: https://github.com/docker/compose/tags
 
 user=$(echo $USER)
 
 sudo apt update
 
-sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common cron
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 

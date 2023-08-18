@@ -259,7 +259,7 @@ const datasources = {
     pagesize:               5,
     url:                    '${datasources.gbif.endpoint}/search?verbose=true&rank=species&q=${term}&limit=${datasources.gbif.pagesize}&offset=${ ( (explore.page -1) * datasources.gbif.pagesize ) }',
     icon:                   '<img class="datasource-icon" alt="GBIF datasource" src="/assets/icons/gbif.png" alt="GBIF logo">',
-    display_url:            'https://${explore.host}${explore.base}/app/response/gbif-map?l=${explore.language}&t=${title}&id=${gid}',
+    display_url:            'https://${explore.host}${explore.base}/app/response/gbif-map.php?l=${explore.language}&t=${title}&id=${gid}',
     code_autocomplete:      'autocompleteGBIF( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsGBIF( topicResults, struct, index ) );',
     code_resolve:           'resolveGBIF( result, renderObject )',
