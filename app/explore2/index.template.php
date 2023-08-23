@@ -221,9 +221,9 @@ $sticky_html = '
       <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#tab-settings" aria-label="settings tab" role="button"><i class="fa-solid fa-cog"></i></a></li>
       <li class="tab col s3" title="help"><a id="tab-head-help" href="#tab-help" aria-label="help tab" role="button"><i class="fa-solid fa-question"></i></a></li>
 
-      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" aria-label="toggle fullscreen (main app)" role="button" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fa-solid fa-expand" title="toggle fullscreen (main app)"></i></a></li>
+      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><a class="link" tabindex="0" title="toggle fullscreen (main app)" aria-label="toggle fullscreen (main app)" role="button" onclick="toggleFullscreen();"><i class="fa-solid fa-expand"></i>&nbsp; <span id="app-menu-fullscreen-main-app"></span></a></li>
 
-      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
+      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" tabindex="0" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
 
     </ul>
 

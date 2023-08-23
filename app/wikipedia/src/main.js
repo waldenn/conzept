@@ -1182,6 +1182,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
           '</div>' +
 
+          '<a id="skip-nav" class="screenreader-text" title="skip to main content" aria-label="skip to main content" href="#main-content">skip to main content</a>' +
+
           banner_html
 
       );
@@ -1191,8 +1193,6 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
         '<base target="_parent" />' + 
 
         '<script type="text/javascript" src="../wikipedia/dist/transform.js?' + explore.version + '"></script>' +
-
-        '<span id="main-content" class="skip-to-content-target"></span>' + 
 
         raw_html +
 
