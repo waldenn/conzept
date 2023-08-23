@@ -1,7 +1,6 @@
 api
 /node_modules
 /bower_components
-/img
 /jmol
 /project
 /*.png
