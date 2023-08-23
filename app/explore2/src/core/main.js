@@ -285,7 +285,9 @@ $( document ).ready( function() {
   (async () => { 
 
     // immortalDB: https://github.com/gruns/ImmortalDB
-    explore.db = ImmortalDB.ImmortalDB;
+    // FIXME: disable cookie-store: https://codepen.io/anon/pen/LqZvgy?editors=1001#0
+    const stores = [ ImmortalDB.LocalStorageStore, ImmortalDB.IndexedDbStore ];
+    explore.db = new ImmortalDB.ImmortalStorage( stores ); //explore.db = ImmortalDB.ImmortalDB;
 
     setActiveDatasources();
 
@@ -294,7 +296,7 @@ $( document ).ready( function() {
     explore.banana        = new Banana( 'en', { finalFallback: 'en' } ); // used for the UI interface
     explore.banana_native = new Banana( 'en', { finalFallback: 'en' } ); // allows for translating to the native-content language
 
-    explore.font1			  =  await explore.db.get('font1');
+    explore.font1			  = await explore.db.get('font1');
     explore.linkcolor   = await explore.db.get('linkcolor');
     explore.linkbgcolor = await explore.db.get('linkbgcolor');
     explore.fontsize    = await explore.db.get('fontsize');
