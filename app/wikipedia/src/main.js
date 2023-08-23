@@ -1182,7 +1182,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
           '</div>' +
 
-          '<a id="skip-nav" class="screenreader-text" title="skip to main content" aria-label="skip to main content" href="#main-content">skip to main content</a>' +
+          '<span id="main-content" class="screenreader-text" title="main content target" aria-label="main content target"></span>' +
 
           banner_html
 

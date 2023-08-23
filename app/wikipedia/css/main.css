@@ -19,7 +19,7 @@ a.external::after {
   content: " ↗";
 }
 
-#skip-nav a {
+#skip-nav {
   position:absolute;
   left:-10000px;
   top:auto;
@@ -32,6 +32,10 @@ a.external::after {
   position:static;
   width:auto;
   height:auto;
+}
+
+.screenreader-text {
+  color: transparent;
 }
 
 #loader {
