@@ -15,6 +15,25 @@ sup {
   line-height: 100%;
 }
 
+a.external::after {
+  content: " ↗";
+}
+
+#skip-nav a {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+#skip-nav a:focus {
+  position:static;
+  width:auto;
+  height:auto;
+}
+
 #loader {
   position: absolute;
   left: 20%;

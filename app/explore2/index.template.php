@@ -114,7 +114,6 @@ $main_script = '
   <script src="../app/explore2/libs/jquery.fontselect.js?vCONZEPT_VERSION"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
   <script src="../app/explore2/node_modules/jqtree/tree.jquery.js"></script>
   <script src="../app/explore2/node_modules/select2/dist/js/select2.min.js"></script>
-  <script src="../app/explore2/node_modules/jqtree/tree.jquery.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/libs/materialize.min.js?vCONZEPT_VERSION"></script> <!-- no NPM-package -->
   <script src="../app/explore2/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
   <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?vCONZEPT_VERSION"></script>
@@ -222,9 +221,9 @@ $sticky_html = '
       <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#tab-settings" aria-label="settings tab" role="button"><i class="fa-solid fa-cog"></i></a></li>
       <li class="tab col s3" title="help"><a id="tab-head-help" href="#tab-help" aria-label="help tab" role="button"><i class="fa-solid fa-question"></i></a></li>
 
-      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fa-solid fa-expand" title="toggle fullscreen (main app)"></i></a></li>
+      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" aria-label="toggle fullscreen (main app)" role="button" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fa-solid fa-expand" title="toggle fullscreen (main app)"></i></a></li>
 
-      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )" tabindex="0"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
+      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
 
     </ul>
 
@@ -501,7 +500,7 @@ $settings_html = '
             <div class="tab-title" id="app-tab-topics-title" style="font-family: ' . $font . ' !important; padding-bottom: 0.3em;">topics</div>
 
             <div class="overflow-content">
-              <details id="detail-structured-search" class="special-detail" tabindex="0" title="structured search" style="/*display:none;*/">
+              <details id="detail-structured-search" class="special-detail" title="structured search" style="/*display:none;*/">
 
                 <summary><i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span></summary>
 
@@ -525,7 +524,7 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-ai-chat" class="special-detail" tabindex="0" title="AI chat" style="/*display:none;*/">
+              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="/*display:none;*/">
 
                 <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>
 
@@ -596,6 +595,7 @@ $settings_html = '
                       <div class="bookmark-action"><a class="" title="find bookmark related topics" aria-label="find bookmark related topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-topics&quot;)"><span class="icon"><i class="fa-solid fa-diagram-project fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-topics">related topics</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="explain bookmark differences" aria-label="explain bookmark differences" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-differences&quot;)"><span class="icon"><i class="fa-solid fa-circle-half-stroke fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-topic-differences">differences</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="find bookmark commonalities" aria-label="find bookmark commonalities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-commonality&quot;)"><span class="icon"><i class="fa-solid fa-arrows-to-circle fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-commonalities">commonalities</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark similarities" aria-label="find bookmark c similarities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-similarity&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-similarities">similarities</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="find bookmark implications" aria-label="find bookmark implications" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-implications&quot;)"><span class="icon"><i class="fa-solid fa-arrows-split-up-and-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-implications">implications</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="explain bookmark history" aria-label="explain bookmark history" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;historian&quot;)"><span class="icon"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-history">history</span></span></a></div>
 
@@ -822,7 +822,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https://conze.pt/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
+                  <li> &nbsp; <a href="https://CONZEPT_HOSTNAME/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 

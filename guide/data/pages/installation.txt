@@ -57,7 +57,7 @@ Build the Conzept docker image:
 While in development mode, you can update the running image with this command:
 <code>docker compose up -d</code>
 
-Optionally: Prevent fetching the Wikipedia-covers, by setting "CONZEPT_PREVENT_COVER_FETCH" to "1".
+Optionally: Prevent fetching the Wikipedia-covers, by setting "CONZEPT_COVER_FETCH" to "false".
 
 Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" command.
 
@@ -119,5 +119,6 @@ Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-li
     * sudo aa-remove-unknown
     * docker container kill $(docker ps -q)
 
-  * completely empty your docker system
+  * cleanup your docker system
+    * docker system prune
     * docker system prune --all --volumes

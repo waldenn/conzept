@@ -10,7 +10,7 @@ user=$(echo $USER)
 
 sudo apt update
 
-sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common cron
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common cron jq
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 

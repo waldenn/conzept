@@ -9,7 +9,6 @@ services:
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     # depends_on:
-
     #   - conzept
   conzept:
     container_name: conzept
@@ -21,7 +20,11 @@ services:
       - sslvolume:/etc/ssl
       - ./data/certbot/conf:/etc/letsencrypt/
       - ./data/certbot/www:/var/www/certbot
-      #- app:/var/www/html/app # only use this for quicker local development (never commit this mapping actively to Git nor use in production!)
+
+      # only use these mappings during local development (never commit!):
+      #- app:/var/www/html/app
+      #- /var/www/html/app/explore2/node_modules
+
     ports:
       - 80:80
       - 443:443

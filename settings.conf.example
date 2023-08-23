@@ -1,7 +1,7 @@
 export CONZEPT_HOSTNAME=''
 export CONZEPT_EMAIL=''
 
-export CONZEPT_VERSION='0.51.468'
+export CONZEPT_VERSION='0.51.469'
 export CONZEPT_INDICATORS_VERSION='0.225'
 
 export CONZEPT_WEB_BASE=''
@@ -11,7 +11,7 @@ export CONZEPT_SERVICES_DIR='/var/www/html/services'
 export CONZEPT_FONT='Hind'
 export CONZEPT_CORS_PROXY_WHITELIST='upload.wikimedia.org, commons.wikimedia.org, commons.m.wikimedia.org, maps.wikimedia.org'
 export CONZEPT_LOCALES='ar, ceb, de, en, es, fr, hi, it, ja, nl, pt, ru, sv, zh, uk, bn, id, ur, mr, te, tr, ta, ko, vi, ha, fa, sw, da, no, bn, ca, sr, fi, hu, cs, hr'
-export CONZEPT_AI_TUTORS='auto-select, default, advisor-related-websites, advisor-topic-differences, advisor-related-topics, advisor-topic-commonality, advisor-topic-implications, advisor-related-books, advisor-related-science-articles, language-helper, examinator, teacher, historian, scientist, philosopher, mathematician, chemist, economist, politician, art-history, artist, travel-guide, statistician, nutritionist, psychologist, legislator, theologian, poet, storyteller, biologist, doctor, investor, lifecoach, entrepreneur, farmer, ecologist, military-expert, financial-expert, engineer, professor, demographer, social-scientist, linguist'
+export CONZEPT_AI_TUTORS='auto-select, default, advisor-related-websites, advisor-topic-differences, advisor-related-topics, advisor-topic-commonality, advisor-topic-similarity, advisor-topic-implications, advisor-related-books, advisor-related-science-articles, language-helper, examinator, teacher, historian, scientist, philosopher, mathematician, chemist, economist, politician, art-history, artist, travel-guide, statistician, nutritionist, psychologist, legislator, theologian, poet, storyteller, biologist, doctor, investor, lifecoach, entrepreneur, farmer, ecologist, military-expert, financial-expert, engineer, professor, demographer, social-scientist, linguist'
 export CONZEPT_YOUTUBE_API_KEY=''
 
 export CONZEPT_COMMON_HTML_INCLUDE="<link href=\"${CONZEPT_WEB_BASE}/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635\" rel=\"stylesheet\" type=\"text/css\"><link href=\"${CONZEPT_WEB_BASE}/assets/fonts/fontawesome/css/all.min.css?v6.01\" rel=\"stylesheet\" type=\"text/css\"><link  href=\"${CONZEPT_WEB_BASE}/app/explore2/dist/css/conzept/common.css?v${CONZEPT_VERSION}\" rel=\"stylesheet\" type=\"text/css\"> <script src=\"${CONZEPT_WEB_BASE}/app/explore2/dist/core/env.js?v${CONZEPT_VERSION}\"></script><script src=\"${CONZEPT_WEB_BASE}/app/explore2/dist/core/utils.js?v${CONZEPT_VERSION}\"></script><script src=\"${CONZEPT_WEB_BASE}/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0\"></script><a href=\"javascript:void(0)\" id=\"fullscreenToggle\" onclick=\"document.toggleFullscreen()\" class=\"global-actions\"><i id=\"fullscreenIcon\" title=\"fullscreen toggle\" class=\"fas fa-expand\"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src=\"${CONZEPT_WEB_BASE}/app/explore2/libs/TinyGesture.js\"></script>"
@@ -21,5 +21,5 @@ export CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY="<link href=\"${CONZEPT_WEB_BASE}/a
 export CONZEPT_TRACKER_HTML_INCLUDE=""
 
 # Dev-mode switches
-export CONZEPT_PREVENT_COVER_FETCH='false'  # Set to true to avoid fetching Wikipedia-covers during development-builds
-export CONZEPT_STAGING='false'              # Set to true to avoid hitting CertBot request-limits
+export CONZEPT_COVER_FETCH='true' # Set to "false" to avoid fetching Wikipedia-covers during development-builds
+export CONZEPT_STAGING='false'    # Set to "true" to avoid hitting CertBot request-limits

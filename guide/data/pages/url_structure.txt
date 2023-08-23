@@ -10,12 +10,13 @@ Let's first look at some example URLs and then look at all the available paramet
   * [[https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=en&t=string&s=true]] (datasources search for the English language)
   * [[https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=de&t=string&s=true]] (datasources search for the German language)
 
-  * [[https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true|conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true]] (load a certain Wikidata Q-ID topic. This will try to load it as a Wikipedia article, or else fallback to showing the Wikidata page.)
+  * [[https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true|conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true]] (load a certain Wikidata Qid topic. This will try to load it as a Wikipedia article, or else fallback to showing the Wikidata page.)
 
   * [[https://conze.pt/explore/Semantic%20Web?l=en&t=link&i=Q54837&u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22Semantic%20Web%22&s=true|conze.pt/explore/Semantic_Web?l=en&t=link&i=Q54837&u=/app/video/#/search/"Semantic_web"]] (Loads the video-app in the content pane.)
 
   * [[https://conze.pt/explore/Semantic%20Web?l=de&t=link-split&i=Q54837&u=%2Fapp%2Flinks%2F%3Fl%3Dde%26t%3DSemantic%2520Web&s=true|conze.pt/explore/Semantic_Web?l=de&t=link-split&i=Q54837&u=/app/links/?l=de&t=Semantic_Web&s=true]] (Link-split example loading the link-graph app, for the German language.)
 
+  * [[https://conze.pt/explore/Semantic%20Web?l=en&t=presentation|conze.pt/explore/Semantic_Web?l=en&t=presentation]] (Creates a presentation based on the search-string, if the topic also has an associated Wikidata Qid)
 
 ===== URL parameters =====
 
@@ -46,3 +47,4 @@ The following action-types are available:
 | **articles** | search-term string | (only used internally) to update the sidebar with a new string-search (and not update the content area) |
 | **random** | (none) | (only used internally) to load a random Wikipedia topic |
 | **wander** | search-term string | loads the video-app to //stream a series// of YouTube videos |
+| **presentation** | search-term string | creates a presentation (if the topic refers to a Wikidata topic) |

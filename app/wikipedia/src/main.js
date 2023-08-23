@@ -371,7 +371,7 @@ $( document ).ready( function() {
 
 		//console.log( event, key );
 
-		if ( key == '70' ){ // "f"
+		if ( key == '70' && ! detectSpecialKeyPressed( event ) ){ // singel "f"-key
 
 			document.toggleFullscreen();
 
@@ -748,7 +748,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
   //console.log( 'renderWikipediaHTML: ', title, lang, hash_, doc, type, cat_members, raw_html, languages, tags, qid, gbif_id );
 
   // grab the whole HTML string of this article
-  let html_ = '<body id="wikipedia-content"><h2 class="article-title">' + title + '</h2> <!--catheadline-->' + doc.html + '</body>';
+  let html_ = '<body id="wikipedia-content"><span id="main-content" class="skip-to-content-target"></span><h2 class="article-title">' + title + '</h2> <!--catheadline-->' + doc.html + '</body>';
 
   let catheadline = '<div class="catheadline"><ul class="notts">';
 

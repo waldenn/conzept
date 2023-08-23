@@ -2,7 +2,7 @@
 
 async function setupAIChat(){
 
-  $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://conze.pt/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+  $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
 }
 
@@ -319,6 +319,13 @@ function triggerQueryForm(){
       custom    : explore.custom,
       target_pane : 'p1',
     });
+
+  }
+  else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request
+
+    console.log('make presentation: ', explore.q );
+   
+    makePresentation( explore.q );
 
   }
   else if ( explore.q !== ''){ // normal query
@@ -1847,7 +1854,7 @@ function setupSearch() {
 				// TODO: make this optional/depend on a datasource which requires a Qid as input
 				// lookup the Wikidata Qid for the search term
 				// (required for the Wikimedia Commons datasource)
-				let qid_ = await checkForQid( explore.q );
+				let qid_ = await checkForQid( explore.q, 'ps2' );
 
 				if ( qid_.hasOwnProperty('entities') ){
 
@@ -9043,7 +9050,7 @@ function loadTopics( nextpage ){
 
 }
 
-function checkForQid( title ){ // get qid and wikidata data
+function checkForQid( title, pane ){ // get qid and wikidata data
 
   return $.ajax({
 
@@ -9065,7 +9072,7 @@ function checkForQid( title ){ // get qid and wikidata data
 
 			  if ( isQid( qid ) ){
 
-          let d = fetchWikidata( [ qid ], '', 'wikipedia', 'ps2' );
+          let d = fetchWikidata( [ qid ], '', 'wikipedia', pane );
 
         }
 
@@ -10214,5 +10221,67 @@ function getGridColumns( sel ){
   }
 
   return ret;
+
+}
+
+// Open issues:
+//  - How to perma-link to a presentation by URL?
+//    - Example URL: https://conze.pt/explore/Netherlands?l=en&d=wikipedia,wikidata&t=presentation&i=Q55&s=true
+//    - title=...", type=presentation
+//    - refactor the old presentation workflow to use the new "presentation" type
+//  - Programmatically create a presentation using only a Wikidata-Qid
+async function makePresentation( title ){
+
+  let item = '';
+  let type = '';
+
+  // get Wikdiata-data as "item"-structure
+  const qid_ = await checkForQid( title, '' );
+
+  if ( qid_.hasOwnProperty('entities') ){
+
+    const qid = Object.keys( qid_.entities )[0];
+
+    if ( isQid( qid ) ){
+
+      explore.q_qid = qid;
+
+      let d = await fetchWikidata( [ qid ], '', 'wikipedia', '' );
+
+      //console.log( 'Wikidata Qid found: ', qid, d );
+
+      item = d[0].source.data;
+      item.title = title;
+
+    }
+    else {
+
+      console.log('No Wikidata Qid found.');
+
+      return 1;
+
+    }
+
+  }
+
+  console.log( title, explore.type, item );
+
+  // determine the "type" of the item, type options:
+  if      ( valid( item.pubchem ) ){ type = 'pubchem'; }
+  else if ( listed( item.instances, indicators.movement.value ) ){ type = 'art-movement'; }
+  else if ( checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement ) ){ type = 'cultural-concept'; }
+  else if ( checkTag( item, 0, 'work') ){ type = 'work'; }
+  else if ( checkTag( item, 0, 'mathematics') ){ type = 'mathematics'; }
+  else if ( checkTag( item, 0, 'organism') ){ type = 'organism'; }
+  else if ( checkTag( item, 0, 'location') ){ type = 'location'; }
+  else if ( checkTag( item, 0, 'geographical-structure') ){ type = 'geographical-structure'; }
+  else if ( checkTag( item, 0, 'time') ){ type = 'time'; }
+  else if ( checkTag( item, 0, 'organization') ){ type = 'organization'; }
+  else if ( checkTag( item, 0, 'person') ){ type = 'person'; }
+  else if ( checkTag( item, 0, 'group') ){ type = 'group'; }
+  else { console.log('TODO: implement a general presentation type'); }
+
+  // show presentation
+  showPresentation( item, 'location' );
 
 }

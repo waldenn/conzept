@@ -52,6 +52,9 @@ fi
 
 # build the Conzept wikipedia-app
 cd ../wikipedia &&
+
+#npx browserslist@latest --update-db
+
 npm i &&
 npm run build &&
 cd ../explore2 &&
@@ -66,7 +69,7 @@ esbuild css/conzept/* css/openmoji/* css/various/* --outdir=dist/css/ --minify &
 cat dist/fetch/* > dist/core/fetches.js &&
 
 # add keyboardJS library to utils
-cat ./node_modules/keyboardjs/dist/keyboard.min.js >> dist/core/utils.js
+#cat ./node_modules/keyboardjs/dist/keyboard.min.js >> dist/core/utils.js
 
 # add symlink path for entitree (TODO: should be fixed in the entitree-build)
 if ! [ -e "$CONZEPT_WEB_DIR/_next" ]
