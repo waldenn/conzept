@@ -1778,13 +1778,6 @@ function errorPosition( pos ) {
 
 }
 
-function initialIsCapital( word ){
-
-  return word[0] !== word[0].toLowerCase();
-
-}
-
-
 function isEmbedded(){
 
   return (window !== top);

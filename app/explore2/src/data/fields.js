@@ -11934,7 +11934,6 @@ if ( valid( item.found_in_taxon ) ){
 
 'streetquiz' : {
   create_condition: 'valid( item.lat )',
-  //render_condition: 'valid( item.lat )',
   title: 'street quiz',
   prop: '',
   type: 'link',
@@ -11944,6 +11943,22 @@ if ( valid( item.found_in_taxon ) ){
   text: 'streets',
   section: 'education-quizzes',
   rank: 20,
+},
+
+'choice_quiz_movement_painters' : {
+  create_condition: 'listed( item.instances, indicators.movement.value )',
+  title: 'choice quiz: movement painters',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/choice?l=${exlpore.language}&p1=${item.qid}',
+  icon: 'fa-solid fa-trophy',
+  text: 'guess the painter',
+  section: 'education-quizzes',
+  rank: 21,
+  headline_create: 'valid( item.choice_quiz_movement_painters )',
+  headline_type: 'link-split',
+  headline_rank: 150,
 },
 
 'mapillary_id' : {

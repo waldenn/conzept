@@ -177,7 +177,7 @@ function processResultsGBIF( topicResults, struct, index ){
           //console.log( title, gid, obj.numOccurrences );
 
           //if ( obj.numOccurrences === 0 ){
-            //url     = '/blank.html';
+            //url     = '/pages/blank.html';
             //url     = `https://www.gbif.org/occurrence/search?taxon_key=${gid}`;
             //gbif_id = '';
           //}

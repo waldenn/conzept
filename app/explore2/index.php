@@ -221,9 +221,9 @@ $sticky_html = '
       <li class="tab col s3" title="settings"><a id="tab-head-settings" href="#tab-settings" aria-label="settings tab" role="button"><i class="fa-solid fa-cog"></i></a></li>
       <li class="tab col s3" title="help"><a id="tab-head-help" href="#tab-help" aria-label="help tab" role="button"><i class="fa-solid fa-question"></i></a></li>
 
-      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;" title="toggle fullscreen (main app)"><a style="padding: 0 1em !important; font-size: 1em;" tabindex="0" onclick="toggleFullscreen();"><i id="maximizeIcon" class="fa-solid fa-expand" title="toggle fullscreen (main app)"></i></a></li>
+      <li class="tab col s3 global-action" id="toggle-fullscreen" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><a class="link" tabindex="0" title="toggle fullscreen (main app)" aria-label="toggle fullscreen (main app)" role="button" onclick="toggleFullscreen();"><i class="fa-solid fa-expand"></i>&nbsp; <span id="app-menu-fullscreen-main-app"></span></a></li>
 
-      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )" tabindex="0"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
+      <li class="tab col s3 global-action" style="float:right; display: inline-block; text-align: center; line-height: 48px; height: 48px; padding: 0; margin: 0; text-transform: uppercase;"><span id="addBookmark2"><a class="link" tabindex="0" title="bookmark current view" aria-label="bookmark current view" role="button" onclick="addBookmark(event, &quot;clicked&quot;, true )"><i class="far fa-bookmark"></i>&nbsp; <span id="app-menu-bookmark-current-url"></span></a></span></li>
 
     </ul>
 
@@ -500,7 +500,7 @@ $settings_html = '
             <div class="tab-title" id="app-tab-topics-title" style="font-family: ' . $font . ' !important; padding-bottom: 0.3em;">topics</div>
 
             <div class="overflow-content">
-              <details id="detail-structured-search" class="special-detail" tabindex="0" title="structured search" style="/*display:none;*/">
+              <details id="detail-structured-search" class="special-detail" title="structured search" style="/*display:none;*/">
 
                 <summary><i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span></summary>
 
@@ -524,7 +524,7 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-ai-chat" class="special-detail" tabindex="0" title="AI chat" style="/*display:none;*/">
+              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="/*display:none;*/">
 
                 <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>
 

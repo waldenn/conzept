@@ -1069,7 +1069,7 @@ function setupBookmarks(){
     explore.bookmarks = await explore.db.get('bookmarks');
 
     if ( explore.bookmarks === undefined ){ // no stored bookmarks found
-      explore.bookmarks = [ { name: "my bookmarks", display: 'my bookmarks', url: explore.base + '/blank.html', id: '1', language: 'en', type: 'none' }, ];
+      explore.bookmarks = [ { name: "my bookmarks", display: 'my bookmarks', url: explore.base + '/pages/blank.html', id: '1', language: 'en', type: 'none' }, ];
     }
     else { // stored bookmarks found
       explore.bookmarks = JSON.parse( explore.bookmarks );
@@ -3535,7 +3535,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
     resetIframe();
 
-    $( explore.baseframe ).attr({"src": explore.base + '/blank.html' }); // TODO: is it worth it to fix this via a PHP page?
+    $( explore.baseframe ).attr({"src": explore.base + '/pages/blank.html' }); // TODO: is it worth it to fix this via a PHP page?
 
     $('#loader').hide(); // not really needed?
 
@@ -3567,7 +3567,7 @@ async function setDefaultDisplaySettings( cover, type ) {
         '<span id="app-guide-welcome-text"></span> &nbsp;' + 
         '<span id="app-social-icons">' + 
           '<a target="_blank" rel="noopener" href="https://github.com/waldenn/conzept" title="GitHub repository" aria-label="GitHub repository" role="button"><i class="fa-brands fa-github"></i></a> &nbsp;' + 
-          '<a target="infoframe" onclick="resetIframe()" href="/privacy_policy.html" title="privacy policy" aria-label="privacy policy" role="button"><i class="fa-solid fa-section"></i></a> &nbsp;' + 
+          '<a target="infoframe" onclick="resetIframe()" href="/pages/privacy_policy.html" title="privacy policy" aria-label="privacy policy" role="button"><i class="fa-solid fa-section"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://github.com/sponsors/waldenn?o=esb" title="GitHub sponsor" aria-label="GitHub sponsor" role="button"><i class="fa-solid fa-heart"></i></a> &nbsp;' + 
           '<a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/conzept-encyclopedia-extension/" title="Firefox browser extension" aria-label="Firefox browser extension" role="button"><i class="fa-brands fa-firefox-browser"></i></a> &nbsp;' + 
           //'<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/bhenkikoaimipnapdhofmpmopnggakmn/preview?hl=en-GB" title="Chrome browser extension" aria-label="Chrome browser extension" role="button"><i class="fa-brands fa-chrome"></i></a> &nbsp;' + 
@@ -3706,7 +3706,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   if ( explore.isMobile ){
 
-    $( explore.baseframe ).attr({"src": explore.base + '/blank.html' });
+    $( explore.baseframe ).attr({"src": explore.base + '/pages/blank.html' });
     $('#loader').hide();
 
   }
@@ -5208,7 +5208,7 @@ async function renderTopics( inputs ){
 
 	  markArticle('n00', explore.type );
 
-    $( explore.baseframe ).attr({"src": explore.base + '/blank.html' });
+    $( explore.baseframe ).attr({"src": explore.base + '/pages/blank.html' });
 
   }
 	else { // multiple results found
@@ -5959,6 +5959,7 @@ async function handleClick( args ) {
   //console.log( 'explore.keyboard_ctrl_pressed: ', explore.keyboard_ctrl_pressed );
   //console.log( 'event.ctrlKey: ', event.ctrlKey );
   //console.trace();
+  //console.log( args );
 
   // check for CTRL-key, to open link in new tab
   if ( valid( [ explore.keyboard_ctrl_pressed, event ] ) ){
@@ -10246,7 +10247,7 @@ async function makePresentation( title ){
 
       explore.q_qid = qid;
 
-      let d = await fetchWikidata( [ qid ], '', 'wikipedia', '' );
+      let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
 
       //console.log( 'Wikidata Qid found: ', qid, d );
 

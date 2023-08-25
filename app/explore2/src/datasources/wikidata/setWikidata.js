@@ -1276,7 +1276,7 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
   // ------ optionally render a single-item
 
-  if ( single && valid( target_pane ) ){
+  if ( single && target_pane !== false ){
 
     // no title has been set yet when coming from a "qid" to "wikipedia title" action
     if ( ! valid( item.title ) ){

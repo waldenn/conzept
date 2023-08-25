@@ -1,12 +1,12 @@
 #!/bin/bash
 
-. "$PWD/settings.conf"
+. "../settings.conf"
 
 domains="$CONZEPT_HOSTNAME"
 email="$CONZEPT_EMAIL"
 staging="$CONZEPT_STAGING"
 rsa_key_size=4096
-data_path="./data/certbot"
+data_path="../data/certbot"
 
 if [ -d "$data_path" ]; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/N) " decision

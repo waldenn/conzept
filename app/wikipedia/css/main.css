@@ -1756,7 +1756,7 @@ figcaption {
   display: block;
   font-size: smaller;
   border-bottom: 1px solid #0006;
-  width: 99%;
+  width: 75%;
   margin: 0.2rem auto 2rem auto;
   clear: both;
 }
@@ -2148,7 +2148,7 @@ body.rtl main.explore {
   }
 
   img.enlargable {
-    width: 100%;
+    /* width: 100%; */
   }
 
   .infobox {

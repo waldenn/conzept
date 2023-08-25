@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Who painted this?</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+
+    <script>
+
+      window.getParameterByName = function (name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      window.gotoPage = function( qid, title ){
+
+        const url = '/app/wikipedia/?t=&l=' + window.getParameterByName('l') + '&qid=' + qid ;
+
+        //console.log( url );
+
+        window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
+
+}
+    </script>
+
+  </body>
+</html>
