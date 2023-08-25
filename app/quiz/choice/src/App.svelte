@@ -52,7 +52,7 @@
 
 </script>
 
-<h1>?</h1>
+<!--h1>?</h1-->
 
 {#if showLoading}
   <Loading/>
@@ -69,7 +69,7 @@
   </p>
 
   <p>
-    <button onClick="window.location.reload();"><strong>⟳</strong></button>
+    <button onClick="window.location.reload();"><strong><span class="reload">⟳</span></strong></button>
   </p>
 {/if}
 
@@ -90,12 +90,17 @@
 </p>
 
 <style>
+  .reload {
+    font-size: 3em;
+  }
   .notes {
     font-size: 0.8em;
     margin-top: 5em;
   }
   img {
     max-width: 80%;
-    max-height: 80vh;
+    max-height: 70vh;
+    filter: drop-shadow(0 .15rem .15rem gray);
+    border-radius: .2rem;
   }
 </style>

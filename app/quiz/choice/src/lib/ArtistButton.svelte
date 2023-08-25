@@ -20,6 +20,6 @@
 </button>
 
 <style>
-  .wrong {background: #e36868}
-  .right {background: #68e378}
+  .wrong {background: #dd5d5dcf}
+  .right {background: #31bd43d9}
 </style>
