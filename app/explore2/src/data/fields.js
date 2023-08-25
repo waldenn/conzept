@@ -11953,12 +11953,12 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/quiz/choice/dist?l=${explore.language}&p1=${item.qid}',
   icon: 'fa-solid fa-trophy',
-  text: 'guess the painter',
+  text: 'painter quiz',
   section: 'education-quizzes',
   rank: 21,
   headline_create: 'valid( item.choice_quiz_movement_painters )',
   headline_type: 'link-split',
-  headline_rank: 150,
+  headline_rank: 640,
 },
 
 'mapillary_id' : {
