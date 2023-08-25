@@ -11951,7 +11951,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/choice?l=${explore.language}&p1=${item.qid}',
+  url: '${explore.base}/app/quiz/choice/dist?l=${explore.language}&p1=${item.qid}',
   icon: 'fa-solid fa-trophy',
   text: 'guess the painter',
   section: 'education-quizzes',
