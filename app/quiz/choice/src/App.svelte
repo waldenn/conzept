@@ -54,6 +54,8 @@
 
 <!--h1>?</h1-->
 
+<span id="title">{ window.getParameterByName('t') }</span>
+
 {#if showLoading}
   <Loading/>
 {:else}
@@ -101,5 +103,17 @@
     max-height: 70vh;
     filter: drop-shadow(0 .15rem .15rem gray);
     border-radius: .2rem;
+  }
+
+  #title {
+    position: absolute;
+    top: .8em;
+    left: 1em;
+    z-index: 9999;
+    color: black;
+    font-weight: bold;
+    background: #fbfaf9c9;
+    padding: 0px 0.3em;
+    border-radius: 0.3em;
   }
 </style>

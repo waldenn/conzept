@@ -33,7 +33,7 @@
 
         const qid   = wikidata_url.split('/').pop();
 
-        const url = '/app/wikidata/?l=' + window.getParameterByName('l') + '&q=' + qid ;
+        const url = '/app/wikidata/?lang=' + window.getParameterByName('l') + '&q=' + qid ;
 
         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
       }
