@@ -15,16 +15,13 @@ class SPARQLQueryDispatcher {
   }
 }
 
-// params:
-//  Qid movement
-//  Qid country of birth
-const p1 = window.getParameterByName('p1') || 'Q40415';
-
-console.log( p1 );
+const l   = window.getParameterByName('l') || 'en';
+const p1  = window.getParameterByName('p1');
+//const p2  = window.getParameterByName('p2');
 
 const endpointUrl = 'https://query.wikidata.org/sparql';
 
-// TODO: provide an option to switch Query-class: painters, architects, ...
+// TODO: provide an option to switch Query-class: painters, architects, sculptors, taxon-groups, ...
 
 const paintersQuery = `SELECT ?painter ?painterLabel ?painting ?paintingLabel ?image WITH {
   SELECT ?painter ?painting ?image WHERE {
@@ -39,7 +36,7 @@ const paintersQuery = `SELECT ?painter ?painterLabel ?painting ?paintingLabel ?i
   LIMIT 5
 } AS %results WHERE {
   INCLUDE %results.
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "${l},en,fr,es,de,pt,nl". }
 }`;
 
 const queryDispatcher = new SPARQLQueryDispatcher( endpointUrl );

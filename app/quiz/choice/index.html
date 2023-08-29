@@ -25,11 +25,19 @@
 
         const url = '/app/wikipedia/?t=&l=' + window.getParameterByName('l') + '&qid=' + qid ;
 
-        //console.log( url );
-
         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
 
-}
+      }
+
+      window.gotoWikidata = function( wikidata_url ){
+
+        const qid   = wikidata_url.split('/').pop();
+
+        const url = '/app/wikidata/?l=' + window.getParameterByName('l') + '&q=' + qid ;
+
+        window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
+      }
+
     </script>
 
   </body>

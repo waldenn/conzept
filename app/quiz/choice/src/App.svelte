@@ -62,14 +62,13 @@
 
 {#if reveal}
   <p>
-    <a href={randomPainting.painting.value} target="_blank">
-      {randomPainting.painterLabel.value} -
-      {randomPainting.paintingLabel.value}
-    </a>
+    <a href="javascript:void(0)" role="button" onclick="window.gotoWikidata( &quot;{randomPainting.painting.value}&quot; )"> {randomPainting.painterLabel.value} - {randomPainting.paintingLabel.value} </a>
+
+    <!--a href={randomPainting.painting.value} target="_blank"> {randomPainting.painterLabel.value} - {randomPainting.paintingLabel.value} </a-->
   </p>
 
   <p>
-    <button onClick="window.location.reload();"><strong><span class="reload">⟳</span></strong></button>
+    <button onClick="window.location.reload();"><strong><span class="reload">➡</span></strong></button>
   </p>
 {/if}
 

@@ -682,7 +682,7 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
 
                   console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
 
-                  window.location.href = explore.base + '/blank.html';
+                  window.location.href = explore.base + '/pages/blank.html';
 
                   //window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
 
