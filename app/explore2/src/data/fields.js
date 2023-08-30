@@ -18388,6 +18388,23 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+'painting_iiif' : {
+  title: 'painting IIIF view',
+  create_condition: 'checkTag( item, 1, "painting") && valid( item.image_full )',
+  type: 'link',
+  //url: '/app/cors/raw/?url=${ encodeURIComponent( item.image_full ) }',
+  url: '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }?width=3000px',
+  mv: false,
+  icon: 'fa-regular fa-eye',
+  text: 'painting view',
+  section: ['media-image','main'],
+  rank: [22,1022],
+  headline_create: 'valid( item.painting_iiif )',
+  headline_type: 'link',
+  headline_url: '${ createSingleImageIIIF( item.title, "/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }?width=3000px" ) }',
+  headline_rank: 351,
+},
+
 'paintings_inline' : {
   render_condition: 'listed( item.occupations, indicators.painter.value )',
   value: 'paintings:${item.title}:true',

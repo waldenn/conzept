@@ -24,7 +24,6 @@ services:
       # only use these mappings during local development (never commit!):
       #- app:/var/www/html/app
       #- /var/www/html/app/explore2/node_modules
-      #- /var/www/html/app/explore2/dist
 
     ports:
       - 80:80

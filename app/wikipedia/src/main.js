@@ -1119,8 +1119,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       }
 
-      html_ = html_.replace(/<body id="wikipedia-content">/, '<a id="skip-nav" class="screenreader-text" title="skip to main content" aria-label="skip to main content" href="#main-content">skip to main content</a>' +
-        + fontlink_html +
+      html_ = html_.replace(/<body id="wikipedia-content">/, '<a id="skip-nav" class="screenreader-text" title="skip to main content" aria-label="skip to main content" href="#main-content">skip to main content</a>' + fontlink_html +
         '<a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fa-solid fa-expand"></i></a>' +
         // TODO: move all JS variables into one object and put that object stringified into the iframe data-fields attribute
         '<script> let language = "' + lang + '"; let locale =  "' + explore.locale + '"; let title =  "' + title + '"; let qid =  "' + explore.qid + '"; let languages =  "' + languages + '"; let font1 =  "' + explore.font1 + '"; let darkmode = ' + explore.darkmode + '; </script>' +
