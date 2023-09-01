@@ -24,7 +24,8 @@ You must set the "**CONZEPT_HOSTNAME**" and "**CONZEPT_EMAIL**" (required for th
 
 [{{ ::docker_logo.png?direct|Docker logo}}]
 
-<code>cd scripts && ./docker_install_ubuntu.sh</code>
+<code>cd scripts</code>
+<code>./docker_install_ubuntu.sh</code>
 
 [ NOTE: **__You now need to logout and then login again after running this script__**, to make sure the group permission are active. ]
 
@@ -36,20 +37,22 @@ Build the Conzept docker image:
 <code>docker compose build</code>
 
 Run the docker image and create a correct HTTPs certificate:
-<code>cd scripts && sudo ./init-https.sh</code>
+<code>cd scripts</code>
+<code>sudo ./init-https.sh</code>
 
 ===== docker-based local-development =====
 
-Set "CONZEPT_HOSTNAME=localhost" in settings.conf
+Set "**CONZEPT_HOSTNAME=localhost**" in settings.conf
 
-Optionally: In "docker-compose.yml" uncomment this app-volume lines during development.
+Optionally: In "docker-compose.yml" **uncomment the app-volume-mapping** lines during development.
 
-Optionally: Prevent fetching the Wikipedia-covers, by setting "CONZEPT_COVER_FETCH" to "false".
+Optionally: Prevent fetching the Wikipedia-covers, by setting "**CONZEPT_COVER_FETCH**" to "false". (FIXME: not yet working!)
 
-Optionally: Set "CONZEPT_STAGING" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" command.
+Optionally: Set "**CONZEPT_STAGING**" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" command.
 
 Build and update the running Conzept docker image:
-<code>cd scripts && ./cached_local_build_update.sh</code>
+<code>cd scripts</code>
+<code>./cached_local_build_update.sh</code>
 
 ==== updating production ====
 
@@ -57,7 +60,8 @@ Build and update the running Conzept docker image:
     * Check: Set "staging" to “0” in “init-https.sh”
 
   * On the production server:
-<code>cd scripts && ./git_build_update.sh</code>
+<code>cd scripts</code>
+<code>./git_build_update.sh</code>
 
   * TODO: Handle existing settings
 <code>...</code>
@@ -112,3 +116,4 @@ Build and update the running Conzept docker image:
   * cleanup your docker system
     * docker system prune
     * docker system prune --all --volumes
+

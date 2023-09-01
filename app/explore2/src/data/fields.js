@@ -18393,7 +18393,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: 'checkTag( item, 1, "painting") && valid( item.image_full )',
   type: 'link',
   //url: '/app/cors/raw/?url=${ encodeURIComponent( item.image_full ) }',
-  url: '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }?width=3000px',
+  url: '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }',
   mv: false,
   icon: 'fa-regular fa-eye',
   text: 'painting view',
@@ -18401,7 +18401,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [22,1022],
   headline_create: 'valid( item.painting_iiif )',
   headline_type: 'link',
-  headline_url: '${ createSingleImageIIIF( item.title, "/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }?width=3000px" ) }',
+  headline_url: '${ createSingleImageIIIF( item.title, "/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }" ) }',
   headline_rank: 351,
 },
 

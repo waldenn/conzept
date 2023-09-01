@@ -2,7 +2,7 @@
 
 ===== browser compatibility =====
 
-  * Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term.
+  * Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term. (Figure out what is the cause of this!)
 
 ===== keyboard navigation =====
 
@@ -60,6 +60,11 @@
 
   * BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
 
+===== docker =====
+
+  * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found). 
+
+  * [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/conf/nginx-site.conf#L82-L85|Nginx Dokuwiki-media rewrite-rules]] not working for wiki-media paths, causing the wiki-images not to show up.
 ===== browser extension =====
 
   * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
@@ -71,9 +76,10 @@
 ===== Wikidata / SPARQL issues =====
 
   * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with "GROUP BY")
-  * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using wikibase-sdk (with claims).
+  * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using the "wikibase-sdk" (with claims).
   * Abandoned Wikidata-based tools.
 
 ===== various =====
 
   * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.
+
