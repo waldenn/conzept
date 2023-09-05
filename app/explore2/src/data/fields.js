@@ -12926,11 +12926,11 @@ if ( valid( item.found_in_taxon ) ){
 
 'nostr_band' : {
   create_condition: true,
-  title: 'Nostr.Band - Nostr-network search engine',
+  title: 'Nostr.Band - Nostr search engine',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://nostr.band/?q=${title_quoted}',
+  url: 'https://nostr.band/?q=${title_quoted}&type=posts',
   icon: 'fa-regular fa-comment',
   text: 'Nostr search',
   section: 'social',
