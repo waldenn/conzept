@@ -2,8 +2,9 @@
 
 ===== browser compatibility =====
 
-  * Safari/Webkit browsers: When typing a search, the ENTER-key resets the search term. (Figure out what is the cause of this!)
-
+  * Safari/Webkit browser issues:
+    * When typing a search, the ENTER-key resets the search term. (Figure out what is the cause of this!)
+    * Structured query: "Run query"and "add condition" button not reachable via keyboard.
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.
@@ -62,9 +63,28 @@
 
 ===== docker =====
 
-  * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found). 
+  * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found / browser-security issues ). (CRITICAL ISSUE for development) 
 
-  * [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/conf/nginx-site.conf#L82-L85|Nginx Dokuwiki-media rewrite-rules]] not working for wiki-media paths, causing the wiki-images not to show up.
+  * [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/conf/nginx-site.conf#L82-L85|Nginx Dokuwiki-media-file rewrite-rules]] (for images and such) are not working, causing the wiki-images not to show up. Official [[https://www.dokuwiki.org/rewrite#nginx|Dokuwiki guidelines for Nginx]]. Example of what should happen:
+<code>https://conze.pt/guide/_media/settings.jpg?w=480&h=521&tok=2fcd6b</code>
+<code>https://conze.pt/guide/lib/exe/fetch.php?media=settings.jpg&w=480&h=521&tok=2fcd6b</code>
+
+<code>
+    location @dokuwiki {
+
+       # FIXME: not yet working
+       rewrite ^/guide/_media/(.*) /guide/lib/exe/fetch.php?media=$1 last;
+       rewrite ^/guide/_detail/(.*) /guide/lib/exe/detail.php?media=$1 last;
+       rewrite ^/guide/_export/([^/]+)/(.*) /guide/doku.php?do=export_$1&id=$2 last;
+
+       # Working:
+       rewrite ^/guide/(.*) /guide/doku.php?id=$1&$args last;
+    }
+</code>
+
+  * Cover fetching:
+    * Monthly cronjob based fetching not yet implement.
+    * The "CONZEPT_PREVENT_COVER_FETCH" option does not work yet.
 ===== browser extension =====
 
   * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.

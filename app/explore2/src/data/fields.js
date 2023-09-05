@@ -12924,6 +12924,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 17,
 },
 
+'nostr_band' : {
+  create_condition: true,
+  title: 'Nostr.Band - Nostr-network search engine',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://nostr.band/?q=${title_quoted}',
+  icon: 'fa-regular fa-comment',
+  text: 'Nostr search',
+  section: 'social',
+  rank: 16.5,
+},
+
 'pinterest_search' : {
   title: 'Pinterest search',
   prop: '',
