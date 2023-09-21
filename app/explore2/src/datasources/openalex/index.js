@@ -126,7 +126,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
         if ( valid( doc_url ) ){
 
-            desc = desc + `<a target="_blank" title="source document" aria-label="aria-label" href="${doc_url}"><i class="fa-regular fa-file"></i> source</a>`;
+            desc = desc + `<a target="_blank" title="source document" aria-label="aria-label" href="${doc_url}"><i class="fa-regular fa-file"></i> source</a><br/><br/>`;
 
         }
 
@@ -149,7 +149,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
           if ( creators.length > 0 ){
 
-            desc = desc + '<br/><br/><i class="fa-solid fa-users-line"></i> ' + creators.join(', ');
+            desc = desc + '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ');
 
           }
 
