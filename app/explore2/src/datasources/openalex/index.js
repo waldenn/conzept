@@ -98,16 +98,13 @@ function processResultsOpenAlex( topicResults, struct, index ){
         if ( valid( obj.id ) ){
 
             url = encodeURIComponent( JSON.stringify( obj.id ) );
+            doc_url = obj.id;
 
         }
 
-        if ( valid( obj.open_access ) ){
+        if ( valid( obj.open_access?.oa_url ) ){
 
-          if ( valid( obj.open_access.oa_url ) ){
-
-            doc_url = obj.open_access.oa_url;
-
-          }
+          doc_url = obj.open_access.oa_url;
 
         }
         else if ( valid( obj.doi ) ){
