@@ -142,6 +142,32 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  'openalex': {
+    active:                 false,
+    name:                   'OpenAlex',
+    description:            'science articles',
+    tag:                    'science',
+    qid:                    'Q107507571',
+    protocol:               'rest',
+    endpoint:               'https://api.openalex.org/works', // see: https://docs.openalex.org/how-to-use-the-api/api-overview
+    format:                 'json',
+    connect:                'json',
+    pagesize:               5,
+    url:                    '${datasources.openalex.endpoint}?search="${term}"&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
+    icon:                   '<img class="datasource-icon" alt="OpenAlex logo" src="/assets/icons/openalex.svg" alt="OpenAlex logo">',
+    display_url:            '${url}',
+    code_autocomplete:      'autocompleteOpenAlex( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsOpenAlex( topicResults, struct, index ) );',
+    code_resolve:           'resolveOpenAlex( result, renderObject )',
+    code_render_mark:       'renderMarkOpenAlex( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.openalex.endpoint}?search=${term}&page=1&per-page=${datasources.openalex.autocomplete_limit}',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     5,
+  },
+
   'europeana': {
     active:                 false,
     name:                   'Europeana',
@@ -326,6 +352,7 @@ const datasources = {
     autocomplete_connect:   'jsonp',
     autocomplete_limit:     5,
   },
+
 
   /*
   'snomed': {

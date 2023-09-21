@@ -175,6 +175,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/europeana/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?vCONZEPT_VERSION"></script>
