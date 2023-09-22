@@ -168,7 +168,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
                   let qid = concept.wikidata.split('/').pop() || '';
 
-                  let concept_url = '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid.replace(/^Q/g, '');
+                  let concept_url = '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid;
 
                   // FIXME: this does not work in openalex-in-presentation-mode
               	  concepts.push( `<a onclick="openInFrame( &quot;${concept_url}&quot; )" href="javascript:void(0)" title="concept link" aria-label="concept link" aria-role="button">${concept.display_name}</a>` );
