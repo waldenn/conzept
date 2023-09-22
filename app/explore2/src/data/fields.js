@@ -7249,9 +7249,10 @@ if ( valid( item.found_in_taxon ) ){
 
 'ms_academic' : {
   title: 'Microsoft Academic topic',
+  render_condition: false,
   prop: '6366',
   type: 'url',
-  url: 'https://academic.microsoft.com/topic/${item.ms_academic}',
+  url: 'https://academic.microsoft.com/topic/${item.ms_academic}', // deprecated service
   mv: false,
   icon: 'fa-brands fa-windows',
   text: 'MS Academic topic',
@@ -15688,13 +15689,13 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'Scite',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://scite.ai/search?q=${title_quoted}',
   icon: 'fa-regular fa-newspaper',
   text: 'Scite',
   section: 'science-search-tools',
-  rank: 165,
+  rank: 169,
 },
 
 'zenodo_search' : {

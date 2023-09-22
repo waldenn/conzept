@@ -623,6 +623,22 @@ function openInNewTab( url ) {
 
 }
 
+function openInFrame( url ) {
+
+  if ( valid( event ) ){
+    event.preventDefault();
+  }
+
+  if ( url.startsWith('https%3A' ) || url.startsWith('http%3A' ) ){
+
+    url = decodeURIComponent( url );
+
+  }
+
+  window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: '' } }, '*' )
+
+}
+
 function stripHtml( s ) {
 
   if ( valid( s ) ){

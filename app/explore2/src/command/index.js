@@ -347,7 +347,9 @@ async function showPresentation( item, type ){
 		let oer_commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OER Commons</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://www.oercommons.org/search?f.search=${title}&f.language=${language}" ) ) )\n`;
 		let scholia_slide               = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Scholia</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://scholia.toolforge.org/topic/${ item.qid }" ) ) )\n`;
 
-		let rijksmuseum_search_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Rijksmuseum</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'link \'( "https://conze.pt/explore/${title_enc}?l=en&t=string&d=rijksmuseum&s=true#" ) ) )\n`;
+		let rijksmuseum_search_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Rijksmuseum</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'link \'( "https://${explore.host}${explore.base}/explore/${title_enc}?l=${language}&t=string&d=rijksmuseum&s=true#" ) ) )\n`;
+
+		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://${explore.host}${explore.base}/explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#" ) ) )\n`;
 
     let commons_slide               = '';
     let commons_time_music_slide    = '';
@@ -470,6 +472,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_fulltext_slide );
 
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 			slides.push( arxiv_slide );
 
 			slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
@@ -490,6 +493,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'art-movement' ){
@@ -504,6 +508,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'cultural-concept' ){
@@ -517,6 +522,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'location' ){
@@ -555,6 +561,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_fulltext_slide );
 
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'geographical-structure' ){
@@ -608,6 +615,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'person' ){
@@ -727,6 +735,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
+			slides.push( openalex_search_slide );
 
 		}
 
@@ -1372,7 +1381,7 @@ async function setupLispEnv(){
 					title     : '',
 					qid       : '',
 					language  : explore.language,
-					url       : `https://${ explore.host }/app/pdf/?file=https://${ explore.host }/app/cors/raw/?url=${ list[0]  }#page=0&zoom=page-width&phrase=true&pagemode=thumbs`,
+					url       : `https://${explore.host}${explore.base}/app/pdf/?file=https://${explore.host}${explore.base}/app/cors/raw/?url=${ list[0]  }#page=0&zoom=page-width&phrase=true&pagemode=thumbs`,
 					tag       : '',
 					languages : '',
 					custom    : '',
@@ -2314,7 +2323,7 @@ async function renderShowCommand( view, list ){
 
 		const qid_list = list.map( n => n.replace('Q', 'wd%3AQ') ).join('%20').toString();
 
-    const url_ = `https://${ explore.host }${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`;
+    const url_ = `https://${explore.host}${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fdied%20%3Fborn%20%3Finception%20%3Fpublication%20%3Fstart%20%3Fend%20%20%3Fimg%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20${ qid_list }%20%7D%0A%20%20%3Fitem%20wdt%3AP31%20%3Fclass.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP569%20%3Fborn.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP570%20%3Fdied.%20%7D%20%20%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP580%20%3Fstart.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP581%20%3Fend.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%22.%20%7D%0A%7D%0A%0A%23defaultView%3A${ view.charAt(0).toUpperCase() + view.slice(1) }%0A%23meta%3Alist%20of%20entities`;
 
     console.log( url_ );
 
