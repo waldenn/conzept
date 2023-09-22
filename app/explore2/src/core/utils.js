@@ -635,6 +635,7 @@ function openInFrame( url ) {
 
   }
 
+  // TODO: also handle embedded views (such as presentation)
   window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: getTargetPane(), ids: '' } }, '*' )
 
 }

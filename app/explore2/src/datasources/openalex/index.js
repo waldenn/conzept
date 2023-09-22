@@ -136,7 +136,10 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
 							if ( valid( a.author.display_name ) ){
 
-              	creators.push( a.author.display_name );
+                const author_url = valid( a.author.id ) ? a.author.id : '';
+
+                // FIXME: this does not work in openalex-in-presentation-mode
+                creators.push( `<a onclick="openInFrame( &quot;${author_url}&quot; )" href="javascript:void(0)" title="author link" aria-label="author link" aria-role="button">${a.author.display_name}</a>` );
 
 							}
 
@@ -167,9 +170,8 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
                   let concept_url = '/app/wikipedia/?t=&l=' + explore.language + '&voice=' + explore.voice_code + '&qid=' + qid.replace(/^Q/g, '');
 
+                  // FIXME: this does not work in openalex-in-presentation-mode
               	  concepts.push( `<a onclick="openInFrame( &quot;${concept_url}&quot; )" href="javascript:void(0)" title="concept link" aria-label="concept link" aria-role="button">${concept.display_name}</a>` );
-
-              	  //concepts.push( `<a target="infoframe" onclick="resetIframe()" href="${concept_url}" title="concept link" aria-label="concept link">${concept.display_name}</a>` );
 
                 }
                 else {
