@@ -245,13 +245,17 @@ async function init(){
   }
   else if ( app.osm_id.length === 1 && app.qid.length === 0 ){ // a single, custom OSM-ID was passed as a LIST
 
-    app.objects[ app.qid[0] ] = {
-      title   : app.title,
-      osm_id  : app.osm_id[0],
-      bbox    : '',
-    };
+    if ( valid( app.osm_id[0] ) ){
 
-    addOSM();
+      app.objects[ app.qid[0] ] = {
+        title   : app.title,
+        osm_id  : app.osm_id[0],
+        bbox    : '',
+      };
+
+      addOSM();
+
+    }
 
   }
   else if ( valid( app.osm_id ) ){ // a single, custom OSM-ID was passed as a STRING
@@ -286,9 +290,8 @@ async function addOSM(){
     if ( valid( item.osm_id ) ){
 
       // fetch OSM boundary GeoJSON
-      // https://nominatim.org/release-docs/latest/api/Reverse/
-      //let url = 'https://nominatim.openstreetmap.org/reverse?osm_id=' + app.osm_id + '&osm_type=R&polygon_geojson=1&format=json&polygon_threshold=0.001';
-      let url = 'https://nominatim.openstreetmap.org/reverse?osm_id=' + item.osm_id + '&osm_type=R&polygon_geojson=1&format=json&polygon_threshold=0.001';
+      // https://nominatim.org/release-docs/latest/api/Lookup/
+      let url = `https://nominatim.openstreetmap.org/lookup?osm_ids=R${item.osm_id}&format=json&extratags=1&polygon_geojson=1`;
 
       // TODO: render roadway geo-line:
       //console.log( `https://nominatim.openstreetmap.org/details.php?osmtype=W&osmid=${item.osm_id}&class=highway&addressdetails=1&hierarchy=0&group_hierarchy=1&polygon_geojson=1&format=json` );
@@ -333,9 +336,11 @@ async function addOSM(){
 
           success: function( data ) {
 
+            data = data[0];
+
             //console.log( data );
 
-            if ( data?.geojson?.type ){
+            if ( data.osm_type ){
 
               let annotation = new og.layer.Vector("annotation", {
 

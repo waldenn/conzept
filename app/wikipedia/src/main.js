@@ -320,16 +320,32 @@ $( document ).ready( function() {
 
           success: function( ll ) {
 
-            //console.log( ll );
+            console.log( ll );
 
             if ( typeof ll === undefined || typeof ll === 'undefined' ){
               // do nothing
+
+              // do nothing
+              console.log('no Wikipedia pages defined 1');
+
+              // fallback to Wikidata, if there is a Qid.
+              if ( valid( explore.qid ) ){
+                window.open( `https://${explore.host}${explore.base}/app/wikidata/?q=${explore.qid}&lang=${explore.language}`, '_self');
+                //openInFrame( `https://${explore.host}${explore.base}/app/wikidata/?q=${explore.qid}&lang=${explore.language}` )
+              };
+
             }
             else {
 
               if ( typeof ll.query.pages[ Object.keys( ll.query.pages)[0] ] === undefined ){
 
                 // do nothing
+                console.log('no Wikipedia pages defined 2');
+
+                // fallback to Wikidata, if there is a Qid.
+                if ( valid( explore.qid ) ){
+                  window.open( `https://${explore.host}${explore.base}/app/wikidata/?q=${explore.qid}&lang=${explore.language}`, '_self');
+                }
 
               }
               else {
@@ -542,7 +558,7 @@ function getTitleFromQid( qid ){
 
 function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, allow_recheck, banner ){
 
-  //console.log( 'gbif_id: ', gbif_id );
+  //console.log( 'renderWikiArticle: ', title, lang, hash_, languages, tags, qid, gbif_id, allow_recheck );
 
   let doc = {};
 
@@ -636,8 +652,10 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
 
               console.log('warning: no pages.query results found');
 
-							// FIXME: 
-              //tryFallbackToQid();
+							// fallback to Wikidata, if there is a Qid.
+              if ( valid( explore.qid ) ){
+                window.open( `https://${explore.host}${explore.base}/app/wikidata/?q=${explore.qid}&lang=${explore.language}`, '_self');
+              }
 
             }
             else {
@@ -697,6 +715,13 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
                 if ( doc === undefined ){
 
                   explore.noWikipediaContentYet = true;
+
+                  console.log('doc undefined');
+
+                  // fallback to Wikidata, if there is a Qid.
+                  if ( valid( explore.qid ) ){
+                    window.open( `https://${explore.host}${explore.base}/app/wikidata/?q=${explore.qid}&lang=${explore.language}`, '_self');
+                  }
 
                   //tryFallbackToQid();
 

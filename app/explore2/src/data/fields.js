@@ -17966,6 +17966,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 21,
 },
 
+'ap_news_search' : {
+  create_condition: 'checkLC("en")',
+  title: 'AP news search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://apnews.com/search?q=${title_}&s=0',
+  icon: 'fa-regular fa-newspaper',
+  text: 'AP',
+  section: 'news-general',
+  rank: 29,
+},
+
 'euronews_english' : {
   create_condition: 'checkLC("en")',
   title: 'Euronews',

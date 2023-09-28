@@ -623,7 +623,7 @@ function openInNewTab( url ) {
 
 }
 
-function openInFrame( url ) {
+function openInFrame( url ){
 
   if ( valid( event ) ){
     event.preventDefault();

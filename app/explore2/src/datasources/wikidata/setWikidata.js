@@ -1283,6 +1283,12 @@ function setWikidata( item, wd, single, target_pane, callback ){
 
       const wp = explore.language + 'wiki'; // get title from sitelinks (eg. "enwiki")
 
+      if ( !valid( explore.type ) ){
+
+        explore.type = 'wikipedia-qid'; // default fallback type
+
+      }
+
       if (  ! valid( wd.sitelinks ) || ! valid( wd.sitelinks[ wp ] ) || Object.keys(wd.sitelinks).length === 0 ){
 
         if (  target_pane === 'ps2' ||
