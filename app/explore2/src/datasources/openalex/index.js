@@ -91,9 +91,16 @@ function processResultsOpenAlex( topicResults, struct, index ){
         const qid         = '';
         const language    = explore.language;
         const term 				= removebracesTitle( getSearchTerm() );
+        const start_date  = '';
 
         let url           = '';
         let doc_url       = '';
+        let open_access   = '<i class="fa-solid fa-lock"></i>'; // default
+        let desc          = '';
+        let creators      = [];
+        let concepts      = [];
+        let subtag        = 'science-article';
+        let img           = '';
 
         if ( valid( obj.id ) ){
 
@@ -113,17 +120,19 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
         }
 
-        const start_date  = '';
+        if ( valid( obj.open_access?.oa_status ) ){
 
-        let desc          = '';
-        let creators      = [];
-        let concepts      = [];
-        let subtag        = 'science-article';
-        let img           = '';
+          if ( obj.open_access?.oa_status !== 'closed' ){
+
+            open_access = '<i class="fa-solid fa-lock-open"></i>';
+
+          }
+
+        }
 
         if ( valid( doc_url ) ){
 
-            desc = desc + `<a target="_blank" title="source document" aria-label="aria-label" href="${doc_url}"><i class="fa-regular fa-file"></i> source</a><br/><br/>`;
+            desc = desc + `<a target="_blank" title="source document" aria-label="aria-label" href="${doc_url}">${open_access} source</a><br/><br/>`;
 
         }
 
@@ -138,8 +147,13 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
                 const author_url = valid( a.author.id ) ? a.author.id : '';
 
-                // FIXME: this does not work in openalex-in-presentation-mode
-                creators.push( `<a onclick="openInFrame( &quot;${author_url}&quot; )" href="javascript:void(0)" title="author link" aria-label="author link" aria-role="button">${a.author.display_name}</a>` );
+                const author_country = valid( a.countries ) ? a.countries[0] : '';
+
+                // TODO: turn into a link
+                const author_country_icon = valid( author_country ) ? `<span title="${author_country} country flag" class="flag-icon flag-icon-${ author_country.toLowerCase() }"></span>` : '';
+
+                // FIXME: the link does not work in openalex-in-presentation-mode
+                creators.push( `<a onclick="openInFrame( &quot;${author_url}&quot; )" href="javascript:void(0)" title="author link" aria-label="author link" aria-role="button">${a.author.display_name}</a> ${author_country_icon}`);
 
 							}
 

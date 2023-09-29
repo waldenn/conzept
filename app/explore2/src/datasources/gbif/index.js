@@ -155,13 +155,15 @@ function processResultsGBIF( topicResults, struct, index ){
 
         let parent_key    = valid( obj.parentKey )? obj.parentKey : '';
         let parent_name   = valid( obj.parent )? obj.parent : '';
-        let kingdom       = valid( obj.kingdom )? obj.kingdom : '';
-        let phylum        = valid( obj.phylum )? obj.phylum : '';
-        let order         = valid( obj.order )? obj.order : '';
-        let family        = valid( obj.family )? obj.family : '';
-        let genus         = valid( obj.genus )? obj.genus : '';
 
-        const phylo = [ parent_name, kingdom, phylum, order, family, genus ];
+        let kingdom       = valid( obj.kingdom )? toTitleCase( obj.kingdom ) : '';
+        let phylum        = valid( obj.phylum )? toTitleCase( obj.phylum ) : '';
+        let order         = valid( obj.order )? toTitleCase( obj.order ) : '';
+        let family        = valid( obj.family )? toTitleCase( obj.family ) : '';
+        let genus         = valid( obj.genus )? toTitleCase( obj.genus ) : '';
+        let species       = valid( obj.species )? toTitleCase( obj.species ) : '';
+
+        let phylo = [ kingdom, phylum, order, family, genus, species ];
 
         // description
         if ( valid( vernacular_name ) ){
@@ -185,11 +187,25 @@ function processResultsGBIF( topicResults, struct, index ){
         }
         */
 
-        desc += phylo.join(' / ') + '<br/><br/>' + obj.key;
+        // remove empty phylo's from list
+        phylo = phylo.filter(function(e){ return e === 0 || e });
+
+        $.each( phylo, function( i, p ){
+
+            let phylo_url = `/app/wikipedia/?t=${encodeURIComponent( p )}&l=${explore.language}&voice=${explore.voice_code}`;
+
+            // FIXME: the link does not work in openalex-in-presentation-mode
+            phylo[ i ] = `<a onclick="openInFrame( &quot;${phylo_url}&quot; )" href="javascript:void(0)" title="phylo link" aria-label="phylo link" aria-role="button">${p}</a>`;
+
+        });
+
+        desc += phylo.join(' / ') + '<br><br>' + obj.key;
 
         // TODO: abstract this away into a utility function?
         const keywords_regex  = new RegExp( getSearchTerm(), 'gi');
-        desc                  = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+
+        // FIXME: this messes up the existing phylo-html-links
+        //desc                  = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
 
         // fill fields
 				let item = {

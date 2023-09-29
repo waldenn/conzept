@@ -320,7 +320,7 @@ $( document ).ready( function() {
 
           success: function( ll ) {
 
-            console.log( ll );
+            //console.log( ll );
 
             if ( typeof ll === undefined || typeof ll === 'undefined' ){
               // do nothing

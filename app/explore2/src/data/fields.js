@@ -10301,6 +10301,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [13,5810],
 },
 
+'open_foods_facts_search' : {
+  create_condition: true,
+  title: 'Open Food Facts search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://world.openfoodfacts.org/cgi/search.pl?search_terms=${title_quoted}',
+  icon: 'fa-solid fa-utensils',
+  text: 'Open Foods Facts',
+  section: ['society-food'],
+  rank: [220],
+},
+
 'open_foods_facts_id' : {
   title: 'Open Food Facts food additive ID',
   prop: '1820',
@@ -14280,6 +14293,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'street view',
   section: 'location-geography',
   rank: 8,
+},
+
+'nl_rijksdienst_cultureel_erfgoed_beeldbank_search' : {
+  create_condition: 'checkLC( "nl" )',
+  title: 'Rijksdienst Cultureel Erfgoed beeldbank',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://beeldbank.cultureelerfgoed.nl/rce-mediabank/?q=${title_quoted}&mode=gallery&view=horizontal&sort=order_s_objectnummer asc&oldView=gallery&reverse=0',
+  icon: 'fa-solid fa-archway',
+  text: '🇳🇱 RCE',
+  section: 'media-image',
+  rank: 215,
 },
 
 'panorama_cities' : {
