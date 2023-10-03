@@ -44,11 +44,11 @@ Run the docker image and create a correct HTTPs certificate:
 
 Set "**CONZEPT_HOSTNAME=localhost**" in settings.conf
 
-Optionally: In "docker-compose.yml" **uncomment the app-volume-mapping** lines during development.
 
-Optionally: Prevent fetching the Wikipedia-covers, by setting "**CONZEPT_COVER_FETCH**" to "false". (FIXME: not yet working!)
-
-Optionally: Set "**CONZEPT_STAGING**" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" command.
+Useful options:
+  * In "docker-compose.yml" **uncomment the app-volume-mapping** lines during development.
+  * Prevent fetching the Wikipedia-covers, by setting "**CONZEPT_COVER_FETCH**" to "false".
+  * Set "**CONZEPT_STAGING**" to "true", to avoid hitting CertBot request-limits while testing the "init-https.sh" 
 
 Build and update the running Conzept docker image:
 <code>cd scripts</code>

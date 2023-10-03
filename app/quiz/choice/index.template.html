@@ -20,7 +20,7 @@
 
     <div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
 
-    <img id="loader" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
+    <img id="loader" style="display:none;" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
 
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
@@ -126,6 +126,22 @@
 
         window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
       }
+
+      /*
+      $( ".lcl_close" ).on( "click", function() {
+
+        console.log('close openseadragon');
+        $('#openseadragon').hide();
+        window.viewer.close();
+
+      } );
+      */
+
+      document.addEventListener("keydown",function(e){
+        if(e.key === "Escape") {
+          $('#openseadragon').hide();
+        }
+      });
 
     </script>
 
