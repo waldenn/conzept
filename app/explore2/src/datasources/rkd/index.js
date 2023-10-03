@@ -149,7 +149,7 @@ function processResultsRKD( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        title,
-					description:  ' ' + description + '<br/></br>' + author, // `<details class="plain" style="line-height: 100% !important; list-style: none; font-weight: normal;"><summary>license</summary><p>${license_name}</p></details>` + ' ',
+					description:  ' ' + description + '<br/></br>' + author, // `<details class="plain" style="line-height: 100% !important; list-style: none; font-weight: normal;"><summary>license</summary><p>${license_name}</p></details>`,
 					gid:          gid,
 					display_url:  url, // url may get overidden later
 					thumb:        thumb,

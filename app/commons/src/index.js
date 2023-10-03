@@ -304,7 +304,7 @@ function goExplore( title, newtab ){
 
   if ( newtab ){
 
-    let url = `https://conze.pt/explore/${title}?l=${lang}&t=explore`;
+    let url = `//explore/${title}?l=${lang}&t=explore`;
 
     openInNewTab( url );
 

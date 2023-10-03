@@ -1,8 +1,8 @@
 <script>
-  import loading from '../assets/wikidata.svg'
+  //import loading from '../assets/wikidata.svg'
 </script>
 
-<img class="loading" src="{loading}" alt="Loading" />
+<img class="loading" style="display:none;" src="" alt="Loading" />
 
 <style>
   @keyframes flickerAnimation {

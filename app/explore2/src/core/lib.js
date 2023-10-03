@@ -1541,7 +1541,7 @@ function setupSearch() {
 
 	// TODO is this more efficient?: https://stackoverflow.com/questions/8748559/how-does-jqueryui-autocomplete-handle-asynchronous-results
 
-  $('#srsearch, a.submitSearch').keypress(function(event) {
+  $( '#srsearch, a.submitSearch' ).on( 'keyup', function( event ) {
 
       explore.searchmode = 'string';
 
@@ -1586,7 +1586,7 @@ function setupSearch() {
           }
 
           //$('.submitSearch').click();
-          $('.submitSearch').trigger('click');
+          $('a.submitSearch').trigger('click');
 
           // TODO always close autocomplete-result upon ENTER
           $('.searchbox').autocomplete('close');
@@ -1731,11 +1731,15 @@ function setupSearch() {
 
   $('a.submitSearch').on( 'click', async function(e){
 
-    if ( explore.isSafari ){ console.log( 'Safari 1a: ', explore.q ); }
+    if ( explore.isSafari ){
+      console.log( 'Safari 1a: ', explore.q, e.hasOwnProperty('originalEvent'), e );
+    }
 
     let q = getSearchValue();
 
-    if ( explore.isSafari ){ console.log( 'Safari 1b: ', explore.q ); }
+    if ( explore.isSafari ){
+      console.log( 'Safari 1b: ', explore.q );
+    }
 
     //console.log( 'search: ', q, explore.q, $( '#srsearch' ).val() );
 

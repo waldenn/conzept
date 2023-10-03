@@ -23,6 +23,10 @@
     randomIndex = getRandomInt(0,5);
     randomPainting = paintings[randomIndex];
     imgsrc = randomPainting.image.value;
+
+    window.setupImageClicks();
+    window.setupImageZoom();
+
   });
 
   function revealAnswer() {
@@ -59,7 +63,9 @@
 {#if showLoading}
   <Loading/>
 {:else}
-  <img src="{imgsrc}" alt="A random painting" />
+
+  <a class="elem" href="{imgsrc}" tabindex="0" data-lcl-txt="..."><img class="thumbimage enlargable" src="{imgsrc}" decoding="async" loading="lazy" alt="A random image" /></a>
+
 {/if}
 
 {#if reveal}

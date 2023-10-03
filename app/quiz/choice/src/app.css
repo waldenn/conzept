@@ -15,6 +15,41 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#loader {
+  display:none;
+  position: fixed;
+  margin: auto;
+  bottom: 10%;
+  width: 70px;
+  height: 70px;
+  left: 50%;
+  right: 50%;
+  background: #fbfaf9d9;
+  border-radius: 2em;
+}
+
+#lcl_elem_wrap {
+  background-size: contain !important;
+}
+
+#lcl_window {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#lcl_txt {
+  border-radius: 1.3em !important;
+}
+
+#lcl_descr {
+  text-align: center !important;
+  font-size: larger !important;
+}
+
+.thumbimage.enlargable:hover {
+  outline: #E8646A solid 8px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

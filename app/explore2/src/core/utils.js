@@ -1160,7 +1160,7 @@ function setupAppKeyboardNavigation() {
 
     document.addEventListener('keydown', e => {
 
-      console.log('key down: ', e.key );
+      //console.log('key down: ', e.key );
 
       if (e.key === 'ArrowLeft') { // move to sidebar
 

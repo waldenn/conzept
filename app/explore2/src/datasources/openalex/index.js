@@ -211,7 +211,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
         // fill fields
 				let item = {
           source:       source,
-					title:        valid( obj.title )? obj.title : '---',
+					title:        valid( obj.title )? stripHtml( obj.title ) : '---',
 					description:  desc,
 					gid:          valid( obj.id )? obj.id : '---',
 					display_url:  url ,
