@@ -23,8 +23,8 @@ services:
 
       # only use these mappings during local development (never commit!):
       # FIXME: not yet producing a working build.
-      #- app:/var/www/html/app
-      #- /var/www/html/app/explore2/node_modules
+      - app:/var/www/html/app
+      - /var/www/html/app/explore2/node_modules
 
     ports:
       - 80:80
