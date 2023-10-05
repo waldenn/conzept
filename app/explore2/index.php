@@ -181,7 +181,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.466"></script>
+  <!--script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/snomed/index.js?v0.51.466"></script-->
 
   <script src="../app/explore2/dist/core/createItemHtml.js?v0.51.466"></script>

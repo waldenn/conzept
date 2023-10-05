@@ -67,7 +67,8 @@ COPY --chown=www-data:root . .
 
 COPY settings.conf /etc/conzept/settings.conf
 
-RUN if [ "$CONZEPT_COVER_FETCH" = "true" ] ; then . settings.conf && cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh ; fi
+RUN . settings.conf && cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh ; 
+#RUN if [ "$CONZEPT_COVER_FETCH" = "true" ] ; then . settings.conf && cd $CONZEPT_WEB_DIR$CONZEPT_BASE_DIR/app/explore2/tools/ && sh ./get_previous_month_covers.sh ; fi
 
 RUN cd app/explore2 && npm i && sh build.sh
 RUN cd app/explore2/libs/lc && sh build.sh

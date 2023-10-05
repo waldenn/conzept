@@ -325,6 +325,7 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  /*
   'rkd': {
     active:                 false,
     name:                   'RKD',
@@ -354,6 +355,7 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
+  */
 
 
   /*

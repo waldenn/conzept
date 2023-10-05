@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="../../../explore2/libs/lc/dist/css/skins/minimal.css" />
     <script src="../../../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
 
-    <script type="module" crossorigin src="./assets/index.71203045.js"></script>
-    <link rel="stylesheet" href="./assets/index.7a41130e.css">
+    <script type="module" crossorigin src="./assets/index.0380b08b.js"></script>
+    <link rel="stylesheet" href="./assets/index.240b4014.css">
   </head>
   <body>
 
     <div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
 
-    <img id="loader" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
+    <img id="loader" style="display:none;" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
 
     <div id="app"></div>
     
@@ -120,14 +120,22 @@
 
       }
 
-      window.gotoWikidata = function( wikidata_url ){
+      $( document ).on( "click", function() {
 
-        const qid   = wikidata_url.split('/').pop();
+        $( ".lcl_close" ).on( "click", function() {
 
-        const url = '/app/wikidata/?lang=' + window.getParameterByName('l') + '&q=' + qid ;
+          $('#openseadragon').hide();
+          window.viewer.close();
 
-        window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
-      }
+        } );
+
+      } );
+
+      document.addEventListener("keydown",function(e){
+        if(e.key === "Escape") {
+          $('#openseadragon').hide();
+        }
+      });
 
     </script>
 

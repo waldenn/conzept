@@ -40,11 +40,16 @@
   }
 
   function handleClick(event) {
+
     const index = event.detail.index;
+
     if (index === randomIndex) {
+
       paintings[index].correct = "right";
+
       revealAnswer();
-    } else {
+    }
+    else {
       paintings[index].correct = "wrong";
     }
 
@@ -52,6 +57,7 @@
     const qid   = paintings[index].painter.value.split('/').pop();
     //console.log( title, paintings[index] );
     window.gotoPage( qid, title );
+
   }
 
 </script>
@@ -70,9 +76,10 @@
 
 {#if reveal}
   <p>
-    <a href="javascript:void(0)" role="button" onclick="window.gotoWikidata( &quot;{randomPainting.painting.value}&quot; )"> {randomPainting.painterLabel.value} - {randomPainting.paintingLabel.value} </a>
+    <a href="javascript:void(0)" role="button" onclick="openInFrame( &quot;/app/wikipedia/?t=&l={window.getParameterByName('l')}&qid={ randomPainting.painting.value.split('/').pop() }&quot; )"> {randomPainting.painterLabel.value} - {randomPainting.paintingLabel.value} </a>
 
-    <!--a href={randomPainting.painting.value} target="_blank"> {randomPainting.painterLabel.value} - {randomPainting.paintingLabel.value} </a-->
+    <!-- https://localhost/app/wikipedia/?t=&qid=Q423354335# -->
+
   </p>
 
   <p>
@@ -91,10 +98,10 @@
 </p>
 {/each}
 
-<p class="notes">
+<!--p class="notes">
   Powered by <a href="https://www.wikidata.org/">Wikidata</a>.
   Source code is <a href="https://github.com/dhinus/wikidata-painters/">here</a>.
-</p>
+</p-->
 
 <style>
   .reload {

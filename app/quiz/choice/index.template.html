@@ -118,24 +118,16 @@
 
       }
 
-      window.gotoWikidata = function( wikidata_url ){
+      $( document ).on( "click", function() {
 
-        const qid   = wikidata_url.split('/').pop();
+        $( ".lcl_close" ).on( "click", function() {
 
-        const url = '/app/wikidata/?lang=' + window.getParameterByName('l') + '&q=' + qid ;
+          $('#openseadragon').hide();
+          window.viewer.close();
 
-        window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: 'ps1', target_pane: 'ps2' } }, '*' );
-      }
-
-      /*
-      $( ".lcl_close" ).on( "click", function() {
-
-        console.log('close openseadragon');
-        $('#openseadragon').hide();
-        window.viewer.close();
+        } );
 
       } );
-      */
 
       document.addEventListener("keydown",function(e){
         if(e.key === "Escape") {
