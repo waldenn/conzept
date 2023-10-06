@@ -1909,24 +1909,19 @@ function fixCountryData(){
 
   ----------------------------
 
-  // remove incorrect fields first
-  Object.values( legislatures ).forEach( (( l ) => {
+  Object.values( chl ).forEach( (( t ) => {
 
     Object.keys( countries ).forEach( (( qid ) => {
 
-      if ( l.country === qid && countries[ qid ].hasOwnProperty( 'check' ) ){ // matching check country
-
-        if ( countries[ qid ].hasOwnProperty( 'chamber1' ) ){ delete countries[ qid ].chamber1; }
-        if ( countries[ qid ].hasOwnProperty( 'chamber1_members' ) ){ delete countries[ qid ].chamber1_members; }
-        if ( countries[ qid ].hasOwnProperty( 'chamber2' ) ){ delete countries[ qid ].chamber2; }
-        if ( countries[ qid ].hasOwnProperty( 'chamber2_members' ) ){ delete countries[ qid ].chamber2_members; }
-
+      if ( t.country === qid ){ // matching country
+        countries[qid].heritage_site_types.push( t.item );
       }
 
     }))
 
   }))
 
+  console.log( countries );
 
   // update fields
   Object.values( legislatures ).forEach( (( l ) => {

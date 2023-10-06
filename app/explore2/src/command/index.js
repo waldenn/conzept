@@ -447,7 +447,7 @@ async function showPresentation( item, type ){
 			if ( valid( item.chebi ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>ChEBI</h3>"\n    ( show \'link \'( "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:${ item.chebi }" ) ) )\n` ); }
 
 			slides.push( scholia_slide );
-			slides.push( arxiv_slide );
+			//slides.push( arxiv_slide );
 
 		}
 		else if ( type === 'mathematics' ){
@@ -473,7 +473,7 @@ async function showPresentation( item, type ){
 
 			slides.push( scholia_slide );
 			slides.push( openalex_search_slide );
-			slides.push( arxiv_slide );
+			//slides.push( arxiv_slide );
 
 			slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
 

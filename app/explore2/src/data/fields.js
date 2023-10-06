@@ -7181,6 +7181,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 92,
 },
 
+'web_app_store' : {
+  create_condition: true,
+  title: 'Store.App - installable web apps',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://store.app/search?q=${title_quoted}',
+  icon: 'fa-brands fa-firefox-browser',
+  text: 'web apps',
+  section: 'media-software',
+  rank: 85,
+},
+
 'ubuntu_packages' : {
   create_condition: true,
   title: 'Ubuntu packages',
@@ -14265,8 +14278,8 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.mapillary.com/app/?lat=${item.lat}&lng=${item.lon}&z=17',
   icon: 'fa-solid fa-street-view',
   text: 'Mapillary',
-  section: '',
-  rank: 1,
+  section: 'location-geography',
+  rank: 8.1,
 },
 
 'the_world_factbook_country' : {
@@ -14280,6 +14293,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'World Factbook',
   section: ['location-demography', 'main'],
   rank: [7.5, 8300],
+},
+
+'location_heritage_sites' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'Heritage sites map',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Fcoord%20%3Fpic%20%3Fdesignation%20%3FdesignationLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP1435%20%3Fdesignation%3B%0A%20%20%20%20%20%20%20%20(wdt%3AP17%7Cwdt%3AP131*)%20wd%3A${item.qid}%20.%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D.%0A%0A%7D%0ALIMIT%202000%0A%23defaultView%3AMap%7Bhide%3A%20%22%3Fcoords%22%7D%0A%23meta%3Aheritage%20sites',
+  icon: 'fa-solid fa-archway',
+  text: 'heritage sites',
+  section: ['location-travel', 'location-geography'],
+  rank: [ 28, 7.5],
 },
 
 'streetview' : {
@@ -15841,6 +15867,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'PubPeer',
   section: ['science-search-tools'],
   rank: [169],
+},
+
+'openalex_works_search' : {
+  create_condition: true,
+  title: 'OpenAlex search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title_enc}?l=${explore.language}&t=string&d=openalex&s=true',
+  icon: 'fa-regular fa-newspaper',
+  text: 'OpenAlex',
+  section: 'science-search-tools',
+  rank: 58,
 },
 
 'google_scholar' : {

@@ -151,6 +151,7 @@ $main_script = '
   <script src="../app/explore2/dist/data/indicators.js?vCONZEPT_INDICATORS_VERSION"></script>
   <script src="../app/explore2/dist/data/countries.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/data/former_countries.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/data/economic_regions.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/data/tags.js?vCONZEPT_VERSION"></script>
   <!--script src="../app/explore2/dist/data/tags-ores.js?vCONZEPT_VERSION"></script-->
   <script src="../app/explore2/dist/data/chains.js?vCONZEPT_VERSION"></script>
