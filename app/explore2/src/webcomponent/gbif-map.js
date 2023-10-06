@@ -1021,7 +1021,7 @@ function addCountries(){
 
     title: "country borders",
 
-    visible: true,
+    visible: false,
 
 		source: new ol.source.Vector({
 			url: '/app/explore2/assets/geojson/ne_50m_admin_0_countries.geojson',
@@ -1158,10 +1158,7 @@ function addMeanTemp(){
 
   });
 
-
-
   map.addLayer(contourLayer);
-
 
   // meantemp image-tile layer
   let my_layer = new ol.layer.Tile({
