@@ -20,15 +20,15 @@
     <a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand-arrows-alt"></i></a>
 
     <!-- Preloading, etc. -->
-    <link rel="preload" href="/app/streetquiz/build/bundle.css" as="style" />
-    <link rel="preload" href="/app/streetquiz/build/bundle.js" as="script" />
+    <link rel="preload" href="./build/bundle.css" as="style" />
+    <link rel="preload" href="./build/bundle.js" as="script" />
     <link rel="dns-prefetch" href="https://www.overpass.de/" />
     <!--link rel="canonical" href="https://backofyourhand.com/51.89863,-8.47039" /-->
 
     <!-- Assets -->
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="stylesheet" href="/app/streetquiz/build/bundle.css" />
-    <script defer src="/app/streetquiz/build/bundle.js"></script>
+    <link rel="stylesheet" href="./build/bundle.css" />
+    <script defer src="./build/bundle.js"></script>
 
     <!-- PWA stuff -->
     <link
@@ -36,7 +36,7 @@
       sizes="180x180"
       href="/images/apple-touch-icon.png"
     />
-    <link rel="manifest" href="/app/streetquiz/manifest.webmanifest" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="theme-color" content="#df206f" />
 
     <!-- Social media / sharing stuff -->
@@ -45,7 +45,7 @@
       property="og:description"
       content="Street quiz"
     />
-    <meta property="og:image" content="/app/streetquiz/images/large-screenshot.png" />
+    <meta property="og:image" content="./images/large-screenshot.png" />
     <!--meta property="og:url" content="https://backofyourhand.com" /-->
     <meta name="twitter:card" content="summary_large_image" />
     <!--  Non-essential, but recommended -->
@@ -66,7 +66,7 @@
     </noscript>
     <script>
       if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/app/streetquiz/serviceworker.js");
+        navigator.serviceWorker.register("./serviceworker.js");
       }
     </script>
   </body>

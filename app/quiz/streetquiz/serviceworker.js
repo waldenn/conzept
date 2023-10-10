@@ -6,7 +6,7 @@
 */
 
 const cacheName = "files";
-const offlinePage = "/app/streetquiz/offline";
+const offlinePage = "/app/quiz/streetquiz/offline";
 
 addEventListener("install", (installEvent) => {
   skipWaiting();
@@ -14,16 +14,16 @@ addEventListener("install", (installEvent) => {
     caches.open(cacheName).then((cache) => {
       return cache.addAll([
         offlinePage, // The only HTML page cached
-        "/app/streetquiz/images/android-chrome-512x512.png",
-        "/app/streetquiz/images/apple-touch-icon.png",
-        "/app/streetquiz/images/leaflet/marker-icon.png",
-        "/app/streetquiz/images/leaflet/marker-icon-2x.png",
-        "/app/streetquiz/images/leaflet/marker-shadow.png",
-        "/app/streetquiz/build/bundle.css",
-        "/app/streetquiz/build/bundle.js",
-        //"/app/streetquiz/gc.js",
+        "/app/quiz/streetquiz/images/android-chrome-512x512.png",
+        "/app/quiz/streetquiz/images/apple-touch-icon.png",
+        "/app/quiz/streetquiz/images/leaflet/marker-icon.png",
+        "/app/quiz/streetquiz/images/leaflet/marker-icon-2x.png",
+        "/app/quiz/streetquiz/images/leaflet/marker-shadow.png",
+        "/app/quiz/streetquiz/build/bundle.css",
+        "/app/quiz/streetquiz/build/bundle.js",
+        //"/app/quiz/streetquiz/gc.js",
         "/favicon.png",
-        "/app/streetquiz/manifest.webmanifest",
+        "/app/quiz/streetquiz/manifest.webmanifest",
       ]);
     })
   );

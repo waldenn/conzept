@@ -1046,7 +1046,7 @@ conzept_fields = {
 'is_artistic_theme' : {
   default_value: false,
   create_condition: 'listed( item.subclasses, indicators.artistic_theme.value ) || listed( item.instances, indicators.artistic_theme.value )',
-  create_trigger: 'setTags( item, [ "cultural-concept", "artistic-theme" ] )',
+  create_trigger: 'setTags( item, [ "ccountryLabelultural-concept", "artistic-theme" ] )',
   render_condition: false,
   title: 'is_artwork',
   prop: '',
@@ -11965,7 +11965,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/streetquiz?loc=${item.lat},${item.lon}', // FIXME: lat/lon by URL-parameter not loading
+  url: '${explore.base}/app/quiz/streetquiz?loc=${item.lat},${item.lon}', // FIXME: lat/lon by URL-parameter not loading
   icon: 'fa-solid fa-road',
   text: 'streets',
   section: 'education-quizzes',

@@ -312,6 +312,9 @@ async function handleQuery( url ){
 
       }
 
+      // show number of items
+      $('#view-title').append( ' <span style="font-weight:normal;">(' + json.length + ')</span>' );
+
       //console.log( json );
 
 			// transform SPARQL-data into GeoJSON
