@@ -331,6 +331,10 @@ var conzept_tags = {
         text : "form of governement",
         icon : ["fa-solid fa-users-between-lines"],
       },
+      "modern-language" : {
+        text : "modern language",
+        icon : ["fa-regular fa-comments"],
+      },
 
     },
   },

@@ -3,13 +3,22 @@ const indicators = {
 
   // SPECIFIC SUBJECTS
   'country': {
-      value: [ // ...
-
+      value: [
           6256, 3624078, 43702,
       ],
       trigger: '',
       tags: 'setTags( item, [ "location", "country" ] )',
   },
+
+  /*
+  'modern_language': {
+      value: [
+          1288568
+      ],
+      trigger: '',
+      tags: 'setTags( item, [ "cultural-concept", "modern-language" ] )',
+  },
+  */
 
   'symbol': {
       value: [
