@@ -9,7 +9,7 @@
   vertical-align: middle;
 }
 .leaflet-control.leaflet-timeline-control input[type="range"] {
-  width: 80%;
+  width: 60%;
 }
 .leaflet-control.leaflet-timeline-control .sldr-ctrl-container {
   float: left;

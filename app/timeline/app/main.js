@@ -186,6 +186,15 @@ function renderMap( data ) {
 
   timeline.addTo(map);
 
+  //console.log( data );
+
+  // add start/end dates to slider
+  const first_date  = valid( data.features[0]?.properties?.start_time_date ) ? data.features[0].properties.start_time_date : '?';
+  const last_date   = valid( data.features[ data.features.length - 1 ]?.properties?.start_time_date ) ? data.features[ data.features.length - 1 ].properties.start_time_date : '?';
+
+  document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:before','content: "' + first_date + '"');
+  document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:after','content: "' + last_date + '"');
+
   timeline.on("change", function (e) {
 
     updateList(e.target);
@@ -478,8 +487,8 @@ async function handleQuery( url ){
             const date  = new Date( date_.setMonth( date_.getMonth() + 1 ) ); // +1 month (to prevent display bugs)
 
             end_time      = Math.floor( date.getTime() );
-            end_time_date = 'present';
-            //end_time_date = date.toISOString().split('T')[0];
+            //end_time_date = 'present';
+            end_time_date = date.toISOString().split('T')[0];
 
             //console.log( v.itemLabel, end_time, end_time_date );
 
