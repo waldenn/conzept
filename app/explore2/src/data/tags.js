@@ -127,7 +127,11 @@ var conzept_tags = {
       "music-group" : {
         text : "music group",
         icon : ["fa-regular fa-handshake", "fa-solid fa-music"],
-      }
+      },
+      "military" : {
+        text : "military group",
+        icon : ["fa-solid fa-person-military-rifle"],
+      },
     },
   },
 
