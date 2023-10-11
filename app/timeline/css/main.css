@@ -71,7 +71,7 @@ a {
 
 #date-month, #date-day {
   width: 1em;
-  margin-right: 0.1em;
+  margin-right: 0.3em;
   margin-left: 0.1em;
 }
 
@@ -87,7 +87,7 @@ a {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: 80px;
 }
 
 #loader {
@@ -137,6 +137,7 @@ a {
   margin-top: -3.5em;
   font-size: 3em;
   font-family: mono;
+  text-shadow: -1px -1px 0 #f9f9f9, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
 .button-container button {
