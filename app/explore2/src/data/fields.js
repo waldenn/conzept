@@ -8304,7 +8304,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'military_acts_timeline' : {
-  create_condition: 'listed( item.instances, [ 17127659, 1673189, 207320, 20642011 ] )', // military group
+  create_condition: 'listed( item.instances, [ 8473, 37726, 772547, 828787, 210815, 17127659, 1673189, 207320, 20642011 ] )', // military group
   create_trigger: 'setTags( item, [ "organization", "military" ] )',
   title: 'Geo-timeline of the acts of military groups',
   prop: '',
