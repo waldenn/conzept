@@ -191,8 +191,7 @@ function renderMap( data ) {
   // add start/end dates to slider
 
   const first_start_date  = valid( data.features[0]?.properties?.start_time_date ) ? data.features[0].properties.start_time_date : '?';
-  document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:before','content: "' + first_date + '"');
-
+  document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:before','content: "' + first_start_date + '"');
 
   // TODO: get last end date
   /*
