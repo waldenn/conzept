@@ -189,11 +189,33 @@ function renderMap( data ) {
   //console.log( data );
 
   // add start/end dates to slider
-  const first_date  = valid( data.features[0]?.properties?.start_time_date ) ? data.features[0].properties.start_time_date : '?';
-  const last_date   = valid( data.features[ data.features.length - 1 ]?.properties?.start_time_date ) ? data.features[ data.features.length - 1 ].properties.start_time_date : '?';
 
+  const first_start_date  = valid( data.features[0]?.properties?.start_time_date ) ? data.features[0].properties.start_time_date : '?';
   document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:before','content: "' + first_date + '"');
-  document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:after','content: "' + last_date + '"');
+
+
+  // TODO: get last end date
+  /*
+  let latest_end_date = 0; 
+
+  data.features.forEach(function (f) {
+ 
+      if ( valid( f.properties?.end_time_date ) ){
+
+        if ( f.properties?.end_time_date > latest_end_date ){
+
+          latest_end_date = 
+
+        }
+
+      }
+
+  });
+
+  //const latest_end_date   = valid( data.features[ data.features.length - 1 ]?.properties?.start_time_date ) ? data.features[ data.features.length - 1 ].properties.start_time_date : '?';
+  //document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:after','content: "' + last_date + '"');
+
+  */
 
   timeline.on("change", function (e) {
 
