@@ -87,7 +87,10 @@ a {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  margin-bottom: 80px;
+}
+
+.leaflet-control.leaflet-timeline-control {
+  margin-bottom: 80px !important;
 }
 
 #loader {
