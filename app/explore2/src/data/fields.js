@@ -12256,6 +12256,38 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 262,
 },
 
+'map_countries_same_religion' : {
+  create_condition: 'checkTag( item, 1, ["religion"] )',
+  title: 'Countries with this religion',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fcountry%20%3FcountryLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Ftypes%20%7B%0A%20%20%20%20wd%3A${item.qid}%0A%20%20%7D%0A%20%20%3Fcountry%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20(wdt%3AP3075%7Cwdt%3AP140)%20%3Ftypes%2C%20%3Ftype.%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Acountries%20with%20religion%20${title_}',
+  icon: 'fa-solid fa-globe',
+  text: 'same religion',
+  section: ['location-demography', 'main'],
+  rank: [30, 4951],
+  headline_create: 'valid( item.map_countries_same_religion )',
+  headline_type: 'link-split',
+  headline_rank: 262,
+},
+
+'map_countries_with_etnic_group' : {
+  create_condition: 'checkTag( item, 1, "ethnic-group" )',
+  title: 'Countries with this ethnic group',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fcountry%20%3FcountryLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Ftypes%20%7B%0A%20%20%20%20wd%3A${item.qid}%0A%20%20%7D%0A%20%20%3Fcountry%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20wdt%3AP172%20%3Ftypes%2C%20%3Ftype.%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Acountries%20with%20ethnicity%20${title_}',
+  icon: 'fa-solid fa-globe',
+  text: 'same ethnicity',
+  section: ['location-demography', 'main'],
+  rank: [30, 4951],
+  headline_create: 'valid( item.map_countries_with_etnic_group )',
+  headline_type: 'link-split',
+  headline_rank: 262,
+},
+
 'map_countries_with_similar_hdi' : {
   create_condition: 'valid( [ item.hdi, item.iso2 ] )',
   title: 'countries with a similar Human Development Index',

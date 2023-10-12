@@ -139,6 +139,10 @@ var conzept_tags = {
     text : "human grouping (not an organization)",
     icon : ["fa-solid fa-hand-holding-heart"],
     sub : {
+      "ethnic-group" : {
+        text : "ethnic group",
+        icon : ["fa-solid fa-people-arrows"],
+      },
       "nobility" : {
         text : "nobility",
         icon : ["fa-solid fa-crown"],

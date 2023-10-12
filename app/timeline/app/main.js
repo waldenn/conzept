@@ -349,7 +349,7 @@ async function handleQuery( url ){
       }
 
       // show number of items
-      $('#view-title').append( ' <span style="font-weight:normal;">(' + json.length + ')</span>' );
+      $('#view-title').append( ' <span style="font-weight:normal;" title="total number of items" aria-label="total number of items">(' + json.length + ')</span>' );
 
       //console.log( json );
 
