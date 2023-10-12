@@ -12246,7 +12246,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Floc%20%3FlocLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20wd%3AQ20%20wdt%3AP530%20%3Floc.%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Adiplomatic%20relations%20of%20${title_}',
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Floc%20%3FlocLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP530%20%3Floc.%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Adiplomatic%20relations%20of%20${title_}',
   icon: 'fa-regular fa-life-ring',
   //icon: 'fa-solid fa-arrow-down-up-across-line',
   text: 'map diplomatic relations',
