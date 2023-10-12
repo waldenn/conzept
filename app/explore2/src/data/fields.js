@@ -8304,7 +8304,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'military_acts_timeline' : {
-  create_condition: 'listed( item.instances, [ 8473, 37726, 772547, 828787, 17149090, 210815, 17127659, 1673189, 207320, 20642011, 23905069, 15627509, 176799, 234497, 105267234, 105550462, 23905071, 62934160, 204310, 138775 ] )', // military group
+  create_condition: 'listed( item.instances, [ 8473, 37726, 772547, 828787, 17149090, 210815, 17127659, 1673189, 207320, 20642011, 15627509, 176799, 17597793, 234497, 105267234, 105550462, 62934160, 204310, 138775, 18642164, 61883 ] )', // military group
   create_trigger: 'setTags( item, [ "organization", "military" ] )',
   title: 'Geo-timeline of the acts of military groups',
   prop: '',
@@ -9387,7 +9387,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.getty.edu/search/global/?col=getty&nh=10&qt=${title_quoted}',
+  url: 'https://www.getty.edu/art/collection/search?q=${title_quoted}',
   icon: 'fa-solid fa-university',
   text: 'Getty search',
   section: 'art',
@@ -9401,9 +9401,9 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=&subjectid=${item.getty_aat}',
   mv: false,
   icon: 'fa-solid fa-university',
-  text: 'getty thesaurus',
+  text: 'Getty thesaurus',
   section: 'art',
-  rank: 120,
+  rank: 131,
 },
 
 'allmusic_album' : {
@@ -12248,7 +12248,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fcountry%20%3FcountryLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20VALUES%20%3Ftypes%20%7B%0A%20%20%20%20wd%3A${item.qid}%0A%20%20%7D%0A%20%20%3Fcountry%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20(wdt%3AP37%7Cwdt%3AP2936)%20%3Ftypes%2C%20%3Ftype.%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fcountry%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Acountries%20using%20${title_}',
   icon: 'fa-solid fa-globe',
-  text: 'countries using this language',
+  text: 'same language',
   section: ['location-demography', 'main'],
   rank: [30, 4951],
   headline_create: 'valid( item.map_countries_using_this_language )',
@@ -13557,7 +13557,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'Paris Museums',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://www.parismuseescollections.paris.fr/${ selectLanguageFrom(["en","es","fr"]) }/recherche?keywords=${title_quoted}',
   icon: 'fa-solid fa-university',
@@ -13728,7 +13728,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-university',
   text: 'Yale LUX',
   section: 'art',
-  rank: 140,
+  rank: 120,
 },
 
 'nga' : {
@@ -13741,7 +13741,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-university',
   text: 'NGA',
   section: 'art',
-  rank: 150,
+  rank: 125,
 },
 
 'classical_archives_composer' : {
