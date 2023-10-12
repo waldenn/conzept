@@ -12242,7 +12242,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'map_diplomatic_relations_of_this_country' : {
   create_condition: 'valid( item.iso2 ) && valid( item.diplomatic_relation )',
-  title: 'map of the diplomatic relations',
+  title: 'map of diplomatic relations',
   prop: '',
   type: 'link-split',
   mv: false,
@@ -12265,8 +12265,8 @@ if ( valid( item.found_in_taxon ) ){
   url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Floc%20%3FlocLabel%20%3Ftype%20%3FtypeLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP150%20%3Floc.%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Floc%20wdt%3AP571%20%3Finception.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Aadministrative%20regions%20of%20${title_}',
   icon: 'fa-solid fa-dice-d20',
   text: 'map admin regions',
-  section: ['government-general','main'],
-  rank: [3132,5182],
+  section: ['location-geography','government-general','main'],
+  rank: [4.89, 890, 3132],
   headline_create: 'valid( item.map_admininistrative_regions )',
   headline_type: 'link-split',
   headline_rank: 270,
@@ -14408,6 +14408,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'World Factbook',
   section: ['location-demography', 'main'],
   rank: [7.5, 8300],
+},
+
+'location_conflict_sites' : {
+  create_condition: 'checkTag( item, 0, "location")',
+  title: 'conflict sites in this location',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fgeoshape%20%3Fcoord%20%3Fpic%20%3Fdesignation%20%3FdesignationLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP607%20%3Fdesignation%3B%0A%20%20%20%20%20%20%20%20wdt%3AP131*%20wd%3A${item.qid}%20.%0A%20%20%3Fitem%20p%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20psv%3AP625%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLatitude%20%3Flat%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoLongitude%20%3Flon%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20wikibase%3AgeoGlobe%20%3Fglobe%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%5D%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20ps%3AP625%20%3Fcoord%0A%20%20%20%20%20%20%20%20%20%5D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D.%0A%0A%7D%0ALIMIT%202000%0A%23defaultView%3AMap%7Bhide%3A%20%22%3Fcoords%22%7D%0A%23meta%3Aconflict%20locations%20in%20${item_}',
+  icon: 'fa-solid fa-skull',
+  text: 'conflict sites',
+  section: ['library-history'],
+  rank: [ 238 ],
 },
 
 'location_heritage_sites' : {
