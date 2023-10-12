@@ -194,16 +194,19 @@ function renderMap( data ) {
   document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:before','content: "' + first_start_date + '"');
 
   // TODO: get last end date
-  /*
-  let latest_end_date = 0; 
+  let latest_end_time = -100000000000000; 
+  let latest_end_date = '';
 
   data.features.forEach(function (f) {
- 
-      if ( valid( f.properties?.end_time_date ) ){
 
-        if ( f.properties?.end_time_date > latest_end_date ){
+      if ( valid( f.properties?.end_time ) ){
 
-          latest_end_date = 
+        if ( f.properties?.end_time > parseInt( latest_end_time ) ){ // found a new later date
+
+          latest_end_time = f.properties.end_time;
+          latest_end_date = f.properties.end_time_date;
+
+          console.log( f.properties.end_time_date, f.properties.end_time );
 
         }
 
@@ -211,10 +214,13 @@ function renderMap( data ) {
 
   });
 
-  //const latest_end_date   = valid( data.features[ data.features.length - 1 ]?.properties?.start_time_date ) ? data.features[ data.features.length - 1 ].properties.start_time_date : '?';
-  //document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:after','content: "' + last_date + '"');
+  console.log( 'last end date: ', latest_end_date );
 
-  */
+  if ( latest_end_date !== 0 ){
+
+    document.styleSheets[0].addRule('.leaflet-control.leaflet-timeline-control:after','content: "' + latest_end_date + '"');
+
+  }
 
   timeline.on("change", function (e) {
 
@@ -494,7 +500,7 @@ async function handleQuery( url ){
               //end_time      = start_time;
               //end_time_date = v.pointintime.value.split('T')[0].replace(/^0+/, '');
               //end_time    = new Date( v.pointintime.value ).getTime() + 86400000; // FIXME: this end_time is not working 
-              //end_time      = start_time + 86400000;
+              end_time      = start_time + 86400; // FIXME
               end_time_date = v.pointintime.value.split('T')[0].toString().replace(/^0+/, '');
 
               //console.log( '3: ', v.pointintime.value, end_time, end_time_date );
