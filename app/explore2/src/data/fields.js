@@ -12272,6 +12272,23 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 262,
 },
 
+'map_locations_with_etnic_group' : {
+  create_condition: 'checkTag( item, 1, "ethnic-group" )',
+  title: 'Locations with this ethnic group',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20DISTINCT%20%3Flocation%20%3FlocationLabel%20%3Finception%20%3Fflag%20%3Fcoordinate%20%3Fgeoshape%20WHERE%20%7B%0A%0A%20%20wd%3A${item.qid}%20wdt%3AP276%20%3Flocation.%0A%20%20OPTIONAL%20%7B%20%3Flocation%20wdt%3AP41%20%3Fflag.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Flocation%20wdt%3AP625%20%3Fcoordinate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Flocation%20wdt%3AP3896%20%3Fgeoshape.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Flocation%20wdt%3AP571%20%3Finception.%20%7D%0A%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%0A%23defaultView%3AMap%0A%23meta%3Alocations%20with%20ethnicity%20${title_}',
+  icon: 'fa-solid fa-globe',
+  text: 'same ethnicity',
+  section: ['location-demography', 'main'],
+  rank: [30, 4951],
+  headline_create: 'valid( item.map_countries_with_etnic_group )',
+  headline_type: 'link-split',
+  headline_rank: 262,
+},
+
+/*
 'map_countries_with_etnic_group' : {
   create_condition: 'checkTag( item, 1, "ethnic-group" )',
   title: 'Countries with this ethnic group',
@@ -12287,6 +12304,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_type: 'link-split',
   headline_rank: 262,
 },
+*/
 
 'map_countries_with_similar_hdi' : {
   create_condition: 'valid( [ item.hdi, item.iso2 ] )',
