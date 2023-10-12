@@ -12283,7 +12283,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'same ethnicity',
   section: ['location-demography', 'main'],
   rank: [30, 4951],
-  headline_create: 'valid( item.map_countries_with_etnic_group )',
+  headline_create: 'valid( item.map_locations_with_etnic_group )',
   headline_type: 'link-split',
   headline_rank: 262,
 },
