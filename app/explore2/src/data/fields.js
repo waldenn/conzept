@@ -5304,22 +5304,22 @@ conzept_fields = {
 
 'notable_work_linkgraph' : {
   create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.notable_work )',
-  create_trigger: 'console.log( item.notable_work )',
+  //create_trigger: 'console.log( item.notable_work )',
   type: 'code',
   code: 'gotoLinkByQids( &quot;${ item.notable_work.join() }&quot;, &quot;link-split&quot; );',
   //code: 'gotoLinksAppByQids( &quot;${ item.notable_work.join(&quot;|&quot;) }&quot;, &quot;link&quot;, &quot;/app/links/?l=${explore.language}&t=&quot; );',
-  title: 'graph of notable works',
+  title: 'graph notable works',
   prop: '',
   mv: false,
   icon: 'fa-solid fa-medal',
-  text: 'link graph',
+  text: 'notable work graph',
   section: 'main',
-  rank: 61,
-  headline_create: 'valid( item.notable_work_linkgraph )',
-  headline_rank: 114,
+  rank: 5301,
+  headline_create: 'valid( item.datasource === "wikipedia" ) && valid( item.notable_work )',
   headline_type: 'code',
   headline_code: 'gotoLinkByQids( &quot;${ item.notable_work.join() }&quot;, &quot;link-split&quot; );',
   //headline_code: 'gotoLinksAppByQids( &quot;${ item.notable_work.join(&quot;|&quot;) }&quot;, &quot;link&quot;, &quot;/app/links/?l=${explore.language}&t=&quot; );',
+  headline_rank: 50,
 },
 
 'taxon_range' : {
