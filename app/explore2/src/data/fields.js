@@ -5405,9 +5405,26 @@ conzept_fields = {
   type: 'wikipedia-qid',
   mv: true,
   icon: 'fa-solid fa-users',
-  text: 'particip.',
+  text: 'participants',
   section: ['main'],
   rank: [7330],
+},
+
+'participant_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.participant )',
+  type: 'code',
+  code: 'gotoLinkByQids( &quot;${ item.participant.join() }&quot;, &quot;${title}&quot;, &quot;link-split&quot; );',
+  title: 'graph of notable works',
+  prop: '',
+  mv: false,
+  icon: 'fa-solid fa-users-rays',
+  text: 'participants graph',
+  section: 'main',
+  rank: 7342,
+  headline_create: 'valid( item.participant_linkgraph )',
+  headline_type: 'code',
+  headline_code: 'gotoLinkByQids( &quot;${ item.participant.join() }&quot;, &quot;${title}&quot;, &quot;link-split&quot; );',
+  headline_rank: 415,
 },
 
 'participant_team' : {

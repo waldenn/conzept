@@ -9568,8 +9568,7 @@ async function gotoLinkByQids( list, title, link_type ) { // TODO: add url argum
 
     if ( labels.length > 0 ){
 
-      const first_label = labels[0];
-      labels = labels.join(', ');
+      labels = title + ', ' + labels.join(', ');
 
       //url = url + labels;
       //console.log( labels );
