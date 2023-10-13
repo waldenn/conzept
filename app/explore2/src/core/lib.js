@@ -9543,9 +9543,7 @@ function getLangCode3( lang2 ){
 
 }
 
-async function gotoLinkByQids( list, link_type ) { // TODO: add url argument
-
-  //console.log( list, link_type );
+async function gotoLinkByQids( list, title, link_type ) { // TODO: add url argument
 
   list = list.split(',');
   //list = list.join(&quot;|&quot;).replace(',','%2C').split('|');
@@ -9579,7 +9577,7 @@ async function gotoLinkByQids( list, link_type ) { // TODO: add url argument
       handleClick({
         id        : 'n1-0',
         type      : link_type,
-        title     : first_label,
+        title     : title,
         language  : explore.language,
         qid       : '',
         url       : `/app/links/?l=${explore.language}&t=${labels}`, // FIXME use "url" argument
