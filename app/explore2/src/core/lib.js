@@ -9568,23 +9568,28 @@ async function gotoLinkByQids( list, link_type ) { // TODO: add url argument
 
     }
 
-    labels = labels.join(', ');
+    if ( labels.length > 0 ){
 
-    //url = url + labels;
-    console.log( labels );
+      const first_label = labels[0];
+      labels = labels.join(', ');
 
-    handleClick({
-      id        : 'n1-0',
-      type      : link_type,
-      title     : labels,
-      language  : explore.language,
-      qid       : '',
-      url       : `/app/links/?l=${explore.language}&t=${labels}`, // FIXME use "url" argument
-      tag       : '',
-      languages : '',
-      custom    : '',
-      target_pane : 'p0',
-    });
+      //url = url + labels;
+      //console.log( labels );
+
+      handleClick({
+        id        : 'n1-0',
+        type      : link_type,
+        title     : first_label,
+        language  : explore.language,
+        qid       : '',
+        url       : `/app/links/?l=${explore.language}&t=${labels}`, // FIXME use "url" argument
+        tag       : '',
+        languages : '',
+        custom    : '',
+        target_pane : 'p0',
+      });
+
+    }
 
   });
 
