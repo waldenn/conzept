@@ -109,7 +109,7 @@ function addItemCountries( item, list, former ){
 }
 
 // detect the relevant wikidata-data and put this info into each item
-function setWikidata( item, wd, single, target_pane, callback ){
+async function setWikidata( item, wd, single, target_pane, callback ){
 
   //console.log( 'setWikidata()' );
 

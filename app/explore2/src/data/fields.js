@@ -5302,6 +5302,26 @@ conzept_fields = {
   rank: [100,5300],
 },
 
+'notable_work_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.notable_work )',
+  create_trigger: 'console.log( item.notable_work )',
+  type: 'code',
+  code: 'gotoLinkByQids( &quot;${ item.notable_work.join() }&quot;, &quot;link&quot; );',
+  //code: 'gotoLinksAppByQids( &quot;${ item.notable_work.join(&quot;|&quot;) }&quot;, &quot;link&quot;, &quot;/app/links/?l=${explore.language}&t=&quot; );',
+  title: 'graph of notable works',
+  prop: '',
+  mv: false,
+  icon: 'fa-solid fa-medal',
+  text: 'link graph',
+  section: 'main',
+  rank: 61,
+  headline_create: 'valid( item.notable_work_linkgraph )',
+  headline_rank: 114,
+  headline_type: 'code',
+  headline_code: 'gotoLinkByQids( &quot;${ item.notable_work.join() }&quot;, &quot;link&quot; );',
+  //headline_code: 'gotoLinksAppByQids( &quot;${ item.notable_work.join(&quot;|&quot;) }&quot;, &quot;link&quot;, &quot;/app/links/?l=${explore.language}&t=&quot; );',
+},
+
 'taxon_range' : {
   title: 'taxon range',
   prop: '9714',
@@ -14420,7 +14440,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-skull',
   text: 'conflict sites',
   section: ['library-history'],
-  rank: [ 238 ],
+  rank: [ 94 ],
 },
 
 'location_heritage_sites' : {

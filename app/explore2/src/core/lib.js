@@ -9543,6 +9543,53 @@ function getLangCode3( lang2 ){
 
 }
 
+async function gotoLinkByQids( list, link_type ) { // TODO: add url argument
+
+  //console.log( list, link_type );
+
+  list = list.split(',');
+  //list = list.join(&quot;|&quot;).replace(',','%2C').split('|');
+
+  let promiseB = fetchLabel( list, explore.language ).then(function(result) {
+
+    let labels = [];
+
+    if ( valid( result.entities ) ){
+
+      Object.keys( result.entities ).forEach(( k, index ) => {
+
+        if ( result.entities[ k ]?.labels[ explore.language ] ){
+
+          labels.push( result.entities[ k ].labels[ explore.language ].value );
+
+        }
+
+      });
+
+    }
+
+    labels = labels.join(', ');
+
+    //url = url + labels;
+    console.log( labels );
+
+    handleClick({
+      id        : 'n1-0',
+      type      : link_type,
+      title     : labels,
+      language  : explore.language,
+      qid       : '',
+      url       : `/app/links/?l=${explore.language}&t=${labels}`, // FIXME use "url" argument
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p0',
+    });
+
+  });
+
+}
+
 async function addToCompare( qid ) {
 
   qid = qid.trim();
