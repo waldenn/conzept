@@ -9579,7 +9579,7 @@ async function gotoLinkByQids( list, view_title, title, link_type ) { // TODO: a
         title     : title,
         language  : explore.language,
         qid       : '',
-        url       : `/app/links/?l=${explore.language}&t=${labels}&title=${view_title}%20%3A%20${title}`, // FIXME use "url" argument
+        url       : `/app/links/?l=${explore.language}&t=${labels}&title=${title}%20%3A%20${view_title}`, // FIXME use "url" argument
         tag       : '',
         languages : '',
         custom    : '',
