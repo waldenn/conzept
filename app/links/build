@@ -1,4 +1,4 @@
 #!/bin/sh
 cd js &&
-cat utils.js wikipedia_parse.js api.js helpers.js main_functions.js main.js network_serialize.js bindings.js commafield.js loadsaved.js modals.js progress.js > ../out.js &&
-minify ../out.js > ../bundle.js
+cat utils.js wikipedia_parse.js api.js helpers.js main_functions.js main.js network_serialize.js bindings.js commafield.js loadsaved.js modals.js progress.js > ../bundle.js
+#minify ../out.js > ../bundle.js

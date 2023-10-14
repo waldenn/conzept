@@ -8,6 +8,9 @@ function loadSaved() {
   if (window.location.search) {
 
 		window.language = getParameterByName('l') || 'en';    
+
+    $('#view-title').text( getParameterByName('title') );
+
 		tags = getParameterByName('t') || '';    
 
     // optional: use Qids -> titles

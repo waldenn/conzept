@@ -2251,7 +2251,7 @@ async function renderShowCommand( view, list ){
         title     : '',
         language  : explore.language,
         qid       : '',
-        url       : `${explore.base}/app/links/?l=${explore.language}&t=&q=${qid_list}`,
+        url       : `${explore.base}/app/links/?l=${explore.language}&t=&q=${qid_list}&title=linkgraph`,
         tag       : '',
         languages : '',
         custom    : '',

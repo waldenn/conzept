@@ -7112,7 +7112,7 @@ function receiveMessage(event){
             title     : explore.q,
             language  : explore.language,
             qid       : '',
-            url       : `${explore.base}/app/links/?l=${explore.language}&t=&q=${data}`,
+            url       : `${explore.base}/app/links/?l=${explore.language}&t=&q=${data}&title=${explore.q}`,
             tag       : '',
             languages : '',
             custom    : '',
@@ -9543,7 +9543,7 @@ function getLangCode3( lang2 ){
 
 }
 
-async function gotoLinkByQids( list, title, link_type ) { // TODO: add url argument
+async function gotoLinkByQids( list, view_title, title, link_type ) { // TODO: add url argument
 
   list = list.split(',');
   //list = list.join(&quot;|&quot;).replace(',','%2C').split('|');
@@ -9579,7 +9579,7 @@ async function gotoLinkByQids( list, title, link_type ) { // TODO: add url argum
         title     : title,
         language  : explore.language,
         qid       : '',
-        url       : `/app/links/?l=${explore.language}&t=${labels}`, // FIXME use "url" argument
+        url       : `/app/links/?l=${explore.language}&t=${labels}&title=${view_title}%20%3A%20${title}`, // FIXME use "url" argument
         tag       : '',
         languages : '',
         custom    : '',

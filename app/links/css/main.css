@@ -30,6 +30,18 @@ body.dark canvas {
   color: #fff !important;
 }
 
+#view-title {
+  position: absolute;
+  top: .8em;
+  left: 4em;
+  z-index: 9999;
+  color: black;
+  font-weight: bold;
+  background: #fbfaf9c9;
+  padding: 0px 0.3em;
+  border-radius: 0.3em;
+}
+
 p {
   font-weight: 300;
 }
