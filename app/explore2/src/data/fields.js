@@ -1470,7 +1470,7 @@ conzept_fields = {
 'is_genre' : {
   default_value: false,
   create_condition: 'listed( item.subclasses, indicators.genre.value )',
-  create_trigger: 'setTags( item, [ "cultural-concept", "genre" ] )',
+  //create_trigger: 'setTags( item, [ "cultural-concept", "genre" ] )',
   value: true,
   render_condition: false,
   title: 'is_genre',
@@ -8594,18 +8594,70 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
-'music_genre_query' : {
+'music_audio_genre_query' : {
   default_value: false,
   create_condition: '${ valid( item.is_music_genre ) }', // TODO
   title: 'music genre items',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemAudio%20%3FauthorLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20wd%3A${item.qid}.%0A%20%20%20%20%3Fitem%20wdt%3AP51%20%3FitemAudio.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP86%20%3Fauthor%20%7D.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Fpublication_date%20%7D.%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0A%23meta%3Amusic%20genre%0A%23defaultView%3ATable%0A',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemAudio%20%3FauthorLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20wd%3A${item.qid}.%0A%20%20%20%20%3Fitem%20wdt%3AP51%20%3FitemAudio.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP86%20%3Fauthor%20%7D.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Fpublication_date%20%7D.%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0A%23meta%3Amusic%20genre+%3A+${item.title}%0A%23defaultView%3ATable%0A',
   icon: 'fa-solid fa-music',
   text: 'genre audio',
   section: ['art','main'],
   rank: [50,1630],
+},
+
+'music_genre_query' : {
+  default_value: false,
+  //create_condition: 'checkTag(item, 1, "music-genre")', // TODO
+  create_condition: '${ valid( item.is_music_genre ) }', // TODO
+  title: 'music in this genre',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fperformer%20%3FperformerLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP136%20wd%3A${item.qid}.%0A%20%20%3Fitem%20wdt%3AP175%20%3Fperformer%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication_date.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%202000%0A%23meta%3Amusic%20in%20genre%20%3A%20${item.title}%0A%23defaultView%3ATable',
+  icon: 'fa-solid fa-music',
+  text: 'musics in genre',
+  section: ['media-audio','art','main'],
+  rank: [30,50,1630],
+  headline_create: 'valid( item.music_genre_query )',
+  headline_type: 'link-split',
+  headline_rank: 150,
+},
+
+'film_genre_query' : {
+  default_value: false,
+  create_condition: 'checkTag(item, 1, "film-genre")',
+  title: 'film in this genre',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP136%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication_date.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%202000%0A%23meta%3Afilm%20in%20genre%20%3A%20${item.title}%0A%23defaultView%3ATable',
+  icon: 'fa-solid fa-film',
+  text: 'films in genre',
+  section: ['media-video','art','main'],
+  rank: [30,50,1630],
+  headline_create: 'valid( item.film_genre_query )',
+  headline_type: 'link-split',
+  headline_rank: 150,
+},
+
+'literature_genre_query' : {
+  default_value: false,
+  create_condition: 'checkTag(item, 1, "literary-genre")',
+  title: 'literature in this genre',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP136%20wd%3A${item.qid}.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3Fpublication_date.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%202000%0A%23meta%3Aliterary%20in%20genre%20%3A%20${item.title}%0A%23defaultView%3ATable',
+  icon: 'fa-solid fa-book',
+  text: 'literature in genre',
+  section: ['library-general','art','main'],
+  rank: [10,50,1630],
+  headline_create: 'valid( item.literature_genre_query )',
+  headline_type: 'link-split',
+  headline_rank: 150,
 },
 
 'genre_query' : {

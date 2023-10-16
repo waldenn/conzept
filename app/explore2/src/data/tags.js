@@ -311,6 +311,14 @@ var conzept_tags = {
         text : "music genre",
         icon : ["fa-solid fa-music"],
       },
+      "film-genre" : {
+        text : "book genre",
+        icon : ["fa-solid fa-film"],
+      },
+      "literary-genre" : {
+        text : "literary genre",
+        icon : ["fa-solid fa-book"],
+      },
       "religion" : {
         text : "religious concept",
         icon : ["fa-solid fa-dharmachakra"],
