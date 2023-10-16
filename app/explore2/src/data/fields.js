@@ -1467,6 +1467,22 @@ conzept_fields = {
   rank: 1,
 },
 
+'is_fauna_region' : {
+  default_value: false,
+  create_condition: 'listed( item.instances, [ 74817647 ] ) && listed( item.subclasses, [ 104021 ] )',
+  create_trigger: 'setTags( item, [ "cultural-concept", "fauna-region" ] )',
+  value: true,
+  render_condition: false,
+  title: 'is_fauna_region',
+  prop: '',
+  type: '',
+  mv: false,
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 'is_genre' : {
   default_value: false,
   create_condition: 'listed( item.subclasses, indicators.genre.value )',
@@ -5165,6 +5181,56 @@ conzept_fields = {
   section: ['science-biology'],
   rank: [25],
 },
+
+'flora_endemic_to_location_query' : {
+  default_value: false,
+  create_condition: 'checkTag( item, 1, "floral-region") && valid( item.country )',
+  title: 'endemic plant species in this country',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP183%20wd%3A${item.country}%20.%0A%20%20%3Fitem%20(wdt%3AP1070%7Cwdt%3AP5037%7Cwdt%3AP961%7Cwdt%3AP2036)%20%3FplantID.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%24%7Bexplore.language%7D%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)%0A%23defaultView%3ATable%0A%23meta%3A${item.title}',
+  icon: 'fa-brands fa-pagelines',
+  text: 'endemic flora',
+  section: ['science-biology','main'],
+  rank: [25,1631],
+  headline_create: 'valid( item.flora_endemic_to_location_query )',
+  headline_type: 'link-split',
+  headline_rank: 150,
+},
+
+'fauna_endemic_to_location_query' : {
+  default_value: false,
+  create_condition: 'valid( [ item.is_fauna_region, item.country ] )',
+  //create_condition: 'checkTag( item, 1, "fauna-region") && valid( item.country )',
+  title: 'endemic fauna species in this country',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP183%20wd%3A${item.country}%20.%0A%20%20FILTER%20NOT%20EXISTS%20%7B%20%20%3Fitem%20(wdt%3AP1070%7Cwdt%3AP5037%7Cwdt%3AP961%7Cwdt%3AP2036)%20%3FplantID%20%7D.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%24%7Bexplore.language%7D%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)%0A%23defaultView%3ATable%0A%23meta%3A${item.title}',
+  icon: 'fa-solid fa-paw',
+  text: 'endemic fauna',
+  section: ['science-biology','main'],
+  rank: [25,1631],
+  headline_create: 'valid( item.fauna_endemic_to_location_query )',
+  headline_type: 'link-split',
+  headline_rank: 150,
+},
+
+/*
+'flora_endemic_to_location_query' : {
+  value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP183%20wd%3A${item.qid}%20.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)',
+  render_condition: 'checkTag( item, 1, "floral-region") && ', // constrict to: country, province, eiland?
+  title: 'endemic plant species in this location',
+  type: 'link-split',
+  mv: true,
+  url: '',
+  icon: 'fa-brands fa-pagelines',
+  text: 'endemic species',
+  section: ['science-biology'],
+  rank: [25],
+},
+*/
 
 'main_subject_relations_query' : {
   value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP921%20wd%3A${item.qid}%20.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)',

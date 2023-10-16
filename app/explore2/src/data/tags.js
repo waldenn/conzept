@@ -79,6 +79,14 @@ var conzept_tags = {
         text : "railway station",
         icon : ["fa-solid fa-train"],
       },
+      "floral-region" : {
+        text : "floral region",
+        icon : ["fa-brands fa-pagelines"],
+      },
+      "fauna-region" : {
+        text : "fauna region",
+        icon : ["fa-solid fa-paw"],
+      },
     },
   },
 
