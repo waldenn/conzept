@@ -8723,8 +8723,8 @@ if ( valid( item.found_in_taxon ) ){
 
 'movement_proponents_query' : {
   //default_value: false,
-  create_condition: 'listed( item.instances, indicators.art_movement.value ) || listed( item.instances, indicators.social_movement.value )',
-  create_trigger: 'console.log( item.tags )',
+  create_condition: 'listed( item.instances, indicators.art_movement.value ) || listed( item.subclasses, indicators.art_movement.value ) || listed( item.instances, indicators.social_movement.value || listed( item.subclasses, indicators.social_movement.value )',
+  //create_trigger: 'console.log( item.tags )',
   //create_condition: 'checkTag( item, 1, ["art-movement", "social-movement"] )',
   title: 'movement proponents',
   prop: '',
