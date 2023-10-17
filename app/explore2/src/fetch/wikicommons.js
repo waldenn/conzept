@@ -178,7 +178,7 @@ async function fetchWikicommons( args, total_results, page, sortby, qid_ ){
               // TOFIX: see "goat" depicts (7th  result"Farm scene, Wales?" needs a "?" fix in the PHP code.
               let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + encodeURIComponent( label ) + '&json=' + JSON.stringify( coll );
 
-              let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+              let iiif_viewer_url = '/app/iiif/index.html#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
               url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
 

@@ -1482,9 +1482,9 @@ function createSingleImageIIIF( title, image_url ){
 
   if ( coll.images.length > 0 ){
 
-    let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+    let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-    let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+    let iiif_viewer_url = explore.base + '/app/iiif/index.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
     return JSON.stringify( encodeURIComponent( iiif_viewer_url ) );
 

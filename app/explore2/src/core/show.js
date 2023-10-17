@@ -1125,9 +1125,9 @@ async function showRandomEuropeanaArtwork(){
 						if ( coll.images.length > 0 ){ // we found some images
 
 							// create an IIIF image-collection file
-							let iiif_manifest_link = '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+							let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-							view_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+							view_url = '/app/iiif/index.html#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
 							console.log( view_url );
 
@@ -1267,9 +1267,9 @@ async function showRandomArtwork(){
 					if ( coll.images.length > 0 ){ // we found some images
 
 						// create an IIIF image-collection file
-						let iiif_manifest_link = explore.base + '/app/response/iiif-manifest?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+						let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-						let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+						let iiif_viewer_url = explore.base + '/app/iiif/index.html#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
 						view_url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
 

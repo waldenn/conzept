@@ -11923,7 +11923,7 @@ if ( valid( item.found_in_taxon ) ){
   title: 'IIIF media viewer',
   prop: '6108',
   type: 'link',
-  url: '${explore.base}/app/iiif/#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif_wikidata ) }',
+  url: '${explore.base}/app/iiif/index.html#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif_wikidata ) }',
   mv: false,
   //mv: true,
   icon: 'fa-regular fa-eye',

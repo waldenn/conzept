@@ -1410,7 +1410,7 @@ async function setupLispEnv(){
 					title     : '',
 					qid       : '',
 					language  : explore.language,
-					url       : `${explore.base}/app/iiif/#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( list[0] ) }`,
+					url       : `${explore.base}/app/iiif/index.html#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( list[0] ) }`,
 					tag       : '',
 					languages : '',
 					custom    : '',
@@ -1645,7 +1645,7 @@ async function setupLispEnv(){
 					// create an IIIF image-collection file
 					let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-					let iiif_viewer_url = explore.base + '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+					let iiif_viewer_url = explore.base + '/app/iiif/index.html#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
 					url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
 
@@ -1669,7 +1669,7 @@ async function setupLispEnv(){
 			 // create an IIIF image-collection file
 				let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&t=' + encodeURIComponent( '...' ) + '&json=' + JSON.stringify( coll );
 
-				let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=0&manifest=' + encodeURIComponent( iiif_manifest_link );
+				let iiif_viewer_url = '/app/iiif/index.html#?c=&m=&s=&cv=0&manifest=' + encodeURIComponent( iiif_manifest_link );
 
 				url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
 

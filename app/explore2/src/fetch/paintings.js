@@ -191,7 +191,7 @@ async function fetchPaintings( args, total_results, page, sortby ){
 
               let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-              let iiif_viewer_url = '/app/iiif/#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+              let iiif_viewer_url = '/app/iiif/index.html#?c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
               url = encodeURIComponent( JSON.stringify( encodeURIComponent( iiif_viewer_url ) ) );
 
