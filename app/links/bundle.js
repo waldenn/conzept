@@ -634,6 +634,7 @@ function resetNetwork(start) {
     {
       id: startID,
       label: wordwrap(decodeURIComponent(start), 20),
+      qid: '',
       value: 2,
       level: 0,
       color: getColor(0),
@@ -654,8 +655,6 @@ function resetNetwork(start) {
 
     tags.forEach((element) => { 
 
-      //console.log( element );
-
       expandNode( encodeURIComponent( element ) ); 
 
       firstAction = false;
@@ -669,6 +668,7 @@ function resetNetwork(start) {
 
 // Add a new start node to the map.
 function addStart(start, index) {
+
   if (needsreset) {
     // Delete everything only for the first call to addStart by tracking needsreset
     resetNetwork(start);
@@ -680,6 +680,7 @@ function addStart(start, index) {
       {
         id: startID,
         label: wordwrap(decodeURIComponent(start), 20),
+        qid: '',
         value: 2,
         level: 0,
         color: getColor(0),
@@ -939,6 +940,8 @@ let firstAction = true;
 // Functions that will be used as bindings
 function expandEvent(params) { // Expand a node (with event handler)
 
+  //console.log( 'firstAction(): ', params );
+
 	if (params.edges.length > 0) {// if some edge is selected
 
     let connected_nodes = network.getConnectedNodes( params.edges[0] );
@@ -955,6 +958,8 @@ function expandEvent(params) { // Expand a node (with event handler)
 
       // show wikipedia page and mark the line where the link first occurs
       var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
+
+      //window.gotoArticle( qid );
 
       window.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: 'ps2', ids: link_href } }, '*' );
 
@@ -1119,15 +1124,21 @@ function getItems(inp) {
 // Back to inner workings
 
 // Add an item to an input
-function addItem(cf, itemtext) {
+function addItem(cf, itemtext, qid ) {
+
   const item = document.createElement('div');
   const text = document.createTextNode(itemtext);
+
   item.appendChild(text);
   item.className = 'item';
   item.onclick = removeThis;
+  //item.qid = qid;
+
   cf.insertBefore(item, cf.getElementsByTagName('input')[0]);
+
   // Turn off the placeholder
   offPlaceholder(cf);
+
 }
 
 // Remove the last item from a commafield
@@ -1206,7 +1217,8 @@ cfs.forEach((cf) => {
 /* global network, makeNetwork, loadGraph, Progress, Modal */
 // Load a saved graph if an ID is provided in the query string
 
-var tags = [];
+var tags      = []; // Wikipedia strings (translated)
+var tag_qids  = []; // Wikidata Qids (associated with the title-strings by index position)
 
 function loadSaved() {
 
@@ -1273,6 +1285,7 @@ function loadSaved() {
 											//console.log( wp_title );
 
 											qid_titles.push( wp_title );
+											tag_qids.push( q );
 
 											//console.log( qid_titles );
 
@@ -1346,7 +1359,10 @@ function doRender() {
 
   $.each( tags, function( i, tag ){
 
-    addItem( document.getElementById('input'), decodeURIComponent( tag ) )
+    addItem( document.getElementById('input'), decodeURIComponent( tag ) );
+
+    // TODO: add qid field
+    //addItem( document.getElementById('input'), decodeURIComponent( tag ), tag_qids[ i ] );
 
   });
 

@@ -52,15 +52,21 @@ function getItems(inp) {
 // Back to inner workings
 
 // Add an item to an input
-function addItem(cf, itemtext) {
+function addItem(cf, itemtext, qid ) {
+
   const item = document.createElement('div');
   const text = document.createTextNode(itemtext);
+
   item.appendChild(text);
   item.className = 'item';
   item.onclick = removeThis;
+  //item.qid = qid;
+
   cf.insertBefore(item, cf.getElementsByTagName('input')[0]);
+
   // Turn off the placeholder
   offPlaceholder(cf);
+
 }
 
 // Remove the last item from a commafield

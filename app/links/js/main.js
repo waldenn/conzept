@@ -67,6 +67,7 @@ function resetNetwork(start) {
     {
       id: startID,
       label: wordwrap(decodeURIComponent(start), 20),
+      qid: '',
       value: 2,
       level: 0,
       color: getColor(0),
@@ -87,8 +88,6 @@ function resetNetwork(start) {
 
     tags.forEach((element) => { 
 
-      //console.log( element );
-
       expandNode( encodeURIComponent( element ) ); 
 
       firstAction = false;
@@ -102,6 +101,7 @@ function resetNetwork(start) {
 
 // Add a new start node to the map.
 function addStart(start, index) {
+
   if (needsreset) {
     // Delete everything only for the first call to addStart by tracking needsreset
     resetNetwork(start);
@@ -113,6 +113,7 @@ function addStart(start, index) {
       {
         id: startID,
         label: wordwrap(decodeURIComponent(start), 20),
+        qid: '',
         value: 2,
         level: 0,
         color: getColor(0),

@@ -1,7 +1,8 @@
 /* global network, makeNetwork, loadGraph, Progress, Modal */
 // Load a saved graph if an ID is provided in the query string
 
-var tags = [];
+var tags      = []; // Wikipedia strings (translated)
+var tag_qids  = []; // Wikidata Qids (associated with the title-strings by index position)
 
 function loadSaved() {
 
@@ -68,6 +69,7 @@ function loadSaved() {
 											//console.log( wp_title );
 
 											qid_titles.push( wp_title );
+											tag_qids.push( q );
 
 											//console.log( qid_titles );
 
@@ -141,7 +143,10 @@ function doRender() {
 
   $.each( tags, function( i, tag ){
 
-    addItem( document.getElementById('input'), decodeURIComponent( tag ) )
+    addItem( document.getElementById('input'), decodeURIComponent( tag ) );
+
+    // TODO: add qid field
+    //addItem( document.getElementById('input'), decodeURIComponent( tag ), tag_qids[ i ] );
 
   });
 

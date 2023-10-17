@@ -8,6 +8,8 @@ let firstAction = true;
 // Functions that will be used as bindings
 function expandEvent(params) { // Expand a node (with event handler)
 
+  //console.log( 'firstAction(): ', params );
+
 	if (params.edges.length > 0) {// if some edge is selected
 
     let connected_nodes = network.getConnectedNodes( params.edges[0] );
@@ -24,6 +26,8 @@ function expandEvent(params) { // Expand a node (with event handler)
 
       // show wikipedia page and mark the line where the link first occurs
       var url = CONZEPT_WEB_BASE + '/app/wikipedia/?t=' + title + '&l=' + window.getParameterByName('l') + '&qid=';
+
+      //window.gotoArticle( qid );
 
       window.postMessage({ event_id: 'handleClick', data: { type: 'link', title: title, url: url, current_pane: getCurrentPane(), target_pane: 'ps2', ids: link_href } }, '*' );
 
