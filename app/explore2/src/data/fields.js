@@ -1,7 +1,8 @@
 conzept_fields = {
 
 'image_full' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=3500px',
+  value: '${ wd.claims.P18[0] }',
+  //value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=3500px',
   render_condition: false,
   title: 'image',
   prop: '18',
@@ -11994,7 +11995,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [20,1020],
   headline_create: 'valid( item.panorama )',
   headline_type: 'link',
-  headline_url: '${ createSingleImageIIIF( item.title, item.panorama ) }',
+  headline_url: '${ createSingleImageIIIF( item.title, item.panorama, "4000" ) }',
   headline_rank: 350,
 },
 
@@ -18792,17 +18793,16 @@ if ( valid( item.found_in_taxon ) ){
 'painting_iiif' : {
   title: 'painting IIIF view',
   create_condition: 'checkTag( item, 1, "painting") && valid( item.image_full )',
+  prop: '',
   type: 'link',
-  //url: '/app/cors/raw/?url=${ encodeURIComponent( item.image_full ) }',
-  url: '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }',
+  url: '${ createSingleImageIIIF( item.title, item.image_full, "3500" ) }',
   mv: false,
   icon: 'fa-regular fa-eye',
   text: 'painting view',
   section: ['media-image','main'],
-  rank: [22,1022],
+  rank: [20,1020],
   headline_create: 'valid( item.painting_iiif )',
   headline_type: 'link',
-  headline_url: '${ createSingleImageIIIF( item.title, "/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( item.image_full ) }" ) }',
   headline_rank: 351,
 },
 

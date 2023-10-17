@@ -1468,7 +1468,7 @@ function getBoundingBox(lon, lat, delta){
 
 }
 
-function createSingleImageIIIF( title, image_url ){
+function createSingleImageIIIF( title, image_url, width ){
 
   let url			= '';
   let coll		= { "images": [ ]};
@@ -1476,7 +1476,7 @@ function createSingleImageIIIF( title, image_url ){
   let author  = '';
   let desc    = '';
 
-  let img = explore.base + '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent( image_url ) + '?width=5000px';
+  let img = explore.base + '/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent( image_url ) + '?width=' + width + 'px';
 
   coll.images.push( [ img, label, desc, author, 'wikiCommons' ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
 
