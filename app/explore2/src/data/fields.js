@@ -1,14 +1,3 @@
-/*
-define(function (require, exports, module) {
-
-  module.exports = {
-    conzept_fields      : conzept_fields,
-    conzept_field_names : conzept_field_names,
-  }
-
-});
-*/
-
 conzept_fields = {
 
 'image_full' : {
@@ -1499,6 +1488,7 @@ conzept_fields = {
   rank: 1,
 },
 
+/*
 'is_music_genre' : {
   default_value: false,
   create_condition: 'listed( item.instances, [ 188451 ] )',
@@ -1514,6 +1504,7 @@ conzept_fields = {
   section: '',
   rank: 1,
 },
+*/
 
 'is_company' : {
   default_value: false,
@@ -5266,16 +5257,17 @@ conzept_fields = {
   headline_rank: 425,
 },
 
-'movement_works_query' : {
+'art_movement_works_query' : {
   value: 'https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Fimage%0AWHERE%0A%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ3305213%20%3B%0A%20%20%20%20wdt%3AP135%20wd%3A${item.qid}%20.%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%24%7Bexplore.language%7D%2Cen%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%20%7D%0AORDER%20BY%20lcase(%3FitemLabel)',
-  render_condition: 'listed( item.instances, indicators.movement.value )',
-  title: 'movement works',
+  //render_condition: 'checkTag( item, 1, "art-movement")',
+  render_condition: 'listed( item.instances, indicators.art_movement.value )',
+  title: 'art movement works',
   prop: '0',
   type: 'wikipedia-qid-sparql',
   mv: true,
   url: '',
   icon: 'fa-solid fa-stream',
-  text: 'movement works',
+  text: 'art movement works',
   section: ['art','main'],
   rank: [20,1600],
 },
@@ -8483,7 +8475,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'period_timeline' : {
-  create_condition: 'checkTag(item, 1, "period") || listed( item.instances, indicators.movement.value )',
+  //create_condition: 'checkTag(item, 1, [ "period", "art-movement" ] )',
+  create_condition: 'checkTag(item, 1, "period") || listed( item.instances, indicators.art_movement.value )',
   title: 'Geo-timeline of a period',
   prop: '',
   type: 'link-split',
@@ -8632,7 +8625,8 @@ if ( valid( item.found_in_taxon ) ){
 
 // activated by instance-indicators
 'wad_movement_class' : {
-  create_condition: 'listed( item.instances, indicators.movement.value )',
+  //create_condition: 'checkTag( item, 1, "art-movement")',
+  create_condition: 'listed( item.instances, indicators.art_movement.value )',
   title: 'Wikidata Art Depiction Explorer: art movement items',
   prop: '',
   type: 'link',
@@ -8662,7 +8656,8 @@ if ( valid( item.found_in_taxon ) ){
 
 'music_audio_genre_query' : {
   default_value: false,
-  create_condition: '${ valid( item.is_music_genre ) }', // TODO
+  create_condition: 'checkTag( item, 1, "music-genre")',
+  //create_condition: '${ valid( item.is_music_genre ) }', // TODO
   title: 'music genre items',
   prop: '',
   type: 'link-split',
@@ -8676,8 +8671,8 @@ if ( valid( item.found_in_taxon ) ){
 
 'music_genre_query' : {
   default_value: false,
-  //create_condition: 'checkTag(item, 1, "music-genre")', // TODO
-  create_condition: '${ valid( item.is_music_genre ) }', // TODO
+  create_condition: 'checkTag(item, 1, "music-genre")', // TODO
+  //create_condition: '${ valid( item.is_music_genre ) }', // TODO
   title: 'music in this genre',
   prop: '',
   type: 'link-split',
@@ -8710,7 +8705,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'literature_genre_query' : {
-  default_value: false,
+  //default_value: false,
   create_condition: 'checkTag(item, 1, "literary-genre")',
   title: 'literature in this genre',
   prop: '',
@@ -8727,13 +8722,15 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'movement_proponents_query' : {
-  default_value: false,
-  create_condition: 'listed( item.instances, indicators.movement.value )',
-  title: 'music in this genre',
+  //default_value: false,
+  create_condition: 'listed( item.instances, indicators.art_movement.value ) || listed( item.instances, indicators.social_movement.value )',
+  create_trigger: 'console.log( item.tags )',
+  //create_condition: 'checkTag( item, 1, ["art-movement", "social-movement"] )',
+  title: 'movement proponents',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fperson%20%3FpersonLabel%20%3Fbirth%20%3Fdeath%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fperson%20wdt%3AP135%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP31%20wd%3AQ5.%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP569%20%3Fbirth.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP570%20%3Fdeath.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%202000%0A%23meta%3Amovement%20proponents%20%3A%20${item.title}%0A%23defaultView%3ATable',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fperson%20%3FpersonLabel%20%3Fbirth%20%3Fdeath%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fperson%20(wdt%3AP135%7Cwdt%3AP1142%7Cwdt%3AP1576%7Cwdt%3AP607%7Cwdt%3AP463)%20wd%3A${item.qid}%3B%0A%20%20%20%20wdt%3AP31%20wd%3AQ5.%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP569%20%3Fbirth.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP570%20%3Fdeath.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%202000%0A%23meta%3Amovement%20proponents%20${item.title}%0A%23defaultView%3ATable',
   icon: 'fa-solid fa-people-group',
   text: 'movement proponents',
   section: ['library-history','art','main'],
@@ -12177,7 +12174,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'choice_quiz_movement_painters' : {
-  create_condition: 'listed( item.instances, indicators.movement.value )',
+  //create_condition: 'checkTag( item, 1, ["art-movement"] )',
+  create_condition: 'listed( item.instances, indicators.art_movement.value )',
   title: 'choice quiz: movement painters',
   prop: '',
   type: 'link-split',
@@ -14270,13 +14268,13 @@ if ( valid( item.found_in_taxon ) ){
   rank: [10],
 },
 
-'movement' : {
-  title: 'movement',
+'art_movement' : {
+  title: 'art_movement',
   prop: '135',
   type: 'wikipedia-qid',
   mv: true,
   icon: 'fa-brands fa-cloudsmith',
-  text: 'movement',
+  text: 'art movement',
   section: ['art','main'],
   rank: [15,1610],
 },
@@ -18995,7 +18993,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'openartbrowser_movement' : {
   title: 'OpenArtBrowser movement',
-  create_condition: 'listed( item.instances, indicators.movement.value )',
+  create_condition: 'listed( item.instances, indicators.art_movement.value )',
   type: 'link',
   url: 'https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0',
   mv: false,
@@ -19077,7 +19075,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_art_movement' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && listed( item.instances, indicators.movement.value ) && !isEmbedded()',
+  //create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 1, ["art-movement"] )  && !isEmbedded()',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && listed( item.instances, indicators.art_movement.value ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',

@@ -4694,7 +4694,7 @@ function getSimilarSparqlURL( item ){
   let studied_by_condition = '';
   let studies_condition = '';
   let genre_condition = '';
-  let movement_condition = '';
+  let art_movement_condition = '';
   let admin_condition = '';
   let creator_condition = '';
   let category_condition = '';
@@ -4708,7 +4708,7 @@ function getSimilarSparqlURL( item ){
 
     if ( valid( item.industry ) ){ industry_condition = '%0A%20%20%3Fitem%20wdt%3AP452%20wd%3A' + item.industry[0] + '%20.'; }
     else if ( valid( item.genre ) ){ genre_condition = '%0A%20%20%3Fitem%20wdt%3AP136%20wd%3A' + item.genre[0] + '%20.'; }
-    else if ( valid( item.movement ) ){ movement_condition = '%0A%20%20%3Fitem%20wdt%3AP135%20wd%3A' + item.movement[0] + '%20.'; }
+    else if ( valid( item.art_movement ) ){ art_movement_condition = '%0A%20%20%3Fitem%20wdt%3AP135%20wd%3A' + item.art_movement[0] + '%20.'; }
     else if ( valid( item.studied_by ) ){ studied_by_condition = '%0A%20%20%3Fitem%20wdt%3AP2579%20wd%3A' + item.studied_by[0] + '%20.'; }
     else if ( valid( item.studies ) ){ studies_condition = '%0A%20%20%3Fitem%20wdt%3AP2578%20wd%3A' + item.studies[0] + '%20.'; }
     else if ( valid( item.creator ) ){ creator_condition = '%0A%20%20%3Fitem%20wdt%3AP170%20wd%3A' + item.creator[0] + '%20.'; }
@@ -4736,7 +4736,7 @@ function getSimilarSparqlURL( item ){
     if ( valid( item.occupations ) ){ occupation_condition = '%0A%20%20%3Fitem%20wdt%3AP106%20wd%3AQ' + item.occupations[0] + '%20.'; }
     //if ( valid( item.noble_title ) ){ noble_title_condition = '%0A%20%20%3Fitem%20wdt%3AP97%20wd%3A' + item.noble_title[0] + '%20.'; }
 
-    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fdeath%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20' + occupation_condition + country_condition + noble_title_condition + /*genre_condition + movement_condition +*/ '%0A%20%20%3Fitem%20wdt%3AP19%20%3Fplace%20.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP570%20%3Fdeath%20.%7D%20%20%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fplace%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%23meta%3Asimilar%20topics%0A%23defaultView%3AMap%0A';
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fdeath%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20' + occupation_condition + country_condition + noble_title_condition + /*genre_condition + art_movement_condition +*/ '%0A%20%20%3Fitem%20wdt%3AP19%20%3Fplace%20.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP570%20%3Fdeath%20.%7D%20%20%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fplace%20wdt%3AP625%20%3Fcoord%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%23meta%3Asimilar%20topics%0A%23defaultView%3AMap%0A';
 
   }
   /*
@@ -4753,7 +4753,7 @@ function getSimilarSparqlURL( item ){
   }
   else if ( valid( item.instance_qid ) ){
 
-    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + item.instance_qid + '%20.' + country_condition + industry_condition + part_of_condition + has_parts_condition + studied_by_condition + studies_condition + genre_condition + movement_condition + admin_condition + creator_condition + category_condition + performer_condition + composer_condition + author_condition + published_in_condition + main_subject_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
+    url = explore.base + '/app/query/embed.html?l=' + explore.language + '#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ' + item.instance_qid + '%20.' + country_condition + industry_condition + part_of_condition + has_parts_condition + studied_by_condition + studies_condition + genre_condition + art_movement_condition + admin_condition + creator_condition + category_condition + performer_condition + composer_condition + author_condition + published_in_condition + main_subject_condition + '%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirth%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%20.%7D%20%20%0A%20%20FILTER(%3Flang%3D%22' + explore.language + '%22)%0A%7D%0AORDER%20BY%20%3FitemLabel%0A%20LIMIT%20' + limit + '%0A%20%23meta%3Asimilar%20topics%20%23defaultView%3AMap%0A';
 
   }
 
@@ -10322,7 +10322,7 @@ async function makePresentation( title ){
 
   // determine the "type" of the item, type options:
   if      ( valid( item.pubchem ) ){ type = 'pubchem'; }
-  else if ( listed( item.instances, indicators.movement.value ) ){ type = 'art-movement'; }
+  else if ( listed( item.instances, indicators.art_movement.value ) ){ type = 'art-movement'; }
   else if ( checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement ) ){ type = 'cultural-concept'; }
   else if ( checkTag( item, 0, 'work') ){ type = 'work'; }
   else if ( checkTag( item, 0, 'mathematics') ){ type = 'mathematics'; }

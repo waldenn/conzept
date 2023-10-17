@@ -167,6 +167,10 @@ var conzept_tags = {
     text : "created work",
     icon : ["fa-solid fa-hands"],
     sub : {
+      "art" : {
+        text : "artwork",
+        icon : ["fa-regular fa-image"],
+      },
       "symbol" : {
         text : "symbol",
         icon : ["fa-solid fa-shield-alt"],
@@ -343,8 +347,12 @@ var conzept_tags = {
         text : "network",
         icon : ["fa-solid fa-network-wired"],
       },
-      "movement" : {
-        text : "movement",
+      "art-movement" : {
+        text : "art or scientific movement",
+        icon : ["fa-solid fa-holly-berry"],
+      },
+      "social-movement" : {
+        text : "social movement",
         icon : ["fa-solid fa-holly-berry"],
       },
       "tonality" : {
