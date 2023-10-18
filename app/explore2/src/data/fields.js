@@ -8749,6 +8749,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: [51,1640],
 },
 
+'written_works_query' : {
+  create_condition: 'valid( item.is_author ) && checkTag(item, 0, "person")',
+  title: 'written works',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20VALUES%20%3Fauthor%20%7B%20wd%3A${item.qid}%20%7D%0A%20%20 %20%3Fitem%20wdt%3AP50%20%3Fauthor%20%3B%0A%20%20%20%20%20%20wdt%3AP577%20%3Fpublication_date%20.%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%201000%20%23meta%3Awritings%20by%20${title_}%0A%23defaultView%3ATable',
+  icon: 'fa-solid fa-pen-fancy',
+  text: 'written works',
+  section: ['art','main'],
+  rank: [410, 1720],
+},
+
+/*
 'author_works_query' : {
   create_condition: 'valid( item.is_author ) && checkTag(item, 0, "person")',
   title: 'author works query',
@@ -8764,6 +8778,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_type: 'link-split',
   headline_rank: 145,
 },
+*/
 
 'religion' : {
   title: 'faith',
@@ -11585,20 +11600,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Corrup. Risk',
   section: ['library-legal','business'],
   rank: [239, 429],
-},
-
-'written_works_query' : {
-  create_condition: 'valid( item.is_author ) && checkTag(item, 0, "person")',
-  //create_condition: '"${item.is_author}" === "true" && ( "${ item.tags[0] }" === "person" )',
-  title: 'written works',
-  prop: '',
-  type: 'link-split',
-  mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fpublication_date%20WHERE%20%7B%0A%20%20VALUES%20%3Fauthor%20%7B%20wd%3A${item.qid}%20%7D%0A%20%20 %20%3Fitem%20wdt%3AP50%20%3Fauthor%20%3B%0A%20%20%20%20%20%20wdt%3AP577%20%3Fpublication_date%20.%0A%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Fpublication_date)%0ALIMIT%201000%20%23meta%3Awritings%20by%20${title_}%0A%23defaultView%3ATable',
-  icon: 'fa-solid fa-pen-fancy',
-  text: 'written works',
-  section: ['art','main'],
-  rank: [410, 1720],
 },
 
 /*
