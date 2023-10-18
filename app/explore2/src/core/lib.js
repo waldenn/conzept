@@ -2905,6 +2905,7 @@ async function updateLocaleInterface(){
   $('#app-guide-art-movement').text( explore.banana.i18n('app-guide-art-movement') );
   $('#app-guide-composer').text( explore.banana.i18n('app-guide-composer') );
   $('#app-guide-painter').text( explore.banana.i18n('app-guide-painter') );
+  $('#app-guide-science').text( explore.banana.i18n('app-guide-science') );
   $('#app-guide-poet').text( explore.banana.i18n('app-guide-poet') );
   $('#app-guide-philosopher').text( explore.banana.i18n('app-guide-philosopher') );
   $('#app-guide-architect').text( explore.banana.i18n('app-guide-architect') );
@@ -3636,9 +3637,10 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random architect" aria-label="random architect" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;architect&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-architect">architect</span></span></a></div>' +
 
             // industry
+            '<div><a class="" title="random science" aria-label="random science" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;science&quot; )"><span class="icon"><i class="fa-solid fa-microscope fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-science">science</span></span></a></div>' +
             '<div><a class="" title="random inventor" aria-label="random inventor" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;inventor&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-inventor">inventor</span></span></a></div>' +
-            '<div><a class="" title="random software" aria-label="random software" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;software&quot; )"><span class="icon"><i class="fa-regular fa-window-maximize fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-software">software</span></span></a></div>' +
             '<div><a class="" title="random area of mathematics" aria-label="random area of mathematics" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;mathematics&quot; )"><span class="icon"><i class="fa-solid fa-square-root-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-mathematics">mathematics</span></span></a></div>' +
+            '<div><a class="" title="random software" aria-label="random software" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;software&quot; )"><span class="icon"><i class="fa-regular fa-window-maximize fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-software">software</span></span></a></div>' +
 
             // various
             '<div><a class="" title="random tourist attraction" aria-label="random tourist attraction" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;tourist-attraction&quot; )"><span class="icon"><i class="fa-solid fa-gopuram fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-tourist-attraction">tourist attraction</span></span></a></div>' +
