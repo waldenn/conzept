@@ -8777,7 +8777,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [15,20,1600],
   headline_create: 'valid( item.author_works_query )',
   headline_type: 'link-split',
-  headline_rank: 145,
+  headline_rank: 265,
 },
 
 'religion' : {
@@ -11539,7 +11539,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   url: 'https://openlibrary.org/works/${item.openlibrary_id}/${item.title_}',
-  icon: 'fa-solid fa-user-pen',
+  icon: 'fa-solid fa-book-open-reader',
   //icon: 'fa-brands fa-mizuni',
   text: 'o.library ID',
   section: ['library-general','main'],
@@ -18547,7 +18547,8 @@ if ( valid( item.found_in_taxon ) ){
   type: 'rest-json',
   mv: true,
   url: '',
-  icon: 'fa-solid fa-user-pen',
+  icon: 'fa-solid fa-book-open-reader',
+
   text: 'ebooks author',
   section: ['library-general','main'],
   rank: [49,1200],
