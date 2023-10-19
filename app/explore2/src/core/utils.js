@@ -1801,6 +1801,12 @@ function isEmbedded(){
 
 }
 
+function sparqlQids( list ){
+
+  return list.map((s) => `wd%3A${s}`).join('%2C%20');
+
+}
+
 /*
 function objectToString(obj){
 

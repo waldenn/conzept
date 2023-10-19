@@ -216,7 +216,7 @@ var conzept_tags = {
         icon : ["fa-solid fa-gamepad"],
       },
       "music-instrument" : {
-        text : "music release",
+        text : "music instrument",
         icon : ["fa-solid fa-guitar"],
       },
       "music" : {
