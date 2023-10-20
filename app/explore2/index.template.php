@@ -515,6 +515,7 @@ $settings_html = '
                     <option value="map">2D map</option>
                     <option value="map3d">3D map</option>
                     <option value="timeline">timeline</option>
+                    <option value="geo-timeline">geo-timeline</option>
                     <option value="image">images</option>
                     <option value="graph">graph</option>
                     <option value="linkgraph">link-graph</option>

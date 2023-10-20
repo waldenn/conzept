@@ -4474,6 +4474,11 @@ async function insertMultiValues( args ){
             fetchPLOS( args, null, 1, 'relevance' );
     
           }
+					else if ( args.list.startsWith('xeno-canto') ){
+
+            fetchXenoCanto( args, null, 1, 'relevance' );
+    
+          }
 					else if ( args.list.startsWith('semantic-scholar-author') ){
 
             fetchSemanticScholarAuthorPapers( args, args.list );

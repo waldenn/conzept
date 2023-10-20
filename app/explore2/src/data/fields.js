@@ -2395,13 +2395,13 @@ conzept_fields = {
 
 'audio_tool' : {
   create_condition: '${ valid( item.audio ) }',
-  title: 'audio tool',
+  title: 'audio clip',
   prop: '',
   type: 'link',
   url: '${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio ) }',
   mv: false,
   icon: 'fa-solid fa-volume-up',
-  text: 'audio file',
+  text: 'audio clip',
   section: ['media-audio','main'],
   rank: [10,30],
 },
@@ -5470,7 +5470,7 @@ conzept_fields = {
   prop: '',
   mv: false,
   type: 'link-split',
-  url: "${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.item.participant.join() }&title=${title}",
+  url: '${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.qid + "," + item.participant.join() }&title=${title}',
   icon: 'fa-solid fa-users-rays',
   text: 'participants graph',
   section: 'main',
@@ -8821,11 +8821,11 @@ if ( valid( item.found_in_taxon ) ){
 
 'music_performer_works_query' : {
   create_condition: 'valid( item.performer ) && checkTag(item, 1, "music")',
-  title: 'music from this performer',
+  title: 'works from this performer',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20(MIN(%3FpublicationDate)%20AS%20%3Fpublication)%20(GROUP_CONCAT(%3Fgenre_label%3B%20SEPARATOR%20%3D%20%22%2C%20%22)%20AS%20%3Fgenres)%20%3FformLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP50%7C%20wdt%3AP175%20%7C%20wdt%3AP86%20)%20${ sparqlQids( item.performer ) }%20.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20%3Fgenre.%0A%20%20%20%20%3Fgenre%20rdfs%3Alabel%20%3Fgenre_label.%0A%20%20%20%20FILTER((LANG(%3Fgenre_label))%20%3D%20%22${explore.language}%22)%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3FpublicationDate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP7937%20%3Fform.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fsubtitle%20%3FformLabel%20%3Fimg%0AORDER%20BY%20DESC%20(%3Fpublication)%0A%23meta%3Amusician%20performer%20works',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20(MIN(%3FpublicationDate)%20AS%20%3Fpublication)%20(GROUP_CONCAT(%3Fgenre_label%3B%20SEPARATOR%20%3D%20%22%2C%20%22)%20AS%20%3Fgenres)%20%3FformLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP50%7C%20wdt%3AP175%20%7C%20wdt%3AP86%20)%20${ sparqlQids( item.performer ) }%20.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20%3Fgenre.%0A%20%20%20%20%3Fgenre%20rdfs%3Alabel%20%3Fgenre_label.%0A%20%20%20%20FILTER((LANG(%3Fgenre_label))%20%3D%20%22${explore.language}%22)%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3FpublicationDate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP7937%20%3Fform.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fsubtitle%20%3FformLabel%20%3Fimg%0AORDER%20BY%20DESC%20(%3Fpublication)%0A%23meta%3Aperformer%20works',
   icon: 'fa-solid fa-record-vinyl',
   //icon: 'fa-solid fa-people-line',
   text: 'performer works',
@@ -10798,6 +10798,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'part of',
   section: ['main'],
   rank: [7240],
+},
+
+'part_of_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.part_of )',
+  title: 'part-of graph',
+  prop: '',
+  mv: false,
+  type: 'link-split',
+  url: '${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.qid + "," + item.part_of.join() }&title=${title}',
+  icon: 'fa-solid fa-users-rays',
+  text: 'part-of graph',
+  section: ['library-history', 'main'],
+  rank: [20.1, 7239.1],
 },
 
 'has_parts' : {
@@ -18535,6 +18548,23 @@ if ( valid( item.found_in_taxon ) ){
   text: 'CrossRef',
   section: 'science-search-tools',
   rank: 30,
+},
+
+'xeno_canto_inline' : {
+  value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
+  title: 'Xeno-canto bird sounds',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  url: '',
+  icon: 'pi pi-anchor',
+  text: 'Xeno audio',
+  section: ['science-biology','media-audio','main'],
+  rank: [731,11,31],
+  headline_create: 'checkTag( item, 1, "bird" )',
+  headline_type: 'code',
+  headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
+  headline_rank: 271,
 },
 
 'semantic_scholar_author_papers_inline' : {
