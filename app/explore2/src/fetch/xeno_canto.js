@@ -4,6 +4,8 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
   args = unpackString( args );
 
+  console.log( args );
+
   let page_size = 500;
 
   if ( total_results === null ){ // first request
@@ -31,11 +33,13 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
   }
 
-  let keyword = args.topic.replace(/\(.*?\)/g, '').trim();
+  let f       = args.list.split(':') || [];
+  let keyword = f[1].replace(/\(.*?\)/g, '').trim();
+  //let keyword = args.topic.replace(/\(.*?\)/g, '').trim();
   keyword			= removeCategoryFromTitle( keyword );
 
   //let keyword_match = keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim();
-  keyword = encodeURIComponent( '"' + keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() + '"' );
+  keyword = encodeURIComponent( keyword.replace(/[."#_()!]/g, '').replace(/[\-]/g, ' ').trim() );
 
   /*
   let sort_select         = '';
@@ -117,7 +121,10 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           if ( valid( [ lon, lat ] ) ){
 
-            let map_url = `${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox( lon, lat, 0.05 )}&lat=${lat}&lon=${lon}&title=${ encodeURIComponent( label ) }`;
+            let map_url = `${explore.base}/app/map/?l=${explore.language}&lat=${lat}&lon=${lon}&title=${ encodeURIComponent( label ) }`;
+
+            //let map_url = `${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox( lon, lat, 0.05 )}&lat=${lat}&lon=${lon}&title=${ encodeURIComponent( label ) }`;
+
             map = '<a href="javascript:void(0)" class="" title="map" aria-label="map" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: map_url, title: args.topic } ) ) + '><i class="fa-solid fa-location-dot"></i></a>';
 
           }

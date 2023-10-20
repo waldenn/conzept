@@ -2018,6 +2018,18 @@ conzept_fields = {
   rank: [10, 400,7900],
 },
 
+'taxon_name' : {
+  title: 'taxon name',
+  prop: '225',
+  type: 'symbo-string',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'taxon name',
+  section: 'info',
+  rank: '311900',
+},
+
 'hgnc_gene_symbol' : {
   title: 'HGNC gene symbol',
   prop: '353',
@@ -18551,7 +18563,9 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'xeno_canto_inline' : {
-  value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
+
+  value: 'xeno-canto:${ valid( item.taxon_name ) ? item.taxon_name : item.title }:${ checkTag( item, 1, "bird" ) }',
+  //value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
   title: 'Xeno-canto bird sounds',
   prop: '0',
   type: 'rest-json',
