@@ -7957,9 +7957,35 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'http://www.pfaf.org/user/Plant.aspx?LatinName=${ item.pfaf }',
   icon: 'fa-brands fa-pagelines',
-  text: 'plants for a future',
+  text: 'plants future',
   section: ['science-biology','main'],
   rank: [530,7838],
+},
+
+'jstor_plants_search' : {
+  create_condition: 'checkTag( item, 1, ["plant" ] )',
+  title: 'JSTOR plant search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://plants.jstor.org/search?filter=name&so=ps_group_by_genus_species+asc&Query=${ valid( item.taxon_name ) ? item.taxon_name : item.title }',
+  icon: 'fa-brands fa-pagelines',
+  text: 'JSTOR plants',
+  section: ['science-biology','main'],
+  rank: [550,7850],
+},
+
+'jstor_plants_location_search' : {
+  create_condition: 'checkTag( item, 0, ["location" ] )',
+  title: 'JSTOR plant location search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://plants.jstor.org/search?filter=places&so=ps_group_by_genus_species+asc&Query=${title_quoted}',
+  icon: 'fa-brands fa-pagelines',
+  text: 'JSTOR plants location',
+  section: ['science-biology'],
+  rank: [552],
 },
 
 'treegenes_search' : {

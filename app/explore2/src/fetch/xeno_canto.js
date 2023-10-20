@@ -4,7 +4,7 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
   args = unpackString( args );
 
-  console.log( args );
+  //console.log( args );
 
   let page_size = 500;
 
@@ -104,11 +104,18 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 					let subtitle	= '';
           let country   = '';
 					let author    = '';
+
 					let lon       = valid( v.lng )? v.lng : '';
 					let lat       = valid( v.lat )? v.lat : '';
           let map       = '';
+
+          let audio_widget = '';
           let duration  = '';
           let license   = '';
+
+					let stage     = '';
+					let calltype  = '';
+
 
           if ( ! valid( [ v.gen, v.sp ] ) ){
             label = '---';
@@ -129,6 +136,9 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           }
 
+          //if ( valid( v.calltype ) ){ calltype  = '<div class="mv-extra-desc">' + v.type + '</div>'; }
+          //if ( valid( v.stage ) ){  stage  = '<div class="mv-extra-desc">' + v.stage + '</div>'; }
+
           if ( valid( v.en ) ){ subtitle  = '<div class="mv-extra-desc">' + v.en + '</div>'; }
 
           if ( valid( v.lic ) ){ license  = '&nbsp;(<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + v.lic + '&quot;)" onauxclick="openInNewTab( &quot;' + v.lic + '&quot;)">license</a>)'; }
@@ -145,13 +155,14 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           if ( valid( v.url ) ){
 
-            url = `${explore.base}/app/audio/?url=/app/cors/raw/?url=${v.file}`;
+            url           = `${explore.base}/app/audio/?url=/app/cors/raw/?url=${v.file}`;
+            audio_widget  = `<div class="audio-widget" title="audio" aria-label="audio" role="button"><audio class="inline-audio" controls="controls" preload="none"> <source src="${v.file}"> </audio></div>`;
 
           }
 
           obj[ 'label-' + i ] = {
 
-            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + duration + country + desc + date + author ),
+            title_link:           encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-topic" title="topic" aria-label="topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: url , title: args.topic } ) ) + '> ' + label + '</a>' + subtitle + audio_widget + duration + country + desc + date + author ),
 
             thumb_link:           '',
 

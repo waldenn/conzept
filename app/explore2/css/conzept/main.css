@@ -2885,7 +2885,7 @@ audio::-moz-media-controls-mute-button, audio::-ms-media-controls-mute-button, a
 }
 
 .audio-widget {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0.5rem 0.1rem 0.5rem;
 }
 
 .inline-audio {
