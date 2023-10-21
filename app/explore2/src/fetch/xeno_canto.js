@@ -141,7 +141,7 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           if ( valid( v.en ) ){ subtitle  = '<div class="mv-extra-desc">' + v.en + '</div>'; }
 
-          if ( valid( v.lic ) ){ license  = '&nbsp;(<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + v.lic + '&quot;)" onauxclick="openInNewTab( &quot;' + v.lic + '&quot;)">license</a>)'; }
+          if ( valid( v.lic ) ){ license  = '&nbsp;<a href="javascript:void(0)" class="mv-extra-icon" title="topic" aria-label="topic" role="button" onclick="openInNewTab( &quot;' + v.lic + '&quot;)" onauxclick="openInNewTab( &quot;' + v.lic + '&quot;)"><i class="fa-regular fa-copyright"></i></a>'; }
 
           if ( valid( v.rec ) ){ author  = '<div class="mv-extra-desc">' + v.rec + license + '</div>'; }
 
@@ -149,7 +149,38 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           if ( valid( v.date ) ){ date  = '<div class="mv-extra-desc">' + v.date + '</div>'; }
 
-          if ( valid( v.cnt ) ){ country  = '<div class="mv-extra-desc">' + map + '&nbsp;' + v.cnt + '</div>'; }
+          if ( valid( v.cnt ) ){
+
+            let c = findObjectByKey(  Object.values(countries), 'name', v.cnt );
+
+            if ( valid( c[0] ) ){
+
+              /* TODO: get country Qid
+              const country_args = {
+                id        : '000',
+                type      : 'wikipedia-qid',
+                title     : '',
+                language  : explore.language,
+                qid       : country_qid,
+              };
+              */
+
+              const iso2  = c[0].iso2.toLowerCase();
+              const cname = c[0].name;
+
+              country  = `<div class="mv-extra-desc">${ map } &nbsp; <span title="${ cname }" class="flag-icon flag-icon-${ iso2 }"></span> ${ v.cnt }</div>`;
+
+              //country = '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><span title="' + country_name + '" class="flag-icon flag-icon-' + c[0].iso2.toLowerCase()  + '"></span>' + v.cnt + '</a>',
+
+
+            }
+            else {
+
+              country  = '<div class="mv-extra-desc">' + map + '&nbsp;' + v.cnt + '</div>';
+
+            }
+
+          }
 
           if ( valid( v.length ) ){ duration  = '<div class="mv-extra-desc"><i class="fa-regular fa-clock"></i> ' + v.length + '</div>'; }
 
