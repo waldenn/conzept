@@ -151,6 +151,8 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
 
           if ( valid( v.cnt ) ){
 
+            if ( v.cnt === 'United States' ){ v.cnt = 'United States of America'; } // fix mismatch
+
             let c = findObjectByKey(  Object.values(countries), 'name', v.cnt );
 
             if ( valid( c[0] ) ){
@@ -168,7 +170,7 @@ async function fetchXenoCanto( args, total_results, page, sortby ){
               const iso2  = c[0].iso2.toLowerCase();
               const cname = c[0].name;
 
-              country  = `<div class="mv-extra-desc">${ map } &nbsp; <span title="${ cname }" class="flag-icon flag-icon-${ iso2 }"></span> ${ v.cnt }</div>`;
+              country  = `<div class="mv-extra-desc">${ map }&nbsp;<span title="${ cname }" class="flag-icon flag-icon-${ iso2 }"></span> ${ v.cnt }</div>`;
 
               //country = '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><span title="' + country_name + '" class="flag-icon flag-icon-' + c[0].iso2.toLowerCase()  + '"></span>' + v.cnt + '</a>',
 

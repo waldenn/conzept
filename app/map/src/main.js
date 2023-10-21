@@ -62,6 +62,13 @@ async function init(){
     app.view_extent = [ app.bbox[0], app.bbox[1], app.bbox[2], app.bbox[3] ];
 
   }
+  else if ( valid( [ app.lon, app.lat ] ) ){
+
+    const delta = 0.05;
+
+    app.view_extent = [ app.lon - delta, app.lat - delta, app.lon + delta, app.lat + delta ];
+
+  }
 
   if ( valid( app.qid && app.qid.includes(',') ) ){
 
