@@ -62,6 +62,7 @@ async function init(){
     app.view_extent = [ app.bbox[0], app.bbox[1], app.bbox[2], app.bbox[3] ];
 
   }
+  /*
   else if ( valid( [ app.lon, app.lat ] ) ){
 
     app.bbox = getBoundingBox( app.lon, app.lat, 0.05 ).split(',');
@@ -69,6 +70,11 @@ async function init(){
     app.view_extent = [ app.bbox[0], app.bbox[1], app.bbox[2], app.bbox[3] ];
 
   }
+  */
+
+  // ?l=en&bbox=4.9894,52.0908,5.0893999999999995,52.190799999999996&lat=52.1408&lon=5.0394&title=Maarssen
+  // ?l=en&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
+  // ?l=en&bbox=4.9894,52.0908,5.0893999999999995,52.190799999999996&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
 
   if ( valid( app.qid && app.qid.includes(',') ) ){
 
