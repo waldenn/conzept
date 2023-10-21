@@ -64,9 +64,9 @@ async function init(){
   }
   else if ( valid( [ app.lon, app.lat ] ) ){
 
-    const delta = 0.05;
+    app.bbox = getBoundingBox( app.lon, app.lat, 0.05 ).split(',');
 
-    app.view_extent = [ app.lon - delta, app.lat - delta, app.lon + delta, app.lat + delta ];
+    app.view_extent = [ app.bbox[0], app.bbox[1], app.bbox[2], app.bbox[3] ];
 
   }
 
