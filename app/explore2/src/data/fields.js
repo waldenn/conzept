@@ -18636,6 +18636,7 @@ if ( valid( item.found_in_taxon ) ){
 'xeno_canto_inline' : {
   value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
   title: 'Xeno-canto bird sounds',
+  render_condition: 'valid( checkTag( item, 1, "bird" ) )',
   prop: '0',
   type: 'rest-json',
   mv: true,
