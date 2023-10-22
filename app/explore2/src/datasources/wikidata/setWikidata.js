@@ -858,7 +858,8 @@ async function setWikidata( item, wd, single, target_pane, callback ){
       const src_image = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=50';
       //console.log( src_image );
 
-      item.flag = ( thumb.length > 0 )? '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><img title="' + item.title + '" class="flag-icon" src="' + src_image + '"></img></a>' : '';
+      // exclude iso2-countries (these already get a flag icon)
+      item.flag = ( thumb.length > 0 && !valid( wd.claims.P297 ) )? '<a href="javascript:void(0)" title=""' + setOnClick( Object.assign({}, args, { } ) ) + '><img title="' + item.title + '" class="flag-icon" src="' + src_image + '"></img></a>' : '';
 
     }
 
