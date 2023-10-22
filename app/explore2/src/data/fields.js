@@ -5986,8 +5986,8 @@ if ( valid( item.found_in_taxon ) ){
   rank: [250,1600],
 },
 
-'chart_causes_of_death_per_subclass_trend' : {
-  create_condition: 'listed( item.instances, indicators.causes_of_death.value )', // use manual check, because these items can have any basic classifications
+'chart_cause_of_death_per_subclass_trend' : {
+  create_condition: 'listed( item.instances, indicators.cause_of_death.value )', // use manual check, because these items can have any basic classifications
   //create_condition: 'checkTag(item, 1, "cause-of-death")',
   title: 'Chart of the causes of death per subclass trend',
   prop: '',
@@ -5998,7 +5998,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'causes of death',
   section: ['location-demography','science-medical','main'],
   rank: [255,120,1605],
-  headline_create: 'valid( item.chart_causes_of_death_per_subclass_trend )',
+  headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend )',
   headline_type: 'link',
   headline_rank: 155,
 },
