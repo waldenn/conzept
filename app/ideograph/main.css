@@ -3,6 +3,16 @@ body {
   overflow:hidden;
   background: #fbfaf9;
 }
+.legend {
+  font-size:14px;
+  margin-bottom: 0.5em;
+  line-height: 2em;
+}
+.legend-dot {
+  position: relative;
+  top: 0.27em;
+  font-size: 4em;
+}
 #label {
   position:absolute;
   font-weight: bold ;
@@ -64,10 +74,6 @@ h1 {
 .subtitle {
   font-size:14px;
    font-style: italic;
-   margin-bottom: 0.5em;
-}
-.author {
-  font-size:14px;
    margin-bottom: 0.5em;
 }
 .sourcedocs {

@@ -586,5 +586,3 @@ function resize() {
   //window.location.reload();
 
 }
-
-
