@@ -11749,6 +11749,8 @@ if ( valid( item.found_in_taxon ) ){
   text: 'paintings by year',
   section: ['art','main'],
   rank: [391, 1691],
+  headline_create: true,
+  headline_rank: 560,
 },
 
 /*
