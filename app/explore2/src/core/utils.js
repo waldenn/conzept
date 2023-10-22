@@ -1464,6 +1464,11 @@ function getSearchTerm(){
 
 function getBoundingBox(lon, lat, delta){
 
+  lon = parseFloat( lon );
+  lat = parseFloat( lat );
+
+  if ( !valid( delta ) ){ delta = 0.05; } // default
+
   return `${lon - delta},${lat - delta},${lon + delta},${lat + delta}`;
 
 }

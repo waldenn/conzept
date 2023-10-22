@@ -5973,6 +5973,36 @@ if ( valid( item.found_in_taxon ) ){
   rank: [5000],
 },
 
+'chart_population_trend_bordering_countries' : {
+  create_condition: 'checkTag(item, 1, "country")',
+  title: 'Chart of the population trend in bordering countries',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(str(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend',
+  icon: 'fa-solid fa-chart-line',
+  text: 'border population',
+  section: ['location-demography','main'],
+  rank: [250,1600],
+},
+
+'chart_causes_of_death_per_subclass_trend' : {
+  create_condition: 'listed( item.instances, indicators.causes_of_death.value )', // use manual check, because these items can have any basic classifications
+  //create_condition: 'checkTag(item, 1, "cause-of-death")',
+  title: 'Chart of the causes of death per subclass trend',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(str(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend',
+  icon: 'fa-solid fa-chart-line',
+  text: 'causes of death',
+  section: ['location-demography','science-medical','main'],
+  rank: [255,120,1605],
+  headline_create: 'valid( item.chart_causes_of_death_per_subclass_trend )',
+  headline_type: 'link',
+  headline_rank: 155,
+},
+
 /*
 'map_instances_of_form_of_government' : {
   create_condition: 'listed( item.instances, [ "1307214"] )',
@@ -18589,9 +18619,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'xeno_canto_inline' : {
-
   value: 'xeno-canto:${ valid( item.taxon_name ) ? item.taxon_name : item.title }:${ checkTag( item, 1, "bird" ) }',
-  //value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
   title: 'Xeno-canto bird sounds',
   prop: '0',
   type: 'rest-json',

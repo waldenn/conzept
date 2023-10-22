@@ -994,59 +994,61 @@ async function setWikidata( item, wd, single, target_pane, callback ){
       item.tags[1] = 'insect';
     }
 
-
+    // Birds
     if ( validAny( [ wd.claims.P3444, wd.claims.P4664 ] ) ){ // bird-site ID's
       item.tags[0] = 'organism';
       item.tags[1] = 'bird';
     }
-
-    if ( valid( wd.claims.P5257  ) ){ // BirdLife
+    else if ( valid( wd.claims.P5257  ) ){ // BirdLife
       item.tags[0] = 'organism';
       item.tags[1] = 'bird';
     }
-
-    if ( valid( wd.claims.P2426 )){ // Xeno-canto bird species song
+    else if ( valid( wd.claims.P2426 )){ // Xeno-canto bird species song
       item.tags[0] = 'organism';
       item.tags[1] = 'bird';
     }
-
-    if ( valid( wd.claims.P2026 ) ){ // Avibase ID
+    else if ( valid( wd.claims.P2026 ) ){ // Avibase ID
       item.tags[0] = 'organism';
       item.tags[1] = 'bird';
     }
+    else if ( valid( wd.claims.P171 ) ){ // parent-taxon
+ 
+      if ( listed( wd.claims.P171, indicators.bird.value, true ) ){ // Bird
 
+        item.tags[0] = 'organism';
+        item.tags[1] = 'bird';
+
+      }
+
+    }
+
+    // Insects
     if ( valid( wd.claims.P2464 ) ){ // Bugguide
       item.tags[0] = 'organism';
       item.tags[1] = 'insect';
     }
    
-   
-    // plant
+    // Plants
     if ( valid( wd.claims.P961 ) ){ // IPNI plant
       item.tags[0] = 'organism';
       item.tags[1] = 'plant';
     }
-
-    if ( valid( wd.claims.P5037 ) ){ // Plants of the World online ID
+    else if ( valid( wd.claims.P5037 ) ){ // Plants of the World online ID
       item.tags[0] = 'organism';
       item.tags[1] = 'plant';
     }
-
-    if ( valid( wd.claims.P5945  ) ){ // VicFlora ID
+    else if ( valid( wd.claims.P5945  ) ){ // VicFlora ID
       item.tags[0] = 'organism';
       item.tags[1] = 'plant';
     }
-
-    if ( valid( wd.claims.P3105 ) ){ //   Tela Botanica ID
+    else if ( valid( wd.claims.P3105 ) ){ //   Tela Botanica ID
       item.tags[0] = 'organism';
       item.tags[1] = 'plant';
     }
-
-    if ( valid( wd.claims.P3101 ) ){ // FloraBase ID
+    else if ( valid( wd.claims.P3101 ) ){ // FloraBase ID
       item.tags[0] = 'organism';
       item.tags[1] = 'plant';
     }
-
 
     // TODO
     if ( valid( wd.claims.P569 ) ){ // date of birth

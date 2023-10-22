@@ -458,6 +458,10 @@ var conzept_tags = {
     text : "natural concept",
     icon : ["fa-solid fa-temperature-high"],
     sub : {
+     "cause-of-death" : {
+        text : "cause of death",
+        icon : ["fa-solid fa-skull-crossbones"],
+      },
      "biological-pathway" : {
         text : "biological pathway",
         icon : ["fa-solid fa-arrows-spin"],

@@ -1,5 +1,22 @@
 const countries = {
 
+  "Q30": {
+    "iso2": "US",
+    "iso3": "USA",
+    "name": "United States of America",
+    "chatham_house_id": "842",
+    "capital": "Q61",
+    "capitalName": "Washi, D.C.",
+    "l1": "Q462778",
+    "l2": "Q13360155",
+    "l3": "Q3677932",
+    "parliament": "Q11268",
+    "highest_judicial": "Q11201",
+    "chamber2": "Q11701",
+    "chamber2_members": "Q13218630",
+    "chamber1": "Q66096",
+    "chamber1_members": "Q1140848"
+  },
   "Q1000": {
     "iso2": "GA",
     "iso3": "GAB",
@@ -1096,23 +1113,6 @@ const countries = {
     "chamber1_members": "Q19305384",
     "chamber2": "Q233262",
     "chamber2_members": "Q18887908"
-  },
-  "Q30": {
-    "iso2": "US",
-    "iso3": "USA",
-    "name": "United States of America",
-    "chatham_house_id": "842",
-    "capital": "Q61",
-    "capitalName": "Washi, D.C.",
-    "l1": "Q462778",
-    "l2": "Q13360155",
-    "l3": "Q3677932",
-    "parliament": "Q11268",
-    "highest_judicial": "Q11201",
-    "chamber2": "Q11701",
-    "chamber2_members": "Q13218630",
-    "chamber1": "Q66096",
-    "chamber1_members": "Q1140848"
   },
   "Q31": {
     "iso2": "BE",
