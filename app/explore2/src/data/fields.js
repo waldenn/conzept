@@ -5973,35 +5973,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: [5000],
 },
 
-'chart_population_trend_bordering_countries' : {
-  create_condition: 'checkTag(item, 1, "country")',
-  title: 'Chart of the population trend in bordering countries',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(str(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend',
-  icon: 'fa-solid fa-chart-line',
-  text: 'border population',
-  section: ['location-demography','main'],
-  rank: [250,1600],
-},
-
-'chart_cause_of_death_per_subclass_trend' : {
-  create_condition: 'listed( item.instances, indicators.cause_of_death.value ) || listed( item.subclasses, indicators.cause_of_death.value )', // use manual check, because these items can have another basic classification
-  title: 'Chart of the causes of death per subclass trend',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcod%20(STR(SAMPLE(%3FyearOfDeath))%20AS%20%3FYEAR_Of_DEATH)%20(COUNT(*)%20AS%20%3FNUMBER_OF_DEATHS)%20%3Fcause%20WHERE%20%7B%0A%20%20%3Fpid%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20%20%20%20wdt%3AP509%20%3Fcod%3B%0A%20%20%20%20%20%20%20wdt%3AP570%20%3F_date_of_death.%0A%20%20%3Fcod%20wdt%3AP279*%20wd%3A${item.qid}.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Fcod%20rdfs%3Alabel%20%3Fcause.%20%7D%0A%20%20BIND%20(%20YEAR(%3F_date_of_death)%20AS%20%3FyearOfDeath%20)%0A%20%20FILTER(%20%3FyearOfDeath%20%3E%201960%20)%0A%7D%0AGROUP%20BY%20%3Fcod%20%3Fcause%20%3FyearOfDeath%0A%23defaultView%3AAreaChart%0A%23meta%3Acause%20of%20death%20by%20${title}%20subtype%20and%20year',
-  icon: 'fa-solid fa-chart-line',
-  text: 'causes of death',
-  section: ['location-demography','science-medical','main'],
-  rank: [255,120,1605],
-  headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend )',
-  headline_type: 'link',
-  headline_rank: 610,
-},
-
 /*
 'map_instances_of_form_of_government' : {
   create_condition: 'listed( item.instances, [ "1307214"] )',
@@ -11738,21 +11709,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: [239, 429],
 },
 
-'chart_paintings_by_year_query' : {
-  create_condition: 'checkTag( item, 1, "painter")',
-  title: 'paintings per year',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fyear%20(COUNT(%3Fyear)%20as%20%3Fcount)%20WHERE%20%7B%0A%20%20%3Fpainting%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fpainting%20wdt%3AP170%20wd%3A${item.qid}.%0A%20%20%3Fpainting%20wdt%3AP571%20%3Finception.%0A%20%20BIND(str(year(%3Finception))%20AS%20%3Fyear)%0A%20%20OPTIONAL%20%7B%20%3Fpainting%20wdt%3AP18%20%3Fimage.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2C%20en%22.%20%7D%0A%7D%20GROUP%20BY%20%3Fyear%20%3Fcount%20ORDER%20BY%20%3Fyear%0A%23defaultView%3ABarChart%0A%23meta%3Anumber%20of%20paintings%20per%20year%20${title}',
-  icon: 'fa-solid fa-chart-simple',
-  text: 'paintings per year',
-  section: ['art','main'],
-  rank: [391, 1691],
-  headline_create: true,
-  headline_rank: 560,
-},
-
 /*
 'paintings_query' : {
   create_condition: 'valid( item.is_painter ) && checkTag(item, 0, "person")',
@@ -12623,6 +12579,51 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.map_admininistrative_regions )',
   headline_type: 'link-split',
   headline_rank: 270,
+},
+
+'chart_population_trend_bordering_countries' : {
+  create_condition: 'checkTag(item, 1, "country")',
+  title: 'Chart of the population trend in bordering countries',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(str(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend',
+  icon: 'fa-solid fa-chart-line',
+  text: 'border population',
+  section: ['location-demography','main'],
+  rank: [4.7,1600],
+},
+
+'chart_cause_of_death_per_subclass_trend' : {
+  create_condition: 'listed( item.instances, indicators.cause_of_death.value ) || listed( item.subclasses, indicators.cause_of_death.value ) || checkTag( item, 1, "human-disease")', // use manual check, because these items can have another basic classification
+  title: 'Chart of the causes of death per subclass trend',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcod%20(STR(SAMPLE(%3FyearOfDeath))%20AS%20%3FYEAR_Of_DEATH)%20(COUNT(*)%20AS%20%3FNUMBER_OF_DEATHS)%20%3Fcause%20WHERE%20%7B%0A%20%20%3Fpid%20wdt%3AP31%20wd%3AQ5%3B%0A%20%20%20%20%20%20%20wdt%3AP509%20%3Fcod%3B%0A%20%20%20%20%20%20%20wdt%3AP570%20%3F_date_of_death.%0A%20%20%3Fcod%20wdt%3AP279*%20wd%3A${item.qid}.%0A%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Fcod%20rdfs%3Alabel%20%3Fcause.%20%7D%0A%20%20BIND%20(%20YEAR(%3F_date_of_death)%20AS%20%3FyearOfDeath%20)%0A%20%20FILTER(%20%3FyearOfDeath%20%3E%201960%20)%0A%7D%0AGROUP%20BY%20%3Fcod%20%3Fcause%20%3FyearOfDeath%0A%23defaultView%3AAreaChart%0A%23meta%3Acause%20of%20death%20by%20${title}%20subtype%20and%20year',
+  icon: 'fa-solid fa-chart-line',
+  text: 'causes of death',
+  section: ['location-demography','science-medical','main'],
+  rank: [255,120,1605],
+  headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend )',
+  headline_type: 'link',
+  headline_rank: 610,
+},
+
+'chart_paintings_by_year_query' : {
+  create_condition: 'checkTag( item, 1, "painter")',
+  title: 'paintings per year',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fyear%20(COUNT(%3Fyear)%20as%20%3Fcount)%20WHERE%20%7B%0A%20%20%3Fpainting%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fpainting%20wdt%3AP170%20wd%3A${item.qid}.%0A%20%20%3Fpainting%20wdt%3AP571%20%3Finception.%0A%20%20BIND(str(year(%3Finception))%20AS%20%3Fyear)%0A%20%20OPTIONAL%20%7B%20%3Fpainting%20wdt%3AP18%20%3Fimage.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2C%20en%22.%20%7D%0A%7D%20GROUP%20BY%20%3Fyear%20%3Fcount%20ORDER%20BY%20%3Fyear%0A%23defaultView%3ABarChart%0A%23meta%3Anumber%20of%20paintings%20per%20year%20${title}',
+  icon: 'fa-solid fa-chart-simple',
+  text: 'paintings per year',
+  section: ['art','main'],
+  rank: [391, 1691],
+  headline_create: 'valid( item.chart_paintings_by_year_query )',
+  headline_type: 'link',
+  headline_rank: 560,
 },
 
 'map_countries_using_this_language' : {
@@ -18633,7 +18634,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'xeno_canto_inline' : {
-  value: 'xeno-canto:${ valid( item.taxon_name ) ? item.taxon_name : item.title }:${ checkTag( item, 1, "bird" ) }',
+  value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
   title: 'Xeno-canto bird sounds',
   prop: '0',
   type: 'rest-json',
