@@ -6000,7 +6000,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [255,120,1605],
   headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend )',
   headline_type: 'link',
-  headline_rank: 155,
+  headline_rank: 610,
 },
 
 /*
@@ -11737,6 +11737,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Corrup. Risk',
   section: ['library-legal','business'],
   rank: [239, 429],
+},
+
+'chart_paintings_by_year_query' : {
+  create_condition: 'checkTag( item, 1, "painter")',
+  title: 'paintings by year',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fyear%20(COUNT(%3Fyear)%20as%20%3Fcount)%20WHERE%20%7B%0A%20%20%3Fpainting%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fpainting%20wdt%3AP170%20wd%3AFOO.%0A%20%20%3Fpainting%20wdt%3AP571%20%3Finception.%0A%20%20BIND(str(year(%3Finception))%20AS%20%3Fyear)%0A%20%20OPTIONAL%20%7B%20%3Fpainting%20wdt%3AP18%20%3Fimage.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2C%20en%22.%20%7D%0A%7D%20GROUP%20BY%20%3Fyear%20%3Fcount%20ORDER%20BY%20%3Fyear%0A%23defaultView%3ABarChart%0A%23meta%3Anumber%20of%20paintings%20by%20year',
+  icon: 'fa-solid fa-chart-simple',
+  text: 'paintings by year',
+  section: ['art','main'],
+  rank: [391, 1691],
 },
 
 /*
