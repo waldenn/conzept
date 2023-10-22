@@ -12596,7 +12596,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'chart_cause_of_death_per_subclass_trend' : {
   create_condition: 'listed( item.instances, indicators.cause_of_death.value ) || listed( item.subclasses, indicators.cause_of_death.value ) || checkTag( item, 1, "human-disease")', // use manual check, because these items can have another basic classification
-  title: 'Chart of the causes of death per subclass trend',
+  title: 'Chart of the causes of death per subtype trend',
   prop: '',
   type: 'link',
   mv: false,
@@ -12605,9 +12605,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'causes of death',
   section: ['location-demography','science-medical','main'],
   rank: [255,120,1605],
-  headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend )',
-  headline_type: 'link',
-  headline_rank: 610,
+  //headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend ) ',
+  //headline_type: 'link',
+  //headline_rank: 610,
 },
 
 'chart_paintings_by_year_query' : {
