@@ -836,7 +836,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
     }
 
     // flag image on item
-    if ( valid( wd.claims.P41 ) && item.flag !== '' ){
+    if ( valid( wd.claims.P41 ) && item.flag !== '' && !valid( wd.claims.P297 ) ){ // exclude countries (already handled)
 
       const args = {
         id        : '000',
