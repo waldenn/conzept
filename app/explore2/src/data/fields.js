@@ -585,7 +585,7 @@ conzept_fields = {
 'ensembl_protein_id' : {
   title: 'Ensembl protein ID',
   prop: '705',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'http://identifiers.org/ensembl/${item.ensembl_protein_id}',
   icon: 'fa-solid fa-atom',
@@ -6148,7 +6148,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: "https://conze.pt/app/ideograph/?qid=${item.qid}&l=${explore.language}",
+  url: "${explore.base}/app/ideograph/?qid=${item.qid}&l=${explore.language}",
   icon: 'fa-solid fa-person-booth',
   text: 'ideology graph',
   section: ['government-general','main'],
@@ -12114,7 +12114,7 @@ if ( valid( item.found_in_taxon ) ){
   title: 'panorama view',
   prop: '4291',
   type: 'link',
-  url: '"/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/" + ${ encodeURIComponent( item.panorama ) } + "?width=3000px"',
+  url: '"${explore.base}/app/cors/raw/?url=https://commons.m.wikimedia.org/wiki/Special:FilePath/" + ${ encodeURIComponent( item.panorama ) } + "?width=3000px"',
   mv: false,
   icon: 'fa-regular fa-eye',
   text: 'panorama view',
@@ -12591,7 +12591,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-chart-line',
   text: 'border population',
   section: ['location-demography','main'],
-  rank: [4.7,1600],
+  rank: [4.7,5171],
 },
 
 'chart_cause_of_death_per_subclass_trend' : {
@@ -12616,7 +12616,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fyear%20(COUNT(%3Fyear)%20as%20%3Fcount)%20WHERE%20%7B%0A%20%20%3Fpainting%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fpainting%20wdt%3AP170%20wd%3A${item.qid}.%0A%20%20%3Fpainting%20wdt%3AP571%20%3Finception.%0A%20%20BIND(str(year(%3Finception))%20AS%20%3Fyear)%0A%20%20OPTIONAL%20%7B%20%3Fpainting%20wdt%3AP18%20%3Fimage.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2C%20en%22.%20%7D%0A%7D%20GROUP%20BY%20%3Fyear%20%3Fcount%20ORDER%20BY%20%3Fyear%0A%23defaultView%3ABarChart%0A%23meta%3Anumber%20of%20paintings%20per%20year%20${title}',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fyear%20(COUNT(%3Fyear)%20as%20%3Fcount)%20WHERE%20%7B%0A%20%20%3Fpainting%20wdt%3AP31%20wd%3AQ3305213.%0A%20%20%3Fpainting%20wdt%3AP170%20wd%3A${item.qid}.%0A%20%20%3Fpainting%20wdt%3AP571%20%3Finception.%0A%20%20BIND(str(year(%3Finception))%20AS%20%3Fyear)%0A%20%20OPTIONAL%20%7B%20%3Fpainting%20wdt%3AP18%20%3Fimage.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2C%20en%22.%20%7D%0A%7D%20GROUP%20BY%20%3Fyear%20%3Fcount%20ORDER%20BY%20%3Fyear%0A%23defaultView%3ABarChart%0A%23meta%3Anumber%20of%20paintings%20per%20year%20by%20${title}',
   icon: 'fa-solid fa-chart-simple',
   text: 'paintings per year',
   section: ['art','main'],
@@ -17798,7 +17798,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'bookmark',
   mv: false,
-  url: "/app/links/?l=${explore.language}&t=${title}.replace(/,/g, '%252C')&title=${title}",
+  url: "${explore.base}/app/links/?l=${explore.language}&t=${title}.replace(/,/g, '%252C')&title=${title}",
   icon: 'bookmark-icon fa-regular fa-bookmark', // updated by the bookmark-check
   text: 'mark',
   section: 'main',
@@ -18022,7 +18022,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: "/app/links/?l=${explore.language}&t=${title_linkgraph}&title=${title_}%20%3A%20outgoing%20links",
+  url: "${explore.base}/app/links/?l=${explore.language}&t=${title_linkgraph}&title=${title_}%20%3A%20outgoing%20links",
   icon: 'fa-solid fa-asterisk',
   text: 'link graph',
   section: 'main',
@@ -18634,7 +18634,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'xeno_canto_inline' : {
-  value: 'xeno-canto:${item.title}:${ checkTag( item, 1, "bird" ) }',
+  value: 'xeno-canto:${ valid( item.taxon_name ) ? item.taxon_name : item.title }:${ checkTag( item, 1, "bird" ) }',
   title: 'Xeno-canto bird sounds',
   render_condition: 'valid( checkTag( item, 1, "bird" ) )',
   prop: '0',
