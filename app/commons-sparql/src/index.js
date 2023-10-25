@@ -89,8 +89,16 @@ function startSearch() {
 
           numResults = parseInt( r.results.bindings[0].count.value );
 
+          if ( numResults === 0 ){ // no results found
+            
+            $('#loader').hide();
+
+            $('#custom-title').after('<div style="text-align:center;">0 results found</div>');
+
+          }
+
         }
-        else {
+        else { // error
 
           console.log('error fetching SPARQL count: ', sparql_count_url );
 
@@ -269,9 +277,9 @@ function getImages() {
 
               let txt = images[i]['name'].split('.').slice(0, -1).join('.')
 
-              let article_url = `/app/wikipedia?&l=${lang}&qid=${ images[i].qid }`;
+              let article_url = `/explore/?l=${lang}&t=wikipedia-qid&i=${ images[i].qid }&s=true#`;
 
-              let caption = txt + '&nbsp;&nbsp;<a href="javascript:void(0)" onclick= openInFrame( &quot;' + article_url + '&quot;) onauxclick=openInNewTab(&quot;' + article_url + '&quot;)><i class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
+              let caption = txt + '&nbsp;&nbsp;<a href="javascript:void(0)" onclick= openInnewTab( &quot;' + article_url + '&quot;) onauxclick=openInNewTab(&quot;' + article_url + '&quot;)><i class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
 
               //let caption = txt + '&nbsp;&nbsp;<a href="javascript:void(0)" onclick=goExplore(&quot;' + encodeURIComponent( txt ) + '&quot;,false) onauxclick=goExplore(&quot;' + encodeURIComponent( txt ) + '&quot;,true)><i class="fa-solid fa-retweet"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
 
@@ -292,12 +300,12 @@ function getImages() {
 
             $('#loader').hide();
 
-            console.log( numResults, offset, LIMIT );
+            console.log( numResults, LIMIT, offset );
 
             // Output pagination button as needed
             if (numResults > (offset + LIMIT )) {
 
-              offset += LIMIT;
+              //offset += LIMIT;
 
               const paginationButton = document.createElement('button');
 
