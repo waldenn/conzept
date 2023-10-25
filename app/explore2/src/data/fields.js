@@ -3186,7 +3186,7 @@ conzept_fields = {
   rank: [4,52,1680],
   headline_create: 'valid( item.is_painter ) && validAny( [ item.ulan_artist, item.rkd_artist, item.rijksmuseum_authority_id ] )',
   headline_type: 'link',
-  headline_rank: 49,
+  headline_rank: 46,
 },
 
 /*
@@ -10218,7 +10218,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.category_tree )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ item.category_tree.split(":")[0] }&quot;)',
-  headline_rank: 45,
+  headline_rank: 39,
 },
 
 'category_contains' : {
@@ -19021,7 +19021,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [20,1020],
   headline_create: 'valid( item.painting_iiif )',
   headline_type: 'link',
-  headline_rank: 351,
+  headline_rank: 45,
 },
 
 'paintings_inline' : {

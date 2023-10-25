@@ -229,6 +229,7 @@ function getImages() {
 
             // remove pagination button, if it exists
             const existingPaginationButton = document.getElementById('paginationButton');
+
             if (existingPaginationButton) {
               existingPaginationButton.remove();
             }
@@ -279,7 +280,7 @@ function getImages() {
 
               let article_url = `/explore/?l=${lang}&t=wikipedia-qid&i=${ images[i].qid }&s=true#`;
 
-              let caption = txt + '&nbsp;&nbsp;<a href="javascript:void(0)" onclick= openInnewTab( &quot;' + article_url + '&quot;) onauxclick=openInNewTab(&quot;' + article_url + '&quot;)><i class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
+              let caption = txt + '&nbsp;&nbsp;<a target="_blank" href="' + article_url + '"><i class="fa-solid fa-circle-info"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
 
               //let caption = txt + '&nbsp;&nbsp;<a href="javascript:void(0)" onclick=goExplore(&quot;' + encodeURIComponent( txt ) + '&quot;,false) onauxclick=goExplore(&quot;' + encodeURIComponent( txt ) + '&quot;,true)><i class="fa-solid fa-retweet"></i></a>&nbsp;&nbsp;(<u><a target="blank_" href="' + images[i].page + '">source</a></u>)';
 
@@ -338,9 +339,15 @@ function loadNextPage(){
 	$('#paginationButton').hide();
   $('#loader').show();
 
-	offset += LIMIT;
+  console.log( offset > LIMIT )
 
-  getImages();
+  //if ( offset >= LIMIT ){
+
+    offset += LIMIT;
+
+    getImages();
+
+  //}
 
 }
 

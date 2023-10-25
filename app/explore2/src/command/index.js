@@ -267,8 +267,8 @@ async function showPresentation( item, type ){
 
   // presentation configuration
   // TODO: use ${explore.base} below
-  if ( type === 'pubchem' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/003.svg"; }
-  else if ( type === 'mathematics' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/004.svg"; }
+  if ( type === 'pubchem' ){ background = "//app/explore2/assets/svg/backgrounds/003.svg"; }
+  else if ( type === 'mathematics' ){ background = "//app/explore2/assets/svg/backgrounds/004.svg"; }
   else { 
 
     if ( valid( item.image ) ){
@@ -287,12 +287,12 @@ async function showPresentation( item, type ){
     else {
 
       // TODO: use these background-defaults from a field-property
-			if ( type === 'organism' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/005.svg" }
-			else if ( type === 'art-movement' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/001.svg" }
+			if ( type === 'organism' ){ background = "//app/explore2/assets/svg/backgrounds/005.svg" }
+			else if ( type === 'art-movement' ){ background = "//app/explore2/assets/svg/backgrounds/001.svg" }
 			else if ( type === 'cultural-concept' ){ background = "#115699" }
-			else if ( type === 'location' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/001.svg" }
+			else if ( type === 'location' ){ background = "//app/explore2/assets/svg/backgrounds/001.svg" }
 			else if ( type === 'geographical-structure' ){ background = "#115699" }
-			else if ( type === 'time' ){ background = "https://conze.pt/app/explore2/assets/svg/backgrounds/003.svg" }
+			else if ( type === 'time' ){ background = "//app/explore2/assets/svg/backgrounds/003.svg" }
 			else if ( type === 'organization' ){ background = "#115699" }
 			else if ( type === 'person' ){ background = "#115699" }
 			else if ( type === 'group' ){ background = "#115699" }
@@ -340,7 +340,7 @@ async function showPresentation( item, type ){
     }
 
 		// frequently used ready-made slides
-		let video_slide                 = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/video/#/search/%22${ title_enc }%22" ) ) )\n`;
+		let video_slide                 = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "//app/video/#/search/%22${ title_enc }%22" ) ) )\n`;
 		let open_library_meta_slide     = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (meta-data)<h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search?q=${title}&language=${explore.lang3}" ) ) )\n`;
 		let open_library_fulltext_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (fulltext)</h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search/inside?q=${title}&language=${explore.lang3}&has_fulltext=true" ) ) )\n`;
 		let libretext_chemistry         = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>LibreText</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://chem.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n`;
@@ -349,7 +349,11 @@ async function showPresentation( item, type ){
 
 		let rijksmuseum_search_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Rijksmuseum</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'link \'( "https://${explore.host}${explore.base}/explore/${title_enc}?l=${language}&t=string&d=rijksmuseum&s=true#" ) ) )\n`;
 
-		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://${explore.host}${explore.base}/explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#" ) ) )\n`;
+    let commons_sparql_slide_url = encodeURIComponent( `/app/commons-sparql/?t=${title_enc}&l=${language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%3Fitem%2520%3FitemLabel%2520%3Fimage%2520%3Fdate%2520WHERE%2520{%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ3305213.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ93184.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ11060274.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ15123870.%2520}%2520%2520%3Fitem%2520wdt%3AP170%2520wd%3A${item.qid}.%2520%2520%3Fitem%2520wdt%3AP18%2520%3Fimage.%2520%2520OPTIONAL%2520{%2520%3Fitem%2520wdt%3AP571%2520%3Fdate.%2520}%2520%2520SERVICE%2520wikibase%3Alabel%2520{%2520bd%3AserviceParam%2520wikibase%3Alanguage%2520%2522en%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%2522.%2520}}ORDER%2520BY%2520DESC(%3Fdate)%0D%0A` );
+
+		let commons_sparql_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons paintings</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "${commons_sparql_slide_url}" ) ) )\n`;
+
+		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "/explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#" ) ) )\n`;
 
     let commons_slide               = '';
     let commons_time_music_slide    = '';
@@ -357,9 +361,9 @@ async function showPresentation( item, type ){
 
     if ( valid( item.thumbnail ) ){
 
-	    commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
-		  commons_time_music_slide      = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
-		  commons_country_music_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
+	    commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
+		  commons_time_music_slide      = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
+		  commons_country_music_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
 
     }
 
@@ -368,7 +372,7 @@ async function showPresentation( item, type ){
 
     if ( valid( explore.openai_enabled ) ){
 
-      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "https://conze.pt/app/chat/?m=${ title }&l=${explore.language}&t=${ getTutor( item ) }" ) ) )\n`;
+      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "/app/chat/?m=${ title }&l=${explore.language}&t=${ getTutor( item ) }" ) ) )\n`;
 
     }
 
@@ -383,14 +387,14 @@ async function showPresentation( item, type ){
 
     }
 
-		let europeana_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		let europeana_time_music_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
+		let europeana_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
+		let europeana_time_music_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
+		let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
 
 		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${item.title}&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
 		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
 
-    let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/quiz/location/?${ item.qid }" ) ) )\n`;
+    let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "/app/quiz/location/?${ item.qid }" ) ) )\n`;
 
     // conditional common-slides
 		let linkgraph_slide   = '';
@@ -403,16 +407,16 @@ async function showPresentation( item, type ){
     // Wikipedia requirement
 		if ( item.datasource === 'wikipedia' ){
       linkgraph_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-diagram-project' title='link relations'></i></h3>"\n    ( show \'linkgraph \'( ${ item.qid } ) ) )\n`;
-      timeline_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>timeline</h3> <h3><i class='fa-solid fa-timeline' title='Wikipedia article timeline'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/timeline-wikipedia/?t=${title_enc}" ) ) )\n`;
+      timeline_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>timeline</h3> <h3><i class='fa-solid fa-timeline' title='Wikipedia article timeline'></i></h3>"\n    ( show \'link \'( "/app/timeline-wikipedia/?t=${title_enc}" ) ) )\n`;
     }
 
     // Geo-location requirement
 		if ( valid( item.lat ) ){
 
-			street_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
+			street_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
 			nearby_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>nearby map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link-split \'( "/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${language}&layers=wikipedia" ) ) )\n`;
 
-			satellite_map     = `  ( slide "${ item.title } ${ sub_name } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
+			satellite_map     = `  ( slide "${ item.title } ${ sub_name } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
 
 		}
 
@@ -421,7 +425,7 @@ async function showPresentation( item, type ){
 		// COMMON SLIDES
 		if ( language === 'en' ){
 
-			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(simple)</h4>"\n    ( show \'link \'( "https://conze.pt/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
+			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(simple)</h4>"\n    ( show \'link \'( "/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
 
 		}
 
@@ -480,14 +484,14 @@ async function showPresentation( item, type ){
 		}
 		else if ( type === 'organism' ){
 
-			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/response/gbif-map.php?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
+			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "/app/response/gbif-map.php?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
 
 			slides.push( commons_slide );
 
 			slides.push( video_slide );
 
-			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
-			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
+			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
+			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
 
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
@@ -501,7 +505,7 @@ async function showPresentation( item, type ){
 			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
 			slides.push( commons_time_music_slide );
 			//slides.push( europeana_time_music_slide );
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
@@ -515,7 +519,7 @@ async function showPresentation( item, type ){
 
 			slides.push( commons_time_music_slide );
 			//slides.push( europeana_time_music_slide );
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
@@ -528,11 +532,11 @@ async function showPresentation( item, type ){
 		else if ( type === 'location' ){
 
 			// FIXME: check if article-language is available
-			//if ( valid( item.topic_history ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-regular fa-clock' title='history'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/wikipedia/?t=&l=${language}&qid=${ item.topic_history }&dir=ltr" ) ) )\n` ); }
+			//if ( valid( item.topic_history ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-regular fa-clock' title='history'></i></h3>"\n    ( show \'link \'( "/app/wikipedia/?t=&l=${language}&qid=${ item.topic_history }&dir=ltr" ) ) )\n` ); }
 
 			// FIXME: There may be an Qid for this location-culture, but we also need to check that the article-language is available for item.culture.
 			//  example: NL-language -> "Germany"-article-presentation -> culture-article does not exist in Dutch!
-			//if ( valid( item.culture ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-hand-holding-heart' title='culture'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) ) ( show \'link \'( "https://conze.pt/app/wikipedia/?t=&l=${language}&qid=${ item.culture }&dir=ltr" ) ) )\n` ); }
+			//if ( valid( item.culture ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-hand-holding-heart' title='culture'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) ) ( show \'link \'( "/app/wikipedia/?t=&l=${language}&qid=${ item.culture }&dir=ltr" ) ) )\n` ); }
 
 			if ( valid( item.wikivoyage ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikivoyage</h3><h3><i class='fa-solid fa-plane-departure' title='travel information'></i></h3>"\n    ( show \'link \'( "${ item.wikivoyage }" ) ) )\n` ); }
 
@@ -549,10 +553,10 @@ async function showPresentation( item, type ){
 			slides.push( linkgraph_slide );
 
 			// FIXME: field-URL required a "\n" before defaultView
-			if ( valid( item.country_l1_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>L1 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l1 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-1%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
+			if ( valid( item.country_l1_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>L1 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l1 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-1%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
 
 			// FIXME: field-URL required a "\n" before defaultView
-			if ( valid( item.country_l2_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>L2 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l2 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-2%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
+			if ( valid( item.country_l2_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>L2 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l2 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-2%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
 
 			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
 			//slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
@@ -630,12 +634,17 @@ async function showPresentation( item, type ){
 			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
 
-			slides.push( commons_slide );
+      if ( valid( item.is_painter ) && validAny( [ item.ulan_artist, item.rkd_artist, item.rijksmuseum_authority_id ] ) ){
 
-      if ( valid( item.is_painter ) ){
-
+        slides.push( commons_sparql_slide );
         slides.push( rijksmuseum_search_slide );
+
         //explore.datasources = sources; // reset datasources again to the original set
+
+      }
+      else { // default
+
+			  slides.push( commons_slide );
 
       }
 
@@ -1010,8 +1019,8 @@ async function setupLispEnv(){
 
             }
 
-            // replace markdown-links formatted as "(Q12345)" with: "(https://conze.pt/explore/&t=string&i=Q12345)"
-            data = data.replace( /\(\s*(Q\d+)\s*\)/g, '(https://conze.pt/explore/?&t=wikipedia-qid&i=$1)' );
+            // replace markdown-links formatted as "(Q12345)" with: "(//explore/&t=string&i=Q12345)"
+            data = data.replace( /\(\s*(Q\d+)\s*\)/g, `(https://${explore.host}${explore.base}/explore/?&t=wikipedia-qid&i=$1)` );
 
             elements += `<p class="fragment" ${autoslide} data-trigger="${ view }">${ data }</p>`;
             // FIXME: markdown rendering caused all fragments of a slide to show at once
