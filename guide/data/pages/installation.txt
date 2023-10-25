@@ -29,7 +29,7 @@ You must set the "**CONZEPT_HOSTNAME**" and "**CONZEPT_EMAIL**" (required for th
 
 [ NOTE: **__You now need to logout and then login again after running this script__**, to make sure the group permission are active. ]
 
-[ TODO: Add support for Apple macOS ]
+[ TODO: Add support for MS Windows and Apple macOS ]
 
 ===== step 4: Build the docker image =====
 
@@ -43,7 +43,6 @@ Run the docker image and create a correct HTTPs certificate:
 ===== docker-based local-development =====
 
 Set "**CONZEPT_HOSTNAME=localhost**" in settings.conf
-
 
 Useful options:
   * In "docker-compose.yml" **uncomment the app-volume-mapping** lines during development.

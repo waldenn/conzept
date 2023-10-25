@@ -46,7 +46,7 @@ function getImagesLink( args, label, qid ){
 
   if ( valid( qid ) ){
 
-    return '<a href="javascript:void(0)" class="mv-extra-icon" title="Commons images" aria-label="Comons images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( label ), url: encodeURI( `${explore.base}/app/commons/?q=${qid}&l=${explore.language}` ), language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>';
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="Commons images" aria-label="Comons images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( label ), url: encodeURI( `${explore.base}/app/commons-qid/?q=${qid}&l=${explore.language}` ), language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>';
 
   }
   else {

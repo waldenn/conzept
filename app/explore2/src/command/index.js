@@ -357,9 +357,9 @@ async function showPresentation( item, type ){
 
     if ( valid( item.thumbnail ) ){
 
-	    commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
-		  commons_time_music_slide      = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
-		  commons_country_music_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/commons/?q=${ item.qid }" ) ) )\n`;
+	    commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
+		  commons_time_music_slide      = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
+		  commons_country_music_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "https://conze.pt/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
 
     }
 

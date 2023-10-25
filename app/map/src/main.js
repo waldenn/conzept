@@ -9,6 +9,7 @@
 
 */
 
+
 let app = {
 	globus:	      undefined,
 
@@ -35,6 +36,13 @@ let app = {
   colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
 
 }
+
+const osm = new og.layer.XYZ("OpenStreetMap", {
+    isBaseLayer: true,
+    url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    visibility: true,
+    attribution: '© OpenStreetMap contributors, ODbL'
+});
 
 // setup wikibase library
 /*
@@ -119,13 +127,6 @@ async function init(){
 
   //console.log( app );
 
-  var osm = new og.layer.XYZ("OpenStreetMap", {
-      isBaseLayer: true,
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      visibility: true,
-      attribution: 'Data @ <a href="http://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="http://www.openstreetmap.org/copyright">ODbL</a>'
-  });
-
   /*
   const osm = new og.layer.XYZ("OpenStreetMap", { 
     isBaseLayer: true, 
@@ -207,6 +208,48 @@ async function init(){
 
 	});
 
+  const opentopo = new og.layer.XYZ("OpenTopo", {
+      isBaseLayer: true,
+      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+      visibility: false,
+      attribution: '© OpenStreetMap contributors, ODbL'
+  });
+
+  const sat1 = new og.layer.XYZ("Satellite (Esri)", {
+      isBaseLayer: true,
+      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      visibility: false,
+      attribution: `© Esri`,
+  });
+
+  const sat2 = new og.layer.XYZ("Satellite (Mapbox without labels)", {
+      isBaseLayer: true,
+      url: "//api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+      visibility: false,
+      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+  });
+
+  const sat3 = new og.layer.XYZ("Satellite (Mapbox with labels)", {
+      isBaseLayer: true,
+      url: "//api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+      visibility: false,
+      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+  });
+
+  const mapbox_dark = new og.layer.XYZ("MapBox Dark", {
+      isBaseLayer: true,
+      url: "//api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+      visibility: false,
+      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+  });
+
+  var mapbox_light = new og.layer.XYZ("MapBox Light", {
+      isBaseLayer: true,
+      url: "//api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+      visibility: false,
+      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+  });
+
   app.globus = new og.Globe({
 
     target: "globus",
@@ -219,9 +262,13 @@ async function init(){
 
     viewExtent: app.view_extent,
 
-    layers: [ osm, app.markerLayer ]
+    layers: [ osm, app.markerLayer, opentopo, sat1, sat2, sat3, mapbox_light, mapbox_dark ]
 
   });
+
+  // FIXME: not showing up
+  // working demo: https://www.openglobus.org/examples/layerSwitcher/layerSwitcher.html
+  app.globus.planet.addControl(new og.control.LayerSwitcher());
 
 	let myPopup = new og.Popup({
 		planet: app.globus.planet,

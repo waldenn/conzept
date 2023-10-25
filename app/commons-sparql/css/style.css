@@ -1,0 +1,248 @@
+/* ELEMENT STYLING */
+
+body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: "Hind", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  background: #fbfaf9;
+}
+
+h1 {
+  font-size: 4em;
+  color: #005799;
+}
+
+hr {
+  background-image: linear-gradient(to right, #E1E2E1, #CCCCCC, #E1E2E1);
+  border: 0;
+  margin: 25px 0px;
+  height: 1px;
+}
+
+input {
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid #CCC;
+  padding: 5px;
+}
+
+a, a:visited {
+  color: #005799;
+}
+
+a:not(.elem):hover {
+  background: #ee6e735c;
+}
+
+#loader {
+  position: fixed;
+  margin: auto;
+  bottom: 10%;
+  width: 70px;
+  height: 70px;
+  left: 50%;
+  right: 50%;
+  background: #fbfaf9d9;
+  border-radius: 2em;
+}
+
+button {
+  background-color: #005799; 
+  color: white; 
+  border: 2px solid #005799;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+button:hover {
+  /*background-color: white;*/
+  color: #D98F92;
+}
+
+/* HEADER STYLING */
+
+.splash {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+@media screen and (min-width: 800px) {
+   .splash {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      grid-template-rows: 1fr;
+      column-gap: 20px;
+   }
+}
+
+/* FORM STYLING */
+
+.form {
+  width: 100%;
+  text-align: center;
+}
+
+/* BUTTON STYLING */
+#paginationButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 4em;
+}
+#returnToLink {
+  display: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+/* ERROR STYLING */
+#error {
+  color: red;
+  display: none;
+  text-align: center;
+}
+
+#custom-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* RESULTS STYLING */
+#resultsHeader {
+  font-weight: 500;
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 0.7em;
+}
+#imagesDepicting {
+  font-size: 1.2em;
+}
+#results {
+  display: none;
+  text-align: center;
+}
+#results .imageContainer {
+  display: inline-block;
+  position: relative;
+  max-width: 320px;
+  overflow: hidden;
+  height: 200px;
+  margin: 10px;
+  border: none;
+  box-shadow: 0 2px 4px #888888;
+  -o-transform: scale(1,1);
+  -ms-transform: scale(1,1);
+  -moz-transform: scale(1,1);
+  -webkit-transform: scale(1,1);
+  transform: scale(1,1);
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#results .imageContainer:hover {
+  position: relative;
+  z-index: 999;
+  -o-transform: scale(1.03,1.03);
+  -ms-transform: scale(1.03,1.03);
+  -moz-transform: scale(1.03,1.03);
+  -webkit-transform: scale(1.03,1.03);
+  transform: scale(1.03,1.03);
+}
+#results .imageContainer:hover .caption {
+  opacity: 1;
+}
+#results img {
+  height: 15em;
+  margin-bottom: 1em;
+  /*max-width: min-content;*/
+  max-width: 90vw;
+}
+
+#results .caption {
+  opacity: 0;
+  position: absolute;
+  color: white;
+  width: 99%;
+  font-size: .9em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 3px;
+  z-index: 99999999;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#results .caption-top {
+  top: 0px;
+}
+#results .caption-bottom {
+  bottom: 0px;
+}
+
+/* CONZEPT PATCH STYLING */
+.elem {
+  padding: 1em;
+}
+
+.thumbimage.enlargable {
+  border-radius: 0.5em;
+}
+
+#lcl_elem_wrap {
+  background-size: contain !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+#lcl_window {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#numResults {
+  font-size: larger;
+  border: 3px solid #00000029;
+  padding: 0.2em 0.5em;
+  border-radius: 0.7em;
+}
+
+#lcl_txt {
+  /*
+  margin: 0px auto;
+  left: 0;
+  right: 0;
+  */
+  border-radius: 1.3em !important;
+}
+
+#lcl_descr {
+  text-align: center !important;
+  font-size: larger !important;
+}
+
+.thumbimage.enlargable:hover {
+  outline: #E8646A solid 8px;
+}
+
+#topic-title {
+  font-size: 1.3em;
+}
+
+#topic-link {
+  font-size: 0.7em;
+}

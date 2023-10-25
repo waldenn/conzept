@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html id="page">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conzept: Wikimedia Commons SPARQL</title>
+    <link rel="stylesheet" href="css/style.css?v004">
+    <meta name="description" content="The View It! tool lets you look up images related to a subject on Wikipedia."/>
+    <meta property="og:site_name" content="Wikimedia Commons viewer"/>
+    <!--meta property="og:url" content="https://view-it.toolforge.org"/-->
+    <meta property="og:description" content="The View It! tool lets you look up images related to a subject on Wikipedia."/>
+
+    <!-- conzept resources -->
+    CONZEPT_COMMON_HTML_INCLUDE
+
+    <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
+
+    <script src="../explore2/libs/lc/dist/js/lc_lightbox.lite.js"></script>
+    <link rel="stylesheet" href="../explore2/libs/lc/dist/css/lc_lightbox.css" />
+    <link rel="stylesheet" href="../explore2/libs/lc/dist/css/skins/minimal.css" />
+    <script src="../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+
+    <script src="src/index.js?v002"></script> 
+    <script src="src/zooming.js"></script> 
+  </head>
+
+  <body>
+    <div id="openseadragon" style="display:none; width: 100vw; height: 100vh;"><img id="loader-openseadragon" class="no-enlarge" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999999; width: 100px; height: 100px;" alt="loading" src="/app/explore2/assets/images/loading.gif"/></div>
+
+    <img id="loader" alt="loading" width="36" height="36" src="../explore2/assets/images/loading.gif"/>
+
+    <!--div id="splash" class="splash">
+      <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/View_it%21_Tool_%28transparent%29.png/240px-View_it%21_Tool_%28transparent%29.png" alt="View it!" width="150px">
+        <h1>View It!</h1>
+      </div>
+      <div>
+        <p>
+          View it! is a tool to show a catalog of images available on Wikimedia Commons for a given article across the various Wikipedia platforms. View it! increases discoverability of Commons uploads and encourages contributors to utilize Commons and <a href="https://commons.wikimedia.org/wiki/Commons:Structured_data">structured data</a>.</p>
+          <br/>
+          View our page on <a href="https://meta.wikimedia.org/wiki/View_it!_Tool">Meta Wiki</a> for details.
+        </p>
+      </div>
+    </div>
+
+    <hr /-->
+
+    <div class="form" style="display:none;">
+      <form>
+        <input id="qNumberInput" type="search" name="q" placeholder="Enter Wikidata Q-number here">
+        <button type="submit" onClick="searchFromTextbox()">Submit</button>
+      </form>
+    </div>
+
+    <div id="error"></div>
+
+    <div id="results">
+      <div id="resultsHeader">
+        <span id="imagesDepicting"> <a id="resultsHeaderLink" href="" target="_blank"></a> </span>
+        <br />
+        <small><span id="numResults">?</span> <a href="https://commons.wikimedia.org">Wikimedia Commons</a></small>
+        <br /><br />
+      </div>
+      <a id="returnToLink" href=""> <button>Return to article</button> </a>
+    </div>
+
+    <br/><br/><br/><div style="margin-bottom: 3rem;"></div>
+
+  </body>
+</html>
+

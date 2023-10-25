@@ -1,7 +1,7 @@
 const IMG_WIDTH = '800';
-const IMG_HEIGHT = '600';
+//const IMG_HEIGHT = '600';
 const NUM_RESULTS = 19;
-const USER_AGENT = 'View-it! [In Development] (https://view-it.toolforge.org/)';
+const USER_AGENT = 'View-it!';
 const ORIGIN = '*';
 
 // CONZEPT PATCH
