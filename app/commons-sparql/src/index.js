@@ -132,7 +132,6 @@ function startSearch() {
 
 }
 
-/*
 function displayError(error) {
   document.getElementById('error').style.display = 'block';
   document.getElementById('error').innerHTML = error;
@@ -141,7 +140,6 @@ function displayError(error) {
 function hideError() {
   document.getElementById('error').style.display = 'none';
 }
-*/
 
 function getImages() {
 
