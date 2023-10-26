@@ -4120,7 +4120,7 @@ function gotoImages( newtab ){
 
 	let title = $('#main_title_label').text();
 
-  const url = `https://${CONZEPT_HOSTNAME}/${CONZEPT_WEB_BASE}/app/commons/?q=${qid}&l=${language}`;
+  const url = `https://${CONZEPT_HOSTNAME}/${CONZEPT_WEB_BASE}/app/commons-qid/?q=${qid}&l=${language}`;
 
   if ( newtab ){
 

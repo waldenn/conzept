@@ -1305,7 +1305,7 @@ function gotoAI( newtab, task ){
 
 function gotoCommons( newtab ){
 
-  const url = encodeURI( `${explore.base}/app/commons/?q=${qid}&l=${explore.language}` );
+  const url = encodeURI( `${explore.base}/app/commons-qid/?q=${qid}&l=${explore.language}` );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }
