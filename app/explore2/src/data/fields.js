@@ -14815,9 +14815,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'heritage sites',
   section: ['location-travel', 'location-geography', 'library-history','main'],
   rank: [ 28.1, 7.6, 92, 1690 ],
-  headline_create: 'valid( item.location_heritage_sites_commons_sparql )',
+  headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
   headline_type: 'link',
-  headline_rank: 285,
+  headline_rank: 445,
 },
 
 'location_heritage_sites' : {
