@@ -1,4 +1,4 @@
-let   LIMIT       = 20; // default page size, override with param: "&pagesize=5"
+let   LIMIT       = 10; // default page size, override with param: "&pagesize=5"
 const IMG_WIDTH   = '800';
 const USER_AGENT  = 'View-it!';
 const ORIGIN      = '*';
@@ -225,7 +225,7 @@ function getImages() {
           headers: new Headers({ 'Api-User-Agent': USER_AGENT })
         }).then((response) => response.json())
 
-          .then((data) => {
+          .then( (data) => {
 
             // remove pagination button, if it exists
             const existingPaginationButton = document.getElementById('paginationButton');
@@ -295,38 +295,26 @@ function getImages() {
 
               a_elem.append( img_elem );
 
+              var counter = 1;
+
+              img_elem[0].addEventListener("load", function () {
+
+                counter++
+
+                if ( counter === LIMIT ){
+
+                  delay(2000).then(() => toggleSentinel() );
+
+                }
+
+              });
+
               $('#results').append( a_elem );
 
             }
 
             $('#loader').hide();
 
-            console.log( numResults, LIMIT, offset );
-
-            // Output pagination button as needed
-            if (numResults > (offset + LIMIT )) {
-
-              //offset += LIMIT;
-
-              const paginationButton = document.createElement('button');
-
-              paginationButton.id = 'paginationButton';
-              paginationButton.title = 'load more images';
-              paginationButton.innerHTML = '<i title="load more images" class="fa-solid fa-circle-plus"></i>';
-              resultsElement.appendChild(paginationButton);
-
-							$('#paginationButton').show();
-
-						  setupInfiniteScroll();
-
-            }
-						else { // done
-
-							console.log('no more images');
-							$('#paginationButton').hide();
-              $('#loader').hide();
-
-						}
 
           });
       }
@@ -334,20 +322,51 @@ function getImages() {
     });
 }
 
+function toggleSentinel(){
+
+  //console.log( numResults, LIMIT, offset );
+
+  // Output pagination button as needed
+  if (numResults > (offset + LIMIT )) {
+
+    const paginationButton      = document.createElement('button');
+
+    paginationButton.id         = 'paginationButton';
+    paginationButton.title      = 'load more images';
+    paginationButton.innerHTML  = '<i title="load more images" class="fa-solid fa-circle-plus"></i>';
+
+    const resultsElement = document.getElementById('results');
+    resultsElement.appendChild(paginationButton);
+
+    $('#paginationButton').show();
+
+    setupInfiniteScroll();
+
+  }
+  else { // done
+
+    console.log('no more images');
+    $('#paginationButton').hide();
+    $('#loader').hide();
+
+  }
+
+}
+
 function loadNextPage(){
 
 	$('#paginationButton').hide();
   $('#loader').show();
 
-  console.log( offset > LIMIT )
+  //console.log( offset > LIMIT )
 
-  //if ( offset >= LIMIT ){
+  offset += LIMIT;
 
-    offset += LIMIT;
+  if ( offset >= LIMIT ){
 
     getImages();
 
-  //}
+  }
 
 }
 
@@ -407,3 +426,7 @@ function goExplore( title, newtab ){
 }
 
 window.onload = startSearch;
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
