@@ -2426,7 +2426,7 @@ conzept_fields = {
   icon: 'fa-solid fa-volume-up',
   text: 'audio clip',
   section: ['media-audio','main'],
-  rank: [10,30],
+  rank: [5,1225],
 },
 
 /*
@@ -14810,14 +14810,14 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/commons-sparql/?t=heritage%20sites%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%253Fitem%2520%253Fimage%2520%253Fdate%2520WHERE%2520%257B%250A%2520%2520%253Fitem%2520wdt%253AP1435%2520%253Fdesignation%253B%250A%2520%2520%2520%2520%28wdt%253AP17%257C%28wdt%253AP131%2A%29%29%2520wd%253A${item.qid}%253B%250A%2520%2520%2520%2520wdt%253AP18%2520%253Fimage.%250A%2520%2520OPTIONAL%2520%257B%2520%253Fitem%2520%28wdt%253AP571%257Cwdt%253AP585%29%2520%253Fdate.%2520%257D%250A%2520%2520SERVICE%2520wikibase%253Alabel%2520%257B%2520bd%253AserviceParam%2520wikibase%253Alanguage%2520%2522${explore.language}%252Cen%2522.%2520%257D%250A%257D%250AORDER%2520BY%2520ASC%2520%28%253Fdate%29',
+  url: '${explore.base}/app/commons-sparql/?t=heritage%20sites%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%253Fitem%2520%253FitemLabel%2520%253Fimage%2520%253Fdate%2520WHERE%2520%257B%250A%2520%2520%253Fitem%2520wdt%253AP1435%2520%253Fdesignation%253B%250A%2520%2520%2520%2520%28wdt%253AP17%257C%28wdt%253AP131%2A%29%29%2520wd%253A${item.qid}%253B%250A%2520%2520%2520%2520wdt%253AP18%2520%253Fimage.%250A%2520%2520OPTIONAL%2520%257B%2520%253Fitem%2520%28wdt%253AP571%257Cwdt%253AP585%29%2520%253Fdate.%2520%257D%250A%2520%2520SERVICE%2520wikibase%253Alabel%2520%257B%2520bd%253AserviceParam%2520wikibase%253Alanguage%2520%2522${explore.language}%252Cen%2522.%2520%257D%250A%257D%250AORDER%2520BY%2520ASC%2520%28%253Fdate%29',
   icon: 'fa-regular fa-images',
   text: 'heritage sites',
   section: ['location-travel', 'location-geography', 'library-history','main'],
   rank: [ 28.1, 7.6, 92, 1690 ],
-  headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
-  headline_type: 'link',
-  headline_rank: 445,
+  //headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
+  //headline_type: 'link',
+  //headline_rank: 445,
 },
 
 'location_heritage_sites' : {
@@ -18816,7 +18816,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-music',
   text: 'audio',
   section: ['media-audio','main'],
-  rank: [30,1230],
+  rank: [10,1230],
   headline_create: 'checkTag( item, 1, ["music", "music-genre", "musician", "music-group"] ) || valid( item.is_musician )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
@@ -18833,7 +18833,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-music',
   text: 'archive search',
   section: 'media-audio',
-  rank: 31,
+  rank: 12,
 
 },
 

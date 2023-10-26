@@ -1,3 +1,7 @@
+// TODO:
+//   - add qid-based datastructure
+//   - add the itemLabel to that structure and show it to the user (title hover?)
+
 let   LIMIT       = 10; // default page size, override with param: "&pagesize=5"
 const IMG_WIDTH   = '800';
 const USER_AGENT  = 'View-it!';
@@ -96,11 +100,20 @@ function startSearch() {
             $('#custom-title').after('<div style="text-align:center;">0 results found</div>');
 
           }
+          else {
+
+            getImages();
+            setupImageClicks();
+            setupImageZoom();
+
+          }
 
         }
         else { // error
 
           console.log('error fetching SPARQL count: ', sparql_count_url );
+
+          $('#custom-title').after('<div style="text-align:center;">0 results found</div>');
 
           return 1;
 
@@ -109,13 +122,6 @@ function startSearch() {
       }
 
     });
-
-    // get image data
-    getImages();
- 
-    // process image data
-    setupImageClicks();
-    setupImageZoom();
 
   }
   else {
@@ -126,6 +132,7 @@ function startSearch() {
 
 }
 
+/*
 function displayError(error) {
   document.getElementById('error').style.display = 'block';
   document.getElementById('error').innerHTML = error;
@@ -134,6 +141,7 @@ function displayError(error) {
 function hideError() {
   document.getElementById('error').style.display = 'none';
 }
+*/
 
 function getImages() {
 
@@ -182,7 +190,7 @@ function getImages() {
 
       resultsHeaderResults.innerHTML = numResults.toLocaleString();
 
-      if (numResults > 0) { // results found
+      if (numResults > 0){ // results found
 
         // built pipe-separated string of image titles
         let imageTitlesArray = [];
@@ -289,7 +297,7 @@ function getImages() {
                 href : images[i].thumb,
                 tabindex : "0",
               }).attr( {
-                 'data-qid' : images[i].qid,
+                 'data-qid'     : images[i].qid,
                  'data-lcl-txt' : caption,
               } );
 
@@ -303,7 +311,7 @@ function getImages() {
 
                 if ( counter === LIMIT ){
 
-                  delay(2000).then(() => toggleSentinel() );
+                  delay(2000).then( () => toggleSentinel() );
 
                 }
 
@@ -315,18 +323,17 @@ function getImages() {
 
             $('#loader').hide();
 
+      });
+    }
 
-          });
-      }
-
-    });
+  });
 }
 
 function toggleSentinel(){
 
   //console.log( numResults, LIMIT, offset );
 
-  // Output pagination button as needed
+  // create a new pagination-sentinel if needed
   if (numResults > (offset + LIMIT )) {
 
     const paginationButton      = document.createElement('button');
@@ -345,7 +352,8 @@ function toggleSentinel(){
   }
   else { // done
 
-    console.log('no more images');
+    //console.log('no more images');
+
     $('#paginationButton').hide();
     $('#loader').hide();
 
@@ -425,8 +433,8 @@ function goExplore( title, newtab ){
 
 }
 
-window.onload = startSearch;
-
 function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
+
+window.onload = startSearch;
