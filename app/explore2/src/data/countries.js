@@ -1215,6 +1215,21 @@ const countries = {
     "chamber2": "Q12311817",
     "chamber2_members": "Q12311817"
   },
+  "Q223": {
+    "iso2": "gl",
+    "iso3": "grl",
+    "name": "Greenland",
+    "chatham_house_id": "",
+    "capital": "Q1748",
+    "capitalName": "Q226",
+    "l1": "Q743544",
+    "l2": "Q13220204",
+    "parliament": "Q1257966",
+    "chamber1": "Q1257966",
+    "chamber1_members": "Q28332892",
+    "chamber2": "",
+    "chamber2_members": ""
+  },
   "Q36": {
     "iso2": "PL",
     "iso3": "POL",

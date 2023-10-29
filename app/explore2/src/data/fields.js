@@ -2350,7 +2350,7 @@ conzept_fields = {
   headline_url: '${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + item.audio )}',
   headline_title: 'audio tool',
   headline_icon: 'fa-solid fa-volume-up',
-  headline_rank: 270,
+  headline_rank: 235,
 },
 
 'audio_custom_link' : {
@@ -3187,6 +3187,22 @@ conzept_fields = {
   headline_create: 'valid( item.is_painter ) && validAny( [ item.ulan_artist, item.rkd_artist, item.rijksmuseum_authority_id ] )',
   headline_type: 'link',
   headline_rank: 46,
+},
+
+'works_depicting_subject_commons_sparql' : {
+  create_condition: 'valid( item.qid )',
+  title: 'gallery of works depicting this subject',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/commons-sparql/?t=depictions%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT+DISTINCT+%253Fitem+%253FitemLabel+%253Fimage+%253Fdate%250AWHERE%250A%7B%250A%2520+%253Fitem+wdt%253AP180+%253Fobject+.%250A%2520+%253Fobject+wdt%253AP279%2A+wd%253A${item.qid}+.%250A%2520+%253Fitem+wdt%253AP18+%253Fimage+.%250A%2520+OPTIONAL+%7B+%253Fitem+%28wdt%253AP571%7Cwdt%253AP585%29+%253Fdate.+%7D%250A%2520+SERVICE+wikibase%253Alabel+%7B+bd%253AserviceParam+wikibase%253Alanguage+%22${explore.language}%252Cen%22+%7D%250A%7D%250AORDER+BY+ASC%28%253Fdate%29',
+  icon: 'fa-regular fa-images',
+  text: 'subject depictions',
+  section: ['art','media-image','main'],
+  rank: [7,55,1685],
+  //headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
+  //headline_type: 'link',
+  //headline_rank: 445,
 },
 
 /*
@@ -12614,7 +12630,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(str(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend',
+  url: '${explore.base}/app/query/embed.html#SELECT%20%3Fcountry%20%3Fyear%20%3FAVGpopulation%20%3FcountryLabel%20WHERE%20%7B%0A%20%20%7B%0A%20%20%20%20SELECT%20%3Fcountry%20%3Fyear%20(AVG(%3Fpopulation)%20AS%20%3FAVGpopulation)%20WHERE%20%7B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(STR(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP47%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20UNION%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20SELECT%20%3Fcountry%20(STR(YEAR(%3Fdate))%20AS%20%3Fyear)%20%3Fpopulation%20WHERE%20%7B%0A%20%20%20%20%20%20%20%20%20%20%3Fcountry%20wdt%3AP17%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ6256%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20p%3AP1082%20%3FpopulationStatement.%0A%20%20%20%20%20%20%20%20%20%20%3FpopulationStatement%20ps%3AP1082%20%3Fpopulation%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20pq%3AP585%20%3Fdate.%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20GROUP%20BY%20%3Fcountry%20%3Fyear%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0A%23defaultView%3ALineChart%0A%23meta%3Aborder%20country%20population%20trend%20${item.title}',
   icon: 'fa-solid fa-chart-line',
   text: 'border population',
   section: ['location-demography','main'],

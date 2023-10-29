@@ -76,6 +76,8 @@ function startSearch() {
     // remove any LIMIT condition
     let sparql_count_url = sparql_url.replace(/LIMIT%20[0-9]+/, '');
 
+    //console.log( sparql_count_url );
+
     // create a COUNT url
     sparql_count_url = sparql_url.replace(/DISTINCT(.*)WHERE/g, '%20%28COUNT%28%3Fitem%29+AS+%3Fcount%29%20');
 
