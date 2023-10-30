@@ -79,7 +79,7 @@ function startSearch() {
     //console.log( sparql_count_url );
 
     // create a COUNT url
-    sparql_count_url = sparql_url.replace(/DISTINCT(.*)WHERE/g, '%20%28COUNT%28%3Fitem%29+AS+%3Fcount%29%20');
+    sparql_count_url = sparql_url.replace(/DISTINCT(.*)WHERE/g, 'DISTINCT%20%28COUNT%28%3Fitem%29+AS+%3Fcount%29%20');
 
     //console.log( 'sparql count url: ', sparql_count_url );
 
@@ -239,10 +239,22 @@ function getImages() {
             const existingPaginationButton = document.getElementById('paginationButton');
 
             if (existingPaginationButton) {
+
               existingPaginationButton.remove();
+
             }
 
-            // Output images
+            if ( ! valid( data['query'] ) ){
+
+              // console.log('no more results'); // Note: COUNT with an "OPTIONAL{ }" can give a wrong/too-high result count.
+
+              $('#loader').hide();
+
+              return 1;
+
+            }
+
+            // output images
             const resultsElement = document.getElementById('results');
             resultsElement.style.display = 'block';
 
@@ -324,6 +336,7 @@ function getImages() {
             $('#loader').hide();
 
       });
+
     }
 
   });

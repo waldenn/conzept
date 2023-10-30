@@ -3195,7 +3195,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/commons-sparql/?t=depictions%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT+DISTINCT+%253Fitem+%253FitemLabel+%253Fimage+%253Fdate%250AWHERE%250A%7B%250A%2520+%253Fitem+wdt%253AP180+%253Fobject+.%250A%2520+%253Fobject+wdt%253AP279%2A+wd%253A${item.qid}+.%250A%2520+%253Fitem+wdt%253AP18+%253Fimage+.%250A%2520+OPTIONAL+%7B+%253Fitem+%28wdt%253AP571%7Cwdt%253AP585%29+%253Fdate.+%7D%250A%2520+SERVICE+wikibase%253Alabel+%7B+bd%253AserviceParam+wikibase%253Alanguage+%22${explore.language}%252Cen%22+%7D%250A%7D%250AORDER+BY+ASC%28%253Fdate%29',
+  url: '${explore.base}/app/commons-sparql/?t=artistic%20depictions%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT+DISTINCT+%253Fitem+%253FitemLabel+%253Fimage+%253Fdate%250AWHERE%250A%7B%250A%2520+%253Fitem+wdt%253AP180+%253Fobject+.%250A%2520+%253Fobject+wdt%253AP279%2A+wd%253A${item.qid}+.%250A%2520+%253Fitem+wdt%253AP18+%253Fimage+.%250A%2520+OPTIONAL+%7B+%253Fitem+%28wdt%253AP571%7Cwdt%253AP585%29+%253Fdate.+%7D%250A%2520+SERVICE+wikibase%253Alabel+%7B+bd%253AserviceParam+wikibase%253Alanguage+%22${explore.language}%252Cen%22+%7D%250A%7D%250AORDER+BY+ASC%28%253Fdate%29',
   icon: 'fa-regular fa-images',
   text: 'subject depictions',
   section: ['art','media-image','main'],
@@ -14658,8 +14658,8 @@ if ( valid( item.found_in_taxon ) ){
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20%3Fitem%20%3FanotherItemLabel%20%3Floc%20%3Finception%20%3Fpic%20WHERE%20%7B%0A%20%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ3305213%20%7D%20UNION%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ93184%20%7D%20UNION%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ11060274%20%7D%20UNION%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ15123870%20%7D.%0A%20%20%3Fitem%20wdt%3AP180%20%3FanotherItem%20.%0A%20%20%3Fitem%20wdt%3AP18%20%3Fpic%20.%0A%20%20OPTIONAL%7B%20%3Fitem%20wdt%3AP571%20%3Finception%20%7D.%0A%20%20%3FanotherItem%20wdt%3AP625%20%3Floc%20.%0A%20%20%3FanotherItem%20wdt%3AP276%3F%2Fwdt%3AP131*%20wd%3A${item.qid}%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC%20(%3Finception)%20%0A%23meta%3Avisual%20art%20depicting%20locations%20in%20${title_}%20%0A%23defaultView%3AMap%0A%23view%3AImageGrid%7B%22hide%22%3A%20%22%3FitemDescription%22%7D%0A',
   icon: 'fa-solid fa-search-location',
   text: 'local art',
-  section: '',
-  rank: 1,
+  section: ['media-image','art'],
+  rank: [19,10],
 },
 
 'higher_education_query' : {
