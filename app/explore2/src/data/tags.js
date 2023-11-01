@@ -331,6 +331,10 @@ var conzept_tags = {
         text : "literary genre",
         icon : ["fa-solid fa-book"],
       },
+      "philosophy" : {
+        text : "philosophy concept",
+        icon : ["fa-solid fa-parking"],
+      },
       "religion" : {
         text : "religious concept",
         icon : ["fa-solid fa-dharmachakra"],

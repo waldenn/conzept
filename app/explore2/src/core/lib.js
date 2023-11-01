@@ -2894,6 +2894,7 @@ async function updateLocaleInterface(){
   $('#app-guide-capitol').text( explore.banana.i18n('app-guide-capitol') );
   $('#app-guide-form-of-government').text( explore.banana.i18n('app-guide-form-of-government') );
   $('#app-guide-religion').text( explore.banana.i18n('app-guide-religion') );
+  $('#app-guide-philosophy').text( explore.banana.i18n('app-guide-philosophy') );
   $('#app-guide-period').text( explore.banana.i18n('app-guide-period') );
   $('#app-guide-history-aspect').text( explore.banana.i18n('app-guide-history-aspect') );
   $('#app-guide-revolution').text( explore.banana.i18n('app-guide-revolution') );

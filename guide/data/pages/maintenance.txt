@@ -1,0 +1,7 @@
+======maintenance======
+
+=====useful commands=====
+
+  * add a new topic-section (in the right place) in all i18n JSON files:
+<code>cd app/explore/assets/i18n/</code>
+<code>sed -i 's/  "app-section-library-religion":/  "app-section-library-philosophy": "philosophy",\n  "app-section-library-religion":/g' *</code>

@@ -651,7 +651,7 @@ window.zoomTo = function( title, qid, loc ){
 
 window.showImages = function( title, qid ){
 
-  const url = CONZEPT_WEB_BASE + '/app/commons/?q=' + qid + '&l=' + app.language;
+  const url = CONZEPT_WEB_BASE + '/app/commons-qid/?q=' + qid + '&l=' + app.language;
 
   window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: 'ps2' } }, '*' );
 

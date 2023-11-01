@@ -107,6 +107,10 @@ const sections = {
 				'icon' : 'fa-solid fa-people-roof',
 			},
 
+			'library-philosophy': {
+				'icon' : 'fa-solid fa-parking',
+			},
+
 			'library-religion': {
 				'icon' : 'fa-solid fa-dharmachakra',
 			},
