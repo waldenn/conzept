@@ -3,10 +3,10 @@ import Link from "next/link";
 import React from "react";
 
 export function InternalLink(
-  props: React.PropsWithChildren<{ href: string; className?: string }>
+  props: React.PropsWithChildren<{ target?: string; href: string; className?: string }>
 ) {
   return (
-    <Link href={props.href} className={"hover:underline " + props.className}>
+    <Link target={props.target} href={props.href} className={"hover:underline " + props.className}>
       {props.children}
     </Link>
   );
@@ -33,7 +33,7 @@ export function ILinkToDiscussionWrapper(
   const linkToDiscussion = `/app/news-tech/dist/item.html?id=${props.discussionId}`; // CONZEPT PATCH
   //const linkToDiscussion = `/item?id=${props.discussionId}`;
   return (
-    <InternalLink href={linkToDiscussion} className={props.className}>
+    <InternalLink target="_self" href={linkToDiscussion} className={props.className}>
       {props.children}
     </InternalLink>
   );

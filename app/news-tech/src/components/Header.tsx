@@ -12,24 +12,19 @@ const links = [
 export function Header() {
   return (
     <div className="bg-orange-500 text-gray-900 flex flex-col px-2 py-1 w-full">
-      <MenuItem href="/">
+      <MenuItem href="./index.html">
         <span className="flex items-end gap-2">
-          Tech News
+          Hacker News
         </span>
       </MenuItem>
       <div className="flex justify-between flex-wrap w-full">
         <div className="flex items-center text-xs gap-2">
-          {links.map(({ label, link }, index) => (
-            <Fragment key={label}>
-              {index !== 0 && "|"}
-              <MenuItem href="front.html">front</MenuItem> |
-              <MenuItem href="ask.html">ask</MenuItem> |
-              <MenuItem href="show.html">show</MenuItem>
-            </Fragment>
-          ))}
+          <MenuItem href="./index.html">front</MenuItem> |
+          <MenuItem href="./ask.html">ask</MenuItem> |
+          <MenuItem href="./show.html">show</MenuItem>
         </div>
         <div className="text-xs text-black">
-          <MenuItem href="about.html">About</MenuItem>
+          <MenuItem href="./about.html">About</MenuItem>
         </div>
       </div>
     </div>
