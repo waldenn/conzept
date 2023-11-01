@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+code {
+  white-space: pre-line;
+}
+
+/* https://stackoverflow.com/a/65211073/2419584 */
+* {
+  -webkit-tap-highlight-color: rgba(235, 0, 0, 0.04);
+}
+
+.bg-opacity-3 {
+  background-color: rgb(0 0 0 / 0.03);
+}
+
+.comment-text {
+  overflow-wrap: break-word;
+  padding-bottom: 0.2rem;
+}
+
+.comment-text p {
+  padding-bottom: 0.3rem;
+  padding-right: 0.5rem;
+}
+
+.comment-text a {
+  text-decoration: underline;
+}
+
+.comment-text pre {
+  padding-left: 0.5rem;
+  padding-bottom: 0.3rem;
+}

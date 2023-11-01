@@ -2834,6 +2834,7 @@ async function updateLocaleInterface(){
   $('#app-menu-cover-topic').text( explore.banana.i18n('app-menu-cover-topic') );
   $('#app-menu-culture').text( explore.banana.i18n('app-menu-culture') );
   $('#app-menu-nature').text( explore.banana.i18n('app-menu-nature') );
+  $('#app-menu-news').text( explore.banana.i18n('app-menu-news') );
   $('#app-menu-license').text( explore.banana.i18n('app-menu-license') );
   $('#app-menu-persona').text( explore.banana.i18n('app-menu-persona') );
   $('#app-menu-country').text( explore.banana.i18n('app-menu-country') );
@@ -3599,7 +3600,6 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             // general culture
             '<div><a class="" title="random featured portal" aria-label="random featured portal" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-portal&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-portal">featured portal</span></span></a></div>' +
-            '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
             '<div><a class="" title="visual search" aria-label="visual search" role="button" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
 
             // geography
@@ -3682,6 +3682,19 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random atomic element" aria-label="random atomic element" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;element&quot; )"><span class="icon"><i class="fa-solid fa-atom fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-atom">atom</span></span></a></div>' +
           '</div>' +
         '</details>' +
+
+        '<details class="auto frontpage" style="" closed>' +
+          '<summary><span id="app-menu-news">news</span></summary>' +
+
+          '<div class="frontpage-grid-container">' +
+
+            '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
+
+            '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/news-tech/dist/&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
+
+          '</div>' +
+        '</details>' +
+ 
 
     '</div>'
   );

@@ -5577,7 +5577,7 @@ conzept_fields = {
 
 'notable_work_linkgraph' : {
   create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.notable_work )',
-  title: 'graph of notable works',
+  title: 'linkgraph of notable works',
   prop: '',
   mv: false,
   type: 'link-split',
@@ -5589,6 +5589,33 @@ conzept_fields = {
   headline_create: 'valid( item.notable_work_linkgraph )',
   headline_type: 'link-split',
   headline_rank: 50,
+},
+
+'derivative_work' : {
+  title: 'derivative work',
+  prop: '4969',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-arrows-split-up-and-left',
+  text: 'derivative work',
+  section: ['library-general','main'],
+  rank: [101,5301],
+},
+
+'derivative_work_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.derivative_work )',
+  title: 'linkgraph of derivative works',
+  prop: '',
+  mv: false,
+  type: 'link-split',
+  url: "${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.derivative_work.join() }&title=${title}",
+  icon: 'fa-solid fa-arrows-split-up-and-left',
+  text: 'derived work graph',
+  section: 'main',
+  rank: 5301,
+  //headline_create: 'valid( item.derivative_work_linkgraph )',
+  //headline_type: 'link-split',
+  //headline_rank: 51,
 },
 
 'taxon_range' : {

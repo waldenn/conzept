@@ -15,7 +15,7 @@
   "app-title-citations": "Citations",
   "app-guide-see-more": "see more",
   "app-guide-page": "page",
-  "app-guide-news": "news",
+  "app-guide-news": "current events",
   "app-guide-topic": "topic",
   "app-guide-artwork": "painting",
   "app-guide-organism": "organism",
@@ -171,6 +171,7 @@
 
   "app-guide-featured-article": "featured article",
   "app-menu-cover-topic": "cover topic",
+  "app-menu-news": "news",
   "app-menu-culture": "culture",
   "app-menu-nature": "nature",
   "app-menu-license": "license",
