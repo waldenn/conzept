@@ -4008,6 +4008,7 @@ conzept_fields = {
 },
 
 'slovník_českých_filosofů' : {
+  render_condition: 'checkLC( ["sl","sk"] )',
   title: 'Slovník českých filosofů',
   prop: '9355',
   type: 'url',
@@ -4021,6 +4022,7 @@ conzept_fields = {
 },
 
 'biblioteche_dei_filosofi' : {
+  render_condition: 'checkLC( "it" )',
   title: 'Biblioteche dei filosofi',
   prop: '7613',
   type: 'url',
@@ -4034,6 +4036,7 @@ conzept_fields = {
 },
 
 'philarchive_search' : {
+  create_condition: true,
   title: 'PhilArchive search',
   prop: '',
   type: 'link',
@@ -4046,6 +4049,7 @@ conzept_fields = {
 },
 
 'philpapers_search' : {
+  create_condition: true,
   title: 'PhilPapers search',
   prop: '',
   type: 'link',
@@ -4058,6 +4062,7 @@ conzept_fields = {
 },
 
 'philsci_search' : {
+  create_condition: true,
   title: 'PhilSci Archive search - philosophers of science',
   prop: '',
   type: 'link',
@@ -6925,7 +6930,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   url: 'https://jainqq.org/?q=${title_quoted}',
-  icon: 'oma oma-black-raised-hand',
+  icon: 'oma oma-black-raised-hand', // FIXME
   text: 'Jain',
   section: ['library-religion'],
   rank: [700],
