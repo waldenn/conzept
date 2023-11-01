@@ -3994,6 +3994,7 @@ conzept_fields = {
 },
 
 'philosophica' : {
+  render_condition: 'checkLC( "es" )',
   title: 'Philosophica',
   prop: '10059',
   type: 'link',
@@ -4032,14 +4033,49 @@ conzept_fields = {
   rank: [56,8206],
 },
 
+'philarchive_search' : {
+  title: 'PhilArchive search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://philarchive.org/s/${title_quoted}',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilArchive',
+  section: ['library-philosophy'],
+  rank: [60, 8215],
+},
+
+'philpapers_search' : {
+  title: 'PhilPapers search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://philpapers.org/s/${title_quoted}',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilPapers',
+  section: ['science-search-tools','library-philosophy'],
+  rank: [170, 60.1, 8215.1],
+},
+
+'philsci_search' : {
+  title: 'PhilSci Archive search - philosophers of science',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://philsci-archive.pitt.edu/cgi/search/archive/advanced?screen=Search&dataset=archive&_action_search=Search&documents_merge=ALL&documents=${title_quoted}&title_merge=ALL&title=&creators_name_merge=ALL&creators_name=&abstract_merge=ALL&abstract=&date=&keywords_merge=ALL&keywords=&subjects_merge=ANY&department_merge=ALL&department=&editors_name_merge=ALL&editors_name=&refereed=EITHER&publication_merge=ALL&publication=&userid.username=&userid.name_merge=ALL&userid.name=&userid.userid=&satisfyall=ALL&order=',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilSci',
+  section: ['science-search-tools','library-philosophy'],
+  rank: [171, 61, 8216],
+},
+
 'kings_college_history_of_philosophy' : {
   create_condition: 'validAny( [ item.stanford_encyclopedia_of_philosophy, item.iep, item.inpho_id ] )',
   title: 'Kings College History of Philosophy',
   prop: '',
   type: 'url',
   mv: false,
-  url_format: 'https://www.historyofphilosophy.net/search-form?keyword=${title_}&type=All',
-  url: '',
+  url: 'https://www.historyofphilosophy.net/search-form?keyword=${title_}&type=All',
   icon: 'fa-solid fa-parking',
   text: 'Kings College',
   section: ['library-philosophy','main'],
