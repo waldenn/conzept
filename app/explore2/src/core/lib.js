@@ -2917,6 +2917,10 @@ async function updateLocaleInterface(){
   $('#app-guide-tourist-attraction').text( explore.banana.i18n('app-guide-tourist-attraction') );
   $('#app-guide-dish').text( explore.banana.i18n('app-guide-dish') );
 
+  $('#app-guide-musical-instrument').text( explore.banana.i18n('app-guide-musical-instrument') );
+  $('#app-guide-technology').text( explore.banana.i18n('app-guide-technology') );
+  $('#app-guide-radio').text( explore.banana.i18n('app-guide-radio') );
+
   // other elements
   $('#app-structured-search-title').text( explore.banana.i18n('app-structured-search-title') );
   $('#app-topics-found').text( explore.banana.i18n('app-topics-found') );
@@ -3694,7 +3698,9 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
 
             // by country
-            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.w3newspapers.com/${ getW3NewspapersCountry() }/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers</span></span></a></div>` +
+            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.w3newspapers.com/${ getW3NewspapersCountry() }/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (I)</span></span></a></div>` +
+
+            `<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.world-newspapers.com/countries/${ getWorldNewspapersCountry() }/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (II)</span></span></a></div>` +
 
             // by theme: tech
             '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
@@ -3766,6 +3772,19 @@ async function getW3NewspapersCountry(){
   return name.ToLowerCase();
 
 }
+
+async function getWorldNewspapersCountry(){
+
+  let name = explore.country;
+
+  if ( name === 'United States of America' ){ name = 'USA'; }
+  //else if ( name === 'United Kingdown' ){ name = 'UK'; }
+
+  return name.ToLowerCase();
+
+}
+
+
 
 async function renderTopicCover( name ){
 
