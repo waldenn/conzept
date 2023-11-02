@@ -3769,7 +3769,7 @@ async function getW3NewspapersCountry(){
   if ( name === 'United States of America' ){ name = 'USA'; }
   else if ( name === 'United Kingdown' ){ name = 'UK'; }
 
-  return name.ToLowerCase();
+  return name.toLowerCase();
 
 }
 
@@ -3780,7 +3780,7 @@ async function getWorldNewspapersCountry(){
   if ( name === 'United States of America' ){ name = 'USA'; }
   //else if ( name === 'United Kingdown' ){ name = 'UK'; }
 
-  return name.ToLowerCase();
+  return name.toLowerCase();
 
 }
 
