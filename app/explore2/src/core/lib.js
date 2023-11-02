@@ -3600,7 +3600,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             // general culture
             '<div><a class="" title="random featured portal" aria-label="random featured portal" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;featured-portal&quot; )"><span class="icon"><i class="fa-regular fa-star fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-featured-portal">featured portal</span></span></a></div>' +
-            '<div><a class="" title="visual search" aria-label="visual search" role="button" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
+            //'<div><a class="" title="visual search" aria-label="visual search" role="button" href="javascript:void(0)" onclick="identifyOther()"><span class="icon"><i class="fa-solid fa-camera fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-menu-visual-identification">visual search</span></span></a></div>' +
 
             // geography
             '<div><a class="" title="random country map" aria-label="random country map" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fa-solid fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
@@ -3688,13 +3688,19 @@ async function setDefaultDisplaySettings( cover, type ) {
 
           '<div class="frontpage-grid-container">' +
 
+            // by language
+            '<div><a class="" title="WikiNews" aria-label="WikiNews" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://' + explore.language + '.m.wikinews.org/wiki/&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikinews">wikinews</span></span></a></div>' +
+
             '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
 
-            '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/news-tech/dist/&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
+            // by country
+            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.w3newspapers.com/${ getW3NewspapersCountry() }/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers</span></span></a></div>` +
+
+            // by theme: tech
+            '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
 
           '</div>' +
         '</details>' +
- 
 
     '</div>'
   );
@@ -3747,6 +3753,17 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   // TODO: check why this is needed
   setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+}
+
+async function getW3NewspapersCountry(){
+
+  let name = explore.country;
+
+  if ( name === 'United States of America' ){ name = 'USA'; }
+  else if ( name === 'United Kingdown' ){ name = 'UK'; }
+
+  return name.ToLowerCase();
 
 }
 

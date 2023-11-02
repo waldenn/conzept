@@ -696,6 +696,8 @@ $settings_html = '
                       <li><span id="compareTopics"><a class="link compare" title="compare topics" aria-label="compare topics" role="button" href="javascript:void(0)" tabindex="0"><i class="fa-solid fa-equals"></i>&nbsp; <span id="app-menu-compare-topics"></span></a></span></li>
                       <li><span id="goFullscreen"><a class="link" title="toggle fullscreen" aria-label="toggle fullscreen" role="button" onclick="toggleFullscreen()" tabindex="0"><i class="fa-solid fa-expand"></i>&nbsp; <span id="app-menu-toggle-fullscreen"></span></a></span></li>
 
+                      <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i> visual-search</a> <small>(using Bing)</small></span></li>
+
                       <li><span id="draw"><a class="link" href="https://excalidraw.com" target="infoframe" onclick="resetIframe()" title="Excalidraw drawing tool" aria-label="Excalidraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small>(experiment)</small></span></li>
 
                       <li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li>

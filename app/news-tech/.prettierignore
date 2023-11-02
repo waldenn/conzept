@@ -1,4 +1,0 @@
-# Ignore artifacts:
-dist-export
-node_modules
-.next
