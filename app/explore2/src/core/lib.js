@@ -3762,9 +3762,9 @@ async function setDefaultDisplaySettings( cover, type ) {
 
 }
 
-async function getW3NewspapersCountry(){
+function getW3NewspapersCountry(){
 
-  let name = explore.country;
+  let name = explore.country_name;
 
   if ( name === 'United States of America' ){ name = 'USA'; }
   else if ( name === 'United Kingdown' ){ name = 'UK'; }
@@ -3773,9 +3773,9 @@ async function getW3NewspapersCountry(){
 
 }
 
-async function getWorldNewspapersCountry(){
+function getWorldNewspapersCountry(){
 
-  let name = explore.country;
+  let name = explore.country_name;
 
   if ( name === 'United States of America' ){ name = 'USA'; }
   //else if ( name === 'United Kingdown' ){ name = 'UK'; }
