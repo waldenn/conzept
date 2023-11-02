@@ -3703,16 +3703,21 @@ async function setDefaultDisplaySettings( cover, type ) {
             `<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-2">newspapers (II)</span></span></a></div>` +
 
             // by theme: world statistics
-            '<div><a class="" title="world statistics" aria-label="world statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://world-statistics.org/index.php#indicators&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-world-statistics">world statistics</span></span></a></div>' +
+            '<div><a class="" title="world statistics" aria-label="world statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://world-statistics.org&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-world-statistics">world statistics</span></span></a></div>' +
 
-            '<div><a class="" title="OECD stats" aria-label="OECD statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://data.oecd.org/searchresults/?q=' + encodeURIComponent( explore.country_name ) + '&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-oecd">OECD</span></span></a></div>' +
+            '<div><a class="" title="OECD stats" aria-label="OECD statistics" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://data.oecd.org/searchresults/?q=${encodeURIComponent( explore.country_name ) }&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-oecd">OECD</span></span></a></div>' +
+
+            '<div><a class="" title="country economic indicators" aria-label="country economic indicators" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://tradingeconomics.com/${ encodeURIComponent( explore.country_name.toLowerCase() )}/indicators&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-economic-indicators">economic indicators</span></span></a></div>' +
 
             // by theme: conflicts
-            `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://conze.pt/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikipedia-ongoing-conflicts">ongoing conflicts</span></span></a></div>` +
+            `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikipedia-ongoing-conflicts">ongoing conflicts</span></span></a></div>` +
 
             '<div><a class="" title="conflict news" aria-label="conflict news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://liveuamap.com/' + explore.language + '&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-conflict-map">conflict map</span></span></a></div>' +
             // by theme: tech
             '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
+
+            // by theme: science
+            '<div><a class="" title="science news" aria-label="science news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://synthical.com/feed/simple&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-science">science</span></span></a></div>' +
 
           '</div>' +
         '</details>' +
@@ -3768,6 +3773,20 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   // TODO: check why this is needed
   setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+}
+
+function openLink( url_string ){
+
+  console.log( url_string );
+
+  if ( valid( url_string ) ){
+
+    const url =  eval(`\`${ url_string }\``);
+
+    openInFrame( url );
+
+  }
 
 }
 
