@@ -3717,7 +3717,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
 
             // by theme: science
-            '<div><a class="" title="science news" aria-label="science news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://synthical.com/feed/simple&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-science">science</span></span></a></div>' +
+            //'<div><a class="" title="science news" aria-label="science news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://synthical.com/feed/simple&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-science">science</span></span></a></div>' +
 
           '</div>' +
         '</details>' +

@@ -4048,6 +4048,45 @@ conzept_fields = {
   rank: [60, 8215],
 },
 
+'philpapers_topic' : {
+  title: 'PhilPapers topic',
+  prop: '3235',
+  type: 'link',
+  mv: false,
+  url_format: 'https://philpapers.org/browse/$1',
+  url: '',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilPapers topic',
+  section: ['science-search-tools','library-philosophy', 'main'],
+  rank: [204.1, 60.1, 8215.1],
+},
+
+'philpapers_publication' : {
+  title: 'PhilPapers publication',
+  prop: '3236',
+  type: 'url',
+  mv: false,
+  url_format: 'https://philpapers.org/pub/$1',
+  url: '',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilPapers publication',
+  section: ['science-search-tools','library-philosophy', 'main'],
+  rank: [204.2, 60.1, 8215.2],
+},
+
+'philpapers_author' : {
+  title: 'PhilPapers author',
+  prop: '3232',
+  type: 'link',
+  mv: false,
+  url_format: 'https://philpapers.org/s/$1',
+  url: '',
+  icon: 'fa-solid fa-parking',
+  text: 'PhilPapers author',
+  section: ['science-search-tools','library-philosophy', 'main'],
+  rank: [204.3, 60.3, 8215.3],
+},
+
 'philpapers_search' : {
   create_condition: true,
   title: 'PhilPapers search',
@@ -4056,9 +4095,9 @@ conzept_fields = {
   mv: false,
   url: 'https://philpapers.org/s/${title_quoted}',
   icon: 'fa-solid fa-parking',
-  text: 'PhilPapers',
+  text: 'PhilPapers search',
   section: ['science-search-tools','library-philosophy'],
-  rank: [170, 60.1, 8215.1],
+  rank: [204.4, 60.4 ],
 },
 
 'philsci_search' : {
@@ -4071,7 +4110,7 @@ conzept_fields = {
   icon: 'fa-solid fa-parking',
   text: 'PhilSci',
   section: ['science-search-tools','library-philosophy'],
-  rank: [171, 61, 8216],
+  rank: [205, 61 ],
 },
 
 'kings_college_history_of_philosophy' : {
@@ -37051,20 +37090,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'philpapers_author' : {
-  title: 'PhilPapers author',
-  prop: '3232',
-  type: 'url',
-  mv: false,
-  url_format: 'https://philpapers.org/s/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'PhilPapers author',
-  section: ['library-identity'],
-  rank: [23232],
-  auto: true,
-},
-
 'philpeople_profile' : {
   title: 'PhilPeople profile',
   prop: '3233',
@@ -37090,34 +37115,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Code List for Cultural',
   section: ['library-identity'],
   rank: [23234],
-  auto: true,
-},
-
-'philpapers_topic' : {
-  title: 'PhilPapers topic',
-  prop: '3235',
-  type: 'url',
-  mv: false,
-  url_format: 'https://philpapers.org/browse/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'PhilPapers topic',
-  section: ['library-identity'],
-  rank: [23235],
-  auto: true,
-},
-
-'philpapers_publication' : {
-  title: 'PhilPapers publication',
-  prop: '3236',
-  type: 'url',
-  mv: false,
-  url_format: 'https://philpapers.org/pub/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'PhilPapers publication',
-  section: ['library-identity'],
-  rank: [23236],
   auto: true,
 },
 
