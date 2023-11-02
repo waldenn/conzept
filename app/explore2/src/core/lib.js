@@ -3698,9 +3698,9 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
 
             // by country
-            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="quot;getW3NewspapersLink()&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (I)</span></span></a></div>` +
+            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="gotoW3NewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (I)</span></span></a></div>` +
 
-            `<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="&quot;getWorldNewspapersLink()&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (II)</span></span></a></div>` +
+            `<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">country newspapers (II)</span></span></a></div>` +
 
             // by theme: tech
             '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
@@ -3762,12 +3762,12 @@ async function setDefaultDisplaySettings( cover, type ) {
 
 }
 
-function getW3NewspapersLink(){
+function gotoW3NewspapersLink(){
 
   let name = explore.country_name;
 
   if ( name === 'United States of America' ){ name = 'USA'; }
-  else if ( name === 'United Kingdown' ){ name = 'UK'; }
+  else if ( name === 'United Kingdom' ){ name = 'UK'; }
 
   const url = 'https://www.w3newspapers.com/' + encodeURIComponent( name.toLowerCase() );
 
@@ -3775,7 +3775,7 @@ function getW3NewspapersLink(){
 
 }
 
-function getWorldNewspapersLink(){
+function gotoWorldNewspapersLink(){
 
   let name = explore.country_name;
 
