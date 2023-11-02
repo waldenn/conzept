@@ -8,4 +8,5 @@ guide/data/cache/**/*
 app/explore2/_next
 app/explore2/src/core/env.js
 app/explore2/tools/json-proxy.json
+app/nostr/
 presentations

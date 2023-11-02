@@ -13696,6 +13696,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   mv: false,
   url: 'https://nostr.band/?q=${title_quoted}&type=posts',
+  //url: '/app/nostr/build?q=${title_quoted}&type=posts',
   icon: 'fa-regular fa-comment',
   text: 'Nostr search',
   section: 'social',
