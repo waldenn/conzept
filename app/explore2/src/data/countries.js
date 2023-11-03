@@ -1470,7 +1470,7 @@ const countries = {
   "Q55": {
     "iso2": "NL",
     "iso3": "NLD",
-    "name": "The Netherlands",
+    "name": "Netherlands",
     "chatham_house_id": "528",
     "capital": "Q727",
     "capitalName": "Amsterdam",

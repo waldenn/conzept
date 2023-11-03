@@ -2848,7 +2848,34 @@ async function updateLocaleInterface(){
   $('#app-menu-presentation').text( explore.banana.i18n('app-menu-presentation') );
   $('#app-menu-editor').text( explore.banana.i18n('app-menu-editor') );
 
+  $('#app-menu-bookmark-actions-reasoning').text( explore.banana.i18n('app-menu-bookmark-actions-reasoning') );
+  $('#app-menu-bookmark-actions').text( explore.banana.i18n('app-menu-bookmark-actions') );
+  $('#app-menu-ai-tutor').text( explore.banana.i18n('app-menu-ai-tutor') );
+  $('#app-menu-bread').text( explore.banana.i18n('app-menu-bread') );
+  $('#app-menu-reading-assistance').text( explore.banana.i18n('app-menu-reading-assistance') );
+  $('#app-menu-visual-search').text( explore.banana.i18n('app-menu-visual-search') );
+  $('#app-menu-bookmark-actions-media').text( explore.banana.i18n('app-menu-bookmark-actions-media') );
+  $('#app-menu-export-as').text( explore.banana.i18n('app-menu-export-as') );
+  $('#app-menu-import-as').text( explore.banana.i18n('app-menu-import-as') );
+
   $('#app-guide-string-search').text( explore.banana.i18n('app-guide-string-search') );
+
+  $('#app-guide-bookmark-history').text( explore.banana.i18n('app-guide-bookmark-history') );
+  $('#app-guide-bookmark-implications').text( explore.banana.i18n('app-guide-bookmark-implications') );
+  $('#app-guide-bookmark-similarities').text( explore.banana.i18n('app-guide-bookmark-similarities') );
+  $('#app-guide-bookmark-commonalities').text( explore.banana.i18n('app-guide-bookmark-commonalities') );
+  $('#app-guide-bookmark-topic-differences').text( explore.banana.i18n('app-guide-bookmark-topic-differences') );
+  $('#app-guide-bookmark-related-topics').text( explore.banana.i18n('app-guide-bookmark-related-topics') );
+  $('#app-guide-bookmark-quiz-topics').text( explore.banana.i18n('app-guide-bookmark-quiz-topics') );
+  $('#app-guide-bookmark-teach-topics').text( explore.banana.i18n('app-guide-bookmark-teach-topics') );
+
+  $('#app-guide-ongoing-conflicts').text( explore.banana.i18n('app-guide-ongoing-conflicts') );
+  $('#app-guide-news-economic-indicators').text( explore.banana.i18n('app-guide-news-economic-indicators') );
+  $('#app-guide-news-tv').text( explore.banana.i18n('app-guide-news-tv') );
+  $('#app-guide-news-radio').text( explore.banana.i18n('app-guide-news-radio') );
+  $('#app-guide-newspapers').text( explore.banana.i18n('app-guide-newspapers') );
+  $('#app-guide-near-me').text( explore.banana.i18n('app-guide-near-me') );
+  $('#app-guide-technology').text( explore.banana.i18n('app-guide-technology') );
 
   // welcome view
   $('#app-guide-welcome-text').html( explore.banana.i18n('app-guide-welcome-text') );
@@ -2916,7 +2943,6 @@ async function updateLocaleInterface(){
   $('#app-guide-mathematics').text( explore.banana.i18n('app-guide-mathematics') );
   $('#app-guide-tourist-attraction').text( explore.banana.i18n('app-guide-tourist-attraction') );
   $('#app-guide-dish').text( explore.banana.i18n('app-guide-dish') );
-
   $('#app-guide-musical-instrument').text( explore.banana.i18n('app-guide-musical-instrument') );
   $('#app-guide-technology').text( explore.banana.i18n('app-guide-technology') );
   $('#app-guide-radio').text( explore.banana.i18n('app-guide-radio') );
@@ -3698,13 +3724,13 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="WikiNews" aria-label="WikiNews" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://' + explore.language + '.m.wikinews.org/wiki/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikinews">Wikinews</span></span></a></div>' +
 
             // by country
-            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="gotoW3NewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-1">newspapers (I)</span></span></a></div>` +
+            `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="gotoW3NewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">newspapers</span></span></a></div>` +
 
-            `<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-2">newspapers (II)</span></span></a></div>` +
+            //`<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-2">newspapers (II)</span></span></a></div>` +
 
-            '<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/#/search/%22${ explore.country_name }%22%20news?searchsort=date&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>' +
+            '<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/#/search/%22${ wp_languages[ explore.country ].namelocal }%22%20news&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>' +
 
-            '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio news</span></span></a></div>' + // note: radio by country AND language
+            '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio</span></span></a></div>' + // note: radio by country AND language
 
             '<div><a class="" title="TV news" aria-label="TV news" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://archive.org/details/tv?q=${ explore.country_name }&and[]=publicdate%3A[2023-01-01+TO+2030-12-31]&and[]=languageSorter%3A%22${ explore.language_name }%22&sort=-publicdate&page=2&quot; )"><span class="icon"><i class="fa-solid fa-tv fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-tv">TV news</span></span></a></div>' + // note: TV by country-string AND language
 
@@ -3715,7 +3741,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             //'<div><a class="" title="world statistics" aria-label="world statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://world-statistics.org&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-world-statistics">world statistics</span></span></a></div>' +
 
             // by theme: conflicts
-            `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikipedia-ongoing-conflicts">ongoing conflicts</span></span></a></div>` +
+            `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ongoing-conflicts">conflicts</span></span></a></div>` +
 
             '<div><a class="" title="conflict news" aria-label="conflict news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://liveuamap.com/' + explore.language + '&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-conflict-map">conflict map</span></span></a></div>' +
             // by theme: tech

@@ -57,6 +57,23 @@
   "app-menu-random-topic-key": "random topic",
   "app-menu-compare-topics": "compare topics",
   "app-menu-toggle-fullscreen": "toggle fullscreen",
+  "app-menu-bookmark-actions": "bookmark-selection actions",
+  "app-menu-bookmark-actions-reasoning": "reasoning",
+  "app-guide-bookmark-teach-topics": "teach me",
+  "app-guide-bookmark-quiz-topics": "quiz me",
+  "app-guide-bookmark-related-topics": "related topics",
+  "app-guide-bookmark-topic-differences": "differences",
+  "app-guide-bookmark-commonalities": "commonalities",
+  "app-guide-bookmark-similarities": "similarities",
+  "app-guide-bookmark-implications": "implications",
+  "app-guide-bookmark-history": "history",
+  "app-menu-import-as": "import bookmarks",
+  "app-menu-export-as": "export bookmarks",
+  "app-menu-bookmark-actions-media": "media",
+  "app-menu-visual-search": "visual search",
+  "app-menu-reading-assistance": "reading assistance",
+  "app-menu-bread": "word-start bolding",
+  "app-menu-ai-tutor": "AI tutor",
   "app-menu-bookmark-current-view": "bookmark current view",
   "app-menu-clone-tab": "clone tab",
   "app-menu-plant-identification": "plant identification",
@@ -219,6 +236,12 @@
 
   "app-guide-musical-instrument": "instrument",
   "app-guide-technology": "technology",
+  "app-guide-near-me": "near me",
+  "app-guide-newspapers": "newspapers",
+  "app-guide-news-radio": "radio",
+  "app-guide-news-tv": "TV",
+  "app-guide-news-economic-indicators": "economic indicators",
+  "app-guide-ongoing-conflicts": "conflicts",
   "app-guide-radio": "radio",
 
   "app-menu-country-select": "country",
@@ -229,8 +252,6 @@
   "app-menu-run-code": "run",
   "app-menu-clear-editor": "clear",
   "app-menu-all-rights-reserved": "All rights reserved",
-
-  "app-menu-export-as": "export as",
 
   "app-foo": "foo bar baz"
 } 

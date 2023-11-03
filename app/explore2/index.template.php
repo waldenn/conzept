@@ -356,7 +356,7 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-reading-help">reading help</span></summary>
+              <summary><span id="app-menu-reading-assistance">reading assistance</span></summary>
 
               <div class="style-form">
 
@@ -417,7 +417,7 @@ $settings_html = '
               <div class="style-form">
 
                 <div id="tutor-setting">
-                  <label style="display:inline;" for="tutor"><!--span id="app-menu-tutor"></span-->AI tutor &nbsp;</label></br>
+                  <label style="display:inline;" for="tutor"><span id="app-menu-ai-tutor">AI tutor</span> &nbsp;</label></br>
                   <span class="indent-select-widget">
                     <select id="tutor" width="20px" style="top: 0px !important;">
                       <option value="">select AI tutor</option>' .
@@ -696,11 +696,11 @@ $settings_html = '
                       <li><span id="compareTopics"><a class="link compare" title="compare topics" aria-label="compare topics" role="button" href="javascript:void(0)" tabindex="0"><i class="fa-solid fa-equals"></i>&nbsp; <span id="app-menu-compare-topics"></span></a></span></li>
                       <li><span id="goFullscreen"><a class="link" title="toggle fullscreen" aria-label="toggle fullscreen" role="button" onclick="toggleFullscreen()" tabindex="0"><i class="fa-solid fa-expand"></i>&nbsp; <span id="app-menu-toggle-fullscreen"></span></a></span></li>
 
-                      <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i> visual-search</a> <small>(using Bing)</small></span></li>
+                      <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i>&nbsp; <span id="app-menu-visual-search">visual search</span></a> <small>(Bing)</small></span></li>
 
-                      <li><span id="draw"><a class="link" href="https://excalidraw.com" target="infoframe" onclick="resetIframe()" title="Excalidraw drawing tool" aria-label="Excalidraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small>(experiment)</small></span></li>
+                      <!--li><span id="draw"><a class="link" href="https://excalidraw.com" target="infoframe" onclick="resetIframe()" title="Excalidraw drawing tool" aria-label="Excalidraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small>(experiment)</small></span></li>
 
-                      <li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li>
+                      <li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li-->
 
                       <!--li style="display:none;"><span id="identifyPlant"><a class="link" title="identify a plant using an image" aria-label="identify a plant using an image" role="button" onclick="identifyPlant()" tabindex="0"><i class="fa-solid fa-leaf"></i>&nbsp; <span id="app-menu-plant-identification"></span></a></span></li>
                       <li style="display:none;"><span id="identifyOCR"><a class="link" title="identify text using an image" aria-label="identify text using an image" role="button" onclick="identifyOCR()" tabindex="0"><i class="fa-regular fa-file-alt"></i>&nbsp; <span id="app-menu-text-identification"></span></a></span></li-->

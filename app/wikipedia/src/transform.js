@@ -576,7 +576,7 @@ function setupArticleImages(){
 
         $(this)
           .wrap( '<figure class="non-thumb-media"></figure>' )
-          .after('</span> <figcaption>' + caption + '&nbsp;&nbsp;<a title="copyright info" target="_blank" href="' + commons_url + '"><i class="fa-regular fa-copyright"></i></href>' + '</figcaption>')
+          .after('</span> <figcaption data-test"FooBar">' + caption + '&nbsp;&nbsp;<a title="copyright info" target="_blank" href="' + commons_url + '"><i class="fa-regular fa-copyright"></i></href>' + '</figcaption>')
           //.after('<span class="copyright"><a id="image-source" title="source" aria-label="source" target="_blank" href="' + src + '"><i class="fa-regular fa-copyright fa-2x"></i></a></span> <figcaption>' + caption + '</figcaption>')
           .wrap('<a href="' + src + '" class="elem" data-lcl-txt="' + caption_plaintext + '" data-articulate-ignore="" tabindex="0"></a>');
 
@@ -640,6 +640,10 @@ function setupArticleImages(){
       else { // render as image
 
         let figstyle = '';
+
+        if ( $(this).next('figcaption').length > 0 ){
+          caption_plaintext = $(this).next('figcaption').text();
+        }
 
         // skip icons
         if (  $(this).attr('width') < min_image_width_for_enlarge ||
