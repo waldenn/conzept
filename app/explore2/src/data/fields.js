@@ -6133,24 +6133,24 @@ if ( valid( item.found_in_taxon ) ){
   rank: [2030,7100],
 },
 
-'capitol' : {
-  title: 'capitol',
+'capital' : {
+  title: 'capital',
   prop: '36',
   type: 'wikipedia-qid',
   mv: true,
   icon: 'fa-solid fa-map-pin',
-  text: 'capitol',
+  text: 'capital',
   section: ['government-general','location-geography','main'],
   rank: [ 810, 5.1, 5930],
 },
 
-'capitol_of' : {
-  title: 'capitol of',
+'capital_of' : {
+  title: 'capital of',
   prop: '1376',
   type: 'wikipedia-qid',
   mv: true,
   icon: 'fa-solid fa-map-pin',
-  text: 'capitol of',
+  text: 'capital of',
   section: ['location-geography','main'],
   rank: [4.1,5940],
 },
@@ -18407,6 +18407,46 @@ if ( valid( item.found_in_taxon ) ){
  */
 
 'radio_by_country' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'radio stations in this country',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ item.iso2 }', // &language=english',
+  icon: 'fa-solid fa-podcast',
+  text: 'country radio',
+  section: ['media-audio', 'main'],
+  rank: [50, 3200],
+},
+
+'radio_by_language' : {
+  create_condition: true,
+  title: 'radio stations in this language',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&language=${ explore.language_name.toLocaleLowerCase() }',
+  icon: 'fa-solid fa-podcast',
+  text: 'language radio',
+  section: ['media-audio'],
+  rank: [51],
+},
+
+'radio_by_tag' : {
+  create_condition: true,
+  title: 'radio stations with this topic tag',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=${title_}',
+  icon: 'fa-solid fa-podcast',
+  text: 'tag radio',
+  section: ['media-audio'],
+  rank: [52],
+},
+
+/*
+'radio_by_country' : {
   value: 'https://nl1.api.radio-browser.info/json/stations/bycountrycodeexact/${ item.iso2 }',
   //value: 'https://cors-unlimited.herokuapp.com/https://nl1.api.radio-browser.info/json/stations/bycountrycodeexact/${ item.iso2 }',
   render_condition: 'valid( item.iso2 )',
@@ -18449,6 +18489,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'media-audio',
   rank: 52,
 },
+*/
 
 // TODO: radio_by_state
 

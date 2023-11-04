@@ -2782,6 +2782,7 @@ async function updateLocaleInterface(){
   $('#app-tab-audio-chat-title').text( explore.banana.i18n('app-tab-audio-chat-title') );
 
   // menus
+  $('#app-menu-upload-json').html( explore.banana.i18n('app-menu-upload-json') );
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
   $('#app-menu-background-audio').html( explore.banana.i18n('app-menu-background-audio') );
   $('#app-menu-background-midi').html( explore.banana.i18n('app-menu-background-midi') );
@@ -2857,8 +2858,12 @@ async function updateLocaleInterface(){
   $('#app-menu-bookmark-actions-media').text( explore.banana.i18n('app-menu-bookmark-actions-media') );
   $('#app-menu-export-as').text( explore.banana.i18n('app-menu-export-as') );
   $('#app-menu-import-as').text( explore.banana.i18n('app-menu-import-as') );
+  $('#app-menu-datasources').text( explore.banana.i18n('app-menu-datasources') );
 
   $('#app-guide-string-search').text( explore.banana.i18n('app-guide-string-search') );
+
+  $('#app-guide-bookmarks-selected').text( explore.banana.i18n('app-guide-bookmarks-selected') );
+  $('#app-guide-bookmarks-deselect-all').text( explore.banana.i18n('app-guide-bookmarks-deselect-all') );
 
   $('#app-guide-bookmark-history').text( explore.banana.i18n('app-guide-bookmark-history') );
   $('#app-guide-bookmark-implications').text( explore.banana.i18n('app-guide-bookmark-implications') );
@@ -2870,6 +2875,7 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-teach-topics').text( explore.banana.i18n('app-guide-bookmark-teach-topics') );
 
   $('#app-guide-ongoing-conflicts').text( explore.banana.i18n('app-guide-ongoing-conflicts') );
+  $('#app-guide-conflict-map').text( explore.banana.i18n('app-guide-conflict-map') );
   $('#app-guide-news-economic-indicators').text( explore.banana.i18n('app-guide-news-economic-indicators') );
   $('#app-guide-news-tv').text( explore.banana.i18n('app-guide-news-tv') );
   $('#app-guide-news-radio').text( explore.banana.i18n('app-guide-news-radio') );
@@ -2919,7 +2925,7 @@ async function updateLocaleInterface(){
 
   $('#app-guide-country-map').text( explore.banana.i18n('app-guide-country-map') );
   $('#app-guide-country').text( explore.banana.i18n('app-guide-country') );
-  $('#app-guide-capitol').text( explore.banana.i18n('app-guide-capitol') );
+  $('#app-guide-capital').text( explore.banana.i18n('app-guide-capital') );
   $('#app-guide-form-of-government').text( explore.banana.i18n('app-guide-form-of-government') );
   $('#app-guide-religion').text( explore.banana.i18n('app-guide-religion') );
   $('#app-guide-philosophy').text( explore.banana.i18n('app-guide-philosophy') );
@@ -3636,7 +3642,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random country map" aria-label="random country map" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;country-map&quot; )"><span class="icon"><i class="fa-solid fa-globe-africa fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country-map">country map</span></span></a></div>' +
             '<div><a class="" title="random country" aria-label="random country" role="button" href="javascript:void(0)" onclick="showRandomCountry()"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-country"></span></span></a></div>' +
             '<div><a class="" title="random historical country" aria-label="random historical country" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;historical-country&quot; )"><span class="icon"><i class="fa-regular fa-flag fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-historical-country"></span></span></a></div>' +
-            '<div><a class="" title="random capitol" aria-label="random capitol" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;capitol&quot; )"><span class="icon"><i class="fa-solid fa-map-marker-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-capitol">capitol</span></span></a></div>' +
+            '<div><a class="" title="random capital" aria-label="random capital" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;capital&quot; )"><span class="icon"><i class="fa-solid fa-map-marker-alt fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-capital">capital</span></span></a></div>' +
             '<div><a class="" title="random form of government" aria-label="random form of government" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;form-of-government&quot; )"><span class="icon"><i class="fa-solid fa-balance-scale-right fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-form-of-government">form of gov.</span></span></a></div>' +
             '<div><a class="" title="random ethnic group" aria-label="random ethnic group" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;ethnic-group&quot; )"><span class="icon"><i class="fa-solid fa-hand-holding-heart fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ethnic-group"></span></span></a></div>' +
             '<div><a class="" title="random language" aria-label="random language" role="button" href="javascript:void(0)" onclick="showRandomLanguage()"><span class="icon"><i class="fa-solid fa-language fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-language"></span></span></a></div>' +
@@ -3659,6 +3665,7 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="random artwork" aria-label="random artwork" role="button" href="javascript:void(0)" onclick="showRandomArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-artwork"></span></span></a></div>' +
             //'<div><a class="" title="random Europeana artwork" aria-label="random Europeana artwork" role="button" href="javascript:void(0)" onclick="showRandomEuropeanaArtwork()"><span class="icon"><i class="fa-regular fa-image fa-2x" ></i></span><br><span class="frontpage-icon">Europeana</span></a></div>' +
             '<div><a class="" title="random music" aria-label="random music" href="javascript:void(0)" role="button" onclick="showRandomMusic()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-music"></span></span></a></div>' +
+            '<div><a class="" title="radio stations map" aria-label="radio stations map" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/map&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-radio-map">radio map</span></span></a></div>' +
             '<div><a class="" title="random radio station" aria-label="random radio station" role="button" href="javascript:void(0)" onclick="showRandomRadioStation()"><span class="icon"><i class="fa-solid fa-music fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-radio">radio</span></span></a></div>' +
             '<div><a class="" title="random musical instrument" aria-label="random musical instrument" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;musical-instrument&quot; )"><span class="icon"><i class="fa-solid fa-guitar fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-musical-instrument">instrument</span></span></a></div>' +
             '<div><a class="" title="random music composer" aria-label="random music composer" role="button" href="javascript:void(0)" onclick="showRandomListItem( &quot;composer&quot; )"><span class="icon"><i class="fa-solid fa-user-edit fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-composer">composer</span></span></a></div>' +
@@ -3744,6 +3751,9 @@ async function setDefaultDisplaySettings( cover, type ) {
             `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ongoing-conflicts">conflicts</span></span></a></div>` +
 
             '<div><a class="" title="conflict news" aria-label="conflict news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://liveuamap.com/' + explore.language + '&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-conflict-map">conflict map</span></span></a></div>' +
+
+            // tocheck: https://acleddata.com/early-warning/dashboard/
+
             // by theme: tech
             '<div><a class="" title="tech news" aria-label="tech news" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://remix.hnclone.win&quot; )"><span class="icon"><i class="fa-solid fa-microchip fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-technology">technology</span></span></a></div>' +
 
