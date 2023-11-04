@@ -18392,6 +18392,45 @@ if ( valid( item.found_in_taxon ) ){
   rank: 52,
 },
 
+'radio_by_country' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'radio stations in this country',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ item.iso2 }', // &language=english',
+  icon: 'fa-solid fa-radio',
+  text: 'country radio',
+  section: ['media-audio', 'main'],
+  rank: [50, 3200],
+},
+
+'radio_by_language' : {
+  create_condition: true,
+  title: 'radio stations in this language',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&language=${ explore.language_name.toLocaleLowerCase() }',
+  icon: 'fa-solid fa-radio',
+  text: 'language radio',
+  section: ['media-audio'],
+  rank: [51],
+},
+
+'radio_by_tag' : {
+  create_condition: true,
+  title: 'radio stations with this topic tag',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=${title_}',
+  icon: 'fa-solid fa-radio',
+  text: 'tag radio',
+  section: ['media-audio'],
+  rank: [52],
+},
+
 /*
  *
  *  http://all.api.radio-browser.info/json/servers
@@ -18405,45 +18444,6 @@ if ( valid( item.found_in_taxon ) ){
  *    https://nl1.api.radio-browser.info/json/languages/albanian
  * 
  */
-
-'radio_by_country' : {
-  create_condition: 'valid( item.iso2 )',
-  title: 'radio stations in this country',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ item.iso2 }', // &language=english',
-  icon: 'fa-solid fa-podcast',
-  text: 'country radio',
-  section: ['media-audio', 'main'],
-  rank: [50, 3200],
-},
-
-'radio_by_language' : {
-  create_condition: true,
-  title: 'radio stations in this language',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&language=${ explore.language_name.toLocaleLowerCase() }',
-  icon: 'fa-solid fa-podcast',
-  text: 'language radio',
-  section: ['media-audio'],
-  rank: [51],
-},
-
-'radio_by_tag' : {
-  create_condition: true,
-  title: 'radio stations with this topic tag',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=${title_}',
-  icon: 'fa-solid fa-podcast',
-  text: 'tag radio',
-  section: ['media-audio'],
-  rank: [52],
-},
 
 /*
 'radio_by_country' : {

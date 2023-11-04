@@ -579,7 +579,7 @@ $settings_html = '
             </div>
 
             <div>
-              &nbsp;<span id="bookmark-selection-count"></span> selected
+              &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>
               &nbsp;<span id="bookmark-deselect-all-container">(<a class="" title="deselect all bookmarks" aria-label="deselect all bookmarks" role="button" href="javascript:void(0)" onclick="deselectAllBookmarks( event )"><span id="app-guide-bookmarks-deselect-all">deselect all</span></span></a>)</span>
               </span>
             </div>
@@ -612,8 +612,8 @@ $settings_html = '
 
                       <div class="bookmark-action"><a class="" title="show bookmark videos" aria-label="show bookmark videos" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;video&quot;)"><span class="icon"><i class="fa-solid fa-video fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-video">video</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="search the Open Library" aria-label="search the Open Library" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;openlibrary&quot;)"><span class="icon"><i class="fa-brands fa-mizuni fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-openlibrary">Open Library</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark recommended books" aria-label="find bookmark recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">recommended books</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">recommended research</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="compare bookmarks as Wikidata topics" aria-label="compare bookmarks as Wikidata topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-compare&quot;)"><span class="icon"><i class="fa-solid fa-table-columns fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-compare-wikidata">Wikidata compare</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="show bookmark linkgraph relations" aria-label="show bookmark linkgraph relations" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-linkgraph&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-linkgraph-relations">linkgraph</span></span></a></div>
@@ -653,7 +653,7 @@ $settings_html = '
                   <form id="json-upload" style="margin-left:1em;">
                     <label for="json-file" style="display:none;">json-file</label> 
                     <input type="file" id="json-file" accept=".json">
-                    <button>upload JSON</button>
+                    <button><span id="app-menu-upload-json">upload</span> JSON</button>
                   </form>
 
               </detail>
