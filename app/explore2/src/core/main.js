@@ -194,6 +194,7 @@ const explore = {
   country             : '',
   country_name        : '',
   country_qid         : '',
+  country_iso3        : '',
   tutors              : CONZEPT_AI_TUTORS.split(',').map( t => t.trim() ),
   tutor               : undefined,
 
