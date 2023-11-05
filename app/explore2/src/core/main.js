@@ -193,6 +193,7 @@ const explore = {
   personas            : [],
   country             : '',
   country_name        : '',
+  country_qid         : '',
   tutors              : CONZEPT_AI_TUTORS.split(',').map( t => t.trim() ),
   tutor               : undefined,
 

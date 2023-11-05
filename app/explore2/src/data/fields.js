@@ -3179,7 +3179,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/commons-sparql/?t=${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%3Fitem%2520%3FitemLabel%2520%3Fimage%2520%3Fdate%2520WHERE%2520{%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ3305213.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ93184.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ11060274.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ15123870.%2520}%2520%2520%3Fitem%2520wdt%3AP170%2520wd%3A${item.qid}.%2520%2520%3Fitem%2520wdt%3AP18%2520%3Fimage.%2520%2520OPTIONAL%2520{%2520%3Fitem%2520wdt%3AP571%2520%3Fdate.%2520}%2520%2520SERVICE%2520wikibase%3Alabel%2520{%2520bd%3AserviceParam%2520wikibase%3Alanguage%2520%2522en%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%2522.%2520}}ORDER%2520BY%2520DESC(%3Fdate)%0D%0A',
+  url: '${explore.base}/app/commons-sparql/?t=works%20%3A%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%3Fitem%2520%3FitemLabel%2520%3Fimage%2520%3Fdate%2520WHERE%2520{%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ3305213.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ93184.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ11060274.%2520}%2520%2520UNION%2520%2520{%2520%3Fitem%2520wdt%3AP31%2520wd%3AQ15123870.%2520}%2520%2520%3Fitem%2520wdt%3AP170%2520wd%3A${item.qid}.%2520%2520%3Fitem%2520wdt%3AP18%2520%3Fimage.%2520%2520OPTIONAL%2520{%2520%3Fitem%2520wdt%3AP571%2520%3Fdate.%2520}%2520%2520SERVICE%2520wikibase%3Alabel%2520{%2520bd%3AserviceParam%2520wikibase%3Alanguage%2520%2522en%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%2522.%2520}}ORDER%2520BY%2520DESC(%3Fdate)%0D%0A',
   icon: 'fa-solid fa-paintbrush',
   text: 'painter works',
   section: ['art','media-image','main'],
@@ -3187,22 +3187,6 @@ conzept_fields = {
   headline_create: 'valid( item.is_painter ) && validAny( [ item.ulan_artist, item.rkd_artist, item.rijksmuseum_authority_id ] )',
   headline_type: 'link',
   headline_rank: 46,
-},
-
-'works_depicting_subject_commons_sparql' : {
-  create_condition: 'valid( item.qid )',
-  title: 'gallery of works depicting this subject',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/commons-sparql/?t=artistic%20depictions%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT+DISTINCT+%253Fitem+%253FitemLabel+%253Fimage+%253Fdate%250AWHERE%250A%7B%250A%2520+%253Fitem+wdt%253AP180+%253Fobject+.%250A%2520+%253Fobject+wdt%253AP279%2A+wd%253A${item.qid}+.%250A%2520+%253Fitem+wdt%253AP18+%253Fimage+.%250A%2520+OPTIONAL+%7B+%253Fitem+%28wdt%253AP571%7Cwdt%253AP585%29+%253Fdate.+%7D%250A%2520+SERVICE+wikibase%253Alabel+%7B+bd%253AserviceParam+wikibase%253Alanguage+%22${explore.language}%252Cen%22+%7D%250A%7D%250AORDER+BY+ASC%28%253Fdate%29',
-  icon: 'fa-regular fa-images',
-  text: 'subject depictions',
-  section: ['art','media-image','main'],
-  rank: [7,55,1685],
-  //headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
-  //headline_type: 'link',
-  //headline_rank: 445,
 },
 
 /*
@@ -6920,6 +6904,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'archive.org item',
   section: ['library-general','main'],
   rank: [100,1180],
+  headline_create: 'valid( item.archive_id )',
+  headline_type: 'link',
+  headline_rank: 90,
 },
 
 'archive' : {
@@ -11263,6 +11250,22 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Commons category',
   section: 'media-image',
   rank: 62,
+},
+
+'works_depicting_subject_commons_sparql' : {
+  create_condition: 'valid( item.qid )',
+  title: 'gallery of works depicting this subject',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/commons-sparql/?t=depictions%20%3A%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT+DISTINCT+%253Fitem+%253FitemLabel+%253Fimage+%253Fdate%250AWHERE%250A%7B%250A%2520+%253Fitem+wdt%253AP180+%253Fobject+.%250A%2520+%253Fobject+wdt%253AP279%2A+wd%253A${item.qid}+.%250A%2520+%253Fitem+wdt%253AP18+%253Fimage+.%250A%2520+OPTIONAL+%7B+%253Fitem+%28wdt%253AP571%7Cwdt%253AP585%29+%253Fdate.+%7D%250A%2520+SERVICE+wikibase%253Alabel+%7B+bd%253AserviceParam+wikibase%253Alanguage+%22${explore.language}%252Cen%22+%7D%250A%7D%250AORDER+BY+ASC%28%253Fdate%29',
+  icon: 'fa-regular fa-images',
+  text: 'depictions',
+  section: ['art','media-image','main'],
+  rank: [7,55,1055],
+  //headline_create: 'valid( [ item.location_heritage_sites_commons_sparql, item.world_heritage_site ] )',
+  //headline_type: 'link',
+  //headline_rank: 445,
 },
 
 'wikisource' : {
