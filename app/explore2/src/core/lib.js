@@ -3096,22 +3096,26 @@ function setupOptionPersonas() {
 
 async function setCountry( country ) {
 
-  explore.country = country.toLowerCase();
+  if ( valid( country ) ){
 
-  Object.keys( countries ).forEach( (( qid ) => {
+    explore.country = country.toLowerCase();
 
-    if ( countries[ qid ].iso2 === explore.country.toUpperCase() ){
+    Object.keys( countries ).forEach( (( qid ) => {
 
-      explore.country_qid  = qid;
-      explore.country_name = countries[ qid ].name;
+      if ( countries[ qid ].iso2 === explore.country.toUpperCase() ){
 
-    }
+        explore.country_qid  = qid;
+        explore.country_name = countries[ qid ].name;
 
-  }));
+      }
 
-  (async () => { await explore.db.set('country', explore.country ); })();
+    }));
 
-  $('#country-select').countrySelect('selectCountry', explore.country);
+    (async () => { await explore.db.set('country', explore.country ); })();
+
+    $('#country-select').countrySelect('selectCountry', explore.country);
+
+  }
 
 }
 
@@ -3746,7 +3750,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             '<div><a class="" title="country economic indicators" aria-label="country economic indicators" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://tradingeconomics.com/${ encodeURIComponent( explore.country_name.toLowerCase() )}/indicators&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-economic-indicators">economic indicators</span></span></a></div>' +
 
-            '<div><a class="" title="Gapminder world statistics" aria-label="world statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.gapminder.org/tools/#$model$markers$bubble$encoding$frame$value=1800;&trail$data$filter$markers$${ countries[ explore.country_qid ].iso3.toLowerCase() }=1800;;;;;;;;&chart-type=bubbles&url=v1&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-world-statistics">world statistics</span></span></a></div>' +
+            '<div><a class="" title="Gapminder world statistics" aria-label="world statistics" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://www.gapminder.org/tools/#$model$markers$bubble$encoding$frame$value=1800;&trail$data$filter$markers$${ valid( explore.country_qid ) ? countries[ explore.country_qid ].iso3.toLowerCase() : '' }=1800;;;;;;;;&chart-type=bubbles&url=v1&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-world-statistics">world statistics</span></span></a></div>' +
 
             // by theme: conflicts
             `<div><a class="" title="Wikipedia: ongoing conflicts" aria-label="Wikipedia: ongoing conflicts" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;/app/wikipedia/?t=&l=${explore.language}&qid=Q280998&dir=ltr&embedded=#&quot; )"><span class="icon"><i class="fa-solid fa-person-military-rifle fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-ongoing-conflicts">conflicts</span></span></a></div>` +
