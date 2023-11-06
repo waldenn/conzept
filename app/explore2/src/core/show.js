@@ -1323,14 +1323,10 @@ async function showCurrentEventsPage(){
 
   handleClick({ 
     id        : 'n1-0',
-    type      : 'string',
-
-    // TOFIX:
-    //  - rtl-scripts
-    //  - non-portal news articles
-    title     : explore.lang_portal + ':' + explore.lang_current_events_page,
+    type      : 'wikipedia-qid',
+    title     : '',
     language  : explore.language,
-    qid       : '',
+    qid       : 'Q4597488',
     url       : '',
     tag       : '',
     languages : '',

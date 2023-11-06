@@ -2898,7 +2898,7 @@ async function updateLocaleInterface(){
   $('#app-guide-help').text( explore.banana.i18n('app-guide-help') );
   $('#app-guide-sea').text( explore.banana.i18n('app-guide-sea') );
 
-  $('#app-guide-news').text( explore.banana.i18n('app-guide-news') );
+  $('#app-guide-current-events').text( explore.banana.i18n('app-guide-current-events') );
   $('#app-guide-topic').text( explore.banana.i18n('app-guide-topic') );
   $('#app-guide-artwork').text( explore.banana.i18n('app-guide-artwork') );
   $('#app-guide-music').text( explore.banana.i18n('app-guide-music') );
@@ -3732,7 +3732,7 @@ async function setDefaultDisplaySettings( cover, type ) {
           '<div class="frontpage-grid-container">' +
 
             // by language
-            '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news"></span></span></a></div>' +
+            '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-brands fa-wikipedia-w fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-current-events"></span></span></a></div>' +
 
             '<div><a class="" title="WikiNews" aria-label="WikiNews" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://' + explore.language + '.m.wikinews.org/wiki/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikinews">Wikinews</span></span></a></div>' +
 
@@ -3745,7 +3745,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio</span></span></a></div>' + // note: radio by country AND language
 
-            '<div><a class="" title="TV news" aria-label="TV news" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://archive.org/details/tv?q=${ explore.country_name }&and[]=publicdate%3A[2023-01-01+TO+2030-12-31]&and[]=languageSorter%3A%22${ explore.language_name }%22&sort=-publicdate&page=2&quot; )"><span class="icon"><i class="fa-solid fa-tv fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-tv">TV news</span></span></a></div>' + // note: TV by country-string AND language
+            '<div><a class="" title="TV news" aria-label="TV news" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://archive.org/details/tv?q=${ explore.country_name }&and[]=publicdate%3A[2020-01-01+TO+2030-12-31]&and[]=languageSorter%3A%22${ explore.language_name }%22&sort=-publicdate&page=2&quot; )"><span class="icon"><i class="fa-solid fa-tv fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-tv">TV news</span></span></a></div>' + // note: TV by country-string AND language
 
             '<div><a class="" title="OECD stats" aria-label="OECD statistics" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://data.oecd.org/\${encodeURIComponent( explore.country_name.toLowerCase() ) }.htm&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-oecd">OECD</span></span></a></div>' +
 
