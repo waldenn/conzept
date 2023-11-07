@@ -2494,6 +2494,7 @@ function setupLanguage(){
 				}
 
         explore.language_script           = langobj.script;
+        explore.langcode                  = langobj.langcode;
         explore.language_name             = langobj.name;
         explore.language_name_capitalized = capitalizeFirstLetter( explore.language_name );
         explore.lang_current_events_page  = langobj.articles.current_events;
@@ -2879,6 +2880,7 @@ async function updateLocaleInterface(){
   $('#app-guide-news-economic-indicators').text( explore.banana.i18n('app-guide-news-economic-indicators') );
   $('#app-guide-news-tv').text( explore.banana.i18n('app-guide-news-tv') );
   $('#app-guide-news-radio').text( explore.banana.i18n('app-guide-news-radio') );
+  $('#app-guide-news-gdelt').text( explore.banana.i18n('app-guide-news-gdelt') );
   $('#app-guide-newspapers').text( explore.banana.i18n('app-guide-newspapers') );
   $('#app-guide-near-me').text( explore.banana.i18n('app-guide-near-me') );
   $('#app-guide-technology').text( explore.banana.i18n('app-guide-technology') );
@@ -3735,6 +3737,8 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="current events" aria-label="current events" role="button" href="javascript:void(0)" onclick="showCurrentEventsPage()"><span class="icon"><i class="fa-brands fa-wikipedia-w fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-current-events"></span></span></a></div>' +
 
             '<div><a class="" title="WikiNews" aria-label="WikiNews" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://' + explore.language + '.m.wikinews.org/wiki/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikinews">Wikinews</span></span></a></div>' +
+
+            `<div><a class="" title="GDELT news database" aria-label="GDELT news database" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/gdelt#api=geo&query=&sourcelang=${ explore.langcode }&geomode=PointData&geotimespan=2d"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-gdelt">GDELT</span></span></a></div>` +
 
             // by country
             `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="gotoW3NewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">newspapers</span></span></a></div>` +
@@ -9545,6 +9549,7 @@ function getLatinNamefromLangCode2( lang2 ){
 
       name = langobj.title;
       explore.language_script = langobj.script;
+      explore.langcode        = langobj.langcode;
 
       break;
     }
@@ -9565,6 +9570,7 @@ function getLangCode2fromName( lang_name ){
 
       lang2 = code;
       explore.language_script = langobj.script;
+      explore.langcode        = langobj.langcode;
 
       break;
 
@@ -9608,7 +9614,7 @@ function getLangCode3( lang2 ){
       lang3 = langobj.iso3;
 
       // TODO DRY this code
-      explore.iptv              = langobj.iptv;
+      explore.langcode          = langobj.langcode;
       explore.language_script   = langobj.script;
       explore.language_qid      = langobj.qid || '';
       explore.language_name     = langobj.name;

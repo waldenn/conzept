@@ -35,7 +35,7 @@ const explore = {
   languages_with_variants : ['zh'], // TODO: check for more languages
   language_variant    : getParameterByName('lv') || '', // indicator for language-variant (eg. used for the Chinese "zh" variants)
 
-  iptv                : undefined,
+  langcode            : undefined,
   langcode_librivox   : undefined,
   lang_category       : undefined,
   lang_catre1         : undefined, // localized "Category:" replace
