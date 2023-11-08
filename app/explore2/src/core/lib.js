@@ -3739,7 +3739,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             '<div><a class="" title="WikiNews" aria-label="WikiNews" role="button" href="javascript:void(0)" onclick="openInFrame( &quot;https://' + explore.language + '.m.wikinews.org/wiki/&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-wikinews">Wikinews</span></span></a></div>' +
 
-            `<div><a class="" title="GDELT news database" aria-label="GDELT news database" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/gdelt#api=geo&query=&sourcelang=${ explore.langcode }&geomode=PointData&geotimespan=2d&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-gdelt">GDELT</span></span></a></div>` +
+            `<div><a class="" title="GDELT news database" aria-label="GDELT news database" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/gdelt#api=geo&query=&sourcelang=${ explore.langcode }&geomode=PointData&geotimespan=1d&quot; )"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-gdelt">GDELT</span></span></a></div>` +
 
             // by country
             `<div><a class="" title="W3 Newspapers" aria-label="W3 Newspapers" role="button" href="javascript:void(0)" onclick="gotoW3NewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers">newspapers</span></span></a></div>` +
