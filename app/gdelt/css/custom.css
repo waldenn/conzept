@@ -99,6 +99,7 @@ nav.navbar {
 /*--------------------------------------------------------------------------*/
 
 #side_panel {
+  display: none;
   border: 2px solid #5C6166;
   background-color: #5C6166;
   padding: 10px;

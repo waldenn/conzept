@@ -1856,17 +1856,11 @@ function fixCountryData(){
 
     Object.keys( countries ).forEach( (( qid ) => {
 
-      if ( p.c === qid ){ // matching country
+      //if ( p.c === qid ){ // matching country
 
         console.log( p.c );
 
-        if ( countries[ qid ].hasOwnProperty( 'chamber_1' ) ){
-
-          countries[ qid ].chamber1 = p.p;
-
-        }
-
-      }
+      //}
 
     }))
 

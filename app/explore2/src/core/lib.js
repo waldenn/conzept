@@ -3106,9 +3106,10 @@ async function setCountry( country ) {
 
       if ( countries[ qid ].iso2 === explore.country.toUpperCase() ){
 
-        explore.country_qid  = qid;
-        explore.country_name = countries[ qid ].name;
-        explore.country_iso3 = countries[ qid ].iso3;
+        explore.country_qid   = qid;
+        explore.country_name  = countries[ qid ].name;
+        explore.country_iso3  = countries[ qid ].iso3;
+        explore.country_gdelt = countries[ qid ].gdelt;
 
       }
 
