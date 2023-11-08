@@ -7793,18 +7793,18 @@ if ( valid( item.found_in_taxon ) ){
   rank: 110,
 },
 
-'lean_mathlib_search' : {
+'moogle_lean_mathlib_search' : {
   create_condition: true,
   //render_condition: 'checkTag( item, 1, "mathematics")',
-  title: 'Lean MathLib search',
+  title: 'Moogle: Lean MathLib search',
   prop: '',
-  type: 'url',
+  type: 'link',
   mv: false,
-  url: 'https://www.google.com/search?sitesearch=https://leanprover-community.github.io/mathlib_docs&q=${title_quoted}',
+  url: 'https://www.moogle.ai/search/raw?q=${title_quoted}',
   icon: 'fa-solid fa-square-root-alt',
   text: 'Lean MathLib',
   section: 'science-mathematics',
-  rank: 120,
+  rank: 93,
 },
 
 'geogebra' : {
@@ -10026,33 +10026,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'TV tropes',
   section: ['main'],
   rank: [6300],
-},
-
-// FIXME: not showing a map (only a list)
-'gdelt_news_map' : {
-  //create_condition: true,
-  title: 'GDELT news map',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query=%22${title_}%22%20sourcelang:${explore.language_name}&output=artimglist&outputtype=english&trans=googtrans&maxrows=100&dropdup',
-  icon: 'fa-regular fa-newspaper',
-  text: 'GDELT map',
-  section: 'news-general',
-  rank: 10,
-},
-
-'gdelt_gallery' : {
-  create_condition: true,
-  title: 'GDELT news gallery',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://api.gdeltproject.org/api/v2/doc/doc?query=imagewebtag:%22${title_}%22&mode=imagegallery',
-  icon: 'fa-regular fa-newspaper',
-  text: 'GDELT gallery',
-  section: 'news-general',
-  rank: 11,
 },
 
 'virtual_tour' : { // TODO: fix embed / non-embed situation!
@@ -15782,32 +15755,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 80,
 },
 
-'archive_non_us_tv' : {
-  create_condition: true,
-  title: 'Archive.org non-US TV deepsearch',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://api.gdeltproject.org/api/v2/tv/tv?query=${title_quoted}%20market:"International"&mode=clipgallery&format=html&datanorm=perc&timelinesmooth=0&datacomb=sep&last24=no&timezoom=yes&TIMESPAN=180days',
-  icon: 'fa-solid fa-tv',
-  text: 'non-US TV',
-  section: 'media-video',
-  rank: 81,
-},
-
-'archive_us_tv' : {
-  create_condition: true,
-  title: 'Archive.org US TV deepsearch',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://api.gdeltproject.org/api/v2/tv/tv?query=${title_quoted}%20market:"National"&mode=clipgallery&format=html&datanorm=perc&timelinesmooth=0&datacomb=sep&last24=no&timezoom=yes&TIMESPAN=180days',
-  icon: 'fa-solid fa-tv',
-  text: 'US TV',
-  section: 'media-video',
-  rank: 82,
-},
-
 'euscreen' : {
   create_condition: true,
   title: 'EUscreen',
@@ -18934,6 +18881,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 9,
 },
 
+/*
 'gdelt_news' : {
   render_condition: 'checkLC("en")',
   value: 'gdelt-news:${item.title}:true',
@@ -18960,6 +18908,33 @@ if ( valid( item.found_in_taxon ) ){
   text: 'TV news',
   section: 'news-general',
   rank: 8,
+},
+*/
+
+'gdelt_news_map' : {
+  create_condition: true,
+  title: 'GDELT news map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '/app/gdelt/#api=geo&query=${title_}&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=2d',
+  icon: 'fa-regular fa-newspaper',
+  text: 'GDELT map',
+  section: 'news-general',
+  rank: 10,
+},
+
+'gdelt_country_news_map' : {
+  create_condition: true,
+  title: 'GDELT country news map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '/app/gdelt/#api=geo&query=&sourcecountry=${explore.country}&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=7d',
+  icon: 'fa-regular fa-newspaper',
+  text: 'GDELT home country',
+  section: 'news-general',
+  rank: 11,
 },
 
 'crossref' : {
