@@ -7,6 +7,22 @@ http://parkhurstdesign.com/reset-bootstrap-padding-margins-for-theming/
 html,body {
   height: 100% !important;
   margin: 0px; padding: 0px;
+  font-family: Hind,sans-serif !important;
+}
+
+#menu-toggle {
+  position: absolute;
+  top: 1em;
+  left: 3em;
+  z-index: 9999;
+}
+
+#menu-toggle:hover {
+  color: #10a473;
+}
+
+.leaflet-left {
+  top: 5em !important;
 }
 
 #navbar {
@@ -494,7 +510,7 @@ a:hover { color: cyan;}
 
 
 html, body {
-  background-color: #ccc;
+  background-color: #fbfaf9;
   overflow: hidden;
   height: 100%;
   width: 100%;
@@ -505,13 +521,16 @@ html, body {
 }
 
 #iframe_container {
-  background-color: white;
+  background-color: #fbfaf9;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   height: 80vh;
   width: 80vw;
   overflow: visible;
   margin: 0px;
+  width: 100vw !important;
+  height: 100vh !important;
+
 }
 
 #gdelt_iframe {

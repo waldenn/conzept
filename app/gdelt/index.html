@@ -47,14 +47,16 @@
   </div>
 </nav>
 
+<div id="menu-toggle" title="toggle menu" aria-label="toggle menu"><i class="fa fa-bars fa-lg" title="Reduce font size of results pane"></i> &nbsp;<b>menu</b></div>
 
 <div class="container-fluid" id="main_row">
   <div class="row">
 
     <div class="col-md-4 col-sm-12" id="side_panel">
-    <p style="line-height: 100%; display: block; padding-top: 4px;">
+    <br/>
+    <!--p style="line-height: 100%; display: block; padding-top: 4px;">
       <a href="https://www.gdeltproject.org/" target="_blank">GDELT</a>
-      is the <em>Global Database of Events, Language and Tone</em>, a multilingual search and analytical project for researching press and media reporting. See <i class="fa fa-info-circle glyphicon glyphicon-info-circle fa-sm" title="Click help icon in the top-right"></i> for a quick guide.</p>
+      is the <em>Global Database of Events, Language and Tone</em>, a multilingual search and analytical project for researching press and media reporting.</p-->
     <hr />
       <!-- INPUT TABS -->
       <div class="row tab col-12">
@@ -321,7 +323,7 @@ which must be matched in the same 15s clip as the positive
 
       </div>
       <div id='iframe_container' class="row col-12">
-        <iframe id="gdelt_iframe" width=100% src="" frameBorder="0"></iframe>
+        <iframe id="gdelt_iframe" width="100vw" src="" frameBorder="0"></iframe>
       </div>
     </div>
 
@@ -463,6 +465,8 @@ which must be matched in the same 15s clip as the positive
 
 <script>
 
+$( document ).ready(function() {
+
 	// hack to make keyboard-control work here
 	document.getElementById('fullscreenToggle').focus(); 
 
@@ -479,7 +483,27 @@ which must be matched in the same 15s clip as the positive
 
 	});
 
-</script>
+  $('#side_panel').hide()
+
+  // needed to activate the content
+  if ( valid( getParameterByName('geomode') ) ){
+
+    update_query('api', 'geo');
+
+  }
+  else if ( valid( getParameterByName('contentmode') ) ){
+
+    update_query('api', 'doc');
+
+  }
+
+  $( '#menu-toggle' ).on( 'click', function() {
+
+    $('#side_panel').toggle()
+  
+  });
+
+});
 
 </script>
 

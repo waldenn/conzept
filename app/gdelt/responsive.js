@@ -50,13 +50,15 @@ function iframe_zoom(x) {
   if(comp_mode){ // adjust appropriate scaler
     comp_scale *= x;
     dwc /= x; dhc /= x;
-    $("#gdelt_iframe").width(dwc * w + "px");
+    $("#gdelt_iframe").width("100vw");
+    //$("#gdelt_iframe").width(dwc * w + "px");
   	$("#gdelt_iframe").height(dhc * h + "px")
   	$('#gdelt_iframe').css('transform', `scale(${comp_scale})`);
   } else {
     scale *= x;
     dw /= x; dh /= x;
-    $("#gdelt_iframe").width(dw * w + "px");
+    $("#gdelt_iframe").width("100vw");
+    //$("#gdelt_iframe").width(dw * w + "px");
   	$("#gdelt_iframe").height(dh * h + "px")
   	$('#gdelt_iframe').css('transform', `scale(${scale})`);
   }
