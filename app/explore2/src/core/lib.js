@@ -7141,6 +7141,38 @@ function receiveMessage(event){
           });
 
         }
+				else if ( view === 'gapminder-linechart' ){
+
+          let iso3_codes = [];
+
+          // get country iso3 code
+          $.each( data, function ( index, qid ) {
+
+            if ( valid( countries[qid] ) ){
+
+              iso3_codes.push( '=' + countries[qid].iso3 + '&' );
+
+            }
+
+          });
+
+          let codes = iso3_codes.join('').slice(0, -1).toLowerCase();
+
+          handleClick({ 
+            id        : 'n1-0',
+            type      : 'link',
+            title     : explore.q,
+            language  : explore.language,
+            qid       : '',
+            url       : `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`,
+            tag       : '',
+            languages : '',
+            custom    : '',
+            target_pane : 'p1',
+          });
+
+        }
+
 				else if ( view === 'topic' ){
 
           let l = explore.language;

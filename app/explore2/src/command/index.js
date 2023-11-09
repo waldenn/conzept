@@ -1752,6 +1752,52 @@ async function setupLispEnv(){
       return 0;
 
     }
+    else if ( view === 'gapminder-linechart' ){
+
+      list = args.shift().to_array() || [];
+
+      let iso3_codes  = [];
+
+      // get country iso3 code
+		  $.each( list, function ( index, qid ) {
+
+        if ( valid( countries[qid] ) ){
+
+          iso3_codes.push( '=' + countries[qid].iso3 + '&' );
+
+        }
+
+      });
+
+      let codes = iso3_codes.join('').slice(0, -1).toLowerCase();
+
+      let url = `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`;
+
+			if ( explore.presentation_building_mode ){
+
+				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list, url ] );
+
+			}
+			else {
+
+				handleClick({ 
+					id        : 'n1-0',
+					type      : 'link',
+					title     : '',
+					qid       : '',
+					language  : explore.language,
+          url       : url,
+					tag       : '',
+					languages : '',
+					custom    : '',
+					target_pane : 'p1',
+				});
+
+			}
+
+      return 0;
+
+    }
     else if ( view === 'youtube' ){
 
       list = args.shift().to_array() || [];
