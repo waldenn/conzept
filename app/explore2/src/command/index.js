@@ -560,7 +560,7 @@ async function showPresentation( item, type ){
 
 		  if ( valid( item.iso2 ) ){ // country
 
-			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Gapminder stats</h3><h3><i class='fa-solid fa-chart-line' title='Gapminder stats'></i></h3>"\n    ( show \'link \'( "https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@=${ countries[ item.qid ].iso3.toLowerCase() }&;;;;;;;;&encoding$selected$data$filter$markers@=${ countries[ item.qid ].iso3.toLowerCase() }&;;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v" ) ) )\n` );
+			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Gapminder stats</h3><h3><i class='fa-solid fa-chart-line' title='Gapminder stats'></i></h3>"\n    ( show \'link \'( "https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@=${ countries[ item.qid ].iso3.toLowerCase() };;;;;;;;&encoding$selected$data$filter$markers@=${ countries[ item.qid ].iso3.toLowerCase() };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v" ) ) )\n` );
 
       }
 
