@@ -12412,7 +12412,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'archive_scholar_headline' : { // only used for headline display
-  create_condition: true,
+  create_condition: 'checkTag( item, 0, ["organism","substance","natural-concept","meta-concept"] ) || checkTag( item, 1, ["periodical","scientist"] )',
   title: 'Archive Scholar',
   prop: '',
   type: 'link',
@@ -12422,7 +12422,7 @@ if ( valid( item.found_in_taxon ) ){
   text: '',
   section: '',
   rank: 1,
-  headline_create: 'checkTag( item, 0, ["organism","substance","natural-concept","meta-concept"] ) || checkTag( item, 1, ["periodical","scientist"] )',
+  headline_create: 'valid( item.archive_scholar_headline ) && !valid( item.openalex )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_title: 'Archive Scholar',
@@ -16631,7 +16631,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'openalex_concept_works_search' : {
   create_condition: 'valid( item.openalex ) && item.openalex.startsWith("C")', // only use the concept ID
-  title: 'OpenAlex concept-related works search',
+  title: 'OpenAlex concept-related works',
   prop: '',
   type: 'link',
   mv: false,
@@ -16642,7 +16642,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [58.3, 8500 ],
   headline_create: 'valid( item.openalex_concept_works_search )',
   headline_type: 'link',
-  headline_rank: 345,
+  headline_rank: 49,
 },
 
 'openalex_works_search' : {
