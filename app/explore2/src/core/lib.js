@@ -2874,6 +2874,7 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-related-topics').text( explore.banana.i18n('app-guide-bookmark-related-topics') );
   $('#app-guide-bookmark-quiz-topics').text( explore.banana.i18n('app-guide-bookmark-quiz-topics') );
   $('#app-guide-bookmark-teach-topics').text( explore.banana.i18n('app-guide-bookmark-teach-topics') );
+  $('#app-guide-bookmark-gapminder-country-trend').text( explore.banana.i18n('app-guide-bookmark-gapminder-country-trend') );
 
   $('#app-guide-ongoing-conflicts').text( explore.banana.i18n('app-guide-ongoing-conflicts') );
   $('#app-guide-conflict-map').text( explore.banana.i18n('app-guide-conflict-map') );
@@ -7141,6 +7142,13 @@ function receiveMessage(event){
           });
 
         }
+				else if ( view === 'gdelt-country-news' ){
+
+          // TODO
+
+          // /app/gdelt/#api=geo&query=&sourcecountry=AL,AG&sourcelang=${ explore.language }&geomode=PointData&geotimespan=1d
+
+        }
 				else if ( view === 'gapminder-linechart' ){
 
           let iso3_codes = [];
@@ -7158,18 +7166,22 @@ function receiveMessage(event){
 
           let codes = iso3_codes.join('').slice(0, -1).toLowerCase();
 
-          handleClick({ 
-            id        : 'n1-0',
-            type      : 'link',
-            title     : explore.q,
-            language  : explore.language,
-            qid       : '',
-            url       : `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`,
-            tag       : '',
-            languages : '',
-            custom    : '',
-            target_pane : 'p1',
-          });
+          if ( valid( codes ) ){
+
+            handleClick({ 
+              id        : 'n1-0',
+              type      : 'link',
+              title     : explore.q,
+              language  : explore.language,
+              qid       : '',
+              url       : `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`,
+              tag       : '',
+              languages : '',
+              custom    : '',
+              target_pane : 'p1',
+            });
+
+          }
 
         }
 

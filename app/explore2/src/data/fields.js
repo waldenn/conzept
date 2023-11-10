@@ -9246,6 +9246,22 @@ if ( valid( item.found_in_taxon ) ){
   rank: [3020,5140],
 },
 
+'political_ideology_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.political_ideology ) && checkTag(item, 1, "political-party")',
+  title: 'graph of political ideologies',
+  prop: '',
+  mv: false,
+  type: 'link-split',
+  url: '${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.qid + "," + item.political_ideology.join() }&title=${title}',
+  icon: 'fa-solid fa-hand-holding-heart',
+  text: 'ideology graph',
+  section: ['government-general','main'],
+  rank: [3021,5141],
+  headline_create: 'valid( item.political_ideology_linkgraph )',
+  headline_type: 'link-split',
+  headline_rank: 417,
+},
+
 'political_alignment' : {
   title: 'political alignment',
   prop: '1387',
@@ -16600,6 +16616,35 @@ if ( valid( item.found_in_taxon ) ){
   rank: [169],
 },
 
+'openalex' : {
+  title: 'OpenAlex',
+  prop: '10283',
+  type: 'url',
+  mv: false,
+  url_format: 'https://openalex.org/$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'OpenAlex',
+  section: ['library-identity'],
+  rank: [30283],
+},
+
+'openalex_concept_works_search' : {
+  create_condition: 'valid( item.openalex ) && item.openalex.startsWith("C")', // only use the concept ID
+  title: 'OpenAlex concept-related works search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }',
+  icon: 'fa-regular fa-newspaper',
+  text: 'OpenAlex concept works',
+  section: ['science-search-tools','main'],
+  rank: [58.3, 8500 ],
+  headline_create: 'valid( item.openalex_concept_works_search )',
+  headline_type: 'link',
+  headline_rank: 345,
+},
+
 'openalex_works_search' : {
   create_condition: true,
   title: 'OpenAlex search',
@@ -16610,7 +16655,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-newspaper',
   text: 'OpenAlex',
   section: 'science-search-tools',
-  rank: 58,
+  rank: 58.5,
 },
 
 'google_scholar' : {
@@ -112494,20 +112539,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Slangopedia',
   section: ['library-identity'],
   rank: [30282],
-  auto: true,
-},
-
-'openalex' : {
-  title: 'OpenAlex',
-  prop: '10283',
-  type: 'url',
-  mv: false,
-  url_format: 'https://openalex.org/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'OpenAlex',
-  section: ['library-identity'],
-  rank: [30283],
   auto: true,
 },
 

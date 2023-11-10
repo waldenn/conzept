@@ -140,6 +140,10 @@ var conzept_tags = {
         text : "military group",
         icon : ["fa-solid fa-person-military-rifle"],
       },
+      "political-party" : {
+        text : "political party",
+        icon : ["fa-solid fa-users-between-lines"],
+      },
     },
   },
 

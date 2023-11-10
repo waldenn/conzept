@@ -89,6 +89,7 @@ Autocompletion of the Scheme-based command-language symbols (including the Wikid
     * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27map3d%20%27(Q232%20Q794%20Q843)%20)#|(show 'map3d '(Q232 Q794 Q843) )]]'' (3D location map of entities)
     * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27map3d-instance-of%20%27(Q82137%20Q101659)%20)#|(show 'map3d-instance-of '(Q82137 Q101659) )]]'' (3D location map of entities which are an instance-of (P31) these entity-types)
     * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27compare%20%27(Q183%20Q55)%20)#|(show 'compare '(Q183 Q55) )]]'' (compare entities)
+    * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27gapminder-linechart%20%27(Q148%20Q668%20Q252)%20)#|(show 'gapminder-linechart '(Q148 Q668 Q252) )]]'' (Gapminder linechart of country trends)
 
   * non-entity based show-commands:
     * ''[[https://conze.pt/explore/?&s=true&commands=(show 'link '( "https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis" ) )#|(show 'link '( "<web-URL>" ) )]]'' (open an iframe-embeddable-URL in the content pane)

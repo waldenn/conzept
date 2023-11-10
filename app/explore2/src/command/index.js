@@ -558,6 +558,12 @@ async function showPresentation( item, type ){
 			// FIXME: field-URL required a "\n" before defaultView
 			if ( valid( item.country_l2_subdivisions_query ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>L2 admin subdivisions</h3><h3><i class='fa-regular fa-map' title='L1 division map'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Finception%20%3Fbirth%20%3Fstart%20%3Fpit%20%3Fcoord%20%3Fgeoshape%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP31%20wd%3A${ item.l2 }.%0A%20%20%3Fsitelink%20schema%3Aabout%20%3Fitem.%0A%0A%20%20%3Fsitelink%20schema%3AinLanguage%20%3Flang%20.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2C${ language }%22.%20%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP18%20%3Fimg%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP569%20%3Fbirt%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP571%20%3Finception%20.%7D%20%0A%20%20optional%20%7B%3Fitem%20wdt%3AP580%20%3Fstart%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP585%20%3Fpit%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP625%20%3Fcoord%20.%7D%0A%20%20optional%20%7B%3Fitem%20wdt%3AP3896%20%3Fgeoshape%20.%7D%0A%20%0A%7D%0AORDER%20BY%20%3FitemLabel%20%0ALIMIT%202000\n%0A%23defaultView%3AMap%0A%23meta%3Alevel-2%20subdivisions%20in%20${title_enc}%0A%0A" ) ) )\n` ); }
 
+		  if ( valid( item.iso2 ) ){ // country
+
+			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Gapminder stats</h3><h3><i class='fa-solid fa-chart-line' title='Gapminder stats'></i></h3>"\n    ( show \'link \'( "https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@=${ countries[ item.qid ].iso3.toLowerCase() }&;;;;;;;;&encoding$selected$data$filter$markers@=${ countries[ item.qid ].iso3.toLowerCase() }&;;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v" ) ) )\n` );
+
+      }
+
 			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
 			//slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
 
@@ -1771,29 +1777,33 @@ async function setupLispEnv(){
 
       let codes = iso3_codes.join('').slice(0, -1).toLowerCase();
 
-      let url = `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`;
+      if ( valid( codes ) ){
 
-			if ( explore.presentation_building_mode ){
+        let url = `https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@${ codes };;;;;;;;&encoding$selected$data$filter$markers@${ codes };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v`;
 
-				explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list, url ] );
+        if ( explore.presentation_building_mode ){
 
-			}
-			else {
+          explore.presentation_commands[ explore.presentation_building_slide ].push( [ 'show', view, list, url ] );
 
-				handleClick({ 
-					id        : 'n1-0',
-					type      : 'link',
-					title     : '',
-					qid       : '',
-					language  : explore.language,
-          url       : url,
-					tag       : '',
-					languages : '',
-					custom    : '',
-					target_pane : 'p1',
-				});
+        }
+        else {
 
-			}
+          handleClick({ 
+            id        : 'n1-0',
+            type      : 'link',
+            title     : '',
+            qid       : '',
+            language  : explore.language,
+            url       : url,
+            tag       : '',
+            languages : '',
+            custom    : '',
+            target_pane : 'p1',
+          });
+
+        }
+
+      }
 
       return 0;
 
