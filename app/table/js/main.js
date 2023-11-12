@@ -25,7 +25,7 @@ else { // desktop
 
 }
 
-console.log( heading, filter, group_by );
+//console.log( heading, filter, group_by );
 
 async function getData() {
 
@@ -95,13 +95,7 @@ $(document).ready(function() {
 
   getData();
 
-  $( '.search-toggle' ) .on( 'click', function() {
-
-    console.log( "Handler for `click` called." );
-
-    $('.input-sm').focus();
-
-  });
+  $( '.search-toggle' ) .on( 'click', function() { $('.input-sm').focus(); });
 
 });
 

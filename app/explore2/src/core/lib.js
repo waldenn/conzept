@@ -3829,20 +3829,6 @@ async function setDefaultDisplaySettings( cover, type ) {
 
 }
 
-function openLink( url_string ){
-
-  console.log( url_string );
-
-  if ( valid( url_string ) ){
-
-    const url =  eval(`\`${ url_string }\``);
-
-    openInFrame( url );
-
-  }
-
-}
-
 function gotoW3NewspapersLink(){
 
   let name = explore.country_name;

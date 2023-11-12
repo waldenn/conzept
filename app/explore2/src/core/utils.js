@@ -640,6 +640,20 @@ function openInFrame( url ){
 
 }
 
+function openLink( url_string ){
+
+  //console.log( url_string );
+
+  if ( valid( url_string ) ){
+
+    const url =  eval(`\`${ url_string }\``);
+
+    openInFrame( url );
+
+  }
+
+}
+
 function stripHtml( s ) {
 
   if ( valid( s ) ){
