@@ -1,4 +1,4 @@
-const heading   = getParameterByName('t') || '';
+let heading     = getParameterByName('t') || '';
 const language  = getParameterByName('l') || '';
 const filter    = getParameterByName('filter') || '';
 const group_by  = getParameterByName('groupby') || '';
@@ -24,7 +24,6 @@ else { // desktop
   }
 
 }
-
 
 console.log( heading, filter, group_by );
 
@@ -64,6 +63,8 @@ async function getData() {
 
     data: data.group_by,
 
+    "pageLength": 200,
+
     oLanguage: {
       "sStripClasses": "",
       "sSearch": "",
@@ -78,24 +79,29 @@ async function getData() {
         '<option value="-1">All</option>' +
         '</select></div>'
     },
-    //"autoWidth" : false,
-     columnDefs: [{ width: '20%', targets: 0 }],
+
+    'autoWidth' : false,
+    columnDefs: [{ width: '20%', targets: 0 }],
 
   });
-
-  $('#table-title').text( heading );
 
 }
 
 $(document).ready(function() {
 
+
+  heading = decodeURI( heading );
+  $('#table-title').text( heading );
+
   getData();
 
-  /*
-  $('#datatable').dataTable({
-    "ajax": 'https://api.openalex.org/works?page=1&filter=concepts.id:C154945302&group_by=authorships.institutions.id',
+  $( '.search-toggle' ) .on( 'click', function() {
+
+    console.log( "Handler for `click` called." );
+
+    $('.input-sm').focus();
+
   });
-  */
 
 });
 

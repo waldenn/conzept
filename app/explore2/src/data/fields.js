@@ -16651,9 +16651,9 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/datatable/?l=${explore.language}&title=institutions%20ranked%by%20topic%20works%20count&filter=concepts.id:${item.openalex}&groupby=authorships.institutions.id',
+  url: '${explore.base}/app/table/?l=${explore.language}&t=institutions%20ranked%20by%20${explore.title}%20related%20work%20count&filter=concepts.id:${item.openalex}&groupby=authorships.institutions.id',
   icon: 'fa-solid fa-table-list',
-  text: 'OpenAlex org rank',
+  text: 'OpenAlex org. rank',
   section: ['education-assistance','science-search-tools','main'],
   rank: [35, 58.4, 8501 ],
   //headline_create: 'valid( item.openalex_concept_works )',
@@ -16805,8 +16805,6 @@ if ( valid( item.found_in_taxon ) ){
   section: 'science-search-tools',
   rank: 188,
 },
-
-
 
 'scientific_american' : {
   create_condition: true,
