@@ -43,9 +43,11 @@ async function getData() {
 
           //console.log( data, row.key_display_name );
 
-          let url_string = data;
+          // get institution ID
+          const id = data.split('/').pop();
 
-          // openLink( url_string )
+          const url_string = `https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ id }`;
+
           return `
             <a class="name" href="javascript:void(0)" onclick="openLink( &quot;${ url_string }&quot; )">${ row.key_display_name }</a>
             <span id="exploreTopic"><button onclick="gotoExplore( &quot;${ row.key_display_name }&quot;)" onauxclick="gotoExplore( true )" class="dropbtn" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span>
