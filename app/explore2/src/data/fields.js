@@ -16645,11 +16645,11 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 49.1,
 },
 
-'openalex_datatable_institution_concept_works' : {
+'openalex_ranked_institution_concept_works' : {
   create_condition: 'valid( item.openalex ) && item.openalex.startsWith("C")',
   title: 'Institutions ranked by the amount of concept-related works in OpenAlex',
   prop: '',
-  type: 'link',
+  type: 'link-split',
   mv: false,
   url: '${explore.base}/app/table/?l=${explore.language}&t=institutions%20ranked%20by%20${explore.title}%20related%20work%20count&filter=concepts.id:${item.openalex}&groupby=authorships.institutions.id',
   icon: 'fa-solid fa-table-list',
