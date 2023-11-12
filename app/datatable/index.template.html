@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>data table</title>
+  <link rel='stylesheet' href='./css/materialize.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <link rel="stylesheet" href="./css/main.css">
+
+  <!-- conzept resources -->
+  CONZEPT_COMMON_HTML_INCLUDE
+
+</head>
+
+<body id="app">
+<!-- partial:index.partial.html -->
+<div class="row">
+  <div id="admin" class="col s12">
+    <div class="card material-table">
+      <div class="table-header">
+
+        <span id="table-title"></span>
+
+        <div class="actions">
+          <!--a href="#add_users" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a-->
+          <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+        </div>
+      </div>
+      <table id="datatable">
+        <!--thead>
+          <tr>
+            <th>nr of works</th>
+            <th>link</th>
+            <th>name</th>
+          </tr>
+        </thead-->
+      </table>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+
+<!--script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script-->
+<script src='./libs/jquery.dataTables.min.js'></script>
+<script src='./libs/materialize.min.js'></script>
+<script  src="./js/main.js"></script>
+
+</body>
+</html>
