@@ -44,9 +44,10 @@ async function getData() {
           //console.log( data, row.key_display_name );
 
           // get institution ID
-          const id = data.split('/').pop();
+          const institution = data.split('/').pop();
+          //const concept     = filter.split(':').pop();
 
-          const url_string = `https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ id }`;
+          const url_string = `https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ institution },${ filter }`;
 
           return `
             <a class="name" href="javascript:void(0)" onclick="openLink( &quot;${ url_string }&quot; )">${ row.key_display_name }</a>
