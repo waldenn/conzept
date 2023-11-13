@@ -16703,7 +16703,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-table-list',
   text: 'OpenAlex topic rank',
   section: ['education-assistance','science-search-tools','main'],
-  rank: [35.2, 58.5, 8502 ],
+  rank: [35.2, 58.7, 8503.1 ],
   //headline_create: 'valid( item.openalex_ranked_institution_concept_works )',
   //headline_type: 'link',
   //headline_rank: 49.1,
