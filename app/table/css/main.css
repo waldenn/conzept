@@ -32,6 +32,10 @@ table tr td:first-child::before {
   padding: 0em 0.5em;
 }
 
+td .name {
+  font-size: 1.6em;
+}
+
 /*
 td a {
   display: block; width: 100%; height: 100%;
