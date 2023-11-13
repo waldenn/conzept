@@ -16699,7 +16699,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/table/?l=${explore.language}&t=topic%20rank:%20${title_quoted}&filter=authorships.institutions.lineage%3AI97018004&groupby=concepts.id',
+  url: '${explore.base}/app/table/?l=${explore.language}&t=topic%20rank:%20${title_quoted}&filter=authorships.institutions.lineage%3A${ item.openalex }&groupby=concepts.id',
   icon: 'fa-solid fa-table-list',
   text: 'OpenAlex topic rank',
   section: ['education-assistance','science-search-tools','main'],
