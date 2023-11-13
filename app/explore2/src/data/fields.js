@@ -16647,15 +16647,15 @@ if ( valid( item.found_in_taxon ) ){
 
 'openalex_ranked_institution_concept_works' : {
   create_condition: 'valid( item.openalex ) && item.openalex.startsWith("C")',
-  title: 'Institutions ranked by the amount of concept-related works in OpenAlex',
+  title: 'Institutions ranked by the amount of topic-related works in OpenAlex',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/table/?l=${explore.language}&t=institutions%20ranked%20by%20${explore.title}%20related%20works%20count&filter=concepts.id:${item.openalex}&groupby=authorships.institutions.id',
+  url: '${explore.base}/app/table/?l=${explore.language}&t=institutions%20grouped%20by%20topical%20works:%20${title_quoted}&filter=concepts.id:${item.openalex}&groupby=authorships.institutions.id',
   icon: 'fa-solid fa-table-list',
   text: 'OpenAlex org. rank',
   section: ['education-assistance','science-search-tools','main'],
-  rank: [35, 58.4, 8501 ],
+  rank: [35.1, 58.4, 8501 ],
   //headline_create: 'valid( item.openalex_ranked_institution_concept_works )',
   //headline_type: 'link',
   //headline_rank: 49.1,
@@ -16691,6 +16691,22 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.openalex_institution_works )',
   headline_type: 'link',
   headline_rank: 49.3,
+},
+
+'openalex_topic_ranked_institution_works' : {
+  create_condition: 'valid( item.openalex ) && item.openalex.startsWith("I")',
+  title: 'Topic rank for publications by this institution in OpenAlex',
+  prop: '',
+  type: 'link-split',
+  mv: false,
+  url: '${explore.base}/app/table/?l=${explore.language}&t=topic%20rank:%20${title_quoted}&filter=authorships.institutions.lineage%3AI97018004&groupby=concepts.id',
+  icon: 'fa-solid fa-table-list',
+  text: 'OpenAlex topic rank',
+  section: ['education-assistance','science-search-tools','main'],
+  rank: [35.2, 58.5, 8502 ],
+  //headline_create: 'valid( item.openalex_ranked_institution_concept_works )',
+  //headline_type: 'link',
+  //headline_rank: 49.1,
 },
 
 'openalex_publisher_works' : {
