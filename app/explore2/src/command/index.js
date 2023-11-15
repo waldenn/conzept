@@ -340,7 +340,7 @@ async function showPresentation( item, type ){
     }
 
 		// frequently used ready-made slides
-		let video_slide                 = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "/app/video/#/search/%22${ title_enc }%22" ) ) )\n`;
+		let video_slide                 = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "/app/video/?l=${explore.language}#/search/%22${ title_enc }%22" ) ) )\n`;
 		let open_library_meta_slide     = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (meta-data)<h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search?q=${title}&language=${explore.lang3}" ) ) )\n`;
 		let open_library_fulltext_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (fulltext)</h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search/inside?q=${title}&language=${explore.lang3}&has_fulltext=true" ) ) )\n`;
 		let libretext_chemistry         = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>LibreText</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://chem.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n`;
@@ -1812,7 +1812,7 @@ async function setupLispEnv(){
 
       list = args.shift().to_array() || [];
 
-      // target URL: /app/video/?wide=true#/view/zqNTltOGh5c/20/40
+      // target URL: /app/video/?l=${explore.language}&wide=true#/view/zqNTltOGh5c/20/40
 
       let url   = '';
       let vid   = getParameterByName( 'v', list[0] ) || '';
@@ -1837,12 +1837,12 @@ async function setupLispEnv(){
 
       if ( valid( end ) ){
 
-        url = `${explore.base}/app/video/?wide=true#/view/${ vid }/${ start }/${ end }`;
+        url = `${explore.base}/app/video/?l=${explore.language}&wide=true#/view/${ vid }/${ start }/${ end }`;
 
       }
       else {
 
-        url = `${explore.base}/app/video/?wide=true#/view/${ vid }/${ start }`;
+        url = `${explore.base}/app/video/?l=${explore.language}&wide=true#/view/${ vid }/${ start }`;
 
       }
 
@@ -2048,7 +2048,7 @@ async function setupLispEnv(){
           title     : '',
           language  : explore.language,
           qid       : '',
-          url       : `${explore.base}/app/video/#/search/${labels}`,
+          url       : `${explore.base}/app/video/?l=${explore.language}#/search/${labels}`,
           tag       : '',
           languages : '',
           custom    : '',

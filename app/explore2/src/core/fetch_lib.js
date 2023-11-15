@@ -59,7 +59,7 @@ function getImagesLink( args, label, qid ){
 
 function getVideoLink( args, label ){
 
-  return '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: '/app/video/#/search/' + label, title: label, language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>';
+  return '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: `/app/video/?l=${explore.language}#/search/` + label, title: label, language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>';
 
 }
 

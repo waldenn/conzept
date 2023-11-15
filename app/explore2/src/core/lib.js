@@ -3747,7 +3747,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             //`<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-2">newspapers (II)</span></span></a></div>` +
 
-            '<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/#/search/%22${ wp_languages[ explore.country ].namelocal }%22%20news&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>' +
+            `<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/?l=${explore.language}#/search/%22${ wp_languages[ explore.country ].namelocal }%22%20news&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>` +
 
             '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio</span></span></a></div>' +
 
@@ -4995,14 +4995,14 @@ async function insertSelectMenuDates( args, fields ){
     let new_title_quoted = '%22' + args.topic + '%22%20' + tag;
 
     // create topic html
-		let title_link = '<a href="javascript:void(0)" class="mv-extra-topic" title="' + new_title + '" aria-label="' + new_title + '" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '> ' + decodeURIComponent( new_title ) + '</a><br>';
+		let title_link = '<a href="javascript:void(0)" class="mv-extra-topic" title="' + new_title + '" aria-label="' + new_title + '" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + `/app/video/?l=${explore.language}#/search/` + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '> ' + decodeURIComponent( new_title ) + '</a><br>';
 
     let topic_html = 
       '<ul class="multi-value mv-select-card" name="' + args.target + '"><li>' +
         title_link +
         '<span class="mv-extra-buttons">' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
-          '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
+          '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + `/app/video/?l=${explore.language}#/search/` + new_title_quoted, title: new_title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: encodeURIComponent( new_title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( `https://www.bing.com/search?q=${new_title}&search=Submit+Query&form=QBLH&setlang=${explore.language}` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
           '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( new_title ), url: encodeURI( 'https://openlibrary.org/search?q=' + new_title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
@@ -5903,7 +5903,7 @@ async function renderType( args ) {
         // open-in-tab from correct resume time
         // prevent needless control-menu flickering
         // add skip ahead 30sec?
-        let url_ = explore.base + '/app/video/?wide=true&wander=true#/view/' + explore.vids[ explore.vids_index ];
+        let url_ = explore.base + `/app/video/?l=${explore.language}&wide=true&wander=true#/view/` + explore.vids[ explore.vids_index ];
 
         // target URL: /app/video/?wide=true#/view/zqNTltOGh5c/20/40
         //let url_ = explore.base + '/app/wander/?videoId=' + explore.vids[ explore.vids_index ] + '&mute=' + explore.vids_mute;
@@ -7461,7 +7461,7 @@ function receiveMessage(event){
       explore.vids_index += 1;
 
       resetIframe();
-      $( explore.baseframe ).attr({"src": explore.base + '/app/video/?wide=true&wander=true#/view/' + explore.vids[ explore.vids_index ] });
+      $( explore.baseframe ).attr({"src": explore.base + `/app/video/?l=${explore.language}&wide=true&wander=true#/view/` + explore.vids[ explore.vids_index ] });
 
     }
 
@@ -7473,7 +7473,7 @@ function receiveMessage(event){
       explore.vids_index -= 1;
 
       resetIframe();
-      $( explore.baseframe ).attr({"src": explore.base + '/app/video/?wide=true&wander=true#/view/' + explore.vids[ explore.vids_index ] });
+      $( explore.baseframe ).attr({"src": explore.base + `/app/video/?l=${explore.language}&wide=true&wander=true#/view/` + explore.vids[ explore.vids_index ] });
 
     }
 
@@ -8541,7 +8541,7 @@ function runBookmarkAction( action ){
       title     : topics.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `https://${explore.host}/app/video/#/search/${ topics.join(', ') }` ),
+      url       : encodeURI( `https://${explore.host}/app/video/?l=${explore.language}#/search/${ topics.join(', ') }` ),
       tag       : '',
       languages : '',
       custom    : '',
@@ -10087,7 +10087,7 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
               '<a href="javascript:void(0)" class="mv-extra-icon" title="explore" aria-label="explore this topic" role="button"' + setOnClick( Object.assign({}, args, { type: 'explore', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span></a>' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="show article" aria-label="show article" role="button"' + setOnClick( Object.assign({}, args, { type: 'string', title: encodeURIComponent( title ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-align-justify" style="position:relative;"></i></span></a>' +
 
-              '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + '/app/video/#/search/' + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
+              '<a href="javascript:void(0)" class="mv-extra-icon" title="video" aria-label="video" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url: explore.base + `/app/video/?l=${explore.language}#/search/` + title_quoted, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-video" style="position:relative;"></i></span></a>' +
 
               // hide these buttons on mobile (screen is too narrow)
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>' ) +

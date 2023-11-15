@@ -6,8 +6,10 @@ tooglesApp.service('youtube', ['$http', function($http) {
 
   var count = 12;
 
+  var language = getParameterByName('l') || 'en';
+
   this.searchVideos = function(pageToken, query, params, callback) {
-    var url = urlBase + 'search?part=id&type=video&maxResults=' + count + '&q=' + query + '&xkey=' + apiKey;
+    var url = urlBase + 'search?part=id&type=video&maxResults=' + count + '&q=' + query + '&relevanceLanguage=' + language + '&xkey=' + apiKey;
     if (params) {
       url += '&' + $.param(params);
     }

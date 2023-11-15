@@ -1132,7 +1132,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
               wd.claims.P963[0].includes('presstv')
             ){ // can be embedded
 
-          item.stream_media_embed = explore.base + '/app/video/#/view/' + wd.claims.P963[0].split('?v=').pop();
+          item.stream_media_embed = explore.base + `/app/video/?l=${explore.language}#/view/` + wd.claims.P963[0].split('?v=').pop();
 
         }
         else if ( wd.claims.P963[0].includes('balticlivecam')
