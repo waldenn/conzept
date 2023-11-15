@@ -16770,7 +16770,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count,language,institutions.country_code&group_by=concepts.id&page=1&filter=institutions.country_code%3ADE&show_api=true',
+  url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count,language,institutions.country_code&group_by=concepts.id&page=1&filter=institutions.country_code%3A${ item.iso2 }&show_api=true',
   icon: 'fa-regular fa-chart-bar',
   text: 'OpenAlex topic country',
   section: ['science-search-tools','main'],
