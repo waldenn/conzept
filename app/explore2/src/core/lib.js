@@ -3747,7 +3747,8 @@ async function setDefaultDisplaySettings( cover, type ) {
 
             //`<div><a class="" title="World-Newspapers" aria-label="World-Newspapers" role="button" href="javascript:void(0)" onclick="gotoWorldNewspapersLink()"><span class="icon"><i class="fa-regular fa-newspaper fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-newspapers-2">newspapers (II)</span></span></a></div>` +
 
-            `<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/?l=${explore.language}#/search/%22${ wp_languages[ explore.country ].namelocal }%22%20news&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>` +
+            // FIXME: create i18n for the word "news"
+            `<div><a class="" title="YouTube video news" aria-label="YouTube video news" role="button" href="javascript:void(0)" onclick="openLink( &quot;/app/video/?l=${explore.language}#/search/%22${ wp_languages[ explore.language ].namelocal }%22%20news&quot; )"><span class="icon"><i class="fa-solid fa-video fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-youtube">YouTube</span></span></a></div>` +
 
             '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio</span></span></a></div>' +
 

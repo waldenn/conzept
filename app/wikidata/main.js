@@ -3992,7 +3992,6 @@ function conzeptInit(){
 function gotoExplore( newtab ){
 
 	let title = $('#main_title_label').text();
-  const url = CONZEPT_WEB_BASE + '/app/video/#/search/' + title;
 
   if ( newtab ){
 
@@ -4099,7 +4098,7 @@ function gotoVideo( newtab ){
   event.preventDefault();
 
 	let title = $('#main_title_label').text();
-  const url = CONZEPT_WEB_BASE + '/app/video/#/search/' + title;
+  const url = CONZEPT_WEB_BASE + `/app/video/?l=${language}#/search/` + title;
 
   if ( newtab ){
 

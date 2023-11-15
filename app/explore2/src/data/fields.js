@@ -5284,7 +5284,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://conze.pt/app/sparklis/osparklis.html?title=&endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
+  url: 'app/sparklis/index.html?title=&endpoint=${ encodeURIComponent( item.sparql_endpoint_url ) }',
   icon: 'fa-solid fa-project-diagram',
   text: 'sparql',
   section: ['meta', 'media-datasets-topical', 'main'],
