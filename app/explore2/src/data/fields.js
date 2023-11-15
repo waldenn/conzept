@@ -5014,10 +5014,10 @@ conzept_fields = {
   text: 'Scholia topic',
   section: 'science-search-tools',
   rank: 74,
-  headline_create: 'valid( item.scholia_topic ) && ( listed( item.instances, [ 11862829, 849359, 1759955, 249542 ] ) || listed( item.subclasses, [ 11862829, 849359, 1759955, 249542 ] ) )',
-  headline_type: 'link',
-  headline_icon: 'fa-solid fa-graduation-cap',
-  headline_rank: 351,
+  //headline_create: 'valid( item.scholia_topic ) && ( listed( item.instances, [ 11862829, 849359, 1759955, 249542 ] ) || listed( item.subclasses, [ 11862829, 849359, 1759955, 249542 ] ) )',
+  //headline_type: 'link',
+  //headline_icon: 'fa-solid fa-graduation-cap',
+  //headline_rank: 351,
 },
 
 'scholia_organization' : {
@@ -8471,7 +8471,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['library-general','main'],
   rank: [12,1310],
   headline_create: 'valid( item.outline )',
-  headline_rank: 113,
+  headline_rank: 40,
   headline_type: 'link',
   headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&qid=${item.outline}&tutor=${explore.tutor}#${explore.hash}',
 },
@@ -16631,13 +16631,13 @@ if ( valid( item.found_in_taxon ) ){
 
 'openalex_concept_works' : {
   create_condition: 'valid( item.openalex ) && item.openalex.startsWith("C")',
-  title: 'OpenAlex concept-related works',
+  title: 'OpenAlex topic-related works',
   prop: '',
   type: 'link',
   mv: false,
   url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }',
   icon: 'fa-regular fa-newspaper',
-  text: 'OpenAlex concept works',
+  text: 'OpenAlex topic works',
   section: ['science-search-tools','main'],
   rank: [58.3, 8500 ],
   headline_create: 'valid( item.openalex_concept_works )',
@@ -16655,10 +16655,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-table-list',
   text: 'OpenAlex org. rank',
   section: ['education-assistance','science-search-tools','main'],
-  rank: [35.1, 58.4, 8501 ],
-  //headline_create: 'valid( item.openalex_ranked_institution_concept_works )',
-  //headline_type: 'link',
-  //headline_rank: 49.1,
+  rank: [300, 58.4, 8501 ],
 },
 
 'openalex_author_works' : {
@@ -16695,18 +16692,15 @@ if ( valid( item.found_in_taxon ) ){
 
 'openalex_topic_ranked_institution_works' : {
   create_condition: 'valid( item.openalex ) && item.openalex.startsWith("I")',
-  title: 'Topic rank for publications by this institution in OpenAlex',
+  title: 'Topic ranking for publications by this institution in OpenAlex',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/table/?l=${explore.language}&t=topic%20rank:%20${title_quoted}&filter=authorships.institutions.lineage%3A${ item.openalex }&groupby=concepts.id',
+  url: '${explore.base}/app/table/?l=${explore.language}&t=topic%20ranking%20for%20${title_quoted}&filter=authorships.institutions.lineage%3A${ item.openalex }&groupby=concepts.id',
   icon: 'fa-solid fa-table-list',
   text: 'OpenAlex topic rank',
   section: ['education-assistance','science-search-tools','main'],
   rank: [35.2, 58.7, 8503.1 ],
-  //headline_create: 'valid( item.openalex_ranked_institution_concept_works )',
-  //headline_type: 'link',
-  //headline_rank: 49.1,
 },
 
 'openalex_publisher_works' : {
@@ -16768,6 +16762,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'OpenAlex',
   section: 'science-search-tools',
   rank: 58.9,
+},
+
+'openalex_topic_ranked_country_works' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Topic ranking for publications from institutions in this country',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count,language,institutions.country_code&group_by=concepts.id&page=1&filter=institutions.country_code%3ADE&show_api=true',
+  icon: 'fa-regular fa-chart-bar',
+  text: 'OpenAlex topic country',
+  section: ['science-search-tools','main'],
+  rank: [58.15, 8503.15 ],
 },
 
 'google_scholar' : {

@@ -476,7 +476,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_fulltext_slide );
 
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 			//slides.push( arxiv_slide );
 
 			slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
@@ -497,7 +497,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'art-movement' ){
@@ -512,7 +512,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'cultural-concept' ){
@@ -526,7 +526,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'location' ){
@@ -571,7 +571,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_fulltext_slide );
 
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'geographical-structure' ){
@@ -625,7 +625,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'person' ){
@@ -750,7 +750,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
-			slides.push( openalex_search_slide );
+			//slides.push( openalex_search_slide );
 
 		}
 

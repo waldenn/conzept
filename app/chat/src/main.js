@@ -178,7 +178,7 @@ function markupISBNs( html ){
 
         const url = `https://openlibrary.org/search?q=${ match }`;
 
-				return ` <a href="javascript:void(0)" title="" onclick="openLink( &quot;${encodeURIComponent( url )}&quot;)">${match.trim()}</a>`;
+				return ` <a href="javascript:void(0)" title="" onclick="openlink( &quot;${encodeURIComponent( url )}&quot;)">${match.trim()}</a>`;
 
 			}
 
@@ -249,7 +249,7 @@ function markupComplexWords( html ){
 
 }
 
-const openLink = (url) => {
+const openlink = (url) => {
 
   if ( getCurrentPane() === 'ps1' ){ // first split-pane -> open link in second split-pane
 
@@ -283,8 +283,6 @@ const openLink = (url) => {
   }
 
 }
-
-
 
 const exploreString = (newtab, string) => {
 

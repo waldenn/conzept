@@ -8,6 +8,7 @@ body {
 
 .name {
   font-weight: bold;
+  margin-left: 0.5em;
 }
 
 .table-header {
