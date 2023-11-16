@@ -976,7 +976,7 @@ function setupULS(){ // "Univerdsal Language Switcher" widget
 
       if ( explore.embedded ){
 
-        location.href = explore.base + '/app/wikipedia/?t=' + encodeURIComponent( title ) + '&l=' + language;
+        location.href = explore.base + '/app/wikipedia/?embedded=true&t=' + encodeURIComponent( title ) + '&l=' + language;
 
       }
       else {
@@ -1048,8 +1048,14 @@ function clickedToc( event ){
 
 function goExplore( newtab ){
 
-  if ( newtab ){ openInNewTab( url ); }
-  else if ( explore.embedded ){ location.href = url; }
+  let url = `https://${explore.host}${explore.base}/app/wikipedia/?embedded=${explore.embedded}&t=${ encodeURIComponent( title ) }&l=${language}`;
+
+  if ( newtab ){
+    openInNewTab( url );
+  }
+  else if ( explore.embedded ){
+    location.href = url;
+  }
   else {
 
     parentref.postMessage({ event_id: 'handleClick', data: { type: 'explore', title: title, hash: hash, language: language } }, '*' );
@@ -1164,7 +1170,7 @@ function bookmarkToggle(){
 
 function gotoVideo( newtab ){
 
-  const url = explore.base + '/app/video/#/search/' + quoteTitle( title );
+  const url = explore.base + `/app/video/?l=${explore.language}#/search/` + quoteTitle( title );
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }

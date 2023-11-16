@@ -6853,10 +6853,9 @@ if ( valid( item.found_in_taxon ) ){
   panelwidth: '30',
   section: ['science-biology','main'],
   rank: [610,8500],
-  //headline_create: 'valid( item.term_anatomica_id )',
-  //headline_type: 'link-split',
-  //headline_url: '${explore.base}/app/taviewer/?l=${explore.language}&id=${item.term_anatomica_id}',
-  //headline_rank: 270,
+  headline_create: 'valid( item.term_anatomica_id )',
+  headline_type: 'link-split',
+  headline_rank: 270,
 },
 
 'newspaper_archive' : {
