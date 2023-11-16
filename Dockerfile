@@ -35,6 +35,7 @@ RUN apk add --no-cache --update \
     php7-xmlwriter \
     php7-zip \
     php7-zlib \
+    vim \
     sudo \
     wget git curl bash grep make build-base jq\
     supervisor nodejs-current npm

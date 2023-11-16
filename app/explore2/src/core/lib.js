@@ -3419,7 +3419,11 @@ function setReplaceState(){
     // in this case: prevent the replace State() action to take place (as this would cause a loop)
     explore.replaceState = false;
 
-    let terms = $('#srsearch').val( decodeURIComponent( explore.q ) );
+    if ( ! explore.isSafari ){ // prevent the input-field-clearing Safari bug??
+
+      let terms = $('#srsearch').val( decodeURIComponent( explore.q ) );
+
+    }
 
     $('.submitSearch').click();
     //console.log( 'go to page with state: ', explore.q, explore.language, ' type: ', explore.type, ' hash: ', explore.hash );
