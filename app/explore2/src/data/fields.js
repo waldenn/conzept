@@ -878,7 +878,7 @@ conzept_fields = {
   text: 'OpenStreetMap relation',
   section: '',
   rank: 1,
-  headline_create: 'valid( item.osm_relation_id ) && checkTag( item, 0, "location") && valid( explore.personas.includes("nomad") )',
+  headline_create: 'valid( item.osm_relation_id ) && checkTag( item, 0, "location") && checkPersona( "nomad" )',
   headline_rank: 114,
   headline_type: 'link',
   headline_title: 'coworking-spaces map',
@@ -3676,6 +3676,10 @@ conzept_fields = {
   text: 'Open Syllabus',
   section: 'education-assistance',
   rank: 10,
+  headline_create: 'checkPersona( [ "student", "academic" ] ) && ( checkTag(item, 1, "role") || valid( item.practiced_by) )',
+  headline_rank: 650,
+  headline_type: 'link',
+  headline_icon: 'fa-solid fa-book-open-reader',
 },
 
 'opensyllabus_galaxy' : {
@@ -9251,7 +9255,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   mv: false,
   type: 'link-split',
-  url: '${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.qid + "," + item.political_ideology.join() }&title=${title}',
+  url: '${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.qid + "," + item.political_ideology.join() }&title=political%20ideologies%20:%20${title}',
   icon: 'fa-solid fa-hand-holding-heart',
   text: 'ideology graph',
   section: ['government-general','main'],
@@ -15359,7 +15363,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'OSM routing',
   section: 'location-travel',
   rank: 295,
-  headline_create: 'valid( explore.personas.includes("tourist") )',
+  headline_create: 'checkPersona( "tourist" )',
   headline_rank: 201,
 },
 
@@ -15378,7 +15382,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'hiking routes',
   section: 'location-travel',
   rank: 300,
-  headline_create: 'valid( explore.personas.includes("tourist") )',
+  headline_create: 'checkPersona( "tourist" )',
   headline_rank: 202,
 },
 
@@ -15612,8 +15616,7 @@ if ( valid( item.found_in_taxon ) ){
 */
 
 'nomadlist' : {
-  create_condition: 'checkTag( item, 0, "location") && valid( explore.personas )',
-  render_condition: 'explore.personas.includes("nomad")',
+  create_condition: 'checkTag( item, 0, "location") && checkPersona( "nomad" )',
   title: 'Nomad List',
   prop: '',
   type: 'url',
@@ -18229,7 +18232,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['main'],
   rank: [9],
   headline_create: 'valid( explore.openai_enabled )',
-  //headline_create: 'valid( item.ai_chat ) && valid( explore.personas.includes("student") || explore.personas.includes("academic") )',
+  //headline_create: 'valid( item.ai_chat ) && checkPersona( ["student","academic"] )',
   headline_rank: 650,
   headline_type: 'link-split',
 },

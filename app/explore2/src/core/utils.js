@@ -48,6 +48,29 @@ function checkTag( item, level, name ){
 
 }
 
+function checkPersona( input ){
+
+  let r = false; // default
+
+  if ( valid( explore.personas ) ){
+
+    if ( Array.isArray( input ) ){ // list
+
+      r = explore.personas.some( p => input.includes( p ) );
+
+    }
+    else { // string
+
+      r = explore.personas.includes( input );
+
+    }
+
+  }
+
+  return r;
+
+}
+
 function getTargetPane(){
 
   let target_pane = '';

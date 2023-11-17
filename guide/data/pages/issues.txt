@@ -1,10 +1,5 @@
 ====== issues ======
 
-===== browser compatibility =====
-
-  * Safari/Webkit browser issues:
-    * When typing a search, the ENTER-key resets the search term. (Figure out what is the cause of this!)
-    * Structured query: "Run query"and "add condition" button not reachable via keyboard.
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.
@@ -18,6 +13,7 @@
 ===== touch navigation =====
 
   * TODO: Note the core app & embedded app parts that fail for touch-interactions.
+
 =====  browser navigation =====
 
   * **Backwards & Forwards history navigation** has several issues.
@@ -55,8 +51,6 @@
 
   * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
 
-
-
 ===== datasources =====
 
   * BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
@@ -88,6 +82,7 @@
 ===== browser extension =====
 
   * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
+    * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
 
   * Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I've started some research what the best way forward to improve the JSON-LD parser.
 
