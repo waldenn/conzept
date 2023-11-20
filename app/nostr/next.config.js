@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/app/nostr-search/out',
+  basePath: '/app/nostr/out',
   output: 'export',
   experimental: {
     appDir: true,

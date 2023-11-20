@@ -13690,7 +13690,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '/app/nostr-search/out/search.html?q=${title_quoted}',
+  url: '/app/nostr/out/search.html?q=${title_quoted}',
   icon: 'fa-regular fa-comment',
   text: 'Nostr search',
   section: 'social',
