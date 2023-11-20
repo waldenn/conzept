@@ -1824,6 +1824,7 @@ function setPosition( pos ){
 
 function errorPosition( pos ) {
 
+  /*
   $.toast({
       heading: 'Geolocation error. Is geolocation access permitted?',
       text: '',
@@ -1832,6 +1833,7 @@ function errorPosition( pos ) {
       showHideTransition: 'slide',
       icon: 'error'
   })
+  */
 
   //explore.position_watch_id = undefined;
 

@@ -74,7 +74,8 @@ $tutors = array_map('trim', explode(',', 'auto-select, default, advisor-related-
 asort( $tutors );
 $tutor_options_html = '';
 foreach ($tutors as &$tutor) {
-  $tutor_options_html .= '<option value="' . $tutor . '">' . $tutor . '</option>';
+  $tutor_options_html .= '
+                                          <option value="' . $tutor . '">' . $tutor . '</option>';
 }
 
 $main_css = '
@@ -193,6 +194,8 @@ $main_script = '
 
   <!-- tracker -->
   
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F21FD3691C"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-F21FD3691C"); </script>
+
 ';
 
 $sticky_html = '

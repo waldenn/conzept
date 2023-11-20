@@ -9101,11 +9101,11 @@ if ( valid( item.found_in_taxon ) ){
 
 'musician_works_query' : {
   create_condition: 'checkTag( item, 1, [ "musician", "music-group"] )',
-  title: 'works by this musicican / group',
+  title: 'works related to this musicican / group',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20(MIN(%3FpublicationDate)%20AS%20%3Fpublication)%20(GROUP_CONCAT(%3Fgenre_label%3B%20SEPARATOR%20%3D%20%22%2C%20%22)%20AS%20%3Fgenres)%20%3FformLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP50%7C%20wdt%3AP175%20%7C%20wdt%3AP86%20)%20wd%3A${ item.qid }%20.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20%3Fgenre.%0A%20%20%20%20%3Fgenre%20rdfs%3Alabel%20%3Fgenre_label.%0A%20%20%20%20FILTER((LANG(%3Fgenre_label))%20%3D%20%22${explore.language}%22)%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3FpublicationDate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP7937%20%3Fform.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fsubtitle%20%3FformLabel%20%3Fimg%0AORDER%20BY%20DESC%20(%3Fpublication)%0A%23meta%3Aworks%20by%20${item.title}',
+  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20(MIN(%3FpublicationDate)%20AS%20%3Fpublication)%20(GROUP_CONCAT(%3Fgenre_label%3B%20SEPARATOR%20%3D%20%22%2C%20%22)%20AS%20%3Fgenres)%20%3FformLabel%20%3Fimg%20WHERE%20%7B%0A%20%20%3Fitem%20(wdt%3AP50%7C%20wdt%3AP175%20%7C%20wdt%3AP86%20)%20wd%3A${ item.qid }%20.%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP136%20%3Fgenre.%0A%20%20%20%20%3Fgenre%20rdfs%3Alabel%20%3Fgenre_label.%0A%20%20%20%20FILTER((LANG(%3Fgenre_label))%20%3D%20%22${explore.language}%22)%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP577%20%3FpublicationDate.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimg.%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP7937%20%3Fform.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Fitem%20%3FitemLabel%20%3FauthorLabel%20%3Fsubtitle%20%3FformLabel%20%3Fimg%0AORDER%20BY%20DESC%20(%3Fpublication)%0A%23meta%3Aworks%20related%20to%20${item.title}',
   icon: 'fa-solid fa-record-vinyl',
   //icon: 'fa-solid fa-people-line',
   text: 'music works',
@@ -13684,6 +13684,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 17,
 },
 
+'nostr_search' : {
+  create_condition: true,
+  title: 'Nostr search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '/app/nostr-search/out/search.html?q=${title_quoted}',
+  icon: 'fa-regular fa-comment',
+  text: 'Nostr search',
+  section: 'social',
+  rank: 16.4,
+},
+
 'nostr_band' : {
   create_condition: true,
   title: 'Nostr.Band - Nostr search engine',
@@ -13693,7 +13706,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://nostr.band/?q=${title_quoted}&type=posts',
   //url: '/app/nostr/build?q=${title_quoted}&type=posts',
   icon: 'fa-regular fa-comment',
-  text: 'Nostr search',
+  text: 'Nostr Band',
   section: 'social',
   rank: 16.5,
 },

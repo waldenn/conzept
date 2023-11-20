@@ -74,7 +74,8 @@ $tutors = array_map('trim', explode(',', 'CONZEPT_AI_TUTORS' ) );
 asort( $tutors );
 $tutor_options_html = '';
 foreach ($tutors as &$tutor) {
-  $tutor_options_html .= '<option value="' . $tutor . '">' . $tutor . '</option>';
+  $tutor_options_html .= '
+                                          <option value="' . $tutor . '">' . $tutor . '</option>';
 }
 
 $main_css = '
@@ -193,6 +194,7 @@ $main_script = '
 
   <!-- tracker -->
   CONZEPT_TRACKER_HTML_INCLUDE
+
 ';
 
 $sticky_html = '
