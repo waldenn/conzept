@@ -3276,22 +3276,6 @@ conzept_fields = {
   rank: 849,
 },
 
-/*
-'tv_country_button' : {
-  create_condition: true,
-  render_condition: 'checkTag(item, 1, "country")',
-  title: 'TV from',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/tv/build/?c=${item.iso2}',
-  icon: 'fa-solid fa-tv',
-  text: 'TV from',
-  section: '',
-  rank: 1,
-},
-*/
-
 'open_context' : {
   create_condition: true, // FIXME, TODO: use API? https://opencontext.org/about/services
   render_condition: 'checkTag(item, 1, "country")',
@@ -11075,7 +11059,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'part_of' : {
-  create_trigger: 'if ( listed( item.part_of, [ "Q395" ] ) ){ setTags( item, [ "meta-concept", "mathematics" ] ) };',
+  create_trigger: 'if ( listed( item.part_of, [ 395 ] ) ){ setTags( item, [ "meta-concept", "mathematics" ] ) };',
   title: 'part of',
   prop: '361',
   type: 'wikipedia-qid',
@@ -13534,9 +13518,25 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/tv/build/?l=${explore.lang3}',
+  url: 'https://iptv-org.github.io/?q=languages:${explore.lang3}', // TODO: use local app-fork
+  //url: '${explore.base}/app/tv/build/?l=${explore.lang3}',
   icon: 'fa-solid fa-tv',
   text: 'tv-lang',
+  section: '',
+  rank: 1,
+},
+
+'tv_country_button' : {
+  create_condition: true,
+  render_condition: 'checkTag(item, 1, "country")',
+  title: 'TV from',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://iptv-org.github.io/?q=country:${item.iso2}', // TODO: use local app-fork
+  //url: '${explore.base}/app/tv/build/?c=${item.iso2}',
+  icon: 'fa-solid fa-tv',
+  text: 'TV from',
   section: '',
   rank: 1,
 },
@@ -13684,19 +13684,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 17,
 },
 
-'nostr_search' : {
-  create_condition: true,
-  title: 'Nostr search',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '/app/nostr/out/search.html?q=${title_quoted}',
-  icon: 'fa-regular fa-comment',
-  text: 'Nostr search',
-  section: 'social',
-  rank: 16.4,
-},
-
 'nostr_band' : {
   create_condition: true,
   title: 'Nostr.Band - Nostr search engine',
@@ -13709,6 +13696,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Nostr Band',
   section: 'social',
   rank: 16.5,
+},
+
+'nostr_search' : {
+  create_condition: true,
+  title: 'Nostr search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '/app/nostr/out/search.html?q=${title_}',
+  icon: 'fa-regular fa-comment',
+  text: 'Nostr search',
+  section: 'social',
+  rank: 16.6,
 },
 
 'pinterest_search' : {
@@ -15243,7 +15243,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-plane-departure',
   text: 'OpenAirport map',
   section: ['location-geography', 'main'],
-  rank: [274.1, 7000 ] ,
+  rank: [274.0, 7000 ] ,
   headline_create: 'valid( item.openairport_map )',
   headline_rank: 102,
 },
@@ -15257,8 +15257,33 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11',
   icon: 'fa-solid fa-train',
   text: 'OpenRailway map',
-  section: 'location-geography',
-  rank: 274.2,
+  section: ['location-travel','location-geography'],
+  rank: [ 310, 274.2],
+},
+
+'ibnr' : {
+  title: 'IBNR',
+  prop: '954',
+  type: 'url',
+  mv: false,
+  url_format: 'https://reiseauskunft.bahn.de/bin/bhftafel.exe/en?input=$1&boardType=dep&time=actual&productsDefault=1111101&start=yes',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'IBNR',
+  section: ['library-identity'],
+  rank: [20954],
+},
+
+'railway_station_connections__map' : {
+  create_condition: 'valid( item.ibnr )',
+  title: 'IBNR railway station connections map (Europe only)',
+  type: 'url',
+  mv: false,
+  url: 'https://direkt.bahn.guru/?origin=8400058&local=true',
+  icon: 'fa-solid fa-train',
+  text: 'railway connections',
+  section: ['location-travel','location-geography'],
+  rank: [ 310, 274.1],
 },
 
 'openinfra_map' : {
@@ -23647,20 +23672,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'NSZL (VIAF)',
   section: ['library-identity'],
   rank: [20951],
-  auto: true,
-},
-
-'ibnr' : {
-  title: 'IBNR',
-  prop: '954',
-  type: 'url',
-  mv: false,
-  url_format: 'https://reiseauskunft.bahn.de/bin/bhftafel.exe/en?input=$1&boardType=dep&time=actual&productsDefault=1111101&start=yes',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'IBNR',
-  section: ['library-identity'],
-  rank: [20954],
   auto: true,
 },
 

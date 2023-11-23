@@ -1231,8 +1231,6 @@ const indicators = {
       tags: 'setTags( item, [ "meta-concept", "mathematics" ] )',
   },
 
-
-
   'natural_type': {
       value: [ // concrete natural (sub)entity (NOT considered an organism), eg.: Liver, Moon, Moon crater, Earth tectonic plate, ...
           1156970, 3863, 20747295, 2332332, 2332332, 217526, 2441216, 3132741, 17444909, 6999, 53151979, 3504248, 5864, 244393, 523, 1007122, 544, 206717, 817157, 1054444, 249389, 3592493, 20134, 11004, 1060455, 3559, 719419, 6980653, 24060765, 1348589, 324663, 2225,

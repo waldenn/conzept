@@ -6,11 +6,12 @@
 
   * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
-  * Better **bookmarking** UX:
+  * **Bookmarking**:
     * Cross-tab bookmark state-syncing
-    * Future idea: Being able to share bookmark-lists with others (like Spotify playlists)
+    * Better generic data support, based on the "item data object"
 
   * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
+
 ===== admin-dev workflows =====
 
   * Improve the workflow for adding [[integrating_an_api|API integrations]].
@@ -41,7 +42,7 @@
 
   * **Multi-modal bookmarks**:
     * Formats:
-      * Image (including self-drawn using Excalidraw)
+      * Image (including self-drawn using: tldraw or excalidraw)
       * Audio (music, nature sounds, speech)
       * DOI
       * ISBN
@@ -66,7 +67,7 @@
     * URL parameter IO (iso2 language, search-string, ID, ...)
     * Event-handling (other view triggers, key-bindings, fullscreening, ...)
 
-  * ? [[https://github.com/sebferre/sparklis|Sparklis]] / [[https://github.com/epoz/shmarql|shmarql]] -> needs CORS-issue workarounds)
+  * ? [[https://github.com/sebferre/sparklis|Sparklis]] / [[https://github.com/epoz/shmarql|shmarql]] -> needs CORS-issue workaround
     * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
     * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 
     * Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)

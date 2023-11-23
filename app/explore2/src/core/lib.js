@@ -2880,6 +2880,7 @@ async function updateLocaleInterface(){
   $('#app-guide-conflict-map').text( explore.banana.i18n('app-guide-conflict-map') );
   $('#app-guide-news-economic-indicators').text( explore.banana.i18n('app-guide-news-economic-indicators') );
   $('#app-guide-news-tv').text( explore.banana.i18n('app-guide-news-tv') );
+  $('#app-guide-live-tv').text( explore.banana.i18n('app-guide-live-tv') );
   $('#app-guide-news-radio').text( explore.banana.i18n('app-guide-news-radio') );
   $('#app-guide-news-gdelt').text( explore.banana.i18n('app-guide-news-gdelt') );
   $('#app-guide-newspapers').text( explore.banana.i18n('app-guide-newspapers') );
@@ -3757,6 +3758,8 @@ async function setDefaultDisplaySettings( cover, type ) {
             '<div><a class="" title="country news radio stations" aria-label="country news radio stations" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://www.radio-browser.info/search?page=1&order=clickcount&reverse=true&hidebroken=true&tagList=news&countrycode=${ explore.country.toLowerCase() }&language=${explore.language_name.toLocaleLowerCase()}&quot; )"><span class="icon"><i class="fa-solid fa-radio fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-radio">radio</span></span></a></div>' +
 
             '<div><a class="" title="TV news" aria-label="TV news" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://archive.org/search?identifier=tv&query=${ explore.country_name }&sort=-publicdate&and[]=mediatype%3A%22movies%22&and[]=mediatype%3A%22audio%22&and[]=language%3A%22${ explore.language_name }%22&and[]=year%3A[2020+TO+2030]&quot; )"><span class="icon"><i class="fa-solid fa-tv fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-tv">TV news</span></span></a></div>' + // note: TV by country-string AND language
+    //
+            '<div><a class="" title="Live TV news" aria-label="Live TV news" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://iptv-org.github.io/?q=country:${ explore.country }&quot; )"><span class="icon"><i class="fa-solid fa-tv fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-live-tv">live TV</span></span></a></div>' +
 
             '<div><a class="" title="OECD stats" aria-label="OECD statistics" role="button" href="javascript:void(0)" onclick="openLink( &quot;https://data.oecd.org/\${encodeURIComponent( explore.country_name.toLowerCase() ) }.htm&quot; )"><span class="icon"><i class="fa-solid fa-globe fa-2x" ></i></span><br><span class="frontpage-icon"><span id="app-guide-news-oecd">OECD</span></span></a></div>' +
 
