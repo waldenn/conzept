@@ -718,6 +718,19 @@ async function setWikidata( item, wd, single, target_pane, callback ){
 			}
 
     }
+    else if ( valid( wd.claims.P8047 ) ){ // country of registry
+
+     	addItemCountries( item, wd.claims.P8047, false );
+
+      item.country_qid = wd.claims.P8047[0];
+
+			if ( item.countries.length === 0 ){ // no countries found yet, check for former countries
+
+				addItemCountries( item, wd.claims.P8047, true );
+
+			}
+
+    }
 
     if ( valid( wd.claims.P463 ) ){ // members
 
@@ -799,6 +812,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
 
     }
 
+    /*
     if ( valid( wd.claims.P8047 ) ){ // country registry (used with ships, etc.)
 
       addItemCountries( item, wd.claims.P8047, false );
@@ -806,6 +820,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
       item.country_qid = wd.claims.P8047[0];
 
     }
+    */
 
     // location(s)
     if ( valid( wd.claims.P276 ) ){

@@ -175,12 +175,12 @@ new_fields.results.bindings.forEach(( f ) => {
       id          = cleanseString( f.propertyLabel.value.replace(/ |,/g, '_') ).toLowerCase();
       title       = capitalizeFirstLetter( cleanseString( f.propertyLabel.value ) );
       prop        = f.property.value;
-      type        = 'coordinate';
+      type        = ''; 
       mv          = 'true';
       url         = '${Xvalue}';
-      icon        = 'fa-solid fa-map-pin';
+      icon        = 'fa-regular fa-image';
       text        = cleanseString( f.propertyLabel.value.split(' ').splice(0,4).join(' ') );
-      section     = 'main';
+      section     = '';
       rank        = 40000 + f.property.value;
 
       if ( uniq.includes( id ) ){ return 0; } else {
@@ -191,16 +191,16 @@ new_fields.results.bindings.forEach(( f ) => {
 
       console.log(
 `'${id}' : {
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/\${ encodeURIComponent( wd.claims.P${prop}[0] )}?width=150px',
   render_condition: false,
   title: '${title}',
   prop: '${prop}',
-  type: '${type}',
-  mv: true,
-  url: '\${Xvalue}',
+  type: '',
+  mv: false,
   icon: '${icon}',
   text: '${text}',
-  section: ['${section}'],
-  rank: [${rank}],
+  section: '',
+  rank: 1,
   auto: true,
 },
 `
@@ -208,7 +208,7 @@ new_fields.results.bindings.forEach(( f ) => {
 
     }
 
-    else if ( f.propertyType.value === 'String' ){
+    else if ( f.propertyType.value === 'String' || f.propertyType.value === 'Monolingualtext' || f.propertyType.value === 'Time' ){
 
       id          = cleanseString( f.propertyLabel.value.replace(/ |,/g, '_') ).toLowerCase();
       title       = capitalizeFirstLetter( cleanseString( f.propertyLabel.value ) );
@@ -245,6 +245,46 @@ new_fields.results.bindings.forEach(( f ) => {
 
 
     }
+
+    else if ( f.propertyType.value === 'Math' ){
+
+      id          = cleanseString( f.propertyLabel.value.replace(/ |,/g, '_') ).toLowerCase();
+      title       = capitalizeFirstLetter( cleanseString( f.propertyLabel.value ) );
+      prop        = f.property.value;
+      type        = 'symbol-string',
+      mv          = false,
+      url         = '';
+      icon        = '';
+      text        = cleanseString( f.propertyLabel.value.split(' ').splice(0,4).join(' ') );
+      section     = 'info';
+      rank        = 300000 + f.property.value;
+
+      if ( uniq.includes( id ) ){ return 0; } else {
+
+       uniq.push( id );
+
+      }
+
+      console.log(
+`'${id}' : {
+  title: '${title}',
+  prop: '${prop}',
+  type: '${type}',
+  mv: ${mv},
+  url: '${url}',
+  icon: '${icon}',
+  text: '${text}',
+  section: '${section}',
+  rank: '${rank}',
+  formula: true,
+  auto: true,
+},
+`
+      );
+
+
+    }
+
 
     else if ( f.propertyType.value === 'Quantity' ){
 

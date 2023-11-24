@@ -1639,10 +1639,20 @@ function getDatingHTML( item, args ){
     start_date = String( item.date_inception );
 
   }
+  else if ( valid( item.service_entry ) ){
+
+    start_date = String( item.service_entry );
+
+  }
 
   if ( valid( item.end_date) ){
 
     end_date = String( item.end_date );
+
+  }
+  else if ( valid( item.service_retirement ) ){
+
+    end_date = String( item.service_retirement );
 
   }
   else { // check any other possible end-date types
