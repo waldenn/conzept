@@ -33,6 +33,5 @@
 **plans**
   * [[issues]]
   * [[roadmap]]
-  * [[container]]
 
  ~~NOCACHE~~

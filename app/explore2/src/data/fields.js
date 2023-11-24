@@ -1012,6 +1012,62 @@ conzept_fields = {
   rank: [529,7820],
 },
 
+'imo' : {
+  create_trigger: 'setTags( item, [ "work", "ship" ] )',
+  title: 'IMO ship number',
+  prop: '458',
+  type: '',
+  mv: false,
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'IMO ship number',
+  section: ['library-identity'],
+  rank: [20458],
+},
+
+'mmsi' : {
+  create_trigger: 'setTags( item, [ "work", "ship" ] )',
+  title: 'MMSI',
+  prop: '587',
+  type: '',
+  mv: false,
+  //url_format: 'https://www.marinetraffic.com/ais/details/ships/$1',
+  url: '',
+  icon: 'fa-solid fa-ship',
+  text: 'MMSI',
+  section: ['library-identity'],
+  rank: [20587],
+},
+
+'vessel_finder' : {
+  create_condition: 'valid( item.imo )',
+  title: 'VesselFinder vessel information',
+  type: 'link',
+  url: 'https://www.vesselfinder.com/vessels/details/${item.imo}',
+  mv: false,
+  icon: 'fa-solid fa-ship',
+  text: 'VesselFinder',
+  section: ['main'],
+  rank: [590],
+  headline_create: 'valid( item.vessel_finder )',
+  headline_rank: 170,
+},
+
+'my_ship_tracking' : {
+  create_condition: 'valid( item.mmsi )',
+  title: 'My Ship Tracking - vessel information',
+  type: 'link',
+  url: 'https://www.myshiptracking.com/?mmsi=${ item.mmsi }',
+  mv: false,
+  icon: 'fa-solid fa-ship',
+  text: 'ShipTracking',
+  section: ['main'],
+  rank: [592],
+  headline_create: 'valid( item.my_ship_tracking )',
+  headline_rank: 172,
+  headline_icon: 'fa-solid fa-globe-americas',
+},
+
 /*
 'is_member_of_parliament' : {
   default_value: false,
@@ -15258,7 +15314,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-train',
   text: 'OpenRailway map',
   section: ['location-travel','location-geography'],
-  rank: [ 310, 274.2],
+  rank: [ 311, 274.2],
 },
 
 'ibnr' : {
@@ -15274,16 +15330,18 @@ if ( valid( item.found_in_taxon ) ){
   rank: [20954],
 },
 
-'railway_station_connections__map' : {
+'railway_station_connections_map' : {
   create_condition: 'valid( item.ibnr )',
-  title: 'IBNR railway station connections map (Europe only)',
-  type: 'url',
+  title: 'railway station connections map (local and long distance)',
+  type: 'link',
   mv: false,
-  url: 'https://direkt.bahn.guru/?origin=8400058&local=true',
+  url: 'https://direkt.bahn.guru/?origin=${item.ibnr}&local=true',
   icon: 'fa-solid fa-train',
   text: 'railway connections',
   section: ['location-travel','location-geography'],
   rank: [ 310, 274.1],
+  headline_create: 'valid( item.railway_station_connections_map )',
+  headline_rank: 115,
 },
 
 'openinfra_map' : {
@@ -21602,20 +21660,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'imo_ship_number' : {
-  title: 'IMO ship number',
-  prop: '458',
-  type: 'url',
-  mv: false,
-  url_format: 'https://gisis.imo.org/Public/SHIPS/ShipDetails.aspx?IMONumber=$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'IMO ship number',
-  section: ['library-identity'],
-  rank: [20458],
-  auto: true,
-},
-
 'nor' : {
   title: 'NOR',
   prop: '464',
@@ -21939,20 +21983,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'IPNI author',
   section: ['library-identity'],
   rank: [20586],
-  auto: true,
-},
-
-'mmsi' : {
-  title: 'MMSI',
-  prop: '587',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.marinetraffic.com/ais/details/ships/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'MMSI',
-  section: ['library-identity'],
-  rank: [20587],
   auto: true,
 },
 
