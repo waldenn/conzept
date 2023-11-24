@@ -90,7 +90,7 @@
 
 ===== Wikidata / SPARQL issues =====
 
-  * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries (there are some ways, but it is not easy to generalize to all SPARQL queries). (experiment more with "GROUP BY")
+  * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries. There are some ways to contain the issue (GROUP BY), but that is clumsy and it is not possible to generalize to all SPARQL queries. This is a serious limitation, due to the the two-dimensional (tabular) data dimensioning with SPARQL queries.
   * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using the "wikibase-sdk" (with claims).
   * Abandoned Wikidata-based tools.
 
