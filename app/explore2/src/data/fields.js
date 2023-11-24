@@ -1040,10 +1040,10 @@ conzept_fields = {
 },
 
 'vessel_finder' : {
-  create_condition: 'valid( item.imo )',
+  create_condition: 'valid( item.imo ) || valid( item.mmsi )',
   title: 'VesselFinder vessel information',
   type: 'link',
-  url: 'https://www.vesselfinder.com/vessels/details/${item.imo}',
+  url: 'https://www.vesselfinder.com/vessels/details/${ valid( item.imo )? item.imo : item.mmsi }',
   mv: false,
   icon: 'fa-solid fa-ship',
   text: 'VesselFinder',
@@ -1059,13 +1059,12 @@ conzept_fields = {
   type: 'link',
   url: 'https://www.myshiptracking.com/?mmsi=${ item.mmsi }',
   mv: false,
-  icon: 'fa-solid fa-ship',
+  icon: 'fa-solid fa-globe-americas',
   text: 'ShipTracking',
   section: ['main'],
   rank: [592],
   headline_create: 'valid( item.my_ship_tracking )',
   headline_rank: 172,
-  headline_icon: 'fa-solid fa-globe-americas',
 },
 
 /*
