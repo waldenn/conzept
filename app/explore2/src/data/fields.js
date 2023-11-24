@@ -1013,7 +1013,7 @@ conzept_fields = {
 },
 
 'imo' : {
-  create_trigger: 'setTags( item, [ "work", "ship" ] )',
+  //create_trigger: 'setTags( item, [ "work", "ship" ] )',
   title: 'IMO ship number',
   prop: '458',
   type: '',
@@ -1026,7 +1026,7 @@ conzept_fields = {
 },
 
 'mmsi' : {
-  create_trigger: 'setTags( item, [ "work", "ship" ] )',
+  //create_trigger: 'setTags( item, [ "work", "ship" ] )',
   title: 'MMSI',
   prop: '587',
   type: '',
@@ -1059,11 +1059,11 @@ conzept_fields = {
   type: 'link',
   url: 'https://www.myshiptracking.com/?mmsi=${ item.mmsi }',
   mv: false,
-  icon: 'fa-solid fa-globe-americas',
+  icon: 'fa-solid fa-route',
   text: 'ShipTracking',
   section: ['main'],
   rank: [592],
-  headline_create: 'valid( item.my_ship_tracking )',
+  headline_create: 'valid( item.my_ship_tracking )', // && ! checkTag( item, 2, "lighthouse" )',
   headline_rank: 172,
 },
 

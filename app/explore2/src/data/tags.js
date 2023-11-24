@@ -71,6 +71,10 @@ var conzept_tags = {
         text : "road",
         icon : ["fa-solid fa-road"],
       },
+      "lighthouse" : {
+        text : "lighthouse",
+        icon : ["fa-solid fa-tower-observation"],
+      },
       "itinerary" : {
         text : "itinerary",
         icon : ["fa-solid fa-shuffle"],
