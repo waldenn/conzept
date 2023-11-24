@@ -713,7 +713,7 @@ $settings_html = '
 
                       <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i>&nbsp; <span id="app-menu-visual-search">visual search</span></a> <small>(Bing)</small></span></li>
 
-                      <!--li><span id="draw"><a class="link" href="https://excalidraw.com" target="infoframe" onclick="resetIframe()" title="Excalidraw drawing tool" aria-label="Excalidraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small>(experiment)</small></span></li>
+                      <li><span id="tldraw"><a class="link" href="/app/tldraw/apps/examples/dist/" target="infoframe" onclick="resetIframe()" title="tldraw drawing tool" aria-label="tldraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small></small></span></li>
 
                       <li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li-->
 
