@@ -2,7 +2,7 @@ import { Editor, TLFrameShape, TLShapeId, TLSvgOptions } from '@tldraw/editor'
 import { getSvgAsDataUrl, getSvgAsImage } from './export'
 
 /** @public */
-export type TLExportType = 'svg' | 'png' | 'jpeg' | 'webp' | 'json'
+export type TLExportType = 'svg' | 'png' | 'jpeg' | 'webp' | 'json' | 'bookmark'
 
 /**
  * Export the given shapes as files.
@@ -55,7 +55,10 @@ export function exportAs(
 				})
 				return
 			}
-
+			case 'bookmark': {
+        console.log('add bookmark'); // CONZEPT PATCH
+				return
+			}
 			case 'json': {
 				const data = editor.getContentFromCurrentPage(ids)
 				const blob = new Blob([JSON.stringify(data, null, 4)], { type: 'application/json' })

@@ -1,0 +1,27 @@
+<html>
+<script src="../explore2/dist/core/utils.js?v0.51.4834"></script>
+<body>
+
+foo bar baz
+
+<script>
+
+  $( document ).ready(function() {
+
+    const img_url = getParameterByName('img');
+    console.log( img_url );
+
+    const img = new Image();
+
+    img.src = img_url;
+
+    img.onload = (a) => {
+      console.log('image loaded');
+      $('body').append( img );
+    };
+
+  });
+</script>
+
+</body>
+</html>

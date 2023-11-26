@@ -178,7 +178,8 @@ export const TLUiContextMenuSchemaProvider = track(function TLUiContextMenuSchem
 							'export-as-group',
 							menuItem(actions['export-as-svg']),
 							menuItem(actions['export-as-png']),
-							menuItem(actions['export-as-json'])
+							menuItem(actions['export-as-json']),
+							menuItem(actions['export-as-bookmark'])
 						),
 						menuGroup(
 							'export-bg,',

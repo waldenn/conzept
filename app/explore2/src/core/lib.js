@@ -994,6 +994,48 @@ function renderBookmarks(){
           '<a href="javascript:void(0)" aria-label="selectBookmark" role="button" title="select bookmark" onclick="event.stopPropagation(); selectBookmark( event, &quot;'+ node.id +'&quot;)" class="bookmark-select '+ bookmark_selected +'" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-regular '+ bookmark_icon_class +'"></i></span></a>'
         );
 
+				if ( valid( node.images ) ){ // has an image-url
+
+          //console.log( node.images );
+
+          $.each( node.images, function( index, image ){
+
+            if ( valid( image ) ){
+
+              if ( image.startsWith( 'http' ) ){
+
+                const image_iiif_url = createImageIIIF( node.name, image );
+
+                $li.append(
+                  `<div class="bookmark-image-container"><img class="bookmark-image" src="${ image }" onclick="resetIframe(); openLink( &quot;${ image_iiif_url }&quot; )"></div>`
+
+                );
+
+              }
+              else {
+
+                const dataStr   = JSON.stringify( image ); // stringify the binary data
+                const blob      = new Blob( [dataStr] );   // create a blob object
+                const blob_url  = URL.createObjectURL( blob );
+
+                //const image_iiif_url = createImageIIIF( URL.createObjectURL( blob ) );
+                //img.addEventListener('load', () => URL.revokeObjectURL(imageUrl));
+                //document.querySelector('img').src = imageUrl;
+
+                $li.append(
+
+                  `<div class="bookmark-image-container"><img class="bookmark-image" src="${ image }" onclick="resetIframe(); openInNewTab( &quot;${ blob_url }&quot; )"></div>`
+
+                );
+
+              }
+
+            }
+
+          });
+
+        }
+
 			}
 
 			$li.find('b').after( node.custom_i + '</div>' );
@@ -3103,6 +3145,9 @@ async function setCountry( country ) {
   if ( valid( country ) ){
 
     explore.country = country.toLowerCase();
+
+    // fix country-select option-value
+    if ( explore.country === 'gb' ){ explore.country = 'uk'; }
 
     Object.keys( countries ).forEach( (( qid ) => {
 
@@ -8309,7 +8354,9 @@ function handleJSONSubmit(event) {
 		// TODO: check if this is a valid jqTree JSON-bookmark file
 		// ...
 
-    $('#tree').tree('loadData', JSON.parse( json ) );
+    const old_json = JSON.parse( $('#tree').tree('toJson') );
+
+    $('#tree').tree('loadData', old_json.concat( JSON.parse( json ) ) );
 
     (async () => {
 
@@ -8733,9 +8780,7 @@ const writeToFile = (text, format, fileName) => {
       type = 'text/plain';
     }
 
-    const data = new Blob([text], {
-      'type': type,
-    });
+    const data = new Blob( [text], { 'type': type, } );
 
     if (textFile !== null) {
       window.URL.revokeObjectURL( textFile );
@@ -8807,6 +8852,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     let gid         = ''; // general datasource ID
     let datasource  = '';
     let tags        = '';
+    let images      = [];
 
     let type        = explore.type;
 
@@ -8854,6 +8900,14 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     if ( event.data?.data?.datasource ){
 
       datasource = event.data.data.datasource;
+
+    }
+
+    if ( event.data?.data?.images ){
+
+      images = event.data.data.images;
+
+      console.log('bookmark images event data: ', images );
 
     }
 
@@ -8952,6 +9006,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
         gid:          gid,
         selected:     false,
         datasource:   datasource,
+        images:       images,
       }, $('#tree').tree('getNodeById', parent_id  ) );
 
     }
@@ -8973,7 +9028,8 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
           gid:        gid,
           tags:       tags,
           selected:   false,
-          datasource:   datasource,
+          datasource: datasource,
+          images:     images,
         });
 
         if ( !explore.isMobile ){
@@ -8994,24 +9050,29 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
 
     }
 
-    (async () => {
-
-      await explore.db.set('bookmarks', $('#tree').tree('toJson') );
-
-      // update current bookmarks data structure
-      explore.bookmarks = await explore.db.get('bookmarks');
-      explore.bookmarks = JSON.parse( explore.bookmarks );
-
-      // update the bookmark-view in any other Conzept tabs
-			explore.broadcast_channel.postMessage('update_bookmark_view');
-
-    })();
+    storeCurrentBookmarks();
 
     $('#blink').hide();
   }
 
 }
 
+function storeCurrentBookmarks(){
+
+  (async () => {
+
+    await explore.db.set('bookmarks', $('#tree').tree('toJson') );
+
+    // update current bookmarks data structure
+    explore.bookmarks = await explore.db.get('bookmarks');
+    explore.bookmarks = JSON.parse( explore.bookmarks );
+
+    // update the bookmark-view in any other Conzept tabs
+    explore.broadcast_channel.postMessage('update_bookmark_view');
+
+  })();
+
+}
 
 function determineWidthSplitter(){
 
@@ -10469,5 +10530,76 @@ async function makePresentation( title ){
 
   // show presentation
   showPresentation( item, 'location' );
+
+}
+
+async function showBookmarkFiles(){
+
+   const preview = document.getElementById("preview");
+   const fileInput = document.getElementById("image-upload");
+
+   for ( let i = 0; i < fileInput.files.length; i++) {
+
+     let reader = new FileReader();
+     reader.onload = function(readerEvent) {
+
+       const div = document.createElement("div");
+
+       div.innerHTML =  '<img class="bookmark-thumbnail" src="' + readerEvent.target.result + '" />"';
+
+       preview.append(div);
+
+     }
+
+     reader.readAsDataURL(fileInput.files[i]);
+
+   }
+
+}
+
+function handleBookmarkAddSubmit(event) {
+
+  event.preventDefault();
+
+  const new_id = createBookmarkId();
+
+  //console.log( new_id, $('#bookmark-add-title').val(), $('#bookmark-add-url').val() );
+
+  let title   = $('#bookmark-add-title').val() || '';
+
+  let url     = $('#bookmark-add-url').val() || '';
+
+  let images = $( '#preview .bookmark-thumbnail' ).map((_, { src }) => src).get();
+
+	if ( valid( [ title, url ] ) ){
+
+		$('#tree').tree( 'appendNode', {
+			name:         title,
+			//display:    display,
+			url:          url,
+			id:           new_id,
+			language:     explore.language,
+			type:         'link',
+			selected:     false,
+			datasource:   '',
+			images:       images,
+		}, $('#tree').tree('getTree') );
+
+		storeCurrentBookmarks();
+
+		// clear form elements
+		clearImagePreview();
+		$('#image-upload').replaceWith($('#image-upload').val('').clone(true));
+		$('#bookmark-add-title').val('');
+		$('#bookmark-add-url').val('');
+
+	}
+
+}
+
+function clearImagePreview(){
+
+	$('#image-upload').replaceWith($('#image-upload').val('').clone(true));
+	$('#preview').empty();
 
 }

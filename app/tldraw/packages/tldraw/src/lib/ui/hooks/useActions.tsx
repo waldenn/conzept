@@ -191,6 +191,20 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 					exportAs(editor.getSelectedShapeIds(), 'json')
 				},
 			},
+      // CONZEPT PATCH
+			{
+				id: 'export-as-bookmark',
+				label: 'action.export-as-bookmark',
+				menuLabel: 'action.export-as-bookmark.short',
+				contextMenuLabel: 'action.export-as-bookmark.short',
+				readonlyOk: true,
+				onSelect(source) {
+          console.log('foo bar baz: export bookmark');
+					//trackEvent('export-as', { format: 'bookmark', source })
+					//exportAs(editor.getSelectedShapeIds(), 'bookmark')
+				},
+			},
+
 			{
 				id: 'copy-as-svg',
 				label: 'action.copy-as-svg',

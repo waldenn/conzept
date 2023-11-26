@@ -574,19 +574,61 @@ $settings_html = '
 
             <div class="tab-title" id="app-tab-bookmarks-title" style="font-family: ' . $font . ' !important;">bookmarks &amp; notes</div>
 
-            <div id="jsontree" class="jsontree" style="display:none;">...</div>
+            <div id="bookmark-add" class="noselect">
 
-            <div id="bookmarks" class="noselect">
-              <div id="tree" class="block-style droptarget" ondrop="addBookmark(event, &quot;dropped&quot;)" ondragover="bookmarkAllowDrop(event)"></div>
+              <details class="auto">
+                <summary><span id="app-menu-bookmark-add">add bookmark</span></summary>
+
+                <div id="bookmark-image-upload" class="image-upload">
+                  <input id="image-upload" type="file" multiple onchange="showBookmarkFiles()" accept="image/*">
+                </div>
+
+                <ul id="clear-preview" onclick="clearImagePreview()"><i class="fa-solid fa-xmark"></i> clear files</ul>
+
+                <ul id="preview"></ul>
+
+                <label for="bookmark-add-title">title:</label>
+                <input type="text" id="bookmark-add-title" name="bookmark-add-title"><br><br>
+
+                <label for="bookmark-add-url">url:</label>
+                <input type="text" id="bookmark-add-url" name="bookmark-add-url"><br><br>
+
+                <button><span id="app-menu-bookmark-submit">add bookmark</span></button>
+
+              </detail>
+
             </div>
 
-            <div>
-              &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>
-              &nbsp;<span id="bookmark-deselect-all-container">(<a class="" title="deselect all bookmarks" aria-label="deselect all bookmarks" role="button" href="javascript:void(0)" onclick="deselectAllBookmarks( event )"><span id="app-guide-bookmarks-deselect-all">deselect all</span></span></a>)</span>
-              </span>
+            <div id="bookmarks-export" class="noselect">
+
+              <details class="auto">
+                <summary><span id="app-menu-export-as">export bookmarks</span></summary>
+
+                &nbsp;<i class="fa-solid fa-file-export"></i>
+                <a title="export bookmarks to JSON" tabindex="0" onclick="exportBookmarks(&quot;json&quot;)"><kbd>JSON</kbd></a>
+                <a title="export bookmarks to HTML" tabindex="0" onclick="exportBookmarks(&quot;html&quot;)"><kbd>HTML</kbd></a>
+                <a title="export location bookmarks to KML" tabindex="0" onclick="exportBookmarks(&quot;kml&quot;)"><kbd>KML</kbd></a>
+                <a title="export location bookmarks to GPX" tabindex="0" onclick="exportBookmarks(&quot;gpx&quot;)"><kbd>GPX</kbd></a>
+
+              </detail>
+
             </div>
 
-            <hr class="menu-separator">
+
+            <div id="bookmarks-import" class="noselect">
+
+              <details class="auto">
+                <summary><span id="app-menu-import-as">import bookmarks</span></summary>
+
+                  <form id="json-upload" style="margin-left:1em;">
+                    <label for="json-file" style="display:none;">json-file</label> 
+                    <input type="file" id="json-file" accept=".json">
+                    <button><span id="app-menu-upload-json">upload</span> JSON</button>
+                  </form>
+
+              </detail>
+
+            </div>
 
             <div id="bookmarks-actions-container" class="noselect">
               <details class="auto" style="" closed=""><summary><span id="app-menu-bookmark-actions">bookmark-selection actions</span></summary>
@@ -644,35 +686,18 @@ $settings_html = '
               </detail>
             </div>
 
-            <div id="bookmarks-export" class="noselect">
+            <hr class="menu-separator">
 
-              <details class="auto">
-                <summary><span id="app-menu-export-as">export bookmarks</span></summary>
+            <div id="jsontree" class="jsontree" style="display:none;">...</div>
 
-                &nbsp;<i class="fa-solid fa-file-export"></i>
-                <a title="export bookmarks to JSON" tabindex="0" onclick="exportBookmarks(&quot;json&quot;)"><kbd>JSON</kbd></a>
-                <a title="export bookmarks to HTML" tabindex="0" onclick="exportBookmarks(&quot;html&quot;)"><kbd>HTML</kbd></a>
-                <a title="export location bookmarks to KML" tabindex="0" onclick="exportBookmarks(&quot;kml&quot;)"><kbd>KML</kbd></a>
-                <a title="export location bookmarks to GPX" tabindex="0" onclick="exportBookmarks(&quot;gpx&quot;)"><kbd>GPX</kbd></a>
-
-              </detail>
-
+            <div id="bookmarks" class="noselect">
+              <div id="tree" class="block-style droptarget" ondrop="addBookmark(event, &quot;dropped&quot;)" ondragover="bookmarkAllowDrop(event)"></div>
             </div>
 
-
-            <div id="bookmarks-import" class="noselect">
-
-              <details class="auto">
-                <summary><span id="app-menu-import-as">import bookmarks</span></summary>
-
-                  <form id="json-upload" style="margin-left:1em;">
-                    <label for="json-file" style="display:none;">json-file</label> 
-                    <input type="file" id="json-file" accept=".json">
-                    <button><span id="app-menu-upload-json">upload</span> JSON</button>
-                  </form>
-
-              </detail>
-
+            <div>
+              &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>
+              &nbsp;<span id="bookmark-deselect-all-container">(<a class="" title="deselect all bookmarks" aria-label="deselect all bookmarks" role="button" href="javascript:void(0)" onclick="deselectAllBookmarks( event )"><span id="app-guide-bookmarks-deselect-all">deselect all</span></span></a>)</span>
+              </span>
             </div>
 
             <div style="margin-bottom:' . $content_bottom_margin . '"></div>

@@ -2130,6 +2130,10 @@ body.rtl .uls-trigger {
   float: right;
 }
 
+.bookmark-thumbnail {
+  height: 150px;
+}
+
 .green {
   background-color: #26a62b !important;
 }
@@ -2409,6 +2413,16 @@ h1 {
   float: left;
   padding-left: 0.3rem;
   */
+}
+
+.bookmark-image-container {
+  display: inline;
+  padding: 0em 0.5em;
+}
+
+.bookmark-image {
+  height: 8em;
+  margin-left: 2em;
 }
 
 .menu-separator {

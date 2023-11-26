@@ -4,7 +4,7 @@ import '@tldraw/tldraw/tldraw.css'
 export default function Example() {
 	return (
 		<div className="tldraw__editor">
-			<Tldraw />
+			<Tldraw persistenceKey="conzept" />
 		</div>
 	);
   // CONZEPT PATCH

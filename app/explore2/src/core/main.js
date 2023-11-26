@@ -378,8 +378,12 @@ $( document ).ready( function() {
     triggerQueryForm();
 
 		// JSON-bookmark-file upload-event listener
-		let form = document.querySelector('#json-upload');
-		form.addEventListener( 'submit', handleJSONSubmit );
+		let form1 = document.querySelector('#json-upload');
+		form1.addEventListener( 'submit', handleJSONSubmit );
+
+		// JSON-bookmark-add event listener
+		let form2 = document.querySelector('#app-menu-bookmark-submit');
+		form2.addEventListener( 'click', handleBookmarkAddSubmit );
 
     $('#splash').hide();
 

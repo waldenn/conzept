@@ -663,7 +663,7 @@ function openInFrame( url ){
 
 }
 
-function openLink( url_string ){
+function openLink( url_string ){ // also supports links which require *late*-binding variable-substitution
 
   //console.log( url_string );
 
@@ -1510,7 +1510,29 @@ function getBoundingBox(lon, lat, delta){
 
 }
 
-function createSingleImageIIIF( title, image_url, width ){
+function createImageIIIF( title, image_url ){
+
+  let url			= '';
+  let coll		= { "images": [ ]};
+  let label		= encodeURIComponent( title );
+  let author  = '';
+  let desc    = '';
+
+  coll.images.push( [ image_url, label, desc, author, '' ] ); // TODO: add an extra field to the IIIF-field for "url" using "v.links.web" ?
+
+  if ( coll.images.length > 0 ){
+
+    let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
+
+    let iiif_viewer_url = explore.base + '/app/iiif/index.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+
+    return JSON.stringify( encodeURIComponent( iiif_viewer_url ) );
+
+  }
+
+}
+
+function createCommonsImageIIIF( title, image_url, width ){
 
   let url			= '';
   let coll		= { "images": [ ]};

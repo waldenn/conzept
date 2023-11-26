@@ -12475,7 +12475,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [20,1020],
   headline_create: 'valid( item.panorama )',
   headline_type: 'link',
-  headline_url: '${ createSingleImageIIIF( item.title, item.panorama, "4000" ) }',
+  headline_url: '${ createCommonsImageIIIF( item.title, item.panorama, "4000" ) }',
   headline_rank: 350,
 },
 
@@ -13600,6 +13600,32 @@ if ( valid( item.found_in_taxon ) ){
   text: '9GAG',
   section: 'media-image',
   rank: 502,
+},
+
+'know_your_meme_search' : {
+  create_condition: true,
+  title: 'Know Your Meme search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://knowyourmeme.com/search?q=${title_quoted}',
+  icon: 'fa-regular fa-laugh-squint',
+  text: 'KYM',
+  section: 'media-image',
+  rank: 505,
+},
+
+'know_your_meme_id' : {
+  title: 'Know Your Meme',
+  prop: '6760',
+  type: 'url',
+  mv: false,
+  url_format: 'https://knowyourmeme.com/memes/$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'Know Your Meme',
+  section: ['media-image','main'],
+  rank: [550,7000],
 },
 
 /*
@@ -19613,7 +19639,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: 'checkTag( item, 1, "painting") && valid( item.image_full )',
   prop: '',
   type: 'link',
-  url: '${ createSingleImageIIIF( item.title, item.image_full, "3500" ) }',
+  url: '${ createCommonsImageIIIF( item.title, item.image_full, "3500" ) }',
   mv: false,
   icon: 'fa-regular fa-eye',
   text: 'painting view',
@@ -88900,20 +88926,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'NARA record group number',
   section: ['library-identity'],
   rank: [26759],
-  auto: true,
-},
-
-'know_your_meme' : {
-  title: 'Know Your Meme',
-  prop: '6760',
-  type: 'url',
-  mv: false,
-  url_format: 'https://knowyourmeme.com/memes/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Know Your Meme',
-  section: ['library-identity'],
-  rank: [26760],
   auto: true,
 },
 

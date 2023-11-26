@@ -40,6 +40,11 @@ export const DEFAULT_TRANSLATION = {
 	'action.export-as-png': 'Export as PNG',
 	'action.export-as-svg.short': 'SVG',
 	'action.export-as-svg': 'Export as SVG',
+
+  // CONZEPT PATCH
+	'action.export-as-bookmark.short': 'Bookmark',
+	'action.export-as-bookmark': 'Export as bookmark',
+
 	'action.flip-horizontal': 'Flip horizontally',
 	'action.flip-vertical': 'Flip vertically',
 	'action.flip-horizontal.short': 'Flip H',
