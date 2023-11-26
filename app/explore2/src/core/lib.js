@@ -1024,7 +1024,7 @@ function renderBookmarks(){
 
                 $li.append(
 
-                  `<div class="bookmark-image-container"><img class="bookmark-image" src="${ image }" onclick="resetIframe(); openInNewTab( &quot;${ blob_url }&quot; )"></div>`
+                  `<div class="bookmark-image-container"><img class="bookmark-image" src="${ image }" onclick="resetIframe(); openInFrame( &quot;/app/blob/index.html?img=${ blob_url }&quot; )"></div>`
 
                 );
 

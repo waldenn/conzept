@@ -574,62 +574,6 @@ $settings_html = '
 
             <div class="tab-title" id="app-tab-bookmarks-title" style="font-family: ' . $font . ' !important;">bookmarks &amp; notes</div>
 
-            <div id="bookmarks-actions-container" class="noselect">
-              <details class="auto" style="" closed=""><summary><span id="app-menu-bookmark-actions">bookmark-selection actions</span></summary>
-
-                <div id="bookmarks-actions-reasoning" class="noselect">
-                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-reasoning">reasoning</span></summary>
-                    <div class="frontpage-grid-container">
-
-                      <div class="bookmark-action"><a class="" title="teach me about these bookmark topics" aria-label="teach me about these bookmark topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;professor&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-teach-topics">teach me</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="quiz me on these bookmark topics" aria-label="quiz me on these bookmark topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;examinator&quot;)"><span class="icon"><i class="fa-regular fa-circle-question fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-quiz-topics">quiz me</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark related topics" aria-label="find bookmark related topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-topics&quot;)"><span class="icon"><i class="fa-solid fa-diagram-project fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-topics">related topics</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="explain bookmark differences" aria-label="explain bookmark differences" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-differences&quot;)"><span class="icon"><i class="fa-solid fa-circle-half-stroke fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-topic-differences">differences</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark commonalities" aria-label="find bookmark commonalities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-commonality&quot;)"><span class="icon"><i class="fa-solid fa-arrows-to-circle fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-commonalities">commonalities</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark similarities" aria-label="find bookmark c similarities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-similarity&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-similarities">similarities</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="find bookmark implications" aria-label="find bookmark implications" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-implications&quot;)"><span class="icon"><i class="fa-solid fa-arrows-split-up-and-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-implications">implications</span></span></a></div>
-                      <div class="bookmark-action"><a class="" title="explain bookmark history" aria-label="explain bookmark history" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;historian&quot;)"><span class="icon"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-history">history</span></span></a></div>
-
-                    </div>
-                  </detail>
-                </div>
-
-                <div id="bookmarks-actions-media" class="noselect">
-                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-media">media</span></summary>
-                    <div class="frontpage-grid-container">
-
-                      <div class="bookmark-action"><a class="" title="show bookmark videos" aria-label="show bookmark videos" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;video&quot;)"><span class="icon"><i class="fa-solid fa-video fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-video">video</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="search the Open Library" aria-label="search the Open Library" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;openlibrary&quot;)"><span class="icon"><i class="fa-brands fa-mizuni fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-openlibrary">Open Library</span></span></a></div>
-
-
-                      <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="compare bookmarks as Wikidata topics" aria-label="compare bookmarks as Wikidata topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-compare&quot;)"><span class="icon"><i class="fa-solid fa-table-columns fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-compare-wikidata">Wikidata compare</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="show bookmark linkgraph relations" aria-label="show bookmark linkgraph relations" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-linkgraph&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-linkgraph-relations">linkgraph</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="show bookmark locations on a map" aria-label="show bookmark locations on a map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map&quot;)"><span class="icon"><i class="fa-regular fa-map fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map">2D location map</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="show bookmark locations on a 3D map" aria-label="show bookmark locations on a 3D map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map3d&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map3d">3D location map</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="show bookmark images" aria-label="show bookmark images" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-image&quot;)"><span class="icon"><i class="fa-regular fa-images fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-images">images</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="search Bing" aria-label="search Bing" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">web search</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="Gapminder country linechart" aria-label="Gapminder country linechart" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-gapminder-linechart&quot;)"><span class="icon"><i class="fa-solid fa-chart-line fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-gapminder-country-trend">country trend</span></span></a></div>
-
-                    </div>
-                  </detail>
-                </div>
-
-              </detail>
-            </div>
-
             <div id="bookmark-add" class="noselect">
 
               <details class="auto">
@@ -684,6 +628,62 @@ $settings_html = '
 
               </detail>
 
+            </div>
+
+            <div id="bookmarks-actions-container" class="noselect">
+              <details class="auto" style="" closed=""><summary><span id="app-menu-bookmark-actions">bookmark-selection actions</span></summary>
+
+                <div id="bookmarks-actions-reasoning" class="noselect">
+                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-reasoning">reasoning</span></summary>
+                    <div class="frontpage-grid-container">
+
+                      <div class="bookmark-action"><a class="" title="teach me about these bookmark topics" aria-label="teach me about these bookmark topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;professor&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-teach-topics">teach me</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="quiz me on these bookmark topics" aria-label="quiz me on these bookmark topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;examinator&quot;)"><span class="icon"><i class="fa-regular fa-circle-question fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-quiz-topics">quiz me</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark related topics" aria-label="find bookmark related topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-topics&quot;)"><span class="icon"><i class="fa-solid fa-diagram-project fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-topics">related topics</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="explain bookmark differences" aria-label="explain bookmark differences" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-differences&quot;)"><span class="icon"><i class="fa-solid fa-circle-half-stroke fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-topic-differences">differences</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark commonalities" aria-label="find bookmark commonalities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-commonality&quot;)"><span class="icon"><i class="fa-solid fa-arrows-to-circle fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-commonalities">commonalities</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark similarities" aria-label="find bookmark c similarities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-similarity&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-similarities">similarities</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="find bookmark implications" aria-label="find bookmark implications" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-implications&quot;)"><span class="icon"><i class="fa-solid fa-arrows-split-up-and-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-implications">implications</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="explain bookmark history" aria-label="explain bookmark history" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;historian&quot;)"><span class="icon"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-history">history</span></span></a></div>
+
+                    </div>
+                  </detail>
+                </div>
+
+                <div id="bookmarks-actions-media" class="noselect">
+                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-media">media</span></summary>
+                    <div class="frontpage-grid-container">
+
+                      <div class="bookmark-action"><a class="" title="show bookmark videos" aria-label="show bookmark videos" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;video&quot;)"><span class="icon"><i class="fa-solid fa-video fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-video">video</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="search the Open Library" aria-label="search the Open Library" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;openlibrary&quot;)"><span class="icon"><i class="fa-brands fa-mizuni fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-openlibrary">Open Library</span></span></a></div>
+
+
+                      <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="compare bookmarks as Wikidata topics" aria-label="compare bookmarks as Wikidata topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-compare&quot;)"><span class="icon"><i class="fa-solid fa-table-columns fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-compare-wikidata">Wikidata compare</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="show bookmark linkgraph relations" aria-label="show bookmark linkgraph relations" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-linkgraph&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-linkgraph-relations">linkgraph</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="show bookmark locations on a map" aria-label="show bookmark locations on a map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map&quot;)"><span class="icon"><i class="fa-regular fa-map fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map">2D location map</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="show bookmark locations on a 3D map" aria-label="show bookmark locations on a 3D map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map3d&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map3d">3D location map</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="show bookmark images" aria-label="show bookmark images" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-image&quot;)"><span class="icon"><i class="fa-regular fa-images fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-images">images</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="search Bing" aria-label="search Bing" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">web search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Gapminder country linechart" aria-label="Gapminder country linechart" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-gapminder-linechart&quot;)"><span class="icon"><i class="fa-solid fa-chart-line fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-gapminder-country-trend">country trend</span></span></a></div>
+
+                    </div>
+                  </detail>
+                </div>
+
+              </detail>
             </div>
 
             <hr class="menu-separator">
