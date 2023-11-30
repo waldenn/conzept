@@ -3373,7 +3373,7 @@ var reasonator = {
 			});
 
 			// see: https://lcweb.it/lc-lightbox/documentation
-			const LC = lc_lightbox('.elem', {
+			const LC = window.lc_lightbox('.elem', {
 				wrap_class: 'lcl_fade_oc',
 				gallery : true,
 				thumb_attr: false, // 'data-lcl-thumb', 

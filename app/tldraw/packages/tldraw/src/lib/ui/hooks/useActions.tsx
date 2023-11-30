@@ -192,6 +192,7 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 				},
 			},
       // CONZEPT PATCH
+      /*/
 			{
 				id: 'export-as-bookmark',
 				label: 'action.export-as-bookmark',
@@ -204,6 +205,7 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 					//exportAs(editor.getSelectedShapeIds(), 'bookmark')
 				},
 			},
+      */
 
 			{
 				id: 'copy-as-svg',

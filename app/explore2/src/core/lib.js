@@ -1019,8 +1019,6 @@ function renderBookmarks(){
                 const blob_url  = URL.createObjectURL( blob );
 
                 //const image_iiif_url = createImageIIIF( URL.createObjectURL( blob ) );
-                //img.addEventListener('load', () => URL.revokeObjectURL(imageUrl));
-                //document.querySelector('img').src = imageUrl;
 
                 $li.append(
 
@@ -1044,6 +1042,7 @@ function renderBookmarks(){
 			$li.attr('title', `${node.name} (${ valid(node.datasource)? node.datasource : 'link view'}, ${node.language})` );
 			$li.attr('data-select', false );
 
+			// ENTER-key 
 			$li.keypress( function( event ){
 
 				// FIXME
@@ -1054,11 +1053,60 @@ function renderBookmarks(){
 
 			});
 
+      /*
+			// bookmark-search filtering
+			var searchValue = $('#bookmark-search').val().toLowerCase();
+			var nodeValue = $li.find('.jqtree-title').text().toLowerCase();
+
+			if ( $li.find('.jqtree-toggler').length == 0){ // child (leaf)
+
+				if (nodeValue.indexOf(searchValue) == -1){ // child mismatch
+
+					$li.find('.jqtree-title').parent().hide(); // hide child
+					$li.find('.jqtree-title').parent().siblings('.bookmark-image-container').hide(); // hide bookmark-images
+
+				}
+				else { // child match
+
+					// show child and all parent folders, down to root
+					for (var i = node.parent.getLevel() ; i > 0; i--) {
+							$(node.parent.element).find("div").first().show();
+							node.parent = node.parent.parent;
+					}
+
+				}
+
+			}
+			else { // folder
+
+					$li.find('.jqtree-element').hide(); // initially hide all folders
+
+			}
+      */
+
 		}
 
 	});
 
   updateSelectedBookmarksCounter();
+
+  /*
+  $('#bookmark-search').keyup(function () {
+
+    console.log('key up');
+
+    clearTimeout(thread);
+    let searchVal = $(this).val();
+    thread = setTimeout( function () {
+
+      console.log('reload new bookmark list');
+      $('#tree').tree('loadData', explore.bookmarks );
+
+    }, 500);
+
+  });
+  */
+
 
 	/*
 	// triggered when a tree node is selected or deselected.
@@ -10571,7 +10619,7 @@ function handleBookmarkAddSubmit(event) {
 
   let images = $( '#preview .bookmark-thumbnail' ).map((_, { src }) => src).get();
 
-	if ( valid( [ title, url ] ) ){
+	if ( valid( title ) ){
 
 		$('#tree').tree( 'appendNode', {
 			name:         title,

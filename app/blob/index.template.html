@@ -9,22 +9,37 @@
 
 <script>
 
-  $( document ).ready(function() {
+  $( document ).ready( async function() {
 
     const img_url = getParameterByName('img');
+    const reader = new FileReader();
+
     console.log( img_url );
+
+    let blob = await fetch(img_url).then(
+      r => r.blob()
+    );
+
 
     const img = new Image();
 
-    img.src = img_url;
+    img.src = reader.readAsDataURL(blob);
+
+    console.log( blob );
+    //console.log( img.src );
+   
 
     img.onload = (a) => {
       console.log('image loaded');
       $('body').append( img );
     };
 
+    $('body').append( img );
+
   });
+
 </script>
+
 
 </body>
 </html>

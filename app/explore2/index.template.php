@@ -688,16 +688,18 @@ $settings_html = '
 
             <hr class="menu-separator">
 
+            <input id="bookmark-search" placeholder="bookmark search..." />
+
+            <div id="bookmark-selection-info-container">
+              &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>
+              &nbsp;<span id="bookmark-deselect-all-container">(<a class="" title="deselect all bookmarks" aria-label="deselect all bookmarks" role="button" href="javascript:void(0)" onclick="deselectAllBookmarks( event )"><span id="app-guide-bookmarks-deselect-all">deselect all</span></span></a>)</span>
+              </span>
+            </div>
+
             <div id="jsontree" class="jsontree" style="display:none;">...</div>
 
             <div id="bookmarks" class="noselect">
               <div id="tree" class="block-style droptarget" ondrop="addBookmark(event, &quot;dropped&quot;)" ondragover="bookmarkAllowDrop(event)"></div>
-            </div>
-
-            <div>
-              &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>
-              &nbsp;<span id="bookmark-deselect-all-container">(<a class="" title="deselect all bookmarks" aria-label="deselect all bookmarks" role="button" href="javascript:void(0)" onclick="deselectAllBookmarks( event )"><span id="app-guide-bookmarks-deselect-all">deselect all</span></span></a>)</span>
-              </span>
             </div>
 
             <div style="margin-bottom:' . $content_bottom_margin . '"></div>

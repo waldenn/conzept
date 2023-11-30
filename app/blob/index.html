@@ -1,27 +1,45 @@
 <html>
-<script src="../explore2/dist/core/utils.js?v0.51.4834"></script>
-<body>
+  <head>
 
-foo bar baz
+  <!-- conzept resources -->
+  <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+
+  </head>
+<body>
 
 <script>
 
-  $( document ).ready(function() {
+  $( document ).ready( async function() {
 
     const img_url = getParameterByName('img');
+    const reader = new FileReader();
+
     console.log( img_url );
+
+    let blob = await fetch(img_url).then(
+      r => r.blob()
+    );
+
 
     const img = new Image();
 
-    img.src = img_url;
+    img.src = reader.readAsDataURL(blob);
+
+    console.log( blob );
+    //console.log( img.src );
+   
 
     img.onload = (a) => {
       console.log('image loaded');
       $('body').append( img );
     };
 
+    $('body').append( img );
+
   });
+
 </script>
+
 
 </body>
 </html>

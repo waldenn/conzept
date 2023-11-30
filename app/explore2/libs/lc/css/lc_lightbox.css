@@ -9,6 +9,23 @@
 	font-style: normal;
 }
 
+.bounding-box {
+  position: absolute;
+  box-sizing: border-box;
+  border: solid 2px;
+  border-radius: 0.4em;
+}
+
+.bounding-box-label {
+  color: white;
+  font-size: 12px;
+  margin: -16px 0 0 -2px;
+  padding: 2px 4px;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  border-radius: 0.3em;
+}
+
 /* image quantization */
 #imageColorQuantization {
   display: none;
@@ -730,7 +747,8 @@
 .lcl_zoom_out:before	{content: "\e909"; font-size:16px;}
 .lcl_zoom_in:before		{content: "\e908"; font-size:16px;}
 .lcl_openseadragon:before { content: "\e908"; font-size: 16px; }  /* CONZEPT PATCH */
-.lcl_revsearch:before { content: "[~]"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
+.lcl_object_detection:before { content: "⮺"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
+.lcl_revsearch:before { content: "⋒"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_filters_toggle:before { content: "☀"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_filters_image_quantize_toggle:before { content: "∿"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_txt_toggle:before		{content: "\f10e"; font-size: 16px;}

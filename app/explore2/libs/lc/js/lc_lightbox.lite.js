@@ -1,3 +1,4 @@
+import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.9.0';
 /**
   * LC Lightbox - LITE
   * yet.. another jQuery lightbox.. or not?
@@ -13,26 +14,26 @@
 let my_current_image = '';
 
 (function ($) {
-	lcl_objs 		= []; // array containing all initialized objects - useful for deeplinks
+	let lcl_objs 		= []; // array containing all initialized objects - useful for deeplinks
 	
-	lcl_shown 		= false; // know whether lightbox is shown
-	lcl_is_active 	= false; // true when lightbox systems are acting (disable triggers)
-	lcl_slideshow	= undefined; // lightbox slideshow - setInterval object
+	let lcl_shown 		= false; // know whether lightbox is shown
+	let lcl_is_active 	= false; // true when lightbox systems are acting (disable triggers)
+	let lcl_slideshow	= undefined; // lightbox slideshow - setInterval object
 	
-	lcl_on_mobile	= /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent);
+	let lcl_on_mobile	= /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent);
 	
 		
 	// static vars avoiding useless parameters usage - related to currently opened lightbox - otherwise they are empty
-	lcl_curr_obj	= false; // store currently active object 
-	lcl_curr_opts 	= false; // currently active instance settings
-	lcl_curr_vars 	= false; // currently active instance settings
+	let lcl_curr_obj	= false; // store currently active object 
+	let lcl_curr_opts 	= false; // currently active instance settings
+	let lcl_curr_vars 	= false; // currently active instance settings
 	
-	lcl_deeplink_tracked= false; // flag to track url changes and initial reading once
-	lcl_hashless_url	= false; // page URL without eventual hashes
-	lcl_url_hash		= ''; // URL hashtag
+	let lcl_deeplink_tracked= false; // flag to track url changes and initial reading once
+	let lcl_hashless_url	= false; // page URL without eventual hashes
+	let lcl_url_hash		= ''; // URL hashtag
 	
 	// lightbox structure
-	var lb_code =
+	let lb_code =
 	'<div id="lcl_wrap" class="lcl_pre_show lcl_pre_first_el lcl_first_sizing lcl_is_resizing">'+
 		'<div id="lcl_window">'+
 			'<div id="lcl_corner_close" title="close"></div>'+
@@ -47,6 +48,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_fullscreen" title="toggle fullscreen"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_toggle toggle_menu" title="toggle filters"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
+				'<div class="lcl_icon lcl_right_icon lcl_object_detection" title="object detection"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_txt_toggle" title="toggle text"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_download" title="download"></div>'+
@@ -54,6 +56,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_socials" title="toggle socials"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_openseadragon" title="image zoom"></div>'+
 			'</div>'+
+      '<label id="status" display:none;></label> '+
 			'<div id="lcl_contents_wrap">'+
 				'<div id="lcl_subj">'+
 					'<div id="lcl_elem_wrap"></div>'+
@@ -74,7 +77,7 @@ let my_current_image = '';
     '<div id="mainImageEditArea" style="display:none;">' +
       '<div id="mainImage"></div>' +
       '<div id="filter-title"><p>filters</p></div>' +
-      '<div id="filter-reset"><div href="javascript:void(0)" onclick="resetFilters()">&#8634; reset</div></div>' +
+      '<div id="filter-reset"><div href="javascript:void(0)" onclick="window.resetFilters()">&#8634; reset</div></div>' +
       '<div id="imageEditing">' +
 
         '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
@@ -98,7 +101,7 @@ let my_current_image = '';
 	
 	// initialization
 	// obj can be an array and overrides elements / [src: url/selector (only required data), title: (string), txt: (string), author: (string), ajax: bool, type: image/frame/text] 
-	lc_lightbox = function(obj, lcl_settings) {
+	window.lc_lightbox = function(obj, lcl_settings) {
 		if(typeof(obj) != 'string' && (typeof(obj) != 'object' || !obj.length)) {return false;}
 
 		// check among already initialized 
@@ -118,11 +121,9 @@ let my_current_image = '';
 
 		return already_init;
 	};	
-	
-	
-	
+
 	// destruct method
-	lcl_destroy = function(instance) {
+	var lcl_destroy = function(instance) {
 		var index = $.inArray(instance, lcl_objs);
 		
 		if(index !== -1) {
@@ -251,10 +252,8 @@ let my_current_image = '';
 		var lcl_ai_opts = $.data(obj, 'lcl_settings', lcl_settings);	
 		var lcl_ai_vars = $.data(obj, 'lcl_vars', lcl_vars);		
 
-
 		
 		/////////////////////////////////////////////////////////////
-		
 		
 		
 		/* given a string - returns an unique numerical hash */
@@ -1291,7 +1290,7 @@ let my_current_image = '';
 				timing = 0;
 			}
 			
-			lcl_size_n_show_timeout = setTimeout(function() {
+			var lcl_size_n_show_timeout = setTimeout(function() {
 				if(lcl_is_active) {lcl_is_active = false;}
 				
 				// autoplay if first opening
@@ -1324,12 +1323,10 @@ let my_current_image = '';
 			$('#lcl_wrap').addClass('lcl_browser_resize');
 			
 			if(typeof(lcl_rs_defer) != 'undefined') {clearTimeout(lcl_rs_defer);}
-			lcl_rs_defer = setTimeout(function() {
+			var lcl_rs_defer = setTimeout(function() {
 				lcl_resize();
 			}, 50);
 		});
-		
-		
 		
 		/* calculate text under size - return new element's width and height in an object */
 		var txt_under_h = function(curr_w, curr_h, max_height, recursive_count) {
@@ -1607,7 +1604,7 @@ let my_current_image = '';
 			}
 			
 			if(typeof(lcl_pb_timeout) != 'undefined') {clearTimeout(lcl_pb_timeout);}
-			lcl_pb_timeout = setTimeout(function() {
+			var lcl_pb_timeout = setTimeout(function() {
 				$('#lcl_progressbar').stop(true).removeAttr('style').css('width', 0).animate({width: '100%'}, time, 'linear', function() {
 					
 					$('#lcl_progressbar').fadeTo(0, 0); // duration through CSS
@@ -1879,9 +1876,9 @@ let my_current_image = '';
 						}
 					}
 					
-					var bg = '',
-						bg_img = '';
-						tpc = ''; // thumbs preload class
+					var bg = '';
+				  var bg_img = '';
+				  var tpc = ''; // thumbs preload class
 					
 					
 					// has got a specific thumbnail?
@@ -2296,7 +2293,7 @@ let my_current_image = '';
 			else {
 				// cycle to know if parents have scrollers
 				var perform = true;
-				for(a=0; a<20; a++) {
+				for ( var a=0; a<20; a++) {
 					if($target.is('#lcl_window')) {break;}
 					
 					if($target[0].scrollHeight > $target.outerHeight()) {
@@ -2323,7 +2320,7 @@ let my_current_image = '';
 		$(document).on('click', '.lcl_image_elem', function(e) {
 			if(obj != lcl_curr_obj) {return true;}
 			
-			lcl_img_click_track = setTimeout(function() {
+			var lcl_img_click_track = setTimeout(function() {
 				if(!$('.lcl_zoom_wrap').length) {
 					switch_elem('next');
 				}
@@ -2356,6 +2353,51 @@ let my_current_image = '';
       window.open( 'https://www.bing.com/images/search?view=detailv2&iss=sbi&form=SBIHMP&sbisrc=UrlPaste&q=imgurl:' + el.src , '_blank');
 		});	
 
+    // CONZEPT PATCH
+		/* AI object-detection tab */ 
+		$(document).on('click', '.lcl_object_detection', async function(e) {
+
+			if(obj != lcl_curr_obj) {return true;}
+
+		  var el = lcl_curr_vars.elems[ lcl_curr_vars.elem_index ];
+      console.log( el.src );
+
+			// Since we will download the model from the Hugging Face Hub, we can skip the local model check
+			env.allowLocalModels = false;
+
+			// Reference the elements that we will need
+			//const status = document.getElementById('status');
+			//const fileUpload = document.getElementById('upload');
+			const imageContainer = document.getElementById('lcl_elem_wrap');
+			//const example = document.getElementById('example');
+			//const EXAMPLE_URL = 'https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/city-streets.jpg';
+
+			// Create a new object detection pipeline
+      //const status = document.getElementById('status');
+			//status.textContent = 'loading model...';
+      $('#status').text('loading model...');
+      $('#status').show();
+
+			window.detector = await pipeline('object-detection', 'Xenova/detr-resnet-50');
+			//status.textContent = 'ready';
+      $('#status').text('model loaded');
+
+      const file = el.src; // e.target.files[0];
+
+      if (!file) {
+          return;
+      }
+
+      const reader = new FileReader();
+
+      // Set up a callback when the file is loaded
+      reader.onload = e2 => window.detect(e2.target.result);
+
+      reader.readAsDataURL( [ file ] );
+
+      //window.open( 'https://www.google.com/searchbyimage?&image_url=' + el.src , '_blank');
+      //window.open( 'https://www.bing.com/images/search?view=detailv2&iss=sbi&form=SBIHMP&sbisrc=UrlPaste&q=imgurl:' + el.src , '_blank');
+		});	
 
     // CONZEPT PATCH
 		/* openseadragon zoom in fullscreen */ 
@@ -2798,7 +2840,7 @@ let my_current_image = '';
 		
 		
 		// open lightbox
-		lcl_open = function(obj, index) {
+		var lcl_open = function(obj, index) {
 			lcl_ai_vars = $.data(obj, 'lcl_vars');
 			var v = lcl_ai_vars;
 
@@ -2821,13 +2863,13 @@ let my_current_image = '';
 		
 		
 		// resize lightbox
-		lcl_resize = function() {
+		var lcl_resize = function() {
 			if(!lcl_shown || lcl_is_active || !set_curr_vars()) {return false;}
 			
 			var v = lcl_ai_vars;
 			if(typeof(lcl_size_check) != 'undefined') {clearTimeout(lcl_size_check);}
 			
-			lcl_size_check = setTimeout(function() {
+			var lcl_size_check = setTimeout(function() {
 				$('#lcl_wrap').addClass('lcl_is_resizing');
 				thumbs_nav_arrows_opacity();
 				
@@ -2838,21 +2880,21 @@ let my_current_image = '';
 		
 		
 		// close lightbox and destroy vars
-		lcl_close = function() {
+		var lcl_close = function() {
 			if(!lcl_shown || lcl_is_active || !set_curr_vars()) {return false;}
 			return close_lb();
 		};	
 		
 		
 		// pagination (next/prev/index)
-		lcl_switch = function(new_el) {
+		var lcl_switch = function(new_el) {
 			if(!lcl_shown || lcl_is_active || !set_curr_vars()) {return false;}
 			return switch_elem(new_el);
 		};
 		
 		
 		// start slideshow
-		lcl_start_slideshow = function(restart) {
+		var lcl_start_slideshow = function(restart) {
 			if(!lcl_shown || (typeof(restart) == 'undefined' && typeof(lcl_slideshow) != 'undefined') || !set_curr_vars()) {return false;}
 			var o = lcl_ai_opts;
 
@@ -2896,7 +2938,7 @@ let my_current_image = '';
 		
 		
 		// stop slideshow
-		lcl_stop_slideshow = function() {
+		var lcl_stop_slideshow = function() {
 			if(!lcl_shown || typeof(lcl_slideshow) == 'undefined' || !set_curr_vars()) {return false;}
 			var o = lcl_ai_opts;
 
@@ -2931,6 +2973,7 @@ let my_current_image = '';
 		};	
 		
 		return obj;
+
 	};
 })(jQuery);
 
@@ -2993,7 +3036,7 @@ function updateFilters(){
 
 }
 
-function resetFilters(){
+window.resetFilters = function(){
 
   $('#imageEditing').html(
     '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
@@ -3383,3 +3426,61 @@ async function quantizeImage(){
   }
 
 };
+
+// CONZEPT PATCH
+// object-detection: Detect objects in the image
+window.detect = async function( img ){
+
+    console.log('detecting image objects...');
+
+    //const imageContainer = document.getElementById('lcl_elem_wrap');
+    //imageContainer.innerHTML = '';
+    //imageContainer.style.backgroundImage = `url(${img})`;
+
+    $('#status').text('analyzing...');
+
+    const output = await window.detector( img, {
+        threshold: 0.5,
+        percentage: true,
+    });
+
+    output.forEach(renderBox);
+
+    $('#status').hide();
+
+}
+
+// object-detection: Render a bounding box and label on the image
+function renderBox({ box, label }) {
+
+    //console.log('renderBox: ', label );
+
+    const { xmax, xmin, ymax, ymin } = box;
+
+    // Generate a random color for the box
+    const color = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, 0);
+
+    // Draw the box
+    const boxElement = document.createElement('div');
+
+    boxElement.className = 'bounding-box';
+
+    Object.assign(boxElement.style, {
+        borderColor: color,
+        left: 100 * xmin + '%',
+        top: 100 * ymin + '%',
+        width: 100 * (xmax - xmin) + '%',
+        height: 100 * (ymax - ymin) + '%',
+    })
+
+    // Draw label
+    const labelElement = document.createElement('span');
+    labelElement.textContent = label;
+    labelElement.className = 'bounding-box-label';
+    labelElement.style.backgroundColor = color;
+
+    boxElement.appendChild(labelElement);
+
+    const imageContainer = document.getElementById('lcl_elem_wrap');
+    imageContainer.appendChild(boxElement);
+}

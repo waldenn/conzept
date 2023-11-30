@@ -2392,6 +2392,14 @@ h1 {
   font-size: smaller;
 }
 
+.bookmark-selection-info-container {
+  margin-top: 0.5em;
+}
+
+#tree {
+  margin-top: -0.5em;
+}
+
 .bookmark-select {
   position: absolute;
   top: 2px;
