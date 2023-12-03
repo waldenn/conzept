@@ -9,6 +9,16 @@
 	font-style: normal;
 }
 
+div#status {
+  display: none;
+  position: absolute;
+  color: white;
+  z-index: 999;
+  top: 4em;
+  left: 1em;
+  font-size: small;
+}
+
 .bounding-box {
   position: absolute;
   box-sizing: border-box;

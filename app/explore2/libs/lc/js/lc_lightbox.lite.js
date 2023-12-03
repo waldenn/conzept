@@ -56,7 +56,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_socials" title="toggle socials"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_openseadragon" title="image zoom"></div>'+
 			'</div>'+
-      '<label id="status" style="display:none;">...</label> '+
+      '<div id="status"></div> '+
 			'<div id="lcl_contents_wrap">'+
 				'<div id="lcl_subj">'+
 					'<div id="lcl_elem_wrap"></div>'+
@@ -1499,6 +1499,8 @@ let my_current_image = '';
 		var switch_elem = function(new_el, slideshow_switch) {
 			var v 			= lcl_ai_vars; 
 			var carousel	= lcl_ai_opts.carousel;
+
+      $('#status').hide();
 			
 			if(lcl_is_active || v.elems.length < 2 || !lcl_ai_opts.gallery || $('.lcl_switching_elem').length) {return false;}
 
@@ -1547,7 +1549,6 @@ let my_current_image = '';
 			
 			// use maybe_preload to not display loader when next item is already cached
 			maybe_preload(false, new_el, true);
-			
 			
 			// switching wrapper class		
 			$('#lcl_wrap').addClass('lcl_switching_elem');	
@@ -2366,8 +2367,8 @@ let my_current_image = '';
 
 			const imageContainer = document.getElementById('lcl_elem_wrap');
 
-			$('#status').text('loading model...');
       $('#status').show();
+			$('#status').text('loading model...');
 
 			window.detector = await pipeline('object-detection', 'Xenova/detr-resnet-50');
 
@@ -2376,15 +2377,12 @@ let my_current_image = '';
       const file = el.src; // e.target.files[0];
 
       if (!file) {
-          return;
+        return;
       }
 
-      const reader = new FileReader();
-
+      const reader  = new FileReader();
       reader.onload = e2 => window.detect(e2.target.result);
-
-      let blob = await fetch( file ).then( r => r.blob());
-
+      let blob      = await fetch( file ).then( r => r.blob());
       reader.readAsDataURL( blob );
 
 		});	
@@ -2392,6 +2390,8 @@ let my_current_image = '';
     // CONZEPT PATCH
 		/* openseadragon zoom in fullscreen */ 
 		$(document).on('click', '.lcl_openseadragon', function(e) {
+
+      $('#status').hide();
 
       // show loading indicator
       $('#loader-openseadragon').show();
@@ -2416,9 +2416,9 @@ let my_current_image = '';
       window.viewer.open({ type: 'image', url: img });
 		});	
 	
-		
 		/* toggle text */ 
 		$(document).on('click', '.lcl_txt_toggle', function(e) {
+
 			if(obj != lcl_curr_obj) {return true;}
 			var o = lcl_ai_opts;
 
@@ -2447,7 +2447,6 @@ let my_current_image = '';
 					setTimeout(function() {
 						$('#lcl_wrap').toggleClass('lcl_hidden_txt'); 
 					}, classes_delay);
-					
 									
 					if(!forced_over) {
 						lcl_is_active = true;
@@ -3427,8 +3426,7 @@ window.detect = async function( img ){
 
     output.forEach(renderBox);
 
-    $('#status').text('');
-    $('#status').hide();
+    $('#status').text( output.length + ' objects detected');
 
 }
 
