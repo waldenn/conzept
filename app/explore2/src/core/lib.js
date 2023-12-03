@@ -3195,13 +3195,14 @@ async function setCountry( country ) {
     explore.country = country.toLowerCase();
 
     // fix country-select option-value
-    if ( explore.country === 'gb' ){ explore.country = 'uk'; }
+    //if ( explore.country === 'gb' ){ explore.country = 'uk'; }
 
     Object.keys( countries ).forEach( (( qid ) => {
 
       if ( countries[ qid ].iso2 === explore.country.toUpperCase() ){
 
         explore.country_qid   = qid;
+
         explore.country_name  = countries[ qid ].name;
         explore.country_iso3  = countries[ qid ].iso3;
         explore.country_gdelt = countries[ qid ].gdelt;

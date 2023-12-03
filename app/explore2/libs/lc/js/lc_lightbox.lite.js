@@ -56,7 +56,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_socials" title="toggle socials"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_openseadragon" title="image zoom"></div>'+
 			'</div>'+
-      '<label id="status" display:none;></label> '+
+      '<label id="status" style="display:none;">...</label> '+
 			'<div id="lcl_contents_wrap">'+
 				'<div id="lcl_subj">'+
 					'<div id="lcl_elem_wrap"></div>'+
@@ -1328,6 +1328,8 @@ let my_current_image = '';
 			}, 50);
 		});
 		
+		
+		
 		/* calculate text under size - return new element's width and height in an object */
 		var txt_under_h = function(curr_w, curr_h, max_height, recursive_count) {
 			var rc = (typeof(recursive_count) == 'undefined') ? 1 : recursive_count;
@@ -1674,7 +1676,6 @@ let my_current_image = '';
 		//////////////////////////////////////////////////////////////
 		
 		
-		
 		/* Setup fullscreen mode */
 		var enter_fullscreen = function(set_browser_status, on_opening) {
 			if(typeof(on_opening) == 'undefined') {on_opening = false;}
@@ -1782,7 +1783,7 @@ let my_current_image = '';
 		/* exit fullscreen */
 		var exit_fullscreen = function(set_browser_status) {
 
-      console.log('closing fullscreen');
+      //console.log('closing fullscreen');
       //$('#openseadragon').hide();
       window.viewer.setVisible(false);
 
@@ -1876,9 +1877,9 @@ let my_current_image = '';
 						}
 					}
 					
-					var bg = '';
-				  var bg_img = '';
-				  var tpc = ''; // thumbs preload class
+					var bg = '',
+					bg_img = '',
+					tpc = ''; // thumbs preload class
 					
 					
 					// has got a specific thumbnail?
@@ -2293,7 +2294,7 @@ let my_current_image = '';
 			else {
 				// cycle to know if parents have scrollers
 				var perform = true;
-				for ( var a=0; a<20; a++) {
+				for( var a=0; a<20; a++) {
 					if($target.is('#lcl_window')) {break;}
 					
 					if($target[0].scrollHeight > $target.outerHeight()) {
@@ -2360,27 +2361,17 @@ let my_current_image = '';
 			if(obj != lcl_curr_obj) {return true;}
 
 		  var el = lcl_curr_vars.elems[ lcl_curr_vars.elem_index ];
-      console.log( el.src );
 
-			// Since we will download the model from the Hugging Face Hub, we can skip the local model check
-			env.allowLocalModels = false;
+			env.allowLocalModels = false; // skip local model check
 
-			// Reference the elements that we will need
-			//const status = document.getElementById('status');
-			//const fileUpload = document.getElementById('upload');
 			const imageContainer = document.getElementById('lcl_elem_wrap');
-			//const example = document.getElementById('example');
-			//const EXAMPLE_URL = 'https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/city-streets.jpg';
 
-			// Create a new object detection pipeline
-      //const status = document.getElementById('status');
-			//status.textContent = 'loading model...';
-      $('#status').text('loading model...');
+			$('#status').text('loading model...');
       $('#status').show();
 
 			window.detector = await pipeline('object-detection', 'Xenova/detr-resnet-50');
-			//status.textContent = 'ready';
-      $('#status').text('model loaded');
+
+			$('#status').text('detecting objects...');
 
       const file = el.src; // e.target.files[0];
 
@@ -2390,13 +2381,12 @@ let my_current_image = '';
 
       const reader = new FileReader();
 
-      // Set up a callback when the file is loaded
       reader.onload = e2 => window.detect(e2.target.result);
 
-      reader.readAsDataURL( [ file ] );
+      let blob = await fetch( file ).then( r => r.blob());
 
-      //window.open( 'https://www.google.com/searchbyimage?&image_url=' + el.src , '_blank');
-      //window.open( 'https://www.bing.com/images/search?view=detailv2&iss=sbi&form=SBIHMP&sbisrc=UrlPaste&q=imgurl:' + el.src , '_blank');
+      reader.readAsDataURL( blob );
+
 		});	
 
     // CONZEPT PATCH
@@ -2412,10 +2402,8 @@ let my_current_image = '';
     
       // TODO: use image originalsize
       var img = el.src.replace(/\d+px-/, '3200px-');
-      //var img = el.src.replace(/width=\d\d\d/, 'width=3200');
-      //https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Ba…C_Bulgaria.jpg/600px-Basilica_of_Hagia_Sofia%2C_Bulgaria.jpg
 
-      console.log( img);
+      //console.log( img);
 
       //window.contents().find('#openseadragon').show()
 
@@ -3410,17 +3398,14 @@ async function quantizeImage(){
   try {
     let myBlob = await getBlobFromUrl( image_url );
 
-    //console.log(myBlob)
-    //let myImageData = await getDataFromBlob(myBlob);
-    //console.log(myImageData)
-
     fileReader.readAsDataURL( myBlob );
 
     return myBlob;
 
   } catch (err) {
 
-    //console.log(err);
+    $('#status').text('error: ', err );
+
     return null;
 
   }
@@ -3431,29 +3416,24 @@ async function quantizeImage(){
 // object-detection: Detect objects in the image
 window.detect = async function( img ){
 
-    console.log('detecting image objects...');
-
     //const imageContainer = document.getElementById('lcl_elem_wrap');
     //imageContainer.innerHTML = '';
     //imageContainer.style.backgroundImage = `url(${img})`;
 
-    $('#status').text('analyzing...');
-
-    const output = await window.detector( img, {
+    const output = await window.detector(img, {
         threshold: 0.5,
         percentage: true,
     });
 
     output.forEach(renderBox);
 
+    $('#status').text('');
     $('#status').hide();
 
 }
 
 // object-detection: Render a bounding box and label on the image
 function renderBox({ box, label }) {
-
-    //console.log('renderBox: ', label );
 
     const { xmax, xmin, ymax, ymin } = box;
 
