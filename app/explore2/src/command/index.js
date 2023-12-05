@@ -792,6 +792,12 @@ async function showPresentation( item, type ){
 
 		runLISP( code );
 
+    // update "onclick=startSpeaking(...)" arguments in TTS presentation button
+    $('#presentation-tts-start').attr('onclick', `startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; )` );
+
+    // start TTS speaking
+    $('#presentation-tts-start').click();
+
 	//}).catch(error => { console.log('error fetching presentation data'); });
 
 }

@@ -789,9 +789,10 @@ $settings_html = '
                   <summary><span id="app-menu-presentation"></span></summary>
                     <div class="resizer">
 
+                      <div class="topic-tts-buttons"><a id="presentation-tts-start" href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick=""> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a></div>
+
                       <iframe id="presentation" class="resized" title="presentation" role="application" loading="lazy" style="min-height: 401px" srcdoc="" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">
 ></iframe>
-
                     </div>
                   </details> 
 
