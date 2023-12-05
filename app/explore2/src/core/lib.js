@@ -1648,7 +1648,6 @@ function setupSearch() {
 
           explore.type  = 'string'; // set to default type
 
-          // ZZZ
           if ( explore.isSafari ){
 
             explore.q = getSearchValue();
@@ -1777,7 +1776,6 @@ function setupSearch() {
 
     }
 
-    // ZZZ
     // trigger submit
     $('.submitSearch').trigger('click');
 
@@ -1821,15 +1819,7 @@ function setupSearch() {
 
   $('a.submitSearch').on( 'click', async function(e){
 
-    if ( explore.isSafari ){
-      console.log( 'Safari 1a: ', explore.q, e.hasOwnProperty('originalEvent'), e );
-    }
-
     let q = getSearchValue();
-
-    if ( explore.isSafari ){
-      console.log( 'Safari 1b: ', explore.q );
-    }
 
     //console.log( 'search: ', q, explore.q, $( '#srsearch' ).val() );
 
@@ -1972,19 +1962,10 @@ function setupSearch() {
 
 				}
 
-        // ZZZ
-        if ( explore.isSafari ){ console.log( 'Safari 2: ', explore.q ); }
-
         // TODO: verify this is URL update is correct in all cases
         updatePushState( explore.q, 'add' );
 
         refreshArticles(); // render the list of sidebar-topics
-
-        if ( explore.isSafari ){
-
-          console.log( 'Safari 3: ', explore.q );
-
-        }
 
         $('#blink').show();
 
@@ -5903,9 +5884,8 @@ async function renderType( args ) {
 
     $('#srsearch').val( decodeURIComponent( title_nocat ) );
 
-    if ( explore.isSafari ){ console.log('L+R: ', explore.q ); }
-
     explore.q = getSearchValue();
+
     $('.submitSearch').click();
 
     if ( valid( explore.tab ) ){

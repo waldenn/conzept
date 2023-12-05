@@ -3426,7 +3426,15 @@ window.detect = async function( img ){
 
     output.forEach(renderBox);
 
-    $('#status').text( output.length + ' objects detected');
+    if ( output.length === 0 ){
+      $('#status').text( output.length + ' objects detected');
+    }
+    else if ( output.length === 1 ) {
+      $('#status').text( output.length + ' object detected');
+    }
+    else {
+      $('#status').text( 'no objects detected');
+    }
 
 }
 

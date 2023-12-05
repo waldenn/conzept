@@ -688,7 +688,7 @@ $settings_html = '
 
             <hr class="menu-separator">
 
-            <input id="bookmark-search" placeholder="bookmark search..." />
+            <!--input id="bookmark-search" placeholder="bookmark search..." /-->
 
             <div id="bookmark-selection-info-container">
               &nbsp;<span id="bookmark-selection-count"></span> <span id="app-guide-bookmarks-selected">selected</span>

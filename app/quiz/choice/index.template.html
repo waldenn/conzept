@@ -10,10 +10,10 @@
 
     <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
 
-    <script src="../../../explore2/libs/lc/dist/js/lc_lightbox.lite.js"></script>
-    <link rel="stylesheet" href="../../../explore2/libs/lc/dist/css/lc_lightbox.css" />
-    <link rel="stylesheet" href="../../../explore2/libs/lc/dist/css/skins/minimal.css" />
-    <script src="../../../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+    <script src="../../explore2/libs/lc/dist/js/lc_lightbox.lite.js" type="module"></script>
+    <link rel="stylesheet" href="../../explore2/libs/lc/dist/css/lc_lightbox.css" />
+    <link rel="stylesheet" href="../../explore2/libs/lc/dist/css/skins/minimal.css" />
+    <script src="../../explore2/node_modules/openseadragon/build/openseadragon/openseadragon.min.js"></script>
 
   </head>
   <body>
@@ -27,6 +27,7 @@
 
     <script>
 
+
     window.setupImageClicks = function(){
 
       $('img')
@@ -35,10 +36,10 @@
         .addClass('enlargable');
 
       // see: https://lcweb.it/lc-lightbox/documentation
-      const LC = lc_lightbox('.elem', {
+      const LC = window.lc_lightbox('.elem', {
         wrap_class: 'lcl_fade_oc',
         gallery : true,
-        thumb_attr: false, // 'data-lcl-thumb', 
+        thumb_attr: false, // 'data-lcl-thumb',
         tn_hidden: true,
         thumbs_nav: true,
         download: true,
