@@ -592,6 +592,8 @@ async function showPresentation( item, type ){
     }
 		else if ( type === 'work' ){
 
+      if ( valid( item.github_vscode ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>GitHub source</h3><h3><i class='fa-solid fa-code' title='GitHub code'></i></h3>"\n    ( show \'link \'( "${ item.sourcecode.replace( 'github.com', 'github1s.com' ) }" ) ) )\n` ) };
+
 			slides.push( commons_slide );
 
 			slides.push( video_slide );
