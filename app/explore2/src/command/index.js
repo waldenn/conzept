@@ -1126,7 +1126,7 @@ async function setupLispEnv(){
 
     let reveal_options = {
       transition: "fade",
-      autoPlayMedia: true,
+      autoPlayMedia: false,
       loop: false,
       progress: true,
       slideNumber: false,
