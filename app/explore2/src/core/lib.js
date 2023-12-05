@@ -9978,6 +9978,8 @@ async function stopSpeaking(){
 
 function startSpeakingArticle( title, qid, language ){
 
+  console.log( 'startSpeakingArticle: ', title, qid, language );
+
   $('#blink').show();
 
   const title_new = encodeURIComponent( title );
