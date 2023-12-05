@@ -399,10 +399,15 @@ async function showPresentation( item, type ){
     // conditional common-slides
 		let linkgraph_slide   = '';
     let timeline_slide    = '';
+    let openalex_concept_slide = '';
 
 		let street_map_slide  = '';
 		let nearby_map_slide  = '';
 		let satellite_map     = '';
+
+		if ( valid( item.openalex_concept_works ) ){
+      openalex_concept_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n`;
+    }
 
     // Wikipedia requirement
 		if ( item.datasource === 'wikipedia' ){
@@ -664,6 +669,7 @@ async function showPresentation( item, type ){
 			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
 			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
 
+			slides.push( openalex_concept_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
