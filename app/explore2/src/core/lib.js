@@ -9978,7 +9978,7 @@ async function stopSpeaking(){
 
 function startSpeakingArticle( title, qid, language ){
 
-  console.log( 'startSpeakingArticle: ', title, qid, language );
+  console.log( 'startSpeakingArticle: ', title, qid, language,  );
 
   $('#blink').show();
 
@@ -9987,7 +9987,7 @@ function startSpeakingArticle( title, qid, language ){
 
   if ( explore.synth_paused === false || title_cur !== title_new ){ // speak article
 
-    //console.log( 'speak article: ', valid( title_cur ), title_cur !== title_new );
+    console.log( 'speak article' );
 
     if ( valid( title_cur ) && title_cur !== title_new ){ // request to speak another article
 
@@ -9999,6 +9999,8 @@ function startSpeakingArticle( title, qid, language ){
     }
 
     explore.synth_paused = false;
+
+    console.log( 'insert TTS iframe' );
 
     $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
@@ -10045,7 +10047,6 @@ function stopSpeakingArticle(){
   }
 
 }
-
 
 async function startSpeaking( text ){
 
