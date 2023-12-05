@@ -7979,9 +7979,21 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://openreview.net/profile?id=~${encodeURIComponent( item.openreview )}',
   mv: false,
   icon: 'fa-regular fa-newspaper',
-  text: 'Open Review',
+  text: 'Open Review ID',
   section: ['science-search-tools','main'],
   rank: [190,8530],
+},
+
+'openreview_search' : {
+  create_condition: true,
+  title: 'Open Review search',
+  type: 'url',
+  url: 'https://openreview.net/search?term=${ title_quoted }&group=all&content=all&source=all',
+  mv: false,
+  icon: 'fa-regular fa-newspaper',
+  text: 'Open Review',
+  section: ['science-search-tools','main'],
+  rank: [195,8535],
 },
 
 'satellite_cospar' : {
