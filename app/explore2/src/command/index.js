@@ -383,7 +383,8 @@ async function showPresentation( item, type ){
           valid( getSimilarSparqlURL( item ) )
     ){
 
-	    similar_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>similar topics</h3><h3><i class='fa-solid fa-rainbow' title='similar topics'></i></h3>"\n    ( show \'link-split \'( "${ getSimilarSparqlURL( item ) }" ) ) )\n`;
+      // FIXME: getSimilarSparqlURL() produces a non-valid LISP-string
+	    //similar_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>similar topics</h3><h3><i class='fa-solid fa-rainbow' title='similar topics'></i></h3>"\n    ( show \'link-split \'( "${ getSimilarSparqlURL( item ) }" ) ) )\n`;
 
     }
 
@@ -439,21 +440,19 @@ async function showPresentation( item, type ){
 
       if ( item.openalex.startsWith("C") ){
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n` );
 
       }
       else if ( item.openalex.startsWith("A") ){
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
 
       }
       else if ( item.openalex.startsWith("I") ){
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex }" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex }" ) ) )\n` );
 
       }
-
-
 
     }
 
