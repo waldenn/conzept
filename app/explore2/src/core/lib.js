@@ -7119,8 +7119,8 @@ function receiveMessage(event){
 
     //$('#presentation').contents().find('div.reveal').focus();
 
-    stopSpeaking(); // stop global window speaking
-    $('#tts-article').remove(); // stop iframe-article speaking
+    //stopSpeaking(); // stop global window speaking
+    //$('#tts-article').remove(); // stop iframe-article speaking
 
     //console.log('run-slide-commands for slide: ', event.data.data.slide );
     //console.log( 'run slide commands: ', event.data.data.slide, explore.presentation_commands[ event.data.data.slide ] );

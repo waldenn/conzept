@@ -2609,7 +2609,7 @@ async function runLISP( code ) {
   //highlightLISP();
 
   // FIXME: small hack (until there is some better UI for this)
-  stopSpeakingArticle();
+  //stopSpeakingArticle();
 
   // update URL command-param state
   explore.commands = explore.editor.getValue();
