@@ -818,14 +818,7 @@ async function showPresentation( item, type ){
 
     // setup presentation TTS element
     const tts_start = document.getElementById( 'presentation-tts-start' );
-
-    tts_start.onclick = function(){
-      startSpeakingArticle( item.title, item.qid, explore.language );
-    }
-
-    // start TTS speaking
-    //tts_start.click();
-    //$('#presentation-tts-start').trigger('click');
+    tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( item.title, item.qid, explore.language ); }
 
 	//}).catch(error => { console.log('error fetching presentation data'); });
 
