@@ -792,8 +792,10 @@ async function showPresentation( item, type ){
 
 		runLISP( code );
 
+    const tts_code = `startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }'&quot; );`;
+
     // update "onclick=startSpeaking(...)" arguments in TTS presentation button
-    $('#presentation-tts-start').attr('onclick', 'startSpeakingArticle( &quot;' +  item.title + '&quot;, &quot;' + item.qid + '&quot;, &quot;' + explore.language + '&quot; );' );
+    $('#presentation-tts-start').attr('onclick', tts_code );
 
     // start TTS speaking
     $('#presentation-tts-start').click();
