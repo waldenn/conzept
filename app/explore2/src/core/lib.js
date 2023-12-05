@@ -9978,8 +9978,6 @@ async function stopSpeaking(){
 
 function startSpeakingArticle( title, qid, language ){
 
-  console.log( 'startSpeakingArticle: ', title, qid, language,  );
-
   $('#blink').show();
 
   const title_new = encodeURIComponent( title );
@@ -9987,11 +9985,9 @@ function startSpeakingArticle( title, qid, language ){
 
   if ( explore.synth_paused === false || title_cur !== title_new ){ // speak article
 
-    console.log( 'speak article' );
-
     if ( valid( title_cur ) && title_cur !== title_new ){ // request to speak another article
 
-      console.log('first stopping speech...');
+      //console.log('first stopping speech...');
 
       // FIXME: why does this not stop the speaking on MS Edge?
       stopSpeakingArticle();
@@ -9999,8 +9995,6 @@ function startSpeakingArticle( title, qid, language ){
     }
 
     explore.synth_paused = false;
-
-    console.log( 'insert TTS iframe' );
 
     $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
