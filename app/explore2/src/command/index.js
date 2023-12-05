@@ -399,15 +399,10 @@ async function showPresentation( item, type ){
     // conditional common-slides
 		let linkgraph_slide   = '';
     let timeline_slide    = '';
-    let openalex_concept_slide = '';
 
 		let street_map_slide  = '';
 		let nearby_map_slide  = '';
 		let satellite_map     = '';
-
-		if ( valid( item.openalex_concept_works ) ){
-      openalex_concept_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n`;
-    }
 
     // Wikipedia requirement
 		if ( item.datasource === 'wikipedia' ){
@@ -438,6 +433,29 @@ async function showPresentation( item, type ){
 		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
 
 		if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
+
+    // OpenAlex slide
+		if ( valid( item.openalex ) ){
+
+      if ( item.openalex.startsWith("C") ){
+
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n` );
+
+      }
+      else if ( item.openalex.startsWith("A") ){
+
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
+
+      }
+      else if ( item.openalex.startsWith("I") ){
+
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex }" ) ) )\n` );
+
+      }
+
+
+
+    }
 
 		// TOPICAL SLIDES
 		if ( type === 'pubchem' ){
@@ -669,7 +687,6 @@ async function showPresentation( item, type ){
 			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
 			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
 
-			slides.push( openalex_concept_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 			slides.push( scholia_slide );
