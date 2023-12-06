@@ -272,9 +272,14 @@ function triggerQueryForm(){
 
         updateSidebar( explore.q );
 
-        // setup presentation TTS element
-        const tts_start = document.getElementById( 'presentation-tts-start' );
-        tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( explore.q, '', explore.language ); }
+        // setup presentation TTS element FIXME: not yet working
+        if ( valid( explore.q ) ){
+
+          const tts_start = document.getElementById( 'presentation-tts-start' );
+          tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( explore.q, '', explore.language ); }
+
+          startSpeakingArticle( explore.q, '', explore.language );
+        }
 
      }
      else  {
