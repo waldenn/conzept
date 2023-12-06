@@ -280,7 +280,6 @@ function triggerQueryForm(){
 
           insertPresentationSections( explore.q, '', explore.language );
 
-          stopSpeakingArticle();
           startSpeakingArticle( explore.q, '', explore.language );
         }
 
@@ -10001,6 +10000,11 @@ function startSpeakingArticle( title, qid, language, section ){
       //console.log('first stopping speech...');
 
       // FIXME: why does this not stop the speaking on MS Edge?
+      stopSpeakingArticle();
+
+    }
+    else if ( valid( section ) ){ // always stop speaking for section requests
+
       stopSpeakingArticle();
 
     }
