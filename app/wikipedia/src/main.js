@@ -88,6 +88,7 @@ const explore = {
 	synth_paused	: false,
 	tts_removals	: 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
   autospeak     : getParameterByName('autospeak') || false,
+  autospeak_section : getParameterByName('autospeak_section') || '',
 
   keyboard_ctrl_pressed : false,
 
@@ -165,17 +166,17 @@ $( document ).ready( function() {
     // check if there is a preferred language-variant
     if ( explore.language_variant === '' && explore.languages_with_variants.includes( explore.language ) ){ 
 
-			console.log('check writing-style from storage');
+			//console.log('check writing-style from storage');
 
       explore.language_variant = await explore.db.get('language-variant-' + explore.language );
       explore.language_variant = ( explore.language_variant === null || explore.language_variant === undefined ) ? '' : explore.language_variant;
 
-      console.log('Wikipedia app: language variant from storage: ', explore.language_variant );
+      //console.log('Wikipedia app: language variant from storage: ', explore.language_variant );
 
     }
     else {
 
-      console.log('Wikipedia: language variant set to: ', explore.language_variant );
+      //console.log('Wikipedia: language variant set to: ', explore.language_variant );
 
     }
 

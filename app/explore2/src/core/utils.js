@@ -1883,6 +1883,12 @@ function sparqlQids( list ){
 
 }
 
+function tocTransform( section_title ){
+
+  return section_title.replace(/[ %{}|^~\[\]()"'+<>%'&\.\/?:@;=,]/g, '_').replace(/^.+_svg_/, '').toLowerCase().replace( /_+$/, '' );
+
+}
+
 /*
 function objectToString(obj){
 

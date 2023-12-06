@@ -230,7 +230,33 @@ $( document ).ready(function() {
 
   if ( explore.autospeak ){ // speak article
 
-    startSpeaking();
+    if ( valid( explore.autospeak_section ) ){ // speak section
+
+      //stopSpeaking();
+
+      // does not work?
+      //$('#' + explore.autospeak_section ).find('.start-speaking').first().click();
+
+      let text = '';
+
+      if ( $('#' + explore.autospeak_section ).find('.start-speaking').first().length > 0 ){
+
+        text = $('#' + explore.autospeak_section ).find('.start-speaking').first().attr('onclick').replace('startSpeaking(', '');
+
+        if ( valid( text ) && text.length > 10 ){
+
+          startSpeaking( text );
+
+        }
+
+      }
+
+    }
+    else { // speak whole article
+
+      startSpeaking();
+
+    }
 
   }
 
@@ -737,7 +763,7 @@ function setupToc(){
       return true;
     }
 
-    let heading = $(this).text().replace(/[ %{}|^~\[\]()"'+<>%'&\.\/?:@;=,]/g, '_').replace(/^.+_svg_/, '').toLowerCase().replace( /_+$/, '' );
+    let heading = tocTransform( $(this).text() );
 
     $(this).attr('id', heading );
 
@@ -1457,9 +1483,9 @@ function addSectionTTS(){
 
     $('h2:first').append(
 
-      $('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
-        '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-        '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
+      $('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
+        '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
+        '<span class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
 
     );
 
@@ -1479,9 +1505,9 @@ function addSectionTTS(){
 
 				$(this).append(
 
-					$('<span class="section-title-button" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
-            '<span class="section-title-button" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-            '<span class="section-title-button" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
+					$('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
+            '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
+            '<span class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
 
 	      );
 		

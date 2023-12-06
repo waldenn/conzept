@@ -278,6 +278,8 @@ function triggerQueryForm(){
           const tts_start = document.getElementById( 'presentation-tts-start' );
           tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( explore.q, '', explore.language ); }
 
+          insertPresentationSections( explore.q, '', explore.language );
+
           stopSpeakingArticle();
           startSpeakingArticle( explore.q, '', explore.language );
         }
@@ -5136,9 +5138,8 @@ function insertQidTopics( args, list ){
 
 	$.ajax({
 
-			url: lurl,
-
-			jsonp: "callback",
+			url:      lurl,
+			jsonp:    "callback",
 			dataType: "jsonp",
 
 			success: function( response ) {
@@ -9986,7 +9987,7 @@ async function stopSpeaking(){
 
 }
 
-function startSpeakingArticle( title, qid, language ){
+function startSpeakingArticle( title, qid, language, section ){
 
   $('#blink').show();
 
@@ -10006,7 +10007,9 @@ function startSpeakingArticle( title, qid, language ){
 
     explore.synth_paused = false;
 
-    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
+    const section_speak_param = valid( section )? '&autospeak_section=' + section : '';
+
+    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + section_speak_param + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
   else { // resume existing utterence

@@ -788,6 +788,8 @@ $settings_html = '
                  <details id="presentation-detail" class="auto" onclick="" style="">
                   <summary><span id="app-menu-presentation"></span></summary>
 
+                    <select id="presentation-tts-sections" class="browser-default"></select>
+
                     <div class="topic-tts-buttons"><a id="presentation-tts-start" href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick=""> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a></div>
 
                     <div class="resizer">

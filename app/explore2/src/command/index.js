@@ -820,7 +820,57 @@ async function showPresentation( item, type ){
     const tts_start = document.getElementById( 'presentation-tts-start' );
     tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( item.title, item.qid, explore.language ); }
 
+    insertPresentationSections( item.title, item.qid, explore.language );
+
 	//}).catch(error => { console.log('error fetching presentation data'); });
+
+}
+
+async function insertPresentationSections( title, qid, language ){
+
+  $('#presentation-tts-sections').empty();
+
+  const url = `https://${ language }.wikipedia.org/w/api.php?action=parse&page=${ encodeURIComponent( title ) }&prop=sections&format=json`;
+
+  $.ajax({
+
+    url:      url,
+    jsonp:    "callback",
+    dataType: "jsonp",
+
+    success: function( response ) {
+
+      if ( valid( response.parse?.sections ) ){
+
+        let options_html = '<option value="" selected>Wikipedia article</option>';
+
+        $.each( response.parse?.sections, function ( i, section ) {
+
+          const anchor = tocTransform( section.anchor );
+
+          const indent = '⠀⠀'.repeat( section.toclevel - 1 );
+
+          options_html += `<option value="${ anchor }">${ indent + section.anchor }</option>`;
+
+        });
+
+        $('#presentation-tts-sections').append( options_html );
+
+      }
+
+    },
+
+  });
+
+  $('#presentation-tts-sections').on('change', function() {
+
+    //console.log( 'main app: speak section: ', this.value );
+
+    startSpeakingArticle( title, qid, language, this.value )
+
+  });
+
+  //  TODO: allow for raw-text sections (beyond Wikipedia)
 
 }
 
@@ -1302,7 +1352,7 @@ async function setupLispEnv(){
   	// go to tools-tab
    	explore.tabsInstance.select('tab-tools');
 
-    console.log('open presentation detail');
+    //console.log('open presentation detail');
 
     // open presentation detail
    	$('#presentation-detail').attr( 'open', '' );
