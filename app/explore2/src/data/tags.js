@@ -264,6 +264,10 @@ var conzept_tags = {
         text : "software",
         icon : ["fa-regular fa-window-restore"],
       },
+      "programming-language" : {
+        text : "programming language",
+        icon : ["fa-solid fa-code"],
+      },
       "3d-model" : {
         text : "3D model",
         icon : ["fa-brands fa-unity"],

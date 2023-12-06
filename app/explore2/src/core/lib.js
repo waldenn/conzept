@@ -278,6 +278,7 @@ function triggerQueryForm(){
           const tts_start = document.getElementById( 'presentation-tts-start' );
           tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( explore.q, '', explore.language ); }
 
+          stopSpeakingArticle();
           startSpeakingArticle( explore.q, '', explore.language );
         }
 
