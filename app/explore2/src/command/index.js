@@ -866,7 +866,8 @@ async function insertPresentationSections( title, qid, language ){
 
   $('#presentation-tts-sections').on('change', function() {
 
-    stopSpeakingArticle();
+    stopSpeaking();
+    //stopSpeakingArticle();
     startSpeakingArticle( title, qid, language, this.value )
 
   });
