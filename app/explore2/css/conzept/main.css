@@ -102,6 +102,10 @@
   box-shadow: 0 4px 4px 0 transparent,0 2px 5px #0000003b;
 }
 
+#presentation-tts-sections {
+  margin-left: 1em;
+}
+
 .inline-tts-audio {
   width: 95%;
 }

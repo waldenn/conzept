@@ -276,7 +276,10 @@ function triggerQueryForm(){
         if ( valid( explore.q ) ){
 
           const tts_start = document.getElementById( 'presentation-tts-start' );
-          tts_start.onclick = function(){ stopSpeakingArticle(); startSpeakingArticle( explore.q, '', explore.language ); }
+
+          tts_start.onclick = function(){
+            startSpeakingArticle( explore.q, '', explore.language );
+          }
 
           insertPresentationSections( explore.q, '', explore.language );
 
@@ -9941,6 +9944,8 @@ function updateSidebar( title ){
 
 function pauseSpeaking(){
 
+  console.log( 'pauseSpeaking()' );
+
   if ( explore.isChrome ){ // note: Chrome is broken for "synth.paused"
 
     if ( explore.synth_paused ){
@@ -9961,13 +9966,13 @@ function pauseSpeaking(){
 
     if ( explore.synth.paused ){
 
-      console.log('resume speaking');
+      console.log('  ...resume speaking');
       explore.synth.resume();
 
     }
     else {
 
-      console.log('pause speaking');
+      console.log('  ...pause speaking');
       explore.synth.pause();
 
     }
@@ -9988,42 +9993,67 @@ async function stopSpeaking(){
 
 function startSpeakingArticle( title, qid, language, section ){
 
+  console.log('startSpeakingArticle: ...');
+
   $('#blink').show();
 
-  const title_new = encodeURIComponent( title );
-  const title_cur = $('#tts-article').data('title')
+  const article_title_new = encodeURIComponent( title );
+  const article_title_cur = $('#tts-article').data('title');
 
-  if ( explore.synth_paused === false || title_cur !== title_new ){ // speak article
+  const section_title_cur = $('#tts-article').data('section');
+  const section_title_new = encodeURIComponent( section );
 
-    if ( valid( title_cur ) && title_cur !== title_new ){ // request to speak another article
+  console.log( '  ... paused: ', explore.synth_paused )
+
+  console.log( '  ... article_title_cur: ', article_title_cur, ' article_title_new: ', article_title_new );
+  console.log( '  ... section_title_cur: ', section_title_cur, ' section_title_new: ', section_title_new );
+
+  if ( explore.synth_paused === false ){ // not paused
+
+    /*
+    // speak another article
+    if ( valid( article_title_cur ) && article_title_cur !== article_title_new ){ // request to speak another article
 
       //console.log('first stopping speech...');
+
+      console.log( '  ...calling stopSpeakingArticle() for new article request' );
 
       // FIXME: why does this not stop the speaking on MS Edge?
       stopSpeakingArticle();
 
     }
-    else if ( valid( section ) ){ // always stop speaking for section requests
+
+    // speak another section
+    if ( valid( section_title_cur ) && section_title_cur !== section_title_new ){
+
+      console.log( '  ...calling stopSpeakingArticle() for section request' );
 
       stopSpeakingArticle();
-
     }
+    */
 
     explore.synth_paused = false;
 
+    stopSpeakingArticle();
+
     const section_speak_param = valid( section )? '&autospeak_section=' + section : '';
 
-    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + section_speak_param + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
+    // initiate new speaking iframe
+    console.log('  ...initiate new speaking iframe');
+
+    $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + article_title_new + '" data-section="' + section_title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + article_title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + section_speak_param + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
   else { // resume existing utterence
-
+ 
     explore.synth_paused = false;
 
     const iframeEl = document.getElementById( 'tts-article' );
 
-    iframeEl.dataset.title = title_new;
+    iframeEl.dataset.title    = article_title_new;
+    iframeEl.dataset.section  = section_title_new;
     
+    console.log('  ...resume existing utterence');
     iframeEl.contentWindow.postMessage( { event_id: 'resume-speaking', data: '' }, '*' );
 
     $('#blink').hide();
@@ -10047,7 +10077,7 @@ function stopSpeakingArticle(){
 
   explore.synth_paused = false;
 
-  //console.log( 'stopSpeakingArticle()' );
+  console.log( 'stopSpeakingArticle()' );
 
   const iframeEl = document.getElementById( 'tts-article' );
 

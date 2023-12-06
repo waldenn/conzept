@@ -818,7 +818,9 @@ async function showPresentation( item, type ){
 
     // setup presentation TTS element
     const tts_start = document.getElementById( 'presentation-tts-start' );
-    tts_start.onclick = function(){ startSpeakingArticle( item.title, item.qid, explore.language ); }
+    tts_start.onclick = function(){
+      startSpeakingArticle( item.title, item.qid, explore.language );
+    }
 
     insertPresentationSections( item.title, item.qid, explore.language );
 
@@ -842,15 +844,15 @@ async function insertPresentationSections( title, qid, language ){
 
       if ( valid( response.parse?.sections ) ){
 
-        let options_html = '<option value="" selected>Wikipedia article</option>';
+        let options_html = '<option value="" selected>Wikipedia</option>';
 
         $.each( response.parse?.sections, function ( i, section ) {
 
           const anchor = tocTransform( section.anchor );
 
-          const indent = '⠀'.repeat( section.toclevel - 1 );
+          const indent = '⠀'.repeat( section.toclevel );
 
-          options_html += `<option value="${ anchor }">${ indent + section.anchor }</option>`;
+          options_html += `<option value="${ anchor }">${ indent + section.anchor.replace('_', ' ') }</option>`;
 
         });
 
@@ -864,6 +866,7 @@ async function insertPresentationSections( title, qid, language ){
 
   $('#presentation-tts-sections').on('change', function() {
 
+    stopSpeakingArticle();
     startSpeakingArticle( title, qid, language, this.value )
 
   });
