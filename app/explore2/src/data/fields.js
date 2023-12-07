@@ -18402,14 +18402,13 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  create_condition: 'checkLC(["en","fr","nl"]) && valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.tags[0] !== "" )', // main-tag should be set
   title: 'AI chat with tutor',
-  //title: 'AI chat using ChatGPT',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${ getTutor( item ) }',
-  //url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${explore.tutor}',
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=examinator',
+  //url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${ getTutor( item ) }',
   icon: 'fa-solid fa-wand-sparkles',
   text: 'AI chat',
   section: ['main'],
