@@ -290,6 +290,7 @@ async function showPresentation( item, type ){
 			if ( type === 'organism' ){ background = "//app/explore2/assets/svg/backgrounds/005.svg" }
 			else if ( type === 'art-movement' ){ background = "//app/explore2/assets/svg/backgrounds/001.svg" }
 			else if ( type === 'cultural-concept' ){ background = "#115699" }
+			else if ( type === 'meta-concept' ){ background = "#115699" }
 			else if ( type === 'location' ){ background = "//app/explore2/assets/svg/backgrounds/001.svg" }
 			else if ( type === 'geographical-structure' ){ background = "#115699" }
 			else if ( type === 'time' ){ background = "//app/explore2/assets/svg/backgrounds/003.svg" }
@@ -551,6 +552,28 @@ async function showPresentation( item, type ){
 			//slides.push( openalex_search_slide );
 
 		}
+		else if ( type === 'meta-concept' ){
+
+      if ( language === 'en' ){
+
+		    if ( valid( item.iep ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Internet Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "${ item.iep }" ) ) )\n` ); }
+
+		    if ( valid( item.stanford_encyclopedia_of_philosophy ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Stanford Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "${ item.stanford_encyclopedia_of_philosophy }" ) ) )\n` ); }
+
+		    if ( valid( item.philpapers_topic ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PhilPapers topic</h3>"\n    ( show \'link \'( "${ item.philpapers_topic }" ) ) )\n` ); }
+
+      }
+
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			slides.push( video_slide );
+			slides.push( linkgraph_slide );
+			slides.push( open_library_meta_slide );
+			slides.push( open_library_fulltext_slide );
+			slides.push( scholia_slide );
+			//slides.push( openalex_search_slide );
+
+		}
+
 		else if ( type === 'location' ){
 
 			// FIXME: check if article-language is available

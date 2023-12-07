@@ -7981,7 +7981,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-newspaper',
   text: 'Open Review ID',
   section: ['science-search-tools','main'],
-  rank: [190,8530],
+  rank: [165,8530],
 },
 
 'openreview_search' : {
@@ -7992,8 +7992,8 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   icon: 'fa-regular fa-newspaper',
   text: 'Open Review',
-  section: ['science-search-tools','main'],
-  rank: [195,8535],
+  section: ['science-search-tools'],
+  rank: [166],
 },
 
 'satellite_cospar' : {
@@ -19955,6 +19955,22 @@ if ( valid( item.found_in_taxon ) ){
   section: ['meta'],
   rank: [2],
   headline_create: 'valid( item.presentation_cultural_concept )',
+  headline_rank: 715,
+},
+
+'presentation_meta_concept' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded()',
+  title: 'presentation',
+  prop: '',
+  type: 'code',
+  code: 'stopSpeakingArticle(); startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; meta-concept &quot; )',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'meta-concept',
+  section: ['meta'],
+  rank: [2],
+  headline_create: 'valid( item.presentation_meta_concept )',
   headline_rank: 715,
 },
 
