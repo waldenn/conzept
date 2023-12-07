@@ -556,11 +556,11 @@ async function showPresentation( item, type ){
 
       if ( language === 'en' ){
 
-		    if ( valid( item.iep ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Internet Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "${ item.iep }" ) ) )\n` ); }
+		    if ( valid( item.iep ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Internet Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "https://philpapers.org/browse/${ item.iep }" ) ) )\n` ); }
 
-		    if ( valid( item.stanford_encyclopedia_of_philosophy ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Stanford Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "${ item.stanford_encyclopedia_of_philosophy }" ) ) )\n` ); }
+		    if ( valid( item.stanford_encyclopedia_of_philosophy ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Stanford Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "https://plato.stanford.edu/entries/${ item.stanford_encyclopedia_of_philosophy }" ) ) )\n` ); }
 
-		    if ( valid( item.philpapers_topic ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PhilPapers topic</h3>"\n    ( show \'link \'( "${ item.philpapers_topic }" ) ) )\n` ); }
+		    if ( valid( item.philpapers_topic ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PhilPapers topic</h3>"\n    ( show \'link \'( "https://philpapers.org/browse/${ item.philpapers_topic }" ) ) )\n` ); }
 
       }
 
