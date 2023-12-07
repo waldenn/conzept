@@ -278,7 +278,20 @@ function triggerQueryForm(){
           const tts_start = document.getElementById( 'presentation-tts-start' );
 
           tts_start.onclick = function(){
-            startSpeakingArticle( explore.q, '', explore.language );
+
+            const section = $('#presentation-tts-sections').val();
+
+            if ( valid( section ) ){ // speak section
+
+              startSpeakingArticle( explore.q, '', explore.language, section );
+
+            }
+            else { // speak article
+
+              startSpeakingArticle( explore.q, '', explore.language );
+
+            }
+
           }
 
           insertPresentationSections( explore.q, '', explore.language );

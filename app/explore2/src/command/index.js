@@ -818,8 +818,22 @@ async function showPresentation( item, type ){
 
     // setup presentation TTS element
     const tts_start = document.getElementById( 'presentation-tts-start' );
+
     tts_start.onclick = function(){
-      startSpeakingArticle( item.title, item.qid, explore.language );
+
+      const section = $('#presentation-tts-sections').val();
+
+      if ( valid( section ) ){ // speak section
+
+        startSpeakingArticle( item.title, item.qid, explore.language, section );
+
+      }
+      else { // speak article
+
+        startSpeakingArticle( item.title, item.qid, explore.language );
+
+      }
+
     }
 
     insertPresentationSections( item.title, item.qid, explore.language );
@@ -852,7 +866,7 @@ async function insertPresentationSections( title, qid, language ){
 
           const indent = '⠀'.repeat( section.toclevel );
 
-          options_html += `<option value="${ anchor }">${ indent + section.anchor.replace('_', ' ') }</option>`;
+          options_html += `<option value="${ anchor }">${ indent + section.anchor.replaceAll('_', ' ') }</option>`;
 
         });
 

@@ -15,12 +15,13 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let qid               = args.qid;
   let pid               = args.pid;
   let gid               = args.gid;
-  let title             = args.title;
+  let title             = args.title; // FIXME: why is "args.title" sometimes not defined?
+                                      //  example: https://conze.pt/explore/Lung%20infection?l=en&d=wikipedia,wikidata&t=string&s=true#
   let source            = args.source;
 
   let source_icon       = '';
 
-  //console.log( args );
+  //console.log( args, qid, title );
   //console.log( 'datasources: ', datasources, source );
 
   if ( source === 'raw' ){
