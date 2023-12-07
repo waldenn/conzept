@@ -10004,8 +10004,8 @@ function startSpeakingArticle( title, qid, language, section ){
 
   $('#blink').show();
 
-  const article_title_new = encodeURIComponent( title );
   const article_title_cur = $('#tts-article').data('title');
+  const article_title_new = encodeURIComponent( title );
 
   const section_title_cur = $('#tts-article').data('section');
   const section_title_new = encodeURIComponent( section );
@@ -10014,8 +10014,6 @@ function startSpeakingArticle( title, qid, language, section ){
   //console.log( '  ... section_title_cur: ', section_title_cur, ' section_title_new: ', section_title_new );
 
   if ( explore.synth_paused === false ){ // not paused
-
-    explore.synth_paused = false;
 
     stopSpeakingArticle();
 
