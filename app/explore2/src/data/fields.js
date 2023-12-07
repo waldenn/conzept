@@ -19958,7 +19958,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_meta_concept' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded()',
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded() && ! valid( item.presentation_mathematics )',
   title: 'presentation',
   prop: '',
   type: 'code',
