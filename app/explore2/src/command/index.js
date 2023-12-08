@@ -1237,6 +1237,7 @@ async function setupLispEnv(){
       loop: false,
       progress: true,
       slideNumber: false,
+      scrollActivationWidth: null,
     };
 
     //let reveal_plugins = [];
