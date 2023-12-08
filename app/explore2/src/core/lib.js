@@ -10015,8 +10015,6 @@ function startSpeakingArticle( title, qid, language, section ){
 
   if ( ! valid( explore.synth_paused ) ){ // not paused
 
-    console.log('start new article...');
-
     stopSpeakingArticle();
 
     const section_speak_param = valid( section )? '&autospeak_section=' + section : '';
@@ -10025,8 +10023,7 @@ function startSpeakingArticle( title, qid, language, section ){
     $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + article_title_new + '" data-section="' + section_title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + article_title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + section_speak_param + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
-  /*
-  // CASE: if TTS in paused-state AND another article is requested to be played:
+  // CASE: if TTS is in the paused-state AND another article was requested to be spoken:
   else if ( valid( article_title_cur ) && article_title_cur !== article_title_new ){
 
     explore.synth_paused = false;
@@ -10039,11 +10036,8 @@ function startSpeakingArticle( title, qid, language, section ){
     $('#tts-container').html( '<iframe id="tts-article" class="inline-iframe" title="" data-title="' + article_title_new + '" data-section="' + section_title_new + '" role="application" style="" src="' + explore.base + '/app/wikipedia/?t=' + article_title_new + '&l=' + language + '&qid=' + qid + '&autospeak=true' + section_speak_param + '&embedded=' + explore.embedded + '&tutor=' + explore.tutor + '#' + explore.hash + '" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="0%" height="0%"></iframe>' );
 
   }
-  */
   else { // resume existing utterence
 
-    console.log( 'resume speaking...' );
- 
     explore.synth_paused = false;
 
     const iframeEl = document.getElementById( 'tts-article' );
