@@ -18464,7 +18464,7 @@ if ( valid( item.found_in_taxon ) ){
   title: 'speak article',
   prop: '',
   type: 'code',
-  code: 'stopSpeakingArticle(); startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; )',
+  code: 'startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; )',
   mv: false,
   url: '',
   icon: 'fa-solid fa-play',

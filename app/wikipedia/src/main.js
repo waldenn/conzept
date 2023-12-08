@@ -1464,7 +1464,6 @@ function renderEmbeddedGbifMap( id, title ){
 
 function pauseSpeaking(){
 
-  console.log('speaking paused');
   explore.synth_paused = true;
   explore.synth.pause();
 

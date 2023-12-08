@@ -1,14 +1,35 @@
 ====== roadmap ======
 
-===== frontend ideas =====
-
   * Fix the items mentioned in **[[issues|issues]]**.
+
+===== frontend ideas =====
 
   * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * **Bookmarking**:
     * Cross-tab bookmark state-syncing
+    * Bookmark edit mode -> then click on bookmark -> display bookmark edit modal -> save button
     * Better generic data support, based on the "item data object"
+    * Add more input-formats:
+      * images (experimental support)
+      * drawings (using tldraw or excalidraw)
+      * speech-to-text transcript ([[https://github.com/LittlePath/live-transcript|webcomponent]])
+      * audio ([[https://github.com/LittlePath/audio-recorder|webcomponent]])
+      * video ([[https://github.com/LittlePath/video-recorder|webcomponent]])
+      * longer notes
+      * ? PDF
+    * Research better drag-and-drop support
+
+  * **structured search (beyond Wikidata)**
+    * ontology classes
+    * ontology properties
+    * autocompletion
+    * multi-lingual labels
+    * handle CORS issues
+
+  * Look into using more webcomponents:
+    * [[https://design-system.w3.org/|W3C design system]]
+    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
 
   * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
 
@@ -27,9 +48,8 @@
 ===== general ideas =====
 
   * Conzept development vision:
-    * **data-define software** - rather than code-define - when possible. Often this first requires several code implementations/examples to explore the domain.
+    * **data-defined software**. Often this first requires several code implementations/examples to explore the domain.
     * Improve and maintain **conceptual integrity**, as vague and abstract as that term is.
-    * Related tweets: [[https://twitter.com/conzept__/status/1584360126894714880|1]], [[https://twitter.com/conzept__/status/1585286558336356354|2]]
 
   * Research **educational-support enhancements**:
     * Collaborative & social learning features (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
@@ -39,26 +59,6 @@
     * ? Note-taking integration  (eg.: [[https://bangle.io/|Bangle]], ...)
     * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
     * Experiences: play Chess positions (done), ...
-
-  * **Multi-modal bookmarks**:
-    * Formats:
-      * Image (including self-drawn using: tldraw or excalidraw)
-      * Audio (music, nature sounds, speech)
-      * DOI
-      * ISBN
-      * Custom text notes
-    * Connect these bookmark-types to new actions (eg: find similar images, detect plant type, perform speech-to-text, ...)
-
-  * **structured search (beyond Wikidata)**
-    * ontology classes
-    * ontology properties
-    * autocompletion
-    * multi-lingual labels
-    * handle CORS issues
-
-  * Look into using more webcomponents:
-    * [[https://design-system.w3.org/|W3C design system]]
-    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
 
   * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
     * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]
