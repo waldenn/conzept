@@ -267,8 +267,8 @@ async function showPresentation( item, type ){
 
   // presentation configuration
   // TODO: use ${explore.base} below
-  if ( type === 'pubchem' ){ background = "https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg"; }
-  else if ( type === 'mathematics' ){ background = "https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/004.svg"; }
+  if ( type === 'pubchem' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg`; }
+  else if ( type === 'mathematics' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/004.svg`; }
   else { 
 
     if ( valid( item.image ) ){
@@ -287,13 +287,13 @@ async function showPresentation( item, type ){
     else {
 
       // TODO: use these background-defaults from a field-property
-			if ( type === 'organism' ){ background = "https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/005.svg" }
-			else if ( type === 'art-movement' ){ background = "https://${explore.host}${explore.base/app/explore2/assets/svg/backgrounds/001.svg" }
+			if ( type === 'organism' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/005.svg` }
+			else if ( type === 'art-movement' ){ background = `https://${explore.host}${explore.base/app/explore2/assets/svg/backgrounds/001.svg`; }
 			else if ( type === 'cultural-concept' ){ background = "#115699" }
 			else if ( type === 'meta-concept' ){ background = "#115699" }
-			else if ( type === 'location' ){ background = "https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg" }
+			else if ( type === 'location' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg`; }
 			else if ( type === 'geographical-structure' ){ background = "#115699" }
-			else if ( type === 'time' ){ background = "https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg" }
+			else if ( type === 'time' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg`; }
 			else if ( type === 'organization' ){ background = "#115699" }
 			else if ( type === 'person' ){ background = "#115699" }
 			else if ( type === 'group' ){ background = "#115699" }
