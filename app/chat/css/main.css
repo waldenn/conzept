@@ -100,7 +100,7 @@ p {
 }
 
 .markdown-body {
-  font-size: inherit;
+  font-size: inherit !important;
 }
 
 .markdown-body p {
@@ -201,6 +201,7 @@ p {
 }
 
 .messages {
+  font-size: inherit !important;
   position: relative;
   height: calc(100% - 117px);
   overflow-x: hidden;

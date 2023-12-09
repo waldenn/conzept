@@ -201,6 +201,8 @@ async function showPresentation( item, type ){
   item = unpackString( item ); 
   type = type.trim();
 
+  //console.log( type, item );
+
   let languages = unpackString( item.languages ); 
 
   let sources = explore.datasources; // original datasource selection
