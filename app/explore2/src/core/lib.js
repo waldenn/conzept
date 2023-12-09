@@ -5751,7 +5751,7 @@ function addTopics( source, list ){
 
 }
 
-async function renderType( args ) {
+async function renderType( args ){
 
   // args
   let type      = args.type;
@@ -6070,6 +6070,9 @@ async function renderType( args ) {
 
         $('#infoframeSplit1').attr({"src": decodeURI( explore.uri ) });
         $('#infoframeSplit2').attr({"src": explore.base + '/app/wikipedia/?t=' + title + '&l=' + explore.language + '&voice=' + explore.voice_code + '&dir=' + explore.language_direction + '&tutor=' + explore.tutor + '&embedded=' + explore.embedded + '#' + explore.hash });
+
+        // FIXME: This should wait for the HTML-content to be available in the content pane iframes
+        $( '#infoframeSplit1, #infoframeSplit2' ).contents().find("body").css('font-size', explore.fontsize + 'px');
 
         $('.fixed-action-btn.direction-left').hide();
 
@@ -6760,12 +6763,14 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
 function resizeFont() {
 
-  const fontsizable_types = [ 'wikipedia', 'explore', 'map', 'elements', ];
+  const fontsizable_types = [ 'wikipedia', 'explore', 'map', 'elements', 'link-split' ];
 
   if ( fontsizable_types.includes( explore.type ) ){
 
-    $( explore.baseframe ).contents().find('body').css('font-size', explore.fontsize + 'px', 'important');
+    //$( explore.baseframe ).contents().find('body').css('font-size', explore.fontsize + 'px', 'important');
+    $( '#infoframeSplit1, #infoframeSplit2' ).contents().find("body").css('font-size', explore.fontsize + 'px');
 
+    // hack
     $('#infoframeSplit1').contents().find( explore.baseframe ).contents().find('#layout-topdown').click();
 
 		//explore.editor.setFontSize( parseFloat( explore.fontsize ) );

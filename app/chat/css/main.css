@@ -4,11 +4,6 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
 }
 
-html {
-    width: 100%;
-    height: 100%;
-}
-
 body {
     background-color: #edeff2;
     width: 100%;
@@ -17,8 +12,9 @@ body {
 }
 */
 
-body {
+html, body {
   font-family: Hind !important;
+  font-size: 14px;
   background: #fbfaf9;
   text-rendering: optimizeLegibility;
 }
@@ -67,6 +63,10 @@ a:hover, a:focus {
   outline: none;
 }
 
+#chat-title {
+  font-size: 1.7rem;
+}
+
 .response a:hover, .response a:focus {
   background: #ee6e735c !important;
 }
@@ -100,7 +100,7 @@ p {
 }
 
 .markdown-body {
-  font-size: 20px !important;
+  font-size: 1rem !important;
 }
 
 .markdown-body p {
@@ -192,8 +192,8 @@ p {
 .top_menu .title {
   text-align: center;
   /*color: #909090;*/
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
 .message, .request, .response {
@@ -292,7 +292,7 @@ pre a {
 }
 
 .messages {
-  font-size: 19px;
+  font-size: 1rem;
   color: #343541;
   text-align: center;
 }
@@ -351,7 +351,7 @@ pre a {
   top: 3px;
   right: calc(100% + 4px);
   font-family: system-ui;
-  font-size: 12px;
+  font-size: 1rem;
   line-height: 18px;
   color: #555;
   opacity: 0.3;
@@ -371,7 +371,7 @@ pre a {
   border-radius: 3px;
   background: none;
   font-family: system-ui;
-  font-size: 12px;
+  font-size: 1rem;
   line-height: 18px;
   color: #555;
   opacity: 0.3;
@@ -390,7 +390,7 @@ pre a {
   border-radius: 3px;
   background: none;
   font-family: system-ui;
-  font-size: 12px;
+  font-size: 1rem;
   line-height: 18px;
   color: #555;
   opacity: 0.3;
@@ -437,7 +437,7 @@ pre a {
   color: #24292f;
   font-weight: bold;
   height: 47px;
-  font-size: 16px;
+  font-size: 1rem;
   max-height: 200px;
   padding: 13px 0 13px 16px;
   width: 85%;
@@ -459,7 +459,7 @@ pre a {
   display: none;
   width: 80px;
   height: 47px;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 3px;
   background-color: orange;
@@ -513,7 +513,7 @@ pre a {
 #sendbutton {
   width: 80px;
   height: 47px;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 3px;
   background-color: #b8da8b;
@@ -545,7 +545,7 @@ pre a {
   bottom: 10px;
   width: 47px;
   height: 47px;
-  font-size: 16px;
+  font-size: 1rem;
   display: inline-block;
   border-radius: 3px;
   background-color: #909090;
@@ -690,7 +690,7 @@ pre a {
   border-radius: 2px;
   margin-top: 2px;
   height: 32px;
-  font-size: 15px;
+  font-size: 1rem;
   padding-left: 6px;
   background: white;
   border: none;
@@ -753,7 +753,7 @@ pre a {
 .selectDef {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 1rem;
   color: #707070;
 }
 
@@ -971,7 +971,7 @@ pre a {
   padding: 5px;
   width: 70px;
   color: #404040;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1073,7 +1073,7 @@ pre a {
 .activeChatLi #activeChatEdit {
   position: absolute;
   left: 52px;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: 2px;
   background: #f0f0f0;
   outline: none;
@@ -1121,7 +1121,7 @@ pre a {
 }
 
 #loadMask>div>div {
-  font-size: 40px;
+  font-size: 2rem;
   color: #909090;
 }
 
@@ -1265,7 +1265,7 @@ pre a {
 .presetModelCls select {
   height: 30px;
   margin-top: 2px;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .setSwitch {
