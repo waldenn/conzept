@@ -287,8 +287,8 @@ async function showPresentation( item, type ){
     else {
 
       // TODO: use these background-defaults from a field-property
-			if ( type === 'organism' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/005.svg` }
-			else if ( type === 'art-movement' ){ background = `https://${explore.host}${explore.base/app/explore2/assets/svg/backgrounds/001.svg`; }
+			if ( type === 'organism' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/005.svg`; }
+			else if ( type === 'art-movement' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg`; }
 			else if ( type === 'cultural-concept' ){ background = "#115699" }
 			else if ( type === 'meta-concept' ){ background = "#115699" }
 			else if ( type === 'location' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg`; }
