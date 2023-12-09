@@ -25,12 +25,14 @@ table tr > td:first-child {
 }
 
 table tr td:first-child::before {
+  display: inline-block;
   content: counter(rowNumber);
-  min-width: 1em;
+  width: 3.5em;
   margin-right: 2.5em;
-  border: 1px solid black;
-  border-radius: 0.2em;
+  text-align: right;
   padding: 0em 0.5em;
+  /* border: 1px solid black; */
+  /* border-radius: 0.2em; */
 }
 
 td .name {
