@@ -267,8 +267,8 @@ async function showPresentation( item, type ){
 
   // presentation configuration
   // TODO: use ${explore.base} below
-  if ( type === 'pubchem' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg`; }
-  else if ( type === 'mathematics' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/004.svg`; }
+  if ( type === 'substance' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg`; }
+  //else if ( type === 'mathematics' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/004.svg`; }
   else { 
 
     if ( valid( item.image ) ){
@@ -288,15 +288,14 @@ async function showPresentation( item, type ){
 
       // TODO: use these background-defaults from a field-property
 			if ( type === 'organism' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/005.svg`; }
-			else if ( type === 'art-movement' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg`; }
+			else if ( type === 'natural-concept' ){ background = "#115699" }
 			else if ( type === 'cultural-concept' ){ background = "#115699" }
 			else if ( type === 'meta-concept' ){ background = "#115699" }
 			else if ( type === 'location' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/001.svg`; }
-			else if ( type === 'geographical-structure' ){ background = "#115699" }
 			else if ( type === 'time' ){ background = `https://${explore.host}${explore.base}/app/explore2/assets/svg/backgrounds/003.svg`; }
-			else if ( type === 'organization' ){ background = "#115699" }
 			else if ( type === 'person' ){ background = "#115699" }
 			else if ( type === 'group' ){ background = "#115699" }
+			else if ( type === 'organization' ){ background = "#115699" }
 			else if ( type === 'work' ){ background = "#115699" }
 
     }
@@ -369,7 +368,6 @@ async function showPresentation( item, type ){
     }
 
     let ai_chat_slide       = '';
-    let ai_chat_quiz_slide  = '';
 
     if ( valid( explore.openai_enabled ) ){
 
@@ -397,7 +395,7 @@ async function showPresentation( item, type ){
 		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${item.title}&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
 		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
 
-    let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "/app/quiz/location/?${ item.qid }" ) ) )\n`;
+    //let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "/app/quiz/location/?${ item.qid }" ) ) )\n`;
 
     // conditional common-slides
 		let linkgraph_slide   = '';
@@ -426,6 +424,7 @@ async function showPresentation( item, type ){
 		// START of slide content
 
 		// COMMON SLIDES
+
 		if ( language === 'en' ){
 
 			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(simple)</h4>"\n    ( show \'link \'( "/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
@@ -458,11 +457,13 @@ async function showPresentation( item, type ){
 
     }
 
-		// TOPICAL SLIDES
-		if ( type === 'pubchem' ){
+    // MAIN-TAG SLIDES
 
-			slides.push( `  ( slide "${ item.title } ${ sub_name } <h2><span class='withborder'><a target='infoframe' style='text-decoration:none !important;' href='/app/wikipedia/?qid=Q83147'>${ ( valid( item.chemical_formula ) ? item.chemical_formula : '' ) }</a></span></h2>"\n    ( show \'chemical \'( ${ item.pubchem } ) ) )\n` );
+		if ( type === 'substance' ){
 
+      if ( valid( item.chemical_formula ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h2><span class='withborder'><a target='infoframe' style='text-decoration:none !important;' href='/app/wikipedia/?qid=Q83147'>${ ( valid( item.chemical_formula ) ? item.chemical_formula : '' ) }</a></span></h2>"\n    ( show \'chemical \'( ${ item.pubchem } ) ) )\n` ); }
+
+			slides.push( commons_slide );
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
 
@@ -471,41 +472,15 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
-			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PubChem</h3>"\n    ( show \'link \'( "https://pubchem.ncbi.nlm.nih.gov/compound/${ item.pubchem }" ) ) )\n` );
+			if ( valid( item.pubchem ) ){  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PubChem</h3>"\n    ( show \'link \'( "https://pubchem.ncbi.nlm.nih.gov/compound/${ item.pubchem }" ) ) )\n` ); }
+
 			if ( valid( item.chebi ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>ChEBI</h3>"\n    ( show \'link \'( "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:${ item.chebi }" ) ) )\n` ); }
 
 			slides.push( scholia_slide );
 			//slides.push( arxiv_slide );
 
 		}
-		else if ( type === 'mathematics' ){
 
-			if ( item.mathworld ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <br><h3>Wolfram MathWorld</h3>"\n    ( show \'link \'( "https://mathworld.wolfram.com/${item.mathworld}.html" ) ) )\n` ) };
-
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-
-			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>GeoGebra</h3>"\n    ( show \'link \'( "https://www.geogebra.org/search/${ title }" ) ) )\n` );
-
-			if ( language === 'en' ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>LibreText</h3>"\n    ( show \'link \'( "https://math.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n` ); }
-
-			slides.push( oer_commons_slide );
-
-			if ( item.msc2010_id ){ slides.push( `  ( slide "${ item.title } <h3>Mathematics Subject Classification</h3>"\n    ( show \'link \'( "https://mathscinet.ams.org/mathscinet/msc/msc2010.html?t=${ item.msc2010_id }" ) ) )\n` ) };
-
-			//slides.push( `  ( slide "${ item.title } <br><h3>Open Syllabus</h3>"\n    ( show \'link \'( "https://opensyllabus.org/results-list/titles?size=25&findWorks=${title}" ) ) )\n` );
-			slides.push( `  ( slide "${ item.title } <h3>Open Syllabus Galaxy</h3>"\n    ( show \'link \'( "https://galaxy.opensyllabus.org/#!search/courses/${title}" ) ) )\n` );
-
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-
-			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
-			//slides.push( arxiv_slide );
-
-			slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
-
-		}
 		else if ( type === 'organism' ){
 
 			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "/app/response/gbif-map.php?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
@@ -524,24 +499,16 @@ async function showPresentation( item, type ){
 			//slides.push( openalex_search_slide );
 
 		}
-		else if ( type === 'art-movement' ){
-
-			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
-			slides.push( commons_time_music_slide );
-			//slides.push( europeana_time_music_slide );
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
-			//slides.push( bing_images_slide );
-			slides.push( video_slide );
-			slides.push( linkgraph_slide );
-			slides.push( open_library_meta_slide );
-			slides.push( open_library_fulltext_slide );
-			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
-
-		}
 		else if ( type === 'cultural-concept' ){
 
+      if ( checkTag( item, 1, ["art-movement"] ) ){
+
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
+
+      }
+
 			slides.push( commons_time_music_slide );
+
 			//slides.push( europeana_time_music_slide );
 			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			//slides.push( bing_images_slide );
@@ -562,6 +529,25 @@ async function showPresentation( item, type ){
 		    if ( valid( item.stanford_encyclopedia_of_philosophy ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Stanford Encyclopedia of Philosophy</h3>"\n    ( show \'link \'( "https://plato.stanford.edu/entries/${ item.stanford_encyclopedia_of_philosophy }" ) ) )\n` ); }
 
 		    if ( valid( item.philpapers_topic ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PhilPapers topic</h3>"\n    ( show \'link \'( "https://philpapers.org/browse/${ item.philpapers_topic }" ) ) )\n` ); }
+
+      }
+
+      // mathematics
+      if ( checkTag( item, 1, "mathematics") ){
+
+        if ( item.mathworld ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <br><h3>Wolfram MathWorld</h3>"\n    ( show \'link \'( "https://mathworld.wolfram.com/${item.mathworld}.html" ) ) )\n` ) };
+
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>GeoGebra</h3>"\n    ( show \'link \'( "https://www.geogebra.org/search/${ title }" ) ) )\n` );
+
+        if ( language === 'en' ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>LibreText</h3>"\n    ( show \'link \'( "https://math.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n` ); }
+
+        slides.push( oer_commons_slide );
+
+        if ( item.msc2010_id ){ slides.push( `  ( slide "${ item.title } <h3>Mathematics Subject Classification</h3>"\n    ( show \'link \'( "https://mathscinet.ams.org/mathscinet/msc/msc2010.html?t=${ item.msc2010_id }" ) ) )\n` ) };
+
+        slides.push( `  ( slide "${ item.title } <h3>Open Syllabus Galaxy</h3>"\n    ( show \'link \'( "https://galaxy.opensyllabus.org/#!search/courses/${title}" ) ) )\n` );
+
+        slides.push( `  ( slide "${ item.title } <h3>EuDML</h3><h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://eudml.org/search/page?q=sc.general*op*l_0*c_0all_0eq%253A1.${title}&qt=SEARCH" ) ) )\n` );
 
       }
 
@@ -620,7 +606,7 @@ async function showPresentation( item, type ){
 			//slides.push( openalex_search_slide );
 
 		}
-		else if ( type === 'geographical-structure' ){
+		else if ( type === 'natural-concept' ){
 
 			slides.push( commons_slide );
 
@@ -628,7 +614,7 @@ async function showPresentation( item, type ){
 
 			slides.push( linkgraph_slide );
 
-      slides.push( quiz_location_slide );
+      //slides.push( quiz_location_slide );
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
@@ -743,8 +729,8 @@ async function showPresentation( item, type ){
 		}
 		else if ( type === 'time' ){
 
-			// TODO: put this time-space-link code somewhere central
-			// not bullet-proof, but we need some 'relevance'-filters before showing the timspace-button (as most events don't have the required data to show a timeline)
+			// TODO: put this timespace-link code somewhere central
+			// not bullet-proof, but we need some 'relevance'-filters before showing the timespace-button (as most events don't have the required data to show a timeline)
 			if (  valid( item.category ) || ( valid( item.followed_by ) || valid( item.part_of ) || valid( item.has_parts ) || valid( item.list_of ) ) ){
 
 				let used_qid = item.qid;
@@ -804,7 +790,6 @@ async function showPresentation( item, type ){
 
     // common end slides
     slides.push( ai_chat_slide );
-    slides.push( ai_chat_quiz_slide );
     slides.push( similar_slide );
 
 		/*

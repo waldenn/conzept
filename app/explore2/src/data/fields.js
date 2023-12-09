@@ -19860,12 +19860,12 @@ if ( valid( item.found_in_taxon ) ){
 
 /* PRESENTATIONS */
 
-'presentation_work' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "work") && !isEmbedded()',
+'presentation_substance' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "substance") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; work &quot; )',
+  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; substance &quot; )',
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
@@ -19873,43 +19873,24 @@ if ( valid( item.found_in_taxon ) ){
   text: 'compound',
   section: ['meta'],
   rank: [2],
-  headline_create: 'valid( item.presentation_work )',
-  headline_rank: 722,
-},
-
-'presentation_pubchem' : {
-  //create_condition: 'valid( item.tags[0] == "substance" )',
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.pubchem ) && !isEmbedded()',
-  title: 'presentation',
-  prop: '',
-  type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; pubchem &quot; )',
-  mv: false,
-  url: '',
-  icon: 'fa-solid fa-chalkboard-user',
-  //icon: 'fa-brands fa-medium',
-  text: 'compound',
-  section: ['meta'],
-  rank: [2],
-  headline_create: 'valid( item.presentation_pubchem )',
+  headline_create: 'valid( item.presentation_substance )',
   headline_rank: 700,
 },
 
-'presentation_mathematics' : {
-  create_condition: 'checkTag( item, 1, "mathematics") && !isEmbedded()',
+'presentation_meta_concept' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded() && ! valid( item.presentation_mathematics )',
   title: 'presentation',
   prop: '',
   type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; mathematics &quot; ) && !isEmbedded()',
+  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; meta-concept &quot; )',
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
-  //icon: 'fa-brands fa-medium',
-  text: 'mathematics',
+  text: 'meta-concept',
   section: ['meta'],
   rank: [2],
-  headline_create: 'valid( item.presentation_mathematics )',
-  headline_rank: 705,
+  headline_create: 'valid( item.presentation_meta_concept )',
+  headline_rank: 715,
 },
 
 'presentation_organism' : {
@@ -19928,21 +19909,21 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 710,
 },
 
-'presentation_art_movement' : {
-  //create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 1, ["art-movement"] )  && !isEmbedded()',
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && listed( item.instances, indicators.art_movement.value ) && !isEmbedded()',
+'presentation_work' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "work") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot;); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; art-movement &quot; )',
+  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; work &quot; )',
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
-  text: 'art movement',
+  //icon: 'fa-brands fa-medium',
+  text: 'compound',
   section: ['meta'],
   rank: [2],
-  headline_create: 'valid( item.presentation_art_movement )',
-  headline_rank: 715,
+  headline_create: 'valid( item.presentation_work )',
+  headline_rank: 722,
 },
 
 'presentation_cultural_concept' : {
@@ -19958,22 +19939,6 @@ if ( valid( item.found_in_taxon ) ){
   section: ['meta'],
   rank: [2],
   headline_create: 'valid( item.presentation_cultural_concept )',
-  headline_rank: 715,
-},
-
-'presentation_meta_concept' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded() && ! valid( item.presentation_mathematics )',
-  title: 'presentation',
-  prop: '',
-  type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; meta-concept &quot; )',
-  mv: false,
-  url: '',
-  icon: 'fa-solid fa-chalkboard-user',
-  text: 'meta-concept',
-  section: ['meta'],
-  rank: [2],
-  headline_create: 'valid( item.presentation_meta_concept )',
   headline_rank: 715,
 },
 
@@ -19993,20 +19958,19 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 720,
 },
 
-'presentation_geographical_structure' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 1, "geographical-structure") && !isEmbedded()',
-  //create_condition: 'checkTag( item, 1, "geographical-structure") && valid( item.instance_qid )',
+'presentation_natural_concept' : {
+  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "natural-concept") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
-  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; geographical-structure &quot; )',
+  code: 'if ( valid( explore.synth ) ){ explore.synth.cancel(); } startSpeakingArticle( &quot;${ item.title }&quot;, &quot;${ item.qid }&quot;, &quot;${ explore.language }&quot; ); showPresentation( &quot;${ encodeURIComponent( JSON.stringify( item ) ) }&quot;, &quot; natural-concept &quot; )',
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
-  text: 'geographical-structure',
+  text: 'natural concept',
   section: ['meta'],
   rank: [2],
-  headline_create: 'valid( item.presentation_geographical_structure )',
+  headline_create: 'valid( item.presentation_natural_concept )',
   headline_rank: 725,
 },
 

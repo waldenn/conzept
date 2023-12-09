@@ -14,7 +14,7 @@ body {
 
 html, body {
   font-family: Hind !important;
-  font-size: 14px;
+  font-size: 16px;
   background: #fbfaf9;
   text-rendering: optimizeLegibility;
 }
@@ -100,7 +100,7 @@ p {
 }
 
 .markdown-body {
-  font-size: 1rem !important;
+  font-size: inherit;
 }
 
 .markdown-body p {
@@ -292,14 +292,17 @@ pre a {
 }
 
 .messages {
-  font-size: 1rem;
+  /*font-size: 1rem;*/
   color: #343541;
   text-align: center;
+  margin: 0.4em 1.2em;
 }
 
 #chatlog {
+  overflow: hidden;
   word-wrap: break-word;
   text-align: start;
+  margin-bottom: 4em;
 }
 
 #chatlog>div {
@@ -767,6 +770,7 @@ pre a {
 }
 
 .mdOption {
+  display: none;
   position: absolute;
   right: 5px;
   bottom: 0px;
