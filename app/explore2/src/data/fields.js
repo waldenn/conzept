@@ -581,6 +581,34 @@ conzept_fields = {
   headline_rank: 375,
 },
 
+'nci_thesaurus' : {
+  title: 'NCI thesaurus ID',
+  prop: '1748',
+  type: 'symbol-string',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'NCI thesaurus',
+  section: 'info',
+  rank: '301748',
+},
+
+'nci_thesaurus_hierarchy' : {
+  create_condition: 'valid( item.nci_thesaurus )',
+  title: 'NCI Thesaurus hierarchy',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://ncit.nci.nih.gov/ncitbrowser/pages/hierarchy.jsf?vih=true&code=${ item.nci_thesaurus }&ns=ncit&ontology_display_name=NCI_Thesaurus',
+  icon: 'fa-solid fa-folder-tree',
+  text: 'NCI hierarchy',
+  section: ['science-biology','main'],
+  rank: [635,8515],
+  headline_create: 'valid( item.nci_thesaurus_hierarchy ) && !valid( item.term_anatomica_id )',
+  headline_type: 'link',
+  headline_rank: 271,
+},
+
 'bacdive' : {
   title: 'BacDive microorganism',
   prop: '2946',
@@ -141040,19 +141068,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'pinyin transliteration',
   section: 'info',
   rank: '301721',
-  auto: true,
-},
-
-'nci_thesaurus' : {
-  title: 'NCI Thesaurus',
-  prop: '1748',
-  type: 'symbol-string',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'NCI Thesaurus',
-  section: 'info',
-  rank: '301748',
   auto: true,
 },
 
