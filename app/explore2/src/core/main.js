@@ -130,6 +130,7 @@ const explore = {
 	swiperLimit         : 2,                // only used on mobile
   preventSliding      : false,            // to allow input-search-submits to stay on the same slide
   windowName          : window.name || '',// used to check if this explore-window is in "infoframeSplit2"
+  internet_available  : true,
   deviceOrientation   : undefined,
   splitter            : undefined,
   splitterWidth       : undefined,

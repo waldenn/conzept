@@ -515,6 +515,18 @@ conzept_fields = {
   rank: [290,8880],
 },
 
+'gene_ontology' : {
+  title: 'Gene Ontology ID',
+  prop: '686',
+  type: 'url',
+  mv: false,
+  url: 'http://amigo.geneontology.org/amigo/term/${item.gene_ontology}',
+  icon: 'fa-solid fa-dna',
+  text: 'gene ontology',
+  section: ['science-biology','main'],
+  rank: [160,8650],
+},
+
 'protein_id' : {
   render_condition: false,
   title: 'protein data bank ID',
@@ -525,6 +537,31 @@ conzept_fields = {
   text: '',
   section: '',
   rank: 1,
+},
+
+'pdb_ligand' : {
+  title: 'PDB ligand',
+  prop: '3636',
+  type: 'link',
+  mv: false,
+  url_format: 'https://www.rcsb.org/ligand/$1',
+  url: '',
+  icon: 'fa-solid fa-atom',
+  text: 'PDB ligand',
+  section: ['science-biology','main'],
+  rank: [233,8853],
+},
+
+'bacdive' : {
+  title: 'BacDive microorganism',
+  prop: '2946',
+  type: 'url',
+  mv: false,
+  url: 'https://bacdive.dsmz.de/strain/${item.bacdive}',
+  icon: 'fa-solid fa-virus',
+  text: 'BacDive',
+  section: ['science-biology','main'],
+  rank: [220,8820],
 },
 
 'pdb_rcsb' : {
@@ -551,6 +588,32 @@ conzept_fields = {
   text: 'EBI protein',
   section: ['science-biology','main'],
   rank: [240,8860],
+},
+
+'pdb_cath_protein' : {
+  create_condition: 'valid( item.protein_id )',
+  title: 'CATH protein - Protein Structure Classification Database',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'http://www.cathdb.info/search?q=${item.protein_id}',
+  icon: 'fa-solid fa-atom',
+  text: 'CATH protein',
+  section: ['science-biology','main'],
+  rank: [245,8865],
+},
+
+'pdb_gene_ontology_term' : {
+  create_condition: 'valid( item.gene_ontology )',
+  title: 'CATH Gene Ontology term',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'http://www.cathdb.info/search?q=${item.gene_ontology}',
+  icon: 'fa-solid fa-dna',
+  text: 'CATH gene',
+  section: ['science-biology','main'],
+  rank: [247,8867],
 },
 
 'aopwiki_search' : {
@@ -9955,18 +10018,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'afflicts',
   section: ['science-biology','main'],
   rank: [600,7700],
-},
-
-'gene_ontology' : {
-  title: 'Gene Ontology ID',
-  prop: '686',
-  type: 'url',
-  mv: false,
-  url: 'http://amigo.geneontology.org/amigo/term/${item.gene_ontology}',
-  icon: 'fa-solid fa-dna',
-  text: 'gene ontology',
-  section: ['science-biology','main'],
-  rank: [160,8650],
 },
 
 'genome_browser' : {
@@ -50877,20 +50928,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'bacdive' : {
-  title: 'BacDive',
-  prop: '2946',
-  type: 'url',
-  mv: false,
-  url_format: 'https://bacdive.dsmz.de/strain/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'BacDive',
-  section: ['library-identity'],
-  rank: [22946],
-  auto: true,
-},
-
 'estonian_cultural_monument' : {
   title: 'Estonian cultural monument',
   prop: '2948',
@@ -57361,20 +57398,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Peakbagger area',
   section: ['library-identity'],
   rank: [23635],
-  auto: true,
-},
-
-'pdb_ligand' : {
-  title: 'PDB ligand',
-  prop: '3636',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.rcsb.org/ligand/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'PDB ligand',
-  section: ['library-identity'],
-  rank: [23636],
   auto: true,
 },
 

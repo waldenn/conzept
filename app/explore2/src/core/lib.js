@@ -10671,3 +10671,30 @@ function clearImagePreview(){
 	$('#preview').empty();
 
 }
+
+function checkNetworkStatus(){
+
+  if ( navigator.onLine && explore.internet_available === false ) { // online
+
+    explore.internet_available = true;
+
+  }
+  if ( ! navigator.onLine && explore.internet_available === true ) { // offline
+
+    explore.internet_available = false;
+
+    $.toast({
+      heading: 'no internet connection',
+      text: 'please check your network connection',
+      hideAfter : 10000,
+      stack : 1,
+      showHideTransition: 'slide',
+      icon: 'warning'
+    })
+
+  }
+
+};
+
+window.addEventListener('online', checkNetworkStatus );
+window.addEventListener('offline', checkNetworkStatus );

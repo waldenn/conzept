@@ -409,6 +409,7 @@ pre a {
 
 #chatinput:focus {
   background: #fffefe;
+  outline: 2px solid #4a89c07a;
 }
 
 .bottom_wrapper {
@@ -505,6 +506,10 @@ pre a {
   /*cursor: not-allowed;*/
 }
 
+#speechInput:hover {
+  background: #1e5688cc;
+}
+
 .center-icon {
   padding-top: 1em;
 }
@@ -563,7 +568,7 @@ pre a {
 }
 
 .activeSendBtn:hover {
-  background-color: #90c050 !important;
+  background-color: #85ae4f !important;
 }
 
 #clearConv {
