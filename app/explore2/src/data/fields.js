@@ -5133,7 +5133,7 @@ conzept_fields = {
 },
 
 'fma' : {
-  create_trigger: 'if ( item.tags[0] !== "substance" && !valid( item.pubchem ) ){ setTags( item, [ "natural-concept", "anatomy" ] ) }',
+  create_trigger: 'if ( item.tags[0] !== "substance" && !valid( item.pubchem ) && !listed( item.instances, indicators.cell.value ) ){ setTags( item, [ "natural-concept", "anatomy" ] ) }', // exclude substances and cell-types
   title: 'Foundational Model of Anatomy',
   prop: '1402',
   type: 'link',
