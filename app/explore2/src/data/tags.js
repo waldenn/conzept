@@ -393,6 +393,10 @@ var conzept_tags = {
     text : "organism",
     icon : ["fa-solid fa-certificate"],
     sub : {
+      "cell-line" : {
+        text : "cell line",
+        icon : ["fa-solid fa-spinner"],
+      },
       "virus" : {
         text : "virus",
         icon : ["fa-solid fa-virus"],

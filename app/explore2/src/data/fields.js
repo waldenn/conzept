@@ -552,6 +552,18 @@ conzept_fields = {
   rank: [233,8853],
 },
 
+'cellosaurus_id' : {
+  title: 'Cellosaurus ID - cell line',
+  prop: '3289',
+  type: 'link',
+  mv: false,
+  url: 'https://www.cellosaurus.org/${item.cellosaurus_id}',
+  icon: 'fa-solid fa-spinner',
+  text: 'Cellosaurus cell line',
+  section: ['science-biology','main'],
+  rank: [217,8817],
+},
+
 'bacdive' : {
   title: 'BacDive microorganism',
   prop: '2946',
@@ -53878,20 +53890,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'World Spider Catalog',
   section: ['library-identity'],
   rank: [23288],
-  auto: true,
-},
-
-'cellosaurus' : {
-  title: 'Cellosaurus',
-  prop: '3289',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.cellosaurus.org/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Cellosaurus',
-  section: ['library-identity'],
-  rank: [23289],
   auto: true,
 },
 
