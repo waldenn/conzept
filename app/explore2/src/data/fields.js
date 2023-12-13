@@ -562,6 +562,8 @@ conzept_fields = {
   text: 'Cellosaurus cell line',
   section: ['science-biology','main'],
   rank: [217,8817],
+  headline_create: 'valid( item.cellosaurus_id )',
+  headline_rank: 375,
 },
 
 'bacdive' : {
@@ -603,7 +605,7 @@ conzept_fields = {
   section: ['science-biology','main'],
   rank: [240,8860],
   headline_create: 'valid( item.pdb_ebi )',
-  headline_rank: 370,
+  headline_rank: 372,
 },
 
 'pdb_cath_protein' : {
