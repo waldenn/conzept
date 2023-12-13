@@ -558,7 +558,7 @@ conzept_fields = {
   type: 'link',
   mv: false,
   url: 'https://www.cellosaurus.org/${item.cellosaurus_id}',
-  icon: 'fa-solid fa-spinner',
+  icon: 'fa-solid fa-circle-dot',
   text: 'Cellosaurus cell line',
   section: ['science-biology','main'],
   rank: [217,8817],

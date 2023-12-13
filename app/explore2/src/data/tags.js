@@ -395,7 +395,7 @@ var conzept_tags = {
     sub : {
       "cell-line" : {
         text : "cell line",
-        icon : ["fa-solid fa-spinner"],
+        icon : ["fa-solid fa-circle-dot"],
       },
       "virus" : {
         text : "virus",
