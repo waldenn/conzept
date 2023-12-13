@@ -393,6 +393,10 @@ var conzept_tags = {
     text : "organism",
     icon : ["fa-solid fa-certificate"],
     sub : {
+      "cell" : {
+        text : "cell type",
+        icon : ["fa-solid fa-circle-dot"],
+      },
       "cell-line" : {
         text : "cell line",
         icon : ["fa-solid fa-circle-dot"],
