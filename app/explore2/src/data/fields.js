@@ -1722,7 +1722,7 @@ conzept_fields = {
   icon: 'fa-regular fa-newspaper',
   text: 'Open Citations',
   section: ['science-search-tools'],
-  rank: [169],
+  rank: [165],
 },
 
 'gotriple_search' : {
@@ -2934,6 +2934,7 @@ conzept_fields = {
   rank: [30, 30],
 },
 
+/*
 'wordmap' : {
   create_condition: false, // FIXME: D3.js error breaks app
   title: 'translated title map',
@@ -2945,6 +2946,19 @@ conzept_fields = {
   text: 'translations map',
   section: 'science-language',
   rank: 10,
+},
+*/
+
+'babelnet' : {
+  title: 'BabelNet: encyclopedic dictionary',
+  prop: '2581',
+  type: 'link',
+  mv: false,
+  url: 'https://babelnet.org/synset?id=bn:${item.babelnet}&lang=${explore.language}',
+  icon: 'fa-solid fa-language',
+  text: 'BabelNet',
+  section: ['science-language'],
+  rank: [19],
 },
 
 'ipfs_search' : {
@@ -3926,6 +3940,32 @@ conzept_fields = {
   text: 'LibreTexts statistics',
   section: 'education-assistance',
   rank: 35.8,
+},
+
+'libretext_business' : {
+  create_condition: true,
+  title: 'LibreTexts business',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://biz.libretexts.org/Special:Search?qid=&fpid=&fpth=&query=${title_quoted}&type=wiki',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'LibreTexts business',
+  section: 'education-assistance',
+  rank: 35.10,
+},
+
+'libretext_k12' : {
+  create_condition: true,
+  title: 'LibreTexts K12',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://k12.libretexts.org/Special:Search?qid=&fpid=&fpth=&query=${title_quoted}&type=wiki',
+  icon: 'fa-solid fa-chalkboard-user',
+  text: 'LibreTexts K12',
+  section: 'education-assistance',
+  rank: 35.13,
 },
 
 'serendipity_oer' : {
@@ -7981,7 +8021,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-newspaper',
   text: 'Open Review ID',
   section: ['science-search-tools','main'],
-  rank: [165,8530],
+  rank: [168,8530],
 },
 
 'openreview_search' : {
@@ -13579,7 +13619,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'Gigphy meme search',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://giphy.com/search/${title_quoted}',
   icon: 'fa-regular fa-laugh-squint',
@@ -13588,15 +13628,15 @@ if ( valid( item.found_in_taxon ) ){
   rank: 500,
 },
 
-'me.me' : {
+'know_your_memes' : {
   create_condition: true,
-  title: 'Me.me meme search',
+  title: 'Know Your Memes: meme info',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
-  url: 'https://me.me/t/${title_quoted}',
+  url: 'https://knowyourmeme.com/search?q=${title_quoted}',
   icon: 'fa-regular fa-laugh-squint',
-  text: 'Me.me',
+  text: 'Know Your Memes',
   section: 'media-image',
   rank: 501,
 },
@@ -16153,6 +16193,21 @@ if ( valid( item.found_in_taxon ) ){
   rank: [200,28799],
 },
 
+/*
+'caption_generator_video_memes' : {
+  create_condition: true,
+  title: 'Caption Generator: video memes',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.captiongenerator.com/search?q=${title_quoted}',
+  icon: 'fa-regular fa-laugh-squint',
+  text: 'Caption Generator',
+  section: 'media-image',
+  rank: 300,
+},
+*/
+
 'culture_unplugged' : {
   create_condition: true,
   title: 'Culture Unplugged documentaries',
@@ -16798,7 +16853,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-newspaper',
   text: 'PubPeer',
   section: ['science-search-tools'],
-  rank: [169],
+  rank: [165],
 },
 
 'openalex' : {
@@ -48270,20 +48325,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'UCSC Genome Browser assembly',
   section: ['library-identity'],
   rank: [22576],
-  auto: true,
-},
-
-'babelnet' : {
-  title: 'BabelNet',
-  prop: '2581',
-  type: 'url',
-  mv: false,
-  url_format: 'https://babelnet.org/synset?id=bn:$1&lang=EN',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'BabelNet',
-  section: ['library-identity'],
-  rank: [22581],
   auto: true,
 },
 

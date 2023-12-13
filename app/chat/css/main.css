@@ -482,6 +482,29 @@ pre a {
   cursor: not-allowed;
 }
 
+#speechInput {
+  display: none;
+  width: 80px;
+  height: 47px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: #2977bccc;
+  border: none;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  float: right;
+  position: absolute;
+  right: 155px;
+  bottom: 10px;
+  /*cursor: not-allowed;*/
+}
+
 .center-icon {
   padding-top: 1em;
 }
