@@ -27,7 +27,9 @@ $( document ).ready(function() {
 
   if ( noCoverFound && !isMobile ){
 
-		renderDynamicBackground();
+    colorBackground();
+
+		//canvasBackground();
 
   }
 	else {
@@ -140,7 +142,20 @@ function setBackgroundColor( url ){
 
 }
 
-function renderDynamicBackground(){
+function colorBackground(){
+
+  const angle = "360";
+  const c1    = getRandomColorHex();
+  const c2    = getRandomColorHex();
+
+  $('body').css({
+    background: `linear-gradient( ${angle}deg, ${c1} 15%, ${c2} 85%)`,
+    filter: "grayscale(30%)",
+  })
+
+}
+
+function canvasBackground(){
 
 	setup();
 	draw();
