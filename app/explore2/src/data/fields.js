@@ -552,7 +552,22 @@ conzept_fields = {
   rank: [233,8853],
 },
 
+'cell_ontology' : {
+  create_trigger: 'setTags( item, [ "organism", "cell" ] )',
+  title: 'Cell Ontology',
+  prop: '7963',
+  type: 'url',
+  mv: false,
+  url_format: 'http://purl.obolibrary.org/obo/$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'Cell Ontology',
+  section: ['library-identity'],
+  rank: [27963],
+},
+
 'cellosaurus_id' : {
+  create_trigger: 'setTags( item, [ "organism", "cell-line" ] )',
   title: 'Cellosaurus ID - cell line',
   prop: '3289',
   type: 'link',
@@ -102333,20 +102348,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Dictionnaire des femmes de',
   section: ['library-identity'],
   rank: [27962],
-  auto: true,
-},
-
-'cell_ontology' : {
-  title: 'Cell Ontology',
-  prop: '7963',
-  type: 'url',
-  mv: false,
-  url_format: 'http://purl.obolibrary.org/obo/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Cell Ontology',
-  section: ['library-identity'],
-  rank: [27963],
   auto: true,
 },
 
