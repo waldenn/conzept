@@ -587,6 +587,8 @@ conzept_fields = {
   text: 'RCSB protein',
   section: ['science-biology','main'],
   rank: [230,8850],
+  headline_create: 'valid( item.pdb_rcsb )',
+  headline_rank: 370,
 },
 
 'pdb_ebi' : {
@@ -600,6 +602,8 @@ conzept_fields = {
   text: 'EBI protein',
   section: ['science-biology','main'],
   rank: [240,8860],
+  headline_create: 'valid( item.pdb_ebi )',
+  headline_rank: 370,
 },
 
 'pdb_cath_protein' : {
@@ -4980,6 +4984,8 @@ conzept_fields = {
   text: 'PubChem',
   section: ['science-chemistry','main'],
   rank: [40,8830],
+  headline_create: 'valid( item.pubchem )',
+  headline_rank: 360,
 },
 
 'inchikey' : {
