@@ -18,9 +18,11 @@ const app = {
 
   data:                 [],
 
+  recognition:     			[],
+
 };
 
-$(document).ready(function() {
+$(document).ready(function(){
 
   if ( detectMobile() ){
 
@@ -62,6 +64,8 @@ $(document).ready(function() {
   }
 
   scrollToBottom();
+
+	setupSpeechRecognition();
 
 });
 
@@ -1195,7 +1199,9 @@ const streamGen = async(long) => {
 
   // FIXME: somewhere before this code there is a bug removing the "app.data[0]" object
   if ( !valid( app.data[0] )  ) {
+
     console.log('fixme');
+
     app.data[0] = {
 
       content : app.tutor_prompt,
@@ -1555,6 +1561,12 @@ const genFunc = function() {
     generateText(message);
   }
 
+	if ( valid( app.recognition ) ){
+
+		app.recognition.abort(); // reset speech input by stopping the API
+
+	}
+
 };
 
 sendBtnEle.onclick = genFunc;
@@ -1682,4 +1694,138 @@ const notyf = new Notyf({
   }]
 });
 
+function setupSpeechRecognition(){
 
+	// Speech Recognition API: https://caniuse.com/speech-recognition
+	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+	if ( SpeechRecognition ) {
+
+		$('#speechInput').show();
+
+		const searchFormInput = document.querySelector('#chatinput');
+
+		app.recognition							= new SpeechRecognition();
+		app.recognition.continuous	= true;
+		app.recognition.lang				= app.language;
+
+		const micBtn = document.querySelector('#microphone-icon');
+		const micIcon = micBtn.firstElementChild;
+
+		window.micBtnClick = function(){
+
+			if( micIcon.classList.contains('fa-microphone') ){
+
+				app.recognition.start();
+
+			}
+			else {
+
+				app.recognition.stop();
+
+			}
+		}
+
+		app.recognition.addEventListener('start', startSpeechRecognition );
+
+		function startSpeechRecognition(){
+
+			micIcon.classList.remove('fa-microphone');
+			micIcon.classList.add('fa-microphone-slash');
+			searchFormInput.focus();
+
+		}
+
+		app.recognition.addEventListener('end', endSpeechRecognition );
+
+		function endSpeechRecognition(){
+
+			micIcon.classList.remove('fa-microphone-slash');
+			micIcon.classList.add('fa-microphone');
+			searchFormInput.focus();
+			//console.log('Speech recognition service disconnected');
+
+		}
+
+		// triggered when user stops talking
+		app.recognition.addEventListener('result', resultOfSpeechRecognition);
+
+		function resultOfSpeechRecognition(event) {
+
+			const current			= event.resultIndex;
+			const transcript	= event.results[current][0].transcript; // latest spoken text
+
+			//console.log( event.results );
+			
+			if (
+				transcript.toLowerCase().trim() === 'stop recording' ||
+				transcript.toLowerCase().trim() === 'stop'
+			){
+
+				app.recognition.stop();
+
+			}
+			else if ( !searchFormInput.value ){ // user stopped speaking, insert spoken text
+
+				let spoken_text = '';
+
+				Object.entries( event.results ).forEach(([key, value]) => {
+
+					spoken_text += value[0].transcript;
+
+				});
+
+				//console.log( spoken_text );
+				searchFormInput.value = spoken_text.replace(/(\r\n|\n|\r)/gm, '');;
+
+			}
+			else {
+
+				if (
+					transcript.toLowerCase().trim() === 'go' ||
+					transcript.toLowerCase().trim() === 'ask' ||
+					transcript.toLowerCase().trim() === 'submit' ||
+					transcript.toLowerCase().trim() === 'search'
+				){
+
+    			$('#sendbutton').click();
+
+				}
+				else if (
+					transcript.toLowerCase().trim() === 'reset input' ||
+					transcript.toLowerCase().trim() === 'reset' ||
+					transcript.toLowerCase().trim() === 'clear input' ||
+					transcript.toLowerCase().trim() === 'clear'
+				){
+
+					searchFormInput.value = '';
+
+					app.recognition.abort(); // reset speech input by stopping the API
+
+				}
+				else { // use spoken text
+
+					let spoken_text = '';
+
+					Object.entries( event.results ).forEach(([key, value]) => {
+
+						spoken_text += value[0].transcript;
+
+					});
+
+					searchFormInput.value = spoken_text.replace(/(\r\n|\n|\r)/gm, '');;
+
+				}
+
+			}
+
+		}
+		
+	}
+	else { // no speech recognition support
+
+		//console.log('Your Browser does not support speech Recognition');
+
+	}
+
+}
