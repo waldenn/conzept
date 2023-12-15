@@ -7097,7 +7097,7 @@ if ( valid( item.found_in_taxon ) ){
   title: '3D human anatomy view',
   prop: '',
   type: 'link-split',
-  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&ta98=${item.term_anatomica_id}&qid=${item.qid}#model=https://${explore.host}/app/explore2/assets/models/gltf/human_anatomy.gltf',
+  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&ta98=${item.term_anatomica_id}&qid=${item.qid}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf',
   mv: false,
   icon: 'fa-solid fa-cube',
   text: '3D anatomy',
