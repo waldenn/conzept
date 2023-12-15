@@ -1,0 +1,163 @@
+@font-face {
+    font-family: "O3DVIcons";
+    src: url("O3DVIcons/O3DVIcons.woff?d27bdb5af135068ed4a9350e285e132e") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: O3DVIcons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow_down:before {
+    content: "\f101";
+}
+.icon-arrow_left:before {
+    content: "\f102";
+}
+.icon-arrow_right:before {
+    content: "\f103";
+}
+.icon-arrow_up:before {
+    content: "\f104";
+}
+.icon-camera_orthographic:before {
+    content: "\f105";
+}
+.icon-camera_perspective:before {
+    content: "\f106";
+}
+.icon-close:before {
+    content: "\f107";
+}
+.icon-collapse:before {
+    content: "\f108";
+}
+.icon-dark_mode:before {
+    content: "\f109";
+}
+.icon-deisolate:before {
+    content: "\f10a";
+}
+.icon-details:before {
+    content: "\f10b";
+}
+.icon-donate:before {
+    content: "\f10c";
+}
+.icon-download:before {
+    content: "\f10d";
+}
+.icon-expand:before {
+    content: "\f10e";
+}
+.icon-export:before {
+    content: "\f10f";
+}
+.icon-feedback:before {
+    content: "\f110";
+}
+.icon-file_download:before {
+    content: "\f111";
+}
+.icon-files:before {
+    content: "\f112";
+}
+.icon-fit:before {
+    content: "\f113";
+}
+.icon-fix_up_off:before {
+    content: "\f114";
+}
+.icon-fix_up_on:before {
+    content: "\f115";
+}
+.icon-flat_list:before {
+    content: "\f116";
+}
+.icon-flip:before {
+    content: "\f117";
+}
+.icon-github:before {
+    content: "\f118";
+}
+.icon-hidden:before {
+    content: "\f119";
+}
+.icon-info:before {
+    content: "\f11a";
+}
+.icon-isolate:before {
+    content: "\f11b";
+}
+.icon-light_mode:before {
+    content: "\f11c";
+}
+.icon-materials:before {
+    content: "\f11d";
+}
+.icon-measure_angle:before {
+    content: "\f11e";
+}
+.icon-measure_distance_parallel:before {
+    content: "\f11f";
+}
+.icon-measure_distance:before {
+    content: "\f120";
+}
+.icon-measure:before {
+    content: "\f121";
+}
+.icon-meshes:before {
+    content: "\f122";
+}
+.icon-missing_files:before {
+    content: "\f123";
+}
+.icon-model:before {
+    content: "\f124";
+}
+.icon-open_url:before {
+    content: "\f125";
+}
+.icon-open:before {
+    content: "\f126";
+}
+.icon-print3d:before {
+    content: "\f127";
+}
+.icon-settings:before {
+    content: "\f128";
+}
+.icon-share:before {
+    content: "\f129";
+}
+.icon-snapshot:before {
+    content: "\f12a";
+}
+.icon-tree_mesh:before {
+    content: "\f12b";
+}
+.icon-tree_view:before {
+    content: "\f12c";
+}
+.icon-twitter:before {
+    content: "\f12d";
+}
+.icon-up_y:before {
+    content: "\f12e";
+}
+.icon-up_z:before {
+    content: "\f12f";
+}
+.icon-visible:before {
+    content: "\f130";
+}
+.icon-warning:before {
+    content: "\f131";
+}

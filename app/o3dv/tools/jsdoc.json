@@ -1,0 +1,12 @@
+{
+	"source": {
+		"include": ["source/engine"]
+	},
+    "opts": {
+        "template": "node_modules/docdash",
+        "encoding": "utf8",
+        "explain": true,
+        "recurse": true,
+        "verbose": false
+    }
+}

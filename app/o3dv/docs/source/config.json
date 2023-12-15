@@ -1,0 +1,51 @@
+{
+    "page_groups" : [
+        {
+            "name" : "Pages",
+            "pages" : [
+                {
+                    "name" : "Home",
+                    "url" : "index.html"
+                },
+                {
+                    "name" : "GitHub",
+                    "url" : "https://github.com/kovacsv/Online3DViewer"
+                }
+            ]
+        },
+        {
+            "name" : "Engine Usage",
+            "pages" : [
+                {
+                    "name" : "Installation",
+                    "url" : "Installation.html"
+                },
+                {
+                    "name" : "Usage",
+                    "url" : "Usage.html"
+                },
+                {
+                    "name" : "Migration Guide",
+                    "url" : "MigrationGuide.html"
+                }
+            ]
+        },
+        {
+            "name" : "Contribution",
+            "pages" : [
+                {
+                    "name" : "Contribution Guidelines",
+                    "url" : "ContributionGuidelines.html"
+                },
+                {
+                    "name" : "Environment Setup",
+                    "url" : "EnvironmentSetup.html"
+                }
+            ]
+        }
+    ],
+    "external_refs" : {
+        "HTMLElement" : "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement",
+        "File" : "https://developer.mozilla.org/en-US/docs/Web/API/File"
+    }
+}

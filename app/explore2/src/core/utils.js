@@ -663,6 +663,8 @@ function openInFrame( url ){
 
 }
 
+window.openInFrame = openInFrame(); // workaround for some apps (due to their build-time checks)
+
 function openLink( url_string ){ // also supports links which require *late*-binding variable-substitution
 
   //console.log( url_string );
@@ -735,6 +737,8 @@ function getParameterByName( name, url ) {
   return stripHtml( string );
 
 }
+
+window.getParameterByName = getParameterByName(); // workaround for some apps (due to their build-time checks)
 
 function setParameter( name, value, hash ){
 
