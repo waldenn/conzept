@@ -98,8 +98,8 @@ export class TreeViewSingleItem extends TreeViewItem
             }
 
             // CONZEPT PATCH
-            console.log( 'label: ', this.mainElement.textContent, window.getParameter('ta98'), window.getParameter('qid')  ); // leaf-element
-            window.openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ window.getParameter('l') }&qid=&embedded=#` );
+            console.log( 'label: ', this.mainElement.textContent, getParameter('ta98'), getParameter('qid')  ); // leaf-element
+            openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameter('l') }&qid=&embedded=#` );
 
         } else {
             this.mainElement.classList.remove ('selected');
@@ -202,7 +202,7 @@ export class TreeViewGroupItem extends TreeViewItem
 
                 // CONZEPT PATCH
                 console.log( 'label: ', this.mainElement.textContent ); // folder
-                window.openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ window.getParameter('l') }&qid=&embedded=#` );
+                openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameter('l') }&qid=&embedded=#` );
 
             });
         }
