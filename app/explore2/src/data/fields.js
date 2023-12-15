@@ -595,7 +595,7 @@ conzept_fields = {
 
 'nci_thesaurus_hierarchy' : {
   create_condition: 'valid( item.nci_thesaurus )',
-  title: 'NCI Thesaurus hierarchy',
+  title: 'NCI thesaurus hierarchy',
   prop: '',
   type: 'link',
   mv: false,
@@ -606,7 +606,7 @@ conzept_fields = {
   rank: [635,8515],
   headline_create: 'valid( item.nci_thesaurus_hierarchy ) && !valid( item.term_anatomica_id )',
   headline_type: 'link',
-  headline_rank: 271,
+  headline_rank: 70,
 },
 
 'bacdive' : {
@@ -7090,6 +7090,24 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.term_anatomica_id )',
   headline_type: 'link-split',
   headline_rank: 270,
+},
+
+'human_anatomy_view_ta98_id' : {
+  create_condition: 'valid( item.term_anatomica_id )',
+  title: '3D human anatomy view',
+  prop: '',
+  type: 'link-split',
+  url: '${explore.base}/app/o3dv/?l=${explore.language}&ta98=${item.term_anatomica_id}&qid=${item.qid}#model=https://conze.pt/app/explore2/assets/models/gltf/human_anatomy.gltf',
+  mv: false,
+  icon: 'fa-solid fa-brain',
+  text: '3D human',
+  //panelwidth: '30',
+  section: ['science-biology','main'],
+  rank: [612,8502],
+  headline_create: 'valid( item.term_anatomica_id )',
+  headline_type: 'link-split',
+  headline_icon: 'fa-solid fa-cube',
+  headline_rank: 272,
 },
 
 'newspaper_archive' : {

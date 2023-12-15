@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="icon" type="image/png" href="../assets/images/3dviewer_net_favicon.ico">
+	<link rel="canonical" href="https://3dviewer.net/info">
+
+	<title>Online 3D Viewer</title>
+
+	<link rel="stylesheet" type="text/css" href="css/icons.css">
+	<link rel="stylesheet" type="text/css" href="css/info.css">
+	<script type="text/javascript" src="js/info.js"></script>
+
+	<!-- meta start -->
+	<!-- meta end -->
+
+	<!-- analytics start -->
+	<!-- analytics end -->
+
+</head>
+
+<body>
+	<script type="text/javascript">
+		GenerateHeader ('MANUAL');
+	</script>
+	<div class="frame">
+		<div class="main">
+		<p>
+			This is the user manual of <a href="https://3dviewer.net">3dviewer.net</a>.
+			The website can open several 3D file formats and visualize them in your browser.
+			It supports obj, 3ds, stl, ply, gltf, glb, off, 3dm, fbx, and much more.
+		</p>
+		<h1 id="supported_formats">Supported formats</h2>
+		<p>
+			The website supports several file formats for import and export. If a file format has text and binary version,
+			usually it's recommended to use the binary version.
+		</p>
+		<p>
+			<table class="formats">
+				<tr>
+					<th>Format</th>
+					<th>Extension</th>
+					<th>Type</th>
+					<th>Import</th>
+					<th>Export</th>
+					<th>Source</th>
+				</tr>
+				<tr>
+					<td>Wavefront</td>
+					<td>obj</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td>3D Studio</td>
+					<td>3ds</td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td rowspan="2">Stereolithography</td>
+					<td rowspan="2">stl</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td class="hidden"></td>
+					<td class="hidden"></td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td rowspan="2">Polygon File Format</td>
+					<td rowspan="2">ply</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td class="hidden"></td>
+					<td class="hidden"></td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td rowspan="2">glTF</td>
+					<td>gltf</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td class="hidden"></td>
+					<td>glb</td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td rowspan="2">Object File Format</td>
+					<td rowspan="2">off</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td class="hidden"></td>
+					<td class="hidden"></td>
+					<td>binary</td>
+					<td class="center red">&#x2717</td>
+					<td class="center red">&#x2717</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td>Dotbim</td>
+					<td>bim</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td>Native</td>
+				</tr>
+				<tr>
+					<td>Rhinoceros 3D</td>
+					<td>3dm</td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center green">&#x2713</td>
+					<td><a href="https://github.com/mcneel/rhino3dm">rhino3dm</a></td>
+				</tr>
+				<tr>
+					<td rowspan="2">Filmbox</td>
+					<td rowspan="2">fbx</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td class="hidden"></td>
+					<td class="hidden"></td>
+					<td>binary</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td>Collada</td>
+					<td>dae</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td>Virtual Reality Modeling Language</td>
+					<td>wrl</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td>3D Manufacturing Format</td>
+					<td>3mf</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td>Additive Manufacturing Format</td>
+					<td>amf</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/mrdoob/three.js">three.js</a></td>
+				</tr>
+				<tr>
+					<td>BREP</td>
+					<td>brep</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a></td>
+				</tr>
+				<tr>
+					<td>STEP</td>
+					<td>step</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a></td>
+				</tr>
+				<tr>
+					<td>IGES</td>
+					<td>iges</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a></td>
+				</tr>
+				<tr>
+					<td>FreeCAD Standard file format</td>
+					<td>FCStd</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/kovacsv/occt-import-js">occt-import-js</a></td>
+				</tr>
+				<tr>
+					<td>Industry Foundation Classes</td>
+					<td>ifc</td>
+					<td>text</td>
+					<td class="center green">&#x2713</td>
+					<td class="center red">&#x2717</td>
+					<td><a href="https://github.com/tomvandig/web-ifc">web-ifc</a></td>
+				</tr>
+			</table>
+		</p>
+		<h1 id="loading_models">Loading models</h1>
+		<p>
+			There are several ways to load models. You can use files from your computer or load files hosted on an external web server.
+		</p>
+		<p class="info">
+			Please note, that some 3D models are built up from multiple files (for example an obj file usually comes with an mtl file
+			and some texture files). For the correct visualization you have to import all of the required files. See the <a href="#missing_files">Missing files</a>
+			section for more details.
+		</p>
+		<h2>Loading models from your computer</h2>
+		<p>
+			You can load models from your computer. In this case the model won't be uploaded to any web server,
+			the entire process happens in your browser.
+		</p>
+		<p>
+			There are two ways to load models from your computer:
+			<ol>
+				<li>
+					Use the open button (<i class="icon icon-open"></i>) on the toolbar. Here you can select all the relevant files.
+				</li>
+				<li>
+					Drag and drop all the relevant files into the browser window.
+				</li>
+			</ol>
+		</p>
+		<p>
+			Please note that you can not only open model files, but a zip file containing all your models. With drag and drop
+			it's also possible to load an entire folder from your computer.
+		</p>
+		<p>
+			If multiple files can be loaded, a dialog will appear where you can select which file would you like to import.
+		</p>
+		<h2>Loading models hosted on a web server</h2>
+		<p>
+			You can load models by url with the open url button (<i class="icon icon-open_url"></i>) on the toolbar.
+			Here you can list all the required files. You should place every file in a separate line.
+		</p>
+		<p class="info">
+			To make this work, CORS (Cross-Origin Resource Sharing) must be enabled on the remote server.
+		</p>
+		<h2>Loading models hosted on GitHub</h2>
+		<p>
+			To load a model hosted on GitHub follow the steps below.
+		</p>
+		<p>
+			<ol>
+				<li>Open the file or files on GitHub, and copy the link of them from the address bar.</li>
+				<li>Go to <a href="https://3dviewer.net">3dviewer.net</a>, and click on the open url button (<i class="icon icon-open_url"></i>) on the toolbar.</li>
+				<li>Paste file the link or links in the dialog, and click on OK.</li>
+			</ol>
+		</p>
+		<h2>Loading models hosted on DropBox</h2>
+		<p>
+			To load a model hosted on DropBox follow the steps below:
+		</p>
+		<p>
+			<ol>
+				<li>Upload models to DropBox with all the required files.</li>
+				<li>Get the sharing link or links from DropBox.</li>
+				<li>Go to <a href="https://3dviewer.net">3dviewer.net</a>, and click on the open url button (<i class="icon icon-open_url"></i>) on the toolbar.</li>
+				<li>Paste file the link or links in the dialog, and click on OK.</li>
+			</ol>
+		</p>
+		<h2 id="missing_files">Missing files</h2>
+		<p>
+			Sometimes you see missing files in the tree. It means that your model
+			refers to another files, but they are not selected to import. To solve the issue you have to import the model again together with the referenced
+			files, or just import the missing files on their own.
+		</p>
+		<h1 id="exporting_models">Exporting models</h1>
+		<p>
+			You can export your model in several file formats. To achieve this, click on the export button (<i class="icon icon-export"></i>) on the toolbar.
+			After that, select the format you would like to export to, and click on Export. If the result contains multiple files,
+			they will be automatically zipped.
+		</p>
+		<h1 id="sharing_models">Sharing models</h1>
+		<p>
+			If your models are hosted on a web server, you can share the link with others, or you can generate embedding code to integrate the viewer in your website.
+			To get the sharing link or the embedding code, click on the share model button (<i class="icon icon-share"></i>) on the toolbar.
+		</p>
+		<h1 id="settings">Settings</h1>
+		<p>
+			You can access model and visualization settings by opening the settings panel (<i class="icon icon-settings"></i>) on the right.
+		</p>
+		<p>
+			<ul>
+				<li>
+					Background Color: This will change the background color of the canvas. It has no effect on model export,
+					but the background color will be visible when you create a snapshot.
+				</li>
+				<li>
+					Show Edges: Here you can set the edge display parameters. If edges are visible, you can choose a color
+					for all edges, and a threshold angle. Edges will be visible only if the angle between the adjoining faces
+					exceeds the threshold.
+				</li>
+				<li>
+					Default Color: This color is used when there is no material information in the model (for example in case
+					of stl files). Changing this value regenerates the model in the background, so the model will be exported
+					with the chosen color.
+				</li>
+				<li>
+					Dark Mode: Switch between light and dark themes.
+				</li>
+			</ul>
+		</p>
+		<h1 id="cookies">Cookies</h1>
+		<p>
+			You can check the policy at the <a href="cookies.html">Cookies Policy</a> page.
+		</p>
+	</div>
+</body>
+
+</html>
