@@ -327,6 +327,11 @@ function isQid( title ) {
     }
 
   }
+  else {
+
+    return false
+
+  }
 
 }
 

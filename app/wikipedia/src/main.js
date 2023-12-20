@@ -539,7 +539,7 @@ function updateLocaleNative(){
 
   if ( explore.locales.includes( l ) ){
 
-    fetch('../explore2/assets/i18n/conzept-' + l + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
+    fetch('../explore2/assets/i18n/ui/conzept-' + l + '.json?' + explore.version ).then((response) => response.json()).then((messages) => {
 
       explore.banana_native.load( messages, l );
 

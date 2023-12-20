@@ -2,7 +2,7 @@ import { IsDefined } from '../engine/core/core.js';
 import { AddDiv, CreateDiv, ShowDomElement, ClearDomElement, InsertDomElementBefore, InsertDomElementAfter } from '../engine/viewer/domutils.js';
 import { CreateSvgIconElement, SetSvgIconImageElement } from './utils.js';
 
-export function ScrollToView (element)
+export function ScrollToView(element)
 {
     element.scrollIntoView ({
         behavior : 'smooth',
@@ -48,11 +48,85 @@ export class TreeViewItem
         this.parent = null;
         this.mainElement = CreateDiv ('ov_tree_item');
         this.mainElement.setAttribute ('title', this.name);
-        this.nameElement = AddDiv (this.mainElement, 'ov_tree_item_name', this.name);
+
+        // CONZEPT PATCH
+        let qid         = '';
+        let label       = '';
+        let annotation  = '';
+
+        if ( valid( name ) ){
+
+          qid   = isQid( name.split('.')[0] )? name.split('.')[0] : '';
+          label = name.split('.')[0];
+
+        }
+        else {
+
+          console.log( 'invalid name: ', name );
+          name = '---';
+          
+        }
+
+        if ( valid( qid ) ){ // Qid
+
+          const annotation  = name.split('.')[1] || '';
+
+          this.mainElement.setAttribute ( 'id', qid );
+          this.mainElement.setAttribute ( 'data-qid', qid );
+          this.mainElement.setAttribute ( 'data-annotation', annotation );
+
+          // - command-line tool to create:
+          //  - a translation-file for each Wikipedia language
+          //    - template file: put all found Qids into an array of objects
+
+          /*
+
+              const anatomy_labels = {
+                "Q9633": {
+                  "label": "Neck",
+                },
+
+          */
+
+          //    - translate_qids.js <language> <template-JSON-file>
+          //  - store in assets/i18n/special/human_anatomy
+          this.mainElement.setAttribute ( 'data-label', '' ); // TODO: lookup in translation-JSON-file
+
+          // TODO: plan to use the translated "label" (instead of "this.name")
+          this.nameElement = AddDiv (this.mainElement, 'ov_tree_item_name', this.name);
+
+          this.nameElement.setAttribute ( 'id', qid );
+          this.nameElement.setAttribute ( 'data-qid', qid );
+          this.nameElement.setAttribute ( 'data-label', label );
+          this.nameElement.setAttribute ( 'data-annotation', annotation );
+
+        }
+        else { // string
+
+          const annotation  = name.split('.')[0] || '';
+
+          this.mainElement.setAttribute ( 'id', '' );
+          this.mainElement.setAttribute ( 'data-qid', '' );
+          this.mainElement.setAttribute ( 'data-annotation', annotation );
+          this.mainElement.setAttribute ( 'data-label', label ); // TODO: Improve Wikidata-data, so the Qid can be set
+
+          // TODO: plan to use the translated "label" (instead of "this.name")
+          this.nameElement = AddDiv (this.mainElement, 'ov_tree_item_name', this.name);
+
+          this.nameElement.setAttribute ( 'id', qid );
+          this.nameElement.setAttribute ( 'data-qid', qid );
+          this.nameElement.setAttribute ( 'data-label', label );
+          this.nameElement.setAttribute ( 'data-annotation', annotation );
+
+        }
+        //console.log( qid, label );
+  
+
         if (IsDefined (icon)) {
             let iconElement = CreateSvgIconElement (icon, 'ov_tree_item_icon');
             InsertDomElementBefore (iconElement, this.nameElement);
         }
+
     }
 
     OnClick (onClick)
@@ -85,6 +159,7 @@ export class TreeViewSingleItem extends TreeViewItem
     {
         this.selected = selected;
         if (this.selected) {
+
             this.mainElement.classList.add ('selected');
             let parent = this.parent;
             if (parent === null) {
@@ -98,15 +173,21 @@ export class TreeViewSingleItem extends TreeViewItem
             }
 
             // CONZEPT PATCH
-            console.log( 'label: ', this.mainElement.textContent, getParameterByName('ta98'), getParameterByName('qid')  ); // leaf-element
-            const qid = this.mainElement.textContent.split('.')[0]; // clean first
+            //console.log( 'label: ', this.mainElement.textContent, getParameterByName('ta98'), getParameterByName('qid')  ); // leaf-element
+            const qid    = this.mainElement.getAttribute('data-qid');
+            //const qid     = isQid( this.mainElement.textContent.split('.')[0] )? this.mainElement.textContent.split('.')[0] : '';
+            const label  = this.mainElement.getAttribute('data-label');
+            //const label   = this.mainElement.textContent.split('.')[0];
 
-            if ( isQid( qid ) ){ // by Qid
+            console.log( qid, label );
+
+            if ( valid( qid ) ){ // Qid
 
               openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
+
             }
-            else {
-              openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+            else { // string
+              openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( label ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
             }
 
         } else {
@@ -209,15 +290,20 @@ export class TreeViewGroupItem extends TreeViewItem
                 this.ShowChildren (this.isChildrenVisible);
 
                 // CONZEPT PATCH
-                console.log( 'label: ', this.mainElement.textContent ); // folder
 
-                const qid = this.mainElement.textContent.split('.')[0]; // clean first
+                const qid    = this.mainElement.getAttribute('data-qid');
+                //const qid     = isQid( this.mainElement.textContent.split('.')[0] )? this.mainElement.textContent.split('.')[0] : '';
 
-                if ( isQid( qid ) ){ // by Qid
+                const label  = this.mainElement.getAttribute('data-label');
+                //const label   = this.mainElement.textContent.split('.')[0];
+
+                console.log( qid, label );
+
+                if ( isQid( qid ) ){ // Qid
                   openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
                 }
-                else {
-                  openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+                else { // string
+                  openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( label ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
                 }
 
             });

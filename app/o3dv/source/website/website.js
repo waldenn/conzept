@@ -303,6 +303,23 @@ export class Website
         this.navigator.FillTree (importResult);
         this.sidebar.UpdateControlsVisibility ();
         this.FitModelToWindow (true);
+
+        // CONZEPT PATCH
+        if ( valid( getParameterByName('qid') ) ){ // go to Qid-element
+         
+          const qid = getParameterByName('qid');
+          const sel = '#' + qid;
+          
+          // hide all layers first
+          // TODO: idea: make all layers transparent?
+          $('.ov_navigator_buttons').find('.icon.icon-visible').click();
+
+          $( sel ).click();                           // activate element
+          $( sel )[0].scrollIntoView();               // scroll to element
+          $( sel ).find('.icon.icon-fit').click();    // zoom-to-fit element
+          $( sel ).find('icon.icon-hidden').click();  // make visible (if hidden)
+        }
+
     }
 
     OnModelClicked (button, mouseCoordinates)
