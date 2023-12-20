@@ -606,7 +606,7 @@ conzept_fields = {
   rank: [635,8515],
   headline_create: 'valid( item.nci_thesaurus_hierarchy ) && !valid( item.term_anatomica_id )',
   headline_type: 'link',
-  headline_rank: 70,
+  headline_rank: 45,
 },
 
 'bacdive' : {
@@ -5180,7 +5180,7 @@ conzept_fields = {
   prop: '927',
   type: 'wikipedia-qid',
   mv: true,
-  icon: 'fa-solid fa-lung-virus',
+  icon: 'fa-solid fa-lungs',
   text: 'anatomical location',
   section: ['science-medical','main'],
   rank: [30,8520],
@@ -5190,9 +5190,9 @@ conzept_fields = {
   create_condition: 'valid( item.anatomical_location )',
   title: '3D view of the anatomical location',
   prop: '',
-  mv: true,
+  mv: false,
   type: 'link-split',
-  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&qid=${Xvalue}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf',
+  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&qid=${item.anatomical_location[0]}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf', // TODO: ?implement Xvalue-support for link-splits
   icon: 'fa-solid fa-cube',
   text: '3D location',
   section: ['science-biology','main'],
