@@ -5183,7 +5183,7 @@ conzept_fields = {
   icon: 'fa-solid fa-lungs',
   text: 'anatomical location',
   section: ['science-medical','main'],
-  rank: [30,8520],
+  rank: [620,8520],
 },
 
 'anatomical_location_anatomy_view' : {
@@ -5192,11 +5192,11 @@ conzept_fields = {
   prop: '',
   mv: false,
   type: 'link-split',
-  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&qid=${item.anatomical_location[0]}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf', // TODO: ?implement Xvalue-support for link-splits
+  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&qid=${item.anatomical_location[0]}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf', // TODO: ?implement Xvalue-support for link-splits with multiple locations, test with eg. "Q101896"
   icon: 'fa-solid fa-cube',
   text: '3D location',
   section: ['science-biology','main'],
-  rank: [620,8510],
+  rank: [621,8521],
   //headline_create: 'valid( item.anatomical_location_anatomy_view )',
   //headline_type: 'link-split',
   //headline_rank: 50,

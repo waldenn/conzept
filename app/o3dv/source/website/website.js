@@ -186,7 +186,7 @@ export class Website
     constructor (parameters)
     {
         this.parameters = parameters;
-        this.settings = new Settings (Theme.Light);
+        this.settings = new Settings (Theme.Dark); // CONZEPT PATCH
         this.cameraSettings = new CameraSettings ();
         this.viewer = new Viewer ();
         this.measureTool = new MeasureTool (this.viewer, this.settings);
@@ -318,10 +318,15 @@ export class Website
           // this.Show (this.isVisible);
           // this.ShowChildren (this.isChildrenVisible);
 
-          $( sel ).click();                           // activate element
-          $( sel )[0].scrollIntoView();               // scroll to element
-          $( sel ).find('.icon.icon-fit').click();    // zoom-to-fit element
-          $( sel ).find('icon.icon-hidden').click();  // make visible (if hidden)
+          if ( $(sel).length > 0 ){ 
+
+            $( sel ).click();                           // activate element
+            $( sel )[0].scrollIntoView();               // scroll to element
+            $( sel ).find('.icon.icon-fit').click();    // zoom-to-fit element
+            $( sel ).find('icon.icon-hidden').click();  // make visible (if hidden)
+
+          }
+
         }
 
     }
