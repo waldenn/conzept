@@ -99,8 +99,10 @@ export class TreeViewSingleItem extends TreeViewItem
 
             // CONZEPT PATCH
             console.log( 'label: ', this.mainElement.textContent, getParameterByName('ta98'), getParameterByName('qid')  ); // leaf-element
-            if ( isQid( this.mainElement.textContent ) ){ // by Qid
-              const qid = this.mainElement.textContent.split('.')[0]; // clean Qid label first
+            const qid = this.mainElement.textContent.split('.')[0]; // clean first
+
+            if ( isQid( qid ) ){ // by Qid
+
               openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
             }
             else {
@@ -209,8 +211,9 @@ export class TreeViewGroupItem extends TreeViewItem
                 // CONZEPT PATCH
                 console.log( 'label: ', this.mainElement.textContent ); // folder
 
-                if ( isQid( this.mainElement.textContent ) ){ // by Qid
-                  const qid = this.mainElement.textContent.split('.')[0]; // clean Qid label first
+                const qid = this.mainElement.textContent.split('.')[0]; // clean first
+
+                if ( isQid( qid ) ){ // by Qid
                   openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
                 }
                 else {
