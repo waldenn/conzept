@@ -5175,6 +5175,33 @@ conzept_fields = {
   rank: [30,8520],
 },
 
+'anatomical_location' : {
+  title: 'Anatomical location',
+  prop: '927',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-lung-virus',
+  text: 'anatomical location',
+  section: ['science-medical','main'],
+  rank: [30,8520],
+},
+
+'anatomical_location_anatomy_view' : {
+  create_condition: 'valid( item.anatomical_location )',
+  title: '3D view of the anatomical location',
+  prop: '',
+  mv: true,
+  type: 'link-split',
+  url: '${explore.base}/app/o3dv/build/package/website/index.html?l=${explore.language}&qid=${Xvalue}#model=https://${explore.host}/app/explore2/assets/models/human_anatomy/human_anatomy.gltf',
+  icon: 'fa-solid fa-cube',
+  text: '3D location',
+  section: ['science-biology','main'],
+  rank: [620,8510],
+  //headline_create: 'valid( item.anatomical_location_anatomy_view )',
+  //headline_type: 'link-split',
+  //headline_rank: 50,
+},
+
 'fma' : {
   create_trigger: 'if ( item.tags[0] !== "substance" && !valid( item.pubchem ) && !listed( item.instances, indicators.cell.value ) ){ setTags( item, [ "natural-concept", "anatomy" ] ) }', // exclude substances and cell-types
   title: 'Foundational Model of Anatomy',
@@ -6243,6 +6270,22 @@ if ( valid( item.found_in_taxon ) ){
   text: 'cause',
   section: ['main'],
   rank: [5920],
+},
+
+'has_cause_linkgraph' : {
+  create_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.has_cause )',
+  title: 'linkgraph of causes',
+  prop: '',
+  mv: false,
+  type: 'link-split',
+  url: "${explore.base}/app/links/?l=${explore.language}&t=&q=${ item.has_cause.join() }&title=${title}",
+  icon: 'fa-solid fa-asterisk',
+  text: 'causes graph',
+  section: 'main',
+  rank: 5921,
+  headline_create: 'valid( item.has_cause_linkgraph )',
+  headline_type: 'link-split',
+  headline_rank: 50,
 },
 
 'has_immediate_cause' : {
@@ -24732,18 +24775,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'postsynaptic connection',
   section: ['main'],
   rank: [50926],
-  auto: true,
-},
-
-'anatomical_location' : {
-  title: 'Anatomical location',
-  prop: '927',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'anatomical location',
-  section: ['main'],
-  rank: [50927],
   auto: true,
 },
 
