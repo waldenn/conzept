@@ -306,13 +306,17 @@ export class Website
 
         // CONZEPT PATCH
         if ( valid( getParameterByName('qid') ) ){ // go to Qid-element
-         
+
           const qid = getParameterByName('qid');
           const sel = '#' + qid;
+
+          console.log('show part with qid: ', qid );
           
           // hide all layers first
           // TODO: idea: make all layers transparent?
-          $('.ov_navigator_buttons').find('.icon.icon-visible').click();
+          //$('.ov_navigator_buttons').find('.icon.icon-visible').click();
+          // this.Show (this.isVisible);
+          // this.ShowChildren (this.isChildrenVisible);
 
           $( sel ).click();                           // activate element
           $( sel )[0].scrollIntoView();               // scroll to element
