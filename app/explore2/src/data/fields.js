@@ -5189,6 +5189,32 @@ conzept_fields = {
   rank: [630,8510],
 },
 
+'nlm_medpix' : {
+  title: 'National Library of Medicine: MedPix - anatomical images',
+  create_condition: 'valid( item.fma )',
+  prop: '',
+  type: 'url',
+  url: 'https://medpix.nlm.nih.gov/advancedsearch?allen=true&allt=true&alli=true&query=${title}',
+  mv: false,
+  icon: 'fa-solid fa-brain',
+  text: 'anatomia collection',
+  section: 'science-biology',
+  rank: 635,
+},
+
+'nlm_openi' : {
+  title: 'National Library of Medicine: Open-i - biomedical images',
+  create_condition: 'valid( item.fma )',
+  prop: '',
+  type: 'url',
+  url: 'https://openi.nlm.nih.gov/gridquery?q=${title}&it=xg&m=1&n=100',
+  mv: false,
+  icon: 'fa-solid fa-brain',
+  text: 'anatomia collection',
+  section: 'science-biology',
+  rank: 636,
+},
+
 'anatomia' : {
   title: 'Anatomia Collection',
   create_condition: 'valid( item.fma )',

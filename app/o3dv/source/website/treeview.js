@@ -99,7 +99,13 @@ export class TreeViewSingleItem extends TreeViewItem
 
             // CONZEPT PATCH
             console.log( 'label: ', this.mainElement.textContent, getParameterByName('ta98'), getParameterByName('qid')  ); // leaf-element
-            openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+            if ( isQid( this.mainElement.textContent ) ){ // by Qid
+              const qid = this.mainElement.textContent.split('.')[0]; // clean Qid label first
+              openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
+            }
+            else {
+              openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+            }
 
         } else {
             this.mainElement.classList.remove ('selected');
@@ -202,7 +208,14 @@ export class TreeViewGroupItem extends TreeViewItem
 
                 // CONZEPT PATCH
                 console.log( 'label: ', this.mainElement.textContent ); // folder
-                openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+
+                if ( isQid( this.mainElement.textContent ) ){ // by Qid
+                  const qid = this.mainElement.textContent.split('.')[0]; // clean Qid label first
+                  openInFrame( `/app/wikipedia/?t=&l=${ getParameterByName('l') }&qid=${qid}&embedded=#` );
+                }
+                else {
+                  openInFrame( `/app/wikipedia/?t=${ encodeURIComponent( this.mainElement.textContent ) }&l=${ getParameterByName('l') }&qid=&embedded=#` );
+                }
 
             });
         }
