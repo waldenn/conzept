@@ -7279,8 +7279,8 @@ if ( valid( item.found_in_taxon ) ){
   url: '${explore.base}/app/dateviz/?q=${title_}', 
   icon: 'fa-regular fa-clock',
   text: 'book words',
-  section: 'science-language',
-  rank: 20.1,
+  section: ['library-history','science-language'],
+  rank: [201,20.1],
 },
 
 'danish_newspaper_word_history' : {
@@ -14236,6 +14236,18 @@ if ( valid( item.found_in_taxon ) ){
   rank: 250,
 },
 
+'iconsearch' : {
+  title: 'IconSearch',
+  prop: '',
+  type: 'url',
+  url: 'https://iconsear.ch/search.html?q=${ title_ }',
+  mv: false,
+  icon: 'fa-solid fa-draw-polygon',
+  text: 'IconSearch',
+  section: ['media-image','main'],
+  rank: 253,
+},
+
 'emojipedia' : {
   title: 'Emojipedia page',
   prop: '8711',
@@ -17193,6 +17205,22 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.openalex_funder_works )',
   headline_type: 'link',
   headline_rank: 49.6,
+},
+
+'openalex_country_works' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'OpenAlex country works',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=institutions.country_code%3A${ item.iso2 }',
+  icon: 'fa-regular fa-newspaper',
+  text: 'OpenAlex country',
+  section: ['science-search-tools','main'],
+  rank: [58.8, 8502 ],
+  //headline_create: 'valid( item.openalex_country_works )',
+  //headline_type: 'link',
+  //headline_rank: 49.95,
 },
 
 'openalex_works_search' : {

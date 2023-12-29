@@ -188,6 +188,10 @@ function getImages(qNum, offset) {
             const resultsElement = document.getElementById('results');
             resultsElement.style.display = 'block';
 
+            if ( ! valid( data['query'] ) ){
+               return 1;
+            }
+
             var pages = data['query']['pages'];
             var images = [];
 

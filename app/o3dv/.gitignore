@@ -1,3 +1,4 @@
 plugins/*
 node_modules
 __pycache__
+build/package/engine/o3dv.zip

@@ -12,8 +12,9 @@ body {
 }
 
 .table-header {
-  font-size: 1.5em;
+  font-size: 4vw;
   font-weight: bold;
+  overflow: hidden;
 }
 
 table {
