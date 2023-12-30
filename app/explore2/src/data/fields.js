@@ -15278,18 +15278,22 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
 },
 
-'collection_query' : {
-  create_condition: 'valid( item.is_museum )',
-  title: 'museum collection',
+'museum_collection_commons_sparql' : {
+  create_condition: 'valid( item.qid ) && valid( item.is_museum )',
+  title: 'museum collection works on Wikimedia Commons',
   prop: '',
-  type: 'link-split',
+  type: 'link',
   mv: false,
-  url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Finception%20%3FitemDescription%20%3Fimage%20%3Fcollection%20WHERE%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP31%20%3Fwhat%20%3B%0A%20%20%20%20%20%20wdt%3AP195%2Fwdt%3AP361*%20%3Fcollection%20.%0A%0A%20%20%20%20FILTER%20(%20%3Fcollection%20%3D%20wd%3A${item.qid}%20)%0A%20%20%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fimage%20%7D%0A%20%20%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP571%20%3Finception%20%7D%0A%20%20%0A%20%20%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%5D%22%20%7D%0A%7D%0AORDER%20BY%20%3Finception%0ALIMIT%20' + 1000 + '%20%23meta%3Acollection%20of%20${title_}%0A%23defaultView%3AImageGrid',
+  url: '${explore.base}/app/commons-sparql/?t=museum%20collection%20%3A%20${title_enc}&l=${explore.language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%3Fitem%2520%3FitemLabel%2520%3Fimage%2520%3Fdate%2520WHERE%2520%7B%0A%2520%2520%3Fitem%2520wdt%3AP31%2520%3Fwhat%3B%0A%2520%2520%2520%2520(wdt%3AP195%2F(wdt%3AP361*))%2520%3Fcollection.%0A%2520%2520FILTER(%3Fcollection%2520%3D%2520wd%3A${item.qid})%0A%2520%2520%3Fitem%2520wdt%3AP18%2520%3Fimage.%0A%2520%2520OPTIONAL%2520%7B%2520%3Fitem%2520wdt%3AP571%2520%3Fdate.%2520%7D%0A%2520%2520SERVICE%2520wikibase%3Alabel%2520%7B%2520bd%3AserviceParam%2520wikibase%3Alanguage%2520%22${explore.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%2520%7D%0A%7D%0AORDER%2520BY%2520DESC%2520(%3Fdate)',
+  // 1) extract working URL from wikidata-sparql-query-app
+  // 2) replace %20 with %2520
+  // 3) complete the commons-sparql-url structure
   icon: 'fa-brands fa-windows',
   text: 'museum collection',
-  section: 'art',
-  rank: 520,
+  section: ['art','media-image','main'],
+  rank: [520,52,435],
   headline_create: 'valid( item.is_museum )',
+  headline_type: 'link',
   headline_rank: 90,
 },
 
