@@ -5109,8 +5109,25 @@ conzept_fields = {
   mv: false,
   icon: 'fa-solid fa-dna',
   text: 'NCBI',
-  section: 'science-biology',
-  rank: 650,
+  section: ['science-biology','main'],
+  rank: [650,8860],
+  //headline_create: 'valid( item.ncbi )',
+  //headline_rank: 46,
+},
+
+'ncbi_thesaurus' : {
+  create_condition: 'valid( item.ncbi )', // Virus, Archaea, Bacteria, Eukaryota
+  title: 'NCBI taxonomy',
+  prop: '',
+  type: 'link',
+  url: 'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=${ title_ }',
+  mv: false,
+  icon: 'fa-solid fa-folder-tree',
+  text: 'NCBI taxonomy',
+  section: ['science-biology','main'],
+  rank: [650,8860],
+  headline_create: 'valid( item.ncbi )',
+  headline_rank: 46,
 },
 
 'lccn' : {

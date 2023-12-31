@@ -188,7 +188,12 @@ function getImages() {
 
       const resultsHeaderResults = document.getElementById('numResults');
 
-      resultsHeaderResults.innerHTML = numResults.toLocaleString();
+      if ( resultsHeaderResults !== null ){
+        resultsHeaderResults.innerHTML = numResults.toLocaleString();
+      }
+      else {
+        console.log( 'error: resultsHeaderResults is null');
+      }
 
       if (numResults > 0){ // results found
 
@@ -356,7 +361,13 @@ function toggleSentinel(){
     paginationButton.innerHTML  = '<i title="load more images" class="fa-solid fa-circle-plus"></i>';
 
     const resultsElement = document.getElementById('results');
-    resultsElement.appendChild(paginationButton);
+
+    if ( resultsElement !== null ){
+      resultsElement.appendChild(paginationButton);
+    }
+    else {
+      console.log( 'error: resultsElement is null');
+    }
 
     $('#paginationButton').show();
 
