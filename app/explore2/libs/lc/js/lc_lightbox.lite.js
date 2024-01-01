@@ -152,10 +152,10 @@ let my_current_image = '';
 			
 			slideshow		: true, // whether to enable slideshow
 			open_close_time	: 400, // animation duration for lightbox opening and closing / 1000 = 1sec
-			ol_time_diff	: 100, // overlay's animation advance (on opening) and delay (on close) to window / 1000 = sec
+			ol_time_diff	: 3000, // overlay's animation advance (on opening) and delay (on close) to window / 1000 = sec
 			fading_time		: 80, // elements fading animation duration in millisecods / 1000 = 1sec
 			animation_time	: 250, // sizing animation duration in millisecods / 1000 = 1sec
-			slideshow_time	: 6000, // slideshow interval duration in milliseconds / 1000 = 1sec
+			slideshow_time	: 5000, // slideshow interval duration in milliseconds / 1000 = 1sec
 			autoplay		: false, // autoplay slideshow - bool
 			counter			: false, // whether to display elements counter
 			progressbar		: true, // whether to display a progressbar when slideshow runs

@@ -1921,7 +1921,10 @@ function setupSearch() {
 
           explore.q = explore.q.trim().charAt(0).toUpperCase() + explore.q.slice(1);
 
-          const url = explore.base + '/app/xrgraph/?function=' + explore.q.replace( '!graph ', '' ).replace('=','%3D');
+          // see: https://github.com/PullJosh/graphing-calculator
+          const formula = explore.q.replace( '!graph ', '' );
+          const url = `https://joshs-graphing-calculator.vercel.app/app#%7B%22items%22%3A%5B%7B%22id%22%3A0%2C%22visible%22%3Atrue%2C%22type%22%3A%22Equation%22%2C%22latex%22%3A%22${ encodeURIComponent( formula ) }%22%2C%22color%22%3A%22red%22%7D%5D%2C%22variables%22%3A%5B%5D%2C%22slices%22%3A%5B%5D%7D`
+          //const url = explore.base + '/app/xrgraph/?function=' + explore.q.replace( '!graph ', '' ).replace('=','%3D');
 
           handleClick({ 
             id        : 'n1-0',

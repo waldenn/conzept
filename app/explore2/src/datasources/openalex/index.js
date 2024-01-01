@@ -145,7 +145,17 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
 							if ( valid( a.author.display_name ) ){
 
-                const author_url = valid( a.author.id ) ? a.author.id : '';
+                let author_url = '';
+
+                if ( valid( a.author.id ) ){
+
+                  let author_id = a.author.id.replace('https://openalex.org/', '');
+
+                  author_url = `https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ author_id }`;
+
+                }
+
+                //const author_url = valid( a.author.id ) ? a.author.id : '';
 
                 const author_country = valid( a.countries ) ? a.countries[0] : '';
 

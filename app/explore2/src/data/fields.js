@@ -5120,7 +5120,7 @@ conzept_fields = {
   title: 'NCBI taxonomy',
   prop: '',
   type: 'link',
-  url: 'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=${ title_ }',
+  url: 'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Tree&id=${ item.ncbi }',
   mv: false,
   icon: 'fa-solid fa-folder-tree',
   text: 'NCBI taxonomy',
