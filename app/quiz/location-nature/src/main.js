@@ -778,10 +778,10 @@ $( document ).ready(function() {
    const place_id     = getParameterByName('place_id') || '';
    //const iconic_taxa  = getParameterByName('iconic_taxa') || ''; // not really neeed?
 
-  if ( validAny( [ taxon_id, place_id ] ) ){
+  //if ( validAny( [ taxon_id, place_id ] ) ){
 
-    $('#playButton').click()
+    $('#playButton').click();
 
-  }
+  //}
 
 });

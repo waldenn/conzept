@@ -51,6 +51,12 @@ div#status {
   max-width: 600px;
 }
 
+a#image-palette-close {
+  color: white;
+  float: right;
+  margin-right: 1em;
+}
+
 #complementary {
   display: none;
 }
@@ -93,6 +99,7 @@ div#status {
 #quantize-title {
   text-align: center;
   font-size: larger;
+  margin-left: 2em;
 }
 
 /* image-filter UI */
@@ -169,7 +176,7 @@ div#status {
   box-sizing: border-box;
   */
   padding: 1.25% 5%;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 #imageEditing div {
   margin-bottom: 1em;

@@ -69,7 +69,8 @@ let my_current_image = '';
 
     '<div id="imageColorQuantization" style="display:none;">' +
       '<canvas id="quantize-canvas" style="display:none;"></canvas>' +
-      '<div id="quantize-title">color palette</div>' +
+      '<span id="quantize-title">color palette</span>' +
+      '<a id="image-palette-close"><span href="javascript:void(0)" onclick="window.closeModals()"><i class="fa-solid fa-xmark fa-2x"></i></a>' +
       '<div id="palette"></div>' +
       '<div id="complementary" style="display:none;"></div>' +
     '</div>' +
@@ -78,7 +79,7 @@ let my_current_image = '';
       '<div id="mainImage"></div>' +
       '<div id="filter-title"><p>filters</p></div>' +
       '<div id="filter-reset"><span href="javascript:void(0)" onclick="window.resetFilters()">&#8634; reset</span></div>' +
-      '<div id="filter-close"><span href="javascript:void(0)" onclick="window.closeFilters()">X close</span></div>' +
+      '<div id="filter-close"><span href="javascript:void(0)" onclick="window.closeModals()"><i class="fa-solid fa-xmark fa-2x"></i></span></div>' +
       '<div id="imageEditing">' +
 
         '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
@@ -3024,8 +3025,9 @@ function updateFilters(){
 
 }
 
-window.closeFilters = function(){
+window.closeModals = function(){
 
+  $('#imageColorQuantization').hide();
   $('#mainImageEditArea').hide();
 
 }

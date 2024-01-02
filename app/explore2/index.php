@@ -743,7 +743,9 @@ $settings_html = '
 
                       <li><span id="tldraw"><a class="link" href="/app/tldraw/apps/examples/dist/" target="infoframe" onclick="resetIframe()" title="tldraw drawing tool" aria-label="tldraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small></small></span></li>
 
-                      <li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li-->
+                      <li><span id="nature location quiz"><a class="link" href="/app/quiz/location-nature/index.html" target="infoframe" onclick="resetIframe()" title="nature location quiz" aria-label="nature location quiz" role="button" tabindex="0"><i class="fa-solid fa-puzzle-piece"></i> nature location quiz</a> <small></small></span></li>
+
+                      <!--li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li-->
 
                       <!--li style="display:none;"><span id="identifyPlant"><a class="link" title="identify a plant using an image" aria-label="identify a plant using an image" role="button" onclick="identifyPlant()" tabindex="0"><i class="fa-solid fa-leaf"></i>&nbsp; <span id="app-menu-plant-identification"></span></a></span></li>
                       <li style="display:none;"><span id="identifyOCR"><a class="link" title="identify text using an image" aria-label="identify text using an image" role="button" onclick="identifyOCR()" tabindex="0"><i class="fa-regular fa-file-alt"></i>&nbsp; <span id="app-menu-text-identification"></span></a></span></li-->
