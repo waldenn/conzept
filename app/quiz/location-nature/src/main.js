@@ -14,6 +14,11 @@ $(document).keydown(function(event) {
     }
 
   }
+  else if ( key == 27 ) {
+
+    modal.style.display = "none";
+
+  }
 
 });
 
@@ -41,7 +46,7 @@ var map;
 
 // things applied to all queries
 var baseParams = `&captive=false&geoprivacy=open&quality_grade=research&photos=true&geo=true&acc_below=150`
-console.log(baseParams)
+//console.log(baseParams)
 
 // Get the input field
 var inputField = document.getElementById("fname");
@@ -51,7 +56,7 @@ var inputField = document.getElementById("fname");
 var urlParams = new URLSearchParams(window.location.search);
 var seedValue = urlParams.get("seed");
 
-console.log(seedValue);
+//console.log(seedValue);
 
 // Get the radio buttons
 var dailyRadio = document.getElementById("dailyRadio");
@@ -76,7 +81,7 @@ function getCustomParams() {
     if (urlParams.includes("?")) {
         var getQuery = urlParams.split('?')[1];
         var params = getQuery.split('&');
-        console.log("Custom URL parameters supplied")
+        //console.log("Custom URL parameters supplied")
 
         var extra_params = "&"+params.join("&");
     } else {
@@ -182,7 +187,10 @@ function addImage(result) {
     // Create a figcaption element for the caption
     var figcaptionElement = document.createElement("figcaption");
 
-    var captionText = "<i>"+result.taxon.name + "</i> by " + result.user.login;
+    var conzept_url   = `https://${ location.hostname }/explore/${ encodeURIComponent( result.taxon.name ) }`;
+    var observer_url  = `https://www.inaturalist.org/people/${ encodeURIComponent( result.user.login ) }`;
+ 
+    var captionText   = `<i><a href="javascript:void(0)" onclick="openInNewTab( &quot;${conzept_url}&quot; )">${ result.taxon.name }</a></i> by <a href="javascript:void(0)" onclick="openInNewTab( &quot;${observer_url}&quot; )">${ result.user.login }</a>`;
 
     figcaptionElement.innerHTML = captionText; // Set the caption text
     figcaptionElement.style.display = "none"
@@ -289,8 +297,8 @@ function createGlobalBoundingBoxString() {
 
 // function to get a random observation
 async function getRandomObvs() {
-    console.log(baseParams);
-    console.log(customParams);
+    //console.log(baseParams);
+    //console.log(customParams);
 
     if(seeded){
         var seedParams = obvsIdsSeededParams[roundNumber-1];
@@ -306,8 +314,7 @@ async function getRandomObvs() {
     } else {
         var apiUrl = `https://api.inaturalist.org/v1/observations?per_page=1&page=${roundNumber}${baseParams}${customParams}${seedParams}`+boundingBox;
     }
-    console.log( apiUrl);
-
+    //console.log( apiUrl);
 
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -343,7 +350,7 @@ async function getSupportingObvs(nObvs, lat, lng,idIgnore) {
             selectedIDs.push(data1.results[Math.round(i / nObvs * nResults)].id);
         }
 
-        console.log(selectedIDs);
+        //console.log(selectedIDs);
 
         // do another API call for those IDs
         var apiUrl2 = 'https://api.inaturalist.org/v1/observations?id='+selectedIDs.join(",");
@@ -634,12 +641,10 @@ function addCustomTaxon(){
 
 }
 
-
-
 // generate a new round
 async function generateNewRound() {
     scoreFactor = await scoreScaleFactor();
-    console.log("Score factor:"+scoreFactor);
+    //console.log("Score factor:"+scoreFactor);
 
     clearPage();
 
@@ -737,12 +742,18 @@ modal.addEventListener('click', function() {
 
 // global handler
 document.addEventListener('click', function (e) { 
-  if (e.target.className.indexOf('modal-target') !== -1) {
-      var img = e.target;
-      var modalImg = document.getElementById("modal-content");
-      modal.style.display = "block";
-      modalImg.src = img.src.replace("medium","large");
-   }
+
+  if ( valid( e.target.className.indexOf ) ){
+
+    if (e.target.className.indexOf('modal-target') !== -1) {
+        var img = e.target;
+        var modalImg = document.getElementById("modal-content");
+        modal.style.display = "block";
+        modalImg.src = img.src.replace("medium","large");
+    }
+
+  }
+
 });
 
 
