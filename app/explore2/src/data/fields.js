@@ -8697,7 +8697,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'taxon_location_quiz' : {
-  create_condition: 'valid( item.inaturalist_taxa )',
+  create_condition: 'valid( [ item.inaturalist_taxa, item.taxon_rank, item.taxon_rank_name ] ) && !listed( [ "supertribe", "tribe", "subtribe", "genus", "subgenus", "species", "subspecies" ], item.taxon_rank_name )', // filter-out too specific taxa (to avoid empty iNaturalist results)
   title: 'Taxon location quiz',
   prop: '',
   type: 'link',
