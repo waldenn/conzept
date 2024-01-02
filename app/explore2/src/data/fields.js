@@ -8707,6 +8707,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'location quiz',
   section: ['education-quizzes'],
   rank: [52],
+  headline_create: 'valid( item.inaturalist_taxa )',
+  headline_type: 'link-split',
+  headline_rank: 645,
 },
 
 'nature_location_quiz' : {
@@ -8720,6 +8723,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'location quiz',
   section: ['education-quizzes'],
   rank: [53],
+  headline_create: 'valid( item.inaturalist_place ) && checkPersona( ["student","academic"] )',
+  headline_type: 'link-split',
+  headline_rank: 645,
 },
 
 'birdlife' : {
