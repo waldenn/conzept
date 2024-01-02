@@ -45,7 +45,6 @@ find ../../quiz -maxdepth 1 -mindepth 1 -type d | while read dir; do
 
 done
 
-
 # json-proxy service config file
 if [ -f "../../../services/json-proxy/json-proxy.template.json" ]
 then

@@ -3230,6 +3230,19 @@ conzept_fields = {
   rank: 28,
 },
 
+'wiby' : {
+  create_condition: true,
+  title: 'Wiby - personal website search engine',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://wiby.me/?q=${title_quoted}',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Wiby',
+  section: 'web',
+  rank: 29,
+},
+
 'geminispace' : {
   create_condition: true,
   title: 'GeminiSpace Gemini-proxy search',
@@ -8681,6 +8694,32 @@ if ( valid( item.found_in_taxon ) ){
   text: 'location quiz',
   section: ['education-quizzes'],
   rank: [50],
+},
+
+'taxon_location_quiz' : {
+  create_condition: 'valid( item.inaturalist_taxa )',
+  title: 'Taxon location quiz',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}',
+  mv: false,
+  icon: 'fa-solid fa-puzzle-piece',
+  text: 'location quiz',
+  section: ['education-quizzes'],
+  rank: [52],
+},
+
+'nature_location_quiz' : {
+  create_condition: 'valid( item.inaturalist_place )',
+  title: 'Nature location quiz',
+  prop: '',
+  type: 'link',
+  url: '${explore.base}/app/quiz/location-nature/index.html?place_id=${item.inaturalist_place}',
+  mv: false,
+  icon: 'fa-solid fa-puzzle-piece',
+  text: 'location quiz',
+  section: ['education-quizzes'],
+  rank: [53],
 },
 
 'birdlife' : {
@@ -20121,6 +20160,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 251,
 },
 
+/*
 'ebird_quiz_search_inline' : {
   value: 'ebird-quiz-search:${item.title}:true:${item.lat}:${item.lon}', // FIXME: lat/lon values are not passed
   title: 'nearby eBird hotspot quizzes',
@@ -20133,6 +20173,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'education-quizzes',
   rank: 30,
 },
+*/
 
 'openartbrowser_artist' : {
   title: 'OpenArtBrowser artist',

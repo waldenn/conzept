@@ -1461,6 +1461,12 @@ function setupImageZoom(){ // using OpenSeaDragon
 
 	});
 
+  window.viewer.addHandler('open', function() {
+
+    viewer.viewport.zoomTo(0.9)
+
+  });
+
 	window.viewer.setVisible(true);
 
 }

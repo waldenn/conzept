@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+}
+
+#game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: #45a049;
+}
+
+h1 {
+    font-size: 75px;
+    text-decoration: none; /* Remove underlines */
+    color: inherit; /* Use the default text color */
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 25px;
+}
+
+p {
+    font-size: 20px;
+}
+
+#imageContainer {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid with a minimum column width of 200px */
+    gap: 10px; /* Gap between grid items */
+    justify-content: center; /* Center the grid horizontally */
+}
+
+figure {
+    text-align: center;
+    margin: 0;
+    display: flex; /* Use flexbox to vertically center content */
+    flex-direction: column; /* Stack image and caption vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    
+}
+
+#imageContainer img {
+    max-width: 100%; /* Ensure images do not exceed their container width */
+    height: auto; /* Maintain the aspect ratio of the images */
+    display: block; /* Remove extra spacing below inline images */
+}
+
+figcaption {
+    margin-top: 5px; /* Add some space between the image and caption */
+}
+
+#map {
+    width: 800px;
+    height: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Courier New', monospace;
+    background-color: #3c3c3c;
+}
+
+.greenButton {
+    font-size: 30px;
+    background-color: #4CAF50;
+}
+
+.greenButton {
+    background-color: #45a049;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 10px; /* Adjust the value to reduce the top margin */
+    margin-bottom: 5px; /* Adjust the value to reduce the bottom margin */
+}
+
+
+.not-clickable {
+    cursor: grab;
+}
+
+
+.modal-target {
+    width: 300px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .modal-target:hover {opacity: 0.7;}
+  
+  /* The Modal (background) */
+  .pictureModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000000; /* Sit on top */
+    padding-top: 20px; /* Location of the box */
+    padding-bottom: 20px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  }
+  
+  /* Modal Content (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    opacity: 1 !important;
+    max-width: 1200px;
+    object-fit: contain;
+  }
+
+
+#scoreContainer {
+    border-style: solid;
+    padding: 20px;
+    min-width: 200px;
+}
+
+#tutorial{
+    margin:0px 50px 0px 50px;
+}
+
+
+#tutorial2{
+    margin:0px 50px 0px 50px;
+}
+
+
+hr {
+    border: 10px solid green;
+    border-radius: 5px;
+  }

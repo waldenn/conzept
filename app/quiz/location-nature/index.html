@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iNatGuessr</title>
+
+    <!-- conzept resources -->
+    <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+
+    <script> if ( detectMobile() === true ){ setupSwipe( 'page' ); } setupAppKeyboardNavigation() </script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+
+<body id="app">
+
+    <div id="pictureModal" class="pictureModal">
+        <img id="modal-content" class="modal-content">
+        <p style="color:aliceblue; text-align: center;">Click image to exit</p>
+    </div>
+
+     <h1>iNatGuessr</h1>
+    <h4>Guess the location based on the <a href="https://www.inaturalist.org/" target="_blank">iNaturalist</a> observations!</h4>
+
+    <span id="tutorial">
+        <p>Welcome to iNatGuessr. A Guessr-style game where you are given a selection of images from iNaturalist observations. From these images it is your task to work out where they are from. When you make a guess the actual location will be revealed. The game is played over 5 rounds with 5000 points per round. Good luck!</p>
+        <form>
+            <label class="radio-inline">
+              <input type="radio" name="optradio" id="dailyRadio" checked>Daily challenge
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio" id="endlessRadio">Endless mode
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio" id="customRadio">Custom seed:
+              <input type="text" id="fname" name="fname">
+            </label>
+          </form>
+    </span>
+
+
+      <br>
+    <button id="playButton" class="greenButton">Start game</button>
+
+    <br>
+
+    <div id="tutorial2">
+        <p><b>Try a game variation:</b> <a href="?">Everything, everywhere</a> 🌍 |  <a href="?taxon_id=3">Birds</a> 🐦🌍 | <a href="?iconic_taxa=Plantae">Plants</a> 🌳🌲🌴🌍 | <a href="?iconic_taxa=Amphibia,Reptilia">Herptiles</a> 🐸🦎🐊🌍 | <a href="?iconic_taxa=Actinopterygii">Fish</a> 🐟🐠🌍 | <a href="?place_id=1">USA Only</a> 🇺🇸</p>
+        <p><b>Create a custom game:</b> You can specify a taxonomic group in the url by adding '?taxon_id=12345' and replace 12345 with the desired taxonomic ID. Similarly, you can specify a place in the url by by adding '?place_id=12345' and replace 12345 with the desired place ID. You can specify multiple IDs by using comma separated values eg. '?place_id=12345,12346'. Want more than just places and taxa? You can use any of the normal iNaturalist <a href="https://forum.inaturalist.org/t/how-to-use-inaturalists-search-urls-wiki-part-1-of-2/63" target="_blank">search parameters</a>.</p>
+    </div>
+
+    <span id ="game" style="display: none;">
+        <p id="taxonContainer"></p>
+
+        <div id="imageContainer"><p>Loading observations...</p></div>
+        <p style="font-size: 16px;">Click an image to get a closer look. Images may be subject to copyright.</p>
+        <h4>Click the map to guess a location</h4>
+        <p id="placeContainer"></p>
+        
+
+        <div id="mapContainer">
+            <div id="map" class="disabled"></div>
+        </div>
+        <div id="scoreFactorContainer"></div>
+        <p id="inatOutwardContainer"></p>
+
+        <br>
+        <button id="refreshButton" class="greenButton"  style="display: none;">Next round</button>
+        <span id="gameFinishMessage"></span>
+        <br>
+        <h4>Your results:</h4>
+        <div id="scoreContainer" ></div>
+        <button id="copyButton">Copy results to Clipboard</button>
+    </span>
+    
+    <p>By Simon Rolph v0.1.3</p>
+
+    <img src="images/powered_by.png" style="width: 150px;">
+    <br>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="src/seedrandom.min.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>

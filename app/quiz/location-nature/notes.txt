@@ -1,0 +1,27 @@
+
+
+
+
+Code:
+
+get random inat observation by selecting random values to things like day and year
+Other params: species level, research grade
+
+do another query to get x (eg. 2) more observations within x radius
+
+present pictures and species names
+
+
+
+Daily? set locations based on the days date?
+
+
+UI
+
+3 pictures
+
+map interface
+
+click on map
+
+reveal location and give score

@@ -138,9 +138,18 @@ div#status {
 #filter-reset {
   padding-left: 1em;
   height: 2em;
+  display: inline;
 }
 
-#filter-reset:hover {
+#filter-close {
+  float: right;
+  margin-right: 1em;
+  padding-left: 1em;
+  height: 2em;
+  display: inline;
+}
+
+#filter-reset:hover, #filter-close:hover {
   color: #38b2ee;
   cursor: pointer;
 }

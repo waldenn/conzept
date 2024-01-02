@@ -77,7 +77,8 @@ let my_current_image = '';
     '<div id="mainImageEditArea" style="display:none;">' +
       '<div id="mainImage"></div>' +
       '<div id="filter-title"><p>filters</p></div>' +
-      '<div id="filter-reset"><div href="javascript:void(0)" onclick="window.resetFilters()">&#8634; reset</div></div>' +
+      '<div id="filter-reset"><span href="javascript:void(0)" onclick="window.resetFilters()">&#8634; reset</span></div>' +
+      '<div id="filter-close"><span href="javascript:void(0)" onclick="window.closeFilters()">X close</span></div>' +
       '<div id="imageEditing">' +
 
         '<div class="filter-input"><p>brightness</p><input min="0" max="300" value="100" class="brightness" unit="%" type="range"></div>' +
@@ -3020,6 +3021,12 @@ function updateFilters(){
 
   var openseadragon_el = document.querySelector('#openseadragon');
 	openseadragon_el.style.filter = cssCode;
+
+}
+
+window.closeFilters = function(){
+
+  $('#mainImageEditArea').hide();
 
 }
 

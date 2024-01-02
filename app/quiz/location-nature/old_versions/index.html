@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iNatGuessr</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1>iNatGuessr</h1>
+    <h4>Guess the location based on these <a href="https://www.inaturalist.org/" target="_blank">iNaturalist</a> observations.</h4>
+    <h3>Location: <span id="locationName">World</span></h3>
+
+    <!-- The Modal -->
+    <div id="modal" class="modal">
+        <img id="modal-content" class="modal-content">
+        <p style="color:aliceblue; text-align: center;">Click image to exit</p>
+    </div>
+
+    
+    <div id="imageContainer">Loading observations...</div>
+    <p>Click an image to get a closer look. Images may be subject to copyright.</p>
+    <p id="attribContainer" style="display: none;"></p>
+    <h3>Click the map to guess a location</h3>
+    <div id="mapContainer">
+        <div id="map" class="disabled"></div>
+    </div>
+    <br>
+    <button id="refreshButton"  style="display: none;">Next round</button>
+    <br>
+    <div id="scoreContainer" ></div>
+    
+    <p>A prototype by Simon Rolph v0.0.4</p>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
