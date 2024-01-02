@@ -8697,8 +8697,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'taxon_location_quiz' : {
-  create_condition: 'valid( [ item.inaturalist_taxa, item.taxon_rank ] )',
-  render_condition: 'valid( item.taxon_rank_name ) && !listed( [ "supertribe", "tribe", "subtribe", "genus", "subgenus", "species", "subspecies" ], item.taxon_rank_name )', // filter-out too specific taxa (to avoid empty iNaturalist results)',
+  create_condition: 'valid( [ item.inaturalist_taxa ] )',
+  //render_condition: 'valid( item.taxon_rank_name ) && !listed( [ "supertribe", "tribe", "subtribe", "genus", "subgenus", "species", "subspecies" ], [ item.taxon_rank_name ] )', // filter-out too specific taxa (to avoid empty iNaturalist results)',
   title: 'Taxon location quiz',
   prop: '',
   type: 'link',
@@ -8708,7 +8708,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'location quiz',
   section: ['education-quizzes'],
   rank: [52],
-  headline_create: 'valid( item.inaturalist_taxa ); console.log( "${ item.taxon_rank_name }" )',
+  headline_create: 'valid( item.taxon_location_quiz )',
   headline_type: 'link',
   headline_rank: 645,
 },
