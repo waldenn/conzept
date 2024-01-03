@@ -145,7 +145,7 @@ function setBackgroundColor( url ){
 function colorBackground(){
 
   const angle = "360";
-  const c1    = getRandomColorHex();
+  const c1    = 'rgb(251, 250, 249)'; //getRandomColorHex();
   const c2    = getRandomColorHex();
 
   $('body').css({
