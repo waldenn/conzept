@@ -3176,6 +3176,7 @@ conzept_fields = {
   rank: 7.2,
 },
 
+/*
 'millionshort' : {
   create_condition: true,
   title: 'Million Short search',
@@ -3188,6 +3189,7 @@ conzept_fields = {
   section: 'web',
   rank: 20,
 },
+*/
 
 'swurl' : {
   create_condition: true,
@@ -3216,19 +3218,6 @@ conzept_fields = {
   rank: 25,
 },
 */
-
-'mwmbl' : {
-  create_condition: true,
-  title: 'MWMBL (open-source, non-profit) search engine',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://mwmbl.org/?q=${title_}',
-  icon: 'fa-brands fa-searchengin',
-  text: 'mwmbl',
-  section: 'web',
-  rank: 28,
-},
 
 'wiby' : {
   create_condition: true,
@@ -3281,6 +3270,20 @@ conzept_fields = {
   section: ['education-assistance','web'],
   rank: [100,50],
 },
+
+'mwmbl' : {
+  create_condition: true,
+  title: 'MWMBL (open-source, non-profit) search engine',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://mwmbl.org/?q=${title_}',
+  icon: 'fa-brands fa-searchengin',
+  text: 'mwmbl',
+  section: 'web',
+  rank: 60,
+},
+
 
 'yandex' : {
   create_condition: '! checkLC( "ru" )',
@@ -7102,6 +7105,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 900,
 },
 
+'global_fishing_watch' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Global Fishing Watch',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=6&dvIn[0][id]=basemap-labels&dvIn[0][cfg][vis]=true&dvIn[1][id]=context-layer-high-seas&dvIn[1][cfg][vis]=false&dvIn[2][id]=context-layer-rfmo&dvIn[2][cfg][vis]=true&dvIn[3][id]=context-layer-eez&dvIn[3][cfg][vis]=true&dvIn[4][id]=context-layer-mpa&dvIn[4][cfg][vis]=true&dvIn[5][id]=context-layer-protectedseas&dvIn[5][cfg][vis]=true&dvIn[6][id]=context-layer-fao-areas&dvIn[6][cfg][vis]=true&dvIn[7][id]=sar&dvIn[7][cfg][vis]=false&dvIn[8][id]=viirs&dvIn[8][cfg][vis]=true&timebarVisualisation=heatmap',
+  //url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=6',
+  icon: 'fa-solid fa-fish',
+  text: 'Global Fishing Watch',
+  section: 'location-ecology',
+  rank: 910,
+},
+
 'google_arts' : {
   title: 'Google Arts',
   prop: '4701',
@@ -7652,6 +7669,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Gutenberg search',
   section: 'library-general',
   rank: 140,
+},
+
+'annas_archive' : {
+  create_condition: '! checkLC("","US")',
+  title: 'Anna&lsquo;s Archive',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://annas-archive.org/search?q=${title_quoted}&lang=${explore.language}',
+  icon: 'fa-brands fa-mizuni',
+  text: 'Anna&lsquo;s Archive',
+  section: 'library-general',
+  rank: 142,
 },
 
 'staatsbibliothek_berlin' : {

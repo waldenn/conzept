@@ -275,7 +275,7 @@ const datasources = {
   'gbif': {
     active:                 false,
     name:                   'GBIF',
-    description:            'biodiversity data archive- BETA',
+    description:            'biodiversity data archive - BETA',
     tag:                    'science',
     qid:                    'Q1531570',
     protocol:               'rest',
@@ -300,10 +300,10 @@ const datasources = {
 
   'inaturalist': {
     active:                 false,
-    name:                   'iNaturalist - BETA',
-    description:            'taxon observations',
+    name:                   'iNaturalist',
+    description:            'taxon observations - BETA',
     tag:                    'science',
-    qid:                    'Q121598191',
+    qid:                    'Q16958215',
     protocol:               'rest',
     endpoint:               'https://api.inaturalist.org/v1/taxa', // see: https://api.inaturalist.org/v1/docs/#!/Taxa/get_taxa
     format:                 'json',
