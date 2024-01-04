@@ -3275,7 +3275,7 @@ conzept_fields = {
   create_condition: true,
   title: 'MWMBL (open-source, non-profit) search engine',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://mwmbl.org/?q=${title_}',
   icon: 'fa-brands fa-searchengin',
@@ -3283,7 +3283,6 @@ conzept_fields = {
   section: 'web',
   rank: 60,
 },
-
 
 'yandex' : {
   create_condition: '! checkLC( "ru" )',
@@ -7284,7 +7283,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://archive.org/search?query=${title_quoted}&and%5B%5D=mediatype%3A%22texts%22&and%5B%5D=language%3A%22${explore.language_name}%22',
   icon: 'fa-brands fa-mizuni',
-  text: 'archive search',
+  text: 'Archive.org search',
   section: 'library-general',
   rank: 75,
 },
@@ -7852,7 +7851,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://archive.org/search?query=${title_quoted}&and%5B%5D=mediatype%3A%22software%22',
   icon: 'fa-regular fa-save',
-  text: 'archive software',
+  text: 'Archive.org software',
   section: 'media-software',
   rank: 110,
 },
@@ -11753,7 +11752,7 @@ if ( valid( item.found_in_taxon ) ){
 'archive_scholar_orcid' : {
   value: 'archive-scholar:${item.orcid}:true',
   render_condition: 'valid( item.orcid )',
-  title: 'Archive Scholar search by ORCID',
+  title: 'Archive.org Scholar search by ORCID',
   prop: '0',
   type: 'rest-json',
   mv: true,
@@ -12853,7 +12852,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'archive_scholar_headline' : { // only used for headline display
   create_condition: 'checkTag( item, 0, ["organism","substance","natural-concept","meta-concept"] ) || checkTag( item, 1, ["periodical","scientist"] )',
-  title: 'Archive Scholar',
+  title: 'Archive.org Scholar',
   prop: '',
   type: 'link',
   mv: false,
@@ -14722,7 +14721,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'ceeol_search' : {
   create_condition: true,
-  title: 'CEEOL -  "Central and Eastern European Online Library" search',
+  title: 'CEEOL - Central and Eastern European Online Library search',
   prop: '',
   type: 'url',
   mv: false,
@@ -16298,7 +16297,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://www.cochranelibrary.com/search?min_year=&max_year=&custom_min_year=&custom_max_year=&searchBy=1&searchText=${title_quoted}&selectedType=review&isWordVariations=&resultPerPage=25&searchType=basic&orderBy=relevancy&publishDateTo=&publishDateFrom=&publishYearTo=&publishYearFrom=&displayText=&forceTypeSelection=true&p_p_id=scolarissearchresultsportlet_WAR_scolarissearchresults&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&cur=1',
   icon: 'fa-solid fa-laptop-medical',
-  text: 'Healthline',
+  text: 'Cochrane',
   section: 'science-medical',
   rank: 110,
 },
@@ -18040,6 +18039,22 @@ if ( valid( item.found_in_taxon ) ){
   rank: 105,
 },
 
+// defunct
+'elephindcom' : {
+  title: 'Elephindcom',
+  prop: '8088',
+  type: 'url',
+  mv: false,
+  url_format: 'https://www.elephind.com/?a=p&p=publication&puq=$1',
+  url: '',
+  icon: 'fa-regular fa-square',
+  text: 'Elephindcom',
+  section: '',
+  //section: ['library-identity'],
+  //rank: [28088],
+},
+
+/*
 'elephind' : {
   create_condition: true,
   title: 'Elephind',
@@ -18052,6 +18067,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'library-history',
   rank: 110,
 },
+*/
 
 'british_newspaper_archive' : {
   create_condition: true,
@@ -19452,7 +19468,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'archive_scholar' : {
   value: 'archive-scholar:${item.title}:true',
-  title: 'Archive Scholar',
+  title: 'Archive.org Scholar',
   prop: '0',
   type: 'rest-json',
   mv: true,
@@ -19888,7 +19904,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://archive.org/search.php?query=${title_quoted}&and[]=mediatype%3A%22audio%22&and[]=mediatype%3A%22etree%22',
   icon: 'fa-solid fa-music',
-  text: 'archive search',
+  text: 'Archive.org search',
   section: 'media-audio',
   rank: 12,
 
@@ -20016,7 +20032,7 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://catalog.archives.gov/search?q=${title_quoted}&f.oldScope=online&SearchType=advanced',
   mv: false,
   icon: 'fa-solid fa-flag-usa',
-  text: 'US Archive search',
+  text: 'US Archive.org search',
   section: ['library-history','government-general'],
   rank: [101, 5020],
 },
@@ -104030,20 +104046,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'GameTDB game',
   section: ['library-identity'],
   rank: [28087],
-  auto: true,
-},
-
-'elephindcom' : {
-  title: 'Elephindcom',
-  prop: '8088',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.elephind.com/?a=p&p=publication&puq=$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Elephindcom',
-  section: ['library-identity'],
-  rank: [28088],
   auto: true,
 },
 
