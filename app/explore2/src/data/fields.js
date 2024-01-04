@@ -7671,6 +7671,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 140,
 },
 
+/*
 'annas_archive' : {
   create_condition: '! checkLC("","US")',
   title: 'Anna&lsquo;s Archive',
@@ -7683,6 +7684,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'library-general',
   rank: 142,
 },
+*/
 
 'staatsbibliothek_berlin' : {
   create_condition: 'checkLC("de")',
