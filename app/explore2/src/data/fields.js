@@ -7092,6 +7092,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 320,
 },
 
+'global_fishing_watch' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Global Fishing Watch',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=5&dvIn[0][id]=basemap-labels&dvIn[0][cfg][vis]=true&dvIn[1][id]=context-layer-high-seas&dvIn[1][cfg][vis]=false&dvIn[2][id]=context-layer-rfmo&dvIn[2][cfg][vis]=true&dvIn[3][id]=context-layer-eez&dvIn[3][cfg][vis]=true&dvIn[4][id]=context-layer-mpa&dvIn[4][cfg][vis]=true&dvIn[5][id]=context-layer-protectedseas&dvIn[5][cfg][vis]=true&dvIn[6][id]=context-layer-fao-areas&dvIn[6][cfg][vis]=true&dvIn[7][id]=sar&dvIn[7][cfg][vis]=false&dvIn[8][id]=viirs&dvIn[8][cfg][vis]=true&timebarVisualisation=heatmap',
+  //url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=6',
+  icon: 'fa-solid fa-fish',
+  text: 'Global Fishing Watch',
+  section: 'location-ecology',
+  rank: 900,
+},
+
 'environment_eudp_gov' : {
   create_condition: true,
   title: 'European Union data portal: environment',
@@ -7101,20 +7115,6 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://data.europa.eu/data/datasets?categories=envi&page=1&locale=${explore.language}&query=${ title_quoted }',
   icon: 'fa-solid fa-euro-sign',
   text: 'EU envir.',
-  section: 'location-ecology',
-  rank: 900,
-},
-
-'global_fishing_watch' : {
-  create_condition: 'valid( item.lat )',
-  title: 'Global Fishing Watch',
-  prop: '',
-  type: 'url',
-  mv: false,
-  url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=6&dvIn[0][id]=basemap-labels&dvIn[0][cfg][vis]=true&dvIn[1][id]=context-layer-high-seas&dvIn[1][cfg][vis]=false&dvIn[2][id]=context-layer-rfmo&dvIn[2][cfg][vis]=true&dvIn[3][id]=context-layer-eez&dvIn[3][cfg][vis]=true&dvIn[4][id]=context-layer-mpa&dvIn[4][cfg][vis]=true&dvIn[5][id]=context-layer-protectedseas&dvIn[5][cfg][vis]=true&dvIn[6][id]=context-layer-fao-areas&dvIn[6][cfg][vis]=true&dvIn[7][id]=sar&dvIn[7][cfg][vis]=false&dvIn[8][id]=viirs&dvIn[8][cfg][vis]=true&timebarVisualisation=heatmap',
-  //url: 'https://globalfishingwatch.org/map/index?latitude=${ item.lat }&longitude=${ item.lon }&zoom=6',
-  icon: 'fa-solid fa-fish',
-  text: 'Global Fishing Watch',
   section: 'location-ecology',
   rank: 910,
 },
@@ -7282,11 +7282,11 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://archive.org/search.php?query=${title_quoted}&sin=TXT${title_}&and[]=languageSorter%3A"${explore.language_name}"', 
+  url: 'https://archive.org/search?query=${title_quoted}&and%5B%5D=mediatype%3A%22texts%22&and%5B%5D=language%3A%22${explore.language_name}%22',
   icon: 'fa-brands fa-mizuni',
   text: 'archive search',
   section: 'library-general',
-  rank: 110,
+  rank: 75,
 },
 
 'language_size_by_population_on_continent' : {
@@ -7850,7 +7850,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://archive.org/details/software?and[]=${title_quoted}&sin=',
+  url: 'https://archive.org/search?query=${title_quoted}&and%5B%5D=mediatype%3A%22software%22',
   icon: 'fa-regular fa-save',
   text: 'archive software',
   section: 'media-software',
@@ -12924,7 +12924,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_type: 'link',
   headline_title: 'Archive.org game search',
   headline_icon: 'fa-solid fa-gamepad',
-  headline_url: 'https://archive.org/search.php?query=%22${title_no_braces}%22&sin=TXTFrogger&and[]=languageSorter%3A%22English%22&and[]=mediatype%3A%22software%22',
+  headline_url: 'https://archive.org/search?query=%22${title_no_braces}%22&and%5B%5D=mediatype%3A%22software%22&and%5B%5D=language%3A%22English%22',
   headline_rank: 230,
 },
 
@@ -13143,19 +13143,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 13.2,
 },
 
-'map_shade' : {
-  create_condition: 'valid( item.lat )',
-  title: '3D shade map',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://shademap.app/#${item.lat},${item.lon},12.49795z,1641492931979t,135.22347b,45p',
-  icon: 'fa-regular fa-sun',
-  text: 'shade map',
-  section: 'location-ecology',
-  rank: 700,
-},
-
 'country_l1_subdivisions_query' : {
   create_condition: 'valid( item.iso2 ) && valid ( countries[ "${ item.qid }" ] )',
   create_trigger: 'item.l1 = countries[ "${ item.qid }" ]?.l1 || "" ',
@@ -13305,7 +13292,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-chart-line',
   text: 'causes of death',
   section: ['location-demography','science-medical','main'],
-  rank: [255,120,1605],
+  rank: [255,160,1605],
   //headline_create: 'valid( item.chart_cause_of_death_per_subclass_trend ) ',
   //headline_type: 'link',
   //headline_rank: 610,
@@ -14733,6 +14720,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 205,
 },
 
+'ceeol_search' : {
+  create_condition: true,
+  title: 'CEEOL -  "Central and Eastern European Online Library" search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.ceeol.com/search/advanced-search?f=%7B%22Text%22%3A%22%5C${title_quoted}%22%22%2C%22SearchRows%22%3A%5B%7B%22SearchInOption%22%3A4%2C%22Occur%22%3A0%2C%22SearchText%22%3Anull%7D%2C%7B%22SearchInOption%22%3A4%2C%22Occur%22%3A0%2C%22SearchText%22%3Anull%7D%2C%7B%22SearchInOption%22%3A4%2C%22Occur%22%3A0%2C%22SearchText%22%3Anull%7D%5D%2C%22Pagination%22%3A%7B%22PageNumber%22%3A1%2C%22PageRows%22%3A20%2C%22TotalRows%22%3A0%7D%7D&page=1',
+  icon: 'fa-brands fa-mizuni',
+  text: 'CEEOL',
+  section: 'library-general',
+  rank: 208,
+},
+
 'deutsche_digitale_bibliothek' : {
   create_condition: 'checkLC( ["de"] )',
   title: 'Deutsche Digitale Bibliothek search',
@@ -15628,6 +15628,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 220,
 },
 
+'oxford_music_online_search' : {
+  create_condition: true,
+  title: 'Oxford Music Online search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.oxfordmusiconline.com/search?q=${title_quoted}&searchBtn=Search&isQuickSearch=true',
+  icon: 'fa-solid fa-music',
+  text: 'Oxford Music',
+  section: 'art',
+  rank: 362,
+},
+
 'architizer' : {
   create_condition: 'valid( item.lat )',
   title: 'Architizer',
@@ -15695,6 +15708,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'light pollution',
   section: 'location-ecology',
   rank: 220,
+},
+
+'map_shade' : {
+  create_condition: 'valid( item.lat )',
+  title: '3D shade map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://shademap.app/#${item.lat},${item.lon},12.49795z,1641492931979t,135.22347b,45p',
+  icon: 'fa-regular fa-sun',
+  text: 'shade map',
+  section: 'location-ecology',
+  rank: 225,
 },
 
 'urban_history_4d_map' : {
@@ -16262,6 +16288,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Healthline',
   section: 'science-medical',
   rank: 90,
+},
+
+'cochrane_library' : {
+  create_condition: true,
+  title: 'Cochrane Library - healthcare decision-making science search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.cochranelibrary.com/search?min_year=&max_year=&custom_min_year=&custom_max_year=&searchBy=1&searchText=${title_quoted}&selectedType=review&isWordVariations=&resultPerPage=25&searchType=basic&orderBy=relevancy&publishDateTo=&publishDateFrom=&publishYearTo=&publishYearFrom=&displayText=&forceTypeSelection=true&p_p_id=scolarissearchresultsportlet_WAR_scolarissearchresults&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&cur=1',
+  icon: 'fa-solid fa-laptop-medical',
+  text: 'Healthline',
+  section: 'science-medical',
+  rank: 110,
 },
 
 /*
@@ -17632,6 +17671,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Automata',
   section: 'business',
   rank: 120,
+},
+
+'world_bank_elibrary_search' : {
+  create_condition: true,
+  title: 'World Bank eLibrary search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://elibrary.worldbank.org/action/doSearch?AllField=${title_quoted}',
+  icon: 'fa-solid fa-money-check-alt',
+  text: 'World Bank',
+  section: 'business',
+  rank: 122,
 },
 
 'financial_times' : {
