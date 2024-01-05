@@ -120,10 +120,45 @@ function getTitleFromQid( qid, target_pane ){
 
 }
 
-function getQidFromTitle( title, language ){
+async function getQidFromTitle( title, language ) {
 
-  // TODO
+  const apiUrl = 'https://www.wikidata.org/w/api.php';
 
+  const params = new URLSearchParams({
+
+    action:		'wbsearchentities',
+    format:		'json',
+    language: language,
+    search:		title,
+
+  });
+
+  const fullUrl = `${apiUrl}?${params.toString()}&origin=*`;
+
+  try {
+
+    const response = await fetch(fullUrl);
+    const data = await response.json();
+
+    if (data.search && data.search.length > 0) { // results found
+
+      return data.search[0].id; // return the first QID
+
+    }
+		else { // no results found
+
+      throw new Error('No Wikidata QID found: ', title, language );
+
+    }
+
+  } catch (error) {
+
+    console.error( 'Error fetching Wikidata QID:', error.message );
+
+    throw error;
+
+  }
+ 
 }
 
 function getWikidataFromTitle( title, allow_recheck, target_pane ){

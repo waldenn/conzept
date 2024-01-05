@@ -50,7 +50,6 @@ function processResultsInaturalist( topicResults, struct, index ){
 
     }
     else {
-      console.log('foo1');
 
       datasources[ source ].total = topicResults.total_results;
 
@@ -87,20 +86,36 @@ function processResultsInaturalist( topicResults, struct, index ){
 
       $.each( topicResults.results, function( i, obj ){
 
+        let   qid         = '';
         const gid         = obj.id;
-        const qid         = '';
         const language    = explore.language;
-        const term                              = removebracesTitle( getSearchTerm() );
+        const term        = removebracesTitle( getSearchTerm() );
         const start_date  = '';
 
         let url           = '';
         let doc_url       = '';
+        let title         = valid( obj.name )? obj.name : '---';
+        let rank          = valid( obj.rank )? obj.rank : '';
         let desc          = '';
         let creators      = [];
         let concepts      = [];
         let subtag        = '';
         let img           = '';
         let img_attribution = '';
+
+        getQidFromTitle( title, explore.language )
+
+          .then( ( qid_ ) =>
+
+            qid = qid_,
+
+            console.log(`Wikidata QID for "${title}" in ${language}: ${qid}`)
+
+          ).catch( (error) =>
+
+            console.error('Error no Qid:', title, error.message)
+
+        );
 
         // URL vars
 
@@ -123,21 +138,22 @@ function processResultsInaturalist( topicResults, struct, index ){
 
         if ( valid( obj.id ) ){
 
-            url = encodeURIComponent( JSON.stringify( 'https://www.inaturalist.org/taxa/' + obj.id ) );
+          url = `/app/wikipedia/?t=${ encodeURIComponent( title ) }&l=${ explore.language }`;
+          //url = encodeURIComponent( JSON.stringify( 'https://www.inaturalist.org/taxa/' + obj.id ) ); // site cant be iframed!
 
-            doc_url = 'https://www.inaturalist.org/observations?place_id=any&subview=map&taxon_id=' + obj.id;
+          doc_url = 'https://www.inaturalist.org/observations?place_id=any&subview=map&taxon_id=' + obj.id;
 
         }
 
         if ( valid( doc_url ) ){
 
-          desc = desc + `<div><a target="_blank" title="iNaturalist page" aria-label="iNaturalist page" href="${doc_url}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>`;
+          desc = desc + `<div><a target="_blank" title="iNaturalist page" aria-label="iNaturalist page" href="${doc_url}"><i class="fa-solid fa-arrow-up-right-from-square"></i> iNaturalist observations</a></div>`;
 
         }
 
         if ( valid( obj.rank ) ){
 
-	  			desc += `<div><i>${ capitalizeFirstLetter( obj.rank ) }</i></div>`;
+	  			desc += `<br/><div><i>${ capitalizeFirstLetter( obj.rank ) }</i></div>`;
 
 				}
 
@@ -155,19 +171,16 @@ function processResultsInaturalist( topicResults, struct, index ){
 
 				}
 
-
-	let title = valid( obj.name, obj.rank )? stripHtml( obj.name ) : '---';
-
         // fill fields
 				let item = {
           source:       source,
 					title:        title,
 					description:  desc,
+					qid:          qid,
 					gid:          valid( obj.id )? obj.id : '---',
 					display_url:  url,
 					thumb:        img,
           start_date:   '',
-					qid:          '',
           countries:    [],
           tags:         [],
 				};

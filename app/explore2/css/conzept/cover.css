@@ -83,7 +83,7 @@ a:hover {
 .caption span.border:hover {
   /* border-color: #2196f3; */
   border-color: #f6b2b5;
-  box-shadow: 0 14px 14px 0 transparent,0 12px 13px #0000008f;
+  box-shadow: 0 14px 14px 0 transparent,0 12px 13px #00000059;
   transition: box-shadow 0.2s ease-in-out;
 }
 

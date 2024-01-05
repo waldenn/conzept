@@ -1214,6 +1214,66 @@ conzept_fields = {
   headline_rank: 172,
 },
 
+'icao_airline_designator' : {
+  title: 'ICAO airline designator',
+  prop: '230',
+  type: 'symbol-string',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'ICAO airline designator',
+  section: 'info',
+  rank: '300230',
+},
+
+'aircraft_registration' : {
+  title: 'Aircraft registration',
+  prop: '426',
+  type: 'symbol-string',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'aircraft registration',
+  section: 'info',
+  rank: '300426',
+},
+
+'adsbexchange_aircraft' : {
+  create_condition: 'valid( item.aircraft_registration )',
+  title: 'ADSB Exchange - aircraft flight tracking',
+  type: 'link',
+  url: 'https://globe.adsbexchange.com/?icao=${ item.aircraft_registration }',
+  mv: false,
+  icon: 'fa-solid fa-plane',
+  text: 'ADSB Exchange',
+  section: ['main'],
+  rank: [650],
+},
+
+'radarbox_aircraft' : {
+  create_condition: 'valid( item.aircraft_registration )',
+  title: 'RadarBox - aircraft flight tracking',
+  type: 'link',
+  url: 'https://globe.adsbexchange.com/?icao=${ item.aircraft_registration }',
+  mv: false,
+  icon: 'fa-solid fa-plane',
+  text: 'RadarBox',
+  section: ['main'],
+  rank: [653],
+},
+
+'flightdb_aircraft' : {
+  create_condition: 'valid( item.aircraft_registration )',
+  title: 'RadarBox - aircraft information',
+  type: 'link',
+  url: 'https://www.flightdb.net/aircraft.php?modes=${ item.aircraft_registration }',
+  mv: false,
+  icon: 'fa-solid fa-plane',
+  text: 'FlightDB',
+  section: ['main'],
+  rank: [655],
+},
+
 /*
 'is_member_of_parliament' : {
   default_value: false,
@@ -140273,19 +140333,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'icao_airline_designator' : {
-  title: 'ICAO airline designator',
-  prop: '230',
-  type: 'symbol-string',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'ICAO airline designator',
-  section: 'info',
-  rank: '300230',
-  auto: true,
-},
-
 'icao_airport_code' : {
   title: 'ICAO airport code',
   prop: '239',
@@ -140439,19 +140486,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Wikimedia language code',
   section: 'info',
   rank: '300424',
-  auto: true,
-},
-
-'aircraft_registration' : {
-  title: 'Aircraft registration',
-  prop: '426',
-  type: 'symbol-string',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'aircraft registration',
-  section: 'info',
-  rank: '300426',
   auto: true,
 },
 
