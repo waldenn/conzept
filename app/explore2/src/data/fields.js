@@ -7732,14 +7732,14 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'annas_archive' : {
-  create_condition: '! checkLC("","US")',
-  title: 'Anna&lsquo;s Archive',
+  create_condition: true, // '! checkLC("","US")',
+  title: 'Annas Archive',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://annas-archive.org/search?q=${title_quoted}&lang=${explore.language}',
+  url: 'https://annas-archive.org/search?q=${title_quoted}&lang=en&lang=${explore.language}', // english + preferred-language
   icon: 'fa-brands fa-mizuni',
-  text: 'Anna&lsquo;s Archive',
+  text: 'Annas Archive',
   section: 'library-general',
   rank: 142,
 },

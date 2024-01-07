@@ -137,23 +137,25 @@ async function getQidFromTitle( title, language ) {
 
   try {
 
-    const response = await fetch(fullUrl);
-    const data = await response.json();
+    const response  = await fetch(fullUrl);
+    const data      = await response.json();
 
     if (data.search && data.search.length > 0) { // results found
+
+      //console.log( 'Qid: ', data.search[0].id );
 
       return data.search[0].id; // return the first QID
 
     }
 		else { // no results found
 
-      throw new Error('No Wikidata QID found: ', title, language );
+      throw new Error('no Qid found for: ', title, language );
 
     }
 
   } catch (error) {
 
-    console.error( 'Error fetching Wikidata QID:', error.message );
+    console.error( 'Error fetching Wikidata Qid data:', error.message, title, language );
 
     throw error;
 

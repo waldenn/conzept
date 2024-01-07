@@ -9310,7 +9310,7 @@ function loadTopics( nextpage ){
     // call and resolve all my promise functions
     Promise.allSettled( my_promises )
 
-      .then((results) => results.forEach( ( result, index ) => {
+      .then( (results) => results.forEach( ( result, index ) => {
 
         //console.log( 'results: ', results );
 
@@ -9338,7 +9338,7 @@ function loadTopics( nextpage ){
 				}
 
       }))
-      .then((value) => {
+      .then( (value) => {
 
         renderTopics( renderObject ); // finally render all topics
 

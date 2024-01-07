@@ -1902,6 +1902,37 @@ function tocTransform( section_title ){
 
 }
 
+function getWikidata( qid ) {
+
+  return new Promise( async (resolve, reject) => {
+
+    try {
+
+      const wikidata_url = window.wbk.getEntities({
+        ids: [ qid ],
+        redirections: false,
+      })
+
+      const response  = await fetch( wikidata_url );
+      const data      = await response.json();
+      const entities  = window.wbk.parse.wd.entities( data );
+
+      let item = { qid : qid };
+
+      item = await setWikidataPromise( item, entities[ item.qid ], true, 'p0', '' );
+
+      resolve( item );
+
+    }
+    catch (error) {
+
+      reject( error );
+    }
+
+  });
+
+}
+
 /*
 function objectToString(obj){
 

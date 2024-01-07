@@ -285,7 +285,7 @@ $( document ).ready( function() {
 
  				}
 
-        getWikidata( explore.qid )
+        getWikidata_( explore.qid )
 
       }
       else { // use the title
@@ -447,7 +447,7 @@ function checkForQid(){
 }
 
 
-function getWikidata( qid ){
+function getWikidata_( qid ){
 
   const wikidata_url = window.wbk.getEntities({
     ids: [ qid ],
@@ -471,7 +471,7 @@ function getWikidata( qid ){
 			// detect the relevant wikidata-data and put this info into the item
 			setWikidata( item, entities[ item.qid ], true, current_pane, afterSetWikidata ); // TODO: use target_pane?
 
-  }) // end of qid entitie processing
+  }) // end of qid entity processing
 
 }
 
