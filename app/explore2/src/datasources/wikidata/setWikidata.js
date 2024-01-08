@@ -1422,8 +1422,6 @@ async function setWikidataPromise( item, wd, single, target_pane, callback ){
 
 }
 
-
-
 // detect the relevant wikidata-data and put this info into each item
 async function setWikidata( item, wd, single, target_pane, callback ){
 

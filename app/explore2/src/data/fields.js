@@ -4633,6 +4633,19 @@ conzept_fields = {
   headline_rank: 94,
 },
 
+'description_custom_html' : {
+  create_condition: 'valid( item.description_html )', // custom datasource field (used in eg. iNaturalist)
+  title: 'custom description',
+  type: 'symbol-html',
+  url: '',
+  mv: false,
+  string_format: '${ item.description_html }',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+},
+
 'online_catalog' : {
   title: 'online catalog',
   prop: '8768',
@@ -20662,6 +20675,30 @@ if ( valid( item.found_in_taxon ) ){
   text: 'official name',
   section: ['info','main'],
   rank: [301448, 8050],
+},
+
+'free_libre_open_source_software_usage_policy_url' : {
+  title: 'Free/libre open source software usage policy URL',
+  prop: '9771',
+  type: 'url',
+  mv: false,
+  url: '${ item.free_libre_open_source_software_usage_policy_url }',
+  icon: 'fa-solid fa-link',
+  text: 'usage policy',
+  section: ['main'],
+  rank: [99771],
+},
+
+'free_libre_open_source_software_development_policy_url' : {
+  title: 'Free/libre open source software development policy URL',
+  prop: '9904',
+  type: 'url',
+  mv: false,
+  url: '${ item.free_libre_open_source_software_development_policy_url }',
+  icon: 'fa-solid fa-link',
+  text: 'policy URL',
+  section: ['main'],
+  rank: [99904],
 },
 
 /* AUTOMATED FIELD INSERTIONS: Time */
@@ -131784,32 +131821,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Wikimedia Incubator URL',
   section: ['main'],
   rank: [99748],
-  auto: true,
-},
-
-'free/libre_open_source_software_usage_policy_url' : {
-  title: 'Free/libre open source software usage policy URL',
-  prop: '9771',
-  type: 'url',
-  mv: false,
-  url: '${ item.free/libre_open_source_software_usage_policy_url }',
-  icon: 'fa-solid fa-link',
-  text: 'free/libre open source software',
-  section: ['main'],
-  rank: [99771],
-  auto: true,
-},
-
-'free/libre_open_source_software_development_policy_url' : {
-  title: 'Free/libre open source software development policy URL',
-  prop: '9904',
-  type: 'url',
-  mv: false,
-  url: '${ item.free/libre_open_source_software_development_policy_url }',
-  icon: 'fa-solid fa-link',
-  text: 'free/libre open source software',
-  section: ['main'],
-  rank: [99904],
   auto: true,
 },
 

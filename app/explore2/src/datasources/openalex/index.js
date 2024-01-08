@@ -224,7 +224,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
 					title:        valid( obj.title )? stripHtml( obj.title ) : '---',
 					description:  desc,
 					gid:          valid( obj.id )? obj.id : '---',
-					display_url:  url ,
+					display_url:  url,
 					thumb:        img,
           start_date:   valid( obj.publication_year )? obj.publication_year.toString() : '',
 					qid:          '',

@@ -30,9 +30,9 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
 	return new Promise(( finalResult, finalReject ) => {
 
-  const source = 'inaturalist';
+    const source = 'inaturalist';
 
-  let result = {};
+    let result = {};
 
     // P1: fetch iNaturalist taxa, process taxa data into an "item", put each item into the "item list"
 		function promise1(){
@@ -163,11 +163,12 @@ async function processResultsInaturalist(topicResults, struct, index) {
           let item = {
             source: source,
             title: title,
-            description: desc,
+            //description: desc, // not visible with Wikidata transformation
+            description_html: desc,
             qid: '',
             gid: valid( obj.id) ? obj.id : '---',
             display_url: url,
-            thumb: img,
+            thumb: img, // not showing the iNaturalist image (but the Wikidata thumb)!
             start_date: '',
             countries: [],
             tags: [],
@@ -180,7 +181,6 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         });
 
-        //console.log('P1 results: ', result);
         resolve( [result] );
 
       };
@@ -192,74 +192,74 @@ async function processResultsInaturalist(topicResults, struct, index) {
     // #P2: for each "item" match its title to a Qid
 		function promise2(){
 
-     return new Promise( async (resolve, reject) => {
+      return new Promise( async (resolve, reject) => {
 
-					const qid_promises = [];
+        const qid_promises = [];
 
-					result.source.data.query.search.forEach( function (item, i) {
+        result.source.data.query.search.forEach( function (item, i) {
 
-						const qid_promise = getQidFromTitle( item.title, explore.language ).then( qid_ => {
+          const qid_promise = getQidFromTitle( item.title, explore.language ).then( qid_ => {
 
-							item.qid = qid_;
+            item.qid = qid_;
 
-							result.source.data.query.search[i] = item; // update the item
+            result.source.data.query.search[i] = item; // update the item
 
-							return qid_;
+            return qid_;
 
-						});
+          });
 
-						qid_promises.push( qid_promise );
+          qid_promises.push( qid_promise );
 
-					});
+        });
 
-					// Wait for all promises to resolve
-					const r = await Promise.all( qid_promises );
-					resolve( [r] );
+        const r = await Promise.all( qid_promises );
+        resolve( [r] );
 
-					// FIXME needed?: handle no-Qid case?
+        // FIXME needed?: handle no-Qid case?
 
-    	});
+      });
 
 		}
 
 	  // P3: lookup Wikidata for each item
 		function promise3() {
 
-	   return new Promise( async (resolve, reject) => {
+	    return new Promise( async (resolve, reject) => {
 
-					const asyncOperations = result.source.data.query.search.map(async (item) => {
+        const asyncOperations = result.source.data.query.search.map(async (item) => {
 
-						return await getWikidata( item.qid );
+          return await getWikidata( item.qid );
 
-					});
+        });
 
-					Promise.all( asyncOperations ).then((results) => {
+        Promise.all( asyncOperations ).then((results) => {
 
-							results.forEach( ( item, i ) => {
+          results.forEach( ( item, i ) => {
 
-            		result.source.data.query.search[i] = item;
+            result.source.data.query.search[i] = item;
 
-							})
+          })
 
-			  			resolve( [ result ] );
-						})
-						.catch((error) => {
+          resolve( [ result ] );
+        })
+        .catch((error) => {
 
-							console.error('Error in async operations:', error);
+          console.error('Error in async operations:', error);
 
-						});
+        });
 
 	  	});
 
 		}
 	  
-    // execute promises in dependency-order
+    // execute promises in order
 		promise1()
-      .then(result1 => { return promise2(); })
-      .then(result2 => { return promise3(); })
-      .then(result3 => { finalResult( result3 ); })
-      .catch(error => { console.error('error: ', error); });
-	})
+      .then( result1 => { return promise2(); })
+      .then( result2 => { return promise3(); })
+      .then( result3 => { finalResult( result3 ); })
+      .catch( error  => { console.error('error: ', error); });
+
+	});
 
 }
 

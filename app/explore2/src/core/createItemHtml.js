@@ -1059,6 +1059,13 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   const grid_class = valid( explore.gridmode )? 'sidebar-grid-item' : '' ;
 
+  // custom description set from datasources
+  if ( valid( item.description_custom_html ) ){
+
+    description += description_custom_html;
+
+  }
+
   if ( valid( item.description ) ){
 
     if ( valid( item.display_url ) ){ // assume we can render an embedded page-link
@@ -1093,7 +1100,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   }
   else {
 
-    description = thumbnail;
+    description += thumbnail;
 
   }
 
