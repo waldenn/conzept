@@ -11825,7 +11825,7 @@ if ( valid( item.found_in_taxon ) ){
 'archive_scholar_orcid' : {
   value: 'archive-scholar:${item.orcid}:true',
   render_condition: 'valid( item.orcid )',
-  title: 'Archive.org Scholar search by ORCID',
+  title: 'Archive Scholar search by ORCID',
   prop: '0',
   type: 'rest-json',
   mv: true,
@@ -12925,7 +12925,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'archive_scholar_headline' : { // only used for headline display
   create_condition: 'checkTag( item, 0, ["organism","substance","natural-concept","meta-concept"] ) || checkTag( item, 1, ["periodical","scientist"] )',
-  title: 'Archive.org Scholar',
+  title: 'Archive Scholar',
   prop: '',
   type: 'link',
   mv: false,
@@ -19541,7 +19541,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'archive_scholar' : {
   value: 'archive-scholar:${item.title}:true',
-  title: 'Archive.org Scholar',
+  title: 'Archive Scholar',
   prop: '0',
   type: 'rest-json',
   mv: true,
@@ -19649,7 +19649,7 @@ if ( valid( item.found_in_taxon ) ){
 /*
 'archive_scholar' : {
   create_condition: true,
-  title: 'Archive.org Scholar',
+  title: 'Archive Scholar',
   prop: '',
   type: 'url',
   mv: false,
