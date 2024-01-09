@@ -4634,12 +4634,13 @@ conzept_fields = {
 },
 
 'description_custom_html' : {
-  create_condition: 'valid( item.description_html )', // custom datasource field (used in eg. iNaturalist)
+  create_condition: 'valid( item.description_custom )', // custom datasource field (used in eg. iNaturalist)
+  create_trigger: 'item.description_custom_html = item.description_custom; console.log( item.description_custom_html );',
   title: 'custom description',
-  type: 'symbol-html',
+  type: '',
   url: '',
   mv: false,
-  string_format: '${ item.description_html }',
+  //string_format: '${ item.description_custom }',
   icon: '',
   text: '',
   section: '',

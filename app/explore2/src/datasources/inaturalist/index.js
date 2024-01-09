@@ -41,16 +41,19 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
       if ( !valid(  topicResults.results ) ) {
 
+        console.log('inaturalist: exiting, invalid results');
         resolve( [ [], [] ] );
 
       }
       else if (topicResults.results.length === 0) {
 
+        console.log('inaturalist: exiting, zero valid results');
         resolve( [ [], [] ] );
 
       }
       else if ((Math.max(Math.ceil(topicResults.results.total_results / (datasources[source].pagesize * (explore.page - 1 ) )), 1) === 1 ) ) { // no more results
 
+        console.log('inaturalist: exiting, no more results');
         resolve( [ [], [] ] );
 
       }
@@ -164,7 +167,7 @@ async function processResultsInaturalist(topicResults, struct, index) {
             source: source,
             title: title,
             //description: desc, // not visible with Wikidata transformation
-            description_html: desc,
+            description_custom: desc,
             qid: '',
             gid: valid( obj.id) ? obj.id : '---',
             display_url: url,
@@ -181,6 +184,7 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         });
 
+        console.log('inaturalist: returning more results');
         resolve( [result] );
 
       };
@@ -257,7 +261,9 @@ async function processResultsInaturalist(topicResults, struct, index) {
       .then( result1 => { return promise2(); })
       .then( result2 => { return promise3(); })
       .then( result3 => { finalResult( result3 ); })
-      .catch( error  => { console.error('error: ', error); });
+      .catch( error  => {
+        console.error('error: ', error);
+      });
 
 	});
 
@@ -269,11 +275,13 @@ function resolveInaturalist(result, renderObject) {
 
   if ( !valid( result.value[0] ) ) { // no results were found
 
+    console.log('resolveInaturalist: no more results were found');
     datasources[source].done = true;
 
   }
   else if (result.value[0] === 'done') { // done fetching results
 
+    console.log('resolveInaturalist: done fetching results');
     datasources[source].done = true;
 
   }
