@@ -368,8 +368,12 @@ $( document ).ready( function() {
     setupAmbientAudio();
     setupAutoStopAudio();
 
-    if ( !explore.isMobile ){ // dont show the 3D map on mobile (for now)
+    // dont show the 3D map on mobile (for now)
+    if ( !explore.isMobile ){
       setupGeoSearch();
+    }
+    else {
+      $('#detail-geo-search').hide();
     }
 
     setupEditor();
