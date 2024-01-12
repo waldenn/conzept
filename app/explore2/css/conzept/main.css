@@ -72,6 +72,11 @@
   line-height: 150% !important;
   font-size: 80%;
   width: 95%;
+  margin-bottom: 0.5rem;
+}
+
+#detail-structured-search {
+  margin-top: -0.5rem;
 }
 
 #detail-ai-chat {
@@ -2801,12 +2806,6 @@ details[open].conf summary ~ * {
     opacity: 1;
     margin-left: 0;
   }
-}
-
-#detail-structured-search {
-  font-size: 80%;
-  margin-top: -0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 #structured-query-output-type {

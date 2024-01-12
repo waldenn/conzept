@@ -182,7 +182,7 @@ async function sparqlQueryCommand( args, view, list ){
 async function fetchPresentationData( title, language ){
 
 	// see also: https://dmitripavlutin.com/javascript-fetch-async-await/#5-parallel-fetch-requests
-  const [q1Response, q2Response] = await Promise.all([
+  const [q1Response, q2Response] = await Promise.allSettled([
 
     fetch( `${base}/app/cors/raw?url=${ encodeURIComponent( "https://${language}.wikipedia.org/w/api.php?action=query&titles=${title}&prop=extlinks&format=json" ) }` ),
 

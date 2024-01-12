@@ -531,6 +531,14 @@ $settings_html = '
 
               </details>
 
+              <details id="detail-geo-search" class="special-detail" title="geo search" style="/*display:none;*/">
+
+                <summary><i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span></summary>
+
+                  <div id="geo-search-container" class="resizer"></div>
+
+              </details>
+
               <details id="detail-ai-chat" class="special-detail" title="AI chat" style="/*display:none;*/">
 
                 <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>

@@ -1908,25 +1908,30 @@ function getWikidata( qid ) {
 
     try {
 
-      const wikidata_url = window.wbk.getEntities({
-        ids: [ qid ],
-        redirections: false,
-      })
+      if ( isQid( qid ) ){
 
-      const response  = await fetch( wikidata_url );
-      const data      = await response.json();
-      const entities  = window.wbk.parse.wd.entities( data );
+        const wikidata_url = window.wbk.getEntities({
+          ids: [ qid ],
+          redirections: false,
+        })
 
-      let item = { qid : qid };
+        const response  = await fetch( wikidata_url );
+        const data      = await response.json();
+        const entities  = window.wbk.parse.wd.entities( data );
 
-      item = await setWikidataPromise( item, entities[ item.qid ], true, 'p0', '' );
+        let item = { qid : qid };
 
-      resolve( item );
+        item = await setWikidataPromise( item, entities[ item.qid ], true, false, '' );
+
+        resolve( item );
+
+      }
 
     }
     catch (error) {
 
-      reject( error );
+      resolve( '' ); //reject( error );
+
     }
 
   });

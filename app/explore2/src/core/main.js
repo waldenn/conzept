@@ -363,13 +363,14 @@ $( document ).ready( function() {
 
     setupURL();
     setupUI();
-
     setupInfiniteScroll();
-    setupAmbientAudio();
 
+    setupAmbientAudio();
     setupAutoStopAudio();
 
-    //setupAIChat();
+    if ( !explore.isMobile ){ // dont show the 3D map on mobile (for now)
+      setupGeoSearch();
+    }
 
     setupEditor();
     setupLispEnv();

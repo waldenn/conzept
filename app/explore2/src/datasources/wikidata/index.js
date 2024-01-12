@@ -149,15 +149,15 @@ async function getQidFromTitle( title, language ) {
     }
 		else { // no results found
 
-      throw new Error('no Qid found for: ', title, language );
+      return ''; //throw new Error('no Qid found for: ', title, language );
 
     }
 
   } catch (error) {
 
-    console.error( 'Error fetching Wikidata Qid data:', error.message, title, language );
+    return ''; //console.error( 'Error fetching Wikidata Qid data:', error.message, title, language );
 
-    throw error;
+    //throw error;
 
   }
  

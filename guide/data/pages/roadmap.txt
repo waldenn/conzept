@@ -28,6 +28,7 @@
     * handle CORS issues
 
   * Look into using more webcomponents:
+    * [[https://shoelace.style|Shoelace webcomponent system]]
     * [[https://design-system.w3.org/|W3C design system]]
     * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
 

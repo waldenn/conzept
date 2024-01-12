@@ -184,7 +184,7 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         });
 
-        console.log('inaturalist: returning more results');
+        console.log('inaturalist: returning more results: ', result );
         resolve( [result] );
 
       };
@@ -202,13 +202,19 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         result.source.data.query.search.forEach( function (item, i) {
 
+          //console.log('  ...p2: ', i );
+
           const qid_promise = getQidFromTitle( item.title, explore.language ).then( qid_ => {
 
             item.qid = qid_;
 
-            result.source.data.query.search[i] = item; // update the item
+            if ( isQid( item.qid ) ){ // only update the item, if a valid Qid was present
 
-            return qid_;
+              result.source.data.query.search[i] = item; // update the item
+
+            }
+
+            //return qid_;
 
           });
 
@@ -216,7 +222,8 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         });
 
-        const r = await Promise.all( qid_promises );
+        const r = await Promise.allSettled( qid_promises );
+
         resolve( [r] );
 
         // FIXME needed?: handle no-Qid case?
@@ -232,25 +239,43 @@ async function processResultsInaturalist(topicResults, struct, index) {
 
         const asyncOperations = result.source.data.query.search.map(async (item) => {
 
-          return await getWikidata( item.qid );
+          if ( isQid( item.qid ) ){
+
+            console.log(' ...p3: ', item.qid );
+
+            return await getWikidata( item.qid );
+
+          }
+          else {
+
+            console.log(' ...p3: no qid' );
+
+            return item;
+
+          }
 
         });
 
-        Promise.all( asyncOperations ).then((results) => {
+        Promise.allSettled( asyncOperations ).then((results) => {
 
           results.forEach( ( item, i ) => {
 
-            result.source.data.query.search[i] = item;
+            console.log('promise 3: ', i, isQid( item.qid ) );
+
+            if ( isQid( item.qid ) ){ // only update the item, if a valid Qid was present
+
+              result.source.data.query.search[i] = item;
+
+            }
 
           })
 
           resolve( [ result ] );
+
         })
-        .catch((error) => {
-
-          console.error('Error in async operations:', error);
-
-        });
+        //.catch((error) => {
+        //  console.error('Error in async operations:', error);
+        //});
 
 	  	});
 
@@ -258,11 +283,14 @@ async function processResultsInaturalist(topicResults, struct, index) {
 	  
     // execute promises in order
 		promise1()
-      .then( result1 => { return promise2(); })
-      .then( result2 => { return promise3(); })
-      .then( result3 => { finalResult( result3 ); })
+      .then( result1 => { console.log('p1...', result1 ); return promise2(); })
+      .then( result2 => { console.log('p2...', result2 ); return promise3(); })
+      .then( result3 => {
+         console.log('p3... final result: ', result3 );
+         finalResult( result3 );
+      })
       .catch( error  => {
-        console.error('error: ', error);
+        console.error('error in the iNaturalist promise-chain: ', error);
       });
 
 	});

@@ -6,6 +6,12 @@ async function setupAIChat(){
 
 }
 
+async function setupGeoSearch(){
+
+  $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+
+}
+
 async function setupInfiniteScroll(){
 
 	const sentinel = document.querySelector('.sentinel'); // intersection-observer sensor
@@ -1618,7 +1624,7 @@ async function fetchAutocompleteData( term ) {
   let res     = '';
   let dataset = [];
 
-  [ ...res ] = await Promise.all( autocomplete_fetches );
+  [ ...res ] = await Promise.allSettled( autocomplete_fetches );
 
   res.forEach(( r, index ) => {
 

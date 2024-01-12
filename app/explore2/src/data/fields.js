@@ -18091,7 +18091,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'OpenArchives: Genealogical data of Dutch and Belgian archives',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://www.openarch.nl/search.php?name=${title_quoted}',
   icon: 'fa-solid fa-people-roof',
