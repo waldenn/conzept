@@ -1,0 +1,55 @@
+import { Button } from './Button';
+import { IViewParams, View, ViewEventsList } from './View';
+import { EventsHandler } from "../Events";
+export interface IDialogParams extends IViewParams {
+    title?: string;
+    visible?: boolean;
+    resizable?: boolean;
+    width?: number;
+    height?: number;
+    left?: number;
+    top?: number;
+    minHeight?: number;
+    maxHeight?: number;
+    minWidth?: number;
+    maxWidth?: number;
+    useHide?: boolean;
+}
+type DialogEventsList = ["resize", "focus", "visibility", "dragstart", "dragend"];
+declare class Dialog<M> extends View<M> {
+    static __zIndex__: number;
+    events: EventsHandler<DialogEventsList> & EventsHandler<ViewEventsList>;
+    $header: HTMLElement | null;
+    $title: HTMLElement | null;
+    $container: HTMLElement | null;
+    $buttons: HTMLElement | null;
+    useHide: boolean;
+    protected _startPosX: number;
+    protected _startPosY: number;
+    protected _closeBtn: Button;
+    protected _visibility: boolean;
+    constructor(options?: IDialogParams);
+    setContainer(htmlStr: string): void;
+    get container(): HTMLElement | null;
+    get width(): number;
+    get height(): number;
+    bringToFront(): void;
+    render(params: any): this;
+    show(): void;
+    hide(): void;
+    close(): void;
+    setVisibility(visibility: boolean): void;
+    protected _initButtons(): void;
+    protected _initEvents(): void;
+    protected _onCloseBtnClick: () => void;
+    protected _onMouseDownAll: () => void;
+    protected _onMouseDown: (e: MouseEvent) => void;
+    setPosition(x?: number, y?: number): void;
+    protected _onMouseMove: (e: MouseEvent) => void;
+    protected _startDragging(): void;
+    protected _clearDragging(): void;
+    protected _onMouseUp: () => void;
+    remove(): void;
+    protected _clearEvents(): void;
+}
+export { Dialog };
