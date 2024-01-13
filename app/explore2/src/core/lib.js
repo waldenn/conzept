@@ -2332,6 +2332,62 @@ function setupOptionBread(){
 
 }
 
+function setAiChat() {
+
+  if ( explore.aichat ){
+
+    $('#aichat').prop('checked', true);
+
+    $('#detail-ai-chat').show();
+
+  }
+  else {
+
+    $('#aichat').prop('checked', false);
+
+    $('#detail-ai-chat').hide();
+
+  }
+
+}
+
+function setupOptionAIchat(){
+
+  (async () => {
+
+    explore.aichat = await explore.db.get('aichat');
+
+    explore.aichat = ( explore.aichat === null || explore.aichat === 'false' ) ? false : true;
+
+    setAIchat();
+
+    $('#aichat').change(function() {
+
+      if ( $('#aichat').prop('checked') ){
+
+        (async () => { await explore.db.set('aichat', true); })();
+        explore.aichat = true;
+
+        updateValueInPanes( 'aichat', true );
+        setAichat();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('aichat', false); })();
+        explore.aichat = false;
+
+        updateValueInPanes( 'aichat', false );
+        setAIchat();
+
+      }
+
+    })
+
+  })();
+
+}
+
 function setGeoSearch() {
 
   if ( explore.geosearch ){

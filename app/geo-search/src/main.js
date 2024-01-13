@@ -2,6 +2,7 @@ import {
   Globe,
   GlobusTerrain,
   XYZ,
+  Popup,
   utils
 } from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
 
@@ -12,6 +13,13 @@ document.getElementById("btnOSM").onclick = function () {
 document.getElementById("btnMQS").onclick = function () {
   sat.setVisibility(true);
 };
+
+
+let app = {
+
+  language: getParameterByName( 'l' ) || 'en',
+
+}
 
 let osm = new XYZ("OpenStreetMap", {
 
@@ -67,7 +75,7 @@ let sat = new XYZ("sat", {
 
 });
 
-let globus = new Globe({
+let globe = new Globe({
 
   target:       "globus",
   name:         "Earth",
@@ -76,7 +84,6 @@ let globus = new Globe({
   resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
   fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts"
 });
-
 
 let myPopup = new Popup({
 
@@ -88,16 +95,20 @@ let myPopup = new Popup({
 
 globe.planet.renderer.events.on("lclick", (e) => {
 
-  let lonLat = globe.planet.getLonLatFromPixelTerrain(e);
+  let loc = globe.planet.getLonLatFromPixelTerrain(e);
 
-  globe.planet.terrain.getHeightAsync( d, (h) => {
+  let url = '';
 
-    myPopup.setContent(`lon = ${d.lon.toFixed(5)}<br/>lat = ${d.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
+  globe.planet.terrain.getHeightAsync(loc, (h) => {
 
-    // search for location Wikipedia articles:
-    // https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=37.786971|-122.399677&format=json
+    myPopup.setContent(`lon = ${loc.lon.toFixed(5)}<br/>lat = ${loc.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
 
-    //myPopup.setContent(`lon = ${d.lon.toFixed(5)}<br/>lat = ${d.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
+    // search for nearby Wikidata entities
+    url = `https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flocation%20%3Fdistance%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Aaround%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP625%20%3Flocation.%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Acenter%20%22Point(${ loc.lon.toFixed(5) }%2C${ loc.lat.toFixed(5) })%22%5E%5Egeo%3AwktLiteral%3B%0A%20%20%20%20%20%20wikibase%3Aradius%20%2210%22%3B%0A%20%20%20%20%20%20wikibase%3Adistance%20%3Fdistance.%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${app.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20(%3Fdistance%29%0A%20OFFSET%200%20LIMIT%2010`;
+  
+    console.log( url );
+
+    geoSearchWikidata( url );
 
   });
 

@@ -1938,6 +1938,21 @@ function getWikidata( qid ) {
 
 }
 
+async function geoSearchWikidata( json_url ){
+
+  explore.wikidata_query = json_url;
+
+  console.log( json_url );
+
+  // bogus
+  let query_json = '{"conditions"%3A[{"propertyId"%3A"P31"%2C"propertyDataType"%3A"wikibase-item"%2C"propertyValueRelation"%3A"matching"%2C"referenceRelation"%3A"regardless"%2C"value"%3A"' + qid + '"%2C"subclasses"%3Atrue%2C"conditionRelation"%3Anull%2C"negate"%3Afalse}%2C{"propertyId"%3A"P17"%2C"propertyDataType"%3A"wikibase-item"%2C"propertyValueRelation"%3A"matching"%2C"referenceRelation"%3A"regardless"%2C"value"%3A"' + country_qid + '"%2C"subclasses"%3Atrue%2C"conditionRelation"%3A"and"%2C"negate"%3Afalse}]%2C"limit"%3A10%2C"useLimit"%3Atrue%2C"omitLabels"%3Afalse}';
+
+  runQuery( query_json, json_url  );
+
+  return 0;
+
+}
+
 /*
 function objectToString(obj){
 

@@ -333,6 +333,18 @@ $settings_html = '
 
                 <br/>
 
+                <div id="aichat-setting" class="switch">
+                  <label for="aichat" style="display:none;">AI chat</label> 
+                  <label>
+                  <input type="checkbox" id="aichat">
+                  <span class="lever"></span>
+                  <span id="app-menu-aichat">AI chat</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <br/>
+
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -550,7 +562,7 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="/*display:none;*/">
+              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="display:none;">
 
                 <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>
 

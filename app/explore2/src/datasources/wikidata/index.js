@@ -591,7 +591,6 @@ async function fetchWikidataQuery(){
       .then( response => response.json() )
       .then( entities => {
 
-
         if ( entities.results.length === 0 ){ // no results found
 
           $('#scroll-end').hide();
