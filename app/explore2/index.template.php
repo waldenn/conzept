@@ -321,8 +321,19 @@ $settings_html = '
 
                 <br/>
 
-                <div id="linkpreview-setting" class="switch">
+                <div id="geosearch-setting" class="switch">
+                  <label for="geosearch" style="display:none;">geo search</label> 
+                  <label>
+                  <input type="checkbox" id="geosearch">
+                  <span class="lever"></span>
+                  <span id="app-menu-geosearch">geo search</span>
+                  </label>
+                  <br/>
+                </div>
 
+                <br/>
+
+                <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
                   <input type="checkbox" id="linkpreview">

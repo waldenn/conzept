@@ -189,6 +189,7 @@ const explore = {
   bgmode              : undefined,
   gridmode            : undefined,
   bread               : undefined, // reading help using bolded word beginnings
+  geosearch           : undefined, // reading help using bolded word beginnings
 
   // personality options
   personas            : [],
@@ -353,6 +354,7 @@ $( document ).ready( function() {
     setupOptionDarkmode();
     setupOptionGridmode();
     setupOptionBread();
+    setupOptionGeoSearch();
     setupOptionColorFilter();
     setupOptionPersonas();
     setupOptionCountry();
@@ -367,14 +369,6 @@ $( document ).ready( function() {
 
     setupAmbientAudio();
     setupAutoStopAudio();
-
-    // dont show the 3D map on mobile (for now)
-    if ( !explore.isMobile ){
-      setupGeoSearch();
-    }
-    else {
-      $('#detail-geo-search').hide();
-    }
 
     setupEditor();
     setupLispEnv();

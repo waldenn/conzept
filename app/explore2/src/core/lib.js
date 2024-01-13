@@ -6,12 +6,6 @@ async function setupAIChat(){
 
 }
 
-async function setupGeoSearch(){
-
-  $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
-
-}
-
 async function setupInfiniteScroll(){
 
 	const sentinel = document.querySelector('.sentinel'); // intersection-observer sensor
@@ -2338,6 +2332,65 @@ function setupOptionBread(){
 
 }
 
+function setGeoSearch() {
+
+  if ( explore.geosearch ){
+
+    $('#geosearch').prop('checked', true);
+
+    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+
+    $('#detail-geo-search').show();
+
+  }
+  else {
+
+    $('#geosearch').prop('checked', false);
+
+    $('#geo-search-container').empty();
+
+    $('#detail-geo-search').hide();
+
+  }
+
+}
+
+function setupOptionGeoSearch(){
+
+  (async () => {
+
+    explore.geosearch = await explore.db.get('geosearch');
+
+    explore.geosearch = ( explore.geosearch === null || explore.geosearch === 'false' ) ? false : true;
+
+    setGeoSearch();
+
+    $('#geosearch').change(function() {
+
+      if ( $('#geosearch').prop('checked') ){
+
+        (async () => { await explore.db.set('geosearch', true); })();
+        explore.geosearch = true;
+
+        updateValueInPanes( 'geosearch', true );
+        setGeoSearch();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('geosearch', false); })();
+        explore.geosearch = false;
+
+        updateValueInPanes( 'geosearch', false );
+        setGeoSearch();
+
+      }
+
+    })
+
+  })();
+
+}
 
 function setBold() {
 
