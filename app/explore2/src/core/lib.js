@@ -2332,7 +2332,7 @@ function setupOptionBread(){
 
 }
 
-function setAiChat() {
+function setAIchat() {
 
   if ( explore.aichat ){
 
@@ -2369,7 +2369,7 @@ function setupOptionAIchat(){
         explore.aichat = true;
 
         updateValueInPanes( 'aichat', true );
-        setAichat();
+        setAIchat();
 
       }
       else {
