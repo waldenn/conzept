@@ -14,8 +14,19 @@
 <div id="globus" style="width:100%;height:100%">
 
 <div style="position: absolute; left:0; top:0; padding:10px; z-index:9999;">
+
   <button id="btnOSM" style="float:left; margin: 3px;">OSM</button>
+
   <button id="btnMQS" style="float:left; margin: 3px;">SAT</button>
+
+  <select name="radius" id="radius">
+    <option value="250">0.25 km</option>
+    <option value="500">0.5 km</option>
+    <option value="1000" selected>1 km</option>
+    <option value="2000">2 km</option>
+    <option value="4000">4 km</option>
+    <option value="8000">8 km</option>
+  </select>
 </div>
 
 <div class="ogConsole" style="display: none;"></div>
