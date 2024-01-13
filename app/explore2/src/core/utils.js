@@ -1938,19 +1938,6 @@ function getWikidata( qid ) {
 
 }
 
-async function geoSearchWikidata( json_url ){
-
-  console.log( json_url );
-
-  // bogus
-  let query_json = '{}';
-
-  runQuery( query_json, json_url  );
-
-  return 0;
-
-}
-
 /*
 function objectToString(obj){
 

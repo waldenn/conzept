@@ -6,6 +6,24 @@ import {
   utils
 } from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
 
+let parentref = parent;
+
+if ( isMobile ){
+
+  parentref = parent;
+
+}
+else { // desktop
+
+  if ( window.parent.name === 'infoframeSplit2' || window.parent.name === 'infoframe_' ){ // request from secondary content iframe
+    parentref = parent;
+  }
+  else { // primary content frame
+    parentref = parent.top;
+  }
+
+}
+
 document.getElementById("btnOSM").onclick = function () {
   osm.setVisibility(true);
 };
@@ -93,7 +111,7 @@ let myPopup = new Popup({
 
 });
 
-globe.planet.renderer.events.on("lclick", (e) => {
+globe.planet.renderer.events.on( 'lclick', (e) => {
 
   let loc = globe.planet.getLonLatFromPixelTerrain(e);
 
@@ -108,7 +126,8 @@ globe.planet.renderer.events.on("lclick", (e) => {
   
     console.log( url );
 
-    geoSearchWikidata( url );
+    // render topics
+    parentref.postMessage({ event_id: 'run-query', data: { url: url, } }, '*' );
 
   });
 

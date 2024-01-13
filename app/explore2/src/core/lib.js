@@ -7645,6 +7645,15 @@ function receiveMessage(event){
     }
 
   }
+  else if ( event.data.event_id === 'run-query' ){
+
+    if ( valid( event.data.data.url ) ){
+
+      run-query( '{}', event.data.data.url );
+
+    }
+
+  }
   else if ( event.data.event_id === 'structured-query' ){
 
     // NOTE: use this logging to see the used "Query Builder" data

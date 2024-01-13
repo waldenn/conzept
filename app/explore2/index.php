@@ -181,7 +181,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script>
+  <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script-->
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
@@ -321,8 +321,31 @@ $settings_html = '
 
                 <br/>
 
-                <div id="linkpreview-setting" class="switch">
+                <div id="geosearch-setting" class="switch">
+                  <label for="geosearch" style="display:none;">geo search</label> 
+                  <label>
+                  <input type="checkbox" id="geosearch">
+                  <span class="lever"></span>
+                  <span id="app-menu-geosearch">geo search</span>
+                  </label>
+                  <br/>
+                </div>
 
+                <br/>
+
+                <div id="aichat-setting" class="switch">
+                  <label for="aichat" style="display:none;">AI chat</label> 
+                  <label>
+                  <input type="checkbox" id="aichat">
+                  <span class="lever"></span>
+                  <span id="app-menu-aichat">AI chat</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <br/>
+
+                <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
                   <input type="checkbox" id="linkpreview">
@@ -531,7 +554,15 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="/*display:none;*/">
+              <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
+
+                <summary><i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span></summary>
+
+                  <div id="geo-search-container" class="resizer"></div>
+
+              </details>
+
+              <details id="detail-ai-chat" class="special-detail" title="AI chat" style="display:none;">
 
                 <summary><i title="AI chat" class="fa-solid fa-wand-sparkles" title="AI chat"></i> <span id="app-ai-chat-title">AI chat</span></summary>
 
