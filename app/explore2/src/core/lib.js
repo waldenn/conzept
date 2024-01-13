@@ -7649,7 +7649,7 @@ function receiveMessage(event){
 
     if ( valid( event.data.data.url ) ){
 
-      run-query( '{}', event.data.data.url );
+      run-query( '', event.data.data.url );
 
     }
 
