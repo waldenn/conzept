@@ -181,7 +181,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/europeana/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/inaturalist/index.js?vCONZEPT_VERSION"></script>
+  <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?vCONZEPT_VERSION"></script-->
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/commons/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?vCONZEPT_VERSION"></script>
@@ -542,7 +542,7 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-geo-search" class="special-detail" title="geo search" style="/*display:none;*/">
+              <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
 
                 <summary><i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span></summary>
 

@@ -76,3 +76,34 @@ let globus = new Globe({
   resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
   fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts"
 });
+
+
+let myPopup = new Popup({
+
+  planet: globe.planet,
+  offset: [0, 0],
+  visibility: false
+
+});
+
+globe.planet.renderer.events.on("lclick", (e) => {
+
+  let lonLat = globe.planet.getLonLatFromPixelTerrain(e);
+
+  globe.planet.terrain.getHeightAsync( d, (h) => {
+
+    myPopup.setContent(`lon = ${d.lon.toFixed(5)}<br/>lat = ${d.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
+
+    // search for location Wikipedia articles:
+    // https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=37.786971|-122.399677&format=json
+
+    //myPopup.setContent(`lon = ${d.lon.toFixed(5)}<br/>lat = ${d.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
+
+  });
+
+  let groundPos = globe.planet.getCartesianFromMouseTerrain();
+  myPopup.setCartesian3v(groundPos);
+
+  myPopup.setVisibility(true);
+
+});

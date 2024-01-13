@@ -298,6 +298,7 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  /*
   'inaturalist': {
     active:                 false,
     name:                   'iNaturalist',
@@ -323,6 +324,7 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
+  */
 
   'smithsonian3D': {
     active:                 false,
