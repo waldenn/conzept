@@ -22,4 +22,19 @@
 
 <script type="module"  id="og-sandbox-script" src="./src/main.js?v0.001"></script>
 
+<script>
+  // keyboard control
+  $('body').keydown(function(event) {
+
+    let key = (event.keyCode ? event.keyCode : event.which);
+
+    if ( key == '70' ){ // "f"
+
+      document.toggleFullscreen();
+
+    }
+
+  });
+</script>
+
 </body></html>

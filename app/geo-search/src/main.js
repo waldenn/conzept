@@ -8,7 +8,7 @@ import {
 
 let parentref = parent;
 
-if ( isMobile ){
+if ( detectMobile() ){
 
   parentref = parent;
 

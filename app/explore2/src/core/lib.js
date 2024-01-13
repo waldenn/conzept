@@ -7649,7 +7649,7 @@ function receiveMessage(event){
 
     if ( valid( event.data.data.url ) ){
 
-      run-query( '', event.data.data.url );
+      runQuery( '', event.data.data.url );
 
     }
 
@@ -7658,7 +7658,6 @@ function receiveMessage(event){
 
     // NOTE: use this logging to see the used "Query Builder" data
     //console.log('structure query: ', event.data.data );
-
 
     // first-time fetch of SPARQL results
     if ( event.data.data.json_url !== '' ){ 
