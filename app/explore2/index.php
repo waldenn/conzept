@@ -321,30 +321,6 @@ $settings_html = '
 
                 <br/>
 
-                <div id="geosearch-setting" class="switch">
-                  <label for="geosearch" style="display:none;">geo search</label> 
-                  <label>
-                  <input type="checkbox" id="geosearch">
-                  <span class="lever"></span>
-                  <span id="app-menu-geosearch">geo search</span>
-                  </label>
-                  <br/>
-                </div>
-
-                <br/>
-
-                <div id="aichat-setting" class="switch">
-                  <label for="aichat" style="display:none;">AI chat</label> 
-                  <label>
-                  <input type="checkbox" id="aichat">
-                  <span class="lever"></span>
-                  <span id="app-menu-aichat">AI chat</span>
-                  </label>
-                  <br/>
-                </div>
-
-                <br/>
-
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -381,6 +357,41 @@ $settings_html = '
             </div>
 
             </details>
+
+            <details class="auto conf" closed>
+              <summary><span id="app-menu-features"></span></summary>
+
+              <div class="style-form">
+
+                <div id="geosearch-setting" class="switch">
+                  <label for="geosearch" style="display:none;">geo search</label> 
+                  <label>
+                  <input type="checkbox" id="geosearch">
+                  <span class="lever"></span>
+                  <span id="app-menu-geosearch">geo search</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <br/>
+
+                <div id="aichat-setting" class="switch">
+                  <label for="aichat" style="display:none;">AI chat</label> 
+                  <label>
+                  <input type="checkbox" id="aichat">
+                  <span class="lever"></span>
+                  <span id="app-menu-aichat">AI chat</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <br/>
+
+            </div>
+
+            </details>
+
+
 
             <details class="auto conf" closed>
               <summary><span id="app-menu-reading-assistance">reading assistance</span></summary>
