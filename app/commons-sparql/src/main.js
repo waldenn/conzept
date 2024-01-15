@@ -147,8 +147,13 @@ function getImages() {
 
   let image_qids = [];
 
-  // link to the original SPARQL-query
-  $('#queryLink').attr('href', sparql_url.replace( /^.+SELECT/, 'https://conze.pt/app/query/embed.html#SELECT') );
+  // link back to the original SPARQL-query
+  let query_link = sparql_url
+    .replace( /^.+SELECT/, 'https://conze.pt/app/query/embed.html#SELECT')
+    .replace(/LIMIT%20[0-9]*/g, '')
+    .replace(/OFFSET%20\d+/g, '');
+
+  $('#queryLink').attr('href', query_link );
 
   // check if a LIMIT condition needs to be added or modified
   const r1 = /LIMIT%20\d+/;
