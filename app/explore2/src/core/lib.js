@@ -1618,7 +1618,7 @@ async function fetchAutocompleteData( term ) {
   let res     = '';
   let dataset = [];
 
-  [ ...res ] = await Promise.allSettled( autocomplete_fetches );
+  [ ...res ] = await Promise.all( autocomplete_fetches );
 
   res.forEach(( r, index ) => {
 

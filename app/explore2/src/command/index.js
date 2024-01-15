@@ -355,7 +355,7 @@ async function showPresentation( item, type ){
 
 		let commons_sparql_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons paintings</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "${commons_sparql_slide_url}" ) ) )\n`;
 
-		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "/explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#" ) ) )\n`;
+		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=default.search%3A${title},language%3A${language}&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`; // datasource link: explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#
 
     let commons_slide               = '';
     let commons_time_music_slide    = '';
@@ -497,8 +497,8 @@ async function showPresentation( item, type ){
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'cultural-concept' ){
@@ -518,8 +518,8 @@ async function showPresentation( item, type ){
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'meta-concept' ){
@@ -558,8 +558,8 @@ async function showPresentation( item, type ){
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 
@@ -604,8 +604,8 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'natural-concept' ){
@@ -658,10 +658,12 @@ async function showPresentation( item, type ){
 			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
 
 			slides.push( linkgraph_slide );
+
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 		else if ( type === 'person' ){
@@ -700,6 +702,8 @@ async function showPresentation( item, type ){
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
 		}
@@ -726,6 +730,8 @@ async function showPresentation( item, type ){
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
 		}
@@ -782,11 +788,14 @@ async function showPresentation( item, type ){
 			//slides.push( europeana_time_music_slide );
 			slides.push( bing_images_slide );
 			slides.push( video_slide );
+
 			slides.push( linkgraph_slide );
+
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
-			//slides.push( openalex_search_slide );
 
 		}
 

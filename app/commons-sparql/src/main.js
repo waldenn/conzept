@@ -147,6 +147,9 @@ function getImages() {
 
   let image_qids = [];
 
+  // link to the original SPARQL-query
+  $('#queryLink').attr('href', sparql_url.replace( /^.+SELECT/, 'https://conze.pt/app/query/embed.html#SELECT') );
+
   // check if a LIMIT condition needs to be added or modified
   const r1 = /LIMIT%20\d+/;
 
@@ -174,8 +177,6 @@ function getImages() {
     sparql_url = sparql_url + '%0AOFFSET%20' + offset;
 
   }
-
-  // modify URL OFFSET
 
   //console.log( url );
 

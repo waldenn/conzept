@@ -359,7 +359,7 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-features"></span></summary>
+              <summary><span id="app-menu-features">features</span></summary>
 
               <div class="style-form">
 
@@ -390,8 +390,6 @@ $settings_html = '
             </div>
 
             </details>
-
-
 
             <details class="auto conf" closed>
               <summary><span id="app-menu-reading-assistance">reading assistance</span></summary>

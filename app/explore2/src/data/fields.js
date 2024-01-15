@@ -7117,6 +7117,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 50,
 },
 
+'open_climate_country_emissions' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Open Climate - country emissions',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://app.openclimate.network/actor/${ item.iso2.toUpperCase() }',
+  icon: 'fa-solid fa-smog',
+  text: 'Open Climate',
+  section: 'location-ecology',
+  rank: 55,
+},
+
 'nature_reserves_country_query' : {
   create_condition: 'valid( item.iso2 )',
   title: 'country nature reserves',
@@ -12924,6 +12937,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 600,
 },
 
+/*
 'archive_scholar_headline' : { // only used for headline display
   create_condition: 'checkTag( item, 0, ["organism","substance","natural-concept","meta-concept"] ) || checkTag( item, 1, ["periodical","scientist"] )',
   title: 'Archive Scholar',
@@ -12942,6 +12956,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_icon: 'fa-regular fa-newspaper',
   headline_rank: 50,
 },
+*/
 
 'timespace_headline' : { // only used for headline display
   create_condition: true,
@@ -17431,17 +17446,20 @@ if ( valid( item.found_in_taxon ) ){
   //headline_rank: 49.95,
 },
 
-'openalex_works_search' : {
+'openalex_search' : {
   create_condition: true,
-  title: 'OpenAlex search',
+  title: 'OpenAlex - science articles search',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/explore/${title_enc}?l=${explore.language}&t=string&d=openalex&s=true',
+  url: 'https://openalex.org/works?page=1&filter=default.search%3A${title_quoted},language%3A${explore.language}&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type',
   icon: 'fa-regular fa-newspaper',
-  text: 'OpenAlex',
+  text: 'OpenAlex search',
   section: 'science-search-tools',
   rank: 58.9,
+  headline_create: '!valid( item.openalex )',
+  headline_type: 'link',
+  headline_rank: 49.95,
 },
 
 'openalex_topic_ranked_country_works' : {

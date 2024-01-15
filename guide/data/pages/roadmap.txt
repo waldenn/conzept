@@ -27,6 +27,11 @@
     * multi-lingual labels
     * handle CORS issues
 
+  * search modalities:
+    * support date-range search modality
+    * support geo / date-range searching in the active datasources (when possible through their API).
+      * add to each datasource definition which search-modalities are supported: string, geo, date, ...
+
   * Look into using more webcomponents:
     * [[https://shoelace.style|Shoelace webcomponent system]]
     * [[https://design-system.w3.org/|W3C design system]]

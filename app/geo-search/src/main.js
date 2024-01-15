@@ -149,6 +149,7 @@ function showTopics( loc ){
       console.log( url );
 
       // render topics
+      // TODO: get the success/fail results of the query (failure modes: 0 results found, query timed out, ...)
       parentref.postMessage({ event_id: 'run-query', data: { url: url, } }, '*' );
 
     }
