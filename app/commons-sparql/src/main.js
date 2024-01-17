@@ -149,7 +149,7 @@ function getImages() {
 
   // link back to the original SPARQL-query
   let query_link = sparql_url
-    .replace( /^.+SELECT/, 'https://conze.pt/app/query/embed.html#SELECT')
+    .replace( /^.+SELECT/, 'https://query.wikidata.org/embed.html#SELECT') //.replace( /^.+SELECT/, 'https://conze.pt/app/query/embed.html#SELECT')
     .replace(/LIMIT%20[0-9]*/g, '')
     .replace(/OFFSET%20\d+/g, '');
 
