@@ -109,6 +109,7 @@ let globe = new Globe({
   layers:       [osm, sat],
   resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
   fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts"
+
 });
 
 let myPopup = new Popup({
