@@ -156,7 +156,7 @@ function showTopics( loc ){
 
         // FIX COUNT URL: https://qlever.cs.uni-freiburg.de/api/wikidata?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wd%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+wdt%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+geof%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Fdef%2Ffunction%2Fgeosparql%2F%3E%0ASELECT+%3Fitem+%3FitemLabel+%3Fdistance+%3Flocation+WHERE+%7B%0A++%3Fitem+wdt%3AP625+%3Flocation+.%0A++%3Fitem+rdfs%3Alabel+%3FitemLabel+.%0A++FILTER+%28LANG%28%3FitemLabel%29+%3D+%22en%22%29+.%0A++BIND+%28geof%3Adistance%28%3Flocation%2C+%22POINT%284.17416+19.20677%29%22%29+AS+%3Fdistance%29%0A++FILTER+%28%3Fdist+%3C%3D+1000%29%0A%7D%0AORDER+BY+ASC%28%3Fdist%29
 
-      console.log( url );
+      //console.log( url );
 
       // render topics
       // TODO: get the success/fail result of the query (failure modes: 0 results found, query timed out, ...)

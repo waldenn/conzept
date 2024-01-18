@@ -357,9 +357,9 @@ function triggerQueryForm(){
   }
   else if ( explore.type === 'geo' && explore.custom !== '' ){ // geo-search request
 
-    if ( valid( [ explore.uri, explore.custom ] ) ){
+    if ( valid( [ getParameterByName('u'), explore.custom ] ) ){
 
-      runQuery( '', explore.uri );
+      runQuery( '', getParameterByName('u') );
 
     }
 
