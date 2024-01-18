@@ -355,6 +355,17 @@ function triggerQueryForm(){
     makePresentation( explore.q );
 
   }
+  else if ( explore.type === 'geo' && explore.custom !== '' ){ // geo-search request
+
+    if ( valid( [ explore.uri, explore.custom ] ) ){
+
+      console.log('do geosearch: ', explore.uri, explore.custom, explore.q );
+    
+      runQuery( '', explore.uri );
+
+    }
+
+  }
   else if ( explore.q !== ''){ // normal query
 
     explore.searchmode = 'string';
@@ -7647,7 +7658,28 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'run-query' ){
 
-    if ( valid( event.data.data.url ) ){
+    if ( valid( [ event.data.data.url, event.data.data.custom ] ) ){
+
+      console.log( 'geosearch custom data: ', event.data.data.custom );
+
+      explore.custom  = event.data.data.custom; // 'lat;lon;radius'
+      explore.uri     = event.data.data.url;
+      explore.type    = 'geo';
+
+      updatePushState( explore.q, 'add' );
+
+      if ( valid( explore.geosearch ) ){
+
+        // TODO: go to the correct map location (and show a popup?)
+
+      }
+      else { // load geosearch-iframe first
+
+        $('#geosearch').prop("checked", true).change();
+
+        // TODO: once the iframe is loaded: go to the correct map location (and show a popup?)
+
+      }
 
       runQuery( '', event.data.data.url );
 

@@ -7,7 +7,7 @@
     <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
 
     <link rel="stylesheet" href="./node_modules/@openglobus/og/css/og.css" type="text/css">
-    <link rel="stylesheet" href="./css/main.css" type="text/css">
+    <link rel="stylesheet" href="./css/main.css?v0.002" type="text/css">
 </head>
 
 <body>
@@ -20,9 +20,10 @@
   <button id="btnMQS" style="float:left; margin: 3px;">SAT</button>
 
   <select name="radius" id="radius">
-    <option value="250">0.25 km</option>
-    <option value="500">0.5 km</option>
-    <option value="1000" selected>1 km</option>
+    <option value="125">125 m</option>
+    <option value="250" selected>250 m</option>
+    <option value="500">500 m</option>
+    <option value="1000">1 km</option>
     <option value="2000">2 km</option>
     <option value="4000">4 km</option>
     <option value="8000">8 km</option>
@@ -31,7 +32,7 @@
 
 <div class="ogConsole" style="display: none;"></div>
 
-<script type="module"  id="og-sandbox-script" src="./src/main.js?v0.001"></script>
+<script type="module"  id="og-sandbox-script" src="./src/main.js?v0.002"></script>
 
 <script>
   // keyboard control

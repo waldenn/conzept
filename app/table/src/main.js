@@ -161,18 +161,22 @@ function gotoExplore( title, newtab ){
 
     /* Bootstrap paging button renderer */
     DataTable.ext.renderer.pageButton.material = function(settings, host, idx, buttons, page, pages) {
-      var api = new DataTable.Api(settings);
+
+      var api     = new DataTable.Api(settings);
       var classes = settings.oClasses;
-      var lang = settings.oLanguage.oPaginate;
+      var lang    = settings.oLanguage.oPaginate;
       var btnDisplay, btnClass, counter = 0;
 
       var attach = function(container, buttons) {
+
         var i, ien, node, button;
+
         var clickHandler = function(e) {
           e.preventDefault();
           if (!$(e.currentTarget).hasClass('disabled')) {
             api.page(e.data.action).draw(false);
           }
+
         };
 
         for (i = 0, ien = buttons.length; i < ien; i++) {

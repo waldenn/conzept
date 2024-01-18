@@ -155,7 +155,9 @@ function showTopics( loc ){
 
       // render topics
       // TODO: get the success/fail results of the query (failure modes: 0 results found, query timed out, ...)
-      parentref.postMessage({ event_id: 'run-query', data: { url: url, } }, '*' );
+      // lat;lon;radius
+      let latlonrad = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' window.app.radius;
+      parentref.postMessage({ event_id: 'run-query', data: { url: url, custom: latlonrad } }, '*' );
 
     }
 

@@ -355,7 +355,7 @@ async function showPresentation( item, type ){
 
 		let commons_sparql_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons paintings</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "${commons_sparql_slide_url}" ) ) )\n`;
 
-		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=default.search%3A${title},language%3A${language}&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`; // datasource link: explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#
+		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=default.search%3A${title},language%3A${language}%2Ben&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`; // datasource link: explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#
 
     let commons_slide               = '';
     let commons_time_music_slide    = '';
@@ -429,29 +429,29 @@ async function showPresentation( item, type ){
 
 		if ( language === 'en' ){
 
-			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(simple)</h4>"\n    ( show \'link \'( "/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
+			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia simple)</h4>"\n    ( show \'link \'( "/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
 
 		}
 
 		// note: we need to set the initial-language again before the next slide (since the previous "simple-language" slide might have changed the language)
-		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
+		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
 
 		if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
 
     // OpenAlex slide
 		if ( valid( item.openalex ) ){
 
-      if ( item.openalex.startsWith("C") ){
+      if ( item.openalex.startsWith("C") ){ // concept
 
         slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n` );
 
       }
-      else if ( item.openalex.startsWith("A") ){
+      else if ( item.openalex.startsWith("A") ){ // author
 
         slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
 
       }
-      else if ( item.openalex.startsWith("I") ){
+      else if ( item.openalex.startsWith("I") ){ // institution
 
         slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex }" ) ) )\n` );
 
@@ -474,10 +474,13 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
+			if ( valid( item.uniprot_protein ) ){  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>UniProt</h3>"\n    ( show \'link \'( "https://www.uniprot.org/uniprot/${item.uniprot_protein}" ) ) )\n` ); }
+
 			if ( valid( item.pubchem ) ){  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>PubChem</h3>"\n    ( show \'link \'( "https://pubchem.ncbi.nlm.nih.gov/compound/${ item.pubchem }" ) ) )\n` ); }
 
 			if ( valid( item.chebi ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>ChEBI</h3>"\n    ( show \'link \'( "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:${ item.chebi }" ) ) )\n` ); }
 
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 			//slides.push( arxiv_slide );
 
@@ -492,7 +495,10 @@ async function showPresentation( item, type ){
 			slides.push( video_slide );
 
 			if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P171/${item.qid}" ) ) )\n` ); }
+
 			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
+
+			if ( valid( item.inaturalist_taxa ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-puzzle-piece' title='taxon location quiz'></i></h3>"\n    ( show \'link \'( "/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}" ) ) )\n` ); }
 
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
@@ -516,8 +522,10 @@ async function showPresentation( item, type ){
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
+
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
 			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
@@ -556,8 +564,10 @@ async function showPresentation( item, type ){
 			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
+
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
+
 			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
@@ -576,6 +586,7 @@ async function showPresentation( item, type ){
 
 			slides.push( street_map_slide );
 			slides.push( nearby_map_slide );
+
 			if ( valid( item.lat ) ){ slides.push( satellite_map ) };
 			//if ( valid( item.lat ) ){ slides.push( street_map_slide ) };
 
@@ -621,6 +632,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
     }
@@ -637,6 +649,7 @@ async function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
+			slides.push( openalex_search_slide );
 			slides.push( scholia_slide );
 
     }
