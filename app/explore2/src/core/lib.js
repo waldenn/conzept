@@ -2399,20 +2399,22 @@ function setupOptionAIchat(){
 
 function setGeoSearch( custom ){
 
-  let custom_params = [];
+  // customizable
+  let lat     = '';
+  let lon     = '';
+  let lradius = '';
 
   if ( explore.geosearch ){
 
-    if ( valid( custom ) ){
+    if ( valid( custom ) ){ // lat, lon, radius
 
-      console.log( custom.split(';') );
       custom = custom.split(';') || [];
 
-      if ( custom.lenght === 3 ){ // lat,lon,radius
+      if ( custom.length === 3 ){
 
-        custom_params[0] = `&lat=${ custom[0] }`;
-        custom_params[1] = `&lon=${ custom[1] }`;
-        custom_params[2] = `&radius=${ custom[2] }`;
+        lat     = custom[0];
+        lon     = custom[1];
+        radius  = '&radius=' + custom[2]; // only insert when needed (so the default radius can be used too)
 
       }
 
@@ -2420,7 +2422,7 @@ function setGeoSearch( custom ){
 
     $('#geosearch').prop('checked', true);
 
-    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}${custom_params}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&lat=${lat_param}&lon=${lon}${radius}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
     $('#detail-geo-search').show();
 
@@ -2460,6 +2462,7 @@ function setupOptionGeoSearch(){
       if ( $('#geosearch').prop('checked') ){
 
         (async () => { await explore.db.set('geosearch', true); })();
+
         explore.geosearch = true;
 
         updateValueInPanes( 'geosearch', true );
