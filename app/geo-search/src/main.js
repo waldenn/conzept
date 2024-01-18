@@ -37,7 +37,7 @@ document.getElementById("btnMQS").onclick = function () {
 window.app = {
 
   language: getParameterByName( 'l' ) || 'en',
-  radius:   getParameterByName( 'radius' ) || $('#radius').val() || '125',
+  radius:   getParameterByName( 'radius' ) || $('#radius').val() || '250',
   lat:      getParameterByName( 'lat' ) || '',
   lon:      getParameterByName( 'lon' ) || '',
 
