@@ -7692,13 +7692,7 @@ function receiveMessage(event){
 
       updatePushState( explore.q, 'add' );
 
-      if ( valid( explore.geosearch ) ){
-
-        // use the custom map location
-        setGeoSearch( explore.custom );
-
-      }
-      else { // enable geosearch-iframe first
+      if ( ! valid( explore.geosearch ) ){ // enable geosearch-iframe first, which will use any custom map data provided
 
         $('#geosearch').prop("checked", true).change();
 
