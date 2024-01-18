@@ -17465,7 +17465,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://openalex.org/works?page=1&filter=default.search%3A${title_quoted},language%3A${explore.language}%2Ben&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type',
+  url: 'https://openalex.org/works?page=1&filter=default.search%3A${title_quoted},language%3A${explore.language}|en&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type',
   icon: 'fa-regular fa-newspaper',
   text: 'OpenAlex search',
   section: 'science-search-tools',
