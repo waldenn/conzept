@@ -37,13 +37,15 @@ document.getElementById("btnMQS").onclick = function () {
 window.app = {
 
   language: getParameterByName( 'l' ) || 'en',
-  radius:   getParameterByName( 'radius' ) || $('#radius').val() || '250',
+  radius:   valid( getParameterByName( 'radius' ) )? getParameterByName( 'radius' ) : $('#radius').val(),
   lat:      getParameterByName( 'lat' ) || '',
   lon:      getParameterByName( 'lon' ) || '',
 
 }
 
 //console.log( 'geosearch app: ', window.app );
+
+$('#radius').val( window.app.radius );
 
 $('#radius').on('change', function() {
 

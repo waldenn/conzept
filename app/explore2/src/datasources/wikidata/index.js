@@ -483,7 +483,7 @@ async function runWikidataQuery( paging_mode ){
     count_query = count_query.replace( /ORDER%20BY(.*)/, '');
 
     let count_url = datasources.wikidata.endpoint + '?format=json&query=' + count_query;
-    //console.log( 'count URL: ', count_url );
+    console.log( 'count URL: ', count_url );
     
     // get total amount of results
     fetch( count_url )
