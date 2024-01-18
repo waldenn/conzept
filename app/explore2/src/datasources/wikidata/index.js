@@ -553,6 +553,8 @@ async function runWikidataQuery( paging_mode ){
 
               renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
+              $('#loader').hide();
+
             }
 
           }
