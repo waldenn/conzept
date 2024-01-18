@@ -43,7 +43,7 @@ window.app = {
 
 }
 
-console.log( 'geosearch app: ', window.app );
+//console.log( 'geosearch app: ', window.app );
 
 $('#radius').on('change', function() {
 
@@ -159,7 +159,7 @@ function showTopics( loc ){
       console.log( url );
 
       // render topics
-      // TODO: get the success/fail results of the query (failure modes: 0 results found, query timed out, ...)
+      // TODO: get the success/fail result of the query (failure modes: 0 results found, query timed out, ...)
       // lat;lon;radius
       let custom = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
 
@@ -183,7 +183,7 @@ if ( valid( [ window.app.lat, window.app.lat, window.app.radius ] ) ){
   const distance = window.app.radius * 10;
 
   // FIXME ? hmm. LonLat() takes LonLat(lat, lon) ... where is the mistake located?
-  let point = new LonLat( parseFloat( window.app.lat ), parseFloat( window.app.lon ), parseFloat( window.app.radius ) );
+  let point = new LonLat( parseFloat( window.app.lon ), parseFloat( window.app.lat ), parseFloat( window.app.radius ) );
 
   let ell = globe.planet.ellipsoid;
 

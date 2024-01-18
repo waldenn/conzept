@@ -2402,7 +2402,7 @@ function setGeoSearch( custom ){
   // customizable
   let lat     = '';
   let lon     = '';
-  let lradius = '';
+  let radius = '';
 
   if ( explore.geosearch ){
 
@@ -2422,7 +2422,7 @@ function setGeoSearch( custom ){
 
     $('#geosearch').prop('checked', true);
 
-    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&lat=${lat_param}&lon=${lon}${radius}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&lat=${lat}&lon=${lon}${radius}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
     $('#detail-geo-search').show();
 
