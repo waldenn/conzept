@@ -2,6 +2,7 @@ import {
   Globe,
   GlobusTerrain,
   XYZ,
+  LonLat,
   Popup,
   utils
 } from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
@@ -36,9 +37,13 @@ document.getElementById("btnMQS").onclick = function () {
 window.app = {
 
   language: getParameterByName( 'l' ) || 'en',
-  radius:   $('#radius').val() || '250', // meters
+  radius:   getParameterByName( 'radius' ) || $('#radius').val() || '250',
+  lat:      getParameterByName( 'lat' ) || '',
+  lon:      getParameterByName( 'lon' ) || '',
 
 }
+
+console.log( 'geosearch app: ', window.app );
 
 $('#radius').on('change', function() {
 
@@ -156,8 +161,9 @@ function showTopics( loc ){
       // render topics
       // TODO: get the success/fail results of the query (failure modes: 0 results found, query timed out, ...)
       // lat;lon;radius
-      let latlonrad = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' window.app.radius;
-      parentref.postMessage({ event_id: 'run-query', data: { url: url, custom: latlonrad } }, '*' );
+      let custom = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
+
+      parentref.postMessage({ event_id: 'run-query', data: { url: url, custom: custom } }, '*' );
 
     }
 
@@ -167,5 +173,20 @@ function showTopics( loc ){
   myPopup.setCartesian3v(groundPos);
 
   myPopup.setVisibility(true);
+
+}
+
+if ( valid( [ window.app.lat, window.app.lat, window.app.radius ] ) ){
+
+  //console.log('fly to custom point: ', window.app.lat, window.app.lat, window.app.radius );
+
+  const distance = window.app.radius * 10;
+
+  // FIXME ? hmm. LonLat() takes LonLat(lat, lon) ... where is the mistake located?
+  let point = new LonLat( parseFloat( window.app.lat ), parseFloat( window.app.lon ), parseFloat( window.app.radius ) );
+
+  let ell = globe.planet.ellipsoid;
+
+  globe.planet.camera.flyDistance( ell.lonLatToCartesian( point ), distance );
 
 }

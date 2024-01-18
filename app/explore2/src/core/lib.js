@@ -359,8 +359,6 @@ function triggerQueryForm(){
 
     if ( valid( [ explore.uri, explore.custom ] ) ){
 
-      console.log('do geosearch: ', explore.uri, explore.custom, explore.q );
-    
       runQuery( '', explore.uri );
 
     }
@@ -2399,13 +2397,30 @@ function setupOptionAIchat(){
 
 }
 
-function setGeoSearch() {
+function setGeoSearch( custom ){
+
+  let custom_params = [];
 
   if ( explore.geosearch ){
 
+    if ( valid( custom ) ){
+
+      console.log( custom.split(';') );
+      custom = custom.split(';') || [];
+
+      if ( custom.lenght === 3 ){ // lat,lon,radius
+
+        custom_params[0] = `&lat=${ custom[0] }`;
+        custom_params[1] = `&lon=${ custom[1] }`;
+        custom_params[2] = `&radius=${ custom[2] }`;
+
+      }
+
+    }
+
     $('#geosearch').prop('checked', true);
 
-    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&t=${explore.tutor}${custom_params}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
     $('#detail-geo-search').show();
 
@@ -2424,13 +2439,21 @@ function setGeoSearch() {
 
 function setupOptionGeoSearch(){
 
+  let custom = '';
+
   (async () => {
 
     explore.geosearch = await explore.db.get('geosearch');
 
     explore.geosearch = ( explore.geosearch === null || explore.geosearch === 'false' ) ? false : true;
 
-    setGeoSearch();
+    if ( explore.type === 'geo' && valid( explore.custom ) ){
+
+      custom = explore.custom;
+
+    }
+
+    setGeoSearch( custom );
 
     $('#geosearch').change(function() {
 
@@ -2440,7 +2463,7 @@ function setupOptionGeoSearch(){
         explore.geosearch = true;
 
         updateValueInPanes( 'geosearch', true );
-        setGeoSearch();
+        setGeoSearch( custom );
 
       }
       else {
@@ -2449,7 +2472,7 @@ function setupOptionGeoSearch(){
         explore.geosearch = false;
 
         updateValueInPanes( 'geosearch', false );
-        setGeoSearch();
+        setGeoSearch( custom );
 
       }
 
@@ -7660,8 +7683,6 @@ function receiveMessage(event){
 
     if ( valid( [ event.data.data.url, event.data.data.custom ] ) ){
 
-      console.log( 'geosearch custom data: ', event.data.data.custom );
-
       explore.custom  = event.data.data.custom; // 'lat;lon;radius'
       explore.uri     = event.data.data.url;
       explore.type    = 'geo';
@@ -7670,14 +7691,13 @@ function receiveMessage(event){
 
       if ( valid( explore.geosearch ) ){
 
-        // TODO: go to the correct map location (and show a popup?)
+        // use the custom map location
+        setGeoSearch( explore.custom );
 
       }
-      else { // load geosearch-iframe first
+      else { // enable geosearch-iframe first
 
         $('#geosearch').prop("checked", true).change();
-
-        // TODO: once the iframe is loaded: go to the correct map location (and show a popup?)
 
       }
 
