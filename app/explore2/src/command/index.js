@@ -355,7 +355,17 @@ async function showPresentation( item, type ){
 
 		let commons_sparql_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons paintings</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "${commons_sparql_slide_url}" ) ) )\n`;
 
-		let openalex_search_slide       = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex works</h3><h3><i class='fa-solid fa-graduation-cap'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=default.search%3A${title},language%3A${language}%2Ben&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`; // datasource link: explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#
+		let openalex_search_slide       = '';
+
+    if ( item.openalex.startsWith("C") ){ // concept
+
+      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n`;
+
+    }
+    else {
+
+      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex search</h3><h3><i class='fa-regular fa-newspaper'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=default.search%3A${title},language%3A${language}%2Ben&sort=relevance_score%3Adesc&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`; // datasource link: explore/${title_enc}?l=${language}&t=string&d=openalex&s=true#
+    }
 
     let commons_slide               = '';
     let commons_time_music_slide    = '';
@@ -395,7 +405,7 @@ async function showPresentation( item, type ){
 		let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
 
 		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${item.title}&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
-		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-solid fa-graduation-cap' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
+		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
 
     //let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "/app/quiz/location/?${ item.qid }" ) ) )\n`;
 
@@ -441,12 +451,7 @@ async function showPresentation( item, type ){
     // OpenAlex slide
 		if ( valid( item.openalex ) ){
 
-      if ( item.openalex.startsWith("C") ){ // concept
-
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n` );
-
-      }
-      else if ( item.openalex.startsWith("A") ){ // author
+      if ( item.openalex.startsWith("A") ){ // author
 
         slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
 
