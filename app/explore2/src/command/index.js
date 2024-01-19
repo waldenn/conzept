@@ -357,7 +357,7 @@ async function showPresentation( item, type ){
 
 		let openalex_search_slide       = '';
 
-    if ( item.openalex.startsWith("C") ){ // concept
+    if ( valid( item.openalex?.startsWith("C") ) ){ // concept
 
       openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n`;
 

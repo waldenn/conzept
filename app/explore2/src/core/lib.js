@@ -2397,6 +2397,26 @@ function setupOptionAIchat(){
 
 }
 
+function doGeoSearch( url, custom ){
+
+  console.log( url, custom );
+
+  explore.custom  = custom; // 'lat;lon;radius'
+  explore.uri     = url;
+  explore.type    = 'geo';
+
+  updatePushState( explore.q, 'add' );
+
+  if ( ! valid( explore.geosearch ) ){ // enable geosearch-iframe first, which will use any custom map data provided
+
+    $('#geosearch').prop("checked", true).change();
+
+  }
+
+  runQuery( '', url );
+
+}
+
 function setGeoSearch( custom ){
 
   // customizable
@@ -7686,19 +7706,7 @@ function receiveMessage(event){
 
     if ( valid( [ event.data.data.url, event.data.data.custom ] ) ){
 
-      explore.custom  = event.data.data.custom; // 'lat;lon;radius'
-      explore.uri     = event.data.data.url;
-      explore.type    = 'geo';
-
-      updatePushState( explore.q, 'add' );
-
-      if ( ! valid( explore.geosearch ) ){ // enable geosearch-iframe first, which will use any custom map data provided
-
-        $('#geosearch').prop("checked", true).change();
-
-      }
-
-      runQuery( '', event.data.data.url );
+      doGeoSearch( event.data.data.url, event.data.data.custom );
 
     }
 
