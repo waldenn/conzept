@@ -2399,8 +2399,6 @@ function setupOptionAIchat(){
 
 function doGeoSearch( url, custom ){
 
-  console.log( url, custom );
-
   explore.custom  = custom; // 'lat;lon;radius'
   explore.uri     = url;
   explore.type    = 'geo';
