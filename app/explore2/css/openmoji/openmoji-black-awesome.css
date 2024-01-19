@@ -26,13 +26,19 @@ licensed under MIT: https://ellekasai.mit-license.org/
 .oma {
   display: inline-block;
   height: 1.3em;
-  width: 1.3em;
-  margin: 0 .055em 0 .13em;
+  /*width: 1.3em;
+  margin: 0 .055em 0 .13em;*/
+  width: 0.9em;
+  margin: 0 .05em 0 .05em;
   vertical-align: -0.2em;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 1.4em 1.4em;
   font-style: normal;
+}
+
+.oma:hover {
+  filter: invert(66%) sepia(11%) saturate(5452%) hue-rotate(312deg) brightness(93%) contrast(101%);
 }
 
 .oma-lg {

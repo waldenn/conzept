@@ -1232,7 +1232,7 @@ i.oma .subtext {
 }
 
 .headline-right-half i.oma {
-  vertical-align: -0.3em;
+  /* vertical-align: -0.3em; */
 }
 
 .topic .subtext {
