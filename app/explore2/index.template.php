@@ -253,7 +253,10 @@ $settings_html = '
           <div class="overflow-content indent">
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-datasources">datasources</span></summary>
+              <summary>
+                <span id="app-menu-datasources">datasources</span>
+                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#datasources" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+              </summary>
 
               <div class="style-form">
                 <span id="datasources-setting">...</span>
@@ -283,7 +286,10 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-theme"></span></summary>
+              <summary>
+                <span id="app-menu-theme"></span>
+                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#theme" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+              </summary>
 
               <div class="style-form">
 
@@ -448,7 +454,10 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-persona"></span></summary>
+              <summary>
+                <span id="app-menu-persona"></span>
+                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#persona" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+              </summary>
 
               <div class="style-form">
 
@@ -488,7 +497,10 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary><span id="app-menu-voice"></span></summary>
+              <summary>
+                <span id="app-menu-voice"></span>
+                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#voice" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+              </summary>
 
               <div class="style-form">
 
@@ -540,7 +552,10 @@ $settings_html = '
             <div class="overflow-content">
               <details id="detail-structured-search" class="special-detail" title="structured search" style="/*display:none;*/">
 
-                <summary><i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span></summary>
+                <summary>
+                  <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#structured_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                </summary>
 
                 <div id="structured-query-output-type">
                   <label style="display:inline;" for="structured-query-output"><span id="app-menu-structured-query-output"></span>output as: &nbsp;</label>
@@ -565,7 +580,10 @@ $settings_html = '
 
               <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
 
-                <summary><i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span></summary>
+                <summary>
+                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geo_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                </summary>
 
                   <div id="geo-search-container" class="resizer"></div>
 
@@ -674,7 +692,11 @@ $settings_html = '
             </div>
 
             <div id="bookmarks-actions-container" class="noselect">
-              <details class="auto" style="" closed=""><summary><span id="app-menu-bookmark-actions">bookmark-selection actions</span></summary>
+              <details class="auto" style="" closed="">
+                <summary>
+                  <span id="app-menu-bookmark-actions">bookmark-selection actions</span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#bookmark_selection_actions" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                </summary>
 
                 <div id="bookmarks-actions-reasoning" class="noselect">
                   <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-reasoning">reasoning</span></summary>
@@ -831,7 +853,10 @@ $settings_html = '
 
                 <li id="presentation-container">
                  <details id="presentation-detail" class="auto" onclick="" style="">
-                  <summary><span id="app-menu-presentation"></span></summary>
+                  <summary>
+                    <span id="app-menu-presentation"></span>
+                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#topic_presentations" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  </summary>
 
                     <select id="presentation-tts-sections" class="browser-default"></select>
 
@@ -848,12 +873,14 @@ $settings_html = '
 
                 <li id="editor-container">
                  <details id="editor-detail" class="auto" onclick="" style="">
-                  <summary><span id="app-menu-editor"></span></summary>
+                  <summary>
+                    <span id="app-menu-editor"></span>
+                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/command_api" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  </summary>
                     <div class="editor-buttons">
                       <a id="editor-run" href="javascript:void(0)" title="run code" aria-label="run code" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } runLISP( explore.editor.getValue() )"><i class="fa-solid fa-play"></i> <span id="app-menu-run-code"></spam></a> 
                       <a id="editor-clear" href="javascript:void(0)" title="clear code" aria-label="clear code" role="button" onclick="runLISP( explore.editor.setValue(&quot;&quot;) )"><i class="fa-regular fa-trash-can"></i> <span id="app-menu-clear-editor"></span></a> &nbsp;
                       <a id="editor-fullscreen" href="javascript:void(0)" title="toggle fullscreen editor" aria-label="toggle fullscreen editor" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;editor-detail&quot;) ); }"><i class="fa-solid fa-expand"></i></a> &nbsp;
-                      <span id="editor-help"><a href="https://conze.pt/guide/command_api" target="infoframe" onclick="resetIframe()" title="command help" aria-label="command help" role="button"><i class="fa-regular fa-circle-question"></i></a></span>
                     </div>
                     <pre id="editor"></pre>
                   </details> 

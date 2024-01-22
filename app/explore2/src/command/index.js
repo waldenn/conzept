@@ -82,7 +82,7 @@ async function sparqlQueryCommand( args, view, list ){
       sparql_strings.push( '%20wdt%3A' + c[0] + '%20' + '%3Fns' + index + '%3B%0A%20' );
 
       // check type of compare-value
-      if ( ['P569', 'P570', 'P571', 'P574', 'P575', 'P576', 'P577', 'P578', 'P580', 'P582', 'P585', 'P606', 'P619', 'P620', 'P621', 'P622', 'P729', 'P730', 'P746', 'P813', 'P1191', 'P1249', 'P1317', 'P1319', 'P1326', 'P1619', 'P1636', 'P1734', 'P2031', 'P2032', 'P2285', 'P2310', 'P2311', 'P2669', 'P2754', 'P2913', 'P2960', 'P3893', 'P3999', 'P4566', 'P4602', 'P5017', 'P5204', 'P6949', 'P7103', 'P7104', 'P7124', 'P7125', 'P7295', 'P7588', 'P7589', 'P8554', 'P8555', 'P8556', 'P9052', 'P9448', 'P9667', 'P9905', 'P9946', 'P10135', 'P10673', 'P10786' ].includes( c[0] ) ){ // should be a timestamp
+      if ( ['P569', 'P570', 'P571', 'P574', 'P575', 'P576', 'P577', 'P578', 'P580', 'P582', 'P585', 'P606', 'P619', 'P620', 'P621', 'P622', 'P729', 'P730', 'P746', 'P813', 'P1191', 'P1249', 'P1317', 'P1319', 'P1326', 'P1619', 'P1636', 'P1734', 'P2031', 'P2032', 'P2285', 'P2310', 'P2311', 'P2669', 'P2754', 'P2913', 'P2960', 'P3893', 'P3999', 'P4566', 'P4602', 'P5017', 'P5204', 'P6949', 'P7103', 'P7104', 'P7124', 'P7125', 'P7295', 'P7588', 'P7589', 'P8554', 'P8555', 'P8556', 'P9052', 'P9448', 'P9667', 'P9905', 'P9946', 'P10135', 'P10673', 'P10786'].includes( c[0] ) ){ // should be a timestamp
 
         sparql_filters.push( '%20FILTER(%3Fns' + index + '%20' + encodeURIComponent( comparator ) + '%20%22' + c[2] + '%22%5E%5Exsd%3AdateTime)%20' );
 
@@ -359,7 +359,7 @@ async function showPresentation( item, type ){
 
     if ( valid( item.openalex?.startsWith("C") ) ){ // concept
 
-      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex }" ) ) )\n`;
+      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n`;
 
     }
     else {
@@ -453,12 +453,12 @@ async function showPresentation( item, type ){
 
       if ( item.openalex.startsWith("A") ){ // author
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex }" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
 
       }
       else if ( item.openalex.startsWith("I") ){ // institution
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex }" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
 
       }
 
@@ -668,16 +668,17 @@ async function showPresentation( item, type ){
 			if ( valid( item.lat ) ){ slides.push( nearby_map_slide  ) };
 			//if ( valid( item.lat ) ){ slides.push( street_map_slide  ) };
 
-      if ( valid( item.is_museum ) ){
+      //if ( valid( item.is_museum ) ){
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-brands fa-windows' title='Museum collection'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/commons-sparql/?t=museum%20collection%20%3A%20${title}&l=${language}&url=https%3A%2F%2Fquery.wikidata.org%2Fsparql%3Fformat%3Djson%26query%3DSELECT%2520DISTINCT%2520%3Fitem%2520%3FitemLabel%2520%3Fimage%2520%3Fdate%2520WHERE%2520%7B%0A%2520%2520%3Fitem%2520wdt%3AP31%2520%3Fwhat%3B%0A%2520%2520%2520%2520(wdt%3AP195%2F(wdt%3AP361*))%2520%3Fcollection.%0A%2520%2520FILTER(%3Fcollection%2520%3D%2520wd%3A${item.qid})%0A%2520%2520%3Fitem%2520wdt%3AP18%2520%3Fimage.%0A%2520%2520OPTIONAL%2520%7B%2520%3Fitem%2520wdt%3AP571%2520%3Fdate.%2520%7D%0A%2520%2520SERVICE%2520wikibase%3Alabel%2520%7B%2520bd%3AserviceParam%2520wikibase%3Alanguage%2520%22${language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%2520%7D%0A%7D%0AORDER%2520BY%2520DESC%2520(%3Fdate)" ) ) )\n` );
+        // FIXME: URL-wrong encoding?
+        //slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-brands fa-windows' title='Museum collection'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/commons-sparql/?t=museum%2520collection%2520%253A%2520${title}&l=${language}&url=https%253A%252F%252Fquery.wikidata.org%252Fsparql%253Fformat%253Djson%2526query%253DSELECT%252520DISTINCT%252520%253Fitem%252520%253FitemLabel%252520%253Fimage%252520%253Fdate%252520WHERE%252520%257B%250A%252520%252520%253Fitem%252520wdt%253AP31%252520%253Fwhat%253B%250A%252520%252520%252520%252520(wdt%253AP195%252F(wdt%253AP361*))%252520%253Fcollection.%250A%252520%252520FILTER(%253Fcollection%252520%253D%252520wd%253A${item.qid})%250A%252520%252520%253Fitem%252520wdt%253AP18%252520%253Fimage.%250A%252520%252520OPTIONAL%252520%257B%252520%253Fitem%252520wdt%253AP571%252520%253Fdate.%252520%257D%250A%252520%252520SERVICE%252520wikibase%253Alabel%252520%257B%252520bd%253AserviceParam%252520wikibase%253Alanguage%252520%2522${language}%252Cen%252Cceb%252Csv%252Cde%252Cfr%252Cnl%252Cru%252Cit%252Ces%252Cpl%252Cwar%252Cvi%252Cja%252Czh%252Carz%252Car%252Cuk%252Cpt%252Cfa%252Cca%252Csr%252Cid%252Cno%252Cko%252Cfi%252Chu%252Ccs%252Csh%252Cro%252Cnan%252Ctr%252Ceu%252Cms%252Cce%252Ceo%252Che%252Chy%252Cbg%252Cda%252Cazb%252Csk%252Ckk%252Cmin%252Chr%252Cet%252Clt%252Cbe%252Cel%252Caz%252Csl%252Cgl%252Cur%252Cnn%252Cnb%252Chi%252Cka%252Cth%252Ctt%252Cuz%252Cla%252Ccy%252Cta%252Cvo%252Cmk%252Cast%252Clv%252Cyue%252Ctg%252Cbn%252Caf%252Cmg%252Coc%252Cbs%252Csq%252Cky%252Cnds%252Cnew%252Cbe-tarask%252Cml%252Cte%252Cbr%252Ctl%252Cvec%252Cpms%252Cmr%252Csu%252Cht%252Csw%252Clb%252Cjv%252Csco%252Cpnb%252Cba%252Cga%252Cszl%252Cis%252Cmy%252Cfy%252Ccv%252Clmo%252Cwuu%252Cbn%2522.%252520%257D%250A%257D%250AORDER%252520BY%252520DESC%252520(%253Fdate)';
 
-      }
-      else {
+      //}
+      //else {
 
 			  slides.push( commons_slide );
 
-      }
+      //}
 
 			slides.push( video_slide );
 

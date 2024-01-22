@@ -19,6 +19,11 @@
   /*border: 1px solid #000;*/
 }
 
+.doclink {
+  float: right;
+  margin-right: 1em;
+}
+
 #aichat {
   background: #fbfaf10;
 }

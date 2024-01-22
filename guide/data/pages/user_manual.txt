@@ -177,13 +177,20 @@ Structured search can be accessed by:
   - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
   - Then click the "run query" button. \\ \\
 
+
 [ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
+
+===== geo search =====
+
+(TODO)
+
 ===== AI chat =====
 
 (TODO: describe the AI-chat app functionality)
-===== command API =====
 
-(TODO: show an example use case of the **[[command API]]**)
+===== topic presentations =====
+
+(TODO: The use of auto-generated topic presentation using the **[[command API]]**)
 
 ===== search commands =====
 
@@ -201,6 +208,8 @@ See also the **[[command API]]**, which is the future of Conzept command scripti
 
 [{{ ::bookmark_2.jpg?direct|bookmark management from the bookmark-tab}}]
 
+==== add bookmark ====
+
 You can **bookmark topics** that you like, by opening the "main"-section of a topic, and then clicking on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon.
 
 To **see and manage your bookmarks**, click on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon in the tab-menu.
@@ -208,10 +217,19 @@ From the bookmark manager you can delete and drag-and-drop the bookmarks into yo
 
 The bookmarks are only stored locally in the browser (using a browser cookie), and not on any server.
 
-Your bookmarks can also be:
-  * **Imported and exported as a JSON file.** This is currently the only option to share bookmarks between devices and browsers.
+Bookmarks can also be added manually using the "add bookmark" form.
 
-  * **Exported to several external formats**: HTML, KML (for geo-apps), GPX (for geo-apps). Note: these formats export any tree-hierarchy to a flat structure.
+==== import bookmarks ====
+
+  * Your bookmarks can be **imported and exported as a JSON file.** This is currently the only option to share bookmarks between devices and browsers.
+
+==== export bookmarks ====
+
+  * Your bookmarks can be **exported to several external formats**: HTML, KML (for geo-apps), GPX (for geo-apps). Note: these formats export any tree-hierarchy to a flat structure.
+
+==== bookmark selection actions ====
+
+(TODO)
 
 ===== settings =====
 
@@ -219,25 +237,48 @@ Your bookmarks can also be:
 
 The following settings are available:
 
+==== datasources ====
+
   * Set the active **[[datasources]]**
+
+==== font size ====
 
   * Set the **font size**
 
+==== font type ====
+
   * Set the **font type**
+
+==== theme ====
+
+  * Set the **theme** (light / dark mode, grid / no-grid sidebar layout, link previews)
+
+==== features ====
+
+  * geo-search
+
+  * AI chat
+
+==== reading assistence ====
+
+  * Set **reading-help** options (word-start bolding, color filters)
+
+==== interface language ====
 
   * Set the **interface language** (locale)
     * Note: This is different from the content-language setting. This //only// affects the Conzept UI interface.
 
-  * Set the **theme** (light / dark mode, link previews)
-
-  * Set **reading-help** options (word-start bolding, color filters)
+==== persona ====
 
   * Set **persona info** \\ \\
     * **AI tutor style** for the AI chat system. This sets up a different system-role context (example: historian, scientist, storyteller). \\ \\ When the "auto-select" tutor is chosen, Conzept will automatically derive the best suited tutor for a topic, based on its classification. \\ \\ To use the AI chat, make sure you enter an OpenAI key in the chat app settings-menu first. Note that this key is only stored locally in your browser, for safety reasons.\\ \\
     * **Country** (automatically derived from your browser-locale, but can be changed). This allows Conzept to show country-specific links for topics. \\ \\
     * **Interest** tags. This allows Conzept to better suit the user-interface to your needs. Eg. to show map links for hotels and walking-routes, with the tourist-tag.
 
+==== voice ====
+
   * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
+
 ===== keyboard shortcuts =====
 
 Here is an overview of the available keyboard shortcuts:
