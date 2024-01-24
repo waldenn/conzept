@@ -57,7 +57,7 @@ The main goals of Conzept are:
 
   * A more **holistic presentation of the information** contained within datasources (such as Wikipedia and Wikidata), by integrating and linking with other information sources, semantic entities and application views. Aiming to allow you to 'forget' where the information is coming from and instead explore //that// which you are interested in.
 
-  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce various cognitive-loads (eg. [[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]], relational discovery and understanding, topic revisiting using bookmarks), and making the experience as fun and inspiring as possible.
+  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce various cognitive-loads such as "website context-switching" (see eg. [[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]], relational discovery and understanding, topic revisiting and topic actions using bookmarks), and making the experience as fun and inspiring as possible.
 
   * **Innovate** where that is both possible and useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
 

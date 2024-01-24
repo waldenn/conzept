@@ -2225,6 +2225,56 @@ function setupOptionDarkmode() {
 
 }
 
+function setShowHelp() {
+
+  if ( explore.showhelp ){
+    $('#showhelp').prop('checked', true);
+    $('.doclink').show();
+  }
+  else {
+    $('#showhelp').prop('checked', false);
+    $('.doclink').hide();
+  }
+
+}
+
+function setupOptionShowHelp(){
+
+  (async () => {
+
+    explore.showhelp = await explore.db.get('showhelp');
+
+    explore.showhelp = ( explore.showhelp === null || explore.showhelp === 'false' ) ? false : true;
+
+    setShowHelp();
+
+    $('#showhelp').change(function() {
+
+      if ( $('#showhelp').prop('checked') ){
+
+        (async () => { await explore.db.set('showhelp', true); })();
+        explore.showhelp = true;
+
+        updateValueInPanes( 'showhelp', true );
+        setShowHelp();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('showhelp', false); })();
+        explore.showhelp = false;
+
+        updateValueInPanes( 'showhelp', false );
+        setShowHelp();
+
+      }
+
+    })
+
+  })();
+
+}
+
 function setGridmode() {
 
   // also check user preference for gridmode

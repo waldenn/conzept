@@ -18014,6 +18014,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 401,
 },
 
+'periodo_period' : {
+  title: 'PeriodO period - Gazetteer of historic period definitions',
+  prop: '9350',
+  type: 'link',
+  mv: false,
+  url: 'http://n2t.net/ark:/99152/p0${item.periodo_period}',
+  icon: 'fa-solid fa-chart-gantt',
+  text: 'PeriodO',
+  section: ['library-history','main'],
+  rank: [120,7010],
+  headline_create: 'valid( item.periodo_period )',
+  headline_rank: 285,
+},
+
 'google_newspaper' : {
   create_condition: true,
   title: 'Google newspaper search',
@@ -117947,20 +117961,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'France24 topic (Arabic)',
   section: ['library-identity'],
   rank: [29349],
-  auto: true,
-},
-
-'periodo_period' : {
-  title: 'PeriodO period',
-  prop: '9350',
-  type: 'url',
-  mv: false,
-  url_format: 'http://n2t.net/ark:/99152/p0$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'PeriodO period',
-  section: ['library-identity'],
-  rank: [29350],
   auto: true,
 },
 

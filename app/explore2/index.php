@@ -315,8 +315,16 @@ $settings_html = '
                   </label>
                 </div>
 
-                <div id="gridmode-setting" class="switch">
+                <div id="showhelp-setting" class="switch">
+                  <label for="showhelp" style="display:none;">show help</label> 
+                  <label>
+                  <input type="checkbox" id="showhelp">
+                  <span class="lever"></span>
+                  <span id="app-menu-showhelp">show help</span>
+                  </label>
+                </div>
 
+                <div id="gridmode-setting" class="switch">
                   <label for="gridmode" style="display:none;">gridmode</label> 
                   <label>
                   <input type="checkbox" id="gridmode">

@@ -185,6 +185,7 @@ const explore = {
   underline           : undefined,
   multicolumn         : undefined,
   linkpreview         : undefined,
+  showhelp            : undefined,
   darkmode            : undefined,
   bgmode              : undefined,
   gridmode            : undefined,
@@ -353,6 +354,7 @@ $( document ).ready( function() {
     setupOptionUnderlineLinks();
     setupOptionBgmode();
     setupOptionDarkmode();
+    setupOptionShowHelp();
     setupOptionGridmode();
     setupOptionBread();
     setupOptionGeoSearch();
