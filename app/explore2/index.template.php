@@ -333,8 +333,6 @@ $settings_html = '
                   </label>
                 </div>
 
-                <br/>
-
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -344,8 +342,6 @@ $settings_html = '
                   </label>
                   <br/>
                 </div>
-
-                <br/>
 
                 <div id="multicolumn-setting" class="switch" style="display:none;">
 
@@ -366,8 +362,6 @@ $settings_html = '
 
                 </div>
 
-                <br/>
-
             </div>
 
             </details>
@@ -387,8 +381,6 @@ $settings_html = '
                   <br/>
                 </div>
 
-                <br/>
-
                 <div id="aichat-setting" class="switch">
                   <label for="aichat" style="display:none;">AI chat</label> 
                   <label>
@@ -398,8 +390,6 @@ $settings_html = '
                   </label>
                   <br/>
                 </div>
-
-                <br/>
 
             </div>
 
