@@ -8226,7 +8226,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'eom' : {
   title: 'Encyclopedia of Mathematics',
-  create_trigger: 'if ( ! tagSet( item.tags ){ setTags( item, [ "meta-concept", "mathematics" ] ) }',
+  create_trigger: 'if ( ! tagSet( item.tags ) ){ setTags( item, [ "meta-concept", "mathematics" ] ) }',
   prop: '7554',
   type: 'link',
   url: 'https://encyclopediaofmath.org/wiki/${item.eom}',
