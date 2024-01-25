@@ -21,6 +21,31 @@ async function setTags( item, tags ){
 
 }
 
+function tagSet( tags ){
+
+  let r = false;
+
+  if ( ! Array.isArray( tags ) || tags.length === 0 ){
+
+    r = false;
+
+  }
+  else { // we have some tags
+
+    if ( valid( tags[0] ) ){
+      r = true;
+    }
+
+    if ( valid( tags[1] ) ){
+      r = true;
+    }
+
+  }
+
+  return r;
+
+}
+
 function checkTag( item, level, name ){
 
   let r = false; // default

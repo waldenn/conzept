@@ -3805,7 +3805,7 @@ conzept_fields = {
 'mathworld' : {
   title: 'Wolfram MathWorld',
   prop: '2812',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://mathworld.wolfram.com/${item.mathworld}.html',
   icon: 'fa-solid fa-square-root-alt',
@@ -8226,6 +8226,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'eom' : {
   title: 'Encyclopedia of Mathematics',
+  create_trigger: 'if ( ! tagSet( item.tags ){ setTags( item, [ "meta-concept", "mathematics" ] ) }',
   prop: '7554',
   type: 'link',
   url: 'https://encyclopediaofmath.org/wiki/${item.eom}',
@@ -18023,7 +18024,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-chart-gantt',
   text: 'PeriodO',
   section: ['library-history','main'],
-  rank: [120,7010],
+  rank: [110,7010],
   headline_create: 'valid( item.periodo_period )',
   headline_rank: 285,
 },

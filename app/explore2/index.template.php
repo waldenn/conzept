@@ -303,8 +303,6 @@ $settings_html = '
                   </label>
                 </div>
 
-                <br/>
-
                 <div id="bgmode-setting" class="switch" style="display:none;">
 
                   <label for="bgmode" style="display:none;">bgmode</label> 
