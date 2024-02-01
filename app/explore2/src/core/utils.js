@@ -1963,6 +1963,21 @@ function getWikidata( qid ) {
 
 }
 
+function replaceSubscriptNumbers( inputString ) {
+
+    const regex = /[\u2080-\u2089]/g; // match subscript numbers
+
+    const resultString = inputString.replace(regex, function(match) {
+
+        const normalNumber = match.charCodeAt(0) - 0x2080; // convert Unicode subscript number to normal number
+
+        return normalNumber.toString();
+
+    });
+
+    return resultString;
+}
+
 /*
 function objectToString(obj){
 

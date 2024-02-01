@@ -5209,7 +5209,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://matterverse.ai/query?collection=M3GNet_data_websearch&search_string=${item.chemical_formula}&submit=Search',
+  url: 'https://matterverse.ai/query?collection=M3GNet_data_websearch&search_string=${ replaceSubscriptNumbers( item.chemical_formula ) }&submit=Search',
   icon: 'fa-regular fa-snowflake',
   text: 'MatterVerse',
   section: ['science-chemistry','main'],
