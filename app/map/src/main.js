@@ -1,5 +1,14 @@
 'use strict';
 
+import {
+  Globe,
+  GlobusTerrain,
+  XYZ,
+  LonLat,
+  Popup,
+  utils
+} from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
+
 /*
   Conzept map application based on OpenGlobus
 
@@ -8,6 +17,42 @@
     https://openglobus.org/api/
 
 */
+
+// FIXME
+let sat = new XYZ("sat", {
+
+  subdomains:     ['t0', 't1', 't2', 't3'],
+  url:            "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
+  isBaseLayer:    true,
+  maxNativeZoom:  19,
+  defaultTextures:[{color: "#001522"}, {color: "#E4E6F3"}],
+  attribution:    `<div style="transform: scale(0.8); margin-top:-2px;"><a href="http://www.bing.com" target="_blank"><img style="position: relative; top: 2px;" title="Bing Imagery" src="https://sandbox.openglobus.org/bing_maps_credit.png"></a> © 2021 Microsoft Corporation</div>`,
+
+  urlRewrite: function (s, u) {
+
+    return utils.stringTemplate(u, {
+
+      's':    this._getSubdomain(),
+      'quad': toQuadKey(s.tileX, s.tileY, s.tileZoom)
+
+    });
+  },
+
+  specular: [0.00063, 0.00055, 0.00032],
+  ambient: "rgb(90,90,90)",
+  diffuse: "rgb(350,350,350)",
+  shininess: 20,
+  nightTextureCoefficient: 2.7
+
+});
+
+document.getElementById("btnOSM").onclick = function () {
+  osm.setVisibility(true);
+};
+
+document.getElementById("btnMQS").onclick = function () {
+  sat.setVisibility(true);
+};
 
 
 let app = {
@@ -250,18 +295,16 @@ async function init(){
       attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
-  app.globus = new og.Globe({
+  app.globus = new Globe({
 
-    target: "globus",
-
-    name: "conzept map",
-
-    terrain: new og.terrain.GlobusTerrain(),
-
+    target:       "globus",
+    name:         "Earth",
+    terrain:      new GlobusTerrain(),
+    layers:       [osm, sat],
+    resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
+    fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
     autoActivated: true,
-
     viewExtent: app.view_extent,
-
     layers: [ osm, app.markerLayer, opentopo, sat1, sat2, sat3, mapbox_light, mapbox_dark ]
 
   });

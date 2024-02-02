@@ -82,7 +82,7 @@ $main_css = '
   <!-- various 3rd-party CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/various/materialize.min.css" type="text/css">
   <link rel="stylesheet" href="../assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" type="text/css">
-  <link rel="stylesheet" href="../assets/fonts/fontawesome/css/all.min.css?v6.01" type="text/css"> <!-- TODO: use with NPM, then remove fortawesome -->
+  <link rel="stylesheet" href="../assets/fonts/fontawesome/css/all.min.css?v6.5.1" type="text/css"> <!-- TODO: use with NPM, then remove fortawesome -->
   <link rel="stylesheet" href="../app/explore2/dist/css/openmoji/openmoji-black-awesome.css?v13.110" type="text/css"> <!-- contains custom patches to align with fontawesome -->
   <!--link rel="stylesheet" href="../app/explore2/css/various/jqtree.css" type="text/css"--> <!-- TODO: re-append the style overrides from here into the main.css -->
   <link rel="stylesheet" href="../app/explore2/node_modules/jqtree/jqtree.css" type="text/css">

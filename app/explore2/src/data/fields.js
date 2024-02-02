@@ -17547,9 +17547,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'ROR',
   section: ['library-identity', 'business', 'main'],
   rank: [26782, 55, 2010 ],
-  headline_create: 'valid( item.ror_id )',
-  headline_type: 'link',
-  headline_rank: 101,
+  //headline_create: 'valid( item.ror_id )',
+  //headline_type: 'link',
+  //headline_rank: 101,
 },
 
 'google_scholar' : {
