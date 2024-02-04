@@ -1830,10 +1830,12 @@ conzept_fields = {
   type: 'link',
   url: '${explore.base}/app/elements/element.html?num=${item.atomic_number}',
   mv: false,
-  icon: 'fa-solid fa-flask',
+  icon: 'fa-solid fa-list',
   text: 'element info',
   section: ['science-chemistry','main'],
   rank: [4,10000],
+  headline_create: 'valid( item.atomic_number )',
+  headline_rank: 340,
 },
 
 'us_national_archives' : {
@@ -11138,6 +11140,31 @@ if ( valid( item.found_in_taxon ) ){
   rank: [58,7440],
 },
 
+'marine_regions_geographic' : {
+  title: 'Marine Regions Geographic item',
+  prop: '3006',
+  type: 'url',
+  mv: false,
+  url: 'https://marineregions.org/gazetteer.php?p=details&id=${item.marine_regions_geographic}',
+  icon: 'fa-solid fa-water',
+  text: 'marine region',
+  section: ['library-identity', 'location-geography', 'main'],
+  rank: [23006, 7, 7500 ],
+},
+
+'marine_regions_geographic_hierarchy' : {
+  create_condition: 'valid( item.marine_regions_geographic )',
+  title: 'Marine Regions Geographic hierarchy',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://marineregions.org/gazetteer.php?p=browser&id=${item.marine_regions_geographic}#focus',
+  icon: 'fa-solid fa-water',
+  text: 'marine region tree',
+  section: [ 'location-geography', 'main'],
+  rank: [7.1, 7501],
+},
+
 'motto_description' : {
   title: 'motto description',
   prop: '1546',
@@ -13005,7 +13032,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_title: 'event cluster history',
   headline_icon: 'fa-regular fa-clock',
   headline_url: '${ getTimeSpaceURL( item ) }',
-  headline_rank: 280,
+  headline_rank: 278,
 },
 
 'video_headline' : { // only used for headline display
@@ -51934,20 +51961,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Galiciana work',
   section: ['library-identity'],
   rank: [23004],
-  auto: true,
-},
-
-'marine_regions_geographic' : {
-  title: 'Marine Regions Geographic',
-  prop: '3006',
-  type: 'url',
-  mv: false,
-  url_format: 'https://marineregions.org/mrgid/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Marine Regions Geographic',
-  section: ['library-identity'],
-  rank: [23006],
   auto: true,
 },
 

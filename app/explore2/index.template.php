@@ -809,7 +809,9 @@ $settings_html = '
 
                       <!--li style="display:none;"><span id="identifyPlant"><a class="link" title="identify a plant using an image" aria-label="identify a plant using an image" role="button" onclick="identifyPlant()" tabindex="0"><i class="fa-solid fa-leaf"></i>&nbsp; <span id="app-menu-plant-identification"></span></a></span></li>
                       <li style="display:none;"><span id="identifyOCR"><a class="link" title="identify text using an image" aria-label="identify text using an image" role="button" onclick="identifyOCR()" tabindex="0"><i class="fa-regular fa-file-alt"></i>&nbsp; <span id="app-menu-text-identification"></span></a></span></li-->
+
                       <li> <web-share-wrapper text="share" sharetext="share this"> <!--a href="https://twitter.com/intent/tweet/?text=Check%20out%20%40philnashs%20web-share-wrapper%20web%20component&amp;url=https%3A%2F%2Fgithub.com%2Fphilnash%2Fweb-share-wrapper">Share on Twitter</a--> </web-share-wrapper> </li>
+
                     </ul>
                   </details> 
                 </li>

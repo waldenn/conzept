@@ -1,78 +1,311 @@
-====== used projects ======
+====== user manual ======
 
-This is a list of the various software projects integrated into Conzept (called "**apps**" in this context).
+===== introduction =====
 
-===== background services =====
+**[[https://conze.pt|Conzept]] is an attempt to create a flexible topic exploration system for the 21st century.** It is a flexible, multi-lingual, semantic web tool build for **fun, education and research purposes**.
 
-  * **[[https://github.com/steve-jansen/json-proxy|json-proxy]]** - JSON CORS-proxy with support for secret-API-keys (MIT)
-  * **[[https://github.com/gnuns/allOrigins|allOrigins]]** - general CORS-proxy (any file type). (MIT)
+Main features:
+  * Use any REST and SPARQL based **[[datasources|datasource]]** API.
+  * Easily **[[uses projects|embed apps]]** (including websites), either self-hosted or remotely hosted.
+  * A **[[field_customization|data-defined]] software approach**, which allows for easy JSON-based configuration and administration of many parts of Conzept.
 
-===== embedded apps =====
+The Conzept project is [[explore>free software]], licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets).
 
-  - **[[https://conze.pt/explore/Bluethroat?l=en&t=link&i=Q26578&u=https%3A%2F%2Fconze.pt%2Fapp%2Faudio%2F%3Furl%3Dhttps%253A%252F%252Fapi.allorigins.win%252Fraw%253Furl%253Dhttps%253A%252F%252Fcommons.wikimedia.org%252Fwiki%252FSpecial%253AFilePath%252FLuscinia%252520svecica.ogg&s=true|audio]]** - audio analyzer ([[https://audiomass.co, https://github.com/pkalogiros/audiomass|AudioMass]], license?, [[https://github.com/pkalogiros/AudioMass/issues/1|license yet undecided]])
-  - **[[https://conze.pt/explore/Business?l=en&t=link-split&i=Q4830453&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fc%3DQ4830453%26lang%3Den&s=true|filter-browse]]** - SPARQL-based filtered browsing ([[https://github.com/sahajsk21/Anvesha|Anvesha]], GPL v2)
-  - **[[https://conze.pt/explore/American%20alligator?l=en&t=link&i=Q193327&u=https%3A%2F%2Fconze.pt%2Fapp%2Fresponse%2Fgbif-map%3Fl%3Den%26t%3DAmerican%2520alligator%26id%3D2441370&s=true|occurence map]]** - OpenLayers-based map webcomponent used for rendering [[https://www.gbif.org/developer/summary|GBIF API]]-based taxon-occurence data (and extra map-layers) (selfmade)
-  - **[[https://conze.pt/explore/Trogon?l=en&t=compare&s=true&c=Q1268064,Q998535,Q1268477|compare]]** - compare to wikidata items ([[https://gitlab.com/muekoeff/entitycompare/|WikiCompare]], MIT)
-  - **[[https://conze.pt/explore/Wikipedia?l=en&t=link&u=https%3A%2F%2Fconze.pt%2Fapp%2Fcoverhex%2F1000_essential_articles.html&s=true|coverhex]]** - hex-tiles topic-list display (selfmade)
-  - **[[https://conze.pt/explore/Revolution?l=en&t=link&i=Q10931&u=https%3A%2F%2Fconze.pt%2Fapp%2Fdateviz%2F%3Fq%3DRevolution&s=true|dateviz]]** - timeline of words in books ([[https://books.archivelab.org/dateviz/|DateViz]], Apache v2)
-  - **[[https://conze.pt/explore/Gold?l=en&t=link&i=Q897&u=https%3A%2F%2Fconze.pt%2Fapp%2Felements%2Felement.html%3Fnum%3D79&s=true|elements]]** - periodic table elements ([[https://github.com/catchspider2002/periodic-table.io|periodic-table.io]], MIT)
-  - **[[https://conze.pt/explore/Louise%20of%20Mecklenburg-Strelitz?l=en&t=link&i=Q156723&u=https%3A%2F%2Fwww.entitree.com%2Fen%2Ffamily_tree%2FQ156723&s=true|entitree]]** - Wikidata tree-hierarchy viewer ([[https://github.com/ogroppo/entitree|entitree]], GPL v3)
-  - **event** - Wikidata event data ([[https://github.com/Dorialexander/UniversalAlmanac|UniversalAlmanac]], GPL v3)
-  - **iiif** - universal IIIF viewer ([[https://github.com/universalviewer/universalviewer|UniversalViewer]], MIT)
-  - **[[https://conze.pt/explore/Jazz?l=en&t=link-split&i=Q8341&u=https%3A%2F%2Fconze.pt%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DJazz&s=true|links]]** - Wikipedia-article link-graph viewer ([[https://github.com/controversial/wikipedia-map/|wikipedia-map]], MIT)
-  - **[[https://conze.pt/explore/Alps?l=en&t=link&i=Q1286&u=https%3A%2F%2Fconze.pt%2Fapp%2Fmap3d%2F%3Flat%3D46%26lon%3D10&c=46,10&s=true|map3d]]** - 3D satellite/terrain map viewer ([[https://github.com/felixpalmer/procedural-gl-js|procedural-gl-js]], MPL)
-  - **[[https://conze.pt/explore/Amsterdam?l=en&t=link&i=Q727&u=https%3A%2F%2Fconze.pt%2Fapp%2Fmap-search%2F%3Fq%3DAmsterdam&c=52.383333333333,4.9&s=true|map-search]]**, historic map search tool with overlay functionality ([[https://github.com/Abbe98/map-search|map-search]], MIT)
-  - **[[https://conze.pt/explore/Glycogen?l=en&t=link&i=Q174936&u=https%3A%2F%2Fconze.pt%2Fapp%2Fmolview%2F%3Fcid%3D439177&s=true|molview]]** - molecule-structure viewer ([[https://github.com/molview|MolView]], AGPL)
-  - **[[https://conze.pt/explore/United%20States%20Department%20of%20Commerce?l=en&t=link&i=Q503577&u=https%3A%2F%2Fconze.pt%2Fapp%2Ffeed%2F%3Ft%3DUnited%20States%20Department%20of%20Commerce%26url%3Dhttps%253A%252F%252Fwww.commerce.gov%252Ffeeds%252Fnews&s=true|feed]]** - RSS / Atom feed-rendering tool (using the [[https://github.com/sdepold/jquery-rss|jquery-rss]] library, MIT)
-  - **[[https://conze.pt/explore/Qeysarie%20Gate?l=en&t=link-split&i=Q5871275&u=https%3A%2F%2Fconze.pt%2Fapp%2Fnearby%2F%23lat%3D32.660369%26lng%3D51.676797%26zoom%3D17%26interface_language%3Den%26layers%3Dwikidata_image%2Cwikidata_no_image%2Cwikipedia&c=32.660369,51.676797&s=true|nearby]]** - nearby points of Wikipedia and Wikidata articles, [[https://bitbucket.org/magnusmanske/wikishootme/src/master/|WikiShootme]], GPL)
-  - **[[https://twitter.com/conzept__/status/1422366764495745027|text-identification]]** (currently offline, due to limited VPS RAM resources) - converts an image of text via "Optical Character Recognition" (using [[https://github.com/naptha/tesseract.js|Tesseract.js]], MIT), to a named-entity-linked text (using a self-hosted [[https://github.com/jgontrum/spacy-api-docker|Spacy NER API]], MIT). ([[https://github.com/ian-nai/In-Browser-OCR|In-Browser-OCR]], GPL v3)
-  - **[[https://conze.pt/explore/North%20Holland?l=en&t=link&i=Q701&u=https%3A%2F%2Fconze.pt%2Fapp%2Fmap%2F%3Fl%3Den%26bbox%3D4.7833333333333%2C52.616666666667%2C4.8833333333333%2C52.716666666666995%26lat%3D52.666666666667%26lon%3D4.8333333333333%26osm_id%3D47654%26title%3DNorth%2520Holland&c=52.666666666667,4.8333333333333&s=true|map]]** - 2D/3D map viewer based on OpenStreet Map and terrain-elevation data ([[https://github.com/openglobus/openglobus|OpenGlobus]], MIT)
-  - **openseadragon** (used for zooming into images on Wikipedia pages) - image-zoom, ([[https://openseadragon.github.io/|OpenSea Dragon]], [[https://openseadragon.github.io/license/|license]] )
-  - **[[https://conze.pt/explore/Paris?l=en&t=link&i=Q90&u=https%3A%2F%2Fconze.pt%2Fapp%2Fosmbuildings%2F%3Flat%3D48.856944444444%26lon%3D2.3513888888889%26zoom%3D18.0%26tilt%3D30&c=48.856944444444,2.3513888888889&s=true|osmbuildings]]** - 3D map of OpenStreetMap buildings, ([[https://github.com/OSMBuildings/OSMBuildings|osmbuildings]], MIT)
-  - **overpass** - overpass API middleware ([[https://github.com/tyrasd/overpass-turbo|overpass-turbo]], [[https://github.com/tyrasd/overpass-turbo/blob/master/LICENSE|BSD-style]])
-  - **[[https://conze.pt/explore/Tscheischhorn?l=en&t=link&i=Q8527268&u=https%3A%2F%2Fconze.pt%2Fapp%2Fpanorama%2F%3Ft%3DTscheischhorn%26img%3Dhttps%25253A%25252F%25252Fconze.pt%25252Fapp%25252Fcors%25252Fraw%25252F%25253Furl%25253Dhttps%25253A%25252F%25252Fcommons.m.wikimedia.org%25252Fwiki%25252FSpecial%25253AFilePath%25252FTscheischhorn%252520Spherical%252520Panorama.jpg%25253Fwidth%25253D3000px&c=46.427694444444,9.5173611111111&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P4640%22%2C%22propertyDataType%22%3A%22commonsMedia%22%2C%22propertyValueRelation%22%3A%22regardless-of-value%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22%22%2C%22subclasses%22%3Afalse%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D|panorama]]** - panorama photo viewer, ([[https://github.com/pchen66/panolens.js|PanoLens]], MIT)
-  - **[[https://conze.pt/explore/Guppy?l=en&t=link-split&i=Q178202&u=https%3A%2F%2Fconze.pt%2Fapp%2Fquery%2Fembed.html%3Fl%3Den%23SELECT%252520%25253Fitem%252520%25253FitemLabel%252520%25253FitemDescription%252520%25253Fpic%252520%25253FlinkTo%25250AWHERE%25250A%25257B%25250A%252520%252520wd%25253AQ178202%252520wdt%25253AP171*%252520%25253Fitem%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP171%252520%25253FlinkTo%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257Bbd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%252522%252520%25257D%25250A%25257D%252523defaultView%25253AGraph%25250A%252523meta%25253AGuppy%25253Alayout-topdown&s=true|query]]** - [[https://gerrit.wikimedia.org/r/wikidata/query/gui|Wikibase Query Service GUI]], GPL-2.0+ or Apache License
-  - **response** - URL-API middle-ware for rendering HTML-snippets from various data-inputs. Used for rendering one or more IIIF-images in Universal Viewer (self-made)
-  - **[[https://conze.pt/explore/Vanguard%203?l=en&t=link&i=Q632896&u=https%3A%2F%2Fconze.pt%2Fapp%2Fspace%2F%3Fsearch%3D1959-007A&s=true|space-object]]** - view the orbit of space-objects, ([[https://github.com/shashwatak/EarthStation|EarthStation]], MIT)
-  - **[[https://conze.pt/explore/ASML%20Holding?l=en&t=link&i=Q297879&u=https%253A%252F%252Fconze.pt%252Fapp%252Fstock%252F%253Ft%253DASML%20Holding%20N.V%2526l%253Den%2526s%253DASML.AMS%2526c%253DEUR%2526p%253D(Amsterdam)&s=true|stock]]** - stock-price graph viewer (selfmade)
-  - **[[https://conze.pt/explore/Knee?l=en&t=link-split&i=Q37425&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftaviewer%2F%3Fl%3Den%26id%3DA01.1.00.036&s=true|taviewer]]** - Human anatomy ontology-tree viewer ([[https://github.com/mhalle/taviewer|TAViewer]] (not used currently), MIT)
-  - **[[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|timespace]]** - ([[https://bitbucket.org/magnusmanske/wikidata-todo/src/master/|tempo-spatial display]], GPL v2)
-  - **[[https://conze.pt/explore/Santiago%20Calatrava?l=en&d=wikipedia,wikidata&t=link-split&i=Q168482&u=%2Fapp%2Ftimeline%2F%3Ftitle%3DSantiago%2520Calatrava%252520%25253A%252520architecture%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP276%252520%25253Fplace%25253B%25250A%252520%252520%252520%252520wdt%25253AP84%252520wd%25253AQ168482%25253B%25250A%252520%252520%252520%252520wdt%25253AP571%252520%25253Fstart.%25250A%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fstatement.%25250A%252520%252520%25253Fstatement%252520psv%25253AP625%252520%25253Fnode.%25250A%252520%252520%25253Fnode%252520wikibase%25253AgeoLatitude%252520%25253Flat%25253B%25250A%252520%252520%252520%252520wikibase%25253AgeoLongitude%252520%25253Flon.%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Fsitelinks)%25250ALIMIT%252520500&s=true#|timeline]]** (geo-timeline) (GPL v3)
-  - **[[https://conze.pt/explore/Louis%20Pasteur?l=en&t=link-split&i=Q529&u=%2Fapp%2Ftree%2Fen%2FP463%2FQ529&s=true#|tree]]** (zoomable tree relations) - , ([[https://github.com/codeledge/entitree|Entitree]], [[https://github.com/codeledge/entitree|GPL v3]])
-  - **[[https://conze.pt/explore/John%20Coltrane?l=en&t=link&i=Q7346&u=%2Fapp%2Fvideo%2F%23%2Fsearch%2F%22John%20Coltrane%22&s=true|video]]** (requires a Google YouTube-API-key) - an alternative YouTube video interface, ([[https://github.com/mikecrittenden/toogles|Toogles]], MIT)
-  - **[[https://conze.pt/explore/Alexander%20von%20Humboldt?l=en&t=link&i=Q6694&u=https%3A%2F%2Fconze.pt%2Fapp%2Fwikidata%2F%3Fq%3DQ6694%26lang%3Den%26lang3%3Deng&s=true|wikidata]]** - Wikidata info client, ([[https://bitbucket.org/magnusmanske/reasonator/src/master/|Reasonator]], GPL, [[https://github.com/waldenn/reasonator|fork]])
-  - **[[https://conze.pt/explore/Alexander%20von%20Humboldt?l=en&t=wikipedia&i=Q6694&s=true|wikipedia]]** - Wikipedia article rendering (selfmade)
-  - **[[https://conze.pt/explore/Bread?l=en&t=link-split&i=Q7802&u=https%3A%2F%2Fconze.pt%2Fapp%2Fwordmap%2F%3Fq%3DBread%26l%3Den&s=true|wordmap]]** - 3D map of word-translations, ([[https://github.com/esterpantaleo/wikidata_wordmap|wordmap]], license?, [[https://github.com/esterpantaleo/wikidata_wordmap/issues/4|issue filed]])
-  - **[[https://conze.pt/app/commons-qid/?q=Q1542550&l=en|commons-qid]]** ("View it!") - Wikimedia Commons image query tool, ([[https://meta.wikimedia.org/wiki/View_it!_Tool|website]], [[https://gitlab.wikimedia.org/kevinpayravi/view-it|source]], license?)
-  - **[[https://conze.pt/explore/Excelsior?l=en&t=link&i=Q3555314&u=%2Fapp%2Fexperience%2Fchess%3Ft%3DExcelsior%26fen%3Dn1rb4%2F1p3p1p%2F1p6%2F1R5K%2F8%2Fp3p1PN%2F1PP1R3%2FN6k%2520w%2520-%2520-%25200%25201&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P6648%22%2C%22propertyDataType%22%3A%22string%22%2C%22propertyValueRelation%22%3A%22regardless-of-value%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22%22%2C%22subclasses%22%3Afalse%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D#|experience : chess]]** - (chess game with AI, [[https://github.com/Strryke/betafish|Betafish]], MIT) (TODO: add "Portable Game Notation" support for sequences of moves and perhaps whole chess games.)
-  - **[[https://conze.pt/explore/Vincent%20van%20Gogh?l=en&t=link&i=Q5582&u=https%3A%2F%2Fconze.pt%2Fapp%2Feuropeana%2F%3Fq%3D%2522Vincent%2520van%2520Gogh%2522%26l%3Den%26t%3Dimages&s=true#|europeana]]** - [[explore>Europeana]] media viewer ([[https://github.com/petropok/europeanaproj/blob/main/package.json#L16|ISC]])
-  - **[[https://conze.pt/app/routing/?z=5&center=47.754098%2C10.744629&loc=48.136767%2C18.808594&loc=43.261206%2C13.095703&hl=en&alt=0|routing]]** - OpenStreetMap routing ([[https://github.com/Project-OSRM/osrm-frontend|github]], [[https://github.com/Project-OSRM/osrm-frontend/blob/gh-pages/LICENSE|BSD v2]])
-  - **[[https://conze.pt/explore/Castle?l=en&t=link&i=Q23413&u=%2Fapp%2Fquiz%2Flocation%2F%3FQ23413&s=true#|quiz : location]]** - (guess the item locations, [[https://github.com/waldenn/location|fork]] of [[https://github.com/blinry/wikidata-guessr|wikidata-guessr]], GPL v3)
-  - **[[https://conze.pt/explore/Belize%20City?l=en&t=link&i=Q108223&u=https%3A%2F%2Fconze.pt%2Fapp%2Fquiz%2Fstreetquiz%3Floc%3D17.498611111111%2C-88.188611111111&c=17.498611111111,-88.188611111111&s=true|quiz : streetquiz]]** - street quiz tool ([[https://github.com/adam-lynch/back-of-your-hand|back-of-your-hand]], MIT)
-  - **[[https://conze.pt/explore/Romanticism?l=en&d=wikipedia,wikidata&t=link-split&i=Q37068&u=%2Fapp%2Fquiz%2Fchoice%2Fdist%3Fl%3Den%26p1%3DQ37068&s=true#|quiz : choice]]** - multiple-choice question quiz tool ([[https://github.com/dhinus/wikidata-painters|wikidata-painters]], [[https://github.com/dhinus/wikidata-painters/blob/main/LICENSE.md|GPL v3]])
-  - **[[https://conze.pt/explore/Snake?l=en&d=wikipedia&t=link-split&i=Q2102&u=%2Fapp%2Fquiz%2Flocation-nature%2Findex.html%3Ftaxon_id%3D85553&s=true#|quiz : nature location]]** - iNaturalist based nature-location quiz tool ([[https://github.com/simonrolph/iNatGuessr/]], [[https://github.com/simonrolph/iNatGuessr?tab=MIT-1-ov-file#readme|MIT]])
+The development repository is hosted on **[[https://github.com/waldenn/conzept/|GitHub]]**. Project news is announced on **[[https://twitter.com/conzept__|Twitter]]**.
 
-  - **[[https://conze.pt/explore/Moina?l=en&t=link&u=%2Fapp%2Fai%2F%3Ftask%3Dquestion-answering%26arg1%3DMoina%252520is%252520a%252520genus%252520of%252520crustaceans%252520within%252520the%252520family%252520Moinidae.%25255B3%25255D%252520The%252520genus%252520was%252520first%252520described%252520by%252520W.%252520Baird%252520in%2525201850.%252520They%252520are%252520referred%252520to%252520as%252520water%252520fleas%25252C%252520but%252520are%252520related%252520to%252520the%252520much%252520larger%252520Daphnia%252520magna%252520and%252520the%252520larger%252520Daphnia%252520pulex.%25255B4%25255D%252520This%252520genus%252520demonstrates%252520the%252520ability%252520to%252520survive%252520in%252520waters%252520containing%252520low%252520oxygen%252520levels%25252C%252520high%252520salinity%25252C%252520and%252520other%252520impurities%25252C%252520including%252520salt%252520pans%25252C%252520and%252520commonly%252520eutrophication.%25255B5%25255D%252520An%252520example%252520of%252520such%252520an%252520extreme%252520habitat%252520is%252520the%252520highly%252520saline%252520Makgadikgadi%252520Pans%252520of%252520Botswana%25252C%252520which%252520supports%252520prolific%252520numbers%252520of%252520Moina%252520belli.%25255B6%25255D%252520%25250AThe%252520Moina%252520are%252520known%252520to%252520be%252520found%252520in%252520various%252520types%252520of%252520bodies%252520of%252520water%252520in%252520Eurasia%252520where%252520new%252520found%252520research%252520indicates%252520that%252520there%252520is%252520an%252520increased%252520presence%252520of%252520biodiversity%252520in%252520regions%252520of%252520Northern%252520Eurasia%25252C%252520Japan%252520and%252520China.%25255B7%25255D%252520According%252520to%252520genetic%252520data%25252C%252520whole%252520the%252520genus%252520Moina%252520is%252520divided%252520into%252520two%252520big%252520faunistic%252520groups%25253A%252520European-Western%252520Siberian%252520and%252520Eastern%252520Siberian-Far%252520Eastern%25252C%252520with%252520a%252520transitional%252520zone%252520at%252520the%252520Yenisey%252520River%252520basin%252520(Eastern%252520Siberia).%25255B8%25255D%252520There%252520is%252520an%252520increase%252520of%252520new%252520phylogroups%252520found%252520in%252520Northern%252520Eurasia%25252C%252520an%252520increase%252520of%2525204%252520new%252520Moina%252520species%252520in%252520Japan%252520and%252520an%252520increase%252520of%2525C2%2525A0five%252520new%252520lineages%252520in%252520China.%25255B8%25255D%25255B9%25255D%252520In%252520the%252520water%252520bodies%252520of%252520the%252520world%25252C%252520at%252520least%2525204%252520species%252520of%252520Moina%252520are%252520non-native%252520species.%25255B10%25255D%25250A%25250AMoina%252520contains%252520these%252520species%25253A%25255B11%25255D%25255B1%25255D%25250A%25250A%25250A%26arg2%3DWhat%252520is%252520Moina%25253F%26l%3Den&s=true#|ai]]** (not used currently) - run various AI tasks in the browser using Transformers.js ([[https://xenova.github.io/transformers.js/|github]], [[https://github.com/xenova/transformers.js/blob/main/LICENSE|MIT]])
-  - **[[https://conze.pt/explore/!chat%20two%20day%20trip%20to%20Copenhagen?l=en|chat]]** - AI-based chatbot based on the OpenAI ChatGPT API ([[https://github.com/xqdoo00o/chatgpt-web|github]], [[https://github.com/xqdoo00o/chatgpt-web/blob/main/LICENSE|MIT]])
-  - **[[https://conze.pt/explore/Diademodon%20tetragonus%20Seeley,%201894?l=en&d=smithsonian3D&t=link&u=https%3A%2F%2Fconze.pt%2Fapp%2F3D%2F%23model%3Dhttps%253A%252F%252F3d-api.si.edu%252Fcontent%252Fdocument%252F3d_package%253A6758ddb3-2eea-49ad-89e2-a2973e7143eb%252Fresources%252Fusnm-v-00023352-diademodon-tetragonus-150k-4096-gltf.zip&s=true#|3D]]** - 3D model viewer ([[https://github.com/kovacsv/Online3DViewer|github]], [[https://github.com/kovacsv/Online3DViewer/blob/master/LICENSE.md|MIT]])
-  - **[[|tech news]]** - Tech News app ([[https://github.com/benwinding/ycombinato|github]], [[https://github.com/benwinding/ycombinato/blob/main/LICENSE|MIT]])
+====Conzept encyclopedia====
 
-===== sidebar widgets =====
+[{{::homepage.jpg?direct|home page (with a random cover topic)}}]
 
-  - **[[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P2534%22,%22propertyDataType%22:%22math%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|SPARQL structured-query-builder]]**,  [[https://gerrit.wikimedia.org/g/wikidata/query-builder|query-builder]], BSD 3-clause)
-  - **category-tree** - Wikipedia category-tree browser (selfmade)
-  - **ambient audio** - ambient audio player (selfmade)
+[{{::explore-screenshot-011.jpg?direct|search results page}}]
+
+The online Conzept showcase called "**Conzept encyclopedia**" is based on based on: [[explore>Wikipedia]], [[explore>Wikidata]], the [[explore>Open Library]], [[explore>Archive.org]], [[explore>YouTube]], the [[explore>Global Biodiversity Information Facility|GBIF]] and many other information sources. A [[explore>semantic web]] app build for [[explore>fun]], [[explore>education]] and [[explore>research]].
+
+Conzept encyclopedia allows you to explore any of the millions of topics on Wikipedia (and topics from other [[datasources]]) from many [[terms#topic_sections|different angles]], such as: science, art, digital books and education, both as a defined semantic entity (a "thing") as well as a "string".
+
+Client-side [[topic classification|topic-classification]] in addition, allows for a fast, higher-level semantic logic, throughout the whole user experience. The user-interface supports any of the ~[[explore>List of Wikipedias|300 Wikipedia languages]] and even some language-variants (such as the Chinese language variants).
 
 
-===== various code =====
 
-  * [[https://codepen.io/DonKarlssonSan/pen/PoOzabY|random canvas background]], original by Johan Karlsson (MIT)
-  * [[https://github.com/zygisS22/color-palette-extraction|color palette extraction]], (MIT)
 
-===== assets =====
+===== thanks =====
 
-  * [[https://fontawesome.com/search?o=r&m=free|Free Font Awesome]] icon set ([[https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt|Font Awesome Free License]])
-  * [[https://openmoji.org|OpenMoji]] ([[https://github.com/hfg-gmuend/openmoji/blob/master/LICENSE.txt|CC Attribution-ShareAlike v4]])
-  * [[https://podcastfont.com|PodcastFont]] icon set ([[https://code.castopod.org/adaures/podcastfont/-/blob/master/LICENSE|AGPL]])
-  * Country flag icon set
-  * Former-country flag icons
+  * {{ :nlnet.svg?200}} {{ :eu.png?200}} Conzept has been [[https://nlnet.nl/project/Conzept/|funded]] through the **[[https://nlnet.nl/NGI0/|NGI0]] [[https://nlnet.nl/discovery/|Discovery]]** Fund, under grant agreement No 825322.
+    * This fund was established by the **[[https://nlnet.nl/project/Conzept/|NLnet Foundation]]**, with financial support from the [[explore>European Commission|European Commission's]] **[[https://www.ngi.eu|Next Generation Internet]]** programme, under the aegis of [[https://conze.pt/explore/Directorate-General%20for%20Communications%20Networks,%20Content%20and%20Technology?l=en&t=string&i=Q2231042|DG Communications Networks, Content and Technology]].
+
+  * The organizations with a great public mission, community and API-service. Especially:
+    * The **[[https://wikimediafoundation.org/|Wikipedia]]** and **[[https://www.wikidata.org|Wikidata]]** community and developers.
+    * The **[[https://openlibrary.org|Open Library]]** and **[[https://archive.org|Archive.org]]** team.
+    * The **[[https://wiki.osmfoundation.org/wiki/Main_Page|OpenStreetMap]]** community.
+
+  * The thousands of people who have developed the **[[used projects|Free Software projects]]**, directly or indirectly used by this project.
+
+  * **[[explore>Google]] [[explore>YouTube]]** for providing access to the [[https://developers.google.com/youtube/v3/|Youtube API]].
+
+  * **[[https://www.browserstack.com/|BrowserStack]]** kindly provides a great, cross-platform browser testing environment.
+
+Thank you all for your direct and indirect support <html>&nbsp;<i class="fas fa-heart fa-2x" style="color:#418ec1"></i></html>
+===== project goals =====
+
+{{ :logo.svg?200}}
+
+Although Wikipedia is great and getting better all the time, I (Jama Poulsen) felt that the encyclopedic information could be presented better and have more integration with other major sources of information on the web.
+
+Each Wikipedia "article" actually relates to a multi-faceted concept, which we ideally should be able to easily explore. This is what Conzept strives to be a good tool for. To help anyone to explore and learn about topics of their interest, in an effective and enjoyable way.
+
+The main goals of Conzept are:
+
+  * A more **holistic presentation of the information** contained within datasources (such as Wikipedia and Wikidata), by integrating and linking with other information sources, semantic entities and application views. Aiming to allow you to 'forget' where the information is coming from and instead explore //that// which you are interested in.
+
+  * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce various cognitive-loads such as "website context-switching" (see eg. [[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]], relational discovery and understanding, topic revisiting and topic actions using bookmarks), and making the experience as fun and inspiring as possible.
+
+  * **Innovate** where that is both possible and useful, based on [[https://conze.pt/explore/Human-centered%20design?l=en&t=wikipedia|human-centered design]] principles. This project is an ever-evolving tool, within an increasingly digital, connected world of people and their creative works. 
+
+  * Build the project as **free software** and make its use and development accessible for all. Keep it free of advertising, but find sustainable ways to support its maintenance, development and collaboration. One way to support this project is to become a [[https://github.com/sponsors/waldenn|GitHub sponsor]].
+
+
+Secondary goals:
+
+  * **Generalize the UI and data-processes**, to expand beyond the Wikipedia & Wikidata spheres, using flexible [[concept_stores|datasources]]. This opens the way for other digital archives to also use the Conzept system for their knowledge base and domain.
+
+  * Allow for **social learning** (using eg. peer-to-peer audio-chat rooms for each topic). Doing things together can be more motivating, inspiring and fun!
+
+  * Use the idea of **5D information exploration**:
+    * 3D for the **spatial domain** ([[https://conze.pt/explore/Roller%20coaster?l=en&t=link-split&i=Q204832&u=%2Fapp%2Fquery%2Fembed.html%3Fl%3Den%23SELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253FitemDescription%252520%25253Fimg%252520%25253Fgeoshape%252520%25253Fcoords%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ204832.%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP625%252520%25253Fcoords.%252520%25257D%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP3896%252520%25253Fgeoshape%252520.%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fimg.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520(%25253FitemLabel)%25250ALIMIT%2525205000%25250A%252523meta%25253A%252520Roller%2520coaster%252520%252523defaultView%25253AMap%25257B%252522hide%252522%25253A%252520%252522%25253Fcoords%252522%25257D&s=true#|points]], [[https://conze.pt/explore/A2%20road%20(England)?l=en&d=wikipedia,wikidata&t=link&i=Q888603&u=%2Fapp%2Foverpass%2Fmap.html%3FQ%3D%25255Bout%25253Ajson%25255D%25255Btimeout%25253A25%25255D%25253B%25250A(%25250A%252520%252520relation(13047412)%25253B%25250A)%25253B%25250Aout%252520body%25253B%25250A%3E%25253B%25250Aout%252520skel%252520qt%25253B%25250A&c=51.3768,0.5403&s=true#|lines]]. [[https://conze.pt/explore/Sarangani?l=en&t=link-split&i=Q13877&u=%2Fapp%2Fquery%2Fembed.html%3Fl%3Den%23SELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253FitemDescription%252520%25253Finception%252520%25253Fbirth%252520%25253Fstart%252520%25253Fpit%252520%25253Fcoord%252520%25253Fgeoshape%252520%25253Fimg%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP31%252520wd%25253AQ24746%252520.%25250A%252520%252520%25253Fitem%252520wdt%25253AP17%252520wd%25253AQ928%252520.%25250A%252520%252520%25253Fsitelink%252520schema%25253Aabout%252520%25253Fitem.%25250A%252520%252520%25253Fsitelink%252520schema%25253AinLanguage%252520%25253Flang%252520.%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%252522.%252520%25257D%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP18%252520%25253Fimg%252520.%25257D%252520%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP569%252520%25253Fbirth%252520.%25257D%252520%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP571%252520%25253Finception%252520.%25257D%252520%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP580%252520%25253Fstart%252520.%25257D%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP585%252520%25253Fpit%252520.%25257D%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP625%252520%25253Fcoord%252520%25250A%252520%252520optional%252520%25257B%25253Fitem%252520wdt%25253AP3896%252520%25253Fgeoshape%252520.%25257D%252520.%25257D%252520%252520%25250A%252520%252520FILTER(%25253Flang%25253D%252522en%252522)%25250A%25257D%25250AORDER%252520BY%252520%25253FitemLabel%25250A%252520LIMIT%2525201000%25250A%252520%252523meta%25253Asimilar%252520topics%252520%252523defaultView%25253AMap%25250A&c=5.8666666666667,125.28333333333&s=true#|areas]], volumes)
+    * 1D for the **time domain** ([[https://conze.pt/explore/Entomology?l=en&t=link-split&i=Q39286&u=%2Fapp%2Ftimeline%2F%3Ftitle%3Dpeople%252520%25253A%252520Entomology%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpointintime%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP101%252520wd%25253AQ39286%25253B%25250A%252520%252520%252520%252520wdt%25253AP569%252520%25253Fstart.%25250A%252520%252520OPTIONAL%252520%25257B%25250A%252520%252520%252520%252520%25253Fitem%252520wdt%25253AP19%252520%25253Fplace.%25250A%252520%252520%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fcoordinate.%25250A%252520%252520%252520%252520%25253Fcoordinate%252520ps%25253AP625%252520%25253Fcoord%25253B%25250A%252520%252520%252520%252520%252520%252520psv%25253AP625%252520%25253Fcoordinate_node.%25250A%252520%252520%252520%252520%25253Fcoordinate_node%252520wikibase%25253AgeoLongitude%252520%25253Flon%25253B%25250A%252520%252520%252520%252520%252520%252520wikibase%25253AgeoLatitude%252520%25253Flat.%25250A%252520%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP570%252520%25253Fend.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP856%252520%25253Flink.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Fstart)%25250ALIMIT%2525202000&s=true#|events]], [[https://conze.pt/explore/Renaissance?l=en&t=link-split&i=Q4692&u=%2Fapp%2Ftimeline%2F%3Fduplicates%3Dtrue%26title%3DRenaissance%252520%25253A%252520period%252520events%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpointintime%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25257B%252520%25253Fitem%252520((wdt%25253AP361*)%25257C(wdt%25253AP155*)%25257C(wdt%25253AP156*))%252520wd%25253AQ4692.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%25250A%252520%252520%252520%252520%25253Fitem%252520wdt%25253AP17%252520%25253Fplace.%25250A%252520%252520%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fstatement.%25250A%252520%252520%252520%252520%25253Fstatement%252520psv%25253AP625%252520%25253Fnode.%25250A%252520%252520%252520%252520%25253Fnode%252520wikibase%25253AgeoLatitude%252520%25253Flat%25253B%25250A%252520%252520%252520%252520%252520%252520wikibase%25253AgeoLongitude%252520%25253Flon.%25250A%252520%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%25250A%252520%252520%252520%252520%25253Fitem%252520wdt%25253AP276%252520%25253Fplace.%25250A%252520%252520%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fstatement.%25250A%252520%252520%252520%252520%25253Fstatement%252520psv%25253AP625%252520%25253Fnode.%25250A%252520%252520%252520%252520%25253Fnode%252520wikibase%25253AgeoLatitude%252520%25253Flat%25253B%25250A%252520%252520%252520%252520%252520%252520wikibase%25253AgeoLongitude%252520%25253Flon.%25250A%252520%252520%25257D%25250A%252520%252520%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520(wdt%25253AP571%25257Cwdt%25253AP580)%252520%25253Fstart.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP585%252520%25253Fpointintime.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520(wdt%25253AP18%25257Cwdt%25253AP3311)%252520%25253Fpic.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520(wdt%25253AP570%25257Cwdt%25253AP576%25257Cwdt%25253AP582)%252520%25253Fend.%252520%25257D%25250A%252520%252520FILTER(%252520YEAR(%25253Fstart)%252520%25253E%2525200%252520%25257C%25257C%252520YEAR(%25253Fpointintime)%252520%25253E%2525200)%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%252522.%252520%25257D%25250A%25257D%25250ALIMIT%252520500&s=true#|periods]])
+    * 1D for the **data domain** (topical context, eg: a [[https://conze.pt/explore/Senegal?l=en&t=string&s=true#|country]], [[https://conze.pt/explore/Federal%20University%20of%20Rio%20de%20Janeiro?l=en&t=link&i=Q586904&u=https%3A%2F%2Ftools.wmflabs.org%2Fscholia%2Forganization%2FQ586904&c=-22.8625,-43.223888888889&s=true#|organization]], [[https://conze.pt/explore/Hiroshige?l=en&t=link-split&i=Q200798&u=%2Fapp%2Ftimeline%2F%3Ftitle%3Dartworks%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP276%252520%25253Fplace%25253B%25250A%252520%252520%252520%252520wdt%25253AP170%252520wd%25253AQ200798%25253B%25250A%252520%252520%252520%252520wdt%25253AP571%252520%25253Fstart.%25250A%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fstatement.%25250A%252520%252520%25253Fstatement%252520psv%25253AP625%252520%25253Fnode.%25250A%252520%252520%25253Fnode%252520wikibase%25253AgeoLatitude%252520%25253Flat%25253B%25250A%252520%252520%252520%252520wikibase%25253AgeoLongitude%252520%25253Flon.%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Fsitelinks)%25250ALIMIT%252520500&s=true#|person]], [[https://conze.pt/explore/Entomology?l=en&t=link-split&i=Q39286&u=%2Fapp%2Ftimeline%2F%3Ftitle%3Dpeople%252520%25253A%252520Entomology%26l%3Den%26query%3DSELECT%252520DISTINCT%252520%25253Fitem%252520%25253FitemLabel%252520%25253Flat%252520%25253Flon%252520%25253Fstart%252520%25253Fend%252520%25253Fpointintime%252520%25253Fpic%252520%25253Flink%252520%25253Fplace%252520%25253FplaceLabel%252520WHERE%252520%25257B%25250A%252520%252520%25253Fitem%252520wdt%25253AP101%252520wd%25253AQ39286%25253B%25250A%252520%252520%252520%252520wdt%25253AP569%252520%25253Fstart.%25250A%252520%252520OPTIONAL%252520%25257B%25250A%252520%252520%252520%252520%25253Fitem%252520wdt%25253AP19%252520%25253Fplace.%25250A%252520%252520%252520%252520%25253Fplace%252520p%25253AP625%252520%25253Fcoordinate.%25250A%252520%252520%252520%252520%25253Fcoordinate%252520ps%25253AP625%252520%25253Fcoord%25253B%25250A%252520%252520%252520%252520%252520%252520psv%25253AP625%252520%25253Fcoordinate_node.%25250A%252520%252520%252520%252520%25253Fcoordinate_node%252520wikibase%25253AgeoLongitude%252520%25253Flon%25253B%25250A%252520%252520%252520%252520%252520%252520wikibase%25253AgeoLatitude%252520%25253Flat.%25250A%252520%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP18%252520%25253Fpic.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP570%252520%25253Fend.%252520%25257D%25250A%252520%252520OPTIONAL%252520%25257B%252520%25253Fitem%252520wdt%25253AP856%252520%25253Flink.%252520%25257D%25250A%252520%252520SERVICE%252520wikibase%25253Alabel%252520%25257B%252520bd%25253AserviceParam%252520wikibase%25253Alanguage%252520%252522en%25252Cen%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%252522.%252520%25257D%25250A%25257D%25250AORDER%252520BY%252520DESC%252520(%25253Fstart)%25250ALIMIT%2525202000&s=true#|profession]] or some other cultural subject)
+===== inspiration & motivation =====
+
+Some points of inspiration for this project were:
+  * A Dutch youth encyclopedia I enjoyed reading when I was a child. [{{ :spectrum_jeugd_encyclopedie.jpg?direct|Dutch youth encyclopedia}}]
+
+  * The Microsoft [[explore>Encarta]] encyclopedia CD-ROM experience in the 1990's. [{{ :encarta_1.png?direct|[[explore>Encarta]] screenshot}}]
+
+  * The children and adolescents I work with as a teacher at the [[https://spirare.org|Spirare]] organization for gifted children.
+
+  * The large free software, open content and the web developer community (endless creativity and innovation).
+
+  * The beauty and complexity of nature, culture and mathematics.
+
+===== application layout =====
+
+[{{ :app_layout.jpg?direct|application layout}}]
+
+The layout of Conzept consists of two main areas:
+  * The **[[#conzept sidebar|sidebar]]** ("core app"), which is used for showing the [[#string search|search interface]], the language selection and various tabs.
+
+  * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
+==== conzept sidebar ====
+
+[{{ :sidebar_screenshot_1.jpg?direct|sidebar example }}]
+
+From the sidebar you can:
+
+  * Click on the "conzept" name, to **clear the search query and return to the homescreen.** On the homescreen there are also various interesting topical-links available.
+
+  * <html><i class="fas fa-caret-right"></i>&nbsp;</html> **Change the content language** to any of the ~300 Wikipedia-supported languages.
+
+  * <html><i class="fas fa-search"></i>&nbsp;</html> **Enter a [[#string_search|search string]], [[#structured_search|structured search query]] or a [[#commands|command]].**
+
+  * <html><i class="fas fa-stream"></i>&nbsp;</html> **Browse the search results** in the topics-tab.
+    * More [[terms#topic_card|topics]] will be loaded in the sidebar as you scroll down to the bottom of the search results.
+
+  * <html><i class="far fa-sticky-note"></i></html> **Manage your [[#bookmarks|bookmarks]]** in the bookmarks-tab
+    * This allows for quick access to previously bookmarked topics.
+
+   * <html><i class="far fa-bookmark"></i>&nbsp;</html> **Add an URL-bookmark** to your bookmarks. This creates a URL-bookmark of the app view-state, not a topic bookmark.
+     * Note: A topical bookmark can be created by going into the topic-card and then clicking the bookmarking-icon.
+
+  * <html><i class="fas fa-wrench"></i>&nbsp;</html> **Use additional tools** from the tools-tab, allowing you to:
+    * Go to a random topic
+    * Compare topics ([[https://conze.pt/explore/?l=en&t=compare&c=Q1268064,Q998535,Q1268477&s=true|example]])
+    * Play ambient audio (which can help with focus)
+    * Fullscreen the app
+    * Bookmark the current URL
+    * Clone the current tab
+
+  * <html><i class="fas fa-cog"></i>&nbsp;</html> **Change the settings** in the [[#settings|settings-tab]].
+
+  * <html><i class="fas fa-question"></i>&nbsp;</html> **See the documentation** in the help-tab.
+    * Links to the user, administrator and developer guides.
+    * List of supported keyboard shortcuts.
+    * Various nnformation about Concept.
+
+  * Control the sidebar presentation:
+    * **Hide the sidebar** by clicking on the <html><i class="fas fa-angle-left"></i></html> icon.
+    * **Resize the width of the sidebar**, by dragging the vertical separator line or the <html><i class="fas fa-grip-lines-vertical"></i></html> resize-handle
+==== content panes ====
+
+[{{ ::content_panes_0.jpg?direct|single content-pane example ([[https://conze.pt/explore/Kazakhstan?l=en&t=link&i=Q232&u=%2Fapp%2Fmap%2F%3Fl%3Den%26bbox%3D67.95%2C47.95%2C68.05%2C48.05%26lat%3D48%26lon%3D68%26osm_id%3D214665%26qid%3D232%26title%3DKazakhstan&c=48,68&s=true|link]]) }}]
+
+[{{ ::content_panes_2.jpg?direct|dual content-pane example ([[https://conze.pt/explore/Thirty%20Years'%20War?l=en&t=link-split&i=Q2487&u=https%3A%2F%2Fconze.pt%2Fapp%2Ftimespace%2F%3Fq%3DQ2487%26l%3Den%26highlight%3DQ2487%26limited%3Dfalse&s=true|link]]) }}]
+
+[{{ ::content_panes_1.jpg?direct|another dual content-pane example ([[https://conze.pt/explore/Pythagorean%20theorem?l=en&t=link-split&i=Q11518&u=%2Fapp%2Flinks%2F%3Fl%3Den%26t%3DPythagorean%2520theorem&s=true|link]]) }}]
+
+The content area can consist of one or two **content panes**, depending on the type of content being shown. **These panes are used to show [[apps|Conzept apps]] or (embeddable) websites.**
+
+Some types of content (such as highly inter-related information displaying apps) can sometimes be presented better in a dual-pane view. Such a view can make it easier to browse lots of related objects. without losing the 'main thread'.
+
+**The general workflow of these panes is always from left-to-right. So the sidebar directs the content pane.** If the content area has two content panes, the left pane will direct the right pane.
+
+Philosophically speaking, a single content-pane view is a sort of **1st-degree presentation** (concept => concept relation detail), while a dual content-pane view is a **2nd-degree presentation** (concept => concept relations overview => concept relation details). 
+
+Some embedded apps have a  2nd-degree presention inside of a single-pane (eg. the map app through a modal popup). Simply having 1st and 2nd-degree presentations can cover most information relations quite well, while still limiting the cognitive load and view-management efforts of the user. 
+===== string search =====
+
+{{ :autocomplete.png?direct|search autocomplete-suggestions}}
+
+To find topics of your interest, you can enter a search string into the search bar.
+While typing your string you will get back topic suggestions.
+
+You can either select a topic suggestion or use your own search string.
+
+The results will be shown in the sidebar and the next results are loaded once you scroll to the bottom of the results.
+
+If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
+===== structured search =====
+
+[{{ ::structured_query_1.jpg?direct|structured search query input}}]
+
+[{{ ::structured_query_2.jpg?direct|structured query results ([[https://conze.pt/explore/?l=en&t=wikipedia&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P31%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q5%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%2C%7B%22propertyId%22%3A%22P106%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q36834%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3A%22and%22%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D|link]]) }}]
+
+**Structured searching is an easy way to construct basic Wikidata [[explore>SPARQL]]-queries and see the topic results in the sidebar.**
+
+Structured search can be accessed by:
+
+  - Clicking on the "structured search" detail-element in the topics-tab. \\ \\
+  - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
+  - Then click the "run query" button. \\ \\
+
+
+[ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
+
+===== geo search =====
+
+(TODO)
+
+===== AI chat =====
+
+(TODO: describe the AI-chat app functionality)
+
+===== topic presentations =====
+
+(TODO: The use of auto-generated topic presentation using the **[[command API]]**)
+
+===== search commands =====
+
+These are "**!**"-prefixed command-words which can change the normal search behavior, into some other defined action. So instead of doing a search for the plain-string, a search-command can do a special action.
+
+The following search-commands are currently supported:
+  * **[[https://conze.pt/explore/!chat%20branches%20of%20civil%20engineering?l=en#|!chat]]**, AI chat system (based on OpenAI chatGPT (Note: This requires you to enter your OpenAI API-key in the chat app config menu. This key is only stored locally in your browser.) \\ \\
+  * **[[https://conze.pt/explore/!graph%20y=x*x?l=en&d=wikipedia,wikidata&t=link&u=https%3A%2F%2Fjoshs-graphing-calculator.vercel.app%2Fapp%23%25257B%252522items%252522%25253A%25255B%25257B%252522id%252522%25253A0%25252C%252522visible%252522%25253Atrue%25252C%252522type%252522%25253A%252522Equation%252522%25252C%252522latex%252522%25253A%252522y%25253Dx*x%252522%25252C%252522color%252522%25253A%252522red%252522%25257D%25255D%25252C%252522variables%252522%25253A%25255B%25255D%25252C%252522slices%252522%25253A%25255B%25255D%25257D&s=true#|!graph]]**, 2D/3D function plotter), ([[https://github.com/PullJosh/graphing-calculator|graphing-calculator]], [[https://github.com/PullJosh/graphing-calculator/blob/main/package.json|ISC]])
+
+See also the **[[command API]]**, which is the future of Conzept command scripting and presentations. The above search-command-words can also be used in the command API.
+
+===== bookmarks =====
+
+[{{ ::bookmark_1.jpg?direct|adding a bookmark}}]
+
+[{{ ::bookmark_2.jpg?direct|bookmark management from the bookmark-tab}}]
+
+==== add bookmark ====
+
+You can **bookmark topics** that you like, by opening the "main"-section of a topic, and then clicking on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon.
+
+To **see and manage your bookmarks**, click on the <html>&nbsp;<i class="far fa-bookmark"></i>&nbsp;</html> icon in the tab-menu.
+From the bookmark manager you can delete and drag-and-drop the bookmarks into your own list hierarchies.
+
+The bookmarks are only stored locally in the browser (using a browser cookie), and not on any server.
+
+Bookmarks can also be added manually using the "add bookmark" form.
+
+==== import bookmarks ====
+
+  * Your bookmarks can be **imported and exported as a JSON file.** This is currently the only option to share bookmarks between devices and browsers.
+
+==== export bookmarks ====
+
+  * Your bookmarks can be **exported to several external formats**: HTML, KML (for geo-apps), GPX (for geo-apps). Note: these formats export any tree-hierarchy to a flat structure.
+
+==== bookmark selection actions ====
+
+(TODO)
+
+===== settings =====
+
+[{{::settings.jpg?direct|settings tab}}]
+
+The following settings are available:
+
+==== datasources ====
+
+  * Set the active **[[datasources]]**
+
+==== font size ====
+
+  * Set the **font size**
+
+==== font type ====
+
+  * Set the **font type**
+
+==== theme ====
+
+  * Set the **theme** (light / dark mode, grid / no-grid sidebar layout, link previews)
+
+==== features ====
+
+  * geo-search
+
+  * AI chat
+
+==== reading assistence ====
+
+  * Set **reading-help** options (word-start bolding, color filters)
+
+==== interface language ====
+
+  * Set the **interface language** (locale)
+    * Note: This is different from the content-language setting. This //only// affects the Conzept UI interface.
+
+==== persona ====
+
+  * Set **persona info** \\ \\
+    * **AI tutor style** for the AI chat system. This sets up a different system-role context (example: historian, scientist, storyteller). \\ \\ When the "auto-select" tutor is chosen, Conzept will automatically derive the best suited tutor for a topic, based on its classification. \\ \\ To use the AI chat, make sure you enter an OpenAI key in the chat app settings-menu first. Note that this key is only stored locally in your browser, for safety reasons.\\ \\
+    * **Country** (automatically derived from your browser-locale, but can be changed). This allows Conzept to show country-specific links for topics. \\ \\
+    * **Interest** tags. This allows Conzept to better suit the user-interface to your needs. Eg. to show map links for hotels and walking-routes, with the tourist-tag.
+
+==== voice ====
+
+  * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
+
+===== keyboard shortcuts =====
+
+Here is an overview of the available keyboard shortcuts:
+
+<html>
+<ul class="keyboard-shortcuts" style="list-style:none;">
+  <li><kbd>f</kbd> &nbsp; <b><span id="app-menu-fullscreen-active-pane">fullscreen the active pane</span></b></li>
+
+  <li><kbd>↓</kbd> &nbsp; <b><span id="app-menu-goto-next-topic">go to next topic (in the sidebar results)</span></b></li>
+
+  <li><kbd>↑</kbd> &nbsp; <b><span id="app-menu-goto-previous-topic">go to previous topic (in the sidebar results)</span>
+  </b></li>
+  <li><kbd>→</kbd> &nbsp; <b><span id="app-menu-goto-next-pane">go to next pane</span></b></li>
+  <li><kbd>←</kbd> &nbsp; <b><span id="app-menu-goto-previous-pane">go to previous pane</span></b></li>
+  <li><kbd>Alt</kbd> + <kbd>x</kbd> &nbsp; <b><span id="app-menu-new-search">new search</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>y</kbd> &nbsp; <b><span id="app-menu-toggle-sidebar">toggle the sidebar</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark">add bookmark</span></b> <sup>1</sup></li>
+  <li><kbd>Alt</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key">random topic</span></b> <sup>1</sup></li>
+</ul>
+
+[ note 1: only available when the focus is on the sidebar or a Wikipedia article ]
+</html>
+
+
+
+===== terms of service =====
+==== privacy policy ====
+
+The Conzept encyclopedia website privacy policy and Terms of Service can be found **[[https://conze.pt/privacy_policy.html|here]]**, other apps used by Conzept may impose additional terms.
+
