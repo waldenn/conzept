@@ -481,7 +481,9 @@ function triggerQueryForm(){
     addBookmark( new CustomEvent( 'build', { } ), 'extension' );
 
   }
-  else if ( explore.q === '' && explore.type === 'compare' ){ // compare request  && explore.compares !== []
+  else if ( explore.type === 'compare' ){ // compare request  && explore.compares !== []
+
+    console.log('showing compare');
 
     explore.searchmode = 'string';
 
@@ -492,6 +494,9 @@ function triggerQueryForm(){
 
     if ( explore.compares.length >= 2 ){
 
+      showCompare();
+
+      /*
       handleClick({ 
         id        : 'n1-0',
         type      : 'compare',
@@ -505,8 +510,9 @@ function triggerQueryForm(){
         custom    : '',
         target_pane : 'p1',
       });
+      */
 
-      explore.custom = '';
+      //explore.custom = '';
 
     }
 

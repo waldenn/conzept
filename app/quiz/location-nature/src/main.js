@@ -166,10 +166,10 @@ function getParamsToStartGame() {
 }
 
 
-
-
 // add the image to the board
-function addImage(result) {
+function addImage(result){
+
+  if ( valid( result.photos[0] ) ){
 
     var imageURL = result.photos[0].url.replace("/square", "/medium");
 
@@ -189,7 +189,7 @@ function addImage(result) {
 
     var conzept_url   = `https://${ location.hostname }/explore/${ encodeURIComponent( result.taxon.name ) }`;
     var observer_url  = `https://www.inaturalist.org/people/${ encodeURIComponent( result.user.login ) }`;
- 
+
     var captionText   = `<i><a href="javascript:void(0)" onclick="openInNewTab( &quot;${conzept_url}&quot; )">${ result.taxon.name }</a></i> by <a href="javascript:void(0)" onclick="openInNewTab( &quot;${observer_url}&quot; )">${ result.user.login }</a>`;
 
     figcaptionElement.innerHTML = captionText; // Set the caption text
@@ -200,6 +200,9 @@ function addImage(result) {
 
     // Append the figure element to the image container
     imageContainer.appendChild(figureElement);
+
+  }
+
 }
 
 // alternative approach for getting a bounding box
@@ -327,109 +330,116 @@ async function getRandomObvs() {
 
 // shuffle array
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+
+  for (let i = array.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+
+  }
+
 }
 
 // get n supporting observations
 async function getSupportingObvs(nObvs, lat, lng,idIgnore) {
-    var radius = 10;
 
-    if (seeded){ // if there's a seed then we can't rely on order_by=random so we get top 200(or less) ordered by ID then randomly pick 7 from that 200
-        // get ids of 200 (not there is a createed at d2 to try to avoid someone uploading an obvservation mid day and messing it up)
-        var apiUrl1 = `https://api.inaturalist.org/v1/observations?lat=${lat}&lng=${lng}&radius=${radius}&per_page=200&only_id=true&order_by=id${baseParams}${customParams}&not_id=${idIgnore}&created_d2=2023-09-06&order=asc`;
-        var response1 = await fetch(apiUrl1);
-        var data1 = await response1.json();
+  var radius = 10;
 
-        // get nObvs IDs from the list
-        var nResults = data1.results.length;
-        var selectedIDs = [];
-        for (let i = 0; i < nObvs; i++) {
-            selectedIDs.push(data1.results[Math.round(i / nObvs * nResults)].id);
-        }
+  if (seeded){ // if there's a seed then we can't rely on order_by=random so we get top 200(or less) ordered by ID then randomly pick 7 from that 200
 
-        //console.log(selectedIDs);
+      // get ids of 200 (not there is a createed at d2 to try to avoid someone uploading an obvservation mid day and messing it up)
+      var apiUrl1 = `https://api.inaturalist.org/v1/observations?lat=${lat}&lng=${lng}&radius=${radius}&per_page=200&only_id=true&order_by=id${baseParams}${customParams}&not_id=${idIgnore}&created_d2=2023-09-06&order=asc`;
+      var response1 = await fetch(apiUrl1);
+      var data1 = await response1.json();
 
-        // do another API call for those IDs
-        var apiUrl2 = 'https://api.inaturalist.org/v1/observations?id='+selectedIDs.join(",");
-        var response2 = await fetch(apiUrl2);
-        var data = await response2.json();
-        
-    } else {
-        var apiUrl = `https://api.inaturalist.org/v1/observations?lat=${lat}&lng=${lng}&radius=${radius}&per_page=${nObvs}&order_by=random${baseParams}${customParams}&not_id=${idIgnore}`;
-        var response = await fetch(apiUrl);
-        var data = await response.json();
-    }
-    
+      // get nObvs IDs from the list
+      var nResults = data1.results.length;
+      var selectedIDs = [];
+      for (let i = 0; i < nObvs; i++) {
+          selectedIDs.push(data1.results[Math.round(i / nObvs * nResults)].id);
+      }
 
-    data.results.forEach(function(element) {
-        addImage(element);
-    });
+      //console.log(selectedIDs);
 
-    return data;
+      // do another API call for those IDs
+      var apiUrl2 = 'https://api.inaturalist.org/v1/observations?id='+selectedIDs.join(",");
+      var response2 = await fetch(apiUrl2);
+      var data = await response2.json();
+      
+  }
+  else {
+      var apiUrl = `https://api.inaturalist.org/v1/observations?lat=${lat}&lng=${lng}&radius=${radius}&per_page=${nObvs}&order_by=random${baseParams}${customParams}&not_id=${idIgnore}`;
+      var response = await fetch(apiUrl);
+      var data = await response.json();
+  }
+  
+
+  data.results.forEach(function(element) {
+      addImage(element);
+  });
+
+  return data;
 }
-
-
 
 function clearPage(){
-    imageContainer.innerHTML="Loading observations..."
-    inatOutwardContainer.style.display = "none";
-    nextRoundButton.style.display = "none";
-    var mapContainer = document.getElementById("mapContainer");
-    mapContainer.innerHTML = '<div id="map" class="disabled"></div>'; // Remove the map
-    secretRevealed = false;
 
-    scoreFactorContainer.innerHTML = `<p style="font-size: 16px;">Score guide: 1000km = ${calculateScore(1000)} points, 500km = ${calculateScore(500)} points, <${Math.ceil(100*Math.sqrt(scoreFactor))}km = 5000 points </p>`
+  imageContainer.innerHTML="Loading observations..."
+  inatOutwardContainer.style.display = "none";
+  nextRoundButton.style.display = "none";
+  var mapContainer = document.getElementById("mapContainer");
+  mapContainer.innerHTML = '<div id="map" class="disabled"></div>'; // Remove the map
+  secretRevealed = false;
+
+  scoreFactorContainer.innerHTML = `<p style="font-size: 16px;">Score guide: 1000km = ${calculateScore(1000)} points, 500km = ${calculateScore(500)} points, <${Math.ceil(100*Math.sqrt(scoreFactor))}km = 5000 points </p>`
+
 }
 
-
-
-
 function createMap(focal_lat,focal_lng,imageUrl){
-    // MAP --------------
-    // Initialize the map
-    map = L.map('map',{minZoom: 1}).setView([0, 0], 1);
 
-    // Create a tile layer using OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-    }).addTo(map);
+  // MAP --------------
+  // Initialize the map
+  map = L.map('map',{minZoom: 1}).setView([0, 0], 1);
 
-    // SECRET LOCATION ON MAP -----------
-    // Define the secret location (latitude and longitude)
-    secretLocation = L.latLng(focal_lat, focal_lng);
+  // Create a tile layer using OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+  }).addTo(map);
 
-
-    // Create a custom icon for the marker
-    const obsvsMarkerIcon = L.icon({
-        iconUrl: imageUrl, // URL of the custom image
-        iconSize: [32, 32], // Size of the icon image (width, height)
-        iconAnchor: [16, 16], // Anchor point of the icon (centered at the bottom)
-        popupAnchor: [0, -32] // Popup anchor point relative to the icon (above the icon)
-    });
+  // SECRET LOCATION ON MAP -----------
+  // Define the secret location (latitude and longitude)
+  secretLocation = L.latLng(focal_lat, focal_lng);
 
 
-    // Create a marker for the secret location
-    secretMarker = L.marker(secretLocation, {
-        opacity: 0, // Initially hide the marker
-        icon: obsvsMarkerIcon // add the custom marker type
-    }).addTo(map);
+  // Create a custom icon for the marker
+  const obsvsMarkerIcon = L.icon({
+      iconUrl: imageUrl, // URL of the custom image
+      iconSize: [32, 32], // Size of the icon image (width, height)
+      iconAnchor: [16, 16], // Anchor point of the icon (centered at the bottom)
+      popupAnchor: [0, -32] // Popup anchor point relative to the icon (above the icon)
+  });
 
-    secretMarker._icon.style.borderRadius = '50%';
-    secretMarker._icon.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.4)'; // Add a drop shadow
 
-    secretMarker._icon.classList.add("not-clickable");
+  // Create a marker for the secret location
+  secretMarker = L.marker(secretLocation, {
 
-    // Attach a click event listener to the map
-    map.on('click', handleMapClick);
+    opacity: 0, // Initially hide the marker
+    icon: obsvsMarkerIcon // add the custom marker type
 
-    // stop going round and round
-    map.setMaxBounds([
-        [-90, -270], // South-West corner of the bounding box
-        [90, 270],   // North-East corner of the bounding box
-    ]);
+  }).addTo(map);
+
+  secretMarker._icon.style.borderRadius = '50%';
+  secretMarker._icon.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.4)'; // Add a drop shadow
+
+  secretMarker._icon.classList.add("not-clickable");
+
+  // Attach a click event listener to the map
+  map.on('click', handleMapClick);
+
+  // stop going round and round
+  map.setMaxBounds([
+      [-90, -270], // South-West corner of the bounding box
+      [90, 270],   // North-East corner of the bounding box
+  ]);
 
 }
 
@@ -437,85 +447,92 @@ function createMap(focal_lat,focal_lng,imageUrl){
 // Add this function to your code to handle map clicks
 function handleMapClick(e) {
 
-    if (!secretRevealed) {
-        // Calculate distance between clicked point and secret location
-        var distance = e.latlng.distanceTo(secretLocation);
+  if (!secretRevealed) {
 
-        // Update the marker opacity to reveal the secret location
-        secretMarker.setOpacity(1);
+    // Calculate distance between clicked point and secret location
+    var distance = e.latlng.distanceTo(secretLocation);
 
-        // Set the secret as revealed
-        secretRevealed = true;
+    // Update the marker opacity to reveal the secret location
+    secretMarker.setOpacity(1);
 
-
-        // move the users guess in longitude if they are far away
-        let angularDifference = e.latlng.lng - secretMarker._latlng.lng;
-        // Adjust longitude2 to be closer to longitude1 by wrapping around
-        if (angularDifference > 180) {
-            e.latlng.lng-= 360;
-        } else if (angularDifference < -180) {
-            e.latlng.lng += 360;
-        }
-
-        // Add a marker where the user clicked
-        var clickedMarker = L.marker(e.latlng).addTo(map);
-
-        // Draw a line between the clicked marker and the secret location
-        var line = L.polyline([e.latlng, secretLocation], {
-            color: '#45a049',
-        }).addTo(map);
-
-        // Calculate the midpoint between the clicked point and the secret location
-        var midpoint = L.latLng(
-            (e.latlng.lat + secretLocation.lat) / 2,
-            (e.latlng.lng + secretLocation.lng) / 2
-        );
-
-        // Display the distance in a popup at the midpoint
-        var distance = e.latlng.distanceTo(secretLocation)/1000;
-        L.popup({ closeButton: false, offset: [0, -15] })
-            .setLatLng(midpoint)
-            .setContent('Distance: ' + Math.round(distance) + ' km')
-            .openOn(map);
-
-        // zoom to the map
-        var group = new L.featureGroup([clickedMarker, secretMarker]);
-        map.fitBounds(group.getBounds());
-
-        // Get all figure elements within #imageContainer
-        const figureElements = document.querySelectorAll('#imageContainer figure');
-
-        // Loop through each figure and reveal its caption
-        figureElements.forEach(function (figureElement) {
-            const caption = figureElement.querySelector('figcaption');
-            if (caption) {
-                caption.style.display = 'block'; // or 'inline' as needed
-            }
-        });
+    // Set the secret as revealed
+    secretRevealed = true;
 
 
-        addScore(distance);
-
-        // make the button reappear
-        if(((roundNumber-1)/roundsPerGame)<nGames){
-            nextRoundButton.style.display = "inline-block";
-        } else {
-            // game finish message
-            var gameFinishMessageSpan = document.getElementById("gameFinishMessage");
-            var h1Element = document.createElement("h3");
-            h1Element.textContent = "Game Finished!";
-            gameFinishMessageSpan.appendChild(h1Element);
-
-            if(daily==true){
-                var timeUntil = document.createElement("p");
-                var timeRemaining2 = timeUntilNextUtcDay();
-                timeUntil.textContent = `Time until next game: ${timeRemaining2.hours} hours, ${timeRemaining2.minutes} minutes, ${timeRemaining2.seconds} seconds`;
-                gameFinishMessageSpan.appendChild(timeUntil);
-            }
-            
-        }
-        inatOutwardContainer.style.display = "inline-block";
+    // move the users guess in longitude if they are far away
+    let angularDifference = e.latlng.lng - secretMarker._latlng.lng;
+    // Adjust longitude2 to be closer to longitude1 by wrapping around
+    if (angularDifference > 180) {
+        e.latlng.lng-= 360;
+    } else if (angularDifference < -180) {
+        e.latlng.lng += 360;
     }
+
+    // Add a marker where the user clicked
+    var clickedMarker = L.marker(e.latlng).addTo(map);
+
+    // Draw a line between the clicked marker and the secret location
+    var line = L.polyline([e.latlng, secretLocation], {
+        color: '#45a049',
+    }).addTo(map);
+
+    // Calculate the midpoint between the clicked point and the secret location
+    var midpoint = L.latLng(
+        (e.latlng.lat + secretLocation.lat) / 2,
+        (e.latlng.lng + secretLocation.lng) / 2
+    );
+
+    // Display the distance in a popup at the midpoint
+    var distance = e.latlng.distanceTo(secretLocation)/1000;
+    L.popup({ closeButton: false, offset: [0, -15] })
+        .setLatLng(midpoint)
+        .setContent('Distance: ' + Math.round(distance) + ' km')
+        .openOn(map);
+
+    // zoom to the map
+    var group = new L.featureGroup([clickedMarker, secretMarker]);
+    map.fitBounds(group.getBounds());
+
+    // Get all figure elements within #imageContainer
+    const figureElements = document.querySelectorAll('#imageContainer figure');
+
+    // Loop through each figure and reveal its caption
+    figureElements.forEach(function (figureElement) {
+        const caption = figureElement.querySelector('figcaption');
+        if (caption) {
+            caption.style.display = 'block'; // or 'inline' as needed
+        }
+    });
+
+    addScore(distance);
+
+    // make the button reappear
+    if(((roundNumber-1)/roundsPerGame)<nGames){
+
+        nextRoundButton.style.display = "inline-block";
+
+    }
+    else {
+
+        // game finish message
+        var gameFinishMessageSpan = document.getElementById("gameFinishMessage");
+        var h1Element = document.createElement("h3");
+        h1Element.textContent = "Game Finished!";
+        gameFinishMessageSpan.appendChild(h1Element);
+
+        if(daily==true){
+            var timeUntil = document.createElement("p");
+            var timeRemaining2 = timeUntilNextUtcDay();
+            timeUntil.textContent = `Time until next game: ${timeRemaining2.hours} hours, ${timeRemaining2.minutes} minutes, ${timeRemaining2.seconds} seconds`;
+            gameFinishMessageSpan.appendChild(timeUntil);
+        }
+        
+    }
+
+    inatOutwardContainer.style.display = "inline-block";
+
+  }
+
 }
 
 // see how many grid cells contain results for score scaling
@@ -542,15 +559,23 @@ main();
 
 // Calculate the score based on the distance
 function calculateScore(distance) {
+
   if (distance < 100*Math.sqrt(scoreFactor)) {
+
     return 5000;
-  } else {
+
+  }
+  else {
+
     // Calculate a score inversely proportional to the distance
     return Math.floor(5000 * Math.exp(-distance/2500/scoreFactor));
+
   }
+
 }
 
 function addScore(distance){
+
     let score = calculateScore(distance);
 
     var roundScore = document.createElement("p");

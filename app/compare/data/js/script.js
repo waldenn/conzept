@@ -467,7 +467,7 @@ jQuery(document).ready(function($) {
   
   // PATCH
   // see: https://lcweb.it/lc-lightbox/documentation
-  const LC = lc_lightbox('.elem:visible', {
+  const LC = lc_lightbox('.elem:visible', { // FIXME: "lc_lightbox" undefined
     wrap_class: 'lcl_fade_oc',
     gallery : true,
     thumb_attr: false, // 'data-lcl-thumb', 
