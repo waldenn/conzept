@@ -17881,6 +17881,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 122,
 },
 
+'ceic_country' : {
+  create_condition: true,
+  title: 'CEIC macroeconomic country data',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.ceicdata.com/en/country/${ item.country_name.toLowerCase().replace(/^.* of /g, "").replace(/^the /g, "").replace(/ /g, "-") }',
+  icon: 'fa-solid fa-money-check-alt',
+  text: 'CEIC',
+  section: 'business',
+  rank: 123,
+},
+
 'financial_times' : {
   create_condition: true,
   title: 'Financial Times',
