@@ -10,9 +10,6 @@
   "app-notification-too-few-compare-topics": "First add two or more topics to the comparison, using the + button (located at the top of the Wikipedia-article and in the meta-section of the topic)",
 
   "app-search-placeholder": "search",
-
-  "app-structured-search-title": "structured search",
-
   "app-topics-found": "topics found",
 
   "app-title-occurence": "Occurrence map",
@@ -71,9 +68,11 @@
   "app-menu-toggle-sidebar": "toggle the sidebar",
   "app-menu-add-bookmark": "add bookmark",
   "app-menu-note-1": "note 1: only available when the focus is on the sidebar or a Wikipedia article pane.",
+  "app-menu-features": "features",
   "app-menu-persona": "persona",
   "app-menu-country-select": "country",
   "app-menu-interests": "interests",
+  "app-menu-nature-location-quiz": "nature location quiz",
   "app-menu-command-editor": "command editor",
   "app-menu-presentation": "presentation",
   "app-menu-editor": "editor",
@@ -90,6 +89,8 @@
   "app-menu-goto-next-pane": "go to next pane",
   "app-menu-goto-previous-pane": "go to previous pane",
   "app-menu-new-search": "new search",
+  "app-menu-structured-search": "structured search",
+  "app-menu-geo-search": "geo search",
 
   "app-section-main": "main",
   "app-section-info": "info",
@@ -138,6 +139,7 @@
   "app-section-library-general": "general",
   "app-section-library-manuscripts": "manuscripts",
   "app-section-library-history": "history",
+  "app-section-library-philosophy": "philosophy",
   "app-section-library-genealogy": "genealogy",
   "app-section-library-legal": "legal",
   "app-section-library-products": "products",
@@ -250,5 +252,5 @@
   "app-guide-ongoing-conflicts": "conflicts",
   "app-guide-radio": "radio",
 
-   "app-foo": "foo bar baz"
+  "app-foo": "foo bar baz"
 } 

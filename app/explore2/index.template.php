@@ -253,8 +253,7 @@ $settings_html = '
           <div class="overflow-content indent">
 
             <details class="auto conf" closed>
-              <summary>
-                <span id="app-menu-datasources">datasources</span>
+              <summary><span id="app-menu-datasources">datasources</span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#datasources" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
 
@@ -286,8 +285,7 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary>
-                <span id="app-menu-theme"></span>
+              <summary><span id="app-menu-theme"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#theme" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
 
@@ -450,8 +448,7 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary>
-                <span id="app-menu-persona"></span>
+              <summary><span id="app-menu-persona"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#persona" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
 
@@ -549,7 +546,7 @@ $settings_html = '
               <details id="detail-structured-search" class="special-detail" title="structured search" style="/*display:none;*/">
 
                 <summary>
-                  <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-structured-search-title"></span>
+                  <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-menu-structured-search"></span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#structured_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
@@ -577,7 +574,7 @@ $settings_html = '
               <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
 
                 <summary>
-                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-geo-search-title">geo search</span>
+                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-menu-geo-search">geo search</span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geo_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
@@ -801,9 +798,9 @@ $settings_html = '
 
                       <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i>&nbsp; <span id="app-menu-visual-search">visual search</span></a> <small>(Bing)</small></span></li>
 
-                      <li><span id="tldraw"><a class="link" href="/app/tldraw/apps/examples/dist/" target="infoframe" onclick="resetIframe()" title="tldraw drawing tool" aria-label="tldraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small></small></span></li>
+                      <!--li><span id="tldraw"><a class="link" href="/app/tldraw/apps/examples/dist/" target="infoframe" onclick="resetIframe()" title="tldraw drawing tool" aria-label="tldraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small></small></span></li-->
 
-                      <li><span id="nature location quiz"><a class="link" href="/app/quiz/location-nature/index.html" target="infoframe" onclick="resetIframe()" title="nature location quiz" aria-label="nature location quiz" role="button" tabindex="0"><i class="fa-solid fa-puzzle-piece"></i> nature location quiz</a> <small></small></span></li>
+                      <li><span id="nature location quiz"><a class="link" href="/app/quiz/location-nature/index.html" target="infoframe" onclick="resetIframe()" title="nature location quiz" aria-label="nature location quiz" role="button" tabindex="0"><i class="fa-solid fa-puzzle-piece"></i> <span id="app-menu-nature-location-quiz">visual search</span></a> <small></small></span></li>
 
                       <!--li><span id="transcribe-speech"><a class="link" href="/app/speech/dist/" target="infoframe" onclick="resetIframe()" title="Speech audio transcribing tool" aria-label="Speech audio transcribing tool" role="button" tabindex="0"><i class="fa-solid fa-microphone"></i> speech transcription</a> <small>(experiment)</small></span></li-->
 

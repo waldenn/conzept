@@ -3165,6 +3165,7 @@ async function updateLocaleInterface(){
   $('#app-menu-nature').text( explore.banana.i18n('app-menu-nature') );
   $('#app-menu-news').text( explore.banana.i18n('app-menu-news') );
   $('#app-menu-license').text( explore.banana.i18n('app-menu-license') );
+  $('#app-menu-features').text( explore.banana.i18n('app-menu-features') );
   $('#app-menu-persona').text( explore.banana.i18n('app-menu-persona') );
   $('#app-menu-country').text( explore.banana.i18n('app-menu-country') );
 
@@ -3188,6 +3189,10 @@ async function updateLocaleInterface(){
   $('#app-menu-import-as').text( explore.banana.i18n('app-menu-import-as') );
   $('#app-menu-datasources').text( explore.banana.i18n('app-menu-datasources') );
 
+  $('#app-menu-structured-search').text( explore.banana.i18n('app-menu-structured-search') );
+  $('#app-menu-geo-search').text( explore.banana.i18n('app-menu-geo-search') );
+
+  // guide elements
   $('#app-guide-string-search').text( explore.banana.i18n('app-guide-string-search') );
 
   $('#app-guide-bookmarks-selected').text( explore.banana.i18n('app-guide-bookmarks-selected') );
@@ -3214,7 +3219,7 @@ async function updateLocaleInterface(){
   $('#app-guide-near-me').text( explore.banana.i18n('app-guide-near-me') );
   $('#app-guide-technology').text( explore.banana.i18n('app-guide-technology') );
 
-  // welcome view
+  // guide: welcome view elements
   $('#app-guide-welcome-text').html( explore.banana.i18n('app-guide-welcome-text') );
   $('#app-guide-featured-article').text( explore.banana.i18n('app-guide-featured-article') );
   $('#app-guide-featured-portal').text( explore.banana.i18n('app-guide-featured-portal') );
@@ -3285,7 +3290,6 @@ async function updateLocaleInterface(){
   $('#app-guide-radio').text( explore.banana.i18n('app-guide-radio') );
 
   // other elements
-  $('#app-structured-search-title').text( explore.banana.i18n('app-structured-search-title') );
   $('#app-topics-found').text( explore.banana.i18n('app-topics-found') );
   $('#app-guide-see-more').text( explore.banana.i18n('app-guide-see-more') );
   $('#app-guide-page').text( explore.banana.i18n('app-guide-page') );
