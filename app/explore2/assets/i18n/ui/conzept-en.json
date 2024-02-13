@@ -90,7 +90,7 @@
   "app-menu-goto-previous-pane": "go to previous pane",
   "app-menu-new-search": "new search",
   "app-menu-structured-search": "structured search",
-  "app-menu-geo-search": "geo search",
+  "app-menu-geographic-search": "geographic search",
 
   "app-section-main": "main",
   "app-section-info": "info",

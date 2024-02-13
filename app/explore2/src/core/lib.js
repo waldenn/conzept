@@ -3173,8 +3173,12 @@ async function updateLocaleInterface(){
   $('#app-menu-interests').text( explore.banana.i18n('app-menu-interests') );
   $('#app-menu-country-select').text( explore.banana.i18n('app-menu-country-select') );
   $('#app-menu-command-editor').text( explore.banana.i18n('app-menu-command-editor') );
-  $('#app-menu-run-code').text( explore.banana.i18n('app-menu-run-code') );
-  $('#app-menu-clear-editor').text( explore.banana.i18n('app-menu-clear-editor') );
+
+  if ( explore.language === 'en' ){
+    $('#app-menu-run-code').text( explore.banana.i18n('app-menu-run-code') );
+    $('#app-menu-clear-editor').text( explore.banana.i18n('app-menu-clear-editor') );
+  }
+
   $('#app-menu-presentation').text( explore.banana.i18n('app-menu-presentation') );
   $('#app-menu-editor').text( explore.banana.i18n('app-menu-editor') );
 
@@ -3185,12 +3189,14 @@ async function updateLocaleInterface(){
   $('#app-menu-reading-assistance').text( explore.banana.i18n('app-menu-reading-assistance') );
   $('#app-menu-visual-search').text( explore.banana.i18n('app-menu-visual-search') );
   $('#app-menu-bookmark-actions-media').text( explore.banana.i18n('app-menu-bookmark-actions-media') );
+  $('#app-menu-add-bookmark').text( explore.banana.i18n('app-menu-add-bookmark') );
   $('#app-menu-export-as').text( explore.banana.i18n('app-menu-export-as') );
   $('#app-menu-import-as').text( explore.banana.i18n('app-menu-import-as') );
   $('#app-menu-datasources').text( explore.banana.i18n('app-menu-datasources') );
 
   $('#app-menu-structured-search').text( explore.banana.i18n('app-menu-structured-search') );
-  $('#app-menu-geo-search').text( explore.banana.i18n('app-menu-geo-search') );
+  $('#app-menu-geographic-search').text( explore.banana.i18n('app-menu-geographic-search') );
+  $('#app-menu-nature-location-quiz').text( explore.banana.i18n('app-menu-nature-location-quiz') );
 
   // guide elements
   $('#app-guide-string-search').text( explore.banana.i18n('app-guide-string-search') );

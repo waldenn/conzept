@@ -85,7 +85,7 @@
   "app-menu-goto-previous-pane": "siirry edelliseen ruutuun",
   "app-menu-new-search": "uusi haku",
   "app-menu-structured-search": "strukturoitu haku",
-  "app-menu-geo-search": "geohaku",
+  "app-menu-geographic-search": "geohaku",
   "app-section-main": "pää",
   "app-section-info": "tiedot",
   "app-section-library": "kirjasto",

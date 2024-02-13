@@ -490,8 +490,7 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
-              <summary>
-                <span id="app-menu-voice"></span>
+              <summary><span id="app-menu-voice"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#voice" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
 
@@ -574,7 +573,7 @@ $settings_html = '
               <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
 
                 <summary>
-                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-menu-geo-search">geo search</span>
+                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geographic search"></i> <span id="app-menu-geographic-search">geographic search</span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geo_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
@@ -630,7 +629,7 @@ $settings_html = '
             <div id="bookmark-add" class="noselect">
 
               <details class="auto">
-                <summary><span id="app-menu-bookmark-add">add bookmark</span></summary>
+                <summary><span id="app-menu-add-bookmark">add bookmark</span></summary>
 
                 <label for="bookmark-add-title">title:</label>
                 <input type="text" id="bookmark-add-title" name="bookmark-add-title"><br><br>
@@ -796,7 +795,7 @@ $settings_html = '
                       <li><span id="compareTopics"><a class="link compare" title="compare topics" aria-label="compare topics" role="button" href="javascript:void(0)" tabindex="0"><i class="fa-solid fa-equals"></i>&nbsp; <span id="app-menu-compare-topics"></span></a></span></li>
                       <li><span id="goFullscreen"><a class="link" title="toggle fullscreen" aria-label="toggle fullscreen" role="button" onclick="toggleFullscreen()" tabindex="0"><i class="fa-solid fa-expand"></i>&nbsp; <span id="app-menu-toggle-fullscreen"></span></a></span></li>
 
-                      <li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i>&nbsp; <span id="app-menu-visual-search">visual search</span></a> <small>(Bing)</small></span></li>
+                      <!--li><span id="visualSearch"><a class="link" href="https://www.bing.com/visualsearch" target="infoframe" onclick="resetIframe()" title="Bing visual search" aria-label="Bing visual search" role="button" tabindex="0"><i class="fa-solid fa-camera"></i>&nbsp; <span id="app-menu-visual-search">visual search</span></a> <small>(Bing)</small></span></li-->
 
                       <!--li><span id="tldraw"><a class="link" href="/app/tldraw/apps/examples/dist/" target="infoframe" onclick="resetIframe()" title="tldraw drawing tool" aria-label="tldraw drawing tool" role="button" tabindex="0"><i class="fa-solid fa-paintbrush"></i> drawing</a> <small></small></span></li-->
 
