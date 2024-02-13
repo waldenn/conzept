@@ -49,6 +49,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_filters_toggle toggle_menu" title="toggle filters"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_object_detection" title="object detection"></div>'+
+				//'<div class="lcl_icon lcl_right_icon lcl_object_3d" title="object 3D (using monocular depth estimation)"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_txt_toggle" title="toggle text"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_download" title="download"></div>'+

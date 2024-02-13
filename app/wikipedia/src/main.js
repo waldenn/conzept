@@ -699,9 +699,18 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
 
                 if ( typeof res.parse === undefined || typeof res.parse === 'undefined' ){ // article does not exist in this language-Wikipedia
 
-                  console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
+                  if ( valid( explore.qid ) ){
 
-                  window.location.href = explore.base + '/pages/blank.html';
+                    console.log('goto Wikidata');
+                    window.location.href = explore.base + `/app/wikidata/?q=${explore.qid}&lang=${explore.language}`;
+
+                  }
+                  else {
+
+                    console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
+                    window.location.href = explore.base + '/pages/blank.html';
+
+                  }
 
                   //window.location.href = 'https://www.bing.com/search?q=%22' + explore.title + '%22+-wikipedia.org+-wikimedia.org+-wikiwand.com+-wiki2.org&setlang=' + explore.language + '-' + explore.language;
 
