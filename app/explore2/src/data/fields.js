@@ -12272,8 +12272,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'taxon_entitree' : {
-  create_condition: 'valid( item.has_taxon )',
-  create_trigger: 'console.log( ${ item.has_taxon } )', // not available for "Anaconda", but field still shows, why?
+  create_condition: 'valid( [ item.has_taxon, item.parent_taxon ] )',
   title: 'taxonomy tree',
   prop: '',
   type: 'link-split',
