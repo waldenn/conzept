@@ -48,3 +48,4 @@ The following action-types are available:
 | **random** | (none) | (only used internally) to load a random Wikipedia topic |
 | **wander** | search-term string | loads the video-app to //stream a series// of YouTube videos |
 | **presentation** | search-term string | creates a presentation (if the topic refers to a Wikidata topic) |
+| **geo** | search-term string | creates a geographical query (together with the custom-parameter string: lat;lon;radius) |
