@@ -42,10 +42,10 @@ RUN apk add --no-cache --update \
 
 RUN npm install -g minify minify-json clean-css-cli @swc/cli @swc/core webpack webpack-cli esbuild
 # forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log && \
-    ln -sf /dev/stdout /var/log/php7/error.log && \
-    ln -sf /dev/stderr /var/log/php7/error.log
+#RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+#    ln -sf /dev/stderr /var/log/nginx/error.log && \
+#    ln -sf /dev/stdout /var/log/php7/error.log && \
+#    ln -sf /dev/stderr /var/log/php7/error.log
 
 RUN adduser -S -s /bin/bash -u 1001 -G root www-data
 

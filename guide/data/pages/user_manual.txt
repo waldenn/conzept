@@ -6,7 +6,7 @@
 
 Main features:
   * Use any REST and SPARQL based **[[datasources|datasource]]** API.
-  * Easily **[[uses projects|embed apps]]** (including websites), either self-hosted or remotely hosted.
+  * Easily **[[used_projects|embed apps]]** (including websites), either self-hosted or remotely hosted.
   * A **[[field_customization|data-defined]] software approach**, which allows for easy JSON-based configuration and administration of many parts of Conzept.
 
 The Conzept project is [[explore>free software]], licensed under the [[https://github.com/waldenn/conzept/blob/master/LICENSE|GNU General Public License version 3]] (unless noted otherwise in parts of the code and assets).
