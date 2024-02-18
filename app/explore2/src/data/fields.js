@@ -13701,17 +13701,31 @@ if ( valid( item.found_in_taxon ) ){
   rank: 51,
 },
 
-'old_maps' : {
+'wikicommons_historic_maps' : {
   create_condition: 'checkTag( item, 0, "location")',
-  title: 'old maps',
+  title: 'Wikicommons historic maps',
   prop: '',
   type: 'link',
   mv: false,
   url: '${explore.base}/app/map-search/?q=${title_}',
   icon: 'fa-regular fa-map',
-  text: 'old maps',
-  section: 'location-geography',
-  rank: 18,
+  text: 'Commons historic maps',
+  section: ['library-history','location-geography'],
+  rank: [295,18],
+},
+
+'usgs_historic_maps' : {
+  create_condition: 'valid( [ item.lat, item.country ] )', // TODO: also constrain for locations in the United States
+  render_condition: 'item.country[0] === "Q30"',
+  title: 'USGS historic topographic maps of the United States',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://livingatlas.arcgis.com/topomapexplorer/#maps=&loc=${item.lat},${item.lon}&LoD=10',
+  icon: 'fa-regular fa-map',
+  text: 'USGS historic maps',
+  section: ['library-history','location-geography'],
+  rank: [298,20],
 },
 
 'old_maps_online' : {
@@ -13723,8 +13737,8 @@ if ( valid( item.found_in_taxon ) ){
   url: 'https://www.oldmapsonline.org/en/${title_}', // TODO: research this weird search-site better
   icon: 'fa-regular fa-map',
   text: 'OMO',
-  section: 'location-geography',
-  rank: 19,
+  section: ['library-history','location-geography'],
+  rank: [299,310],
 },
 
 'twitter_search' : {
