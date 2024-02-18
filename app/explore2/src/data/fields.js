@@ -3476,13 +3476,13 @@ conzept_fields = {
   text: 'Commons',
   section: ['media-image','main'],
   rank: [51,1041],
-  headline_create: 'valid( item.qid ) && ! valid( item.is_painter ) && ( valid( item.thumbnail ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.is_painter) ) ', 
+  headline_create: 'valid( [ item.qid, item.thumbnail ] ) && !valid( item.is_painter ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.wikicommons_page )', 
   headline_type: 'link',
   headline_rank: 440,
 },
 
 'painter_works_commons_sparql' : {
-  create_condition: 'valid( item.qid ) && valid( item.is_painter)',
+  create_condition: 'valid( item.qid ) && valid( item.is_painter )',
   title: 'painter works on Wikimedia Commons',
   prop: '',
   type: 'link',
@@ -14700,26 +14700,13 @@ if ( valid( item.found_in_taxon ) ){
   rank: 290,
 },
 
-'allrecipes' : {
-  create_condition: true,
-  title: 'AllRecipes',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://www.allrecipes.com/search/results/?search=${title_quoted}',
-  icon: 'fa-solid fa-utensils',
-  text: 'All Recipes',
-  section: 'society-food',
-  rank: 20,
-},
-
 'yummly' : {
   create_condition: true,
   title: 'Yummly',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.yummly.com/recipes?q=${title_quoted}',
+  url: 'https://www.yummly.com/recipes?q=${title_}',
   icon: 'fa-solid fa-utensils',
   text: 'Yummly',
   section: 'society-food',
@@ -14750,6 +14737,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Tasty',
   section: 'society-food',
   rank: 40,
+},
+
+'allrecipes' : {
+  create_condition: true,
+  title: 'AllRecipes',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.allrecipes.com/search?q=${title_quoted}',
+  icon: 'fa-solid fa-utensils',
+  text: 'All Recipes',
+  section: 'society-food',
+  rank: 195,
 },
 
 'taste_atlas' : {
@@ -17239,13 +17239,13 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: true,
   title: 'Lens.org',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://www.lens.org/lens/search/scholar/list?q=${title_quoted}',
   icon: 'fa-regular fa-newspaper',
   text: 'Lens',
   section: 'science-search-tools',
-  rank: 120,
+  rank: 168,
 },
 
 'scite' : {

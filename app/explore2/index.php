@@ -573,7 +573,7 @@ $settings_html = '
               <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
 
                 <summary>
-                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geo search"></i> <span id="app-menu-geo-search">geo search</span>
+                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geographic search"></i> <span id="app-menu-geographic-search">geographic search</span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geo_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
@@ -629,7 +629,7 @@ $settings_html = '
             <div id="bookmark-add" class="noselect">
 
               <details class="auto">
-                <summary><span id="app-menu-bookmark-add">add bookmark</span></summary>
+                <summary><span id="app-menu-add-bookmark">add bookmark</span></summary>
 
                 <label for="bookmark-add-title">title:</label>
                 <input type="text" id="bookmark-add-title" name="bookmark-add-title"><br><br>
