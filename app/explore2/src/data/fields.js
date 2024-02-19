@@ -13047,7 +13047,7 @@ if ( valid( item.found_in_taxon ) ){
   section: '',
   rank: 1,
   //TODO?: ( tags[0] === 'work' && ! valid( item.is_written_work ) && !valid( item.openlibrary_id ) && tags[1] !== 'periodical' ) // show video for works, but not for some types of works
-  headline_create: 'checkTag( item, 0, ["location","time","group","organism","meta-concept","cultural-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","film","tv-series","filmmaker","actor","musician","music-instrument","software"] )',
+  headline_create: 'checkTag( item, 0, ["location","time","organization","group","organism","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","monument"] )',
   headline_type: 'link',
   headline_title: 'video',
   headline_icon: 'fa-solid fa-video',
@@ -13721,7 +13721,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://livingatlas.arcgis.com/topomapexplorer/#maps=&loc=${item.lat},${item.lon}&LoD=10',
+  url: 'https://livingatlas.arcgis.com/topomapexplorer/#maps=&loc=${item.lon},${item.lat}&LoD=10',
   icon: 'fa-regular fa-map',
   text: 'USGS historic maps',
   section: ['library-history','location-geography'],
