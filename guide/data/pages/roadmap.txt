@@ -4,6 +4,10 @@
 
 ===== frontend ideas =====
 
+  * datasources functionality:
+    * Implement async wikidata-enriching (partly done)
+    * ? datasource-activation switches for only autocomplete (not searching)
+
   * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * **Bookmarking**:

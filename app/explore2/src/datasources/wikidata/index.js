@@ -834,3 +834,17 @@ function afterSetWikidata( item ){
 	return 0;
 
 }
+
+function setWikidataQueryFilter(){
+
+  let filter = ''; // default, include Wikipedia items
+
+  if ( explore.datasources.includes('wikipedia') ){ // Wikipedia data already being used, so avoid duplicate items from Wikidata.
+
+    filter = `FILTER NOT EXISTS { ?article schema:about ?item; schema:isPartOf <https://${explore.language}.wikipedia.org/>. }`;
+
+  }
+
+  return filter;
+
+}

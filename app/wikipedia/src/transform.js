@@ -314,6 +314,9 @@ function setupLinks(){
     let link = $(this).attr('href') || '';
     let title_ = $(this).attr('href') || '';
 
+    // TODO: still needs more work, to keep Wikipedia in the embedded map popup?
+    link += `&embedded=${explore.embedded}`; // add "embedded" param state
+
     if ( link.startsWith( explore.base + '/explore/') ){ // wikipedia link
 
       $(this).addClass('link');
@@ -347,6 +350,7 @@ function setupLinks(){
         type      : 'string',
         title     : title_,
         language  : language,
+        embedded  : explore.embedded,
       };
 
 			let onauxclick = 'onMiddleClick( "' + encodeURIComponent( JSON.stringify( args ) ) + '" )';
