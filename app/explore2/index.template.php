@@ -556,7 +556,7 @@ $settings_html = '
               <details id="detail-structured-search" class="special-detail" title="structured search" style="display:none;">
 
                 <summary>
-                  <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-menu-structured-search"></span>
+                  <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-menu-structured-search-title">structured search</span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#structured_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 

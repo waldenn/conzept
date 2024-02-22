@@ -2399,10 +2399,11 @@ function setupOptionBread(){
 
 function setStructuredSearch(){
 
-  if ( explore.structued_search ){
+  if ( explore.structured_search ){
 
     $('#structured-search').prop('checked', true);
 
+    $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
     $('#detail-structured-search').show();
 
   }
@@ -2422,15 +2423,15 @@ function setupOptionStructuredSearch(){
 
     explore.structured_search = await explore.db.get('structured_search');
 
-    explore.geographic_search = ( explore.structured_search === null || explore.structured_search === 'false' ) ? false : true;
+    explore.structured_search = ( explore.structured_search === null || explore.structured_search === 'false' ) ? false : true;
 
-    setStructuredSearch( custom );
+    setStructuredSearch();
 
     $('#structured-search').change(function() {
 
       if ( $('#structured-search').prop('checked') ){
 
-        (async () => { await explore.db.set('geographic_search', true); })();
+        (async () => { await explore.db.set('structured_search', true); })();
 
         explore.structured_search = true;
 
@@ -2444,7 +2445,7 @@ function setupOptionStructuredSearch(){
         explore.structured_search = false;
 
         updateValueInPanes( 'structured_search', false );
-        setStructuredSearch( custom );
+        setStructuredSearch();
 
       }
 
@@ -2520,7 +2521,7 @@ function doGeographicSearch( url, custom ){
 
   if ( ! valid( explore.geographic_search ) ){ // enable geographic_search iframe first, which will use any custom map data provided
 
-    $('#geographic_search').prop("checked", true).change();
+    $('#geographic-search').prop("checked", true).change();
 
   }
 
@@ -2570,7 +2571,7 @@ function setGeographicSearch( custom ){
 
 }
 
-function setupOptiongeographic_search(){
+function setupOptionGeographicSearch(){
 
   let custom = '';
 
@@ -2588,9 +2589,9 @@ function setupOptiongeographic_search(){
 
     setGeographicSearch( custom );
 
-    $('#geographic_search').change(function() {
+    $('#geographic-search').change(function() {
 
-      if ( $('#geographic_search').prop('checked') ){
+      if ( $('#geographic-search').prop('checked') ){
 
         (async () => { await explore.db.set('geographic_search', true); })();
 
@@ -3252,6 +3253,8 @@ async function updateLocaleInterface(){
   $('#app-menu-datasources').text( explore.banana.i18n('app-menu-datasources') );
 
   $('#app-menu-structured-search').text( explore.banana.i18n('app-menu-structured-search') );
+  $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
+
   $('#app-menu-geographic-search').text( explore.banana.i18n('app-menu-geographic-search') );
   $('#app-menu-nature-location-quiz').text( explore.banana.i18n('app-menu-nature-location-quiz') );
 
