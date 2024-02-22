@@ -711,7 +711,7 @@ async function showPresentation( item, type ){
 
         //slides.push( commons_sparql_slide );
 
-        //slides.push( rijksmuseum_search_slide );
+        slides.push( rijksmuseum_search_slide );
 
         //explore.datasources = sources; // reset datasources again to the original set
 
