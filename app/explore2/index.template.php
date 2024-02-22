@@ -264,6 +264,45 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
+              <summary><span id="app-menu-features">features</span></summary>
+
+              <div class="style-form">
+
+                <div id="structured-search-setting" class="switch">
+                  <label for="structured-search" style="display:none;">structured search</label> 
+                  <label>
+                  <input type="checkbox" id="structured-search">
+                  <span class="lever"></span>
+                  <span id="app-menu-structured-search">structured search</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <div id="geographic-search-setting" class="switch">
+                  <label for="geographic-search" style="display:none;">geographic search</label> 
+                  <label>
+                  <input type="checkbox" id="geographic-search">
+                  <span class="lever"></span>
+                  <span id="app-menu-geographic-search">geographic search</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <div id="aichat-setting" class="switch">
+                  <label for="aichat" style="display:none;">AI chat</label> 
+                  <label>
+                  <input type="checkbox" id="aichat">
+                  <span class="lever"></span>
+                  <span id="app-menu-aichat">AI chat</span>
+                  </label>
+                  <br/>
+                </div>
+
+              </div>
+
+            </details>
+
+            <details class="auto conf" closed>
               <summary><span id="app-menu-theme"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#theme" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
@@ -359,45 +398,6 @@ $settings_html = '
                 <label for="font1" style="display:none;">font1</label> 
                 <input id="font1" class="browser-default" type="text"/>
               </div>
-
-            </details>
-
-            <details class="auto conf" closed>
-              <summary><span id="app-menu-features">features</span></summary>
-
-              <div class="style-form">
-
-                <div id="structured-search-setting" class="switch">
-                  <label for="structured-search" style="display:none;">structured search</label> 
-                  <label>
-                  <input type="checkbox" id="structured-search">
-                  <span class="lever"></span>
-                  <span id="app-menu-structured-search">structured search</span>
-                  </label>
-                  <br/>
-                </div>
-
-                <div id="geographic-search-setting" class="switch">
-                  <label for="geographic-search" style="display:none;">geographic search</label> 
-                  <label>
-                  <input type="checkbox" id="geographic-search">
-                  <span class="lever"></span>
-                  <span id="app-menu-geographic-search">geographic search</span>
-                  </label>
-                  <br/>
-                </div>
-
-                <div id="aichat-setting" class="switch">
-                  <label for="aichat" style="display:none;">AI chat</label> 
-                  <label>
-                  <input type="checkbox" id="aichat">
-                  <span class="lever"></span>
-                  <span id="app-menu-aichat">AI chat</span>
-                  </label>
-                  <br/>
-                </div>
-
-            </div>
 
             </details>
 
