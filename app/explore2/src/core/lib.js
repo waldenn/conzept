@@ -311,6 +311,10 @@ function triggerQueryForm(){
   }
   else if ( explore.query !== '' ){ // structured-query
 
+    $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
+    $('#structured-search').prop('checked', true).change();
+    //$('#detail-structured-search').show();
+
     //console.log('structured query');
 
     let check = setInterval(function() {
