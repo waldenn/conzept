@@ -3424,6 +3424,19 @@ conzept_fields = {
   rank: 5.1,
 },
 
+'conzept_datasources_search' : {
+  create_condition: true,
+  title: 'Conzept datasources search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title}?l=${explore.language}&d=wikipedia,wikidata,commons,archive,archive_scholar,openalex,europeana,rijksmuseum&t=string&singleuse=true',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Conzept datasources',
+  section: ['main'],
+  rank: [18],
+},
+
 'bing' : {
   create_condition: true,
   title: 'Bing web search',
