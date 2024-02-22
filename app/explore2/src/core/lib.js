@@ -10901,6 +10901,15 @@ async function makePresentation( title ){
 
   console.log( title, explore.type, item );
 
+  // start TTS speaker
+  if ( valid( explore.synth ) ){
+
+    explore.synth.cancel();
+
+  }
+
+  startSpeakingArticle( item.title, item.qid, explore.language );
+
   // determine the "type" of the item, type options:
   if      ( valid( item.pubchem ) ){ type = 'pubchem'; }
   else if ( listed( item.instances, indicators.art_movement.value ) ){ type = 'art-movement'; }
@@ -10918,10 +10927,6 @@ async function makePresentation( title ){
 
   // show presentation
   showPresentation( item, type );
-
-  // start TTS speaking
-  stopSpeaking();
-  $('#presentation-tts-start').click();
 
 }
 
