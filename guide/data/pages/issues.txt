@@ -59,26 +59,10 @@
 
   * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found / browser-security issues ). (CRITICAL ISSUE for development) 
 
-  * [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/conf/nginx-site.conf#L82-L85|Nginx Dokuwiki-media-file rewrite-rules]] (for images and such) are not working. Official [[https://www.dokuwiki.org/rewrite#nginx|Dokuwiki guidelines for Nginx]]. Example of what should happen:
-<code>https://conze.pt/guide/_media/settings.jpg?w=480&h=521&tok=2fcd6b</code>
-<code>https://conze.pt/guide/lib/exe/fetch.php?media=settings.jpg&w=480&h=521&tok=2fcd6b</code>
-
-<code>
-    location @dokuwiki {
-
-       # FIXME: not yet working
-       rewrite ^/guide/_media/(.*) /guide/lib/exe/fetch.php?media=$1 last;
-       rewrite ^/guide/_detail/(.*) /guide/lib/exe/detail.php?media=$1 last;
-       rewrite ^/guide/_export/([^/]+)/(.*) /guide/doku.php?do=export_$1&id=$2 last;
-
-       # Working:
-       rewrite ^/guide/(.*) /guide/doku.php?id=$1&$args last;
-    }
-</code>
-
   * Cover fetching:
     * Monthly cronjob based fetching not yet implement.
     * The "CONZEPT_PREVENT_COVER_FETCH" option does not work yet.
+
 ===== browser extension =====
 
   * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
@@ -90,7 +74,7 @@
 
 ===== Wikidata / SPARQL issues =====
 
-  * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries. There are some ways to contain the issue (GROUP BY), but that is clumsy and it is not possible to generalize to all SPARQL queries. This is a serious limitation, due to the the two-dimensional (tabular) data dimensioning with SPARQL queries.
+  * Difficulty avoiding duplicate items in more complex/stacked SPARQL queries. There are some ways to contain the issue (GROUP BY), but that is clumsy and it is not possible to generalize to all SPARQL queries. This is a serious limitation, due to the the two-dimensional (tabular) data dimensioning with SPARQL queries (duplicate items, with multiple values for a property, these should be embedded “arrays” within each item).
   * Wikidata: claim-statements integration not done yet, because the data-access is more complex when using the "wikibase-sdk" (with claims).
   * Abandoned Wikidata-based tools.
 

@@ -263,27 +263,6 @@ $settings_html = '
 
             </details>
 
-            <details class="auto conf" style="" closed>
-              <summary><span id="app-menu-font-size"></span></summary>
-
-                <div class="fontsizestyle" style="margin-left: 1.2em;">
-                  <div id="fontsize"></div>
-                  <label for="fontsizer" style="display:none;">fontsizer</label>
-                  <input id="fontsizer" type="range" min="1" max="50" step="0.1">
-                </div>
-
-            </details>
-
-            <details class="auto conf" style="" closed>
-              <summary><span id="app-menu-font-type"></span></summary>
-
-              <div class="style-form">
-                <label for="font1" style="display:none;">font1</label> 
-                <input id="font1" class="browser-default" type="text"/>
-              </div>
-
-            </details>
-
             <details class="auto conf" closed>
               <summary><span id="app-menu-theme"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#theme" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
@@ -359,6 +338,27 @@ $settings_html = '
                 </div>
 
             </div>
+
+            </details>
+
+            <details class="auto conf" style="" closed>
+              <summary><span id="app-menu-font-size"></span></summary>
+
+                <div class="fontsizestyle" style="margin-left: 1.2em;">
+                  <div id="fontsize"></div>
+                  <label for="fontsizer" style="display:none;">fontsizer</label>
+                  <input id="fontsizer" type="range" min="1" max="50" step="0.1">
+                </div>
+
+            </details>
+
+            <details class="auto conf" style="" closed>
+              <summary><span id="app-menu-font-type"></span></summary>
+
+              <div class="style-form">
+                <label for="font1" style="display:none;">font1</label> 
+                <input id="font1" class="browser-default" type="text"/>
+              </div>
 
             </details>
 
