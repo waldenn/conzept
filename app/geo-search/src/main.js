@@ -207,9 +207,9 @@ function showRadiusMarker( loc ){
     'polyline': {
       'pathLonLat': pathLonLat,
       'pathColors': pathColors,
-      'thickness': 20.3,
-      'isClosed': true,
       'altitude': 10,
+      'thickness': 5,
+      'isClosed': true,
     }
 
   });
