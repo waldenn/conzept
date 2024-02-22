@@ -190,7 +190,8 @@ const explore = {
   bgmode              : undefined,
   gridmode            : undefined,
   bread               : undefined, // reading help using bolded word beginnings
-  geosearch           : undefined,
+  structured_search   : undefined,
+  geographic_search   : undefined,
   aichat              : undefined,
 
   // personality options
@@ -357,7 +358,8 @@ $( document ).ready( function() {
     setupOptionShowHelp();
     setupOptionGridmode();
     setupOptionBread();
-    setupOptionGeoSearch();
+    setupOptionStructuredSearch();
+    setupOptionGeographicSearch();
     setupOptionAIchat();
     setupOptionColorFilter();
     setupOptionPersonas();

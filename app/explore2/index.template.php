@@ -367,12 +367,22 @@ $settings_html = '
 
               <div class="style-form">
 
-                <div id="geosearch-setting" class="switch">
-                  <label for="geosearch" style="display:none;">geo search</label> 
+                <div id="structured-search-setting" class="switch">
+                  <label for="structured-search" style="display:none;">structured search</label> 
                   <label>
-                  <input type="checkbox" id="geosearch">
+                  <input type="checkbox" id="structured-search">
                   <span class="lever"></span>
-                  <span id="app-menu-geosearch">geo search</span>
+                  <span id="app-menu-structured-search">structured search</span>
+                  </label>
+                  <br/>
+                </div>
+
+                <div id="geographic-search-setting" class="switch">
+                  <label for="geographic-search" style="display:none;">geographic search</label> 
+                  <label>
+                  <input type="checkbox" id="geographic-search">
+                  <span class="lever"></span>
+                  <span id="app-menu-geographic-search">geographic search</span>
                   </label>
                   <br/>
                 </div>
@@ -542,7 +552,8 @@ $settings_html = '
             <div class="tab-title" id="app-tab-topics-title" style="font-family: ' . $font . ' !important; padding-bottom: 0.3em;">topics</div>
 
             <div class="overflow-content">
-              <details id="detail-structured-search" class="special-detail" title="structured search" style="/*display:none;*/">
+
+              <details id="detail-structured-search" class="special-detail" title="structured search" style="display:none;">
 
                 <summary>
                   <i title="structured search" class="fa-solid fa-search fa-flip-horizontal" title="structured search"></i> <span id="app-menu-structured-search"></span>
@@ -570,14 +581,14 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-geo-search" class="special-detail" title="geo search" style="display:none;">
+              <details id="detail-geographic-search" class="special-detail" title="geographic search" style="display:none;">
 
                 <summary>
-                  <i title="geo search" class="fa-solid fa-search fa-flip-horizontal" title="geographic search"></i> <span id="app-menu-geographic-search">geographic search</span>
-                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geo_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  <i title="geographic search" class="fa-solid fa-search fa-flip-horizontal" title="geographic search"></i> <span id="app-menu-geographic-search">geographic search</span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geographic_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
-                  <div id="geo-search-container" class="resizer"></div>
+                  <div id="geographic-search-container" class="resizer"></div>
 
               </details>
 

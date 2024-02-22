@@ -180,7 +180,7 @@ Structured search can be accessed by:
 
 [ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
 
-===== geo search =====
+===== geographic search =====
 
 (TODO)
 

@@ -2397,6 +2397,63 @@ function setupOptionBread(){
 
 }
 
+function setStructuredSearch(){
+
+  if ( explore.structued_search ){
+
+    $('#structured-search').prop('checked', true);
+
+    $('#detail-structured-search').show();
+
+  }
+  else {
+
+    $('#structured-search').prop('checked', false);
+
+    $('#detail-structured-search').hide();
+
+  }
+
+}
+
+function setupOptionStructuredSearch(){
+
+  (async () => {
+
+    explore.structured_search = await explore.db.get('structured_search');
+
+    explore.geographic_search = ( explore.structured_search === null || explore.structured_search === 'false' ) ? false : true;
+
+    setStructuredSearch( custom );
+
+    $('#structured-search').change(function() {
+
+      if ( $('#structured-search').prop('checked') ){
+
+        (async () => { await explore.db.set('geographic_search', true); })();
+
+        explore.structured_search = true;
+
+        updateValueInPanes( 'structured_search', true );
+        setStructuredSearch();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('structured_search', false); })();
+        explore.structured_search = false;
+
+        updateValueInPanes( 'structured_search', false );
+        setStructuredSearch( custom );
+
+      }
+
+    })
+
+  })();
+
+}
+
 function setAIchat() {
 
   if ( explore.aichat ){
@@ -2453,7 +2510,7 @@ function setupOptionAIchat(){
 
 }
 
-function doGeoSearch( url, custom ){
+function doGeographicSearch( url, custom ){
 
   explore.custom  = custom; // 'lat;lon;radius'
   explore.uri     = url;
@@ -2461,9 +2518,9 @@ function doGeoSearch( url, custom ){
 
   updatePushState( explore.q, 'add' );
 
-  if ( ! valid( explore.geosearch ) ){ // enable geosearch-iframe first, which will use any custom map data provided
+  if ( ! valid( explore.geographic_search ) ){ // enable geographic_search iframe first, which will use any custom map data provided
 
-    $('#geosearch').prop("checked", true).change();
+    $('#geographic_search').prop("checked", true).change();
 
   }
 
@@ -2471,14 +2528,14 @@ function doGeoSearch( url, custom ){
 
 }
 
-function setGeoSearch( custom ){
+function setGeographicSearch( custom ){
 
   // customizable
   let lat     = '';
   let lon     = '';
   let radius = '';
 
-  if ( explore.geosearch ){
+  if ( explore.geographic_search ){
 
     if ( valid( custom ) ){ // lat, lon, radius
 
@@ -2494,34 +2551,34 @@ function setGeoSearch( custom ){
 
     }
 
-    $('#geosearch').prop('checked', true);
+    $('#geographic-search').prop('checked', true);
 
-    $('#geo-search-container').html( `<iframe id="geo-search" class="resized" title="geo search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&lat=${lat}&lon=${lon}${radius}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+    $('#geographic-search-container').html( `<iframe id="geographic-search-frame" class="resized" title="geographic search" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/geo-search/index.html?l=${explore.language}&lat=${lat}&lon=${lon}${radius}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
-    $('#detail-geo-search').show();
+    $('#detail-geographic-search').show();
 
   }
   else {
 
-    $('#geosearch').prop('checked', false);
+    $('#geographic-search').prop('checked', false);
 
-    $('#geo-search-container').empty();
+    $('#geographic-search-container').empty();
 
-    $('#detail-geo-search').hide();
+    $('#detail-geographic-search').hide();
 
   }
 
 }
 
-function setupOptionGeoSearch(){
+function setupOptiongeographic_search(){
 
   let custom = '';
 
   (async () => {
 
-    explore.geosearch = await explore.db.get('geosearch');
+    explore.geographic_search = await explore.db.get('geographic_search');
 
-    explore.geosearch = ( explore.geosearch === null || explore.geosearch === 'false' ) ? false : true;
+    explore.geographic_search = ( explore.geographic_search === null || explore.geographic_search === 'false' ) ? false : true;
 
     if ( explore.type === 'geo' && valid( explore.custom ) ){
 
@@ -2529,27 +2586,27 @@ function setupOptionGeoSearch(){
 
     }
 
-    setGeoSearch( custom );
+    setGeographicSearch( custom );
 
-    $('#geosearch').change(function() {
+    $('#geographic_search').change(function() {
 
-      if ( $('#geosearch').prop('checked') ){
+      if ( $('#geographic_search').prop('checked') ){
 
-        (async () => { await explore.db.set('geosearch', true); })();
+        (async () => { await explore.db.set('geographic_search', true); })();
 
-        explore.geosearch = true;
+        explore.geographic_search = true;
 
-        updateValueInPanes( 'geosearch', true );
-        setGeoSearch( custom );
+        updateValueInPanes( 'geographic_search', true );
+        setGeographicSearch( custom );
 
       }
       else {
 
-        (async () => { await explore.db.set('geosearch', false); })();
-        explore.geosearch = false;
+        (async () => { await explore.db.set('geographic_search', false); })();
+        explore.geographic_search = false;
 
-        updateValueInPanes( 'geosearch', false );
-        setGeoSearch( custom );
+        updateValueInPanes( 'geographic_search', false );
+        setGeographicSearch( custom );
 
       }
 
@@ -7775,7 +7832,7 @@ function receiveMessage(event){
 
     if ( valid( [ event.data.data.url, event.data.data.custom ] ) ){
 
-      doGeoSearch( event.data.data.url, event.data.data.custom );
+      doGeographicSearch( event.data.data.url, event.data.data.custom );
 
     }
 
