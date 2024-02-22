@@ -311,9 +311,7 @@ function triggerQueryForm(){
   }
   else if ( explore.query !== '' ){ // structured-query
 
-    $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
     $('#structured-search').prop('checked', true).change();
-    //$('#detail-structured-search').show();
 
     //console.log('structured query');
 
@@ -7849,6 +7847,8 @@ function receiveMessage(event){
 
   }
   else if ( event.data.event_id === 'structured-query' ){
+
+    $('#structured-search').prop('checked', true).change();
 
     // NOTE: use this logging to see the used "Query Builder" data
     //console.log('structure query: ', event.data.data );
