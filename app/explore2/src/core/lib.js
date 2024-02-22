@@ -4327,7 +4327,10 @@ async function renderTopicCover( name ){
               //}
 
               // API format: https://en.wikipedia.org/w/api.php?action=query&titles=Flamenco&prop=pageimages&format=json&pithumbsize=600
-              let url_api_image = `https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&titles=${ encodeURIComponent( cover_name ) }&prop=pageimages&format=json&pithumbsize=600&pilimit=1`;
+
+              let thumbsize = explore.isMobile ? '600' : '1200';
+
+              let url_api_image = `https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&titles=${ encodeURIComponent( cover_name ) }&prop=pageimages&format=json&pithumbsize=${ thumbsize }&pilimit=1`;
               //let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600&pilimit=1';
 
               let covers = [ 'abstract_004.jpg', 'abstract_005.jpg' ];
@@ -4511,8 +4514,10 @@ async function setPopularCover() {
 
       }
 
+      let thumbsize = explore.isMobile ? '600' : '1200';
+
       // https://en.wikipedia.org/w/api.php?action=query&titles=Flamenco&prop=pageimages&format=json&pithumbsize=600
-      let url_api_image = 'https://' + explore.language + '.wikipedia.org/w/api.php?action=query&titles=' + encodeURIComponent( cover_name ) + '&prop=pageimages&format=json&pithumbsize=600&pilimit=1';
+      let url_api_image = `https://${ explore.language }.wikipedia.org/w/api.php?action=query&titles=${ encodeURIComponent( cover_name ) }&prop=pageimages&format=json&pithumbsize=${ thumbsize }&pilimit=1`;
 
       let covers = [ 'abstract_004.jpg', 'abstract_005.jpg' ];
       const abstract_cover = covers[ Math.floor( Math.random() * covers.length) ];

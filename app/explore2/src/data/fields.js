@@ -15986,7 +15986,7 @@ if ( valid( item.found_in_taxon ) ){
   create_condition: 'valid( item.lat )',
   title: 'Open Infrastructure map',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   url: 'https://openinframap.org/#8/${item.lat}/${item.lon}',
   icon: 'fa-solid fa-bolt',
