@@ -139,6 +139,7 @@ globe.planet.renderer.events.on( 'doubletouch', (e) => {
 
   let loc = globe.planet.getLonLatFromPixelTerrain(e);
 
+  showRadiusMarker( loc );
   showTopics( loc );
 
 });
@@ -149,70 +150,75 @@ globe.planet.renderer.events.on( 'lclick', (e) => {
 
   if ( valid( loc ) ){
 
-    let lon = parseFloat( loc.lon.toFixed(5) );
-    let lat = parseFloat( loc.lat.toFixed(5) );
-
-    function createCircle( ellipsoid, center, radius = parseFloat( window.app.radius ) ){
-
-      let circleCoords = [];
-
-      for (let i = 0; i < 360; i += 5) {
-
-        circleCoords.push( ellipsoid.getGreatCircleDestination( center, i, radius ) );
-
-      }
-
-      return circleCoords;
-
-    };
-
-    function createCircles( outPathLonLat, outPathColors, num = 1 ) {
-
-      let ell = globe.planet.ellipsoid;
-
-      for ( let i = 0; i < num; i++ ) {
-
-        let center = new LonLat( lon, lat );
-
-        let circle = createCircle(ell, center, parseFloat( window.app.radius ) );
-
-        outPathLonLat.push(circle);
-
-        let color = [ 1, 0.1, 0.1 ];
-        //let color = [ math.random(), math.random(), math.random() ];
-
-        outPathColors.push([color]);
-
-      }
-
-    }
-
-    let pathLonLat = [];
-    let pathColors = [];
-
-    createCircles(pathLonLat, pathColors);
-
-    const polylineEntity = new Entity({
-      'polyline': {
-        'pathLonLat': pathLonLat,
-        'pathColors': pathColors,
-        'thickness': 20.3,
-        'isClosed': true,
-        'altitude': 10,
-      }
-    });
-
-    //console.log( polylineEntity );
-
-    pointLayer.addEntities( [ polylineEntity ] );
-
-    //globe.planet.viewExtentArr([8.08, 46.72, 8.31, 46.75]);
-   
+    showRadiusMarker( loc );
     showTopics( loc );
 
   }
 
 });
+
+function showRadiusMarker( loc ){
+
+  let lon = parseFloat( loc.lon.toFixed(5) );
+  let lat = parseFloat( loc.lat.toFixed(5) );
+
+  function createCircle( ellipsoid, center, radius = parseFloat( window.app.radius ) ){
+
+    let circleCoords = [];
+
+    for (let i = 0; i < 360; i += 5) {
+
+      circleCoords.push( ellipsoid.getGreatCircleDestination( center, i, radius ) );
+
+    }
+
+    return circleCoords;
+
+  };
+
+  function createCircles( outPathLonLat, outPathColors, num = 1 ) {
+
+    let ell = globe.planet.ellipsoid;
+
+    for ( let i = 0; i < num; i++ ) {
+
+      let center = new LonLat( lon, lat );
+
+      let circle = createCircle(ell, center, parseFloat( window.app.radius ) );
+
+      outPathLonLat.push(circle);
+
+      let color = [ 1, 0.1, 0.1 ];
+      //let color = [ math.random(), math.random(), math.random() ];
+
+      outPathColors.push([color]);
+
+    }
+
+  }
+
+  let pathLonLat = [];
+  let pathColors = [];
+
+  createCircles(pathLonLat, pathColors);
+
+  const polylineEntity = new Entity({
+
+    'polyline': {
+      'pathLonLat': pathLonLat,
+      'pathColors': pathColors,
+      'thickness': 20.3,
+      'isClosed': true,
+      'altitude': 10,
+    }
+
+  });
+
+  //console.log( polylineEntity );
+
+  pointLayer.addEntities( [ polylineEntity ] );
+
+}
 
 function showTopics( loc ){
 
