@@ -10917,7 +10917,11 @@ async function makePresentation( title ){
   else { console.log('TODO: implement a general presentation type'); }
 
   // show presentation
-  showPresentation( item, 'location' );
+  showPresentation( item, type );
+
+  // start TTS speaking
+  stopSpeaking();
+  $('#presentation-tts-start').click();
 
 }
 

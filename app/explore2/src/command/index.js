@@ -613,8 +613,13 @@ async function showPresentation( item, type ){
 
       }
 
-			slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
-			//slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
+		  if ( valid( item.lat ) ){
+
+			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
+
+			  //slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
+
+      }
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
