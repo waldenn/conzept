@@ -20,7 +20,8 @@ const explore = {
   hash                : window.location.hash.substring(1) || '', // URL hash from URL
   //hash_prev         : undefined, // previous URL hash from URL
 
-  embedded            : getParameterByName('embedded') || '', // signals to open links in the local iframe
+  embedded            : getParameterByName('embedded')  || '', // signals to open links in the local iframe
+  singleuse           : getParameterByName('singleuse') || '', // signals to NOT permanently store the datsources for this URL-request
   tab                 : getParameterByName('tab') || undefined, // requested tab from the URL
 
   language            :  undefined, // current language 2-letter-code

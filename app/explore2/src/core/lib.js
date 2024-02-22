@@ -1519,7 +1519,12 @@ function activateDatasources(){
 
   setParameter( 'd', explore.datasources.join(','), explore.hash );
 
-  (async () => { await explore.db.set( 'datasources', explore.datasources.join(',') ); })();
+  // when "singleuse" is active, prevent permanently storing the datasources
+  if ( ! valid( explore.singleuse ) ){
+
+    (async () => { await explore.db.set( 'datasources', explore.datasources.join(',') ); })();
+
+  }
 
   setupOptionActiveDatasources(); // update datasource toggles
 
@@ -1588,13 +1593,12 @@ async function toggleDatasource( source ) {
 
   setParameter( 'd', explore.datasources.join(','), explore.hash );
 
-  (async () => {
+  // when "singleuse" is active, prevent permanently storing the datasources
+  if ( ! valid( explore.singleuse ) ){
 
-    //console.log( 'setting browser-storage to: ', explore.datasources );
+    (async () => { await explore.db.set( 'datasources', explore.datasources.join(',') ); })();
 
-    await explore.db.set( 'datasources', explore.datasources.join(',') );
-
-  })();
+  }
 
 }
 
