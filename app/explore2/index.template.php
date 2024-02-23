@@ -584,8 +584,8 @@ $settings_html = '
               <details id="detail-geospatial-search" class="special-detail" title="geospatial search" style="display:none;">
 
                 <summary>
-                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search">geospatial search</span>
-                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geospatial" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search-title">geospatial search</span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geospatial_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
                   <div id="geospatial-search-container" class="resizer"></div>
