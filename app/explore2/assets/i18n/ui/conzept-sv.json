@@ -85,7 +85,7 @@
   "app-menu-goto-previous-pane": "gå till föregående ruta",
   "app-menu-new-search": "ny sökning",
   "app-menu-structured-search": "strukturerad sökning",
-  "app-menu-geographic-search": "geografisk sökning",
+  "app-menu-geospatial-search": "geografisk sökning",
   "app-section-main": "huvud",
   "app-section-info": "info",
   "app-section-library": "bibliotek",

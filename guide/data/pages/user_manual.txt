@@ -181,13 +181,13 @@ This feature can be enabled through: **settings menu** -> **features** -> **stru
 
 [ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
 
-===== geographic search =====
+===== geospatial search =====
 
-[{{ ::geographical_search_1.jpg?direct|geographical search query input}}]
+[{{ ::geospatial.jpg?direct|geospatial search query input}}]
 
-**Geographical searching is a way to easily construct geo-coordinate-bound queries (currently only Wikidata is supported) and see the topic results in the sidebar.**
+**Geospatial searching is a way to easily construct geo-coordinate-bound queries (currently only Wikidata is supported) and see the topic results in the sidebar.**
 
-This feature can be enabled through: **settings menu** -> **features** -> **geographical search**.
+This feature can be enabled through: **settings menu** -> **features** -> **geospatial search**.
 
 ===== AI chat =====
 

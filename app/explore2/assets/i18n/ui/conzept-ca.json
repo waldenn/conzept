@@ -85,7 +85,7 @@
   "app-menu-goto-previous-pane": "aneu al panell anterior",
   "app-menu-new-search": "nova cerca",
   "app-menu-structured-search": "cerca estructurada",
-  "app-menu-geographic-search": "cerca geogràfica",
+  "app-menu-geospatial-search": "cerca geogràfica",
   "app-section-main": "principal",
   "app-section-info": "informació",
   "app-section-library": "biblioteca",

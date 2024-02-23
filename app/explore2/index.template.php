@@ -278,12 +278,12 @@ $settings_html = '
                   <br/>
                 </div>
 
-                <div id="geographic-search-setting" class="switch">
-                  <label for="geographic-search" style="display:none;">geographic search</label> 
+                <div id="geospatial-search-setting" class="switch">
+                  <label for="geospatial-search" style="display:none;">geospatial search</label> 
                   <label>
-                  <input type="checkbox" id="geographic-search">
+                  <input type="checkbox" id="geospatial-search">
                   <span class="lever"></span>
-                  <span id="app-menu-geographic-search">geographic search</span>
+                  <span id="app-menu-geospatial-search">geospatial search</span>
                   </label>
                   <br/>
                 </div>
@@ -581,14 +581,14 @@ $settings_html = '
 
               </details>
 
-              <details id="detail-geographic-search" class="special-detail" title="geographic search" style="display:none;">
+              <details id="detail-geospatial-search" class="special-detail" title="geospatial search" style="display:none;">
 
                 <summary>
-                  <i title="geographic search" class="fa-solid fa-search fa-flip-horizontal" title="geographic search"></i> <span id="app-menu-geographic-search">geographic search</span>
-                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geographic_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search">geospatial search</span>
+                  <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geospatial" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
-                  <div id="geographic-search-container" class="resizer"></div>
+                  <div id="geospatial-search-container" class="resizer"></div>
 
               </details>
 

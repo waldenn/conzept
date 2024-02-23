@@ -192,7 +192,7 @@ const explore = {
   gridmode            : undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
-  geographic_search   : undefined,
+  geospatial_search   : undefined,
   aichat              : undefined,
 
   // personality options
@@ -360,7 +360,7 @@ $( document ).ready( function() {
     setupOptionGridmode();
     setupOptionBread();
     setupOptionStructuredSearch();
-    setupOptionGeographicSearch();
+    setupOptionGeospatialSearch();
     setupOptionAIchat();
     setupOptionColorFilter();
     setupOptionPersonas();

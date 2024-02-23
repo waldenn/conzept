@@ -85,7 +85,7 @@
   "app-menu-goto-previous-pane": "перейти на предыдущую панель",
   "app-menu-new-search": "новый поиск",
   "app-menu-structured-search": "структурированный поиск",
-  "app-menu-geographic-search": "географический поиск",
+  "app-menu-geospatial-search": "географический поиск",
   "app-section-main": "основной",
   "app-section-info": "Информация",
   "app-section-library": "библиотека",

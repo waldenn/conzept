@@ -85,7 +85,7 @@
   "app-menu-goto-previous-pane": "이전 창으로 이동",
   "app-menu-new-search": "새로운 검색",
   "app-menu-structured-search": "구조화된 검색",
-  "app-menu-geographic-search": "지리적 검색",
+  "app-menu-geospatial-search": "지리적 검색",
   "app-section-main": "기본",
   "app-section-info": "정보",
   "app-section-library": "도서관",
