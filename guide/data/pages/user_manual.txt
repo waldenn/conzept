@@ -165,11 +165,11 @@ The results will be shown in the sidebar and the next results are loaded once yo
 If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
 ===== structured search =====
 
-[{{ ::structured_query_1.jpg?direct|structured search query input}}]
+[{{ ::structured_query_1.jpg?direct|structured search query}}]
 
 [{{ ::structured_query_2.jpg?direct|structured query results ([[https://conze.pt/explore/?l=en&t=wikipedia&s=true&query=%7B%22conditions%22%3A%5B%7B%22propertyId%22%3A%22P31%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q5%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3Anull%2C%22negate%22%3Afalse%7D%2C%7B%22propertyId%22%3A%22P106%22%2C%22propertyDataType%22%3A%22wikibase-item%22%2C%22propertyValueRelation%22%3A%22matching%22%2C%22referenceRelation%22%3A%22regardless%22%2C%22value%22%3A%22Q36834%22%2C%22subclasses%22%3Atrue%2C%22conditionRelation%22%3A%22and%22%2C%22negate%22%3Afalse%7D%5D%2C%22limit%22%3A10%2C%22useLimit%22%3Atrue%2C%22omitLabels%22%3Afalse%7D|link]]) }}]
 
-**Structured searching is an easy way to construct basic Wikidata [[explore>SPARQL]]-queries and see the topic results in the sidebar.**
+Structured searching is an easy way to **construct basic Wikidata [[explore>SPARQL]]-queries** and see the topic results in the sidebar. Only the Wikidata SPARQL-endpoint is supported for now.
 
 Structured search can be accessed by:
 
@@ -177,17 +177,17 @@ Structured search can be accessed by:
   - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
   - Then click the "run query" button. \\ \\
 
-This feature can be enabled through: **settings menu** -> **features** -> **structured search**.
+This feature can be enabled through: **settings menu** -> **features** -> enable **structured search**.
 
 [ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
 
 ===== geospatial search =====
 
-[{{ ::geospatial.jpg?direct|geospatial search query input}}]
+[{{ ::geospatial_search_1.jpg?direct|geospatial search query}}]
 
-**Geospatial searching is a way to easily construct geo-coordinate-bound queries (currently only Wikidata is supported) and see the topic results in the sidebar.**
+Geospatial searching is a way to easily **construct geo-coordinate-bound queries** and see the locational topic results in the sidebar. Currently only Wikidata is supported.
 
-This feature can be enabled through: **settings menu** -> **features** -> **geospatial search**.
+This feature can be enabled through: **settings menu** -> **features** -> enable **geospatial search**.
 
 ===== AI chat =====
 
