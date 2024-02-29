@@ -157,8 +157,16 @@ function renderMap( data ) {
         radius: 10,
         color: "hsl(" + 231 + ", 80%, 40%)",
         fillColor: "hsl(" + 231 + ", 100%, 10%)",
-      }).bindPopup(
-				`<a href="javascript:void(0)" onclick="gotoArticle(&quot;${ encodeURIComponent( data.properties.title ) }&quot;, &quot;${ data.properties.qid }&quot;)"> <img class="popup-image" src="${ data.properties.image }" /></img> </a>
+      }).bindTooltip( // see: https://leafletjs.com/reference.html#layer-bindtooltip
+          '<span class="timeline-tooltip">' + data.properties.title + '</span>',
+          {
+            permanent: true,
+            offset: L.point({x: 10, y: 0 }),
+            opacity: 0.9,
+          }
+        )
+        .bindPopup(
+				`<a href="javascript:void(0)" onclick="gotoArticle(&quot;${ encodeURIComponent( data.properties.title ) }&quot;, &quot;${ data.properties.qid }&quot;)"> ${ valid( data.properties.image )? '<img class="popup-image" src="' + data.properties.image + '" /></img>' : '' } </a>
 			  <a class="popup-title-container" href="javascript:void(0)" onclick="gotoArticle(&quot;${ encodeURIComponent( data.properties.title ) }&quot;, &quot;${ data.properties.qid }&quot;)"> <div class="popup-title">${ data.properties.title }</div> </a>
 				<a style="display: block; href="javascript:void(0)" onclick="gotoArticle(&quot;${ encodeURIComponent( data.properties.place ) }&quot;, &quot;${ data.properties.place_qid }&quot;,&quot;&quot;)">
           <span class="popup-place">${ data.properties.place }</span>

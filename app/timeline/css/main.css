@@ -79,6 +79,16 @@ a {
   display: inline-block;
 }
 
+
+.leaflet-tooltip {
+  padding: 0px 3px;
+  background-color: #fff;
+  font-weight: 450;
+  /* border: 1px solid #fff; */
+  border-radius: 6px;
+  color: #000;
+}
+
 .leaflet-bottom.leaflet-left {
   width: 100%;
 }
