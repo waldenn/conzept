@@ -2002,6 +2002,7 @@ function setupSearch() {
           console.log('DOI: ', doi );
 
           fetch( `https://api.openalex.org/works/https://doi.org/${doi}` ).then((response) => response.json() ).then( ( data ) => {
+
             console.log( data );
 
             if ( valid( data.id ) ){
@@ -2016,39 +2017,39 @@ function setupSearch() {
 
             }
 
+            if ( valid( [ url, title ] ) ){
+
+              // sidebar
+              handleClick({
+                id        : 'n1-0',
+                type      : 'link',
+                title     : title,
+                language  : explore.language,
+                qid       : '',
+                url       : encodeURI( url ),
+                tag       : '',
+                languages : '',
+                custom    : '',
+                target_pane : 'p1',
+              });
+
+              // content pane
+              handleClick({
+                id        : 'n1-0',
+                type      : 'articles',
+                title     : title,
+                language  : explore.language,
+                qid       : '',
+                url       : '',
+                tag       : '',
+                languages : '',
+                custom    : '',
+                target_pane : 'p0',
+              });
+
+            }
+
           });
-
-          if ( valid( [ url, title ] ) ){
-
-            // sidebar
-            handleClick({
-              id        : 'n1-0',
-              type      : 'link',
-              title     : title,
-              language  : explore.language,
-              qid       : '',
-              url       : encodeURI( url ),
-              tag       : '',
-              languages : '',
-              custom    : '',
-              target_pane : 'p1',
-            });
-
-            // content pane
-            handleClick({
-              id        : 'n1-0',
-              type      : 'articles',
-              title     : title,
-              language  : explore.language,
-              qid       : '',
-              url       : '',
-              tag       : '',
-              languages : '',
-              custom    : '',
-              target_pane : 'p0',
-            });
-
-          }
 
         }
 
