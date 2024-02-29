@@ -373,6 +373,17 @@ function triggerQueryForm(){
     }
 
   }
+  else if ( explore.type === 'doi' && explore.custom !== '' ){ // DOI-search request
+
+    if ( isDOI( explore.custom.trim() ) ){
+
+      const doi   = explore.custom.trim();
+
+      doDOISearch( doi );
+
+    }
+
+  }
   else if ( explore.q !== ''){ // normal query
 
     explore.searchmode = 'string';
@@ -2019,20 +2030,6 @@ function setupSearch() {
 
             if ( valid( [ url, title ] ) ){
 
-              // sidebar
-              handleClick({
-                id        : 'n1-0',
-                type      : 'link',
-                title     : title,
-                language  : explore.language,
-                qid       : '',
-                url       : encodeURI( url ),
-                tag       : '',
-                languages : '',
-                custom    : '',
-                target_pane : 'p1',
-              });
-
               // content pane
               handleClick({
                 id        : 'n1-0',
@@ -2045,6 +2042,20 @@ function setupSearch() {
                 languages : '',
                 custom    : '',
                 target_pane : 'p0',
+              });
+
+              // sidebar
+              handleClick({
+                id        : 'n1-0',
+                type      : 'link',
+                title     : title,
+                language  : explore.language,
+                qid       : '',
+                url       : encodeURI( url ),
+                tag       : '',
+                languages : '',
+                custom    : '',
+                target_pane : 'p1',
               });
 
             }
@@ -2584,6 +2595,66 @@ function setupOptionAIchat(){
     })
 
   })();
+
+}
+
+
+function doDOISearch( doi ){
+
+  let   url   = '';
+  let   title = '';
+
+  console.log('DOI: ', doi );
+
+  fetch( `https://api.openalex.org/works/https://doi.org/${doi}` ).then((response) => response.json() ).then( ( data ) => {
+
+    console.log( data );
+
+    if ( valid( data.id ) ){
+
+      url = data.id;
+
+    }
+
+    if ( valid( data.title ) ){
+
+      title = data.title;
+
+    }
+
+    if ( valid( [ url, title ] ) ){
+
+      // content pane
+      handleClick({
+        id        : 'n1-0',
+        type      : 'articles',
+        title     : title,
+        language  : explore.language,
+        qid       : '',
+        url       : '',
+        tag       : '',
+        languages : '',
+        custom    : '',
+        target_pane : 'p0',
+      });
+
+      // sidebar
+      handleClick({
+        id        : 'n1-0',
+        type      : 'link',
+        title     : title,
+        language  : explore.language,
+        qid       : '',
+        url       : encodeURI( url ),
+        tag       : '',
+        languages : '',
+        custom    : '',
+        target_pane : 'p1',
+      });
+
+    }
+
+  });
 
 }
 
