@@ -350,9 +350,16 @@ function triggerQueryForm(){
     });
 
   }
-  else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request
+  else if ( explore.type === 'presentation' && explore.qid !== '' ){ // presentation request from Qid
 
-    console.log('make presentation: ', explore.q );
+    console.log('make presentation from Qid: ', explore.qid );
+   
+    makePresentation( explore.qid );
+
+  }
+  else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request from title
+
+    console.log('make presentation from title: ', explore.q );
    
     makePresentation( explore.q );
 
@@ -10867,41 +10874,55 @@ function getGridColumns( sel ){
 //    - title=...", type=presentation
 //    - refactor the old presentation workflow to use the new "presentation" type
 //  - Programmatically create a presentation using only a Wikidata-Qid
-async function makePresentation( title ){
+async function makePresentation( input ){ // input options: title-string, Wikidata-qid-string
 
-  let item = '';
-  let type = '';
+  let title = '';
+  let qid   = '';
+  let item  = '';
+  let type  = '';
 
-  // get Wikdiata-data as "item"-structure
-  const qid_ = await checkForQid( title, '' );
+  if ( isQid( input ) ){ // Wikidata Qid input
 
-  if ( qid_.hasOwnProperty('entities') ){
+    qid, explore.q_qid = input;
 
-    const qid = Object.keys( qid_.entities )[0];
+    let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
 
-    if ( isQid( qid ) ){
-
-      explore.q_qid = qid;
-
-      let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
-
-      //console.log( 'Wikidata Qid found: ', qid, d );
-
-      item = d[0].source.data;
-      item.title = title;
-
-    }
-    else {
-
-      console.log('No Wikidata Qid found.');
-
-      return 1;
-
-    }
+    item = d[0].source.data;
 
   }
+  else { // title-string
 
-  console.log( title, explore.type, item );
+    title = input;
+
+    // get Wikdiata-data as "item"-structure
+    const qid_ = await checkForQid( title, '' );
+
+    if ( qid_.hasOwnProperty('entities') ){
+
+      qid = Object.keys( qid_.entities )[0];
+
+      if ( isQid( qid ) ){
+
+        explore.q_qid = qid;
+
+        let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
+
+        item = d[0].source.data;
+        item.title = title;
+
+      }
+      else {
+
+        console.log('No Wikidata Qid found.');
+
+        return 1;
+
+      }
+
+    }
+  }
+
+  //console.log( title, explore.type, item );
 
   // start TTS speaker
   if ( valid( explore.synth ) ){
