@@ -1720,6 +1720,9 @@ function setupSearch() {
             else if ( explore.q.startsWith( '!chat' ) ){ 
               console.log('chat query detected');
             }
+            else if ( explore.q.startsWith( '!doi' ) ){ 
+              console.log('DOI query detected');
+            }
 
           }
 
@@ -1987,6 +1990,65 @@ function setupSearch() {
             custom    : '',
             target_pane : 'p1',
           });
+
+        }
+        if ( explore.q.startsWith( '!doi' ) ){ // DOI command
+
+          explore.q   = explore.q.trim();
+          const doi   = explore.q.replace( '!doi ', '' );
+          let   url   = '';
+          let   title = '';
+
+          console.log('DOI: ', doi );
+
+          fetch( `https://api.openalex.org/works/https://doi.org/${doi}` ).then((response) => response.json() ).then( ( data ) => {
+            console.log( data );
+
+            if ( valid( data.id ) ){
+
+              url = data.id;
+
+            }
+
+            if ( valid( data.title ) ){
+
+              title = data.title;
+
+            }
+
+          });
+
+          if ( valid( [ url, title ] ) ){
+
+            // sidebar
+            handleClick({
+              id        : 'n1-0',
+              type      : 'link',
+              title     : title,
+              language  : explore.language,
+              qid       : '',
+              url       : encodeURI( url ),
+              tag       : '',
+              languages : '',
+              custom    : '',
+              target_pane : 'p1',
+            });
+
+            // content pane
+            handleClick({
+              id        : 'n1-0',
+              type      : 'articles',
+              title     : title,
+              language  : explore.language,
+              qid       : '',
+              url       : '',
+              tag       : '',
+              languages : '',
+              custom    : '',
+              target_pane : 'p0',
+            });
+
+          }
 
         }
 

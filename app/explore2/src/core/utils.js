@@ -336,7 +336,14 @@ function listed( myList, myItems, removeQ ){ // both should be a list of numbers
 
 }
 
-function isQid( title ) {
+function isDOI( string ){
+
+  const doiPattern = /^10\.\d{4,}\/[\S]+$/; // see: https://en.wikipedia.org/wiki/Digital_object_identifier#Nomenclature_and_syntax
+
+  return doiPattern.test( string );
+}
+
+function isQid( title ){ // Wikidata Qid
 
   if ( valid( title ) ){
 
