@@ -9830,20 +9830,27 @@ function checkForTitle( qid, language ){ // get title from Wikidata Qid
 
       success: function( wd ) {
 
-        console.log( wd );
-
         if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
-          // do nothing
+          return '';
         }
         else {
 
           if ( valid( wd.entities[ qid ]?.labels[ language ] ) ){
+
+            return wd.entities[ qid ].labels[ language ].value;
 
             console.log( wd.entities[ qid ]?.labels[ language ].value );
 
           }
 
         }
+
+      },
+
+      fail: function(xhr, textStatus, errorThrown){
+
+        console.log('failed: ', textStatus, errorThrown );
+        return '';
 
       },
 
