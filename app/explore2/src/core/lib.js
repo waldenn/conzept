@@ -9818,54 +9818,32 @@ function loadTopics( nextpage ){
 
 }
 
-function checkForTitle( qid, language ){ // get title from Wikidata Qid
-  
-  if ( isQid( qid ) ){
- 
-    return $.ajax({
+async function getWikidataLabel( qid, language ) {
 
-      url: `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`,
+  try {
 
-      dataType: "json",
+    const response = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
+    const data = await response.json();
 
-      success: function( wd ) {
+    if (data.entities && data.entities[qid] && data.entities[qid].labels) {
 
-        if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
-          return '';
-        }
-        else {
+      const label = data.entities[qid].labels[language].value;
 
-          if ( valid( wd.entities[ qid ]?.labels[ language ] ) ){
+      return label;
 
-            return wd.entities[ qid ].labels[ language ].value;
+    }
+    else {
 
-            console.log( wd.entities[ qid ]?.labels[ language ].value );
+      throw new Error('Entity not found or labels not available.');
 
-          }
-
-        }
-
-      },
-
-      fail: function(xhr, textStatus, errorThrown){
-
-        console.log('failed: ', textStatus, errorThrown );
-        return '';
-
-      },
-
-    });
+    }
 
   }
-  else {
-
-    return '';
-
+  catch (error) {
+    console.error('Error fetching Wikidata:', error.message);
+    throw error;
   }
-
 }
-
-
 
 function checkForQid( title, pane ){ // get qid and wikidata data
 
@@ -11073,11 +11051,25 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     item = d[0].source.data;
 
     // TODO: research why no title is being set during fetchWikidata()
-    title       = await checkForTitle( qid, explore.language );
-    item.title  = title;
 
-    console.log('item.title 1: ', item.title );
-    startPresentation( item );
+    getWikidataLabel( qid, explore.language )
+      .then(label =>
+
+        console.log(`Label for ${QID}: ${label}`)
+
+        title       = label;
+        item.title  = label;
+
+        console.log('item.title 1: ', item.title );
+
+        startPresentation( item );
+
+      )
+      .catch( error =>
+        title       = '';
+        item.title  = '';
+        console.error('Error fetching Wikidata label: ', error)
+      );
 
   }
   else { // title-string
