@@ -11034,7 +11034,6 @@ function getGridColumns( sel ){
 //    - Example URL: https://conze.pt/explore/Netherlands?l=en&d=wikipedia,wikidata&t=presentation&i=Q55&s=true
 //    - title=...", type=presentation
 //    - refactor the old presentation workflow to use the new "presentation" type
-//  - Programmatically create a presentation using only a Wikidata-Qid
 async function makePresentation( input ){ // input options: title-string, Wikidata-qid-string
 
   let title = '';
@@ -11055,13 +11054,8 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     getWikidataLabel( qid, explore.language )
       .then(label =>
 
-        console.log(`Label for ${QID}: ${label}`)
-
         title       = label;
         item.title  = label;
-
-        console.log('item.title 1: ', item.title );
-
         startPresentation( item );
 
       )
@@ -11115,17 +11109,6 @@ function startPresentation( item ){
 
   let type  = '';
 
-  // start TTS speaker
-  if ( valid( explore.synth ) ){
-
-    explore.synth.cancel();
-
-  }
-
-  console.log('item.title 2: ', item.title );
-
-  startSpeakingArticle( item.title, item.qid, explore.language );
-
   // determine the "type" of the item, type options:
   if      ( valid( item.pubchem ) ){ type = 'pubchem'; }
   else if ( listed( item.instances, indicators.art_movement.value ) ){ type = 'art-movement'; }
@@ -11143,6 +11126,15 @@ function startPresentation( item ){
 
   // show presentation
   showPresentation( item, type );
+
+  // start TTS speaker
+  if ( valid( explore.synth ) ){
+
+    explore.synth.cancel();
+
+  }
+
+  startSpeakingArticle( item.title, item.qid, explore.language );
 
 }
 
