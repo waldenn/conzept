@@ -659,7 +659,7 @@ window.zoomTo = function( title, qid, loc ){
 
 window.showPresentation = function( title, qid ){
 
-  const url = CONZEPT_WEB_BASE + `/explore/${title}?l=${app.language}&t=presentation&i=${qid}`;
+  const url = CONZEPT_WEB_BASE + `/explore/${title}?l=${app.language}&t=presentation&i=${qid}&singleuse=true`;
 
   window.parent.postMessage({ event_id: 'handleClick', data: { type: 'link', title: '', url: url, current_pane: getCurrentPane(), target_pane: 'ps2' } }, '*' );
 

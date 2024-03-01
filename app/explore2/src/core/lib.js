@@ -11074,7 +11074,10 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     item = d[0].source.data;
 
     // TODO: research why no title is being set during fetchWikidata()
-    title = await checkForTitle( qid, explore.language );
+    title       = await checkForTitle( qid, explore.language );
+    item.title  = title;
+
+    startPresentation( item );
 
   }
   else { // title-string
@@ -11097,6 +11100,8 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item = d[0].source.data;
         item.title = title;
 
+        startPresentation( item );
+
       }
       else {
 
@@ -11107,9 +11112,14 @@ async function makePresentation( input ){ // input options: title-string, Wikida
       }
 
     }
+
   }
 
   //console.log( title, explore.type, item );
+
+}
+
+async function startPresentation( item ){
 
   // start TTS speaker
   if ( valid( explore.synth ) ){
