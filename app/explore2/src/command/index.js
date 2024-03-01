@@ -201,7 +201,7 @@ async function showPresentation( item, type ){
   item = unpackString( item ); 
   type = type.trim();
 
-  //console.log( type, item );
+  console.log( type, item );
 
   let languages = unpackString( item.languages ); 
 

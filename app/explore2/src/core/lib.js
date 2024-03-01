@@ -11062,7 +11062,6 @@ async function makePresentation( input ){ // input options: title-string, Wikida
   let title = '';
   let qid   = '';
   let item  = '';
-  let type  = '';
 
   if ( isQid( input ) ){ // Wikidata Qid input
 
@@ -11077,6 +11076,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     title       = await checkForTitle( qid, explore.language );
     item.title  = title;
 
+    console.log('item.title 1: ', item.title );
     startPresentation( item );
 
   }
@@ -11119,7 +11119,9 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
 }
 
-async function startPresentation( item ){
+function startPresentation( item ){
+
+  let type  = '';
 
   // start TTS speaker
   if ( valid( explore.synth ) ){
@@ -11127,6 +11129,8 @@ async function startPresentation( item ){
     explore.synth.cancel();
 
   }
+
+  console.log('item.title 2: ', item.title );
 
   startSpeakingArticle( item.title, item.qid, explore.language );
 
