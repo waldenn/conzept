@@ -11052,18 +11052,18 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     // TODO: research why no title is being set during fetchWikidata()
 
     getWikidataLabel( qid, explore.language )
-      .then(label =>
+      .then(label => {
 
-        title       = label;
-        item.title  = label;
-        startPresentation( item );
+          title       = label;
+          item.title  = label;
+          startPresentation( item );
 
-      )
-      .catch( error =>
+      })
+      .catch( error =>  {
         title       = '';
         item.title  = '';
         console.error('Error fetching Wikidata label: ', error)
-      );
+      });
 
   }
   else { // title-string
