@@ -17052,6 +17052,31 @@ if ( valid( item.found_in_taxon ) ){
   rank: 130,
 },
 
+'acm_journal' : {
+  title: 'ACM Journal',
+  prop: '7983',
+  type: 'url',
+  mv: false,
+  url_format: 'https://dl.acm.org/journal/$1',
+  url: '',
+  icon: 'fa-solid fa-computer',
+  text: 'ACM Journal',
+  section: ['science-computing','science-open-journals'],
+  rank: [112, 25.2],
+},
+
+'cacm_journal_search' : {
+  title: 'Communications of the ACM search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://cacm.acm.org/?s=${title_quoted}&orderby=relevance',
+  icon: 'fa-solid fa-computer',
+  text: 'CACM Journal',
+  section: ['science-computing','science-open-journals'],
+  rank: [110, 25.1],
+},
+
 'acm' : {
   create_condition: true,
   title: 'ACM',
@@ -17059,10 +17084,10 @@ if ( valid( item.found_in_taxon ) ){
   type: 'url',
   mv: false,
   url: 'https://dl.acm.org/action/doSearch?AllField=${title_quoted}',
-  icon: 'fa-solid fa-network-wired',
+  icon: 'fa-solid fa-computer',
   text: 'ACM',
-  section: 'science-open-journals',
-  rank: 25,
+  section: ['science-computing','science-open-journals'],
+  rank: [111, 25.3],
 },
 
 'springer' : {
@@ -103116,20 +103141,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Hrvatska enciklopedija',
   section: ['library-identity'],
   rank: [27982],
-  auto: true,
-},
-
-'acm_journal' : {
-  title: 'ACM Journal',
-  prop: '7983',
-  type: 'url',
-  mv: false,
-  url_format: 'https://dl.acm.org/journal/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'ACM Journal',
-  section: ['library-identity'],
-  rank: [27983],
   auto: true,
 },
 

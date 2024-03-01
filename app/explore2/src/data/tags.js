@@ -363,6 +363,10 @@ var conzept_tags = {
         text : "network",
         icon : ["fa-solid fa-network-wired"],
       },
+      "computing" : {
+        text : "computing",
+        icon : ["fa-solid fa-computer"],
+      },
       "art-movement" : {
         text : "art or scientific movement",
         icon : ["fa-solid fa-holly-berry"],

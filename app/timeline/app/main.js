@@ -174,7 +174,7 @@ function renderMap( data ) {
         <div class="popup-bottom-info">
           <a class="popup-zoom-to-location" title="zoom to location" href="javascript:void(0)" onclick="zoomTo(&quot;${ encodeURIComponent( data.properties.title ) }&quot;,&quot;${ data.properties.qid }&quot;,&quot;${ data.geometry.coordinates[1] };${ data.geometry.coordinates[0] }&quot;)"><i class="fa-solid fa-location-crosshairs"></i></a> &nbsp;
           <a class="popup-images" title="see images" href="javascript:void(0)" onclick="showImages(&quot;${ encodeURIComponent( data.properties.title ) }&quot;,&quot;${ data.properties.qid }&quot;)"><i class="fa-regular fa-images"></i></a> &nbsp;
-          <a class="popup-presentation" style="display:none;" title="see presentation" href="javascript:void(0)" onclick="showPresentation(&quot;${ encodeURIComponent( data.properties.title ) }&quot;,&quot;${ data.properties.qid }&quot;)"><i class="fa-solid fa-chalkboard-user"></i></a> &nbsp;
+          <a class="popup-presentation" title="see presentation" href="javascript:void(0)" onclick="showPresentation(&quot;${ encodeURIComponent( data.properties.title ) }&quot;,&quot;${ data.properties.qid }&quot;)"><i class="fa-solid fa-chalkboard-user"></i></a> &nbsp;
           ${ website }
         </div>
         <div class="popup-bottom-info">

@@ -12,6 +12,7 @@
   * [[section customization]]
   * [[field customization]]
   * [[localization]]
+  * [[maintenance]]
   * [[upgrading]]
 
 **developer docs**

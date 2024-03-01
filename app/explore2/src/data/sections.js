@@ -164,6 +164,10 @@ const sections = {
 				'icon' : 'fa-solid fa-square-root-alt',
 			},
 
+			'science-computing': {
+				'icon' : 'fa-solid fa-computer',
+			},
+
 			'science-biology': {
 				'icon' : 'fa-brands fa-pagelines',
 			},
@@ -182,6 +186,10 @@ const sections = {
 
 			'science-archeology': {
 				'icon' : 'fa-solid fa-archway',
+			},
+
+			'science-physics': {
+				'icon' : 'fa-solid fa-bolt',
 			},
 
 			'science-astronomy': {

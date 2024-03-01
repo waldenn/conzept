@@ -352,14 +352,14 @@ function triggerQueryForm(){
   }
   else if ( explore.type === 'presentation' && explore.qid !== '' ){ // presentation request from Qid
 
-    console.log('make presentation from Qid: ', explore.qid );
+    //console.log('make presentation from Qid: ', explore.qid );
    
     makePresentation( explore.qid );
 
   }
   else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request from title
 
-    console.log('make presentation from title: ', explore.q );
+    //console.log('make presentation from title: ', explore.q );
    
     makePresentation( explore.q );
 
@@ -9818,6 +9818,48 @@ function loadTopics( nextpage ){
 
 }
 
+function checkForTitle( qid, language ){ // get title from Wikidata Qid
+  
+  if ( isQid( qid ) ){
+ 
+    return $.ajax({
+
+      url: `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`,
+
+      dataType: "json",
+
+      success: function( wd ) {
+
+        console.log( wd );
+
+        if ( typeof wd.entities === undefined || typeof wd.entities === 'undefined' ){
+          // do nothing
+        }
+        else {
+
+          if ( valid( wd.entities[ qid ]?.labels[ language ] ) ){
+
+            console.log( wd.entities[ qid ]?.labels[ language ].value );
+
+          }
+
+        }
+
+      },
+
+    });
+
+  }
+  else {
+
+    return '';
+
+  }
+
+}
+
+
+
 function checkForQid( title, pane ){ // get qid and wikidata data
 
   return $.ajax({
@@ -11017,11 +11059,15 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
   if ( isQid( input ) ){ // Wikidata Qid input
 
-    qid, explore.q_qid = input;
+    qid           = input;
+    explore.q_qid = input;
 
     let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
 
     item = d[0].source.data;
+
+    // TODO: research why no title is being set during fetchWikidata()
+    title = await checkForTitle( qid, explore.language );
 
   }
   else { // title-string
