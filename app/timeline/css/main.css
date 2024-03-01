@@ -217,7 +217,7 @@ a {
   /*direction: rtl;*/
 }
 
-#info-toggle {
+#info-toggle, #label-toggle {
   font-size: 2em;
   margin-top: 0.2em;
   padding-top: 0.2em;

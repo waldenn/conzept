@@ -242,7 +242,8 @@ function renderMap( data ) {
   updateList(timeline);
 
   // add custom controls
-  $('.leaflet-control-zoom').append('<a id="info-toggle" role="button" href="javascript:void(0)" onclick="toggleInfo()"><span aria-hidden="true">&#8505;</span></a>');
+  $('.leaflet-control-zoom').append('<a id="info-toggle" role="button" title="toggle event list" href="javascript:void(0)" onclick="toggleInfo()"><span aria-hidden="true">&#8505;</span></a>');
+  $('.leaflet-control-zoom').append('<a id="label-toggle" role="button" title="toggle event labels" href="javascript:void(0)" onclick="toggleLabels( event )"><span aria-hidden="true"><i class="fa-solid fa-tag"></i></span></a>');
   $('.button-container').append('<span id="playback-control-container"><input id="playback-control" name="playback-control" title="playback speed" type="range" min="0.10" value="5" max="10" step="0.10"><i class="fa-regular fa-clock"></i></span>')
 
 	$('#playback-control').on('input', function(){
@@ -274,6 +275,14 @@ function setPlayBackSpeed( timelineControl ){
 function toggleInfo(){
 
   $('#info').toggle();
+
+}
+
+function toggleLabels( event ){
+
+  event.preventDefault();
+
+  $('.timeline-tooltip').toggle();
 
 }
 
