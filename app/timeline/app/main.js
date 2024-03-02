@@ -283,6 +283,7 @@ function toggleLabels( event ){
   event.preventDefault();
 
   $('.timeline-tooltip').toggle();
+  $('.leaflet-tooltip').toggle();
 
 }
 
