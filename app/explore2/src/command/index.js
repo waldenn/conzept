@@ -378,6 +378,12 @@ async function showPresentation( item, type ){
 		  commons_country_music_slide   = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n`;
 
     }
+    else {
+
+      // some code-paths need to check for thumbnails (eg. on-the-fly presentations)
+      setThumbnail( item );
+
+    }
 
     let ai_chat_slide       = '';
 

@@ -68,25 +68,15 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   args.languages    = item.languages;
 
-  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'aerial_view', 'satellite_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms_image', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
 
   let thumbnail = '';
 
   if ( args.thumbnail === '' ){ // no thumnail set yet
 
-    // progressively (with increasing priority), try to set the thumbnail-image, for any Wikidata image-type.
-  	thumbs.forEach(( name, index ) => {
-
-    	if ( valid( item[ name ] ) ){
-
-      	thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + item[name] + '" title="' + name + '" alt="' + name + '" /></div>';
-
-			}
-
-		});
+    setThumbnail( item ); // tries to set "item.thubnail"
 
 	}
-	else { // use the standard thumb (coming from the wikipedia search API)
+  else if ( valid( args.thumbnail ) ){ // use the standard thumb (coming from the wikipedia search API)
 
 		thumbnail = args.thumbnail;
 

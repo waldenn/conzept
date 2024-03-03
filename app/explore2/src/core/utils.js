@@ -1985,6 +1985,26 @@ function replaceSubscriptNumbers( inputString ) {
     return resultString;
 }
 
+
+function setThumbnail( item ){
+
+  let thumbs = [ 'panoramic_image', 'icon_image', 'seal', 'service_ribbon_image', 'grave_view', 'musical_motif', 'molecular_model', 'location_map', 'relief_map', 'distribution_map', 'detail_map', 'commemorative_plaque', 'place_name_sign', 'schematic', 'plan_view', 'interior_view', 'aerial_view', 'satellite_view', 'bathymetry_map', 'route_map', 'locator_map', 'sectional_view', 'monogram', 'coat_of_arms_image', 'image', 'film_poster', 'traffic_sign', 'logo', 'collage_image' ];
+
+  let thumbnail = '';
+
+  // progressively (with increasing priority), try to set the thumbnail-image, for any Wikidata image-type.
+  thumbs.forEach(( name, index ) => {
+
+    if ( valid( item[ name ] ) ){
+
+      item.thumbnail = item[ name ];
+
+    }
+
+  });
+
+}
+
 /*
 function objectToString(obj){
 
