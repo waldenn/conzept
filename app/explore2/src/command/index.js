@@ -832,7 +832,10 @@ async function showPresentation( item, type ){
 
 		  if ( language === 'en' && valid( item.wikipedia_timeline ) ){ slides.push( timeline_slide ); }
 
-			slides.push( commons_time_music_slide );
+      // FIXME: This should not be needed (but "item.thumbnail" is not set on timeline-presentations)
+	    slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n` );
+
+			//slides.push( commons_time_music_slide );
 			//slides.push( europeana_time_music_slide );
 			slides.push( bing_images_slide );
 			slides.push( video_slide );

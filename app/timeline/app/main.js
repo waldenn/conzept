@@ -1,19 +1,19 @@
 // Copyright: 2022-2022, Jama Poulsen, License: GNU GPL v3
 
 let app = {
-  title:        decodeURIComponent( getParameterByName( 'title' ) ) || '',
-  query:        getParameterByName( 'query' ) || '',
-  duplicates:   getParameterByName( 'duplicates' ) || false, // by default filterout any duplicate Qids
-  language:     getParameterByName( 'l' ) || 'en',
-  limit:        0,
+  title:            decodeURIComponent( getParameterByName( 'title' ) ) || '',
+  query:            getParameterByName( 'query' ) || '',
+  duplicates:       getParameterByName( 'duplicates' ) || false, // by default filterout any duplicate Qids
+  language:         getParameterByName( 'l' ) || 'en',
+  limit:            0,
   duration_default: 10000,
-	duration:			    10000,
-  heatmap:      undefined,
-  coordinates:  [],
-  slider_start_time: '',
-  datefix:      1500,
-  datefix_used: false,
-  layerControl: undefined,
+	duration:		      10000,
+  heatmap:          undefined,
+  coordinates:      [],
+  slider_start_time:'',
+  datefix:          1500,
+  datefix_used:     false,
+  layerControl:     undefined,
 }
 
 let map;
@@ -153,11 +153,14 @@ function renderMap( data ) {
 
       const website = valid( data.properties.link ) ? `<a class="popup-link" target="_blank" title="see link" href="${ data.properties.link }"><i class="fa-solid fa-up-right-from-square""></i></a> &nbsp;` : '';
 
+      // https://leafletjs.com/reference.html#circlemarker
       return L.circleMarker(latlng, {
-        radius: 10,
-        color: "hsl(" + 231 + ", 80%, 40%)",
-        fillColor: "hsl(" + 231 + ", 100%, 10%)",
-      }).bindTooltip( // see: https://leafletjs.com/reference.html#layer-bindtooltip
+        radius:     10,
+        weight:     2,
+        color:      "hsl(" + 231 + ", 80%, 40%)",
+        fillColor:  "hsl(" + 231 + ", 100%, 10%)",
+      }).bindTooltip(
+          // see: https://leafletjs.com/reference.html#layer-bindtooltip
           '<span class="timeline-tooltip">' + data.properties.title + '</span>',
           {
             permanent: true,
