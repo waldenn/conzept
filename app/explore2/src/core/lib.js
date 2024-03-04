@@ -11054,9 +11054,10 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     getWikidataLabel( qid, explore.language )
       .then(label => {
 
-          title       = label;
-          item.title  = label;
-          startPresentation( item );
+        title       = label;
+        item.title  = label;
+
+        startPresentation( item );
 
       })
       .catch( error =>  {
@@ -11106,6 +11107,8 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 }
 
 function startPresentation( item ){
+
+  console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
 
   let type  = '';
 
