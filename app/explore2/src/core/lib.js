@@ -9822,8 +9822,12 @@ async function getWikidataLabel( qid, language ) {
 
   try {
 
-    const response = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
-    const data = await response.json();
+    console.log( `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json` );
+
+    const response  = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
+    const data      = await response.json();
+
+    console.log( data );
 
     if (data.entities && data.entities[qid] && data.entities[qid].labels) {
 
