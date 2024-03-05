@@ -17116,9 +17116,57 @@ if ( valid( item.found_in_taxon ) ){
   rank: 20,
 },
 
-'researchgate' : {
+'researchgate_publication' : {
+  title: 'ResearchGate publication',
+  prop: '5875',
+  type: 'url',
+  mv: false,
+  url: 'https://www.researchgate.net/publication/${item.researchgate_publication}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'ResearchGate publication',
+  section: 'science-closed-journals',
+  rank: 30.1,
+},
+
+'researchgate_profile' : {
+  title: 'ResearchGate profile',
+  prop: '2038',
+  type: 'url',
+  mv: false,
+  url: 'https://www.researchgate.net/profile/${item.researchgate_profile}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'ResearchGate profile',
+  section: 'science-closed-journals',
+  rank: 30.2
+},
+
+'researchgate_institute' : {
+  title: 'ResearchGate institute',
+  prop: '2740',
+  type: 'url',
+  mv: false,
+  url: 'https://www.researchgate.net/institution/${item.researchgate_institute}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'ResearchGate institute',
+  section: 'science-closed-journals',
+  rank: 30.3
+},
+
+'researchgate_contributions' : {
+  title: 'ResearchGate contributions',
+  prop: '6023',
+  type: 'url',
+  mv: false,
+  url: 'https://www.researchgate.net/scientific-contributions/${item.researchgate_contributions}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'ResearchGate contributions',
+  section: 'science-closed-journals',
+  rank: 30.4
+},
+
+'researchgate_search' : {
   create_condition: true,
-  title: 'ResearchGate',
+  title: 'ResearchGate search',
   prop: '',
   type: 'url',
   mv: false,
@@ -17126,7 +17174,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-newspaper',
   text: 'Research Gate',
   section: 'science-closed-journals',
-  rank: 30,
+  rank: 30.5,
 },
 
 'sciencedirect' : {
@@ -46168,20 +46216,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'researchgate_profile' : {
-  title: 'ResearchGate profile',
-  prop: '2038',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.researchgate.net/profile/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'ResearchGate profile',
-  section: ['library-identity'],
-  rank: [22038],
-  auto: true,
-},
-
 'cites_species+' : {
   title: 'CITES Species+',
   prop: '2040',
@@ -50067,20 +50101,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Biographical Directory of Federal',
   section: ['library-identity'],
   rank: [22736],
-  auto: true,
-},
-
-'researchgate_institute' : {
-  title: 'ResearchGate institute',
-  prop: '2740',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.researchgate.net/institution/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'ResearchGate institute',
-  section: ['library-identity'],
-  rank: [22740],
   auto: true,
 },
 
@@ -80485,20 +80505,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'researchgate_publication' : {
-  title: 'ResearchGate publication',
-  prop: '5875',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.researchgate.net/publication/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'ResearchGate publication',
-  section: ['library-identity'],
-  rank: [25875],
-  auto: true,
-},
-
 'sjpxvii' : {
   title: 'SJPXVII',
   prop: '5876',
@@ -81814,20 +81820,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Hymenoptera Online taxon',
   section: ['library-identity'],
   rank: [26021],
-  auto: true,
-},
-
-'researchgate_contributions' : {
-  title: 'ResearchGate contributions',
-  prop: '6023',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.researchgate.net/scientific-contributions/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'ResearchGate contributions',
-  section: ['library-identity'],
-  rank: [26023],
   auto: true,
 },
 

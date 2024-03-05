@@ -23,6 +23,8 @@
   * **Reloading complex-encoded URLs** does not always work, due the mis-encoding of the URL parameters. This is a tricky issue, for which the causes which will need to be carefully studied, tested and fixed. Research what tools could be used to help debug this issue.
     * There is a need to have a better workflow & tooling to help with debugging these URL-issues.
     * Examples: ...
+    * related issues:
+      * implement geospatial-search query URL serialization and loading
 
   * Add **persistent-linking to inline-views**
     * When clicked on headline/section fields, set the fragment-parameter in the URL

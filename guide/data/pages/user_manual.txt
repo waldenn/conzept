@@ -183,7 +183,7 @@ This feature can be enabled through: **settings menu** -> **features** -> enable
 
 ===== geospatial search =====
 
-[{{ ::geospatial_search_1.jpg?direct|geospatial search query}}]
+[{{ ::geospatial_search_1.jpg?direct|geospatial search query (TODO: example link) }}]
 
 Geospatial searching is a way to easily **construct geo-coordinate-bound queries** and see the locational topic results in the sidebar. Currently only Wikidata is supported.
 
@@ -200,7 +200,13 @@ This feature can be enabled through: **settings menu** -> **features** -> **AI s
 
 ===== topic presentations =====
 
-(TODO: The use of auto-generated topic presentation using the **[[command API]]**)
+[{{ ::presentation_001.jpg?direct|auto-generated topic presentation}}]
+
+The topic-cards with a Wikidata-Qid and a classification, show a link to the topic presentation. These presentation is accompanied by a spoken version of the Wikipedia article. You can select other sections to be spoken or pause/resume/stop the Text-to-Speech at any time.
+
+Using the (LISP-Scheme based) **[[command API]]** it is possible to auto-generated topic-presentations.
+
+Presentation can be created from either a [[https://conze.pt/explore?l=en&d=wikipedia,wikidata&t=presentation&i=Q362#|Wikidata Qid]] or from a [[https://conze.pt/explore/World%20War%20II?l=en&d=wikipedia,wikidata&t=presentation#|title-string]].
 
 ===== search commands =====
 

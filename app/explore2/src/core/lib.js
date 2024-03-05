@@ -364,7 +364,7 @@ function triggerQueryForm(){
     makePresentation( explore.q );
 
   }
-  else if ( explore.type === 'geo' && explore.custom !== '' ){ // geo-search request
+  else if ( explore.type === 'geospatial' && explore.custom !== '' ){ // geo-search request
 
     if ( valid( [ getParameterByName('u'), explore.custom ] ) ){
 
@@ -2662,7 +2662,7 @@ function doGeospatialSearch( url, custom ){
 
   explore.custom  = custom; // 'lat;lon;radius'
   explore.uri     = url;
-  explore.type    = 'geo';
+  explore.type    = 'geospatial';
 
   updatePushState( explore.q, 'add' );
 
@@ -2728,7 +2728,7 @@ function setupOptionGeospatialSearch(){
 
     explore.geospatial_search = ( explore.geospatial_search === null || explore.geospatial_search === 'false' ) ? false : true;
 
-    if ( explore.type === 'geo' && valid( explore.custom ) ){
+    if ( explore.type === 'geospatial' && valid( explore.custom ) ){
 
       custom = explore.custom;
 
@@ -9827,7 +9827,7 @@ async function getWikidataLabel( qid, language ) {
     const response  = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
     const data      = await response.json();
 
-    console.log( data );
+    //console.log( data );
 
     if (data.entities && data.entities[qid] && data.entities[qid].labels) {
 

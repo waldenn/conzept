@@ -84,6 +84,7 @@ These types are currently available in field-definitions:
 | **url** | url | Open the URL in a new browser-tab |
 | **link-split** | url |Open the URL in two content panes. Load the supplied URL into the first content pane, in the second-content pane we try to load the Wikipedia / Wikidata page for this search-string / qid|
 | **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument-string}':true" | [[#exampleapi-based_link_field|Fetch API data]] from the [[integrating_an_api|supplied API-function]] and the argument-string (eg. a title-string or qid). The third boolean-argument can enable/disable the API data fetching. The results are rendered in the topic-card. \\ \\ Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. |
+
 ===== special values =====
 
 Conzept has various title-forms which can be used anywhere in the field definition values:
@@ -111,19 +112,20 @@ There is currently one 'magic'-variable usable in field-definition values:
 Here is a list of often used utility functions, to make the field definitions easier to write and maintain.
 
 ^ name  ^ arguments ^ output ^ description ^ examples ^
+| **valid()** |**string, variable, array or expression** | boolean | check if ALL provided inputs resolves to TRUE or FALSE  | **valid( item.qid )** -> true, if this condition is true \\ \\ **valid( [ item.qid, item.category ] )** -> true, if all these conditions are true |
+| **validAny()** |**string, variable, array or expression** | boolean | check if ANY of the provided inputs resolves to TRUE or FALSE  | **validAny( [ item.qid, item.category ] )** -> true, if any these conditions are true |
 | **checkLC()** |**language** (string or array-of-strings of language-iso2-codes),\\ \\ **country** (string or list-of-strings of country-iso-codes) | boolean | Language and/or country check. \\ \\ This function is used for matching against a websites supported languages and/or countries. The country-argument can be omitted.  | **checkLC( ["fr","es","zh","hi"] )** -> true, if any one of these languages is the active user language \\ \\ **checkLC("","US")** -> true, if the user-country is "US" |
 | **checkTag()** | **item-object** (required),\\ \\ **[tag-field-index]** (required),\\ \\ **tag string** or list-of-strings | boolean | Check if a topic has either a certain main-[[topic classification|tag]] (0) or a certain sub-[[topic classification|tag]] (1) tag. | **checkTag(item, 0, "person")** -> true, if the topic's main-tag is "person" \\ \\ **checkTag( item, 1, ["writer", "written-work" ] )** -> true, if topic's sub-class is either "writer" or "work" |
 | **setTags()** |**item**, \\ \\ **[ main-tag-string, sub-tag-string ]** | (none) | Set main and/or sub-tag of a topic. If either of the tags is left as an empty string, this part will be skipped. | **setTags( item, [ "work", "painting" ] )** -> set the main-tag ("work") and the sub-tag "painting "| 
 | **listed()** |**list-of-reference-qids**, \\ \\ **list-of-provided-qids** | boolean | check if the provided Qid of the topic | **listed( item.instances, [ 3305213 ] )** -> check if the topic instance-Qids contains a Qid for [[https://www.wikidata.org/wiki/Q3305213|painting]] | 
-===== types of fields =====
 
+===== types of fields =====
 
 **There are two main classes of fields: Wikibased-fields and derived fields.**
 
 ==== Wikidata-based fields ====
 
 These fields have a [[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|Wikidata property number]] listed in its **"prop:"** value. If a topic has such a Wikidata property value, Conzept will get that data from Wikidata.
-
 
 === examples ===
 

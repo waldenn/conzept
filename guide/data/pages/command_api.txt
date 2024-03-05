@@ -121,7 +121,7 @@ Autocompletion of the Scheme-based command-language symbols (including the Wikid
 
 ==== presentation commands ====
 
-[{{::presentation-001.png?direct|presentation [[https://conze.pt/explore/?&t=link&u=%2Fapp%2Fvideo%2F%3Fwide%3Dtrue%23%2Fview%2FfBoHkB92SU0%2F2425&s=true&commands=(%20presentation%0A%20(%20slide%20%22live%20performance%20-%20So%20What%22%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%20)%20)%0A%20)%0A%20(%20slide%20%22Miles%20Davis%20quintet%20solo%22%0A%20%20%20(%20fragment%20%22video%20with%20a%20start%20time%22%20)%0A%20%20%20(%20fragment%20%22move%20video%20cursor%22%20%22goto%3A2785%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20video%20cursor%20again%22%20%22goto%3A545%22%20)%20%20%20%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FfBoHkB92SU0%3Ft%3D2425%20)%20)%0A%20)%0A)#|example]] }}]
+[{{::commands_001.jpg?direct|presentation [[https://conze.pt/explore/?&t=link&u=%2Fapp%2Fvideo%2F%3Fwide%3Dtrue%23%2Fview%2FfBoHkB92SU0%2F2425&s=true&commands=(%20presentation%0A%20(%20slide%20%22live%20performance%20-%20So%20What%22%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzqNTltOGh5c%20)%20)%0A%20)%0A%20(%20slide%20%22Miles%20Davis%20quintet%20solo%22%0A%20%20%20(%20fragment%20%22video%20with%20a%20start%20time%22%20)%0A%20%20%20(%20fragment%20%22move%20video%20cursor%22%20%22goto%3A2785%22%20)%20%20%20%0A%20%20%20(%20fragment%20%22move%20video%20cursor%20again%22%20%22goto%3A545%22%20)%20%20%20%0A%20%20%20(%20show%20%27youtube%20%27(%20https%3A%2F%2Fyoutu.be%2FfBoHkB92SU0%3Ft%3D2425%20)%20)%0A%20)%0A)#|example]] }}]
 
 Presentations can be constructed using the commands: **presentation**, **slide** and **fragment**.
 
