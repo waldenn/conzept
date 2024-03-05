@@ -24,16 +24,16 @@ There are various parameters available to structure URLs.
 
 ^ parameter  ^ description    ^ default value      ^
 | **l** | language | "en" |
-| **lv** | language variant | "zh-my" |
+| **lv** | language variant (currently only applies to Chinese languages) | "zh-my" |
 | **t** | action-type | "string" |
-| **i** | entity ID (such as the Wikidata Q-identifier) | |
-| **u**  | URL-string | |
+| **i** | entity ID (such as the Wikidata Q-identifier) | - |
+| **u**  | URL-string | - |
 | **s** | sidebar visibility | true |
 | **v** | view-mode requested, can be "desktop" or "mobile" | (note: automatically determined by the device type, but can be overruled with this parameter) |
-| **c**  | custom data field (its format is not specified)| |
-| **singleuse**  | prevents permanently _storing_ the datasources activated by the URL datasources-paramater (this is useful for recursive Conzept views, such as used in presentations)| |
-| **query** | [[user_manual#structured_search|structured search]] query in JSON | |
-| **commands** | [[command API]] DSL code in Scheme Lisp (as used for [[command_api#presentation_commands|presentations]]) | |
+| **c**  | custom data field (its format is not specified)| - |
+| **singleuse**  | prevents permanently storing the datasources activated by the URL datasources-paramater (this is useful for recursive Conzept views, such as used in presentations)| false |
+| **query** | [[user_manual#structured_search|structured search]] query in JSON | - |
+| **commands** | [[command API]] DSL code in Scheme Lisp (as used for [[command_api#presentation_commands|presentations]]) | - |
 
 ===== URL action types =====
 

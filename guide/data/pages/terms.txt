@@ -56,6 +56,7 @@ Not all these viewpoints are relevant all the time for topics ofcourse. In some 
 Note: The section and field structures can be customized by editing the [[section customization|section file]] and the [[field customization|fields file]].
 
 [ Experimental: You can configure some of this context with the "persona-tags" setting. For example: If you have a "nomad" persona tag, you will see a link to walking routes in the topic-headline, when viewing a location topic. If you have a tourist-persona tag, then you will see a link to hotel locations. ]
+
 ===== topic fields =====
 
 [{{ ::section-fields-1.jpg?direct|main-section fields}}]

@@ -2,13 +2,26 @@
 
   * Fix the items mentioned in **[[issues|issues]]**.
 
+===== datasources =====
+
+  * Implement async wikidata-enriching (partly done)
+  * ? datasource-activation switches for only autocomplete (not searching)
+  * support for other search modalities in datasources:
+    * design workflow
+    * first test case: geospatial searching in the active datasources (when possible through their API).
+
+  * add new search modalities:
+    * temporal-range search (point-in-time, start-time, end-time)
+    * ISBN search
+    * DOI search
+    * structured search using SPARQL (beyond Wikidata)
+      * ontology classes
+      * ontology properties
+      * autocompletion
+      * multi-lingual labels
+      * handle CORS issues
+
 ===== frontend ideas =====
-
-  * datasources functionality:
-    * Implement async wikidata-enriching (partly done)
-    * ? datasource-activation switches for only autocomplete (not searching)
-
-  * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * **Bookmarking**:
     * Cross-tab bookmark state-syncing
@@ -24,17 +37,7 @@
       * ? PDF
     * Research better drag-and-drop support
 
-  * **structured search (beyond Wikidata)**
-    * ontology classes
-    * ontology properties
-    * autocompletion
-    * multi-lingual labels
-    * handle CORS issues
-
-  * search modalities:
-    * support date-range search modality
-    * support geo / date-range searching in the active datasources (when possible through their API).
-      * add to each datasource definition which search-modalities are supported: string, geo, date, ...
+  * Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * Look into using more webcomponents:
     * [[https://shoelace.style|Shoelace webcomponent system]]

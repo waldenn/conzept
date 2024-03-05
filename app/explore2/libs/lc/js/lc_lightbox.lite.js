@@ -48,6 +48,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_fullscreen" title="toggle fullscreen"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_toggle toggle_menu" title="toggle filters"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
+				'<div class="lcl_icon lcl_right_icon lcl_image_depth" title="image depth"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_object_detection" title="object detection"></div>'+
 				//'<div class="lcl_icon lcl_right_icon lcl_object_3d" title="object 3D (using monocular depth estimation)"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
@@ -2351,18 +2352,41 @@ let my_current_image = '';
     // CONZEPT PATCH
 		/* open reverse image search tab */ 
 		$(document).on('click', '.lcl_revsearch', function(e) {
+
 			if(obj != lcl_curr_obj) {return true;}
+
 		  var el = lcl_curr_vars.elems[ lcl_curr_vars.elem_index ];
+
       //console.log( el.src );
       //window.open( 'https://www.google.com/searchbyimage?&image_url=' + el.src , '_blank');
       window.open( 'https://www.bing.com/images/search?view=detailv2&iss=sbi&form=SBIHMP&sbisrc=UrlPaste&q=imgurl:' + el.src , '_blank');
 		});	
 
     // CONZEPT PATCH
+		$(document).on('click', '.lcl_image_depth', async function(e) {
+
+      console.log( 'image depth');
+
+			if ( obj != lcl_curr_obj ){return true;}
+
+      const file = my_current_image;
+
+      if (!file) {
+        return;
+      }
+
+      console.log( 'image: ', file  );
+
+      // open in new tab
+      window.open( `/app/ai-image-depth/index.html?url=${ encodeURIComponent( file ) }`, '_blank');
+
+		});
+
+    // CONZEPT PATCH
 		/* AI object-detection tab */ 
 		$(document).on('click', '.lcl_object_detection', async function(e) {
 
-			if(obj != lcl_curr_obj) {return true;}
+			if ( obj != lcl_curr_obj){return true;}
 
 		  var el = lcl_curr_vars.elems[ lcl_curr_vars.elem_index ];
 
@@ -2377,7 +2401,7 @@ let my_current_image = '';
 
 			$('#status').text('detecting objects...');
 
-      const file = el.src; // e.target.files[0];
+      const file = image_url;
 
       if (!file) {
         return;
@@ -2388,7 +2412,7 @@ let my_current_image = '';
       let blob      = await fetch( file ).then( r => r.blob());
       reader.readAsDataURL( blob );
 
-		});	
+		});
 
     // CONZEPT PATCH
 		/* openseadragon zoom in fullscreen */ 
