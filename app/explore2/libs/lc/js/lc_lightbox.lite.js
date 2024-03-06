@@ -2370,7 +2370,7 @@ let my_current_image = '';
 
       if (!file){ return; }
 
-      if ( file.includes( 'wikimedia.org' ){ // only for Wikimedia Commons images
+      if ( file.includes( 'wikimedia.org' ) ){ // only for Wikimedia Commons images
         file = file.replace( /\d{3,4}px\b/g, '1400px' );
       }
 
