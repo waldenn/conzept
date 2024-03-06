@@ -2370,7 +2370,9 @@ let my_current_image = '';
 
       if (!file){ return; }
 
-      file = file.replace( '800px', '1200px' ); // sync common pixel-value, with all image-viewing apps
+      if ( file.includes( 'wikimedia.org' ){ // only for Wikimedia Commons images
+        file = file.replace( /\d{3,4}px\b/g, '1400px' );
+      }
 
       console.log( 'image: ', file  );
 

@@ -1,5 +1,20 @@
 conzept_fields = {
 
+// FIXME: get the right language-statement-value for "title", example: https://www.wikidata.org/wiki/Q219831?uselang=en
+'title_alternative' : {
+  //create_condition: '!valid( item.title )', // skip if the title was already set
+  //create_trigger: ' ... title property found',
+  title: 'Title',
+  prop: '1476',
+  type: 'symbol-string',
+  mv: true,
+  url: '',
+  icon: '',
+  text: 'title',
+  section: 'info',
+  rank: '301476',
+},
+
 'image_full' : {
   value: '${ wd.claims.P18[0] }',
   //value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=3500px',
@@ -144251,19 +144266,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Sandbox-Monolingual text',
   section: 'info',
   rank: '301450',
-  auto: true,
-},
-
-'title' : {
-  title: 'Title',
-  prop: '1476',
-  type: 'symbol-string',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'title',
-  section: 'info',
-  rank: '301476',
   auto: true,
 },
 

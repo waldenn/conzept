@@ -1425,7 +1425,22 @@ async function setWikidataPromise( item, wd, single, target_pane, callback ){
 // detect the relevant wikidata-data and put this info into each item
 async function setWikidata( item, wd, single, target_pane, callback ){
 
-  //console.log( 'setWikidata()' );
+  if ( typeof item.title === undefined ){ // no title yet
+
+    if ( valid( wd.labels ) ){ // we have some labels
+
+      if ( valid( wd.labels[ explore.language ] ) ){
+
+        item.title = wd.labels['en'];
+
+        console.log( 'setWikidata(): item.title set to: ', item );
+
+      }
+
+    }
+
+  }
+
 
   // initialize fields that have a "default_value"
   conzept_field_names.forEach(( val, index ) => {
@@ -2571,6 +2586,11 @@ async function setWikidata( item, wd, single, target_pane, callback ){
   if ( typeof item.title === undefined || isQid( item.title ) ){
 
     if ( valid( wd.labels ) ){ // we have some labels
+
+
+      console.log( wd.labels );
+
+      // start with requested-language-label, else go over all the others
 
       if      ( valid( wd.labels['en'] ) ){ item.title = wd.labels['en']; }
       else if ( valid( wd.labels['de'] ) ){ item.title = wd.labels['de']; }

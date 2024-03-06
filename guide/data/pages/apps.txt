@@ -102,6 +102,33 @@ The timeline app also allows you to view events / creations / etc, both in the t
 
 Note: The timeline app has more of a focus on the "//map locations//" compared to the time-space app, which focuses more on the "//series of related events//".
 
+===== Commons images =====
+
+[{{::commons_images_app_001.jpg?direct|[[https://conze.pt/explore/Claude%20Monet?l=en&d=wikipedia,wikidata&t=link&i=Q296&u=%2Fapp%2Fcommons-sparql%2F%3Ft%3Dworks%252520%25253A%252520Claude%252520Monet%26l%3Den%26url%3Dhttps%25253A%25252F%25252Fquery.wikidata.org%25252Fsparql%25253Fformat%25253Djson%252526query%25253DSELECT%25252520DISTINCT%25252520%25253Fitem%25252520%25253FitemLabel%25252520%25253Fimage%25252520%25253Fdate%25252520WHERE%25252520%257B%25252520%25252520%257B%25252520%25253Fitem%25252520wdt%25253AP31%25252520wd%25253AQ3305213.%25252520%257D%25252520%25252520UNION%25252520%25252520%257B%25252520%25253Fitem%25252520wdt%25253AP31%25252520wd%25253AQ93184.%25252520%257D%25252520%25252520UNION%25252520%25252520%257B%25252520%25253Fitem%25252520wdt%25253AP31%25252520wd%25253AQ11060274.%25252520%257D%25252520%25252520UNION%25252520%25252520%257B%25252520%25253Fitem%25252520wdt%25253AP31%25252520wd%25253AQ15123870.%25252520%257D%25252520%25252520%25253Fitem%25252520wdt%25253AP170%25252520wd%25253AQ296.%25252520%25252520%25253Fitem%25252520wdt%25253AP18%25252520%25253Fimage.%25252520%25252520OPTIONAL%25252520%257B%25252520%25253Fitem%25252520wdt%25253AP571%25252520%25253Fdate.%25252520%257D%25252520%25252520SERVICE%25252520wikibase%25253Alabel%25252520%257B%25252520bd%25253AserviceParam%25252520wikibase%25253Alanguage%25252520%25252522en%25252Cen%25252Cceb%25252Csv%25252Cde%25252Cfr%25252Cnl%25252Cru%25252Cit%25252Ces%25252Cpl%25252Cwar%25252Cvi%25252Cja%25252Czh%25252Carz%25252Car%25252Cuk%25252Cpt%25252Cfa%25252Cca%25252Csr%25252Cid%25252Cno%25252Cko%25252Cfi%25252Chu%25252Ccs%25252Csh%25252Cro%25252Cnan%25252Ctr%25252Ceu%25252Cms%25252Cce%25252Ceo%25252Che%25252Chy%25252Cbg%25252Cda%25252Cazb%25252Csk%25252Ckk%25252Cmin%25252Chr%25252Cet%25252Clt%25252Cbe%25252Cel%25252Caz%25252Csl%25252Cgl%25252Cur%25252Cnn%25252Cnb%25252Chi%25252Cka%25252Cth%25252Ctt%25252Cuz%25252Cla%25252Ccy%25252Cta%25252Cvo%25252Cmk%25252Cast%25252Clv%25252Cyue%25252Ctg%25252Cbn%25252Caf%25252Cmg%25252Coc%25252Cbs%25252Csq%25252Cky%25252Cnds%25252Cnew%25252Cbe-tarask%25252Cml%25252Cte%25252Cbr%25252Ctl%25252Cvec%25252Cpms%25252Cmr%25252Csu%25252Cht%25252Csw%25252Clb%25252Cjv%25252Csco%25252Cpnb%25252Cba%25252Cga%25252Cszl%25252Cis%25252Cmy%25252Cfy%25252Ccv%25252Clmo%25252Cwuu%25252Cbn%25252522.%25252520%257D%257DORDER%25252520BY%25252520DESC(%25253Fdate)%25250D%25250A&s=false#|link]]}}]
+
+View the images on Wikimedia Commons using a SPARQL-query (or via a single Wikidata Qid - using the similar "commons-qid" app).
+
+===== image viewer component =====
+
+[{{::common_image_viewer_app_001.jpg?direct|}}]
+
+This is the standard image viewing component (based on [[https://github.com/LCweb-ita/LC-Lightbox-LITE|LC Lightbox]]) used in several embedded apps (Wikipedia, Commons-SPARQL and others), to view image files.
+
+The common image viewer has various advanced features:
+  * Gallery thumbnails
+  * Gallery slideshow
+  * Image zoom and panning
+  * Color palette detection
+  * Interactive image filters
+  * Reverse image-search (via Bing Images)
+  * Monocular image-depth estimation, using browser-based AI (this turns a 2D image into a semi-3D scene)
+
+===== IIIF image viewer =====
+
+[{{::iiif_image_viewer_app_001.jpg?direct|[[|link]]}}]
+
+This app allows for viewing IIIF files.
+
 ===== filter-browse app =====
 
 [{{::filter_browse_app.jpg?direct|[[https://conze.pt/explore/Business?l=en&t=link-split&i=Q4830453&u=https%3A%2F%2Fconze.pt%2Fapp%2Fbrowse%2F%3Fc%3DQ4830453%26lang%3Den&s=true|example]]}}]
