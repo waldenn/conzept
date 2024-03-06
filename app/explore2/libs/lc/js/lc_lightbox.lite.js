@@ -48,9 +48,8 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_fullscreen" title="toggle fullscreen"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_toggle toggle_menu" title="toggle filters"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
+				'<div class="lcl_icon lcl_right_icon lcl_object_detection" style="display:none;" title="object detection"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_image_depth" title="image depth"></div>'+
-				'<div class="lcl_icon lcl_right_icon lcl_object_detection" title="object detection"></div>'+
-				//'<div class="lcl_icon lcl_right_icon lcl_object_3d" title="object 3D (using monocular depth estimation)"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_txt_toggle" title="toggle text"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_download" title="download"></div>'+
@@ -2365,15 +2364,13 @@ let my_current_image = '';
     // CONZEPT PATCH
 		$(document).on('click', '.lcl_image_depth', async function(e) {
 
-      console.log( 'image depth');
+			if ( obj != lcl_curr_obj ){ return true; }
 
-			if ( obj != lcl_curr_obj ){return true;}
+      let file = my_current_image;
 
-      const file = my_current_image;
+      if (!file){ return; }
 
-      if (!file) {
-        return;
-      }
+      file = file.replace( '800px', '1200px' ); // sync common pixel-value, with all image-viewing apps
 
       console.log( 'image: ', file  );
 
