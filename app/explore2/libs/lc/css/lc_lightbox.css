@@ -775,6 +775,7 @@ a#image-palette-close {
 .lcl_zoom_in:before		{content: "\e908"; font-size:16px;}
 .lcl_openseadragon:before { content: "\e908"; font-size: 16px; }  /* CONZEPT PATCH */
 .lcl_image_depth:before { content: "⛬"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
+.lcl_image_depth_inline:before { content: "⛬"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_object_detection:before { content: "⮺"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_revsearch:before { content: "⋒"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */
 .lcl_filters_toggle:before { content: "☀"; font-size: 16px; font-weight: bold; }  /* CONZEPT PATCH */

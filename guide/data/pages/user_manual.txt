@@ -202,7 +202,7 @@ This feature can be enabled through: **settings menu** -> **features** -> **AI s
 
 [{{ ::presentation_001.jpg?direct|auto-generated topic presentation ([[https://conze.pt/explore?l=en&d=wikipedia,wikidata&t=presentation&i=Q36534#|link]]) }}]
 
-The topic-cards with a Wikidata-Qid and a classification, show a link to the topic presentation. These presentation is accompanied by a spoken version of the Wikipedia article. You can select other sections to be spoken or pause/resume/stop the Text-to-Speech at any time.
+The topic-cards with a Wikidata-Qid and a classification, show a link to the topic presentation. The presentation is accompanied by a spoken version of the Wikipedia article. You can select other sections to be spoken or pause/resume/stop the Text-to-Speech at any time.
 
 Using the (LISP-Scheme based) **[[command API]]** it is possible to auto-generated topic-presentations.
 

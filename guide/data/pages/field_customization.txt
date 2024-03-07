@@ -89,16 +89,16 @@ These types are currently available in field-definitions:
 
 Conzept has various title-forms which can be used anywhere in the field definition values:
 
-^ name  ^ description ^
-| **title_no_braces** | title without braces|
-| **title_no_braces_lowercase** | title without braces in lowercase|
-| **title_** | title without any Wikipedia namespace-prefix and braces (note: also the basis for all the titles below)|
-| **title_enc** | title URL-encoded |
-| **title_quoted** | title "in quotes" (note: this is the most used title-form, for 3rd-party site searches) |
-| **title_plus** | title with a plus for spaces |
-| **title_dashed** | title with dash for spaces |
-| **title_lowercase** | title in lowercase |
-| **title_no_spaces** | title without spaces |
+^ name  ^ description ^ example ^
+| **title_no_braces** | title without braces| A Night at the Opera (Queen album)|
+| **title_no_braces_lowercase** | title without braces in lowercase| a night at the opera|
+| **title_** | title without any Wikipedia namespace-prefix and braces (note: also the basis for all the titles below)| A Night at the Opera|
+| **title_enc** | title URL-encoded | A%20Night%20at%20the%20Opera%20(Queen%20album)|
+| **title_quoted** | title "in quotes" (note: this is the most used title-form, for 3rd-party site searches) | "A Night at the Opera"|
+| **title_plus** | title with a plus for spaces | A+Night+at+the+Opera|
+| **title_dashed** | title with dash for spaces | A-Night-at-the-Opera|
+| **title_lowercase** | title in lowercase | a night at the opera|
+| **title_no_spaces** | title without spaces | A_Night_at_the_Opera|
 
 \\
 

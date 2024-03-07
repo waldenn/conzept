@@ -1,5 +1,7 @@
 ====== browser extension ======
 
+(NOTE: The Conzept extension needs to be redesigned and rewritten)
+
 [{{::extension_text_selection.jpg?direct|text-selection search}}]
 
 [{{::extension_sidebar_1.jpg?direct|sidebar entity-view on a matching URL}}]

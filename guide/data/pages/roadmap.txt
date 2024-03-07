@@ -58,6 +58,8 @@
   * Field-translation support: Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
     * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
 
+  * Add a test-framework -> start adding tests for the most essential / complex code parts
+
 ===== general ideas =====
 
   * Conzept development vision:

@@ -50,6 +50,7 @@ let my_current_image = '';
 				'<div class="lcl_icon lcl_right_icon lcl_filters_image_quantize_toggle toggle_menu" title="toggle color palette"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_object_detection" style="display:none;" title="object detection"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_image_depth" title="image depth"></div>'+
+				//'<div class="lcl_icon lcl_right_icon lcl_image_depth_inline" title="image depth inline"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_revsearch" title="reverse image search"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_txt_toggle" title="toggle text"></div>'+
 				'<div class="lcl_icon lcl_right_icon lcl_download" title="download"></div>'+
@@ -2378,6 +2379,36 @@ let my_current_image = '';
 
       // open in new tab
       window.open( `/app/ai-image-depth/index.html?url=${ encodeURIComponent( file ) }`, '_blank');
+
+		});
+
+    // CONZEPT PATCH
+    // TODO: implement an "on page" depth-image-view
+		$(document).on('click', '.lcl_image_depth_inline', async function(e) {
+
+			if ( obj != lcl_curr_obj ){ return true; }
+
+      let file = my_current_image;
+
+      if (!file){ return; }
+
+      if ( file.includes( 'wikimedia.org' ) ){ // only for Wikimedia Commons images
+        file = file.replace( /\d{3,4}px\b/g, '1400px' );
+      }
+
+      console.log( 'image: ', file  );
+
+      // remove old image-depth iframe-UI (if it exists)
+      $('#image-depth-iframe, #image-depth-iframe-close' ).remove();
+
+      // insert a new image-depth iframe
+      $('body').append( `<iframe id="image-depth-iframe" src="${file}" allowtransparency="false" frameborder="0" scrolling="no" style="height:100%; background: yellow; border: 0px; bottom: 0px; float: none; left: 0px; margin: 0px; padding: 0px; position: absolute; right: 0px; width: 100%; height: 100%; z-index: 9999999;"></iframe>` );
+
+      // add close-button
+      $('body').append( '<a id="image-depth-iframe-close" href="javascript: void(0)" onclick="console.log(&quot;close iframe&quot;); $( &quot;#image-depth-iframe, #image-depth-iframe-close&quot; ).remove()" style="color: white; font-size: 2em; position: absolute; right: 2em; top: 3em; z-index: 9999999;"> X </a>' );
+
+      // open in new tab
+      //window.open( `https://${explore.host}${explore.base}/app/ai-image-depth/index.html?url=${ encodeURIComponent( file ) }`, '_blank');
 
 		});
 
