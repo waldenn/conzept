@@ -146123,7 +146123,7 @@ if ( valid( item.found_in_taxon ) ){
 // placed here so we can run "setThumbnail( item )"
 'wikicommons_image_search' : {
   create_condition: 'valid( item.qid )',
-  create_trigger: 'setThumbnail( item )', // check all Commons thumbnail candidates
+  //create_trigger: 'setThumbnail( item )', // check all Commons thumbnail candidates
   title: 'Wikimedia Commons images',
   prop: '',
   type: 'link',
@@ -146133,7 +146133,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Commons',
   section: ['media-image','main'],
   rank: [51,1041],
-  headline_create: 'valid( [ item.qid, item.thumbnail ] ) || valid( item.wikicommons_page )',
+  headline_create: 'valid( [ item.qid, setThumbnail( item ) ] ) || valid( item.wikicommons_page )',
   //headline_create: 'valid( [ item.qid, item.thumbnail ] ) && !valid( item.is_painter ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.wikicommons_page )', 
   headline_type: 'link',
   headline_rank: 440,

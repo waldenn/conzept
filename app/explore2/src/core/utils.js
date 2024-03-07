@@ -2003,9 +2003,7 @@ function setThumbnail( item ){
 
   });
 
-  //if ( valid( item.thumbnail ) ){
-    //console.log( 'item.thumbnail: ', item.title, item.thumbnail );
-  //}
+  return valid( item.thumbnail )? true : false;
 
 }
 
