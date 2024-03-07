@@ -1441,7 +1441,6 @@ async function setWikidata( item, wd, single, target_pane, callback ){
 
   }
 
-
   // initialize fields that have a "default_value"
   conzept_field_names.forEach(( val, index ) => {
 
@@ -1683,7 +1682,6 @@ async function setWikidata( item, wd, single, target_pane, callback ){
     }
 
   });
-
 
   // optional third-round of setting the tags, by matching "ORES tags" to Conzept tags
   //if ( item.tags[0] === '' ){ // still no main-tag set so far...
@@ -1935,6 +1933,13 @@ async function setWikidata( item, wd, single, target_pane, callback ){
     //console.log( item );
 
   });
+
+  // set item thumbnail
+  if ( !valid( item.thumbnail ){ // no thumbnail yet
+
+    setThumbnail( item );
+
+  }
 
   // condition: "instance of" P31 is defined
   if ( valid( item.instances ) ){ // we have "instance of" values
