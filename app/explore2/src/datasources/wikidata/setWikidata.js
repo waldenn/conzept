@@ -1935,7 +1935,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
   });
 
   // set item thumbnail
-  if ( !valid( item.thumbnail ){ // no thumbnail yet
+  if ( !valid( item.thumbnail ) ){ // no thumbnail yet
 
     setThumbnail( item );
 
