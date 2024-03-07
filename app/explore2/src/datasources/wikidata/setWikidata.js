@@ -1688,7 +1688,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
   // TODO: fetch ORES data: https://wikipedia-topic.wmcloud.org/api/v1/topic?threshold=0.65&lang=en&title=heaven
   //  will the ORES API fetches slow things down too much, if we need to wait for all of them to return data?
   //  --> take the first value (if any)
-  //    --> slplit the tags by "."
+  //    --> split the tags by "."
   //      --> get the last tag: ores_tags['<tag>']
   //        --> call setTag() for each tag-value
   //}
