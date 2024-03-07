@@ -929,7 +929,7 @@ async function insertPresentationSections( title, qid, language ){
 
       if ( valid( response.parse?.sections ) ){
 
-        let options_html = '<option value="" selected>Wikipedia</option>';
+        let options_html = `<option value="" selected>${ title }</option>`;
 
         $.each( response.parse?.sections, function ( i, section ) {
 
@@ -937,7 +937,7 @@ async function insertPresentationSections( title, qid, language ){
 
           const indent = '⠀'.repeat( section.toclevel );
 
-          options_html += `<option value="${ anchor }">${ indent + section.anchor.replaceAll('_', ' ') }</option>`;
+          options_html += `<option value="${ anchor }">&nbsp; ${ indent + section.anchor.replaceAll('_', ' ') }</option>`;
 
         });
 

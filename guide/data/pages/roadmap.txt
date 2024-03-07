@@ -60,6 +60,16 @@
 
   * Add a test-framework -> start adding tests for the most essential / complex code parts
 
+===== presentation ideas =====
+
+  * Allow for extra Text-to-Speech (TTS) storylines around a topic, beyond the Wikipedia article. 
+    * ...
+    * How to detect these story-angles for a topic?
+      * Gather all the "see more" links from the topic article
+        * for each new 'angle' article, fetch the ToC and append it to the presentation-tts-toc with its title.
+
+  * User-created and auto-generated presentations around a topic.
+
 ===== general ideas =====
 
   * Conzept development vision:
@@ -68,8 +78,6 @@
 
   * Research **educational-support enhancements**:
     * Collaborative & social learning features (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
-    * User-created and auto-generated presentations around a topic
-    * Auto-generated topic [[https://conze.pt/explore/Genre?l=en&t=link&i=Q483394&u=https%3A%2F%2Fconze.pt%2Fapp%2Fquiz%2F%3Fm%3Dlist%26q%3DQ3305213%26p%3DP136%26l%3Den&s=true|quizzes]]
     * Auto-generated, [[https://fs.blog/spacing-effect/|spaced-repetition]]-based facts learning (for a certain topic / set of topics / topic-domain)
     * ? Note-taking integration  (eg.: [[https://bangle.io/|Bangle]], ...)
     * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
