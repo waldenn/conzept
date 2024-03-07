@@ -146132,7 +146132,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Commons',
   section: ['media-image','main'],
   rank: [51,1041],
-  headline_create: 'valid( [ item.qid, setThumbnail( item ) ] ) || validAny( item.wikicommons_page, item.wikicommons_cat ] )',
+  headline_create: 'valid( [ item.qid, setThumbnail( item ) ] ) || validAny( [ item.wikicommons_page, item.wikicommons_cat ] )',
   //headline_create: 'valid( [ item.qid, item.thumbnail ] ) && !valid( item.is_painter ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.wikicommons_page )', 
   headline_type: 'link',
   headline_rank: 440,
