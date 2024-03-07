@@ -3493,23 +3493,6 @@ conzept_fields = {
   rank: [85],
 },
 
-'wikicommons_image_search' : {
-  create_condition: 'valid( item.qid )',
-  title: 'Wikimedia Commons images',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/commons-qid/?q=${item.qid}&l=${explore.language}',
-  icon: 'fa-regular fa-images',
-  text: 'Commons',
-  section: ['media-image','main'],
-  rank: [51,1041],
-  headline_create: 'valid( [ item.qid, item.thumbnail ] ) || valid( item.wikicommons_page )',
-  //headline_create: 'valid( [ item.qid, item.thumbnail ] ) && !valid( item.is_painter ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.wikicommons_page )', 
-  headline_type: 'link',
-  headline_rank: 440,
-},
-
 'painter_works_commons_sparql' : {
   create_condition: 'valid( item.qid ) && valid( item.is_painter )',
   title: 'painter works on Wikimedia Commons',
@@ -146136,6 +146119,26 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 /* END OF AUTOMATED FIELDS */
+
+// placed here so we can run "setThumbnail( item )"
+'wikicommons_image_search' : {
+  create_condition: 'valid( item.qid )',
+  create_trigger: 'setThumbnail( item )', // check all Commons thumbnail candidates
+  title: 'Wikimedia Commons images',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/commons-qid/?q=${item.qid}&l=${explore.language}',
+  icon: 'fa-regular fa-images',
+  text: 'Commons',
+  section: ['media-image','main'],
+  rank: [51,1041],
+  headline_create: 'valid( [ item.qid, item.thumbnail ] ) || valid( item.wikicommons_page )',
+  //headline_create: 'valid( [ item.qid, item.thumbnail ] ) && !valid( item.is_painter ) && checkTag( item, 0, [ "person", "work", "location", "organism", "time", "organization", "group", "substance", "natural-type", "natural-concept", "cultural-concept", "meta-concept" ] ) || valid( item.wikicommons_page )', 
+  headline_type: 'link',
+  headline_rank: 440,
+},
+
 
 };
 
