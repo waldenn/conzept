@@ -1077,7 +1077,7 @@ async function insertPresentationSections( title, qid, language ){
 
         });
 
-        console.log( all_qids );
+        //console.log( all_qids );
 
       }
 

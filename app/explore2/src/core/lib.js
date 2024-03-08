@@ -294,7 +294,7 @@ function triggerQueryForm(){
 
           }
 
-          insertPresentationSections( explore.q, '', explore.language );
+          //insertPresentationSections( explore.q, '', explore.language );
 
           startSpeakingArticle( explore.q, '', explore.language );
         }
