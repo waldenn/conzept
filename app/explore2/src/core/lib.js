@@ -294,10 +294,9 @@ function triggerQueryForm(){
 
           }
 
-          const qid_ = valid( explore.qid )? explore.qid : explore.q_id;
+          const qid_ = valid( explore.qid )? explore.qid : getParameterByName( 'i' );
 
           console.log( 'presentation toc by URL: ', explore.q, qid_, explore.language );
-
           insertPresentationSections( explore.q, qid_, explore.language );
 
           startSpeakingArticle( explore.q, '', explore.language );
