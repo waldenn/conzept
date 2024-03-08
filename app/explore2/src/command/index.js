@@ -943,7 +943,7 @@ async function insertPresentationSections( title, qid, language ){
 
         // add more ToC 'chapters' (for each topic relational property)
 
-        let all_qids = []; // track all found related Qid's
+        let all_qids = [ qid ]; // track all Qid's to avoid duplicate entries
 
         const props_about_item = [
           'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
@@ -952,7 +952,6 @@ async function insertPresentationSections( title, qid, language ){
 
         $.each( props_about_item, function ( index, prop ){
 
-          // add any topic facets (P1269)
           const topic_facets_url = `https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3A${ prop }%20wd%3A${ qid }.%0A%20%20%3Farticle%20schema%3Aabout%20%3Fitem%3B%0A%20%20%20%20schema%3AinLanguage%20%22${ explore.language }%22.%0A%20%20FILTER((SUBSTR(STR(%3Farticle)%2C%201%20%2C%2025%20))%20%3D%20%22https%3A%2F%2F${ explore.language }.wikipedia.org%2F%22)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20100`;
 
           $.ajax({
@@ -975,7 +974,7 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_qid = facet.item.value.replace( 'http://www.wikidata.org/entity/', '' );
 
-                  if ( facet_qid === qid || all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
+                  if ( all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
 
                     return 1;
 
@@ -991,6 +990,8 @@ async function insertPresentationSections( title, qid, language ){
                 if ( valid( facet?.itemLabel?.value ) ){
 
                   facet_title = facet.itemLabel.value;
+
+                  console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
 
                 }
 
@@ -1009,13 +1010,13 @@ async function insertPresentationSections( title, qid, language ){
         });
 
         const props_on_item = [
+          'P941',   // inspired-by        https://www.wikidata.org/wiki/Property:P941
           'P527',   // has-parts          https://www.wikidata.org/wiki/Property:P527
-          'P2670',  // has-parts-of-class https://www.wikidata.org/wiki/Property:P2670  
+          //'P2670',  // has-parts-of-class https://www.wikidata.org/wiki/Property:P2670  
         ];
 
         $.each( props_on_item, function ( index, prop ){
 
-          // add any topic facets (P1269)
           const topic_facets_url = `https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20wd%3A${ qid }%20 wdt%3A${ prop }%20%3Fitem wd%3A${ qid }.%0A%20%20%3Farticle%20schema%3Aabout%20%3Fitem%3B%0A%20%20%20%20schema%3AinLanguage%20%22${ explore.language }%22.%0A%20%20FILTER((SUBSTR(STR(%3Farticle)%2C%201%20%2C%2025%20))%20%3D%20%22https%3A%2F%2F${ explore.language }.wikipedia.org%2F%22)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ explore.language }%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0ALIMIT%20100`;
 
           $.ajax({
@@ -1038,7 +1039,7 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_qid = facet.item.value.replace( 'http://www.wikidata.org/entity/', '' );
 
-                  if ( facet_qid === qid || all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
+                  if ( all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
 
                     return 1;
 
@@ -1054,6 +1055,8 @@ async function insertPresentationSections( title, qid, language ){
                 if ( valid( facet?.itemLabel?.value ) ){
 
                   facet_title = facet.itemLabel.value;
+
+                  console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
 
                 }
 
