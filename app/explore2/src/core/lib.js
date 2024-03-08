@@ -11062,6 +11062,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title  = label;
 
         startPresentation( item );
+        insertPresentationSections( item.title, item.qid, explore.language )
 
       })
       .catch( error =>  {
@@ -11092,6 +11093,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title = title;
 
         startPresentation( item );
+        insertPresentationSections( item.title, item.qid, explore.language )
 
       }
       else {

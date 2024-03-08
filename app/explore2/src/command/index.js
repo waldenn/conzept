@@ -907,13 +907,15 @@ async function showPresentation( item, type ){
 
     }
 
-    insertPresentationSections( item.title, item.qid, explore.language );
+    //insertPresentationSections( item.title, item.qid, explore.language );
 
 	//}).catch(error => { console.log('error fetching presentation data'); });
 
 }
 
 async function insertPresentationSections( title, qid, language ){
+
+  console.log( 'insertPresentationSections: ', title, qid, language );
 
   $('#presentation-tts-sections').empty();
 
