@@ -294,6 +294,7 @@ function triggerQueryForm(){
 
           }
 
+          // FIXME: we need to get a Qid from the URL
           const qid_ = valid( explore.qid )? explore.qid : getParameterByName( 'i' );
 
           console.log( 'presentation toc by URL: ', explore.q, qid_, explore.language );

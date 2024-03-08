@@ -915,6 +915,8 @@ async function showPresentation( item, type ){
 
 async function insertPresentationSections( title, qid, language ){
 
+  console.trace();
+ 
   console.log( 'insertPresentationSections: ', title, qid, language );
 
   $('#presentation-tts-sections').empty();
@@ -2908,12 +2910,6 @@ async function runLISP( code ) {
   "use strict";
 
   //highlightLISP();
-
-  if ( valid( getParameterByName('i') ) ){
-
-    setParameter( 'i', encodeURIComponent( getParameterByName('i') ), explore.hash );
-
-  }
 
   // update URL command-param state
   explore.commands = explore.editor.getValue();
