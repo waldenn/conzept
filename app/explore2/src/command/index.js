@@ -2909,6 +2909,12 @@ async function runLISP( code ) {
 
   //highlightLISP();
 
+  if ( valid( getParameterByName('i') ) ){
+
+    setParameter( 'i', encodeURIComponent( getParameterByName('i') ), explore.hash );
+
+  }
+
   // update URL command-param state
   explore.commands = explore.editor.getValue();
   setParameter( 'commands', encodeURIComponent( explore.commands ), explore.hash );
