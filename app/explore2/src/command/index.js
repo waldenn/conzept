@@ -991,7 +991,7 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_title = facet.itemLabel.value;
 
-                  console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
+                  //console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
 
                 }
 
@@ -1010,9 +1010,12 @@ async function insertPresentationSections( title, qid, language ){
         });
 
         const props_on_item = [
+          'P921',   // main-subject       https://www.wikidata.org/wiki/Property:P921
           'P941',   // inspired-by        https://www.wikidata.org/wiki/Property:P941
           'P527',   // has-parts          https://www.wikidata.org/wiki/Property:P527
-          //'P2670',  // has-parts-of-class https://www.wikidata.org/wiki/Property:P2670  
+          //'P2670',// has-parts-of-class https://www.wikidata.org/wiki/Property:P2670  
+          'P5004',  // in-opposition-to   https://www.wikidata.org/wiki/Property:P5004
+          'P2184',  // history-of-topic   https://www.wikidata.org/wiki/Property:P2184
         ];
 
         $.each( props_on_item, function ( index, prop ){
@@ -1056,7 +1059,7 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_title = facet.itemLabel.value;
 
-                  console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
+                  //console.log( 'props_on_item: ', facet_qid, facet_title, all_qids );
 
                 }
 
