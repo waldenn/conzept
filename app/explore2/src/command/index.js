@@ -943,6 +943,8 @@ async function insertPresentationSections( title, qid, language ){
 
         // add more ToC 'chapters' (for each topic relational property)
 
+        let all_qids = []; // track all found related Qid's
+
         const props_about_item = [
           'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
           'P361',   // part-of            https://www.wikidata.org/wiki/Property:P361
@@ -973,9 +975,14 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_qid = facet.item.value.replace( 'http://www.wikidata.org/entity/', '' );
 
-                  if ( facet_qid === qid ){ // skip duplicate Qid entry
+                  if ( facet_qid === qid || all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
 
                     return 1;
+
+                  }
+                  else {
+
+                    all_qids.push( facet_qid );
 
                   }
 
@@ -1031,9 +1038,14 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_qid = facet.item.value.replace( 'http://www.wikidata.org/entity/', '' );
 
-                  if ( facet_qid === qid ){ // skip duplicate Qid entry
+                  if ( facet_qid === qid || all_qids.includes( facet_qid ) ){ // skip duplicate Qid entry
 
                     return 1;
+
+                  }
+                  else {
+
+                    all_qids.push( facet_qid );
 
                   }
 
