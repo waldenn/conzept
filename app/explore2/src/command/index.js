@@ -969,6 +969,12 @@ async function insertPresentationSections( title, qid, language ){
 
                   facet_qid = facet.item.value.replace( 'http://www.wikidata.org/entity/', '' );
 
+                  if ( facet_qid === qid ){ // skip duplicate Qid entry
+
+                    return 1;
+
+                  }
+
                 }
 
                 if ( valid( facet?.itemLabel?.value ) ){
