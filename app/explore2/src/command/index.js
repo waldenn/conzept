@@ -977,6 +977,8 @@ async function insertPresentationSections( title, qid, language ){
 
                 }
 
+                //console.log( facet_qid, facet_title );
+
                 facet_options_html += `<option value="${ facet_qid }">• ${ capitalizeFirstLetter( facet_title ) }</option>`;
 
               });
@@ -2832,13 +2834,13 @@ async function runLISP( code ) {
 
     explore.lisp( code, true ).then( function( results ) {
 
-      console.log( 'results: ', results );
+      //console.log( 'results: ', results );
 
       results.forEach( function(result) {
 
         if ( valid( result ) ){
 
-          console.log( 'out: ', result );
+          //console.log( 'out: ', result );
           //console.log( 'out: ', result.toString() );
 
         }

@@ -11112,7 +11112,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
 function startPresentation( item ){
 
-  console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
+  //console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
 
   let type  = '';
 
