@@ -1433,7 +1433,7 @@ async function setWikidata( item, wd, single, target_pane, callback ){
 
         item.title = wd.labels['en'];
 
-        console.log( 'setWikidata(): item.title set to: ', item );
+        //console.log( 'setWikidata(): item.title set to: ', item );
 
       }
 
@@ -2591,9 +2591,6 @@ async function setWikidata( item, wd, single, target_pane, callback ){
   if ( typeof item.title === undefined || isQid( item.title ) ){
 
     if ( valid( wd.labels ) ){ // we have some labels
-
-
-      console.log( wd.labels );
 
       // start with requested-language-label, else go over all the others
 
