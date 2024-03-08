@@ -943,7 +943,7 @@ async function insertPresentationSections( title, qid, language ){
 
         // add more ToC 'chapters' (for each topic relational property)
 
-        let all_qids = [ qid ]; // track all Qid's to avoid duplicate entries
+        let all_qids = [ qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
 
         const props_about_item = [
           'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
@@ -981,7 +981,7 @@ async function insertPresentationSections( title, qid, language ){
                   }
                   else {
 
-                    all_qids.push( facet_qid );
+                    all_qids.push( facet_qid.toUpperCase() );
 
                   }
 
@@ -997,7 +997,7 @@ async function insertPresentationSections( title, qid, language ){
 
                 //console.log( facet_qid, facet_title );
 
-                facet_options_html += `<option value="${ facet_qid }">• ${ capitalizeFirstLetter( facet_title ) }</option>`;
+                facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
 
               });
 
@@ -1049,7 +1049,7 @@ async function insertPresentationSections( title, qid, language ){
                   }
                   else {
 
-                    all_qids.push( facet_qid );
+                    all_qids.push( facet_qid.toUpperCase() );
 
                   }
 
