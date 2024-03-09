@@ -455,7 +455,8 @@ async function showPresentation( item, type ){
 		// note: we need to set the initial-language again before the next slide (since the previous "simple-language" slide might have changed the language)
 		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
 
-		if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
+    // Wikiversity is no longer embeddable, could we render it via Mediawiki API rendering?
+		//if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
 
     // OpenAlex slide
 		if ( valid( item.openalex ) ){

@@ -11716,7 +11716,7 @@ if ( valid( item.found_in_taxon ) ){
   default_value: '',
   title: 'wikiVersity',
   prop: '',
-  type: 'link',
+  type: 'url',
   mv: false,
   icon: 'fa-solid fa-landmark-dome',
   text: 'Wiki Versity',
