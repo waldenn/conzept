@@ -446,11 +446,13 @@ async function showPresentation( item, type ){
 
 		// COMMON SLIDES
 
+    /*
 		if ( language === 'en' ){
 
 			if ( valid( languages['simplewiki'] ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia simple)</h4>"\n    ( show \'link \'( "/app/wikipedia/?t=${ title_enc }&l=simple&qid=${ item.qid }&dir=ltr" ) ) )\n` ); }
 
 		}
+    */
 
 		// note: we need to set the initial-language again before the next slide (since the previous "simple-language" slide might have changed the language)
 		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
@@ -934,7 +936,7 @@ async function insertPresentationSections( title, qid, language ){
 
       if ( valid( response.parse?.sections ) ){
 
-        let options_html = `<option value="" selected>• ${ title }</option>`;
+        let options_html = `<option value="" selected>• ${ capitalizeFirstLetter( title ) }</option>`;
 
         $.each( response.parse?.sections, function ( i, section ) {
 
