@@ -642,20 +642,19 @@ $settings_html = '
               <details class="auto">
                 <summary><span id="app-menu-add-bookmark">add bookmark</span></summary>
 
-                <label for="bookmark-add-title">title:</label>
+                <label for="bookmark-add-title"><span id="app-menu-add-bookmark-title"></span>:</label>
                 <input type="text" id="bookmark-add-title" name="bookmark-add-title"><br><br>
 
-                <label for="bookmark-add-url">url:</label>
+                <label for="bookmark-add-url"><span id="app-menu-add-bookmark-url"></span>:</label>
                 <input type="text" id="bookmark-add-url" name="bookmark-add-url"><br><br>
 
-                <label for="bookmark-image-upload">images:</label>
+                <label for="bookmark-image-upload"><span id="app-menu-add-bookmark-images"></span>:</label>
                 <div id="bookmark-image-upload" class="image-upload">
                   <input id="image-upload" type="file" multiple onchange="showBookmarkFiles()" accept="image/*">
                 </div>
-                <ul id="clear-preview" onclick="clearImagePreview()"><i class="fa-solid fa-xmark"></i> clear files</ul>
+                <ul id="clear-preview" onclick="clearImagePreview()"><i class="fa-solid fa-xmark"></i> <span id="app-menu-add-bookmark-clear-files">clear files</span></ul>
 
                 <ul id="preview"></ul>
-
 
                 <button><span id="app-menu-bookmark-submit">add bookmark</span></button>
 

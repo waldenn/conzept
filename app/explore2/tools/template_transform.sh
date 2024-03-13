@@ -28,6 +28,12 @@ find ../../ -maxdepth 1 -mindepth 1 -type d | while read dir; do
 
 done
 
+# special case: "iiif-ng" app
+if [ -f "../../iiif-ng/dist/uv.template.html" ]
+then
+sed -e "s|CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY|$CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY|g ; s|CONZEPT_COMMON_HTML_INCLUDE|$CONZEPT_COMMON_HTML_INCLUDE|g ; s|CONZEPT_VERSION|$CONZEPT_VERSION|g ; s|CONZEPT_INDICATORS_VERSION|$CONZEPT_INDICATORS_VERSION|g ; s|CONZEPT_WEB_BASE|$CONZEPT_WEB_BASE|g ; s|CONZEPT_HOSTNAME|$CONZEPT_HOSTNAME|g ; s|CONZEPT_LOCALES|$CONZEPT_LOCALES|g ; s|CONZEPT_AI_TUTORS|$CONZEPT_AI_TUTORS|g ; s|CONZEPT_FONT|$CONZEPT_FONT|g ; s|CONZEPT_TRACKER_HTML_INCLUDE|$CONZEPT_TRACKER_HTML_INCLUDE|g" "../../iiif-ng/dist/uv.template.html"  > "../../iiif-ng/dist/uv.html"
+fi
+
 # loop over each Conzept quiz-app (located one level deeper than normal apps)
 find ../../quiz -maxdepth 1 -mindepth 1 -type d | while read dir; do
 

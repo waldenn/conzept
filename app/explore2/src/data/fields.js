@@ -2933,11 +2933,25 @@ conzept_fields = {
   type: 'symbol-number',
   mv: false,
   icon: 'fa-solid fa-ellipsis-v',
-  text: '',
+  text: 'number of seasons',
   section: 'info',
   rank: 200100,
   headline_create: true,
   headline_rank: 100,
+},
+
+'number_of_episodes' : {
+  title: 'Number of episodes',
+  prop: '1113',
+  type: 'symbol-number',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-list',
+  text: 'number of episodes',
+  section: 'info',
+  rank: 200110,
+  headline_create: true,
+  headline_rank: 101,
 },
 
 'employees' : {
@@ -3007,6 +3021,20 @@ conzept_fields = {
   rank: '201120',
   headline_create: true,
   headline_rank: 106,
+},
+
+'number_of_injured' : {
+  title: 'Number of injured',
+  prop: '1339',
+  type: 'symbol-number',
+  mv: false,
+  url: '',
+  icon: 'fa-solid fa-person-falling-burst',
+  text: 'number of injured',
+  section: ['info'],
+  rank: '201121',
+  headline_create: true,
+  headline_rank: 107,
 },
 
 'alexa_rank' : {
@@ -12908,7 +12936,7 @@ if ( valid( item.found_in_taxon ) ){
   title: 'IIIF media viewer',
   prop: '6108',
   type: 'link',
-  url: '${explore.base}/app/iiif/index.html#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif_wikidata ) }',
+  url: '${explore.base}/app/iiif/dist/uv.html#?cv=&c=&m=&s=&manifest=${ encodeURIComponent( item.iiif_wikidata ) }',
   mv: false,
   //mv: true,
   icon: 'fa-regular fa-eye',
@@ -132730,19 +132758,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'number_of_episodes' : {
-  title: 'Number of episodes',
-  prop: '1113',
-  type: 'symbol-number',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'number of episodes',
-  section: 'info',
-  rank: '201113',
-  auto: true,
-},
-
 'quantity' : {
   title: 'Quantity',
   prop: '1114',
@@ -133039,19 +133054,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'number of spans',
   section: 'info',
   rank: '201314',
-  auto: true,
-},
-
-'number_of_injured' : {
-  title: 'Number of injured',
-  prop: '1339',
-  type: 'symbol-number',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'number of injured',
-  section: 'info',
-  rank: '201339',
   auto: true,
 },
 

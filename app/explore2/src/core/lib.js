@@ -3338,7 +3338,6 @@ async function updateLocaleInterface(){
   $('#app-menu-random-topic').html( explore.banana.i18n('app-menu-random-topic') );
   $('#app-menu-compare-topics').html( explore.banana.i18n('app-menu-compare-topics') );
   $('#app-menu-toggle-fullscreen').html( explore.banana.i18n('app-menu-toggle-fullscreen') );
-  $('#app-menu-bookmark-current-view').html( explore.banana.i18n('app-menu-bookmark-current-view') );
   $('#app-menu-clone-tab').html( explore.banana.i18n('app-menu-clone-tab') );
   $('#app-menu-plant-identification').html( explore.banana.i18n('app-menu-plant-identification') );
   $('#app-menu-text-identification').html( explore.banana.i18n('app-menu-text-identification') );
@@ -3359,7 +3358,13 @@ async function updateLocaleInterface(){
   $('#app-menu-pitch').html( explore.banana.i18n('app-menu-pitch') );
   $('#app-menu-fullscreen-active-pane').html( explore.banana.i18n('app-menu-fullscreen-active-pane') );
   $('#app-menu-toggle-sidebar').html( explore.banana.i18n('app-menu-toggle-sidebar') );
+  $('#app-menu-bookmark-current-view').html( explore.banana.i18n('app-menu-bookmark-current-view') );
   $('#app-menu-add-bookmark').html( explore.banana.i18n('app-menu-add-bookmark') );
+  $('#app-menu-add-bookmark-title').html( explore.banana.i18n('app-menu-add-bookmark-title') );
+  $('#app-menu-add-bookmark-url').html( explore.banana.i18n('app-menu-add-bookmark-url') );
+  $('#app-menu-add-bookmark-images').html( explore.banana.i18n('app-menu-add-bookmark-images') );
+  $('#app-menu-add-bookmark-clear-files').html( explore.banana.i18n('app-menu-add-bookmark-clear-files') );
+  $('#app-menu-add-bookmark-submit').html( explore.banana.i18n('app-menu-add-bookmark-submit') );
   $('#app-menu-random-topic-key').html( explore.banana.i18n('app-menu-random-topic-key') );
   $('#app-menu-note-1').html( explore.banana.i18n('app-menu-note-1') );
 
