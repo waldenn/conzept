@@ -198,7 +198,7 @@ async function fetchPresentationData( title, language ){
 
 function showPresentation( item, type ){
 
-  console.log( 'showPresentation()', item );
+  //console.log( 'showPresentation()', item );
 
   item = unpackString( item ); 
   type = type.trim();
@@ -922,8 +922,7 @@ function showPresentation( item, type ){
 async function insertPresentationSections( title, qid, language ){
 
   //console.trace();
- 
-  console.log( 'insertPresentationSections: ', title, qid, language );
+  //console.log( 'insertPresentationSections: ', title, qid, language );
 
   $('#presentation-tts-sections').empty();
 
@@ -1031,7 +1030,16 @@ async function insertPresentationSections( title, qid, language ){
 
                 //console.log( facet_qid, facet_title );
 
-                facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
+                if ( $('#presentation-tts-sections option[value="' + facet_qid + '"]').prop("selected", true).length > 0 ){ // already added
+
+                  return 1;
+
+                }
+                else {
+
+                  facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
+
+                }
 
               });
 
@@ -1096,7 +1104,16 @@ async function insertPresentationSections( title, qid, language ){
 
                 //console.log( facet_qid, facet_title );
 
-                facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
+                if ( $('#presentation-tts-sections option[value="' + facet_qid + '"]').prop("selected", true).length > 0 ){ // already added
+
+                  return 1;
+
+                }
+                else {
+
+                  facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
+
+                }
 
               });
 
@@ -1118,22 +1135,13 @@ async function insertPresentationSections( title, qid, language ){
 
   $('#presentation-tts-sections').on('change', function( event ) {
 
-    console.log('event handled: ', event.handled )
+    //console.log('event handled: ', event.handled )
 
-    if ( valid( event.handled ) ) {
-
-        //event.handled = true;
-
-        console.log('...event already handled');
-
-        return;
-    }
+    //if ( valid( event.handled ) ) { console.log('...event already handled'); return; }
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
-      //$('#presentation-tts-sections').empty();
-
-      console.log('-> clearing ToC and calling makePresentation(): ', this.value );
+      //console.log('-> calling makePresentation(): ', this.value );
       stopSpeaking();
       makePresentation( this.value );
 

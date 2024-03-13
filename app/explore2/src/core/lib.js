@@ -11049,7 +11049,7 @@ function getGridColumns( sel ){
 //    - refactor the old presentation workflow to use the new "presentation" type
 async function makePresentation( input ){ // input options: title-string, Wikidata-qid-string
 
-  console.log( '--- makePresentation(): ', input );
+  //console.log( '--- makePresentation(): ', input );
 
   let title = '';
   let qid   = '';
@@ -11121,7 +11121,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
   }
 
-  console.log( 'makePresentation(): ', qid, title, explore.type );
+  //console.log( 'makePresentation(): ', qid, title, explore.type );
   //console.log( title, explore.type, item );
 
 }
@@ -11154,7 +11154,7 @@ function getPresentationType( item ){
 
 function speakPresentation( item ){
 
-  console.log( 'speakPresentation(): ', explore.type, explore.language, item.title, item );
+  //console.log( 'speakPresentation(): ', explore.type, explore.language, item.title, item );
 
   // show presentation
   //showPresentation( item, type );
