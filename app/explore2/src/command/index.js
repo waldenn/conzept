@@ -924,7 +924,7 @@ async function insertPresentationSections( title, qid, language ){
   //console.trace();
   //console.log( 'insertPresentationSections: ', title, qid, language );
 
-  document.getElementById('presentation-tts-sections').style.visibility = 'hidden';
+  //document.getElementById('presentation-tts-sections').style.visibility = 'hidden';
 
   $('#presentation-tts-sections').empty();
 
@@ -1047,24 +1047,22 @@ async function insertPresentationSections( title, qid, language ){
 
               $('#presentation-tts-sections').append( facet_options_html );
 
-              //document.getElementById('presentation-tts-sections').style.visibility = 'visible';
-
             },
-            //error: function( errorMessage ) { },
+            //error: function( errorMessage ) {
+
+              //document.getElementById('presentation-tts-sections').style.visibility = 'visible';
+              
+            //},
+
 
           });
 
-        }).promise().done( function(){
-
-          console.log('  ...done, show ToC');
-          document.getElementById('presentation-tts-sections').style.visibility = 'visible';
-
-        } );
+        });
 
         // PROPS REFERRING TO ITEM
         const props_referring_to_item = [
           'P131',   // located in the present admin https://www.wikidata.org/wiki/Property:P131
-          'P3842',  // located in the old admin     https://www.wikidata.org/wiki/Property:P3842
+          'P3842',  // located in the old admin     https://www.wikidata.org/wiki/Property:P131
           'P361',   // part-of            https://www.wikidata.org/wiki/Property:P361
           'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
         ];
@@ -1144,6 +1142,8 @@ async function insertPresentationSections( title, qid, language ){
     },
 
   });
+
+  //document.getElementById('presentation-tts-sections').style.visibility = 'visible';
 
   $('#presentation-tts-sections').on('change', function( event ) {
 
