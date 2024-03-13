@@ -196,7 +196,7 @@ async function fetchPresentationData( title, language ){
 
 }
 
-async function showPresentation( item, type ){
+function showPresentation( item, type ){
 
   console.log( 'showPresentation()', item );
 
@@ -1111,6 +1111,7 @@ async function insertPresentationSections( title, qid, language ){
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
+      console.log('-> calling makePresentation(): ', this.value );
       makePresentation( this.value );
 
     }

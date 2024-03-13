@@ -11072,9 +11072,9 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         title       = label;
         item.title  = label;
 
-        startPresentation( item );
-        console.log( '2) calling insertPresentationSections()');
-        insertPresentationSections( item.title, item.qid, explore.language )
+        //startPresentation( item );
+        console.log( '2) prevented calling insertPresentationSections()');
+        //insertPresentationSections( item.title, item.qid, explore.language )
 
       })
       .catch( error =>  {
@@ -11128,7 +11128,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
 function startPresentation( item ){
 
-  //console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
+  console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
 
   let type  = '';
 
