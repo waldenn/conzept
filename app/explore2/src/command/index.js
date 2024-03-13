@@ -953,8 +953,8 @@ async function insertPresentationSections( title, qid, language ){
         let all_qids = [ qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
 
         const props_about_item = [
-          'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
           'P361',   // part-of            https://www.wikidata.org/wiki/Property:P361
+          'P1269',  // facet-of           https://www.wikidata.org/wiki/Property:P1269
         ];
 
         $.each( props_about_item, function ( index, prop ){
@@ -1017,12 +1017,21 @@ async function insertPresentationSections( title, qid, language ){
         });
 
         const props_on_item = [
-          'P921',   // main-subject       https://www.wikidata.org/wiki/Property:P921
-          'P941',   // inspired-by        https://www.wikidata.org/wiki/Property:P941
-          'P527',   // has-parts          https://www.wikidata.org/wiki/Property:P527
-          //'P2670',// has-parts-of-class https://www.wikidata.org/wiki/Property:P2670  
-          'P5004',  // in-opposition-to   https://www.wikidata.org/wiki/Property:P5004
-          'P2184',  // history-of-topic   https://www.wikidata.org/wiki/Property:P2184
+          'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
+          'P361',   // part-of              https://www.wikidata.org/wiki/Property:P361
+          'P1269',  // facet-of             https://www.wikidata.org/wiki/Property:P1269
+          'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
+          'P2596',  // culture              https://www.wikidata.org/wiki/Property:P2596
+          'P8744',  // economy-of-topic     https://www.wikidata.org/wiki/Property:P8744
+          'P2184',  // history-of-topic     https://www.wikidata.org/wiki/Property:P2184
+          'P793',   // significant-event    https://www.wikidata.org/wiki/Property:P793
+          'P9241',  // demography-of-topic  https://www.wikidata.org/wiki/Property:P9241
+          'P2633',  // geography-of         https://www.wikidata.org/wiki/Property:P2633
+          'P47',    // shares-border-with   https://www.wikidata.org/wiki/Property:P47
+          'P527',   // has-parts            https://www.wikidata.org/wiki/Property:P527
+          //'P2670',// has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
+          'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
+          'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
         ];
 
         $.each( props_on_item, function ( index, prop ){
