@@ -198,6 +198,8 @@ async function fetchPresentationData( title, language ){
 
 async function showPresentation( item, type ){
 
+  console.log( 'showPresentation()', item );
+
   item = unpackString( item ); 
   type = type.trim();
 
@@ -888,6 +890,7 @@ async function showPresentation( item, type ){
 		//console.log('code: ', code );
 		//explore.commands = code;
 
+    console.log('calling runLISP()');
 		runLISP( code );
 
     // setup presentation TTS element
@@ -951,8 +954,6 @@ async function insertPresentationSections( title, qid, language ){
         // add more ToC 'chapters' (for each topic relational property)
 
         let all_qids = [ qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
-
-
 
         // PROPS ON ITEM
         const props_on_item = [
@@ -1021,7 +1022,7 @@ async function insertPresentationSections( title, qid, language ){
 
                 //console.log( facet_qid, facet_title );
 
-                facet_options_html += `<option value="${ facet_qid }">• ${ capitalizeFirstLetter( facet_title ) }</option>`;
+                facet_options_html += `<option value="${ facet_qid }">→  ${ capitalizeFirstLetter( facet_title ) }</option>`;
 
               });
 

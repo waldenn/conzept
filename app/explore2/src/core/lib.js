@@ -297,7 +297,7 @@ function triggerQueryForm(){
           // FIXME: we need to get a Qid from the URL
           const qid_ = valid( explore.qid )? explore.qid : getParameterByName( 'i' );
 
-          console.log( 'presentation toc by URL: ', explore.q, qid_, explore.language );
+          console.log( '1) calling insertPresentationSections()');
           insertPresentationSections( explore.q, qid_, explore.language );
 
           startSpeakingArticle( explore.q, '', explore.language );
@@ -11071,6 +11071,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title  = label;
 
         startPresentation( item );
+        console.log( '2) calling insertPresentationSections()');
         insertPresentationSections( item.title, item.qid, explore.language )
 
       })
@@ -11102,6 +11103,8 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title = title;
 
         startPresentation( item );
+
+        console.log( '3) calling insertPresentationSections()');
         insertPresentationSections( item.title, item.qid, explore.language )
 
       }
