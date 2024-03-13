@@ -890,7 +890,7 @@ function showPresentation( item, type ){
 		//console.log('code: ', code );
 		//explore.commands = code;
 
-    console.log('calling runLISP()');
+    //console.log('calling runLISP()');
 		runLISP( code );
 
     // setup presentation TTS element
@@ -949,11 +949,20 @@ async function insertPresentationSections( title, qid, language ){
 
         });
 
-        $('#presentation-tts-sections').append( options_html );
+        if ( $('#presentation-tts-sections option[value=""]').prop("selected", true).length === 1  ){ // main-article was already added
+
+          return 1;
+
+        }
+        else {
+
+          $('#presentation-tts-sections').prepend( options_html );
+
+        }
 
         // add more ToC 'chapters' (for each topic relational property)
 
-        let all_qids = [ qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
+        let all_qids = [ '', qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
 
         // PROPS ON ITEM
         const props_on_item = [
@@ -1107,7 +1116,16 @@ async function insertPresentationSections( title, qid, language ){
 
   });
 
-  $('#presentation-tts-sections').on('change', function() {
+  $('#presentation-tts-sections').on('change', function( event ) {
+
+    if ( event.handled !== true) {
+
+        event.handled = true;
+
+        console.log('...event already handled');
+
+        return;
+    }
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
@@ -2957,7 +2975,7 @@ async function runLISP( code ) {
         }
         else {
 
-          console.log( 'invalid: ', result );
+          //console.log( 'invalid: ', result );
 
         }
 

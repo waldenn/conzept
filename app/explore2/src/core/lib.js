@@ -11073,7 +11073,6 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title  = label;
 
         speakPresentation( item );
-        //console.log( ' calling insertPresentationSections()');
         insertPresentationSections( item.title, item.qid, explore.language )
         showPresentation( item, getPresentationType( item ) );
 
@@ -11105,11 +11104,9 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item = d[0].source.data;
         item.title = title;
 
-        //speakPresentation( item );
+        speakPresentation( item );
+        insertPresentationSections( item.title, qid, explore.language )
         showPresentation( item, getPresentationType( item ) );
-
-        console.log( '3) calling insertPresentationSections()');
-        //insertPresentationSections( item.title, item.qid, explore.language )
 
       }
       else {
