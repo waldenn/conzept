@@ -1120,20 +1120,18 @@ async function insertPresentationSections( title, qid, language ){
 
     console.log('event handled: ', event.handled )
 
-    /*
-    if ( event.handled !== true) {
+    if ( valid( event.handled ) ) {
 
-        event.handled = true;
+        //event.handled = true;
 
         console.log('...event already handled');
 
-        //return;
+        return;
     }
-    */
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
-      $('#presentation-tts-sections').empty();
+      //$('#presentation-tts-sections').empty();
 
       console.log('-> clearing ToC and calling makePresentation(): ', this.value );
       stopSpeaking();
