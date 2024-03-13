@@ -1129,7 +1129,9 @@ async function insertPresentationSections( title, qid, language ){
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
-      console.log('-> calling makePresentation(): ', this.value );
+      $('#presentation-tts-sections').empty();
+
+      console.log('-> clearing ToC and calling makePresentation(): ', this.value );
       makePresentation( this.value );
 
     }
