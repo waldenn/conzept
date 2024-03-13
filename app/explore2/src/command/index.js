@@ -924,6 +924,8 @@ async function insertPresentationSections( title, qid, language ){
   //console.trace();
   //console.log( 'insertPresentationSections: ', title, qid, language );
 
+  document.getElementById('presentation-tts-sections').style.visibility = 'hidden';
+
   $('#presentation-tts-sections').empty();
 
   const url = `https://${ language }.wikipedia.org/w/api.php?action=parse&page=${ encodeURIComponent( title ) }&prop=sections&format=json`;
@@ -1045,7 +1047,15 @@ async function insertPresentationSections( title, qid, language ){
 
               $('#presentation-tts-sections').append( facet_options_html );
 
-            },  
+              document.getElementById('presentation-tts-sections').style.visibility = 'visible';
+
+            },
+            error: function( errorMessage ) {
+
+              document.getElementById('presentation-tts-sections').style.visibility = 'visible';
+              
+            },
+
 
           });
 

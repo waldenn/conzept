@@ -297,7 +297,6 @@ function triggerQueryForm(){
           // FIXME: we need to get a Qid from the URL
           const qid_ = valid( explore.qid )? explore.qid : getParameterByName( 'i' );
 
-          console.log( '1) calling insertPresentationSections()');
           insertPresentationSections( explore.q, qid_, explore.language );
 
           startSpeakingArticle( explore.q, '', explore.language );
