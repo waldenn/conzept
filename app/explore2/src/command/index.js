@@ -921,7 +921,7 @@ function showPresentation( item, type ){
 
 async function insertPresentationSections( title, qid, language ){
 
-  console.trace();
+  //console.trace();
  
   console.log( 'insertPresentationSections: ', title, qid, language );
 

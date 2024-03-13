@@ -11072,9 +11072,10 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         title       = label;
         item.title  = label;
 
-        //speakPresentation( item );
+        speakPresentation( item );
         //console.log( ' calling insertPresentationSections()');
-        //insertPresentationSections( item.title, item.qid, explore.language )
+        insertPresentationSections( item.title, item.qid, explore.language )
+        showPresentation( item, getPresentationType( item ) );
 
       })
       .catch( error =>  {
@@ -11105,7 +11106,7 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title = title;
 
         //speakPresentation( item );
-        showPresentation( item, type );
+        showPresentation( item, getPresentationType( item ) );
 
         console.log( '3) calling insertPresentationSections()');
         //insertPresentationSections( item.title, item.qid, explore.language )
@@ -11128,9 +11129,8 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
 }
 
-function speakPresentation( item ){
 
-  console.log( 'speakPresentation(): ', explore.type, explore.language, item.title, item );
+function getPresentationType( item ){
 
   let type  = '';
 
@@ -11148,6 +11148,16 @@ function speakPresentation( item ){
   else if ( checkTag( item, 0, 'person') ){ type = 'person'; }
   else if ( checkTag( item, 0, 'group') ){ type = 'group'; }
   else { console.log('TODO: implement a general presentation type'); }
+
+  return type;
+
+}
+
+
+
+function speakPresentation( item ){
+
+  console.log( 'speakPresentation(): ', explore.type, explore.language, item.title, item );
 
   // show presentation
   //showPresentation( item, type );
