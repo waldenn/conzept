@@ -11049,6 +11049,8 @@ function getGridColumns( sel ){
 //    - refactor the old presentation workflow to use the new "presentation" type
 async function makePresentation( input ){ // input options: title-string, Wikidata-qid-string
 
+  console.log( '--- makePresentation(): ', input );
+
   let title = '';
   let qid   = '';
   let item  = '';

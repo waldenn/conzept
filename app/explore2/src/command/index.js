@@ -939,7 +939,7 @@ async function insertPresentationSections( title, qid, language ){
 
       if ( valid( response.parse?.sections ) ){
 
-        let options_html = `<option value="" selected>• ${ capitalizeFirstLetter( title ) }</option>`;
+        let options_html = `<option value="" selected>→  ${ capitalizeFirstLetter( title ) }</option>`;
 
         $.each( response.parse?.sections, function ( i, section ) {
 
