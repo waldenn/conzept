@@ -962,7 +962,7 @@ async function insertPresentationSections( title, qid, language ){
 
         // add more ToC 'chapters' (for each topic relational property)
 
-        let all_qids = [ '', qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
+        let all_qids = [ qid.toUpperCase() ]; // track all Qid's to avoid duplicate entries
 
         // PROPS ON ITEM
         const props_on_item = [
@@ -1118,20 +1118,25 @@ async function insertPresentationSections( title, qid, language ){
 
   $('#presentation-tts-sections').on('change', function( event ) {
 
+    console.log('event handled: ', event.handled )
+
+    /*
     if ( event.handled !== true) {
 
         event.handled = true;
 
         console.log('...event already handled');
 
-        return;
+        //return;
     }
+    */
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
       $('#presentation-tts-sections').empty();
 
       console.log('-> clearing ToC and calling makePresentation(): ', this.value );
+      stopSpeaking();
       makePresentation( this.value );
 
     }
