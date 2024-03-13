@@ -356,14 +356,14 @@ function triggerQueryForm(){
   }
   else if ( explore.type === 'presentation' && explore.qid !== '' ){ // presentation request from Qid
 
-    //console.log('make presentation from Qid: ', explore.qid );
+    console.log('make presentation from Qid: ', explore.qid );
    
     makePresentation( explore.qid );
 
   }
   else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request from title
 
-    //console.log('make presentation from title: ', explore.q );
+    console.log('make presentation from title: ', explore.q );
    
     makePresentation( explore.q );
 
@@ -11067,13 +11067,13 @@ async function makePresentation( input ){ // input options: title-string, Wikida
     // TODO: research why no title is being set during fetchWikidata()
 
     getWikidataLabel( qid, explore.language )
-      .then(label => {
+      .then( label => {
 
         title       = label;
         item.title  = label;
 
-        //startPresentation( item );
-        console.log( '2) prevented calling insertPresentationSections()');
+        //speakPresentation( item );
+        //console.log( ' calling insertPresentationSections()');
         //insertPresentationSections( item.title, item.qid, explore.language )
 
       })
@@ -11104,10 +11104,11 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item = d[0].source.data;
         item.title = title;
 
-        startPresentation( item );
+        //speakPresentation( item );
+        showPresentation( item, type );
 
         console.log( '3) calling insertPresentationSections()');
-        insertPresentationSections( item.title, item.qid, explore.language )
+        //insertPresentationSections( item.title, item.qid, explore.language )
 
       }
       else {
@@ -11122,13 +11123,14 @@ async function makePresentation( input ){ // input options: title-string, Wikida
 
   }
 
+  console.log( 'makePresentation(): ', qid, title, explore.type );
   //console.log( title, explore.type, item );
 
 }
 
-function startPresentation( item ){
+function speakPresentation( item ){
 
-  console.log( 'startPresentation(): ', explore.type, explore.language, item.title, item );
+  console.log( 'speakPresentation(): ', explore.type, explore.language, item.title, item );
 
   let type  = '';
 
@@ -11148,7 +11150,7 @@ function startPresentation( item ){
   else { console.log('TODO: implement a general presentation type'); }
 
   // show presentation
-  showPresentation( item, type );
+  //showPresentation( item, type );
 
   // start TTS speaker
   if ( valid( explore.synth ) ){
