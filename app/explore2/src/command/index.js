@@ -976,6 +976,7 @@ async function insertPresentationSections( title, qid, language ){
           'P793',   // significant-event    https://www.wikidata.org/wiki/Property:P793
           'P9241',  // demography-of-topic  https://www.wikidata.org/wiki/Property:P9241
           'P276',   // location             https://www.wikidata.org/wiki/Property:P276
+          'P131',   // located in the present admin https://www.wikidata.org/wiki/Property:P131
           'P2633',  // geography-of         https://www.wikidata.org/wiki/Property:P2633
           'P47',    // shares-border-with   https://www.wikidata.org/wiki/Property:P47
           'P527',   // has-parts            https://www.wikidata.org/wiki/Property:P527
