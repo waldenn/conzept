@@ -559,7 +559,7 @@ const DownloadDialogue = ({
             </div>
           )}
           <ol className="options">
-            {isDownloadOptionAvailable(DownloadOption.CURRENT_VIEW) && (
+            {isDownloadOptionAvailable(DownloadOption.WHOLE_IMAGE_HIGH_RES) && (
 
               <li className="option single depthview CONZEPT PATCH">
                 <button
