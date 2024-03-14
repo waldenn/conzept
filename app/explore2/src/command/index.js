@@ -969,6 +969,7 @@ async function insertPresentationSections( title, qid, language ){
           'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
           'P361',   // part-of              https://www.wikidata.org/wiki/Property:P361
           'P1269',  // facet-of             https://www.wikidata.org/wiki/Property:P1269
+          'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
           'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
           'P2596',  // culture              https://www.wikidata.org/wiki/Property:P2596
           'P8744',  // economy-of-topic     https://www.wikidata.org/wiki/Property:P8744
@@ -980,9 +981,12 @@ async function insertPresentationSections( title, qid, language ){
           'P2633',  // geography-of         https://www.wikidata.org/wiki/Property:P2633
           'P47',    // shares-border-with   https://www.wikidata.org/wiki/Property:P47
           'P527',   // has-parts            https://www.wikidata.org/wiki/Property:P527
-          //'P2670',// has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
-          'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
+          'P2670',  // has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
           'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
+          'P1542',  // has-effect           https://www.wikidata.org/wiki/Property:P1542
+          'P1365',  // replaces             https://www.wikidata.org/wiki/Property:P1365
+          'P1366',  // replaced-by          https://www.wikidata.org/wiki/Property:P1366
+          'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
         ];
 
         $.each( props_on_item, function ( index, prop ){
@@ -1152,6 +1156,7 @@ async function insertPresentationSections( title, qid, language ){
 
   //document.getElementById('presentation-tts-sections').style.visibility = 'visible';
 
+  // FIXME: it seems 'change' is called multiple times due to select-option-updates
   $('#presentation-tts-sections').on('change', function( event ) {
 
     //console.log('event handled: ', event.handled )

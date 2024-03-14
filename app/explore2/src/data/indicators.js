@@ -1299,7 +1299,7 @@ const indicators = {
 
   'planned_process': {
       value: [
-        104637332, 451967, 462877, 309100, 1371819, 851587,
+        104637332, 451967, 462877, 309100, 1371819, 851587, 3918409, 660651, 22445448,
       ],
       trigger: '',
       tags: 'setTags( item, [ "cultural-concept", "planned-process" ] )',
