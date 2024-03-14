@@ -1210,6 +1210,9 @@ const indicators = {
 
           24034552,
 
+          // various:
+          16000077, 622821,
+
           // "mathematical symbol" (limited set)
           21092339, 747083, 6265342, 10764194, 1311186, 53045737, 3354588, 30242895, 2142873, 7797295, 3506270, 5478310, 7434446, 592911, 1206110, 3961002, 6043039, 7661208,
 
@@ -1292,6 +1295,14 @@ const indicators = {
       ],
       trigger: '',
       tags: 'setTags( item, [ "natural-concept", "" ] )',
+  },
+
+  'planned_process': {
+      value: [
+        104637332, 451967,
+      ],
+      trigger: '',
+      tags: 'setTags( item, [ "cultural-concept", "planned-process" ] )',
   },
 
   'cultural_concept': {

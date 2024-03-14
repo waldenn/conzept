@@ -4838,18 +4838,6 @@ conzept_fields = {
   rank: [19,9100],
 },
 
-'github_topic' : {
-  title: 'GitHub topic',
-  prop: '9100',
-  type: 'url',
-  url: 'https://github.com/topics/${Xvalue}',
-  mv: true,
-  icon: 'fa-brands fa-github',
-  text: 'GitHub topic',
-  section: ['media-software','main'],
-  rank: [22,9110],
-},
-
 'sourcecode' : {
   default_value: '',
   render_condition: '! item.sourcecode.startsWith("https://github")',
@@ -146141,7 +146129,19 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 440,
 },
 
+'github_topic' : {
+  create_trigger: 'if ( ! tagSet( item.tags ) ){ setTags( item, [ "cultural-concept", "computing" ] ) }',
+  title: 'GitHub topic',
+  prop: '9100',
+  type: 'url',
+  url: 'https://github.com/topics/${Xvalue}',
+  mv: true,
+  icon: 'fa-brands fa-github',
+  text: 'GitHub topic',
+  section: ['media-software','main'],
+  rank: [22,9110],
+},
 
-};
+}; // end of fields
 
 var conzept_field_names = Object.entries( conzept_fields );

@@ -367,6 +367,10 @@ var conzept_tags = {
         text : "computing",
         icon : ["fa-solid fa-computer"],
       },
+      "planned-process" : {
+        text : "planned process",
+        icon : ["fa-solid fa-person-walking-dashed-line-arrow-right"],
+      },
       "art-movement" : {
         text : "art or scientific movement",
         icon : ["fa-solid fa-holly-berry"],
