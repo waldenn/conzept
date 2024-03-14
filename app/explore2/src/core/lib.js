@@ -11072,14 +11072,14 @@ async function makePresentation( input ){ // input options: title-string, Wikida
         item.title  = label;
 
         speakPresentation( item );
-        insertPresentationSections( item.title, item.qid, explore.language )
+        insertPresentationSections( item.title, qid, explore.language )
         showPresentation( item, getPresentationType( item ) );
 
       })
       .catch( error =>  {
         title       = '';
         item.title  = '';
-        console.error('Error fetching Wikidata label: ', error)
+        console.error('Error fetching Wikidata label: ', qid, error)
       });
 
   }

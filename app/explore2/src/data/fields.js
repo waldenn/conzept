@@ -20759,6 +20759,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'presentation_location' : {
   create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
+  //create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',

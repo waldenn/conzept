@@ -921,7 +921,7 @@ function showPresentation( item, type ){
 
 async function insertPresentationSections( title, qid, language ){
 
-  //console.trace();
+  console.trace();
   //console.log( 'insertPresentationSections: ', title, qid, language );
 
   //document.getElementById('presentation-tts-sections').style.visibility = 'hidden';
@@ -951,7 +951,6 @@ async function insertPresentationSections( title, qid, language ){
         });
 
         if ( $('#presentation-tts-sections option[value=""]').prop("selected", true).length === 1  ){ // main-article was already added
-
           return 1;
 
         }
@@ -1138,6 +1137,13 @@ async function insertPresentationSections( title, qid, language ){
         //console.log( all_qids );
 
       }
+      else { // no sections found, just add the main title
+
+        let options_html = `<option value="" selected>→  ${ capitalizeFirstLetter( title ) }</option>`;
+
+        $('#presentation-tts-sections').prepend( options_html );
+
+      }
 
     },
 
@@ -1153,9 +1159,20 @@ async function insertPresentationSections( title, qid, language ){
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
-      //console.log('-> calling makePresentation(): ', this.value );
-      stopSpeaking();
-      makePresentation( this.value );
+      if ( event.originalEvent ) // real user action
+
+        stopSpeaking();
+
+        // only go here if the user selected another option
+        console.log('-> calling makePresentation(): ', this.value );
+        makePresentation( this.value );
+
+      }
+      else { // synthetic option change
+
+        console.log('-> synthetic option change, do nothing' );
+
+      }
 
     }
     else { // speak section in the current presentation
