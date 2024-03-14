@@ -1,0 +1,46 @@
+{
+  "options": {
+    "dropEnabled": true,
+    "footerPanelEnabled": true,
+    "headerPanelEnabled": false,
+    "leftPanelEnabled": true,
+    "limitLocales": false,
+    "overrideFullScreen": false,
+    "pagingEnabled": true,
+    "rightPanelEnabled": true,
+    "clickToZoomEnabled": false
+  },
+  "modules": {
+    "avCenterPanel": {
+      "options": {
+        "mostSpecificRequiredStatement": true
+      }
+    },
+    "downloadDialogue": {
+      "options": {
+        "selectionEnabled": true
+      }
+    },
+    "headerPanel": {
+      "options": {
+        "localeToggleEnabled": false
+      }
+    },
+    "pagingHeaderPanel": {
+      "options": {
+        "pagingToggleEnabled": true
+      }
+    },
+    "openSeadragonCenterPanel": {
+      "options": {
+        "autoHideControls": false
+      }
+    },
+    "footerPanel": {
+      "options": {
+        "moreInfoEnabled": false,
+        "downloadEnabled": true
+      }
+    }
+  }
+}

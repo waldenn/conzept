@@ -1,0 +1,116 @@
+<!--
+    This is what the embed iframe src links to. It doesn't need to communicate with the parent page, only fill the available space and look for #? parameters
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="uv.css" />
+
+    <!-- conzept resources -->
+    <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"> <link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000 !important;
+        }
+
+        #uv {
+            width: 100vw;
+            height: 99vh;
+            overflow: hidden !important;
+            /* width: 1024px;
+            height: 576px; */
+        }
+
+        #options {
+          padding: 0 0 0 0;
+          display:none;
+        }
+
+        li.depthview {
+          margin-bottom: 0.5em !important
+        }
+
+        span.depthview {
+          font-weight: bold; font-size: 2em !important;
+        }
+
+        .search {
+          display: inline;
+        }
+
+        .share.btn.imageBtn {
+            display: none;
+        }
+
+        /* CONZEPT PATCH */
+        .attribution, .share.btn.imageBtn {
+          display: none !important;
+        }
+
+        .uv .footerPanel .options .btn.fullScreen, .uv .footerPanel .options .btn.exitFullscreen {
+          float: left !important;
+        }
+
+        .uv .mobileFooterPanel {
+          display: none !important;
+        }
+    </style>
+
+  </head>
+  <body>
+    <div id="uv" class="uv"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var urlAdapter = new UV.IIIFURLAdapter(true);
+
+        const data = urlAdapter.getInitialData({
+          embedded: true,
+        });
+
+        uv = UV.init("uv", data);
+
+        const configUrl = urlAdapter.get('config');
+
+        if (configUrl) {
+          uv.on("configure", function({ config, cb }) {
+            cb(
+              new Promise(function (resolve) {
+                fetch(configUrl).then(function (response) {
+                  resolve(response.json());
+                });
+              })
+            );
+          })
+        }
+
+        var $UV = document.getElementById("uv");
+
+        function resize() {
+          $UV.setAttribute("style", "width:" + window.innerWidth + "px");
+          $UV.setAttribute("style", "height:" + window.innerHeight + "px");
+        }
+
+        addEventListener("resize", function() {
+          resize();
+        });
+
+        resize();
+      });
+    </script>
+
+     <script type="text/javascript" src="umd/UV.js"></script>
+
+  </body>
+</html>

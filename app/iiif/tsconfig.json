@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+    "lib": ["ES2015", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noLib": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "target": "ES5",
+    "tsBuildInfoFile": "./buildcache/front-end",
+    "types": ["@iiif/base-component", "jest", "jquery", "node"],
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"],
+  "include": ["src"]
+}

@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.DS_Store": true,
+    "node_modules": false,
+    "dist": false,
+    "**/*.js": { "when": "$(basename).ts" },
+    "**/*.js.map": true
+  },
+  "typescript.check.workspaceVersion": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

@@ -967,26 +967,36 @@ async function insertPresentationSections( title, qid, language ){
         // PROPS ON ITEM
         const props_on_item = [
           'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
+          'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
+          'P170',   // creator              https://www.wikidata.org/wiki/Property:P170
+          'P50',    // author               https://www.wikidata.org/wiki/Property:P50
+          'P106',   // occupation           https://www.wikidata.org/wiki/Property:P106
+          'P102',   // member of pol. party https://www.wikidata.org/wiki/Property:P102
+          'P39',    // position held        https://www.wikidata.org/wiki/Property:P39
           'P361',   // part-of              https://www.wikidata.org/wiki/Property:P361
           'P1269',  // facet-of             https://www.wikidata.org/wiki/Property:P1269
-          'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
-          'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
           'P2596',  // culture              https://www.wikidata.org/wiki/Property:P2596
           'P8744',  // economy-of-topic     https://www.wikidata.org/wiki/Property:P8744
           'P2184',  // history-of-topic     https://www.wikidata.org/wiki/Property:P2184
           'P793',   // significant-event    https://www.wikidata.org/wiki/Property:P793
           'P9241',  // demography-of-topic  https://www.wikidata.org/wiki/Property:P9241
+          'P1557',  // manifestation-of     https://www.wikidata.org/wiki/Property:P1557
+          'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
           'P276',   // location             https://www.wikidata.org/wiki/Property:P276
-          'P131',   // located in the present admin https://www.wikidata.org/wiki/Property:P131
+          'P131',   // loc. present admin   https://www.wikidata.org/wiki/Property:P131
           'P2633',  // geography-of         https://www.wikidata.org/wiki/Property:P2633
           'P47',    // shares-border-with   https://www.wikidata.org/wiki/Property:P47
           'P527',   // has-parts            https://www.wikidata.org/wiki/Property:P527
           'P2670',  // has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
           'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
+          'P1552',  // has-characteristic   https://www.wikidata.org/wiki/Property:P1552
           'P1542',  // has-effect           https://www.wikidata.org/wiki/Property:P1542
           'P1365',  // replaces             https://www.wikidata.org/wiki/Property:P1365
           'P1366',  // replaced-by          https://www.wikidata.org/wiki/Property:P1366
           'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
+          'P800',   // notable-work         https://www.wikidata.org/wiki/Property:P800
+          'P135',   // movement             https://www.wikidata.org/wiki/Property:P135
+          'P136',   // genre                https://www.wikidata.org/wiki/Property:P136
         ];
 
         $.each( props_on_item, function ( index, prop ){

@@ -8758,6 +8758,30 @@ if ( valid( item.found_in_taxon ) ){
   rank: [530,7838],
 },
 
+'world_flora_online_item' : {
+  title: 'World Flora Online item',
+  prop: '7715',
+  type: 'link',
+  mv: false,
+  url: 'https://list.worldfloraonline.org/${item.world_flora_online}',
+  icon: 'fa-brands fa-pagelines',
+  text: 'WFO plant',
+  section: ['science-biology','main'],
+  rank: [535,7849],
+},
+
+'world_flora_online_search' : {
+  title: 'World Flora Online search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.worldfloraonline.org/search?query=${title_quoted}',
+  icon: 'fa-brands fa-pagelines',
+  text: 'WFO search',
+  section: ['science-biology'],
+  rank: [538],
+},
+
 'jstor_plants_search' : {
   create_condition: 'checkTag( item, 1, ["plant" ] )',
   title: 'JSTOR plant search',
@@ -12812,6 +12836,18 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Open Context',
   section: 'science-archeology',
   rank: 100,
+},
+
+'tdar_search' : {
+  title: 'The Digital Archaeological Record (tDAR) search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://core.tdar.org/search/results?_tdar.searchType=simple&query=${title_quoted}',
+  icon: 'fa-solid fa-archway',
+  text: 'tDAR',
+  section: 'science-archeology',
+  rank: 200,
 },
 
 'plazi_search' : {
@@ -99923,20 +99959,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'tDAR creator',
   section: ['library-identity'],
   rank: [27714],
-  auto: true,
-},
-
-'world_flora_online' : {
-  title: 'World Flora Online',
-  prop: '7715',
-  type: 'url',
-  mv: false,
-  url_format: 'http://www.worldfloraonline.org/taxon/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'World Flora Online',
-  section: ['library-identity'],
-  rank: [27715],
   auto: true,
 },
 
