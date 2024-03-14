@@ -1159,7 +1159,7 @@ async function insertPresentationSections( title, qid, language ){
 
     if ( isQid( this.value ) ){ // load another presentation (by Qid)
 
-      if ( event.originalEvent ) // real user action
+      if ( event.originalEvent ){ // real user action
 
         stopSpeaking();
 
