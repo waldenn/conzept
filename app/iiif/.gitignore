@@ -37,9 +37,9 @@ node_modules
 ## JavaScript
 #################
 
-*.js
-*.js.map
-*.min.map
+#*.js
+#*.js.map
+#*.min.map
 /config.js
 !src/extensions/*/config.js
 !src/js/*.js

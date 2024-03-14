@@ -1570,7 +1570,7 @@ function createImageIIIF( title, image_url ){
 
     let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-    let iiif_viewer_url = explore.base + '/app/iiif/index.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+    let iiif_viewer_url = explore.base + '/app/iiif/dist/uv.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
     return JSON.stringify( encodeURIComponent( iiif_viewer_url ) );
 
@@ -1594,7 +1594,7 @@ function createCommonsImageIIIF( title, image_url, width ){
 
     let iiif_manifest_link = explore.base + '/app/response/iiif-manifest.php?l=en&single=true&t=' + label + '&json=' + JSON.stringify( coll );
 
-    let iiif_viewer_url = explore.base + '/app/iiif/index.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
+    let iiif_viewer_url = explore.base + '/app/iiif/dist/uv.html?#c=&m=&s=&cv=&manifest=' + encodeURIComponent( iiif_manifest_link );
 
     return JSON.stringify( encodeURIComponent( iiif_viewer_url ) );
 
