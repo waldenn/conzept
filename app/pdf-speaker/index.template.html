@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=no" />
+    <!-- conzept resources -->
+    CONZEPT_COMMON_HTML_INCLUDE
+		<script src="./lib/pdf.js"></script>
+		<script src="./lib/pdf.worker.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/1.9.426/pdf_viewer.js"></script> -->
+		<link rel="stylesheet" href="./css/main.css" />
+		<title>Conzept PDF Speaker</title>
+
+	</head>
+
+	<body>
+    <span style="display:none;">
+      <button id="upload-button">Select PDF</button>
+      <input type="file" id="file-to-upload" accept="application/pdf" />
+    </span>
+
+		<div id="pdf-main-container">
+			<div id="pdf-loader">Loading document ...</div>
+			<div id="pdf-contents">
+				<div id="pdf-meta" class="navBar" >
+
+					<div id="pdf-buttons">
+						<button onclick="startTextToSpeech()" title="speak"><i class="fa-solid fa-play"></i></button>
+						<button id="resume-button" onclick="resume()" title="resume"><i class="fa-regular fa-circle-pause"></i></button>
+						<button id="pause-button" onclick="pause()" title="pause"><i class="fa-solid fa-pause"></i></button>
+						<button id="stop-button" onclick="stop()" title="stop"><i class="fa-solid fa-stop"></i></button>
+            <button id="scroll" onclick="scroll()" title="scroll">scroll</button><br/>
+						<select id="voiceSelect"></select>
+					</div>
+
+					<div id="page-count-container"> <div id="pdf-current-page">1</div> / <div id="pdf-total-pages"></div></div>
+
+				</div>
+				<div id="pdfContainer"></div>
+				<div id="page-loader">Loading page ...</div>
+			</div>
+		</div>
+		<script src="./src/main.js"></script>
+
+    <script>
+      // keyboard control
+      $('body').keydown(function(event) {
+
+        let key = (event.keyCode ? event.keyCode : event.which);
+
+        if ( key == '70' ){ // "f"
+
+          document.toggleFullscreen();
+
+        }
+
+      });
+    </script>
+
+	</body>
+</html>
