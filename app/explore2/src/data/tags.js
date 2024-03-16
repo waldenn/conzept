@@ -107,6 +107,10 @@ var conzept_tags = {
         text : "accident",
         icon : ["fa-solid fa-bolt"],
       },
+      "reform" : {
+        text : "reform",
+        icon : ["fa-solid fa-bacon"],
+      },
     },
   },
 

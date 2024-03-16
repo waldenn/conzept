@@ -3,7 +3,7 @@
 //   - add the itemLabel to that structure and show it to the user (title hover?)
 
 let   LIMIT       = 10; // default page size, override with param: "&pagesize=5"
-const IMG_WIDTH   = '800';
+const IMG_WIDTH   = '1200';
 const USER_AGENT  = 'View-it!';
 const ORIGIN      = '*';
 

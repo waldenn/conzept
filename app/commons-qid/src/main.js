@@ -1,4 +1,4 @@
-const IMG_WIDTH = '800';
+const IMG_WIDTH = '1200';
 //const IMG_HEIGHT = '600';
 const NUM_RESULTS = 19;
 const USER_AGENT = 'View-it!';

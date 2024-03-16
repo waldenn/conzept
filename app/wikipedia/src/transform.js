@@ -8,7 +8,7 @@ let isSafari                      = detectSafari();
 
 let nr_of_sections                = 0;
 
-let image_width_string            = '/900px-';
+let image_width_string            = '/1200px-';
 let min_image_width_for_enlarge   = 60;
 let min_image_height_for_enlarge  = 60; // 40?
 
@@ -42,7 +42,7 @@ $( document ).ready(function() {
   }
   else if ( $('img').length > 100 ){ // for articles with many images: lazy load them as smaller images
 
-    image_width_string = '/400px-';
+    image_width_string = '/600px-';
       
   }
 
