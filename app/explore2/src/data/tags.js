@@ -18,7 +18,6 @@ var conzept_tags = {
       "person" : {
         text : "person disambiguation",
         icon : [ "fa-solid fa-question", "fa-solid fa-user-alt"],
-        //icon : "fa-solid fa-question, fa-solid fa-user-alt", // TODO: first split by comma, then display each icon
       } 
     },
   }, 
@@ -101,7 +100,6 @@ var conzept_tags = {
       "period" : {
         text : "period",
         icon : ["fa-regular fa-clock"],
-        //icon : ["fa-solid fa-arrows-left-right-to-line"],
       },
       "accident" : {
         text : "accident",
@@ -109,7 +107,11 @@ var conzept_tags = {
       },
       "reform" : {
         text : "reform",
-        icon : ["fa-solid fa-bacon"],
+        icon : ["fa-solid fa-people-pulling"],
+      },
+      "crisis" : {
+        text : "crisis",
+        icon : ["fa-solid fa-person-drowning"],
       },
     },
   },
@@ -374,6 +376,11 @@ var conzept_tags = {
       "planned-process" : {
         text : "planned process",
         icon : ["fa-solid fa-person-walking-dashed-line-arrow-right"],
+      },
+      "regional-aspect" : {
+        text : "regional aspect",
+        icon : ["fa-solid fa-solid fa-arrow-up-from-water-pump"],
+        //icon : ["fa-brands fa-hashnode"],
       },
       "art-movement" : {
         text : "art or scientific movement",

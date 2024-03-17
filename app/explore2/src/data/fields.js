@@ -9406,6 +9406,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['library-history', 'main'],
   rank: [8, 1428],
   headline_create: 'valid( item.significant_events_timeline )',
+  headline_icon: 'fa-regular fa-bell',
   headline_rank: 280,
   headline_type: 'link-split',
 },
