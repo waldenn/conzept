@@ -235,8 +235,6 @@ function fetchPDF( link ) {
       var a = document.createElement('a');
       var url = window.URL.createObjectURL(new Blob([this.response], {type: 'application/pdf'}));
 
-      //console.log( url );
-
       showPDF(url);
 
       //a.href = url;
@@ -259,6 +257,8 @@ function fetchPDF( link ) {
 }
 
 function showPDF(pdf_url) {
+
+  console.log( 'PDF url: ', pdf_url );
 
 	$("#pdf-loader").show();
   $("button#play-button, button#pause-button, button#resume-button, button#stop-button").show();
