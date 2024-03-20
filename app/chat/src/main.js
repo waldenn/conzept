@@ -970,14 +970,15 @@ const initSetting = () => {
   }
   apiHostEle.dispatchEvent(new Event("change"));
   const keyEle = document.getElementById("keyInput");
-  let localKey = localStorage.getItem("APIKey");
+  let localKey = localStorage.getItem("api_key_openai"); // CONZEPT PATCH
+  //let localKey = localStorage.getItem("APIKey");
   if (localKey) {
     customAPIKey = localKey;
     keyEle.value = localKey;
   }
   keyEle.onchange = () => {
     customAPIKey = keyEle.value;
-    localStorage.setItem("APIKey", customAPIKey);
+    //localStorage.setItem("APIKey", customAPIKey);
   }
   keyEle.dispatchEvent(new Event("change"));
   if (systemRole === void 0) {

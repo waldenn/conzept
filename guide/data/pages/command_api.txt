@@ -11,10 +11,10 @@ The API is currently being used for:
   * Provide an **easy environment for creating entity and media processing workflows** in Conzept.
 
   * The DSL should be usable for:
-    * [[explore>Data analysis]] (not supported yet)
-    * [[explore>Data visualization]] (supported)
-    * [[explore>Storytelling]] (some support: presentations)
-    * [[explore>Education]] (not supported yet) (ideas: gradual learning, experiences and quizzes)
+    * [[explore>Data visualization]] (some support: list, 2D/3D map, network graph, images, ...)
+    * [[explore>Storytelling]] (some support: presentations, object fragments)
+    * [[explore>Education]] (not supported yet, ideas: gradual learning, experiences and quizzes)
+    * [[explore>Data analysis]] (not supported yet, ideas: statistical plots, heatmaps, etc.)
 
   * Design priorities:
     * **useful**

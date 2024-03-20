@@ -303,6 +303,26 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
+              <summary><span id="app-menu-api-keys">API keys</span>
+                <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#api_keys" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
+              </summary>
+
+              <div class="style-form">
+
+                <div class="switch">
+
+                  <label style="display:inline;" for="openai_api_key">OpenAI:</label>
+                  <input type="password" id="openai_api_key" class="validate" name="openai_api_key" minlength="8" required />
+
+                </div>
+
+              </div>
+
+            </details>
+
+
+
+            <details class="auto conf" closed>
               <summary><span id="app-menu-theme"></span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#theme" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>

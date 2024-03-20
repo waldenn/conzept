@@ -260,7 +260,9 @@ const explore = {
 
   broadcast_channel     : new BroadcastChannel('conzept') || undefined, // see: https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
 
-  openai_enabled        : valid( localStorage.getItem("APIKey") ) ? true : false,
+  // client-side API keys
+  api_key_openai        : valid( localStorage.getItem('api_key_openai') ) ? localStorage.getItem('api_key_openai') : '',
+  openai_enabled        : valid( localStorage.getItem('api_key_openai') ) ? true : false,
 
 }
 
@@ -356,6 +358,7 @@ $( document ).ready( function() {
     setupOptionUnderlineLinks();
     setupOptionBgmode();
     setupOptionDarkmode();
+    setupOptionApiKeys();
     setupOptionShowHelp();
     setupOptionGridmode();
     setupOptionBread();

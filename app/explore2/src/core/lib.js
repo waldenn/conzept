@@ -2371,6 +2371,40 @@ function setupOptionShowHelp(){
 
 }
 
+function setApiKeys(){
+
+  explore.openai_enabled = valid( localStorage.getItem('api_key_openai') ) ? true : false;
+
+  console.log( 'explore.openai_enabled: ', explore.openai_enabled );
+
+}
+
+function setupOptionApiKeys(){
+
+  (async () => {
+
+    explore.api_key_openai = await explore.db.get('api_key_openai');
+
+    explore.api_key_openai = ( explore.api_key_openai === null || !valid( explore.api_key_openai ) ) ? '' : explore.api_key_openai;
+
+    console.log( 'api_key_openai: ', explore.api_key_openai );
+
+    setApiKeys();
+
+    $('#openai_api_key').change(function() {
+
+      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').text() ); })();
+
+      console.log( 'api_key_openai changed' );
+
+      setApiKeys();
+
+    });
+
+  })();
+
+}
+
 function setGridmode() {
 
   // also check user preference for gridmode
