@@ -1899,7 +1899,7 @@ function setupSearch() {
     $('.searchbox').autocomplete('close');
     $('#srsearch').blur();
 
-    explore.openai_enabled = valid( localStorage.getItem("APIKey") ) ? true : false;
+    //explore.openai_enabled = valid( localStorage.getItem("APIKey") ) ? true : false;
 
     explore.searchmode = 'string';
 
@@ -2373,8 +2373,22 @@ function setupOptionShowHelp(){
 
 function setApiKeys(){
 
-  explore.api_key_openai = $('#openai_api_key').val();
-  explore.openai_enabled = valid( explore.api_key_openai ) ? true : false;
+  console.log( 'setApiKeys(): ', explore.api_key_openai );
+
+  if ( valid( explore.api_key_openai ) ){
+
+    $('#openai_api_key').val( explore.api_key_openai );
+
+    explore.openai_enabled = true;
+
+  }
+  else {
+
+    explore.openai_enabled = false;
+    $('#openai_api_key').val('');
+
+  }
+
 
 }
 
@@ -2384,7 +2398,11 @@ function setupOptionApiKeys(){
 
     explore.api_key_openai = await explore.db.get('api_key_openai');
 
+    console.log( 'explore.api_key_openai initial: ', explore.api_key_openai );
+
     explore.api_key_openai = ( explore.api_key_openai === null || explore.api_key_openai === undefined ) ? '' : explore.api_key_openai;
+
+    console.log( 'explore.api_key_openai final: ', explore.api_key_openai );
 
     setApiKeys();
 
@@ -2392,9 +2410,7 @@ function setupOptionApiKeys(){
 
       (async () => {
 
-        const key = $('#openai_api_key').val();
-
-        await explore.db.set('api_key_openai', key )
+        await explore.db.set( 'api_key_openai', $('#openai_api_key').val() );
 
         setApiKeys();
 
