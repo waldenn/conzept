@@ -2378,7 +2378,7 @@ function setApiKeys(){
   explore.api_key_openai = $('#openai_api_key').val();
   explore.openai_enabled = valid( explore.api_key_openai ) ? true : false;
 
-  console.log( '  explore.openai_enabled: ', explore.openai_enabled );
+  console.log( '  explore.openai_enabled: ', explore.openai_enabled, explore.api_key_openai );
 
 }
 
@@ -2390,9 +2390,11 @@ function setupOptionApiKeys(){
 
     explore.api_key_openai = await explore.db.get('api_key_openai');
 
-    explore.api_key_openai = ( explore.api_key_openai === null || !valid( explore.api_key_openai ) ) ? '' : explore.api_key_openai;
+    console.log('  initial explore.api_key_openai: ', explore.api_key_openai ');
 
-    console.log( '  api_key_openai: ', explore.api_key_openai );
+    explore.api_key_openai = ( explore.api_key_openai === null || explore.api_key_openai === undefined ) ? '' : explore.api_key_openai;
+
+    console.log( '  final value: ', explore.api_key_openai );
 
     setApiKeys();
 
@@ -2400,9 +2402,13 @@ function setupOptionApiKeys(){
 
       console.log( '  api_key_openai changed' );
 
-      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').val() ); })();
+      (async () => {
 
-      setApiKeys();
+        await explore.db.set('openai_api_key', $('#openai_api_key').val() )
+
+        setApiKeys();
+
+      })();
 
     });
 

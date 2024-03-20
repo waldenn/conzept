@@ -800,7 +800,8 @@ conzept_fields = {
 },
 
 'full_work_pdf_tts' : {
-  create_condition: 'valid( item.full_work ) && ${ item?.full_work.toLowerCase().endsWith(".pdf") }',
+  create_condition: 'valid( item.full_work )',
+  render_condition: 'valid( item.full_work.toLowerCase().endsWith(".pdf") )',
   title: 'full work PDF document with Text-to-Speech',
   prop: '',
   type: 'link',
@@ -8438,7 +8439,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'document_file_pdf_tts' : {
-  create_condition: 'valid( item.document_file ) && ${ item?.document_file.toLowerCase().endsWith(".pdf") }',
+  create_condition: 'valid( item.document_file )',
+  render_condition: 'valid( item.document_file.toLowerCase().endsWith(".pdf") )',
   title: 'Commons PDF with Text-to-Speech',
   prop: '',
   type: 'link',
