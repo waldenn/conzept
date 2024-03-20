@@ -72,9 +72,11 @@ function populateVoiceList( lang ) {
 
     const voice_code_length = valid( app.voice )? 5 : 2; 
 
-    for (const element of voices) {
+    for (const element of voices){
 
-      if ( element.lang.substring(0, voice_code_length ) === lang ) {
+      if ( element.lang.substring(0, voice_code_length ) === lang ){
+        
+           // element.lang.substring(0, 2 ) === 'en' ) { // use "en" as the default fallback language
 
         const option        = document.createElement("option");
         option.textContent  = `${element.name} (${element.lang})`;
