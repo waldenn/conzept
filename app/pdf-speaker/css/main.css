@@ -19,9 +19,9 @@ button:hover {
 }
 
 #upload-button {
-	width: 150px;
-	display: block;
-	margin: 20px auto;
+  width: 4em;
+  height: 2em;
+	/* margin-left: 3em; */
 }
 
 #file-to-upload {
@@ -30,6 +30,7 @@ button:hover {
 
 #pdf-main-container {
 	width: fit-content;
+	min-width: 70%;
 	margin: 20px auto;
 }
 #pdfContainer {

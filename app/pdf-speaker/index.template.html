@@ -14,8 +14,8 @@
 	</head>
 
 	<body>
-    <span style="display:none;">
-      <button id="upload-button">Select PDF</button>
+
+    <span style="">
       <input type="file" id="file-to-upload" accept="application/pdf" />
     </span>
 
@@ -25,13 +25,17 @@
 				<div id="pdf-meta" class="navBar" >
 
 					<div id="pdf-buttons">
-						<button onclick="startTextToSpeech()" title="speak"><i class="fa-solid fa-play"></i></button>
+						<button id="play-button" onclick="startTextToSpeech()" title="speak"><i class="fa-solid fa-play"></i></button>
 						<button id="resume-button" onclick="resume()" title="resume"><i class="fa-regular fa-circle-pause"></i></button>
 						<button id="pause-button" onclick="pause()" title="pause"><i class="fa-solid fa-pause"></i></button>
 						<button id="stop-button" onclick="stop()" title="stop"><i class="fa-solid fa-stop"></i></button>
-            <button id="scroll" onclick="scroll()" title="scroll">scroll</button><br/>
+            <button id="scroll" style="display:none;" onclick="scroll()" title="scroll">scroll</button>
+            <button id="upload-button" title="upload PDF"><i class="fa-solid fa-upload"></i></button>
+            <br/>
 						<select id="voiceSelect"></select>
 					</div>
+
+         <br/>
 
 					<div id="page-count-container"> <div id="pdf-current-page">1</div> / <div id="pdf-total-pages"></div></div>
 

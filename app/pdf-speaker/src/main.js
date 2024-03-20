@@ -12,6 +12,10 @@ let __VIEWING_PAGE = __CURRENT_PAGE;
 
 async function init(){
 
+  $("#pdf-contents").show();
+  $("#page-count-container").hide();
+  $("button#play-button, button#pause-button, button#resume-button, button#stop-button").hide();
+
   app.language  = getParameterByName( 'l' ) || 'en';
   app.url       = getParameterByName( 'u' ) || '';
   app.voice     = getParameterByName( 'v' ) || ''; // TODO
@@ -257,6 +261,8 @@ function fetchPDF( link ) {
 function showPDF(pdf_url) {
 
 	$("#pdf-loader").show();
+  $("button#play-button, button#pause-button, button#resume-button, button#stop-button").show();
+  $("#page-count-container").show();
 
 	PDFJS.getDocument({ url: pdf_url }).then(function (pdf_doc) {
 		__PDF_DOC = pdf_doc;
@@ -266,7 +272,6 @@ function showPDF(pdf_url) {
 
 		// Hide the pdf loader and show pdf container in HTML
 		$("#pdf-loader").hide();
-		$("#pdf-contents").show();
 		$("#pdf-total-pages").text(__TOTAL_PAGES);
 
 		loadPage(1);
@@ -409,12 +414,12 @@ function showPage(page_no, newCanvas, newCtx) {
 // This is better than showing the not-good-looking file input element
 $("#upload-button").on("click", function () {
 	$("#file-to-upload").trigger("click");
-	$("#pause-button").hide();
-	$("#resume-button").hide();
+	//$("#pause-button").hide();
+	//$("#resume-button").hide();
 });
 
 // When user chooses a PDF file
-$("#file-to-upload").on("change", function () {
+$("#file-to-upload").on("change", async function () {
 	// Validate whether PDF
 	if (
 		["application/pdf"].indexOf($("#file-to-upload").get(0).files[0].type) == -1
@@ -423,10 +428,12 @@ $("#file-to-upload").on("change", function () {
 		return;
 	}
 
-	$("#upload-button").hide();
+	//$("#upload-button").hide();
 
 	// Send the object url of the pdf
   //console.log( $("#file-to-upload").get(0).files[0] );
+
+  await populateVoiceList( app.language );
 
 	showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
 
