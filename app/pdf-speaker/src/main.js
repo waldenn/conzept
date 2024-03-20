@@ -10,19 +10,21 @@ let canvas_width = 1000;
 let pageHeight = -1;
 let __VIEWING_PAGE = __CURRENT_PAGE;
 
+app.language  = getParameterByName( 'l' ) || 'en';
+app.url       = getParameterByName( 'u' ) || '';
+app.voice     = getParameterByName( 'voice' ) || ''; // TODO
+
+const lang = valid( app.voice )? app.voice : app.language;
+
 async function init(){
 
   $("#pdf-contents").show();
   $("#page-count-container").hide();
   $("button#play-button, button#pause-button, button#resume-button, button#stop-button").hide();
 
-  app.language  = getParameterByName( 'l' ) || 'en';
-  app.url       = getParameterByName( 'u' ) || '';
-  app.voice     = getParameterByName( 'v' ) || ''; // TODO
-
   if ( valid( [ app.language, app.url ] ) ){
 
-    await populateVoiceList( app.language );
+    await populateVoiceList( lang );
 
     showPDF( app.url );
 
@@ -40,9 +42,11 @@ function populateVoiceList( lang ) {
 
     const voices = synth.getVoices();
 
+    const voice_code_length = valid( app.voice )? 5 : 2; 
+
     for (const element of voices) {
 
-      if (element.lang.substring(0, 2) === 'en' ) {
+      if ( element.lang.substring(0, voice_code_length ) === lang ) {
 
         const option        = document.createElement("option");
         option.textContent  = `${element.name} (${element.lang})`;
@@ -53,6 +57,7 @@ function populateVoiceList( lang ) {
 
         option.setAttribute("data-lang", element.lang);
         option.setAttribute("data-name", element.name);
+
         document.getElementById("voiceSelect").appendChild(option);
 
       }
@@ -75,12 +80,28 @@ function startTextToSpeech(startWord){
 			.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
 			.classList.remove("highlight");
 	prevId = 0;
-	let selectedVoice = voices.filter(
-		(element) => element.lang.substring(0, 2) === "en"
-	)[document.getElementById("voiceSelect").selectedIndex];
+
+	let selectedVoice = '';
+
+  if ( valid( app.voice ) ){
+
+    selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+  else {
+
+    selectedVoice = voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+
 	if (selectedVoice !== null) {
+
+    //console.log( 'selected voice: ', selectedVoice );
+
 		utterance.voice = selectedVoice;
+
 	}
+
 	let textContent = "";
 	__PDF_DOC
 		.getPage(__CURRENT_PAGE)
@@ -150,6 +171,7 @@ function loadPage(pageNumber) {
 	pdfContainer.appendChild(annotationLayer);
 
 	showPage(pageNumber, canvas, canvas.getContext("2d"));
+
 	// Add click event listeners to each word in the text layer
 	$("#textLayer" + pageNumber).on("click", "span", function () {
 		if (prevId !== 0) {
@@ -183,11 +205,26 @@ function loadPage(pageNumber) {
 			synth.cancel();
 		}
 		let voices = synth.getVoices();
-		let selectedVoice = voices.filter(
-			(element) => element.lang.substring(0, 2) === "en"
-		)[document.getElementById("voiceSelect").selectedIndex];
-		if (selectedVoice !== null) {
-			utterance.voice = selectedVoice;
+
+    let selectedVoice = '';
+
+    if ( valid( app.voice ) ){
+
+      selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice )[document.getElementById("voiceSelect").selectedIndex];
+
+    }
+    else {
+
+		  selectedVoice = voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+    }
+
+    if (selectedVoice !== null) {
+
+      console.log( 'selected voice: ', selectedVoice );
+
+	    utterance.voice = selectedVoice;
+
 		}
 
 		//utterance.onerror = (error) => console.log(error);
@@ -219,41 +256,6 @@ function loadPage(pageNumber) {
 		synth.speak(utterance);
 		resume();
 	});
-}
-
-
-function fetchPDF( link ) {
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET',link,true);
-  xhr.responseType = 'blob';
-
-  xhr.onload = function(e){
-
-    if (this.status == 200) {
-
-      var a = document.createElement('a');
-      var url = window.URL.createObjectURL(new Blob([this.response], {type: 'application/pdf'}));
-
-      showPDF(url);
-
-      //a.href = url;
-      //a.download = 'report.pdf';
-      //a.click();
-
-      window.URL.revokeObjectURL(url);
-
-    }
-    else {
-
-      console.log( 'error loading PDF: ', this.status );
-
-    }
-
-  };
-
-  xhr.send();
-
 }
 
 function showPDF(pdf_url) {
@@ -433,7 +435,7 @@ $("#file-to-upload").on("change", async function () {
 	// Send the object url of the pdf
   //console.log( $("#file-to-upload").get(0).files[0] );
 
-  await populateVoiceList( app.language );
+  await populateVoiceList( lang );
 
 	showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
 
