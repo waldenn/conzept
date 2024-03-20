@@ -213,7 +213,7 @@ $sticky_html = '
 
     <span class="nobreak">
       <label for="srsearch" style="display:none;">srsearch</label>
-      <input id="srsearch" title="search input" type="search" enterkeyhint="search" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
+      <input id="srsearch" title="search input" type="search" enterkeyhint="search" autocomplete="off" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
     </span>

@@ -1,9 +1,32 @@
 const app = {};
 
+let parentref = '';
+
+if ( isMobile ){
+
+  parentref = parent;
+
+}
+else { // desktop
+
+  if ( window.parent.name === 'infoframeSplit2' || window.parent.name === 'infoframe_' ){ // request from secondary content iframe
+    parentref = parent;
+  }
+  else { // primary content frame
+    parentref = parent.top;
+  }
+
+}
+
 let synth = window.speechSynthesis;
 
 if ( typeof synth !== "undefined" ) {
   synth.cancel();
+
+  // TODO:
+  // also stop parent-frame speaking (if needed)
+  parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
+
 }
 
 let utterance = new SpeechSynthesisUtterance();
@@ -481,6 +504,18 @@ function scroll() {
 	document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
 }
 
+$( window ).bind('beforeunload', function(event) {
+
+  if ( typeof synth !== "undefined" ) {
+
+    synth.cancel();
+
+  }
+
+});
+
 $( document ).ready(function() {
+
   init();
+
 });
