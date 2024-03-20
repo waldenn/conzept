@@ -1074,6 +1074,11 @@ input:focus {
   border-color: #aaa;
 }
 
+input.apikey {
+  width: 70%;
+  max-width: 450px;
+}
+
 #fontsizer, #voice-rate, #voice-pitch {
   max-width: 90%;
   border: none !important;

@@ -101,6 +101,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
         let concepts      = [];
         let subtag        = 'science-article';
         let img           = '';
+        let pdf_tts_link  = '';
 
         if ( valid( obj.id ) ){
 
@@ -112,6 +113,8 @@ function processResultsOpenAlex( topicResults, struct, index ){
         if ( valid( obj.open_access?.oa_url ) ){
 
           doc_url = obj.open_access.oa_url;
+
+          pdf_tts_link = doc_url;
 
         }
         else if ( valid( obj.doi ) ){
@@ -227,6 +230,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
 					display_url:  url,
 					thumb:        img,
           start_date:   valid( obj.publication_year )? obj.publication_year.toString() : '',
+          pdf_tts_link: pdf_tts_link,
 					qid:          '',
           countries:    [],
           tags:         [],
