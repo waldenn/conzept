@@ -2373,13 +2373,17 @@ function setupOptionShowHelp(){
 
 function setApiKeys(){
 
-  explore.openai_enabled = valid( localStorage.getItem('api_key_openai') ) ? true : false;
+  console.log( 'setupApiKeys()' );
 
-  console.log( 'explore.openai_enabled: ', explore.openai_enabled );
+  explore.openai_enabled = valid( explore.api_key_openai ) ? true : false;
+
+  console.log( '  explore.openai_enabled: ', explore.openai_enabled );
 
 }
 
 function setupOptionApiKeys(){
+
+  console.log( 'setupOptionApiKeys()' );
 
   (async () => {
 
@@ -2387,15 +2391,15 @@ function setupOptionApiKeys(){
 
     explore.api_key_openai = ( explore.api_key_openai === null || !valid( explore.api_key_openai ) ) ? '' : explore.api_key_openai;
 
-    console.log( 'api_key_openai: ', explore.api_key_openai );
+    console.log( '  api_key_openai: ', explore.api_key_openai );
 
     setApiKeys();
 
     $('#openai_api_key').change(function() {
 
-      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').text() ); })();
+      console.log( '  api_key_openai changed' );
 
-      console.log( 'api_key_openai changed' );
+      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').text() ); })();
 
       setApiKeys();
 

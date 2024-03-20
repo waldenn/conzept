@@ -13,3 +13,6 @@ app/iiif-ng/
 app/iptv*
 app/citation/
 presentations
+
+app/ai-graph/
+static

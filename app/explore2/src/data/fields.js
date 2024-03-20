@@ -8439,11 +8439,11 @@ if ( valid( item.found_in_taxon ) ){
 
 'document_file_pdf_tts' : {
   create_condition: 'valid( item.document_file ) && ${ item?.document_file.toLowerCase().endsWith(".pdf") }',
-  title: 'Document PDF with Text-to-Speech',
+  title: 'Commons PDF with Text-to-Speech',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=en&u=${ encodeURI( item.document_file )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=en&u=${ encodeURI( "https://commons.wikimedia.org/wiki/File:" + item.document_file )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
