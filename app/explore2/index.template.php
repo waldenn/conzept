@@ -312,7 +312,7 @@ $settings_html = '
                 <div class="switch">
 
                   <label style="display:inline;" for="openai_api_key">OpenAI:</label>
-                  <input type="password" id="openai_api_key" class="validate apikey" name="openai_api_key" minlength="8" required />
+                  <input type="text" id="openai_api_key" class="validate apikey" name="openai_api_key" minlength="8" required />
 
                 </div>
 

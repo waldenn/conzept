@@ -1077,6 +1077,8 @@ input:focus {
 input.apikey {
   width: 70%;
   max-width: 450px;
+  text-security:disc;
+  -webkit-text-security: disc;
 }
 
 #fontsizer, #voice-rate, #voice-pitch {

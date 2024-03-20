@@ -2,7 +2,7 @@ const app = {};
 
 let parentref = '';
 
-if ( isMobile ){
+if ( detectMobile() === true ){
 
   parentref = parent;
 
@@ -504,11 +504,23 @@ function scroll() {
 	document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
 }
 
-$( window ).bind('beforeunload', function(event) {
+$( document ).bind('beforeunload', function(event) {
 
   if ( typeof synth !== "undefined" ) {
 
     synth.cancel();
+
+  }
+
+});
+
+$( window, document ).bind('unload', function(event) {
+
+  if ( typeof synth !== "undefined" ) {
+
+    synth.cancel();
+
+    parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
 
   }
 
