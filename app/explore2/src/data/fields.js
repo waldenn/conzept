@@ -797,6 +797,7 @@ conzept_fields = {
   headline_create: 'valid( item.full_work )',
   headline_type: 'url',
   headline_url: '${item.full_work}',
+  headline_rank: 250,
 },
 
 'full_work_pdf_tts' : {
@@ -813,7 +814,7 @@ conzept_fields = {
   rank: [2,1152],
   headline_create: 'valid( item.full_work_pdf_tts )',
   headline_type: 'link',
-  headline_url: '${item.full_work}',
+  headline_rank: 251,
 },
 
 'doid' : {
