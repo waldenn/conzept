@@ -2390,7 +2390,7 @@ function setupOptionApiKeys(){
 
     explore.api_key_openai = await explore.db.get('api_key_openai');
 
-    console.log('  initial explore.api_key_openai: ', explore.api_key_openai ');
+    console.log('  initial explore.api_key_openai: ', explore.api_key_openai );
 
     explore.api_key_openai = ( explore.api_key_openai === null || explore.api_key_openai === undefined ) ? '' : explore.api_key_openai;
 
