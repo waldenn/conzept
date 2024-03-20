@@ -8471,6 +8471,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: [3,1150],
   headline_create: 'valid( item.document_file_pdf_tts )',
   headline_type: 'link',
+  headline_rank: 252,
 },
 
 'videolectures' : {

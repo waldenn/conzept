@@ -1,6 +1,11 @@
 const app = {};
 
 let synth = window.speechSynthesis;
+
+if ( typeof synth !== "undefined" ) {
+  synth.cancel();
+}
+
 let utterance = new SpeechSynthesisUtterance();
 let __PDF_DOC,
 	__CURRENT_PAGE = 1, //This is the page which is currently being spoken
