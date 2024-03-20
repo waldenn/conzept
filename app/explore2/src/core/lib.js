@@ -2375,6 +2375,7 @@ function setApiKeys(){
 
   console.log( 'setupApiKeys()' );
 
+  explore.api_key_openai = $('#openai_api_key').val();
   explore.openai_enabled = valid( explore.api_key_openai ) ? true : false;
 
   console.log( '  explore.openai_enabled: ', explore.openai_enabled );
@@ -2399,7 +2400,7 @@ function setupOptionApiKeys(){
 
       console.log( '  api_key_openai changed' );
 
-      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').text() ); })();
+      (async () => { await explore.db.set('openai_api_key', $('#openai_api_key').val() ); })();
 
       setApiKeys();
 
