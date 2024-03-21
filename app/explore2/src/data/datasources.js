@@ -153,7 +153,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    url:                    '${datasources.openalex.endpoint}?search="${term}"&filter=language:{explore.language},language:en&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
+    url:                    '${datasources.openalex.endpoint}?search="${term}"&filter=language:${explore.language},language:en&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
     icon:                   '<img class="datasource-icon" alt="OpenAlex logo" src="/assets/icons/openalex.svg" alt="OpenAlex logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteOpenAlex( r, dataset )',

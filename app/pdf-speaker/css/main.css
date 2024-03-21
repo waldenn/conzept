@@ -11,6 +11,8 @@ body {
 button {
   width: 4em;
   height: 2em;
+  border-radius: 0.4em;
+  border-width: 0.04em;
 }
 
 button:hover {
@@ -67,6 +69,8 @@ button:hover {
 
 #page-count-container {
 	float: right;
+  margin-right: 2em;
+  margin-top: 0.2em;
 }
 
 #pdf-current-page {
@@ -126,12 +130,14 @@ button:hover {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
-  background-color: #1c292d24;
+  background-color: #f1f1f1f2;
+  /*background-color: #1c292d24;*/
   border-radius: 0.3em;
 	z-index: 1;
 	padding: 10px 10px;
 	display: flex;
 	justify-content: space-between;
+  box-shadow: 2px 6px 6px -3px #201f1f26;
 }
 
 .annotationLayer {

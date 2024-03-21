@@ -195,6 +195,7 @@ function processResultsArchive( topicResults, struct, index ){
           if ( obj.format.includes('Text PDF') || obj.format.includes('Additional Text PDF') ){
 
             tts_link = `https://archive.org/download/${gid}/${gid}.pdf`;
+            // tts_link = `https://archive.org/download/${gid}/${ gid.replace( '_', '%20' ) }.pdf`;
 
           }
 

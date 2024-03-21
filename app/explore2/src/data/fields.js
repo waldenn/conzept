@@ -2739,41 +2739,9 @@ conzept_fields = {
   rank: [5,1225],
 },
 
-/*
-'document_language_custom' : {
-  create_condition: 'valid( item.document_language )',
-  create_trigger: 'console.log( "document_language_custom: ", item.document_language );',
-  title: 'document language',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'document language',
-  section: '',
-  rank: [],
-},
-*/
-
-/*
-'document_voice_code_custom' : {
-  create_condition: 'valid( item.document_voice_code )',
-  title: 'document voice code',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '',
-  icon: '',
-  text: 'document voice code',
-  section: '',
-  rank: [],
-},
-*/
-
 'pdf_tts_custom' : {
   create_condition: 'valid( item.pdf_tts_link )',
   create_trigger: 'console.log( item.pdf_tts_link )',
-  render_condition: 'valid( item.pdf_tts_link.toLowerCase().endsWith(".pdf") )',
   title: 'PDF document with Text-to-Speech',
   prop: '',
   type: 'link',
@@ -2787,27 +2755,6 @@ conzept_fields = {
   headline_type: 'link',
   headline_rank: 251,
 },
-
-/*
-// used to force English TTS speaker
-'english_pdf_tts_custom' : {
-  create_condition: 'valid( item.english_pdf_tts_link )',
-  create_trigger: 'console.log( item.english_pdf_tts_link )',
-  render_condition: 'valid( item.english_pdf_tts_link.toLowerCase().endsWith(".pdf") )',
-  title: 'OpenAlex PDF document with Text-to-Speech',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=en&voice=&u=en-GB${ encodeURI( "https://conze.pt/app/cors/raw/?url=" + item.english_pdf_tts_link )}',
-  icon: 'fa-solid fa-headphones',
-  text: 'PDF TTS',
-  section: ['media-audio','main'],
-  rank: [2,1152],
-  headline_create: 'valid( item.english_pdf_tts_link )',
-  headline_type: 'link',
-  headline_rank: 251,
-},
-*/
 
 /*
 '3D_model_custom' : {
