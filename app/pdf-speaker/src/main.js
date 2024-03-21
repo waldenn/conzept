@@ -305,13 +305,14 @@ function showPDF(pdf_url) {
   $("button#play-button, button#pause-button, button#resume-button, button#stop-button").show();
   $("#page-count-container").show();
 
-	PDFJS.getDocument({ url: pdf_url }).then(function (pdf_doc) {
+	PDFJS.getDocument({ url: pdf_url }).then( function (pdf_doc){
+
 		__PDF_DOC = pdf_doc;
 		__TOTAL_PAGES = __PDF_DOC.numPages;
 
     //console.log( __TOTAL_PAGES );
 
-		// Hide the pdf loader and show pdf container in HTML
+		// hide the pdf loader and show pdf container in HTML
 		$("#pdf-loader").hide();
 		$("#pdf-total-pages").text(__TOTAL_PAGES);
 
@@ -333,7 +334,15 @@ function showPDF(pdf_url) {
 
     startTextToSpeech();
 
-	});
+	})
+  .catch( e => {
+
+    console.log( 'Error loading the PDF: ', e);
+
+    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h1><i class="fa-solid fa-circle-xmark"></i>&nbsp; hmm.. document loading failed!</h1>');
+
+  });
+
 }
 
 let prevId = 0;
@@ -353,7 +362,8 @@ function highlightWord() {
 
 }
 
-function showPage(page_no, newCanvas, newCtx) {
+function showPage( page_no, newCanvas, newCtx ) {
+
 	__PAGE_RENDERING_IN_PROGRESS = 1;
 
 	// While page is being rendered hide the canvas and show a loading message
@@ -465,30 +475,27 @@ function showPage(page_no, newCanvas, newCtx) {
 // This is better than showing the not-good-looking file input element
 $("#upload-button").on("click", function () {
 	$("#file-to-upload").trigger("click");
-	//$("#pause-button").hide();
-	//$("#resume-button").hide();
 });
 
 // When user chooses a PDF file
 $("#file-to-upload").on("change", async function () {
-	// Validate whether PDF
-	if (
-		["application/pdf"].indexOf($("#file-to-upload").get(0).files[0].type) == -1
-	) {
-		alert("Error : Not a PDF");
+
+  // check if its a PDF document
+	if ( ["application/pdf"].indexOf($("#file-to-upload").get(0).files[0].type) == -1 ){
+
+		console.log('Error: not a PDF document');
+
+    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h1><i class="fa-solid fa-circle-xmark"></i>&nbsp; not a PDF document</h1>');
+
 		return;
+
 	}
-
-	//$("#upload-button").hide();
-
-	// Send the object url of the pdf
-  //console.log( $("#file-to-upload").get(0).files[0] );
 
   $('#pdfContainer').empty();
 
   await populateVoiceList( lang );
 
-	showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
+	showPDF( URL.createObjectURL( $('#file-to-upload').get(0).files[0] ) );
 
 });
 
