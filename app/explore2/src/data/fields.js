@@ -800,19 +800,19 @@ conzept_fields = {
   headline_rank: 250,
 },
 
-'full_work_pdf_tts' : {
+'full_work_tts' : {
   create_condition: 'valid( item.full_work )',
   render_condition: 'valid( item.full_work.toLowerCase().endsWith(".pdf") )',
   title: 'full work PDF document with Text-to-Speech',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://conze.pt/app/cors/raw/?url=" + item.full_work )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.full_work )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
   rank: [2,1152],
-  headline_create: 'valid( item.full_work_pdf_tts )',
+  headline_create: 'valid( item.full_work_tts )',
   headline_type: 'link',
   headline_rank: 251,
 },
@@ -2739,6 +2739,32 @@ conzept_fields = {
   rank: [5,1225],
 },
 
+'document_language_custom' : {
+  create_condition: 'valid( item.document_language )',
+  title: 'document language',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'document language',
+  section: '',
+  rank: [],
+},
+
+'document_voice_code_custom' : {
+  create_condition: 'valid( item.document_voice_code )',
+  title: 'document voice code',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: 'document voice code',
+  section: '',
+  rank: [],
+},
+
 'pdf_tts_custom' : {
   create_condition: 'valid( item.pdf_tts_link )',
   create_trigger: 'console.log( item.pdf_tts_link )',
@@ -2747,7 +2773,8 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://conze.pt/app/cors/raw/?url=" + item.pdf_tts_link )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${ valid( item.document_language_custom )? item.document_language_custom : explore.language }&voice=${ valid( item.document_voice_code_custom )? item.document_voice_code_custom : "" }&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
+  //url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
@@ -2756,6 +2783,27 @@ conzept_fields = {
   headline_type: 'link',
   headline_rank: 251,
 },
+
+/*
+// used to force English TTS speaker
+'english_pdf_tts_custom' : {
+  create_condition: 'valid( item.english_pdf_tts_link )',
+  create_trigger: 'console.log( item.english_pdf_tts_link )',
+  render_condition: 'valid( item.english_pdf_tts_link.toLowerCase().endsWith(".pdf") )',
+  title: 'OpenAlex PDF document with Text-to-Speech',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/pdf-speaker/index.html?l=en&voice=&u=en-GB${ encodeURI( "https://conze.pt/app/cors/raw/?url=" + item.english_pdf_tts_link )}',
+  icon: 'fa-solid fa-headphones',
+  text: 'PDF TTS',
+  section: ['media-audio','main'],
+  rank: [2,1152],
+  headline_create: 'valid( item.english_pdf_tts_link )',
+  headline_type: 'link',
+  headline_rank: 251,
+},
+*/
 
 /*
 '3D_model_custom' : {
@@ -8457,19 +8505,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [5,1149],
 },
 
-'document_file_pdf_tts' : {
+'document_file_tts' : {
   create_condition: 'valid( item.document_file )',
   render_condition: 'valid( item.document_file.toLowerCase().endsWith(".pdf") )',
   title: 'Commons PDF with Text-to-Speech',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://conze.pt/app/cors/raw/%3Furl=https://commons.wikimedia.org/wiki/File:" + item.document_file )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/%3Furl=https://commons.wikimedia.org/wiki/File:" + item.document_file )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
   rank: [3,1150],
-  headline_create: 'valid( item.document_file_pdf_tts )',
+  headline_create: 'valid( item.document_file_tts )',
   headline_type: 'link',
   headline_rank: 252,
 },
@@ -20157,7 +20205,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '/app/gdelt/#api=geo&query=${title_quoted}&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=1d',
+  url: '/app/gdelt/#api=geo&query=${title_quoted}%20%20%20%20%20&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=1d',
   icon: 'fa-regular fa-newspaper',
   text: 'GDELT',
   section: 'news-general',
@@ -20170,7 +20218,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '/app/gdelt/#api=geo&query=${title_quoted}&sourcecountry=${explore.country_gdelt}&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=7d',
+  url: '/app/gdelt/#api=geo&query=${title_quoted}%20%20%20%20%20&sourcecountry=${explore.country_gdelt}&sourcelang=${explore.langcode}&geomode=PointData&geotimespan=7d',
   icon: 'fa-regular fa-newspaper',
   text: 'GDELT from country',
   section: 'news-general',

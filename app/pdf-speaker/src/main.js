@@ -52,6 +52,8 @@ async function init(){
 
   if ( valid( [ app.language, app.url ] ) ){
 
+    $('#download-button').show();
+
     await populateVoiceList( lang );
 
     showPDF( app.url );
@@ -104,11 +106,15 @@ function startTextToSpeech(startWord){
 	if (synth.speaking) {
 		synth.cancel();
 	}
+
 	let voices = synth.getVoices();
-	if (prevId !== 0)
-		document
-			.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
-			.classList.remove("highlight");
+
+	if (prevId !== 0){
+
+		document.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)?.classList.remove("highlight");
+
+  }
+
 	prevId = 0;
 
 	let selectedVoice = '';
@@ -195,6 +201,7 @@ function loadPage(pageNumber) {
 	canvas.classList.add("canvas");
 	textLayer.classList.add("textLayer");
 	annotationLayer.classList.add("annotationLayer");
+
 	let pdfContainer = document.getElementById("pdfContainer");
 	pdfContainer.appendChild(canvas);
 	pdfContainer.appendChild(textLayer);
@@ -251,7 +258,7 @@ function loadPage(pageNumber) {
 
     if (selectedVoice !== null) {
 
-      console.log( 'selected voice: ', selectedVoice );
+      //console.log( 'selected voice: ', selectedVoice );
 
 	    utterance.voice = selectedVoice;
 
@@ -277,10 +284,12 @@ function loadPage(pageNumber) {
 						.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
 						.classList.remove("highlight");
 				} catch {}
+
 				__CURRENT_PAGE++;
 				prevId = 0;
 				startTextToSpeech();
 				scroll();
+
 			}
 		};
 		synth.speak(utterance);
@@ -308,11 +317,18 @@ function showPDF(pdf_url) {
 
 		loadPage(1);
 
-		$(window).on("scroll", function () {
+		$(window).on( 'scroll', function(){
+
+      //console.log('scroll event');
+
 			let cont = document.getElementById("pdfContainer");
+
 			if (cont.scrollTop >= (cont.scrollHeight - cont.clientHeight) * 0.9) {
+
 				loadPage(++__VIEWING_PAGE);
+
 			}
+
 		});
 
     startTextToSpeech();
@@ -432,12 +448,15 @@ function showPage(page_no, newCanvas, newCtx) {
 						.css("height")
 						.substring(0, $("#page1").css("height").length - 2)
 				);
-				$(window).scroll(function () {
+
+				$(window).scroll( function(){
 					const scrollTop = window.scrollY;
 					const currentPage = Math.floor(scrollTop / pageHeight) + 1;
 					currentPageElement.textContent = currentPage;
 				});
+
 				__PAGE_RENDERING_IN_PROGRESS = 0;
+
 			});
 	});
 }
@@ -465,27 +484,52 @@ $("#file-to-upload").on("change", async function () {
 	// Send the object url of the pdf
   //console.log( $("#file-to-upload").get(0).files[0] );
 
+  $('#pdfContainer').empty();
+
   await populateVoiceList( lang );
 
 	showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
 
 });
 
+
+$("#download-button").on( 'click', function(){
+	
+  openInNewTab( app.url.replace( `https://${CONZEPT_HOSTNAME}${CONZEPT_WEB_BASE}/app/cors/raw/?url=`, '' ) );
+
+  /*
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'file.pdf';
+  link.dispatchEvent(new MouseEvent('click'));
+  */
+
+});
+
 function resume() {
+
+	$("#filler-button").hide();
 	$("#resume-button").hide();
 	$("#pause-button").show();
+
 	if (!synth.paused) synth.resume();
 }
 
 function pause() {
+
+	$("#filler-button").hide();
 	$("#pause-button").hide();
 	$("#resume-button").show();
+
 	if (synth.speaking) synth.pause();
 }
 
 function stop() {
+
 	$("#resume-button").hide();
 	$("#pause-button").hide();
+	$("#filler-button").show();
+
 	synth.cancel();
 }
 
@@ -499,11 +543,21 @@ function refineText(text) {
 }
 
 $("#scroll").on("click", function () {
+
 	scroll();
+
 });
 
 function scroll() {
-	document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
+
+	//document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
+
+  $('html').animate({
+
+    scrollTop: $('.highlight').offset().top - ( window.innerHeight / 3 )
+
+  }, 1000);
+
 }
 
 $( document ).bind('beforeunload', function(event) {

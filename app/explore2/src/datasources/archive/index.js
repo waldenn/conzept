@@ -97,6 +97,39 @@ function processResultsArchive( topicResults, struct, index ){
         let subtag        = '';
         let newtab        = false;
 
+        let document_language     = 'en';
+        let document_voice_code   = '';
+        let tts_link      = '';
+
+        if ( valid( obj.language ) ){
+
+          if ( typeof obj.language === 'string' ){
+
+            if ( typeof obj.language.length === 2 ){ // lang2
+
+              document_language = obj.language;
+
+            }
+            else if ( typeof obj.language.length === 3 ){ // lang3
+
+              document_language = getLangCode2( obj.language );
+
+            }
+            else { // fullname
+
+              document_language = getLangCode2fromName( obj.language );
+
+            }
+
+            console.log( 'language: ', obj.language, ' --> ', document_language );
+
+          }
+
+
+        }
+
+        document_voice_code  = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
+
         if ( valid( obj.format ) ){
 
           $.each( obj.format, function ( index, f ) {
@@ -154,6 +187,17 @@ function processResultsArchive( topicResults, struct, index ){
 
         }
 
+        // check if PDF available
+        if ( valid( obj.format ) ){
+
+          if ( obj.format.includes('Text PDF') || obj.format.includes('Additional Text PDF') ){
+
+            tts_link = `https://archive.org/download/${gid}/${gid}.pdf`;
+
+          }
+
+        }
+
         if ( valid( obj.description ) ){
 
           if ( obj.description.length > 300 ){
@@ -194,6 +238,11 @@ function processResultsArchive( topicResults, struct, index ){
 					description:  desc + '<br/><br/>' + creators.join(', '),
 					gid:          obj.identifier,
 					display_url:  url ,
+
+          document_language:    document_language,
+          document_voice_code:  document_voice_code,
+          pdf_tts_link: tts_link,
+
 					thumb:        'https://archive.org/services/img/' + obj.identifier,
           start_date:   start_date,
 					qid:          '',

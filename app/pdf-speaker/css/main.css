@@ -18,6 +18,11 @@ button:hover {
   border: 1px solid gray;
 }
 
+#filler-button {
+  color: transparent;
+  border: none;
+}
+
 #upload-button {
   width: 4em;
   height: 2em;
