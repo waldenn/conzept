@@ -4592,7 +4592,7 @@ const wp_languages = {
     "name": "Dutch Low Saxon",
     "namelocal": "Nedersaksisch",
     "script": "Latn",
-    "iso3": "dut",
+    "iso3": "",
     "langcode": "nld",
     "voice": "nl-NL",
     "users": 1,

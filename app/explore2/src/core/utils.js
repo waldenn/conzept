@@ -1651,29 +1651,32 @@ function cleanText( text ){
 
 }
 
-
+/*
 function getTTSLanguage( item ){
 
   let lang = explore.language; // default language
 
-  if ( valid( item.document_language_custom ) ){ // override default language
+  if ( valid( item.document_language ) ){ // override default language
 
-    lang = item.document_language_custom;
+    console.log( item.document_language );
+
+    lang = item.document_language;
 
   }
 
  return lang;
 
 }
+*/
 
 function getTTSVoiceCode( item ){
 
   let voice_code = explore.voice_code_selected; // default voice-code
 
-  if ( valid( item.document_language_custom ) ){ // language override requested
+  if ( valid( item.document_language ) ){ // language override requested
 
     // check if we have a voice-code for that language
-    if ( explore.voice_code_selected.startsWith( document_language_custom ) ){ // voice-code match found
+    if ( explore.voice_code_selected.startsWith( item.document_language ) ){ // voice-code match found
 
       voice_code = explore.voice_code_selected;
 

@@ -2739,8 +2739,10 @@ conzept_fields = {
   rank: [5,1225],
 },
 
+/*
 'document_language_custom' : {
   create_condition: 'valid( item.document_language )',
+  create_trigger: 'console.log( "document_language_custom: ", item.document_language );',
   title: 'document language',
   prop: '',
   type: 'link',
@@ -2751,7 +2753,9 @@ conzept_fields = {
   section: '',
   rank: [],
 },
+*/
 
+/*
 'document_voice_code_custom' : {
   create_condition: 'valid( item.document_voice_code )',
   title: 'document voice code',
@@ -2764,6 +2768,7 @@ conzept_fields = {
   section: '',
   rank: [],
 },
+*/
 
 'pdf_tts_custom' : {
   create_condition: 'valid( item.pdf_tts_link )',
@@ -2773,9 +2778,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${ getTTSLanguage( item ) }&voice=${ getTTSVoiceCode( item ) }&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
-  //url: '${explore.base}/app/pdf-speaker/index.html?l=${ valid( item.document_language_custom )? item.document_language_custom : explore.language }&voice=${ valid( item.document_voice_code_custom )? item.document_voice_code_custom : "" }&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
-  //url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${ valid( item.document_language )? item.document_language : explore.language  }&voice=${ getTTSVoiceCode( item ) }&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
