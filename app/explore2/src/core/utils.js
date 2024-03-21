@@ -1652,6 +1652,44 @@ function cleanText( text ){
 }
 
 
+function getTTSLanguage( item ){
+
+  let lang = explore.language; // default language
+
+  if ( valid( item.document_language_custom ) ){ // override default language
+
+    lang = item.document_language_custom;
+
+  }
+
+ return lang;
+
+}
+
+function getTTSVoiceCode( item ){
+
+  let voice_code = explore.voice_code_selected; // default voice-code
+
+  if ( valid( item.document_language_custom ) ){ // language override requested
+
+    // check if we have a voice-code for that language
+    if ( explore.voice_code_selected.startsWith( document_language_custom ) ){ // voice-code match found
+
+      voice_code = explore.voice_code_selected;
+
+    }
+    else { // no matching voice-code language found
+
+      voice_code = '';
+
+    }
+
+  }
+
+  return voice_code;
+
+}
+
 function getTutor( item ){
 
   let tutor = valid( explore.tutor )? explore.tutor : 'default'; // initial tutor
