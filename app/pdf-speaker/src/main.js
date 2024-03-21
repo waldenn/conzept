@@ -38,9 +38,14 @@ let canvas_width = 1000;
 let pageHeight = -1;
 let __VIEWING_PAGE = __CURRENT_PAGE;
 
-app.language  = getParameterByName( 'l' ) || 'en';
-app.url       = getParameterByName( 'u' ) || '';
-app.voice     = getParameterByName( 'voice' ) || ''; // TODO
+app.language            = getParameterByName( 'l' ) || 'en';
+app.url                 = getParameterByName( 'u' ) || '';
+app.voice               = getParameterByName( 'voice' ) || ''; // TODO: rate and pitch parameters
+
+app.current_url         = app.url; // used for page reloads
+app.scroll_update_time  = 2000;
+app.auto_scroll_enabled = true;
+app.timerID = setInterval( scrollTo, app.scroll_update_time );
 
 const lang = valid( app.voice )? app.voice : app.language;
 
@@ -56,7 +61,7 @@ async function init(){
 
     await populateVoiceList( lang );
 
-    showPDF( app.url );
+    showPDF( app.current_url );
 
   }
 
@@ -175,7 +180,7 @@ function startTextToSpeech(startWord){
 					prevId = 0;
 
 					startTextToSpeech();
-					scroll();
+					scrollTo();
 				}
 			};
 			synth.speak(utterance);
@@ -288,7 +293,7 @@ function loadPage(pageNumber) {
 				__CURRENT_PAGE++;
 				prevId = 0;
 				startTextToSpeech();
-				scroll();
+				scrollTo();
 
 			}
 		};
@@ -339,7 +344,7 @@ function showPDF(pdf_url) {
 
     console.log( 'Error loading the PDF: ', e);
 
-    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h1><i class="fa-solid fa-circle-xmark"></i>&nbsp; hmm.. document loading failed!</h1>');
+    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h2><i class="fa-solid fa-circle-xmark"></i>&nbsp; document loading failed, please check the download button</h2>');
 
   });
 
@@ -485,7 +490,7 @@ $("#file-to-upload").on("change", async function () {
 
 		console.log('Error: not a PDF document');
 
-    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h1><i class="fa-solid fa-circle-xmark"></i>&nbsp; not a PDF document</h1>');
+    $('#pdf-loader').css({ 'color' : '#d06f6f' }).html('<h2><i class="fa-solid fa-circle-xmark"></i>&nbsp; not a PDF document</h2>');
 
 		return;
 
@@ -495,7 +500,9 @@ $("#file-to-upload").on("change", async function () {
 
   await populateVoiceList( lang );
 
-	showPDF( URL.createObjectURL( $('#file-to-upload').get(0).files[0] ) );
+  app.current_url = URL.createObjectURL( $('#file-to-upload').get(0).files[0] );
+
+	showPDF( app.current_url );
 
 });
 
@@ -513,7 +520,7 @@ $("#download-button").on( 'click', function(){
 
 });
 
-function resume() {
+function resume(){
 
 	$("#filler-button").hide();
 	$("#resume-button").hide();
@@ -522,7 +529,7 @@ function resume() {
 	if (!synth.paused) synth.resume();
 }
 
-function pause() {
+function pause(){
 
 	$("#filler-button").hide();
 	$("#pause-button").hide();
@@ -531,7 +538,7 @@ function pause() {
 	if (synth.speaking) synth.pause();
 }
 
-function stop() {
+function stop(){
 
 	$("#resume-button").hide();
 	$("#pause-button").hide();
@@ -549,19 +556,40 @@ function refineText(text) {
 	return newText;
 }
 
-$("#scroll").on("click", function () {
+function toggleAutoScroll(){
 
-	scroll();
+  app.auto_scroll_enabled = app.auto_scroll_enabled? false : true;
+
+  if ( app.auto_scroll_enabled ){ // setup auto-scrolling
+
+    app.timerID = setInterval( scrollTo, app.scroll_update_time );
+
+    $( '#auto-scroll-button' ).html( '<i class="fa-solid fa-toggle-on"></i>' );
+
+  }
+  else { // stop auto-scrolling
+
+    clearInterval( app.timerID );
+
+    $( '#auto-scroll-button' ).html( '<i class="fa-solid fa-toggle-off"></i>' );
+
+  }
+
+}
+
+$("#scroll-to-button").on("click", function () {
+
+	scrollTo();
 
 });
 
-function scroll() {
+function scrollTo(){
 
 	//document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
 
   $('html').animate({
 
-    scrollTop: $('.highlight').offset().top - ( window.innerHeight / 3 )
+    scrollTop: $('.highlight').offset()?.top - ( window.innerHeight / 3 )
 
   }, 1000);
 

@@ -1235,7 +1235,8 @@ function getTitlefromImageURL( url ){
 	}
 
 	name = name.replace(/_/g, ' ' );
-	name = name.substr(0, name.lastIndexOf('.') ); // remove last file-extension
+
+	name = name.substring(0, name.lastIndexOf('.') ); // remove last file-extension
 
 	return name;
 
