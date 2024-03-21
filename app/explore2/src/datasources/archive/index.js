@@ -99,18 +99,19 @@ function processResultsArchive( topicResults, struct, index ){
 
         let document_language     = 'en';
         let document_voice_code   = '';
-        let tts_link      = '';
+        let tts_link              = '';
+        let drm_book              = false;
 
         if ( valid( obj.language ) ){
 
           if ( typeof obj.language === 'string' ){
 
-            if ( typeof obj.language.length === 2 ){ // lang2
+            if ( obj.language.length === 2 ){ // lang2
 
               document_language = obj.language;
 
             }
-            else if ( typeof obj.language.length === 3 ){ // lang3
+            else if ( obj.language.length === 3 ){ // lang3
 
               document_language = getLangCode2( obj.language );
 
@@ -136,9 +137,10 @@ function processResultsArchive( topicResults, struct, index ){
 
             if ( f.toLowerCase().includes( 'encrypted' ) ){ // DRM ebook
 
-              newtab = true;
+              newtab    = true;
+              drm_book  = true;
 
-              console.log( 'DRM book' );
+              //console.log( 'DRM book' );
 
             }
 
@@ -187,8 +189,8 @@ function processResultsArchive( topicResults, struct, index ){
 
         }
 
-        // check if PDF available
-        if ( valid( obj.format ) ){
+        // check if PDF file available
+        if ( ! drm_book && valid( obj.format ) ){
 
           if ( obj.format.includes('Text PDF') || obj.format.includes('Additional Text PDF') ){
 
