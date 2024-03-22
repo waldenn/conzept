@@ -43,9 +43,9 @@ app.url                 = getParameterByName( 'u' ) || '';
 app.voice               = getParameterByName( 'voice' ) || ''; // TODO: rate and pitch parameters
 
 app.current_url         = app.url; // used for page reloads
-app.scroll_update_time  = 2000;
-app.auto_scroll_enabled = true;
-app.timerID = setInterval( scrollTo, app.scroll_update_time );
+app.scroll_update_time  = 7000;
+app.auto_scroll_enabled = false;
+//app.timerID = setInterval( scrollTo, app.scroll_update_time );
 
 const lang = valid( app.voice )? app.voice : app.language;
 
