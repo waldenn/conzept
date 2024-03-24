@@ -807,7 +807,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.full_work )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.full_work )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
@@ -8463,7 +8463,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/%3Furl=https://commons.wikimedia.org/wiki/File:" + item.document_file )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/%3Furl=https://commons.wikimedia.org/wiki/File:" + item.document_file )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
@@ -9123,7 +9123,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'valid( item.outline )',
   headline_rank: 40,
   headline_type: 'link',
-  headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&qid=${item.outline}&tutor=${explore.tutor}#${explore.hash}',
+  headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&qid=${item.outline}&tutor=${explore.tutor}#${explore.hash}',
 },
 
 'highway_system' : {
@@ -19541,7 +19541,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikipedia_inline' : {
   // FIXME
-  value: 'iframe-url:${explore.host}${explore.base}/app/wikipedia/?t=${ encodeURIComponent( item.title ) }&l=${explore.language}&voice=${explore.voice_code}&qid=${item.qid}&tutor=${explore.tutor}&embedded=true',
+  value: 'iframe-url:${explore.host}${explore.base}/app/wikipedia/?t=${ encodeURIComponent( item.title ) }&l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&qid=${item.qid}&tutor=${explore.tutor}&embedded=true',
   render_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.title ) && !explore.isMobile',
   title: 'inline Wikipedia article',
   prop: '0',

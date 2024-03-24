@@ -31,9 +31,12 @@ const explore = {
   language     	: getParameterByName('l') || 'en',
   lang3         : getParameterByName('lang3') || '',  // used for the Open Library book-link
   language_direction : getParameterByName('dir') || '',
-  voice_code   	: getParameterByName('voice') || '',  // used for TTS
-  voice_rate   	: '1',                                // used for TTS
-  voice_pitch  	: '1',                                // used for TTS
+
+  // used for TTS
+  voice_code   	: getParameterByName('voice') || '',
+  voice_rate   	: getParameterByName('rate')  || '1',
+  voice_pitch  	: getParameterByName('pitch') || '1',
+
   hash         	: location.hash.substring(1) || '',
 	qid						: getParameterByName('qid') || '',    // global identifier
 	embedded			: getParameterByName('embedded') || '', // signals to open links in the local iframe
