@@ -171,7 +171,7 @@ const datasources = {
   'arxiv': {
     active:                 false,
     name:                   'arXiv',
-    description:            'science articles (BETA)',
+    description:            'science articles - BETA',
     tag:                    'science',
     qid:                    'Q118398',
     protocol:               'rest',
