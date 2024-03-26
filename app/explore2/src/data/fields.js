@@ -20322,7 +20322,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'archive_audio_inline' : {
-  value: 'archive-audio:${item.title}:true:${ checkTag(item, 1, "work") }',
+  value: 'archive-audio:${item.title}:${ valid( item.datasource !== "archive" ) }:${ checkTag(item, 1, "work") }',
   title: 'Archive audio',
   prop: '0',
   type: 'rest-json',
@@ -20332,7 +20332,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'audio',
   section: ['media-audio','main'],
   rank: [10,1230],
-  headline_create: 'checkTag( item, 1, ["music", "music-genre", "musician", "music-group"] ) || valid( item.is_musician )',
+  headline_create: 'valid( item.datasource !== "archive" ) && ( checkTag( item, 1, ["music", "music-genre", "musician", "music-group"] ) || valid( item.is_musician ) )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 240,

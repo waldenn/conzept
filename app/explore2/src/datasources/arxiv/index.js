@@ -87,6 +87,7 @@ function processResultsArxiv( topicResults, struct, index ){
         const language    = explore.language;
         const term 				= removebracesTitle( getSearchTerm() );
         const start_date  = $(this).find('published').text().split('-')[0];
+        const doi         = $(this).find('arxiv:doi').text();
 
         let url           = $( $(this).find('link')[1] ).attr('href');
         let doc_url       = $( $(this).find('link')[1] ).attr('href');
@@ -125,6 +126,12 @@ function processResultsArxiv( topicResults, struct, index ){
         if ( creators.length > 0 ){
 
           desc = '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '<br/><br/>' + desc;
+
+        }
+
+        if ( valid( doi ) ){
+
+          desc += '<br/><br/>' + doi; 
 
         }
 
