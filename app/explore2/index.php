@@ -217,6 +217,15 @@ $sticky_html = '
       <input id="srsearch" title="search input" type="search" enterkeyhint="search" autocomplete="off" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
+
+      <div id="search-options" style="display:none;">&nbsp;&nbsp;<i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp;<select id="sortby">
+          <option value=""></option>
+          <option value="relevance-desc">relevance ↓ </option>
+          <option value="relevance-asc">relevance ↑</option>
+          <option value="date-desc">date ↓</option>
+          <option value="date-asc">date ↑</option>
+        </select>
+      </div>
     </span>
 
     <ul id="tabs-swipe-demo" class="tabs">

@@ -967,7 +967,7 @@ async function insertPresentationSections( title, qid, language ){
 
       }
 
-      insertRelatedPresentationTopics();
+      insertRelatedPresentationTopics( qid );
 
     },
 
@@ -1014,7 +1014,7 @@ async function insertPresentationSections( title, qid, language ){
 }
 
 
-function insertRelatedPresentationTopics( qid, ){
+function insertRelatedPresentationTopics( qid ){
 
   // add more ToC 'chapters' (for each topic relational property)
 
@@ -1024,11 +1024,17 @@ function insertRelatedPresentationTopics( qid, ){
   const props_on_item = [
     'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
     'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
+    'P800',   // notable-work         https://www.wikidata.org/wiki/Property:P800
+    'P135',   // movement             https://www.wikidata.org/wiki/Property:P135
     'P170',   // creator              https://www.wikidata.org/wiki/Property:P170
     'P50',    // author               https://www.wikidata.org/wiki/Property:P50
     'P106',   // occupation           https://www.wikidata.org/wiki/Property:P106
     'P102',   // member of pol. party https://www.wikidata.org/wiki/Property:P102
     'P39',    // position held        https://www.wikidata.org/wiki/Property:P39
+    'P101',   // field-of-work        https://www.wikidata.org/wiki/Property:P101
+    'P1066',  // student-of           https://www.wikidata.org/wiki/Property:P1066
+    'P802',   // student              https://www.wikidata.org/wiki/Property:P802
+    'P140',   // religion / worldview https://www.wikidata.org/wiki/Property:P140
     'P361',   // part-of              https://www.wikidata.org/wiki/Property:P361
     'P1269',  // facet-of             https://www.wikidata.org/wiki/Property:P1269
     'P2596',  // culture              https://www.wikidata.org/wiki/Property:P2596
@@ -1050,8 +1056,6 @@ function insertRelatedPresentationTopics( qid, ){
     'P1365',  // replaces             https://www.wikidata.org/wiki/Property:P1365
     'P1366',  // replaced-by          https://www.wikidata.org/wiki/Property:P1366
     'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
-    'P800',   // notable-work         https://www.wikidata.org/wiki/Property:P800
-    'P135',   // movement             https://www.wikidata.org/wiki/Property:P135
     'P136',   // genre                https://www.wikidata.org/wiki/Property:P136
   ];
 

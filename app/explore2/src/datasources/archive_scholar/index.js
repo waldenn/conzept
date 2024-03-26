@@ -119,7 +119,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
         let subtag        = 'science-article';
         let img           = '';
 
-        let document_language   = 'en';
+        let document_language   = explore.language;
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
         let tts_link      = pdf_url;
 
