@@ -11,20 +11,25 @@
       * datasource autocomplete
       * datasource searching
 
-  * Implement support for other search modalities in datasources:
-    * design workflow
-    * first test case: geospatial searching in the active datasources (if supported in the API).
+  * Datasource sort options (descending and ascending in value):
+    * relevance 
+    * date 
+    * geo-distance
+    * ... 
 
-  * Add new search modalities:
-    * temporal-range search (point-in-time, start-time, end-time)
-    * ISBN search
-    * DOI search
-    * structured search using SPARQL (beyond Wikidata)
-      * ontology classes
-      * ontology properties
-      * autocompletion
-      * multi-lingual labels
-      * handle CORS issues
+  * New search modalitites:
+    * design the workflow
+    * candidates:
+      * geospatial search (almost done)
+      * temporal-range search (point-in-time, start-time, end-time)
+      * ISBN search
+      * DOI search
+      * structured search using SPARQL (beyond Wikidata)
+        * ontology classes
+        * ontology properties
+        * autocompletion
+        * multi-lingual labels
+        * handle CORS issues
 
   * Improve existing search modalities:
     * ? Wikidata: Allow filtering by text in "structured search" (currently not supported in the Wikidata-query-builder)
