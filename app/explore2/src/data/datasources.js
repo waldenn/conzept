@@ -13,6 +13,7 @@ const datasources = {
     pagesize:               5,
     filter:                 '0|14', // Wikipedia-API specific: list of Wikipedia namespaces
     url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=${datasources.wikipedia.filter}&srlimit=${datasources.wikipedia.pagesize}&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
+    // SORTING: 
     icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
     display_url:            'https://${explore.host}${explore.base}/app/wikipedia/?q=${qid}&lang=${language}', // TODO
     code_data_collect:      'my_promises.push( processResultsWikipedia( topicResults, struct, index ) );', // FIXME: invert control (see next line)
@@ -171,7 +172,7 @@ const datasources = {
   'arxiv': {
     active:                 false,
     name:                   'arXiv',
-    description:            'science articles - BETA',
+    description:            'science articles',
     tag:                    'science',
     qid:                    'Q118398',
     protocol:               'rest',
@@ -180,6 +181,8 @@ const datasources = {
     connect:                'xml',
     pagesize:               5,
     url:                    '${datasources.arxiv.endpoint}?search_query=all:"${term}"&start=${ ( explore.page - 1) * datasources.arxiv.pagesize }&max_results=${datasources.arxiv.pagesize}&sortBy=relevance&sortOrder=descending', // sortBy=relevance | submittedDate
+    // SORTING: sortBy can be "relevance", "lastUpdatedDate", "submittedDate"
+    //          sortOrder can be either "ascending" or "descending"
     icon:                   '<img class="datasource-icon" alt="arXiv logo" src="/assets/icons/arxiv.svg" alt="arXiv logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteArxiv( r, dataset )',

@@ -91,6 +91,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
         const term 				= removebracesTitle( getSearchTerm() );
 
         let url           = ''; // eval(`\`${ datasources[ source ].display_url  }\``);
+        let pdf_url       = '';
 
         if ( valid( obj.access ) ){
 
@@ -104,7 +105,8 @@ function processResultsArchiveScholar( topicResults, struct, index ){
 
             }
 
-            url = encodeURIComponent( JSON.stringify( source_link ) );
+            url     = encodeURIComponent( JSON.stringify( source_link ) );
+            pdf_url = source_link; 
 
           }
 
@@ -116,6 +118,10 @@ function processResultsArchiveScholar( topicResults, struct, index ){
         let creators      = [];
         let subtag        = 'science-article';
         let img           = '';
+
+        let document_language   = 'en';
+        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
+        let tts_link      = pdf_url;
 
         if ( valid( obj.fulltext ) ){
 
@@ -150,9 +156,14 @@ function processResultsArchiveScholar( topicResults, struct, index ){
 					title:        valid( obj.biblio?.title )? obj.biblio.title : '---',
 					description:  desc  + '<br/><br/>' + creators.join(', '),
 					gid:          valid( obj.work_ident )? obj.work_ident : '---',
-					display_url:  url ,
+					display_url:  url,
 					thumb:        img,
           start_date:   valid( obj.biblio?.release_year )? ( obj.biblio.release_year ).toString() : '',
+
+          document_language:    document_language,
+          document_voice_code:  document_voice_code,
+          pdf_tts_link: tts_link,
+
 					qid:          '',
           countries:    [],
           tags:         [],

@@ -114,8 +114,11 @@ function processResultsArxiv( topicResults, struct, index ){
 
         $(this).find('author').each(function( j ) {
 
-          creators.push( $(this).text() );
+          const author_name       = $(this).text();
+          const author_search_url = `https://openalex.org/authors?page=1&filter=default.search%3A${ encodeURIComponent( author_name ) }&sort=relevance_score%3Adesc`;
 
+          // FIXME: the link does not work in openalex-in-presentation-mode
+          creators.push( `<a onclick="openInFrame( &quot;${author_search_url}&quot; )" href="javascript:void(0)" title="OpenAlex author search" aria-label="OpenAlex author search" aria-role="button">${author_name}</a>`);
 
         });
 

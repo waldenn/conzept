@@ -664,7 +664,7 @@ body.rtl span.nobreak {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 0.5rem;
+  margin-top: 2.5rem;
 }
 
 .overflow-container:focus {
@@ -2368,6 +2368,15 @@ h1 {
 #srsearch::placeholder {
   color: rgba(86, 82, 83, 0.67);
   font-size: smaller;
+}
+
+#sortby {
+  display: inline;
+  width: 63%;
+}
+
+#search-options::before {
+  content: "";
 }
 
 #language {
