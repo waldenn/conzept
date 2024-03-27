@@ -10010,14 +10010,20 @@ async function fetchDatasources(){
 
     let sortby = '';
 
+    console.log( 'fetchDatasources() source: ', source, explore.sortby );
+
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
       sortby = d.sort_map[ explore.sortby ];
+
+      console.log('found sortby for: ', explore.sortby, sortby );
 
     }
     else {
 
       sortby = d.sort_map[ 'none' ];
+
+      console.log('no sortby found, set to: ', sortby );
 
     }
 
