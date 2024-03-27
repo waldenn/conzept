@@ -12,7 +12,7 @@ const datasources = {
     connect:                'jsonp',
     pagesize:               5,
     filter:                 '0|14', // Wikipedia-API specific: list of Wikipedia namespaces
-    sort_table:              { // https://www.mediawiki.org/wiki/Help:CirrusSearch
+    sort_map:               { // https://www.mediawiki.org/wiki/Help:CirrusSearch
                               'none'            : 'relevance',
                               'relevance-desc'  : 'relevance',
                               'relevance-asc'   : 'random',
@@ -27,7 +27,7 @@ const datasources = {
                               'distance-asc'    : 'relevance',
                             },
     // Wikipedia API: https://www.mediawiki.org/wiki/API:Main_page
-    url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=${datasources.wikipedia.filter}&srlimit=${datasources.wikipedia.pagesize}&srsort=${explore.sortby}&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
+    url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=${datasources.wikipedia.filter}&srlimit=${datasources.wikipedia.pagesize}&srsort=${sortby}&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
     // SORTING: 
     icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
     display_url:            'https://${explore.host}${explore.base}/app/wikipedia/?q=${qid}&lang=${language}', // TODO
@@ -38,7 +38,7 @@ const datasources = {
     code_render_mark:       'renderMarkWikipedia( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'opensearch',
-    autocomplete_url:       'https://${explore.language}.wikipedia.org/w/api.php?action=${datasources.wikipedia.autocomplete_protocol}&format=${datasources.wikipedia.autocomplete_format}&search=${term}&namespace=${datasources.wikipedia.autocomplete_filter}&limit=${datasources.wikipedia.autocomplete_limit}&profile=${datasources.wikipedia.autocomplete_mode}',
+    autocomplete_url:       'https://${explore.language}.wikipedia.org/w/api.php?action=${datasources.wikipedia.autocomplete_protocol}&format=${datasources.wikipedia.autocomplete_format}&search=${term}&namespace=${datasources.wikipedia.autocomplete_filter}&srsort=${sortby}&limit=${datasources.wikipedia.autocomplete_limit}&profile=${datasources.wikipedia.autocomplete_mode}',
     autocomplete_format:    'json',
     autocomplete_connect:   'jsonp',
     autocomplete_limit:     7,
@@ -58,7 +58,7 @@ const datasources = {
     connect:                'json',
     pagesize:               5, // NOTE: sync this value with "structured query builder"!
     filter:                 '',
-    sort_table:              {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -103,7 +103,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               4,
-    sort_table:              {  // no sort available?
+    sort_map:               {  // no sort available?
                                 // https://phabricator.wikimedia.org/T219576
                                 // https://www.mediawiki.org/wiki/Help:CirrusSearch
                               'none'            : '',
@@ -146,7 +146,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             { // see: https://archive.org/advancedsearch.php
+    sort_map:               { // see: https://archive.org/advancedsearch.php
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -160,7 +160,7 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    url:                    '${datasources.archive.endpoint}?&sort[]=${explore.sortby}&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=%22${term}%22',
+    url:                    '${datasources.archive.endpoint}?sort[]=${sortby}&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=%22${term}%22',
     icon:                   '<img class="datasource-icon" alt="Internet Archive datasource" src="/assets/icons/archive.svg" alt="Internet Archive logo">',
     display_url:            'https://archive.org/details/${gid}/?q=%22${term}%22&autoplay=1',
     // TODO: search_url:    'https://archive.org/search?query=${term}&language%3A"${ wp_languages[ explore.language ].name }"',
@@ -170,7 +170,7 @@ const datasources = {
     code_render_mark:       'renderMarkArchive( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.archive.endpoint}?rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22',
+    autocomplete_url:       '${datasources.archive.endpoint}?sort[]=${sortby}&rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -187,7 +187,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'relevancy',
                               'relevance-desc'  : 'relevancy',
                               'relevance-asc'   : 'relevancy',
@@ -201,7 +201,7 @@ const datasources = {
                               'distance-desc'   : 'relevancy',
                               'distance-asc'    : 'relevancy',
                             },
-    url:                    '${datasources.archive_scholar.endpoint}/search?sort_order=${explore.sortby}&limit=${datasources.archive_scholar.pagesize}&offset=${ (explore.page -1) * datasources.archive_scholar.pagesize }&q=lang%3A${language}+"${term}"',
+    url:                    '${datasources.archive_scholar.endpoint}/search?sort_order=${sortby}&limit=${datasources.archive_scholar.pagesize}&offset=${ (explore.page -1) * datasources.archive_scholar.pagesize }&q=lang%3A${language}+"${term}"',
     icon:                   '<img class="datasource-icon" alt="Internet Archive Scholar datasource" src="/assets/icons/archive_scholar.svg" alt="Internet Archive Scholar logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteArchiveScholar( r, dataset )',
@@ -210,7 +210,7 @@ const datasources = {
     code_render_mark:       'renderMarkArchiveScholar( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.archive_scholar.endpoint}/search?sort_order=relevancy&limit=${datasources.archive_scholar.pagesize}&offset=0&q=lang%3A${language}+"${term}"',
+    autocomplete_url:       '${datasources.archive_scholar.endpoint}/search?sort_order=${sortby}&limit=${datasources.archive_scholar.pagesize}&offset=0&q=lang%3A${language}+"${term}"',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -227,7 +227,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'relevance_score:desc',
                               'relevance-desc'  : 'relevance_score:desc',
                               'relevance-asc'   : 'relevance_score:asc',
@@ -241,7 +241,7 @@ const datasources = {
                               'distance-desc'   : 'relevance_score:desc',
                               'distance-asc'    : 'relevance_score:desc',
                             },
-    url:                    '${datasources.openalex.endpoint}?search="${term}"&sort=${explore.sortby}&filter=language:${explore.language},language:en&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
+    url:                    '${datasources.openalex.endpoint}?search="${term}"&sort=${sortby}&filter=language:${explore.language},language:en&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
     icon:                   '<img class="datasource-icon" alt="OpenAlex logo" src="/assets/icons/openalex.svg" alt="OpenAlex logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteOpenAlex( r, dataset )',
@@ -250,7 +250,7 @@ const datasources = {
     code_render_mark:       'renderMarkOpenAlex( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.openalex.endpoint}?search=${term}&filter=language:{explore.language},language:en&page=1&per-page=${datasources.openalex.autocomplete_limit}',
+    autocomplete_url:       '${datasources.openalex.endpoint}?search=${term}&sort=${sortby}&filter=language:{explore.language},language:en&page=1&per-page=${datasources.openalex.autocomplete_limit}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -267,7 +267,7 @@ const datasources = {
     format:                 'json',
     connect:                'xml',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'relevance',
                               'relevance-desc'  : 'relevance',
                               'relevance-asc'   : 'relevance',
@@ -282,9 +282,7 @@ const datasources = {
                               'distance-asc'    : '',
                             },
                             // TODO: "sortOrder=ascending|descending" is an separate parameter, how to handle?
-    url:                    '${datasources.arxiv.endpoint}?search_query=all:"${term}"&sortBy=${explore.sortby}&sortOrder=descending&start=${ ( explore.page - 1) * datasources.arxiv.pagesize }&max_results=${datasources.arxiv.pagesize}&sortBy=relevance&sortOrder=descending', // sortBy=relevance | submittedDate
-    // SORTING: sortBy can be "relevance", "lastUpdatedDate", "submittedDate"
-    //          sortOrder can be either "ascending" or "descending"
+    url:                    '${datasources.arxiv.endpoint}?search_query=all:"${term}"&sortBy=${sortby}&sortOrder=descending&start=${ ( explore.page - 1) * datasources.arxiv.pagesize }&max_results=${datasources.arxiv.pagesize}&sortBy=relevance&sortOrder=descending',
     icon:                   '<img class="datasource-icon" alt="arXiv logo" src="/assets/icons/arxiv.svg" alt="arXiv logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteArxiv( r, dataset )',
@@ -293,7 +291,7 @@ const datasources = {
     code_render_mark:       'renderMarkArxiv( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.arxiv.endpoint}?search_query=all:"${term}"&start=0&max_results=${datasources.arxiv.autocomplete_limit}&sortBy=relevance&sortOrder=descending',
+    autocomplete_url:       '${datasources.arxiv.endpoint}?search_query=all:"${term}"&sortBy=${sortby}&start=0&max_results=${datasources.arxiv.autocomplete_limit}&sortBy=relevance&sortOrder=descending',
     autocomplete_format:    'json',
     autocomplete_connect:   'xml',
     autocomplete_limit:     5,
@@ -310,7 +308,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'score+desc',
                               'relevance-desc'  : 'score+desc',
                               'relevance-asc'   : 'score+asc',
@@ -324,7 +322,7 @@ const datasources = {
                               'distance-desc'   : 'score+desc',
                               'distance-asc'    : 'score+desc',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&sort=${explore.sortby}&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }',
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&sort=${sortby}&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     display_url:            'https://www.europeana.eu/${language}/item${gid}',
     code_autocomplete:      'autocompleteEuropeana( r, dataset )',
@@ -333,7 +331,7 @@ const datasources = {
     code_render_mark:       'renderMarkEuropeana( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}',
+    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&sort=${sortby}&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -350,7 +348,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               4,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'relevance',
                               'relevance-desc'  : 'relevance',
                               'relevance-asc'   : 'relevance',
@@ -364,7 +362,7 @@ const datasources = {
                               'distance-desc'   : 'relevance',
                               'distance-asc'    : 'relevance',
                             },
-    url:                    '${datasources.rijksmuseum.endpoint}/${ selectLanguageFrom( ["nl", "en"], "en" ) }/collection?key=8MT2OLE3&imgonly=true&s=${explore.sortby}&p=${explore.page}&ps=${datasources.rijksmuseum.pagesize}&culture=${ selectLanguageFrom( ["nl", "en"], "en" ) }&s=relevance&q=%22${ removebracesTitle(term) }%22',
+    url:                    '${datasources.rijksmuseum.endpoint}/${ selectLanguageFrom( ["nl", "en"], "en" ) }/collection?key=8MT2OLE3&imgonly=true&s=${sortby}&p=${explore.page}&ps=${datasources.rijksmuseum.pagesize}&culture=${ selectLanguageFrom( ["nl", "en"], "en" ) }&q=%22${ removebracesTitle(term) }%22',
     icon:                   '<img class="datasource-icon" alt="Rijksmuseum datasource" src="/assets/icons/rijksmuseum.svg" alt="Rijksmuseum logo">',
     display_url:            'https://www.rijksmuseum.nl/${ selectLanguageFrom( ["nl", "en"], "en" ) }/${ valid ( explore.language === "nl" )? "collectie" : "collection" }/${gid}',
     code_autocomplete:      'autocompleteRijksmuseum( r, dataset )',
@@ -373,7 +371,7 @@ const datasources = {
     code_render_mark:       'renderMarkRijksmuseum( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.rijksmuseum.endpoint}/${ selectLanguageFrom( ["nl", "en"], "en" ) }/collection?key=8MT2OLE3&imgonly=true&s=relevance&p=1&ps=${datasources.rijksmuseum.autocomplete_limit}&culture=${ selectLanguageFrom( ["nl", "en"], "en" ) }&s=relevance&q=${ removebracesTitle(term) }',
+    autocomplete_url:       '${datasources.rijksmuseum.endpoint}/${ selectLanguageFrom( ["nl", "en"], "en" ) }/collection?key=8MT2OLE3&imgonly=true&s=${sortby}&p=1&ps=${datasources.rijksmuseum.autocomplete_limit}&culture=${ selectLanguageFrom( ["nl", "en"], "en" ) }&q=${ removebracesTitle(term) }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -390,7 +388,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             { // MAYBE TODO: see sortable field: https://api.gleif.org/api/v1/fields the use as: "sort=entity.legalName"
+    sort_map:               { // MAYBE TODO: see sortable field: https://api.gleif.org/api/v1/fields the use as: "sort=entity.legalName"
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -430,7 +428,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : 'relevance%2Bdesc',
                               'relevance-desc'  : 'relevance%2Bdesc',
                               'relevance-asc'   : 'relevance%2Basc',
@@ -444,7 +442,7 @@ const datasources = {
                               'distance-desc'   : 'relevance%2Bdesc',
                               'distance-asc'    : 'relevance%2Bdesc',
                             },
-    url:                    '${datasources.eu.endpoint}?q=${term}&filter=dataset&limit=${datasources.eu.pagesize}&page=${explore.page - 1}&sort=${explore.sortby},+modified%2Bdesc,+title.en%2Basc&facetOperator=AND&facetGroupOperator=AND&dataServices=false&facets={"publisher":[],"format":[],"catalog":[],"categories":[],"keywords":[],"country":[],"license":[]}',
+    url:                    '${datasources.eu.endpoint}?q=${term}&filter=dataset&limit=${datasources.eu.pagesize}&page=${explore.page - 1}&sort=${sortby},+modified%2Bdesc,+title.en%2Basc&facetOperator=AND&facetGroupOperator=AND&dataServices=false&facets={"publisher":[],"format":[],"catalog":[],"categories":[],"keywords":[],"country":[],"license":[]}',
     icon:                   '<img class="datasource-icon" alt="European Union datasource" src="/assets/icons/eu.svg" alt="EU flag">',
     display_url:            'https://data.europa.eu/data/datasets/${gid}?locale=${ selectLanguageFrom( ["en","nl","es","de","it","fr"], "en" ) }',
     code_autocomplete:      'autocompleteEU( r, dataset )',
@@ -453,7 +451,7 @@ const datasources = {
     code_render_mark:       'renderMarkEU( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.eu.endpoint}?q=${term}&filter=dataset&limit=${datasources.eu.autocomplete_limit}&page=0&sort=relevance%2Bdesc,+modified%2Bdesc,+title.en%2Basc&facetOperator=AND&facetGroupOperator=AND&dataServices=false&facets={"publisher":[],"format":[],"catalog":[],"categories":[],"keywords":[],"country":[],"license":[]}',
+    autocomplete_url:       '${datasources.eu.endpoint}?q=${term}&filter=dataset&limit=${datasources.eu.autocomplete_limit}&page=0&sort=${sortby},+modified%2Bdesc,+title.en%2Basc&facetOperator=AND&facetGroupOperator=AND&dataServices=false&facets={"publisher":[],"format":[],"catalog":[],"categories":[],"keywords":[],"country":[],"license":[]}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -470,7 +468,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -511,7 +509,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -552,7 +550,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -596,7 +594,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -641,7 +639,7 @@ const datasources = {
     format:                 'json',
     connect:                'json',
     pagesize:               5,
-    sort_table:             {
+    sort_map:               {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
@@ -655,7 +653,7 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    url:                    '${datasources.snomed.endpoint}??&limit=${datasources.snomed.pagesize}&term=${term}&active=true&conceptActive=true&lang=english&groupByConcept=true&offset=${ (explore.page -1) * datasources.snomed.pagesize }',
+    url:                    '${datasources.snomed.endpoint}?&limit=${datasources.snomed.pagesize}&term=${term}&active=true&conceptActive=true&lang=english&groupByConcept=true&offset=${ (explore.page -1) * datasources.snomed.pagesize }',
     icon:                   '<img class="datasource-icon" alt="SNOMED CT datasource" src="/assets/icons/snomed.png" alt="SNOMED CT logo">',
     display_url:            'https://browser.ihtsdotools.org/?perspective=full&conceptId1=${gid}/',
     code_autocomplete:      'autocompleteSnomed( r, dataset )',
@@ -664,7 +662,7 @@ const datasources = {
     code_render_mark:       'renderMarkSnomed( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.snomed.endpoint}??&limit=${datasources.snomed.autocomplete_limit}&term=${term}&active=true&conceptActive=true&lang=english&groupByConcept=true&offset=0',
+    autocomplete_url:       '${datasources.snomed.endpoint}?&limit=${datasources.snomed.autocomplete_limit}&term=${term}&active=true&conceptActive=true&lang=english&groupByConcept=true&offset=0',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,

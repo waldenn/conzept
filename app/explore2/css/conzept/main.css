@@ -664,8 +664,7 @@ body.rtl span.nobreak {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 0.5rem;
-  /*margin-top: 2.5rem;*/
+  margin-top: 2.5rem;
 }
 
 .overflow-container:focus {

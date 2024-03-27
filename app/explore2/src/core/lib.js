@@ -1639,6 +1639,14 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
+    let sortby = '';
+
+    if ( valid( d.sort_map[ explore.sortby ] ) ){
+
+      sortby = d.sort_map[ explore.sortby ];
+
+    }
+
     if ( valid( d.active && d.autocomplete_active ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
@@ -9991,6 +9999,14 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
+    let sortby = '';
+
+    if ( valid( d.sort_map[ explore.sortby ] ) ){
+
+      sortby = d.sort_map[ explore.sortby ];
+
+    }
+
 		if ( explore.page === 1 ){ // on first page
 
       if ( d.protocol === 'sparql' ){ // SPARQL-fetch: first set the "count url"
@@ -10025,6 +10041,14 @@ async function fetchDatasources(){
   $.each( explore.datasources, function( index, source ){ // for each active datasource
 
     let d		= datasources[ source ];
+
+    let sortby = '';
+
+    if ( valid( d.sort_map[ explore.sortby ] ) ){
+
+      sortby = d.sort_map[ explore.sortby ];
+
+    }
 
 		let qid = '';
 

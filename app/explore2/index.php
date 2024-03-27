@@ -219,7 +219,7 @@ $sticky_html = '
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
 
       <div id="search-options" style="display:none;">&nbsp;<select id="sortby" class="browser-default">
-          <option value="none"></option>
+          <option value="none" selected></option>
           <option value="relevance-desc">relevance ↓ </option>
           <option value="relevance-asc">relevance ↑</option>
           <option value="date-desc">date ↓</option>
