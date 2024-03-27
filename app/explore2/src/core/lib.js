@@ -2134,7 +2134,7 @@ function setupSearch() {
 
       explore.sortby = $('#sortby').val();
 
-      console.log('sortby changed to: ', explore.sortby );
+      $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
 
@@ -3402,6 +3402,7 @@ async function updateLocaleInterface(){
   $('#app-tab-audio-chat-title').text( explore.banana.i18n('app-tab-audio-chat-title') );
 
   // menus
+  $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
   $('#app-menu-upload-json').html( explore.banana.i18n('app-menu-upload-json') );
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
   $('#app-menu-background-audio').html( explore.banana.i18n('app-menu-background-audio') );
