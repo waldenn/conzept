@@ -220,12 +220,12 @@ $sticky_html = '
 
       <div id="search-options" style="">&nbsp; <span id="app-menu-sort-by">sort by</span>: <select id="sortby" class="browser-default">
           <option value="none" selected></option>
-          <option value="relevance-desc">relevance ↓ </option>
+          <option value="relevance-desc">relevance ↓</option>
           <option value="relevance-asc">relevance ↑</option>
           <option value="date-desc">date ↓</option>
           <option value="date-asc">date ↑</option>
-          <option value="update-desc">date ↓</option>
-          <option value="update-asc">date ↑</option>
+          <option value="update-desc">update ↓</option>
+          <option value="update-asc">update ↑</option>
           <option value="random">random</option>
           <option value="citations-desc">citations ↓</option>
           <option value="citations-asc">citations ↑</option>
