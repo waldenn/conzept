@@ -1,6 +1,6 @@
 'use strict';
 
-// NOTE: update this list when the "datasource -> sort_table" structure changes
+// NOTE: update this list and "index.template.php", whenever the datasource "sort_map"-structure changes
 const valid_sort_options = [ 'valid_sort_optionsnone', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'update-desc', 'update-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
 
 async function setupAIChat(){

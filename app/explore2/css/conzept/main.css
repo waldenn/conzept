@@ -2335,7 +2335,7 @@ h1 {
 }
 
 #clearSearch {
-  position: absolute;
+  /*position: absolute;*/
   right: calc(20% + 1em);
   bottom: -0.06rem;
   background: #fbfaf9;
@@ -2373,6 +2373,10 @@ h1 {
 #sortby {
   display: inline;
   width: 63%;
+}
+
+#search-options {
+  margin-left: 0.3em;
 }
 
 #search-options::before {
@@ -3529,6 +3533,7 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
   }
 
   #clearSearch {
+    /*position: absolute;*/
     right: calc(17% + 1.5em);
   }
 
