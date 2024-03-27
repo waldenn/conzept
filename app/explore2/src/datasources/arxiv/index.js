@@ -87,7 +87,7 @@ function processResultsArxiv( topicResults, struct, index ){
         const language    = explore.language;
         const term 				= removebracesTitle( getSearchTerm() );
         const start_date  = $(this).find('published').text().split('-')[0];
-        const doi         = $(this).find('arxiv:doi').text();
+        const doi         = $(this).find('arxiv\\:doi').text();
 
         let url           = $( $(this).find('link')[1] ).attr('href');
         let doc_url       = $( $(this).find('link')[1] ).attr('href');
@@ -98,7 +98,9 @@ function processResultsArxiv( topicResults, struct, index ){
         const max_length_desc = 500;
 
         if ( desc.length > max_length_desc ){
+
           desc = desc.slice( 0, max_length_desc - 3) + '...';
+
         }
 
         const keywords_regex = new RegExp( getSearchTerm(), 'gi');
@@ -111,11 +113,11 @@ function processResultsArxiv( topicResults, struct, index ){
 
         let document_language   = 'en';
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
-        let tts_link      = doc_url;
+        let tts_link            = doc_url;
 
-        $(this).find('author').each(function( j ) {
+        $(this).find('author').each( function( j ){
 
-          const author_name       = $(this).text();
+          const author_name       = $(this).text().trim();
           const author_search_url = `https://openalex.org/authors?page=1&filter=default.search%3A${ encodeURIComponent( author_name ) }&sort=relevance_score%3Adesc`;
 
           // FIXME: the link does not work in openalex-in-presentation-mode
@@ -131,7 +133,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         if ( valid( doi ) ){
 
-          desc += '<br/><br/>' + doi; 
+          desc += `<br/><br/><small>${ doi }</small>`; 
 
         }
 
@@ -201,6 +203,7 @@ function renderMarkArxiv( inputs, source, q_, show_raw_results, id ){
 }
 
 // TODO: map to Qids?
+/*
 const arxiv_categories = [
 
 	  {
@@ -824,3 +827,4 @@ const arxiv_categories = [
 		      'name': 'Statistics Theory'
 		    }
 ]
+*/

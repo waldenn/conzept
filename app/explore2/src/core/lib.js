@@ -1,5 +1,8 @@
 'use strict';
 
+// NOTE: update this list when the "datasource -> sort_table" structure changes
+const valid_sort_options = [ 'valid_sort_optionsnone', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
+
 async function setupAIChat(){
 
   $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
@@ -1700,7 +1703,7 @@ function setupSearch() {
 
 	// TODO is this more efficient?: https://stackoverflow.com/questions/8748559/how-does-jqueryui-autocomplete-handle-asynchronous-results
 
-  $( '#srsearch, a.submitSearch' ).on( 'keyup', function( event ) {
+  $( '#srsearch, a.submitSearch' ).on( 'keyup', function( event ){
 
       explore.searchmode = 'string';
 
@@ -2110,6 +2113,20 @@ function setupSearch() {
       explore.type = '';
 
       setDefaultDisplaySettings();
+
+    }
+
+  });
+
+  $('#sortby').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    if ( valid_sort_options.includes( $('#sortby').val() ) ){
+
+      explore.sortby = $('#sortby').val();
+
+      console.log('sortby changed to: ', explore.sortby );
 
     }
 
@@ -3047,6 +3064,19 @@ function setupLanguage(){
 
   }
 
+  // determine sort-key
+  if ( valid( explore.sortby_param ) ){
+
+    explore.sortby = explore.sortby_param;
+
+    if ( valid_sort_options.includes( explore.sortby ) ){
+
+      $('#sortby').val( explore.sortby );
+
+    }
+
+  }
+
   // determine language
   if ( !valid( explore.language ) && !valid( explore.language_param ) ){ // no language
 
@@ -3949,6 +3979,9 @@ function setupURL() {
       explore.direct = false;
     }
     */
+
+    // set sort-key
+    explore.sortby = getParameterByName('sortby');
 
     // set custom data
     explore.custom = getParameterByName('c');
@@ -6977,7 +7010,7 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + '&t=' + explore.type + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + '&t=' + explore.type + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
     const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + p.i + '&t=' + explore.type + p.u + p.query;
 
@@ -7248,6 +7281,13 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( explore.datasources.length === 0 ){ explore.datasources = '' } else {
       p.d = '&d=' + explore.datasources.join(',');
+    }
+
+    // sortby parameter
+    p.sortby = '';
+
+    if ( explore.sortby === '' || explore.sortby === 'none' ){ explore.sortby = '' } else {
+      p.sortby = '&sortby=' + explore.sortby;
     }
 
     // line marks parameter

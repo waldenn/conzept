@@ -49,6 +49,7 @@ const explore = {
   language_param      : getParameterByName('l') || undefined, // requested language from the URL
   locale_param        : getParameterByName('h') || undefined, // requested 'human locale' language from the URL
   query_param         : getParameterByName('query') || undefined, // requested 'structured query' from the URL
+  sortby_param        : getParameterByName('sortby') || 'none', // requested sorting-key from the URL
   commands_param      : getParameterByName('commands') || undefined, // requested 'commands' from the URL
 
   //country           : 'us', // default is "United States"

@@ -20322,7 +20322,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'archive_audio_inline' : {
-  value: 'archive-audio:${item.title}:${ valid( item.datasource !== "archive" ) }:${ checkTag(item, 1, "work") }',
+  value: 'archive-audio:${item.title}:true:${ checkTag(item, 1, "work") }',
   title: 'Archive audio',
   prop: '0',
   type: 'rest-json',

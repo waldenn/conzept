@@ -158,7 +158,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        valid( obj.biblio?.title )? obj.biblio.title : '---',
-					description:  desc  + '<br/><br/>' + creators.join(', '),
+					description:  creators.join(', ') + '<br/><br/>' + desc,
 					gid:          valid( obj.work_ident )? obj.work_ident : '---',
 					display_url:  url,
 					thumb:        img,

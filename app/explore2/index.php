@@ -218,12 +218,19 @@ $sticky_html = '
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
 
-      <div id="search-options" style="display:none;">&nbsp;&nbsp;<i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp;<select id="sortby">
-          <option value=""></option>
+      <div id="search-options" style="display:none;">&nbsp;<select id="sortby" class="browser-default">
+          <option value="none"></option>
           <option value="relevance-desc">relevance ↓ </option>
           <option value="relevance-asc">relevance ↑</option>
           <option value="date-desc">date ↓</option>
           <option value="date-asc">date ↑</option>
+          <option value="random">random</option>
+          <option value="citations-desc">citations ↓</option>
+          <option value="citations-asc">citations ↑</option>
+          <option value="title-desc">title ↓</option>
+          <option value="title-asc">title ↑</option>
+          <option value="distance-asc">distance ↑</option>
+          <option value="distance-desc">distance ↓</option>
         </select>
       </div>
     </span>

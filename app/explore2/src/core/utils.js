@@ -715,7 +715,7 @@ function openLink( url_string ){ // also supports links which require *late*-bin
 
 }
 
-function stripHtml( s ) {
+function stripHtml( s ){
 
   if ( valid( s ) ){
 
