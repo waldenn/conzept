@@ -25,8 +25,8 @@ const datasources = {
                               'citations-asc'   : 'incoming_links_asc',
                               'title-desc'      : 'just_match',
                               'title-asc'       : 'just_match',
-                              'distance-desc'   : 'relevance',
-                              'distance-asc'    : 'relevance',
+                              'distance-desc'   : 'relevance', // see: https://www.mediawiki.org/wiki/Help:CirrusSearch#Geo_Search
+                              'distance-asc'    : 'relevance', //   example: "nearcoord:42km,37.77666667,-122.39"
                             },
     // Wikipedia API: https://www.mediawiki.org/wiki/API:Main_page
     url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=${datasources.wikipedia.filter}&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
@@ -160,9 +160,9 @@ const datasources = {
                               'date-asc'        : 'publicdate+asc',
                               'update-desc'     : 'updatedate+desc',
                               'update-asc'      : 'updatedate+asc',
-                              'random'          : '',
-                              'citations-desc'  : '',
-                              'citations-asc'   : '',
+                              'random'          : 'random+asc',
+                              'citations-desc'  : 'item_count+desc',  // files_count+desc
+                              'citations-asc'   : 'item_count+asc',   // files_count+asc
                               'title-desc'      : 'titleSorter+desc',
                               'title-asc'       : 'titleSorter+asc',
                               'distance-desc'   : '',
@@ -334,7 +334,7 @@ const datasources = {
                               'citations-asc'   : 'score+desc',
                               'title-desc'      : 'score+desc',
                               'title-asc'       : 'score+desc',
-                              'distance-desc'   : 'score+desc',
+                              'distance-desc'   : 'score+desc', // TO RESEARCH: geo-tag: https://pro.europeana.eu/page/annotations
                               'distance-asc'    : 'score+desc',
                             },
     url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }',
@@ -374,8 +374,8 @@ const datasources = {
                               'random'          : 'objecttype',
                               'citations-desc'  : 'relevance',
                               'citations-asc'   : 'relevance',
-                              'title-desc'      : 'artist',     // note: not quite the same
-                              'title-asc'       : 'artistdesc', // note: not quite the same
+                              'title-desc'      : 'relevance', // 'artist', // note: not quite the same
+                              'title-asc'       : 'relevance', // 'artistdesc', // note: not quite the same
                               'distance-desc'   : 'relevance',
                               'distance-asc'    : 'relevance',
                             },
@@ -455,9 +455,9 @@ const datasources = {
                               'date-asc'        : 'issued%2Basc',
                               'update-desc'     : 'modified%2Bdesc',
                               'update-asc'      : 'modified%2Basc',
-                              'random'          : 'relevance%2Bdesc',
-                              'citations-desc'  : 'relevance%2Bdesc',
-                              'citations-asc'   : 'relevance%2Bdesc',
+                              'random'          : 'identifier%2Bdesc',
+                              'citations-desc'  : 'is_referenced_by%2Bdesc',
+                              'citations-asc'   : 'is_referenced_by%2Basc',
                               'title-desc'      : 'title.en%2Bdesc',
                               'title-asc'       : 'title.en%2Basc',
                               'distance-desc'   : 'relevance%2Bdesc',

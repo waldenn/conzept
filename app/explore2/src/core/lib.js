@@ -7303,7 +7303,7 @@ function buildURLParameters(){ // builds a URL state object from the current sta
     // sortby parameter
     p.sortby = '';
 
-    if ( explore.sortby === '' || explore.sortby === 'none' ){ explore.sortby = '' } else {
+    if ( !valid( explore.sortby ) || explore.sortby === 'none' ){ explore.sortby = '' } else {
       p.sortby = '&sortby=' + explore.sortby;
     }
 
