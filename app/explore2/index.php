@@ -218,7 +218,7 @@ $sticky_html = '
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
 
-      <div id="search-options" style="display:none;">&nbsp;<select id="sortby" class="browser-default">
+      <div id="search-options" style="">&nbsp; <span id="app-menu-sort-by">sort by</span>: <select id="sortby" class="browser-default">
           <option value="none" selected></option>
           <option value="relevance-desc">relevance ↓ </option>
           <option value="relevance-asc">relevance ↑</option>

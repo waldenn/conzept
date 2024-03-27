@@ -12,7 +12,7 @@ function autocompleteOpenAlex( results, dataset ){
 
     $.each( results.results, function( i, item ){
 
-      const title = valid( item.title )? item.title : '';
+      const title = valid( item.title )?  stripHtml( item.title ) : '';
 
       if ( title ){
 

@@ -1,7 +1,7 @@
 'use strict';
 
 // NOTE: update this list when the "datasource -> sort_table" structure changes
-const valid_sort_options = [ 'valid_sort_optionsnone', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
+const valid_sort_options = [ 'valid_sort_optionsnone', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'update-desc', 'update-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
 
 async function setupAIChat(){
 
@@ -2132,7 +2132,10 @@ function setupSearch() {
 
     if ( valid_sort_options.includes( $('#sortby').val() ) ){
 
-      explore.sortby = $('#sortby').val();
+      explore.sortby        = $('#sortby').val();
+      explore.sortby_param  = $('#sortby').val();
+
+      setParameter( 'sortby', explore.sortby, explore.hash );
 
       $('a.submitSearch').trigger('click'); // trigger a new search
 
@@ -11341,6 +11344,32 @@ function handleBookmarkAddSubmit(event) {
 		$('#bookmark-add-url').val('');
 
 	}
+
+}
+
+
+// used when sort-key and sort-param are two separate parameters in a datasource API
+function getSortDirection( source ){
+
+  let dir = '';
+
+  if ( explore.sortby.split('-')[1] === 'desc' ){
+
+    dir = 'descending';
+
+  }
+  else if ( explore.sortby.split('-')[1] === 'asc' ){
+
+    dir = 'ascending';
+
+  }
+  else {
+
+    dir = '';
+
+  }
+
+  return dir;
 
 }
 
