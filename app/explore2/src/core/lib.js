@@ -1646,6 +1646,11 @@ async function fetchAutocompleteData( term ) {
       sortby = d.sort_map[ explore.sortby ];
 
     }
+    else {
+
+      sortby = d.sort_map[ 'none' ];
+
+    }
 
     if ( valid( d.active && d.autocomplete_active ) ){ // active autocomplete
 
@@ -10008,6 +10013,11 @@ async function fetchDatasources(){
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
       sortby = d.sort_map[ explore.sortby ];
+
+    }
+    else {
+
+      sortby = d.sort_map[ 'none' ];
 
     }
 
