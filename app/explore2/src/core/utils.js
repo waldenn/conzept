@@ -1650,7 +1650,7 @@ function cleanText( text ){
   text.replace( /"/gm, '%22' );
 
   // should single-quotes still be allowed?
-  return text.replace(/(\r\n|\n|\r|'|"|`|\(|\)|\[|\])/gm, '');
+  return text.replace(/(\r\n|\n|\r|'|`|\(|\)|\[|\])/gm, '');
 
 }
 
