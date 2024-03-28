@@ -562,6 +562,8 @@ function toggleAutoScroll(){
 
   if ( app.auto_scroll_enabled ){ // setup auto-scrolling
 
+    scrollTO();
+
     app.timerID = setInterval( scrollTo, app.scroll_update_time );
 
     $( '#auto-scroll-button' ).html( '<i class="fa-solid fa-toggle-on"></i>' );

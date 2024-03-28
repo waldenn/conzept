@@ -1646,6 +1646,9 @@ function getTimeSpaceURL( item ){
 
 function cleanText( text ){
 
+  // escape double-quotes
+  text.replace( /"/gm, '%22' );
+
   // should single-quotes still be allowed?
   return text.replace(/(\r\n|\n|\r|'|"|`|\(|\)|\[|\])/gm, '');
 

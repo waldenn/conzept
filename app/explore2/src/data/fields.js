@@ -2741,7 +2741,7 @@ conzept_fields = {
 
 'pdf_tts_custom' : {
   create_condition: 'valid( item.pdf_tts_link )',
-  create_trigger: 'console.log( item.pdf_tts_link )',
+  //create_trigger: 'console.log( item.pdf_tts_link )',
   title: 'PDF document with Text-to-Speech',
   prop: '',
   type: 'link',

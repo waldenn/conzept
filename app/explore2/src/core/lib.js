@@ -2087,7 +2087,7 @@ function setupSearch() {
 				// TODO: make this optional/depend on a datasource which requires a Qid as input
 				// lookup the Wikidata Qid for the search term
 				// (required for the Wikimedia Commons datasource)
-				let qid_ = await checkForQid( explore.q, 'ps2' );
+				let qid_ = await checkForQid( explore.q.replace( /"/gm, '' ), 'ps2' );
 
 				if ( qid_.hasOwnProperty('entities') ){
 
@@ -9965,7 +9965,7 @@ function checkForQid( title, pane ){ // get qid and wikidata data
   return $.ajax({
 
     // https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&format=json&normalize=&titles=vermeer
-    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&normalize=true&true&titles=' + title,
+    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&normalize=true&true&titles=' + title.replace( /"/gm, '' ),
 
     dataType: "jsonp",
 
