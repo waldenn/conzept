@@ -283,6 +283,11 @@ body.dark #srsearch:active, body.dark #srsearch:focus {
   box-shadow: none;
 }
 
+body.dark #search-options {
+  margin-left: 0.3em;
+  background-color: #121212;
+}
+
 
 /* ambient music player */
 

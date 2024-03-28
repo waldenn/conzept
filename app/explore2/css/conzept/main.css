@@ -316,7 +316,7 @@ li.id.noKids, li.size.noKids {
 }
 
 .sticky-title {
-  top: 0.1rem;
+  top: 0.35rem;
   background: #fbfaf9;
   position: -webkit-sticky;
   position: sticky;
@@ -2371,10 +2371,12 @@ h1 {
 #sortby {
   display: inline;
   width: 63%;
+  font-size: 100%;
 }
 
 #search-options {
   margin-left: 0.3em;
+  background-color: #fbfaf9;
 }
 
 #search-options::before {
@@ -3486,7 +3488,7 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
 @media only screen and (max-width: 900px) {
 
   .sticky-title {
-    top: 0.1rem;
+    top: 0.6rem;
   }
 
   .overflow-container {
