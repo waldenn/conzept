@@ -240,7 +240,7 @@ const datasources = {
     sort_map:               {
                               'none'            : 'relevance_score:desc',
                               'relevance-desc'  : 'relevance_score:desc',
-                              'relevance-asc'   : 'relevance_score:asc',
+                              'relevance-asc'   : 'cited_by_count:asc', // Note: "OpenAlex: Sorting relevance score ascending is not allowed."
                               'date-desc'       : 'publication_date:desc',
                               'date-asc'        : 'publication_date:asc',
                               'update-desc'     : 'publication_date:desc',
@@ -295,7 +295,7 @@ const datasources = {
                               'distance-desc'   : 'relevance',
                               'distance-asc'    : 'relevance',
                             },
-    url:                    '${datasources.arxiv.endpoint}?search_query=all:${term}&sortBy=${ valid( sortby )? sortby : "relevance" }&sortOrder=${getSortDirection( source )}&start=${ ( explore.page - 1) * datasources.arxiv.pagesize }&max_results=${datasources.arxiv.pagesize}&sortBy=relevance&sortOrder=descending',
+    url:                    '${datasources.arxiv.endpoint}?search_query=all:${term}&sortBy=${ valid( sortby )? sortby : "relevance" }&sortOrder=${getSortDirection( source )}&start=${ ( explore.page - 1) * datasources.arxiv.pagesize }&max_results=${datasources.arxiv.pagesize}',
     icon:                   '<img class="datasource-icon" alt="arXiv logo" src="/assets/icons/arxiv.svg" alt="arXiv logo">',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteArxiv( r, dataset )',
@@ -304,7 +304,7 @@ const datasources = {
     code_render_mark:       'renderMarkArxiv( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.arxiv.endpoint}?search_query=all:${term}&sortBy=${ valid( sortby )? sortby : "relevance" }&start=0&max_results=${datasources.arxiv.autocomplete_limit}&sortBy=relevance&sortOrder=descending',
+    autocomplete_url:       '${datasources.arxiv.endpoint}?search_query=all:${term}&sortBy=${ valid( sortby )? sortby : "relevance" }&sortOrder=${getSortDirection( source )}&start=0&max_results=${datasources.arxiv.autocomplete_limit}',
     autocomplete_format:    'json',
     autocomplete_connect:   'xml',
     autocomplete_limit:     5,

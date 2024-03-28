@@ -160,9 +160,12 @@ While typing your string you will get back topic suggestions.
 
 You can either select a topic suggestion or use your own search string.
 
+To search for **literal phrases**, you can put double-quotes around your search terms (eg. "[[https://conze.pt/explore/%22Venetian%20history%22?l=en&d=wikipedia&t=string&sortby=relevance-desc&s=true#|Venetian history]]").
+
 The results will be shown in the sidebar and the next results are loaded once you scroll to the bottom of the results.
 
 If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
+
 ===== structured search =====
 
 [{{ ::structured_query_1.jpg?direct|structured search query}}]
