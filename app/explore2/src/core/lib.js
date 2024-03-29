@@ -11363,19 +11363,25 @@ function getSortDirection( source ){
 
   let dir = '';
 
-  if ( explore.sortby.split('-')[1] === 'desc' ){
+  if ( valid( explore.sortby ) ){
 
-    dir = 'descending';
+    if ( explore.sortby.split('-')[1] === 'desc' ){
 
-  }
-  else if ( explore.sortby.split('-')[1] === 'asc' ){
+      dir = 'descending';
 
-    dir = 'ascending';
+    }
+    else if ( explore.sortby.split('-')[1] === 'asc' ){
 
-  }
-  else {
+      dir = 'ascending';
 
-    dir = '';
+    }
+    else {
+
+      dir = '';
+
+    }
+
+    return dir;
 
   }
 

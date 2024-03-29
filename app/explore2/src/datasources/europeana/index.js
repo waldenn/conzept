@@ -220,7 +220,7 @@ function processResultsEuropeana( topicResults, struct, index ){
 
 				// TODO: abstract this away into a utility function?
 				const description_plain = description;
-				const keywords_regex 		= new RegExp( getSearchTerm(), 'gi');
+				const keywords_regex 		= new RegExp( getSearchTerm().replace(/"/g, ''), 'gi');
 				description       			= description.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
 
         if ( valid( obj.dataProvider ) ){

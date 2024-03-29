@@ -839,11 +839,14 @@ kbd {
 }
 
 mark {
-  background-color: #f2c6c7;
+  background-color: #ff99a957;
+  border-radius: 0.2em;
+  /*background-color: #f9e2e2*;*/
 }
 
 .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, details.inline-abstract mark {
-  background-color: #f9e2e2 !important;
+  background-color: #ff99a957 !important;
+  border-radius: 0.2em;
   font-style: normal;
 }
 
