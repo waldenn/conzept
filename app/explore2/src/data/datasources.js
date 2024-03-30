@@ -170,7 +170,7 @@ const datasources = {
                             },
     url:                    '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=${term}',
     icon:                   '<img class="datasource-icon" alt="Internet Archive datasource" src="/assets/icons/archive.svg" alt="Internet Archive logo">',
-    display_url:            'https://archive.org/details/${gid}/?q=%22${term}%22&autoplay=1',
+    display_url:            'https://archive.org/details/${gid}/?q=${ setQuotes( term ) }&autoplay=1',
     // TODO: search_url:    'https://archive.org/search?query=${term}&language%3A"${ wp_languages[ explore.language ].name }"',
     code_autocomplete:      'autocompleteArchive( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsArchive( topicResults, struct, index ) );',
