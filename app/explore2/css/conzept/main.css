@@ -886,8 +886,8 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 }
 
 .datasource-icon {
-  height: 1em;
-  max-width: 2em;
+  height: 1.5em;
+  max-width: 4em;
 }
 
 .datasource-list-icon {

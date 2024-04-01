@@ -1024,6 +1024,7 @@ function insertRelatedPresentationTopics( qid ){
   const props_on_item = [
     'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
     'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
+    'P171',   // parent taxon         https://www.wikidata.org/wiki/Property:P171
     'P800',   // notable-work         https://www.wikidata.org/wiki/Property:P800
     'P135',   // movement             https://www.wikidata.org/wiki/Property:P135
     'P170',   // creator              https://www.wikidata.org/wiki/Property:P170

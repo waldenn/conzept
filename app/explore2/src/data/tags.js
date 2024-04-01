@@ -337,6 +337,10 @@ var conzept_tags = {
         text : "position rank",
         icon : ["fa-regular fa-address-card"],
       },
+     "name" : {
+        text : "name",
+        icon : ["fa-solid fa-signature"],
+      },
       "music-genre" : {
         text : "music genre",
         icon : ["fa-solid fa-music"],

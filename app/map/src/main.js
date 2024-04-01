@@ -6,7 +6,11 @@ import {
   XYZ,
   LonLat,
   Popup,
-  utils
+  utils,
+  //Entity,
+  //Vector,
+  //math,
+
 } from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
 
 /*
@@ -81,6 +85,8 @@ let app = {
   colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
 
 }
+
+window.app = app;
 
 const osm = new og.layer.XYZ("OpenStreetMap", {
     isBaseLayer: true,

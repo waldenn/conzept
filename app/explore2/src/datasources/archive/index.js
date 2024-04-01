@@ -122,7 +122,7 @@ function processResultsArchive( topicResults, struct, index ){
 
             }
 
-            console.log( 'language: ', obj.language, ' --> ', document_language );
+            //console.log( 'language: ', obj.language, ' --> ', document_language );
 
           }
 
