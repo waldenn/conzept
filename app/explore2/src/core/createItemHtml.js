@@ -15,8 +15,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   let qid               = args.qid;
   let pid               = args.pid;
   let gid               = args.gid;
-  let title             = args.title; // FIXME: why is "args.title" sometimes not defined?
-                                      //  example: https://conze.pt/explore/Lung%20infection?l=en&d=wikipedia,wikidata&t=string&s=true#
+  let title             = args.title;
   let source            = args.source;
 
   let source_icon       = '';
@@ -29,8 +28,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   }
   else {
 
-    //console.log( source, datasources[ source ].name, datasources[ source ].icon );
-    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic"><span class="icon ${ valid( d.icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
+    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic"><span class="icon ${ valid( datasources[ source ].icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
 
   }
 
@@ -126,8 +124,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   // process all Conzept fields, check if we need to render something
   conzept_field_names.forEach(( val, index ) => {
 
-    let name = val[0];
-    let v   = val[1];
+    let name  = val[0];
+    let v     = val[1];
 
     o[ name ] = ''; // always preset the button HTML to an empty string
 
@@ -142,8 +140,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 			}
       else if ( v.type === 'symbol-html' ){
 
-				o[ name + '_string'] = '';
-		    o[name + '_display_value'] = '';
+				o[ name + '_string']        = '';
+		    o[ name + '_display_value'] = '';
 
 			}
 
@@ -233,7 +231,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
 				if ( typeof v.string_format === undefined || typeof v.string_format === 'undefined' || v.string_format === '' ){ // plain string
 
-		      o[name + '_display_value']  = item[name];
+		      o[ name + '_display_value']  = item[name];
           o[ name ] = '<div class="field-info field-info-key" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + v.title + '</div><div class="field-info field-info-value string" title="' + v.title + '" aria-label="' + v.title + '" role="button">' + item[name] + '</div>'; // render these fields as a list of: "key: value"
 
 				}
