@@ -211,6 +211,10 @@ body.dark .topic-description-special {
   font-weight: normal;
 }
 
+body.dark .topic-description {
+  color: white;
+}
+
 body.dark a.summary-link, body.dark a.no-focus-outline {
   color: white !important;
   /* color: #6d2b2f !important; */

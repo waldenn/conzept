@@ -314,8 +314,8 @@ function setupLinks(){
     let link = $(this).attr('href') || '';
     let title_ = $(this).attr('href') || '';
 
-    // TODO: still needs more work, to keep Wikipedia in the embedded map popup?
-    link += `&embedded=${explore.embedded}`; // add "embedded" param state
+    // FIXME: still needs more work, to keep Wikipedia in the embedded map popup?
+    //link += `&embedded=${explore.embedded}`; // add "embedded" param state
 
     if ( link.startsWith( explore.base + '/explore/') ){ // wikipedia link
 
