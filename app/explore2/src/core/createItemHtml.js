@@ -30,7 +30,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   else {
 
     //console.log( source, datasources[ source ].name, datasources[ source ].icon );
-    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic"><span class="icon ${ valid( d.icon_invert )? 'invert' : ''">${datasources[ source ].icon }</span></span>`;
+    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic"><span class="icon ${ valid( d.icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
 
   }
 
