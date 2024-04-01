@@ -838,14 +838,8 @@ kbd {
   color: #0d0c0c99 !important;
 }
 
-mark {
-  background-color: #ff99a957;
-  border-radius: 0.2em;
-  /*background-color: #f9e2e2*;*/
-}
-
-.highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, details.inline-abstract mark {
-  background-color: #ff99a957 !important;
+mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, details.inline-abstract mark {
+  background-color: #F6D4D8 !important;
   border-radius: 0.2em;
   font-style: normal;
 }

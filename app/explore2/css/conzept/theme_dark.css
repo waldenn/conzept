@@ -93,9 +93,8 @@ body.dark .moreactions {
   color: #ffffffd1;
 }
 
-body.dark .highlight, body.dark li em, body.dark .mv-extra-desc > .searchmatch > em {
-  background-color: #bf565638 !important;
-  font-style: normal;
+body.dark mark, body.dark .highlight, body.dark li em, body.dark .mv-extra-desc > em, body.dark .mv-extra-desc > .searchmatch, body.dark details.inline-abstract mark {
+  background-color: #cbcb19 !important;
 }
 
 body.dark .topic-class {
