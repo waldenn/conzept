@@ -103,8 +103,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         }
 
-        const keywords_regex = new RegExp( getSearchTerm(), 'gi');
-        desc             = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+        desc             = highlightTerms( desc );
 
         let creators      = [];
         let concepts      = [];

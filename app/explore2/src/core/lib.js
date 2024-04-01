@@ -1,6 +1,6 @@
 'use strict';
 
-// Note: Update this list and the "index.template.php" options, whenever the datasource "sort_map" structure changes.
+// Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
 const valid_sort_options = [ 'none', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'update-desc', 'update-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
 
 async function setupAIChat(){
@@ -97,7 +97,7 @@ const loadNextPage = async function() {
 
 }
 
-async function applyFont( font ) {
+async function applyFont( font ){
 
 	explore.font1 = font; // store new font
 
@@ -115,7 +115,6 @@ async function applyFont( font ) {
 
   // activate font on iframe
   $( explore.baseframe ).contents().find('body').css( 'fontFamily', explore.font1 , '');
-
 
 }
 
@@ -1789,11 +1788,20 @@ function setupSearch() {
 
         $('#blink').hide();
 
-			}).catch(error => {
+			}).catch( error => {
 
-				console.log('some request failed: ', request, error );
+				  console.log('some request failed: ', request, error );
 
-        $('#blink').hide();
+          $.toast({
+            heading: `datasource autocomplete failed`,
+            text: 'please temporarily disable the failing datasource',
+            hideAfter : 20000,
+            stack : 1,
+            showHideTransition: 'slide',
+            icon: 'error'
+          })
+
+          $('#blink').hide();
 
 			});
 
@@ -10000,8 +10008,8 @@ async function fetchDatasources(){
   let fetches = []; // holds all fetch-function calls
   let done    = '';
 
-  let term = cleanText( explore.q );
-  term = term.replace(/&/g, ' ');
+  let term    = cleanText( explore.q );
+  term        = term.replace(/&/g, ' ');
 
   // create a meta-structure (so we can align the list of fetch-results with the datasource)
   $.each( explore.datasources, async function( index, source ){ // for each active datasource
@@ -10080,6 +10088,11 @@ async function fetchDatasources(){
           //console.log(data);
         },
 
+        error:  function( jqXHR, status, errorThrown  ) {
+          console.log( 'source error: ', source, status, errorThrown );
+          return [ [], [] ];
+        },
+
       }) );
 
 		}
@@ -10101,6 +10114,23 @@ async function fetchDatasources(){
 
         success:  function( data ) {
           //console.log(data);
+        },
+
+        error:  function( jqXHR, status, errorThrown  ) {
+
+            console.log( 'source error: ', source, status, errorThrown );
+
+            $.toast({
+              heading: `<b>${ d.name }</b> datasource error`,
+              text: 'please temporarily disable this datasource',
+              hideAfter : 20000,
+              stack : 1,
+              showHideTransition: 'slide',
+              icon: 'error'
+            })
+
+          //return [ [], [] ];
+
         },
 
       }) );

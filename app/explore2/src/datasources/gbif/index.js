@@ -201,11 +201,8 @@ function processResultsGBIF( topicResults, struct, index ){
 
         desc += phylo.join(' / ') + '<br><br>' + obj.key;
 
-        // TODO: abstract this away into a utility function?
-        const keywords_regex  = new RegExp( getSearchTerm(), 'gi');
-
         // FIXME: this messes up the existing phylo-html-links
-        //desc                  = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+        //desc = highlightTerms( desc );
 
         // fill fields
 				let item = {

@@ -156,8 +156,7 @@ function processResultsCommons( topicResults, struct, index ){
 
 				// TODO: abstract this away into a utility function?
 				const description_plain = description;
-				const keywords_regex 		= new RegExp( getSearchTerm(), 'gi');
-				description       			= description.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+				description       			= highlightTerms( description );
 
         //if ( valid( obj.dataProvider ) ){
         //  description += ' - ' + obj.dataProvider.join(', ');

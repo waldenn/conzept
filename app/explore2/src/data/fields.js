@@ -14922,7 +14922,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 50,
 },
 
-'Looria' : {
+'looria' : {
   create_condition: true,
   title: 'Looria - trusted-resource based product-review site',
   prop: '',
@@ -14933,6 +14933,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Looria',
   section: 'society-shopping',
   rank: 55,
+},
+
+'lumona' : {
+  create_condition: true,
+  title: 'Lumona - social-media and AI based product recommendations',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.lumona.ai/search/results?q=${title_quoted}',
+  icon: 'fa-regular fa-star',
+  text: 'Lumona',
+  section: 'society-shopping',
+  rank: 59,
 },
 
 'trust_pilot' : {

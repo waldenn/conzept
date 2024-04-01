@@ -137,9 +137,7 @@ function processResultsEU( topicResults, struct, index ){
         title = title.replace( /[`']/g , '"');
         description = description.replace( /[`']/g, '"');
 
-        // TODO: abstract this away into a utility function?
-        const keywords_regex    = new RegExp( getSearchTerm(), 'gi');
-        description             = description.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+        description             = highlightTerms( description );
 
         let csv_url_list      = [];
         let jsonstat_url_list = [];

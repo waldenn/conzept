@@ -104,9 +104,7 @@ function processResultsSmithsonian3D( topicResults, struct, index ){
         let subtag        = '';
         let newtab        = false;
 
-        // TODO: abstract this away into a utility function?
-        const keywords_regex  = new RegExp( getSearchTerm(), 'gi');
-        desc                  = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+        desc              = highlightTerms( description );
 
         //console.log( title, url_ );
 

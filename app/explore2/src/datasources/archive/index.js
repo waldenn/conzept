@@ -228,9 +228,7 @@ function processResultsArchive( topicResults, struct, index ){
 
           }
 
-          // TODO: abstract this away into a utility function?
-          const keywords_regex  = new RegExp( getSearchTerm(), 'gi');
-          desc                  = desc.replace( keywords_regex, '<span class="highlight">' + getSearchTerm() + '</span>' );
+          desc                  = highlightTerms( desc );
 
         }
 

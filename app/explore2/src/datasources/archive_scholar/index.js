@@ -154,7 +154,6 @@ function processResultsArchiveScholar( topicResults, struct, index ){
 
         if ( valid( obj._highlights ) ){
 
-          //console.log( obj._highlights[0] );
           desc = obj._highlights[0].replace(/<em>/g, '<mark>').replace(/<\/em>/g, '</mark>');
 
         }
