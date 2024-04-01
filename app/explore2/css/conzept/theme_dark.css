@@ -10,6 +10,10 @@ body.dark pre {
 }
 */
 
+body.dark span.icon.invert {
+  filter: invert(1);
+}
+
 body.dark summary:focus {
   /* background: #f3a8ab1f; */
   /* color: #f009; */
