@@ -95,6 +95,7 @@ body.dark .moreactions {
 
 body.dark mark, body.dark .highlight, body.dark li em, body.dark .mv-extra-desc > em, body.dark .mv-extra-desc > .searchmatch, body.dark details.inline-abstract mark {
   background-color: #cbcb19 !important;
+  color: black;
 }
 
 body.dark .topic-class {
@@ -205,7 +206,7 @@ body.dark .uls-language-block > ul > li:hover {
   background-color: #d938704d;
 }
 
-body.dark .topic-description {
+body.dark .topic-description-special {
   color: #94ec9e;
   font-weight: normal;
 }

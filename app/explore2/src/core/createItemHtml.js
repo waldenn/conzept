@@ -778,7 +778,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   // motto
   if ( valid( item.motto_text ) ){
 
-    motto_text = '<div class="topic-description motto">“' + item.motto_text + '”</div>';
+    motto_text = '<div class="topic-description-special motto">“' + item.motto_text + '”</div>';
 
   }
 
@@ -860,7 +860,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
       const tex = removeWords( formula, list );
 
-      const formula_html = '<div class="topic-description formula" title="mathematical formula" aria-label="mathematical formula" role="math">' + katex.renderToString( tex, { throwOnError: false }) + '</div>';
+      const formula_html = '<div class="topic-description-special formula" title="mathematical formula" aria-label="mathematical formula" role="math">' + katex.renderToString( tex, { throwOnError: false }) + '</div>';
 
       math_formulas.push( formula_html );
 
