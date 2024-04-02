@@ -835,6 +835,41 @@ $settings_html = '
 
               <ul class="tool-items no-bullets">
 
+                <li id="presentation-container">
+                 <details id="presentation-detail" class="auto" onclick="" style="">
+                  <summary>
+                    <span id="app-menu-presentation"></span>
+                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#topic_presentations" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  </summary>
+
+                    <select id="presentation-tts-sections" class="browser-default"></select>
+
+                    <div class="topic-tts-buttons" style="text-align:left;"><a id="presentation-tts-start" href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick=""> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a></div>
+
+                    <div class="resizer">
+
+                      <iframe id="presentation" class="resized" title="presentation" role="application" loading="lazy" style="min-height: 401px" srcdoc="" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">
+></iframe>
+                    </div>
+                  </details> 
+
+                </li>
+
+                <li id="editor-container">
+                 <details id="editor-detail" class="auto" onclick="" style="">
+                  <summary>
+                    <span id="app-menu-editor"></span>
+                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/command_api" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+                  </summary>
+                    <div class="editor-buttons">
+                      <a id="editor-run" href="javascript:void(0)" title="run code" aria-label="run code" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } runLISP( explore.editor.getValue() )"><i class="fa-solid fa-play"></i> <span id="app-menu-run-code"></spam></a> 
+                      <a id="editor-clear" href="javascript:void(0)" title="clear code" aria-label="clear code" role="button" onclick="runLISP( explore.editor.setValue(&quot;&quot;) )"><i class="fa-regular fa-trash-can"></i> <span id="app-menu-clear-editor"></span></a> &nbsp;
+                      <a id="editor-fullscreen" href="javascript:void(0)" title="toggle fullscreen editor" aria-label="toggle fullscreen editor" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;editor-detail&quot;) ); }"><i class="fa-solid fa-expand"></i></a> &nbsp;
+                    </div>
+                    <pre id="editor"></pre>
+                  </details> 
+                </li>
+
                 <li>
                  <details class="auto">
                   <summary><span id="app-menu-actions"></span></summary>
@@ -892,41 +927,6 @@ $settings_html = '
                     </div>
                   </div>
                 </details> 
-                </li>
-
-                <li id="presentation-container">
-                 <details id="presentation-detail" class="auto" onclick="" style="">
-                  <summary>
-                    <span id="app-menu-presentation"></span>
-                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#topic_presentations" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
-                  </summary>
-
-                    <select id="presentation-tts-sections" class="browser-default"></select>
-
-                    <div class="topic-tts-buttons" style="text-align:left;"><a id="presentation-tts-start" href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick=""> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a><a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a></div>
-
-                    <div class="resizer">
-
-                      <iframe id="presentation" class="resized" title="presentation" role="application" loading="lazy" style="min-height: 401px" srcdoc="" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">
-></iframe>
-                    </div>
-                  </details> 
-
-                </li>
-
-                <li id="editor-container">
-                 <details id="editor-detail" class="auto" onclick="" style="">
-                  <summary>
-                    <span id="app-menu-editor"></span>
-                    <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/command_api" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
-                  </summary>
-                    <div class="editor-buttons">
-                      <a id="editor-run" href="javascript:void(0)" title="run code" aria-label="run code" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } runLISP( explore.editor.getValue() )"><i class="fa-solid fa-play"></i> <span id="app-menu-run-code"></spam></a> 
-                      <a id="editor-clear" href="javascript:void(0)" title="clear code" aria-label="clear code" role="button" onclick="runLISP( explore.editor.setValue(&quot;&quot;) )"><i class="fa-regular fa-trash-can"></i> <span id="app-menu-clear-editor"></span></a> &nbsp;
-                      <a id="editor-fullscreen" href="javascript:void(0)" title="toggle fullscreen editor" aria-label="toggle fullscreen editor" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;editor-detail&quot;) ); }"><i class="fa-solid fa-expand"></i></a> &nbsp;
-                    </div>
-                    <pre id="editor"></pre>
-                  </details> 
                 </li>
 
                 <li style="display:none;">

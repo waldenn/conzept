@@ -894,9 +894,10 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   height: 1em;
   font-size: small;
   padding-right: 0.5em;
-  width: 2em !important;
+  width: 4em !important;
   display: inline-block;
   text-align: center;
+  vertical-align: sub;
 }
 
 .datasource-name {
