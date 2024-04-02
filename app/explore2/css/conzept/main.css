@@ -2369,15 +2369,16 @@ h1 {
   font-size: smaller;
 }
 
-#sortby {
-  display: inline;
-  width: 63%;
-  font-size: 100%;
-}
-
 #search-options {
   margin-left: 0.3em;
   background-color: #fbfaf9;
+}
+
+#search-in, #sortby {
+  width: fit-content;
+  margin-right: 1em;
+  display: inline;
+  font-size: 100%;
 }
 
 #search-options::before {

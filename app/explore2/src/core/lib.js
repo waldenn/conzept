@@ -1435,7 +1435,7 @@ function setupDatasourceSet(){
 
       let datasource_set = await explore.db.get( 'datasource_set' );
 
-      if ( ! valid( datasource_set ) ){ // no browser storage datasource-set found
+      if ( ! valid( datasource_set ) || datasource_set === 'null' || datasource_set === null ){ // no browser storage datasource-set found
 
         console.log('setupDatasourceSet(): browser storage datasource-set to: ', datasource_set );
 
@@ -1489,7 +1489,7 @@ function setActiveDatasourceSet(){
 
     explore.datasource_selection = datasource_set_map[ explore.datasource_set ];
 
-    setActiveDatasources();
+    //setActiveDatasources();
 
     console.log( 'setActiveDatasourceSet(): valid datasource set to: ', explore.datasource_set_param, explore.datasource_selection, explore.datasources );
 
@@ -1511,7 +1511,7 @@ function setActiveDatasourceSet(){
 
     setParameter( 'ds', '', explore.hash );
 
-    setActiveDatasources();
+    //setActiveDatasources();
 
   }
 
@@ -1525,9 +1525,9 @@ function setActiveDatasources(){
 
     $.each( explore.datasource_selection.split(',') , function( index, source ){ // for each active datasource
 
-      if ( valid( datasources[source] ) ){
+      if ( valid( datasources[source.trim()] ) ){
 
-        let d = datasources[source];
+        let d = datasources[source.trim()];
 
         d.active = true;
 
@@ -1681,9 +1681,9 @@ function setupOptionActiveDatasources(){
 
 async function toggleDatasource( source ) {
 
-  if ( typeof event !== 'undefined' ){
+  //if ( typeof event !== 'undefined' ){
 
-    if ( event.hasOwnProperty('originalEvent') ){ // user-click
+    //if ( event.hasOwnProperty('originalEvent') ){ // user-click
 
       console.log( 'manual click on datasource: resetting the "datasource set"' );
 
@@ -1695,9 +1695,9 @@ async function toggleDatasource( source ) {
 
       setParameter( 'ds', '', explore.hash );
 
-    }
+    //}
 
-  }
+  //}
 
   // activate datasources
   if ( valid( datasources[ source ]) ){
@@ -2258,6 +2258,7 @@ function setupSearch() {
       setParameter( 'ds', explore.datasource_set, explore.hash );
 
       setActiveDatasourceSet();
+      updateActiveDatasources( explore.datasource_selection.split(',').map( d => d.trim() ) );
 
       $('a.submitSearch').trigger('click'); // trigger a new search
 
@@ -3211,6 +3212,19 @@ function setupLanguage(){
   if ( explore.query_param !== undefined ){
 
     explore.query = explore.query_param;
+
+  }
+
+  // determine datasource-set-key
+  if ( valid( explore.datasource_set_param ) ){
+
+    explore.datasource_set = explore.datasource_set_param;
+
+    if ( datasource_sets.includes( explore.datasource_set ) ){
+
+      $('#search-in').val( explore.datasource_set );
+
+    }
 
   }
 

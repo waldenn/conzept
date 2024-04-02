@@ -220,9 +220,9 @@ $sticky_html = '
 
       <div id="search-options" style="">&nbsp;
 
-        <span id="app-menu-search-in" style="display:none;">search in</span>: <select id="search-in" class="browser-default">
+        <span id="app-menu-search-in">search in</span>: <select id="search-in" class="browser-default">
           <option value="none" selected></option>
-          <option value="reference">references</option>
+          <option value="references">references</option>
           <option value="culture">culture</option>
           <option value="science">science</option>
           <option value="business">business</option>

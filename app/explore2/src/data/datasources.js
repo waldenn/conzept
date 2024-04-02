@@ -720,11 +720,11 @@ const datasources = {
 
 // Note: Update this list and the "index.template.php" datasource-set select-options when needed;
 const datasource_set_map = {
-  none:       '',
-  reference:  'wikipedia, wikidata',
-  culture:    'commons, archive, europeana, rijksmuseum, smithsonian3d',
-  science:    'archive_scholar, arxiv, openalex, gbif',
-  business:   'gleif, eu',
+  none:       [''],
+  references: ['wikipedia', 'wikidata'],
+  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3d'],
+  science:    ['archive_scholar', 'arxiv', 'openalex', 'gbif'],
+  business:   ['gleif', 'eu'],
 }
 
 const datasource_sets = Object.keys( datasource_set_map );
