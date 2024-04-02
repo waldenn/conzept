@@ -717,3 +717,32 @@ const datasources = {
   */
 
 };
+
+// Note: Update this list and the "index.template.php" datasource-set select-options when needed;
+const datasource_set_map = {
+  none:       '',
+  reference:  'wikipedia, wikidata',
+  culture:    'commons, archive, europeana, rijksmuseum, smithsonian3d',
+  science:    'archive_scholar, arxiv, openalex, gbif',
+  business:   'gleif, eu',
+}
+
+const datasource_sets = Object.keys( datasource_set_map );
+
+// Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
+const valid_sort_options = [
+  'none',
+  'relevance-desc',
+  'relevance-asc',
+  'date-desc',
+  'date-asc',
+  'update-desc',
+  'update-asc',
+  'random',
+  'citations-desc',
+  'citations-asc',
+  'title-desc',
+  'title-asc',
+  'distance-desc',
+  'distance-asc'
+];

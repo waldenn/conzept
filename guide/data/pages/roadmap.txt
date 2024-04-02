@@ -11,11 +11,11 @@
       * datasource autocomplete
       * datasource searching
 
-  * Datasource sort options (descending and ascending in value):
-    * relevance 
-    * date 
-    * geo-distance
-    * ... 
+  * Datasource set selection (as an alternative to datasource selection):
+    * Encyclopedic: Wikipedia, Wikidata
+    * Science: Archive Scholar, arXiv, OpenAlex, GBIF
+    * Culture: Wikimedia Commons, Internet Archive, Europeana, Rijksmuseum, Smithsonian 3D
+    * Business: GLEIF, EU, ...
 
   * New search modalitites:
     * design the workflow

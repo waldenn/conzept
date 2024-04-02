@@ -1,8 +1,5 @@
 'use strict';
 
-// Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
-const valid_sort_options = [ 'none', 'relevance-desc', 'relevance-asc', 'date-desc', 'date-asc', 'update-desc', 'update-asc', 'random', 'citations-desc', 'citations-asc', 'title-desc', 'title-asc', 'distance-desc', 'distance-asc' ];
-
 async function setupAIChat(){
 
   $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
@@ -1430,6 +1427,96 @@ function openBookmark( event, newtab ) {
 
 }
 
+function setupDatasourceSet(){
+
+  if ( !valid( explore.datasource_set_param ) || explore?.datasource_set_param === 'none' ){ // no "datasource set" parameter set
+
+    (async () => { // check browser storage for "datasource set"
+
+      let datasource_set = await explore.db.get( 'datasource_set' );
+
+      if ( ! valid( datasource_set ) ){ // no browser storage datasource-set found
+
+        console.log('setupDatasourceSet(): browser storage datasource-set to: ', datasource_set );
+
+      }
+      else { // use browser storage datasource-set
+
+        if ( datasource_sets.includes( explore.datasource_set_param ) ){
+
+          explore.datasource_set        = datasource_set;
+          explore.datasource_set_param  = explore.datasource_set;
+
+          console.log('setupDatasourceSet(): browser storage datasource-set to: ', explore.datasource_set );
+
+        }
+        else { // unkown "datasource set" param
+
+          console.log('setupDatasourceSet(): unkown datasource_set_param: ', explore.datasource_set_param );
+
+          explore.datasource_set        = '';
+          explore.datasource_set_param  = '';
+
+        }
+
+        setActiveDatasourceSet();
+
+      }
+
+    })();
+
+  }
+  else { // valid datasource-set param
+
+    setActiveDatasourceSet();
+
+  }
+
+}
+
+function setActiveDatasourceSet(){
+    
+  if ( datasource_sets.includes( explore.datasource_set_param ) ){ // valid set
+
+    explore.datasource_set = explore.datasource_set_param;
+
+    // when "singleuse" is active, prevent permanently storing datasource-set
+    if ( ! valid( explore.singleuse ) ){
+
+      (async () => { await explore.db.set( 'datasource_set', explore.datasource_set ); })();
+
+    }
+
+    explore.datasource_selection = datasource_set_map[ explore.datasource_set ];
+
+    setActiveDatasources();
+
+    console.log( 'setActiveDatasourceSet(): valid datasource set to: ', explore.datasource_set_param, explore.datasource_selection, explore.datasources );
+
+  }
+  else {
+
+    console.log( 'setActiveDatasourceSet(): invalid datasource: ', explore.datasource_set_param, explore.datasource_selection, explore.datasources );
+
+    // reset datasource set
+    explore.datasource_set        = '';
+    explore.datasource_set_param  = '';
+
+    // when "singleuse" is active, prevent permanently storing datasource-set
+    if ( ! valid( explore.singleuse ) ){
+
+      (async () => { await explore.db.set( 'datasource_set', '' ); })();
+
+    }
+
+    setParameter( 'ds', '', explore.hash );
+
+    setActiveDatasources();
+
+  }
+
+}
+
 function setActiveDatasources(){
 
   explore.datasources = []; // reset
@@ -1593,6 +1680,24 @@ function setupOptionActiveDatasources(){
 }
 
 async function toggleDatasource( source ) {
+
+  if ( typeof event !== 'undefined' ){
+
+    if ( event.hasOwnProperty('originalEvent') ){ // user-click
+
+      console.log( 'manual click on datasource: resetting the "datasource set"' );
+
+      // clear the "datasource set"
+      (async () => { await explore.db.set( 'datasource_set', '' ); })();
+      explore.datasource_set        = '';
+      explore.datasource_set_param  = '';
+      $('#search-in').val('none');
+
+      setParameter( 'ds', '', explore.hash );
+
+    }
+
+  }
 
   // activate datasources
   if ( valid( datasources[ source ]) ){
@@ -2134,6 +2239,27 @@ function setupSearch() {
       explore.type = '';
 
       setDefaultDisplaySettings();
+
+    }
+
+  });
+
+  $('#search-in').on( 'change', function (e) {
+
+    console.log( 'change datasource set');
+
+    e.preventDefault();
+
+    if ( datasource_sets.includes( $('#search-in').val() ) ){
+
+      explore.datasource_set        = $('#search-in').val();
+      explore.datasource_set_param  = $('#search-in').val();
+
+      setParameter( 'ds', explore.datasource_set, explore.hash );
+
+      setActiveDatasourceSet();
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
 
@@ -7035,9 +7161,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + '&t=' + explore.type + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.d + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.sortby + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -7306,6 +7432,13 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( explore.datasources.length === 0 ){ explore.datasources = '' } else {
       p.d = '&d=' + explore.datasources.join(',');
+    }
+
+    // datasource-set parameter
+    p.ds = '';
+
+    if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ explore.datasource_set = '' } else {
+      p.ds = '&ds=' + explore.datasource_set;
     }
 
     // sortby parameter

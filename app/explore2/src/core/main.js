@@ -77,7 +77,10 @@ const explore = {
   // other URL params
   fragment            : getParameterByName('f') || '',  // allow for going directly to a detail-fragment
 
-  datasource_selection: getParameterByName('d') || '',  // user-requested datasources
+  datasource_selection: getParameterByName('d')   || '', // requested datasources
+  datasource_set_param: getParameterByName('ds')  || '', // requested datasource-set-key from the URL
+  datasource_set      : '',
+  datasources         : [], // active datasources
 
   marks               : getParameterByName('m') || '',  // list of linemarks (m=2-4,6,30-32)
 
@@ -87,8 +90,6 @@ const explore = {
 
   sections            : {}, // template structure: list of section objects in a topic-card
   section_dom         : $('<span></span>'), // template section-structure (as a jQuery DOM-object)
-
-  datasources         : [], // active datasources
 
   db                  : undefined, // persistent client-side storage using immortalDB
 
@@ -301,6 +302,7 @@ $( document ).ready( function() {
     const stores = [ ImmortalDB.LocalStorageStore, ImmortalDB.IndexedDbStore ];
     explore.db = new ImmortalDB.ImmortalStorage( stores ); //explore.db = ImmortalDB.ImmortalDB;
 
+    setupDatasourceSet();
     setActiveDatasources();
 
     // i18n engine: https://github.com/wikimedia/banana-i18n

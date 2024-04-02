@@ -30,12 +30,15 @@
 
 /* Ace editor */
 #editor-container { 
-  height: 500px;
   width: 95%;
   display:inline-block;
   position:relative;
   resize: vertical;
   overflow: auto;
+}
+
+#editor-container details[open] summary {
+  height: 500px;
 }
 
 #editor { 
