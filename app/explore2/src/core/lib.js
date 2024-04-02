@@ -1437,8 +1437,6 @@ function setupDatasourceSet(){
 
       if ( ! valid( datasource_set ) || datasource_set === 'null' || datasource_set === null ){ // no browser storage datasource-set found
 
-        console.log('setupDatasourceSet(): browser storage datasource-set to: ', datasource_set );
-
       }
       else { // use browser storage datasource-set
 
@@ -1447,12 +1445,8 @@ function setupDatasourceSet(){
           explore.datasource_set        = datasource_set;
           explore.datasource_set_param  = explore.datasource_set;
 
-          console.log('setupDatasourceSet(): browser storage datasource-set to: ', explore.datasource_set );
-
         }
         else { // unkown "datasource set" param
-
-          console.log('setupDatasourceSet(): unkown datasource_set_param: ', explore.datasource_set_param );
 
           explore.datasource_set        = '';
           explore.datasource_set_param  = '';
@@ -1487,16 +1481,12 @@ function setActiveDatasourceSet(){
 
     }
 
-    explore.datasource_selection = datasource_set_map[ explore.datasource_set ];
+    explore.datasource_selection = datasource_set_map[ explore.datasource_set ].join();
 
     //setActiveDatasources();
 
-    console.log( 'setActiveDatasourceSet(): valid datasource set to: ', explore.datasource_set_param, explore.datasource_selection, explore.datasources );
-
   }
   else {
-
-    console.log( 'setActiveDatasourceSet(): invalid datasource: ', explore.datasource_set_param, explore.datasource_selection, explore.datasources );
 
     // reset datasource set
     explore.datasource_set        = '';
