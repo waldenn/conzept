@@ -491,8 +491,8 @@ const datasources = {
 
   'gbif': {
     active:                 false,
-    name:                   'GBIF',
-    description:            'biodiversity data archive - BETA',
+    name:                   'GBIF species',
+    description:            'species observations - BETA',
     tag:                    'science',
     qid:                    'Q1531570',
     protocol:               'rest',
