@@ -222,30 +222,28 @@ $sticky_html = '
 
         <span id="app-menu-search-in">search in</span>: <select id="search-in" class="browser-default">
           <option value="none" selected></option>
-          <option value="references">references</option>
-          <option value="culture">culture</option>
-          <option value="science">science</option>
-          <option value="business">business</option>
+          <option value="references" id="app-menu-search-in-option-references">references</option>
+          <option value="culture" id="app-menu-search-in-option-culture">culture</option>
+          <option value="science" id="app-menu-search-in-option-science">science</option>
+          <option value="business" id="app-menu-search-in-option-business">business</option>
         </select>
 
         <span id="app-menu-sort-by">sort by</span>: <select id="sortby" class="browser-default">
           <option value="none" selected></option>
-          <option value="relevance-desc">relevance ↓ </option>
-          <option value="relevance-asc">relevance ↑</option>
-          <option value="date-desc">date ↓</option>
-          <option value="date-asc">date ↑</option>
-          <option value="update-desc">update ↓</option>
-          <option value="update-asc">update ↑</option>
-          <option value="random">random</option>
-          <option value="citations-desc">citations ↓</option>
-          <option value="citations-asc">citations ↑</option>
-          <option value="title-desc">title ↓</option>
-          <option value="title-asc">title ↑</option>
-          <option value="distance-asc">distance ↑</option>
-          <option value="distance-desc">distance ↓</option>
+          <option value="relevance-desc" id="app-menu-sort-by-option-relevance-desc">relevance ↓ </option>
+          <option value="relevance-asc" id="app-menu-sort-by-option-relevance-asc">relevance ↑</option>
+          <option value="date-desc" id="app-menu-sort-by-option-date-desc">date ↓</option>
+          <option value="date-asc" id="app-menu-sort-by-option-date-asc">date ↑</option>
+          <option value="update-desc" id="app-menu-sort-by-option-update-desc">update ↓</option>
+          <option value="update-asc" id="app-menu-sort-by-option-update-asc">update ↑</option>
+          <option value="random" id="app-menu-sort-by-option-random">random</option>
+          <option value="citations-desc" id="app-menu-sort-by-option-citations-desc">citations ↓</option>
+          <option value="citations-asc" id="app-menu-sort-by-option-citations-asc">citations ↑</option>
+          <option value="title-asc" id="app-menu-sort-by-option-title-asc">title ↑</option>
+          <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
+          <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
+          <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
         </select>
-
-
 
       </div>
 

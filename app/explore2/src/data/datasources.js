@@ -743,6 +743,6 @@ const valid_sort_options = [
   'citations-asc',
   'title-asc',
   'title-desc',
-  'distance-asc'
+  'distance-asc',
   'distance-desc',
 ];
