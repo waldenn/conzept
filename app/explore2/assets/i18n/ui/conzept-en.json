@@ -18,7 +18,11 @@
   "app-title-pages": "pages",
   "app-title-citations": "Citations",
 
+  "app-menu-api-keys": "API keys",
+  "app-menu-search-in": "search in",
+  "app-menu-search-in-option-references": "references",
   "app-menu-sort-by": "sort by",
+  "app-menu-sort-by-option-relevance-desc": "relevance ↓",
   "app-menu-actions": "actions",
   "app-menu-background-audio": "audio",
   "app-menu-background-midi": "MIDI",

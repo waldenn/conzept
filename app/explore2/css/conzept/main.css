@@ -927,6 +927,7 @@ select.browser-default {
   max-width: 500px;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
+  border: 2px solid transparent;
   /*
   font-size: 1.25rem;
   line-height: 1.1;

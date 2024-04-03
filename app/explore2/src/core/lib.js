@@ -2460,16 +2460,16 @@ function setupOptionDarkmode() {
 
         (async () => { await explore.db.set('darkmode', true); })();
         explore.darkmode = true;
-        setDarkmode();
 
       }
       else {
 
         (async () => { await explore.db.set('darkmode', false); })();
         explore.darkmode = false;
-        setDarkmode();
 
       }
+
+      setDarkmode();
 
     })
 
@@ -3548,7 +3548,14 @@ async function updateLocaleInterface(){
   $('#app-tab-audio-chat-title').text( explore.banana.i18n('app-tab-audio-chat-title') );
 
   // menus
+  $('#app-menu-api-keys').html( explore.banana.i18n('app-menu-api-keys') );
+
+  $('#app-menu-search-in').html( explore.banana.i18n('app-menu-search-in') );
+  $('#app-menu-search-in-option-references').html( explore.banana.i18n('app-menu-search-in-references') );
+
   $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
+  $('#app-menu-sort-by-option-relevance-desc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-desc') );
+
   $('#app-menu-upload-json').html( explore.banana.i18n('app-menu-upload-json') );
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
   $('#app-menu-background-audio').html( explore.banana.i18n('app-menu-background-audio') );

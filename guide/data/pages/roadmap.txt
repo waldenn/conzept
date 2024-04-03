@@ -11,16 +11,11 @@
       * datasource autocomplete
       * datasource searching
 
-  * Datasource set selection (as an alternative to datasource selection):
-    * Encyclopedic: Wikipedia, Wikidata
-    * Science: Archive Scholar, arXiv, OpenAlex, GBIF
-    * Culture: Wikimedia Commons, Internet Archive, Europeana, Rijksmuseum, Smithsonian 3D
-    * Business: GLEIF, EU, ...
-
   * New search modalitites:
     * design the workflow
     * candidates:
       * geospatial search (almost done)
+        * Issue: URL-serialization not working correctly
       * temporal-range search (point-in-time, start-time, end-time)
       * ISBN search
       * DOI search
@@ -34,6 +29,9 @@
   * Improve existing search modalities:
     * ? Wikidata: Allow filtering by text in "structured search" (currently not supported in the Wikidata-query-builder)
     * Wikidata: Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
+
+  * Datasource search filters?:
+    * types: video, audio, image, article, book, 3d
 
 ===== frontend ideas =====
 
