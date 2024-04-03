@@ -3551,10 +3551,25 @@ async function updateLocaleInterface(){
   $('#app-menu-api-keys').html( explore.banana.i18n('app-menu-api-keys') );
 
   $('#app-menu-search-in').html( explore.banana.i18n('app-menu-search-in') );
-  $('#app-menu-search-in-option-references').html( explore.banana.i18n('app-menu-search-in-references') );
+  $('#app-menu-search-in-option-references').html( explore.banana.i18n('app-menu-search-in-option-references') );
+  $('#app-menu-search-in-option-culture').html( explore.banana.i18n('app-menu-search-in-option-culture') );
+  $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
+  $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
 
   $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
   $('#app-menu-sort-by-option-relevance-desc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-desc') );
+  $('#app-menu-sort-by-option-relevance-asc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-asc') );
+  $('#app-menu-sort-by-option-date-desc').html( explore.banana.i18n('app-menu-sort-by-option-date-desc') );
+  $('#app-menu-sort-by-option-date-asc').html( explore.banana.i18n('app-menu-sort-by-option-date-asc') );
+  $('#app-menu-sort-by-option-update-desc').html( explore.banana.i18n('app-menu-sort-by-option-update-desc') );
+  $('#app-menu-sort-by-option-update-asc').html( explore.banana.i18n('app-menu-sort-by-option-update-asc') );
+  $('#app-menu-sort-by-option-random').html( explore.banana.i18n('app-menu-sort-by-option-random') );
+  $('#app-menu-sort-by-option-citations-desc').html( explore.banana.i18n('app-menu-sort-by-option-citations-desc') );
+  $('#app-menu-sort-by-option-citations-asc').html( explore.banana.i18n('app-menu-sort-by-option-citations-asc') );
+  $('#app-menu-sort-by-option-title-asc').html( explore.banana.i18n('app-menu-sort-by-option-title-asc') );
+  $('#app-menu-sort-by-option-title-desc').html( explore.banana.i18n('app-menu-sort-by-option-title-desc') );
+  $('#app-menu-sort-by-option-distance-asc').html( explore.banana.i18n('app-menu-sort-by-option-distance-asc') );
+  $('#app-menu-sort-by-option-distance-desc').html( explore.banana.i18n('app-menu-sort-by-option-distance-desc') );
 
   $('#app-menu-upload-json').html( explore.banana.i18n('app-menu-upload-json') );
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
@@ -7438,18 +7453,26 @@ function buildURLParameters(){ // builds a URL state object from the current sta
       p.f = '&f=' + explore.fragment;
     }
 
-    // datasources parameter
-    p.d = '';
+    // datasource parameters
+    p.ds  = ''; // datasource-set
+    p.d   = ''; // datasource list
 
-    if ( explore.datasources.length === 0 ){ explore.datasources = '' } else {
-      p.d = '&d=' + explore.datasources.join(',');
+    if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
+
+      explore.datasource_set = ''
+
+      if ( explore.datasources.length === 0 ){ // no datasources
+        explore.datasources = ''
+      }
+      else {
+        p.d = '&d=' + explore.datasources.join(',');
+      }
+
     }
+    else {
 
-    // datasource-set parameter
-    p.ds = '';
-
-    if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ explore.datasource_set = '' } else {
       p.ds = '&ds=' + explore.datasource_set;
+
     }
 
     // sortby parameter

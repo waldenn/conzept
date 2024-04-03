@@ -7,8 +7,10 @@ Let's first look at some example URLs and then look at all the available paramet
 
   * [[https://conze.pt/explore/Semantic%20Web|conze.pt/explore/Semantic_Web]] (Minimal URL with a search-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)
 
-  * [[https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=en&t=string&s=true]] (datasources search for the English language)
-  * [[https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=de&t=string&s=true]] (datasources search for the German language)
+  * [[https://conze.pt/explore/Semantic%20web?l=en&ds=science&t=string&sortby=date-desc&s=true#]] (newest "science" datasource-set search) 
+
+  * [[https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=en&t=string&s=true]] ("default datasource" search for the English language)
+  * [[https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=de&t=string&s=true]] ("default datasource" search for the German language)
 
   * [[https://conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true|conze.pt/explore/?l=en&t=wikipedia-qid&i=Q5483435&s=true]] (load a certain Wikidata Qid topic. This will try to load it as a Wikipedia article, or else fallback to showing the Wikidata page.)
 
@@ -26,6 +28,8 @@ There are various parameters available to structure URLs.
 | **l** | language | "en" |
 | **lv** | language variant (currently only applies to Chinese languages) | "zh-my" |
 | **t** | action-type | "string" |
+| **ds** | active datasource-set | - |
+| **d** | active datasource list | "wikipedia,wikidata" |
 | **i** | entity ID (such as the Wikidata Q-identifier) | - |
 | **u**  | URL-string | - |
 | **s** | sidebar visibility | true |

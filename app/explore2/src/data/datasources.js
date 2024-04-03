@@ -741,8 +741,8 @@ const valid_sort_options = [
   'random',
   'citations-desc',
   'citations-asc',
-  'title-desc',
   'title-asc',
-  'distance-desc',
+  'title-desc',
   'distance-asc'
+  'distance-desc',
 ];

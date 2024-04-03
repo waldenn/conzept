@@ -74,10 +74,7 @@
 
   * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
     * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
-
-  * Parsing the JSON-LD on Conzept pages fails (the JSON-LD is correct, as other tools parse it nicely). I've started some research what the best way forward to improve the JSON-LD parser.
-
-  * The entity display works on 3rd-party websites but not on Conze.pt currently: A complication due to the iframe-visibility needed for text-selections, which overwrites sidebar state. I will need to research this issue a bit more to get a good solution, to prevent each iframe from triggering the meta-data parsing, while still allowing text-selection in these same iframes.
+    * Goal: Provide a right-click menu-option to search on Conzept (make it work in embedded iframes and perhaps PDFs too, if possible)
 
 ===== Wikidata / SPARQL issues =====
 

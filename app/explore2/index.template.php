@@ -239,8 +239,8 @@ $sticky_html = '
           <option value="random" id="app-menu-sort-by-option-random">random</option>
           <option value="citations-desc" id="app-menu-sort-by-option-citations-desc">citations ↓</option>
           <option value="citations-asc" id="app-menu-sort-by-option-citations-asc">citations ↑</option>
-          <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
           <option value="title-asc" id="app-menu-sort-by-option-title-asc">title ↑</option>
+          <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
           <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
           <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
         </select>
