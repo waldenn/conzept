@@ -181,6 +181,7 @@ const explore = {
   default_fontsize_medium_desktop: 19,  // default for medium desktops (<1600)
   default_fontsize_large_desktop : 19,  // default for large desktops (>1600)
 
+  thumb_width         : '350px',  // sidebar image-thumb size
   banner_width        : '1200px', // desktop size
 
   // styling options
@@ -191,7 +192,7 @@ const explore = {
   showhelp            : undefined,
   darkmode            : undefined,
   bgmode              : undefined,
-  gridmode            : undefined,
+  gridmode            : undefined, // TODO: allow as a param-setting?
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,

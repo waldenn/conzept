@@ -6406,7 +6406,7 @@ function addTopics( source, list ){
 
       if ( item.datasource === 'wikipedia' ){
 
-        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=150' + '" alt="" /></div>';
+        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=' + explore.thumb_width + '" alt="" /></div>';
 
       }
       else {

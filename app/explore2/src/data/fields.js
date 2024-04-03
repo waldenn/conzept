@@ -81,7 +81,7 @@ conzept_fields = {
 // thumbnail-images
 
 'image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'image',
   prop: '18',
@@ -94,7 +94,7 @@ conzept_fields = {
 },
 
 'logo' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P154[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P154[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'logo',
   prop: '154',
@@ -107,7 +107,7 @@ conzept_fields = {
 },
 
 'seal' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P158[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P158[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'seal',
   prop: '158',
@@ -120,7 +120,7 @@ conzept_fields = {
 },
 
 'grave_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1442[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1442[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'grave',
   prop: '1442',
@@ -133,7 +133,7 @@ conzept_fields = {
 },
 
 'relief_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1944[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1944[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'relief map',
   prop: '1944',
@@ -146,7 +146,7 @@ conzept_fields = {
 },
 
 'detail_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1621[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1621[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'detail map',
   prop: '1621',
@@ -159,7 +159,7 @@ conzept_fields = {
 },
 
 'locator_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P242[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P242[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'locator map',
   prop: '242',
@@ -172,7 +172,7 @@ conzept_fields = {
 },
 
 'plan_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3311[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3311[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'plan view',
   prop: '3311',
@@ -185,7 +185,7 @@ conzept_fields = {
 },
 
 'aerial_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8592[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8592[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'aerial view',
   prop: '8592',
@@ -198,7 +198,7 @@ conzept_fields = {
 },
 
 'satellite_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11832[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11832[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'satellite view',
   prop: '11832',
@@ -211,7 +211,7 @@ conzept_fields = {
 },
 
 'schematic' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5555[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5555[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'schematic illustration',
   prop: '5555',
@@ -241,7 +241,7 @@ conzept_fields = {
 */
 
 'place_name_sign' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1766[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1766[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'place name sign',
   prop: '1766',
@@ -266,7 +266,7 @@ conzept_fields = {
 },
 
 'commemorative_plaque' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1801[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1801[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'commemorative plaque',
   prop: '1801',
@@ -279,7 +279,7 @@ conzept_fields = {
 },
 
 'interior_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5775[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5775[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'interior view',
  prop: '5775',
@@ -292,7 +292,7 @@ conzept_fields = {
 },
 
 'route_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P15[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P15[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'route map',
   prop: '15',
@@ -305,7 +305,7 @@ conzept_fields = {
 },
 
 'sectional_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2713[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2713[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'sectional view',
   prop: '2713',
@@ -318,7 +318,7 @@ conzept_fields = {
 },
 
 'bathymetry_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P207[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P207[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'bathymetry map',
   prop: '207',
@@ -331,7 +331,7 @@ conzept_fields = {
 },
 
 'service_ribbon_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2425[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2425[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'service ribbon',
   prop: '2425',
@@ -344,7 +344,7 @@ conzept_fields = {
 },
 
 'collage_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2716[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2716[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'collage image',
   prop: '2716',
@@ -357,7 +357,7 @@ conzept_fields = {
 },
 
 'icon_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2910[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2910[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'icon image',
   prop: '2910',
@@ -370,7 +370,7 @@ conzept_fields = {
 },
 
 'panoramic_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4291[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4291[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'panoramic view',
   prop: '4291',
@@ -383,7 +383,7 @@ conzept_fields = {
 },
 
 'film_poster' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3383[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3383[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'film poster',
   prop: '3383',
@@ -396,7 +396,7 @@ conzept_fields = {
 },
 
 'distribution_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1846[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1846[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'distribution map',
   prop: '1846',
@@ -409,7 +409,7 @@ conzept_fields = {
 },
 
 'location_map' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1943[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1943[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'location map',
   prop: '1943',
@@ -422,7 +422,7 @@ conzept_fields = {
 },
 
 'monogram' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1543[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P1543[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'monogram',
   prop: '1543',
@@ -435,7 +435,7 @@ conzept_fields = {
 },
 
 'coat_of_arms_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P94[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P94[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'coat_of_arms',
   prop: '94',
@@ -448,7 +448,7 @@ conzept_fields = {
 },
 
 'molecular_model' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8224[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8224[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'molecular-crystal model image',
   prop: '8224',
@@ -474,7 +474,7 @@ conzept_fields = {
 },
 
 'traffic_sign' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P14[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P14[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'traffic sign',
   prop: '14',
@@ -145568,7 +145568,7 @@ if ( valid( item.found_in_taxon ) ){
 /* AUTOMATED FIELD INSERTIONS: CommonsMedia */
 
 'flag_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P41[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P41[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Flag image',
   prop: '41',
@@ -145582,7 +145582,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'signature' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P109[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P109[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Signature',
   prop: '109',
@@ -145596,7 +145596,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'chemical_structure' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P117[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P117[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Chemical structure',
   prop: '117',
@@ -145610,7 +145610,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'taxon_range_map_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P181[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P181[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Taxon range map image',
   prop: '181',
@@ -145624,7 +145624,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'astronomic_symbol_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P367[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P367[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Astronomic symbol image',
   prop: '367',
@@ -145638,7 +145638,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'sandbox-commonsmediafile' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P368[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P368[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Sandbox-CommonsMediaFile',
   prop: '368',
@@ -145652,7 +145652,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'pronunciation_audio' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P443[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P443[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Pronunciation audio',
   prop: '443',
@@ -145666,7 +145666,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'orbit_diagram' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P491[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P491[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Orbit diagram',
   prop: '491',
@@ -145680,7 +145680,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'gene_atlas_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P692[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P692[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Gene Atlas Image',
   prop: '692',
@@ -145694,7 +145694,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'spoken_text_audio' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P989[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P989[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Spoken text audio',
   prop: '989',
@@ -145708,7 +145708,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'audio_recording_of_the_subjects_spoken_voice' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P990[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P990[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Audio recording of the subjects spoken voice',
   prop: '990',
@@ -145722,7 +145722,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'playing_range_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2343[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2343[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Playing range image',
   prop: '2343',
@@ -145736,7 +145736,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'label_in_sign_language' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2919[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P2919[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Label in sign language',
   prop: '2919',
@@ -145750,7 +145750,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'sheet_music' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3030[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3030[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Sheet music',
   prop: '3030',
@@ -145764,7 +145764,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'nighttime_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3451[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P3451[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Nighttime view',
   prop: '3451',
@@ -145778,7 +145778,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'escutcheon_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4004[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4004[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Escutcheon image',
   prop: '4004',
@@ -145792,7 +145792,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 '3d_model' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4896[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P4896[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: '3D model',
   prop: '4896',
@@ -145806,7 +145806,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'winter_view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5252[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5252[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Winter view',
   prop: '5252',
@@ -145820,7 +145820,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'sail_emblem' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5962[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P5962[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Sail emblem',
   prop: '5962',
@@ -145834,7 +145834,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'stroke_order' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6655[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6655[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Stroke order',
   prop: '6655',
@@ -145848,7 +145848,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'wikidata_property_example_for_media' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6685[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6685[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Wikidata property example for media',
   prop: '6685',
@@ -145862,7 +145862,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'related_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6802[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P6802[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Related image',
   prop: '6802',
@@ -145876,7 +145876,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'extracted_from' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7009[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7009[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Extracted from',
   prop: '7009',
@@ -145890,7 +145890,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'name_(image)' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7407[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7407[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Name (image)',
   prop: '7407',
@@ -145904,7 +145904,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'code_(image)' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7415[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7415[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Code (image)',
   prop: '7415',
@@ -145918,7 +145918,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_of_backside' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7417[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7417[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image of backside',
   prop: '7417',
@@ -145932,7 +145932,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_of_frontside' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7418[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7418[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image of frontside',
   prop: '7418',
@@ -145946,7 +145946,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_with_frame' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7420[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7420[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image with frame',
   prop: '7420',
@@ -145960,7 +145960,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'creators_signature' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7457[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P7457[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Creators signature',
   prop: '7457',
@@ -145974,7 +145974,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ex-libris' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8195[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8195[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Ex-libris',
   prop: '8195',
@@ -145988,7 +145988,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'traffic_sign_template_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8505[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8505[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Traffic sign template image',
   prop: '8505',
@@ -146002,7 +146002,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'size_comparison_diagram' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8512[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8512[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Size comparison diagram',
   prop: '8512',
@@ -146016,7 +146016,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'view' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8517[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8517[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'View',
   prop: '8517',
@@ -146030,7 +146030,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'twin_town_sign' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8667[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8667[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Twin town sign',
   prop: '8667',
@@ -146044,7 +146044,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'rank_insignia' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8766[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8766[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Rank insignia',
   prop: '8766',
@@ -146058,7 +146058,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'small_logo_or_icon' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8972[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P8972[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Small logo or icon',
   prop: '8972',
@@ -146072,7 +146072,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_of_entrance' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P9721[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P9721[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image of entrance',
   prop: '9721',
@@ -146086,7 +146086,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'inscription_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P9906[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P9906[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Inscription image',
   prop: '9906',
@@ -146100,7 +146100,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'museu_da_pessoa_history' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10032[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10032[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Museu da Pessoa History',
   prop: '10032',
@@ -146114,7 +146114,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_with_color_chart' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10093[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10093[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image with color chart',
   prop: '10093',
@@ -146128,7 +146128,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'reference_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10253[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10253[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Reference image',
   prop: '10253',
@@ -146142,7 +146142,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'cantilever_sign' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10544[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10544[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Cantilever sign',
   prop: '10544',
@@ -146156,7 +146156,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'image_set' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10696[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P10696[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Image set',
   prop: '10696',
@@ -146170,7 +146170,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'model_image' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11101[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11101[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Model image',
   prop: '11101',
@@ -146184,7 +146184,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'information_sign' : {
-  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11702[0] )}?width=150px',
+  value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P11702[0] )}?width=${explore.thumb_width}',
   render_condition: false,
   title: 'Information sign',
   prop: '11702',

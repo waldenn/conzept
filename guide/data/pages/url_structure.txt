@@ -7,7 +7,7 @@ Let's first look at some example URLs and then look at all the available paramet
 
   * [[https://conze.pt/explore/Semantic%20Web|conze.pt/explore/Semantic_Web]] (Minimal URL with a search-string. The user-language will be based on: the stored language setting, the browser language or simply fallback to English.)
 
-  * [[https://conze.pt/explore/Semantic%20web?l=en&ds=science&t=string&sortby=date-desc&s=true#]] (newest "science" datasource-set search) 
+  * [[https://conze.pt/explore/Semantic%20web?l=en&ds=science&t=string&sortby=date-desc&s=true#|conze.pt/explore/Semantic%20web?l=en&ds=science&t=string&sortby=date-desc&s=true]] (newest "science" datasource-set search) 
 
   * [[https://conze.pt/explore/Semantic%20Web?l=en&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=en&t=string&s=true]] ("default datasource" search for the English language)
   * [[https://conze.pt/explore/Semantic%20Web?l=de&t=wikipedia&s=true|conze.pt/explore/Semantic_Web?l=de&t=string&s=true]] ("default datasource" search for the German language)
