@@ -2242,6 +2242,12 @@ summary:hover {
   padding-left: 0.9rem;
 }
 
+#results.grid .summary-thumb {
+  padding-left: 0rem;
+  width: 100%;
+}
+
+
 body.rtl .summary-thumb {
   float: left;
 }
@@ -2265,7 +2271,8 @@ body.rtl .summary-thumb {
 }
 
 #results.grid .thumbnail {
-  /*max-height: 12rem;*/
+  max-height: unset;
+  width: 100%;
 }
 
 .mv-thumb .thumbnail {

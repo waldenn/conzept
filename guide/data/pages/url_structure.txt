@@ -30,6 +30,7 @@ There are various parameters available to structure URLs.
 | **t** | action-type | "string" |
 | **ds** | active datasource-set | - |
 | **d** | active datasource list | "wikipedia,wikidata" |
+| **sortby** | result sorting key | "relevance-desc" |
 | **i** | entity ID (such as the Wikidata Q-identifier) | - |
 | **u**  | URL-string | - |
 | **s** | sidebar visibility | true |
