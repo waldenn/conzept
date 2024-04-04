@@ -12,7 +12,7 @@ function autocompleteGDELT( results, dataset ){
 
     $.each( results.articles, function( i, item ){
 
-      let title = title = stripHtml( item.title );
+      let title = stripHtml( item.title );
 
       if ( title ){
 
