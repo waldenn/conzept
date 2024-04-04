@@ -532,6 +532,52 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  'occrp': {
+    active:                 false,
+    name:                   'OCCRP Aleph',
+    description:            'investigative journalism archive',
+    tag:                    'science',
+    qid:                    'Q7102061',
+    protocol:               'rest',
+                              // see:
+                              //  https://redocly.github.io/redoc/?url=https://aleph.occrp.org/api/openapi.json#tag/Entity
+                              //  https://docs.aleph.occrp.org/developers/followthemoney/
+    endpoint:               'https://aleph.occrp.org/api/2/entities',
+    format:                 'json',
+    connect:                'json',
+    pagesize:               5,
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : '',
+                              'date-asc'        : '',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    url:                    '${datasources.occrp.endpoint}?q=${term}&page=${explore.page}&limit=${datasources.occrp.pagesize}&filter:schemata=Thing',
+    icon:                   '<img class="datasource-icon" alt="OCCRP logo" src="/assets/icons/occrp.svg" alt="OCCRP logo">',
+    icon_invert:            true,
+    display_url:            '${url}',
+    code_autocomplete:      'autocompleteOCCRP( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsOCCRP( topicResults, struct, index ) );',
+    code_resolve:           'resolveOCCRP( result, renderObject )',
+    code_render_mark:       'renderMarkOCCRP( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.occrp.endpoint}?q=${term}&page=1&limit=${datasources.occrp.autocomplete_limit}&filter:schemata=Thing',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     5,
+  },
+
   /*
   'inaturalist': {
     active:                 false,
@@ -724,7 +770,7 @@ const datasource_set_map = {
   references: ['wikipedia', 'wikidata'],
   culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3d'],
   science:    ['archive_scholar', 'arxiv', 'openalex', 'gbif'],
-  business:   ['gleif', 'eu'],
+  business:   ['gleif', 'eu', 'occrp'],
 }
 
 const datasource_sets = Object.keys( datasource_set_map );

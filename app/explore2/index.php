@@ -185,6 +185,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.466"></script>
   <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/snomed/index.js?v0.51.466"></script-->

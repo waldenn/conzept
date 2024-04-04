@@ -209,6 +209,10 @@ var conzept_tags = {
         text : "beverage",
         icon : ["fa-solid fa-wine-glass-alt"],
       },
+      "document" : { // non-book, non-science-article
+        text : "document",
+        icon : ["fa-regular fa-file-lines"],
+      },
       "written-work" : {
         text : "written work",
         icon : ["fa-solid fa-book"],
@@ -340,6 +344,10 @@ var conzept_tags = {
      "name" : {
         text : "name",
         icon : ["fa-solid fa-signature"],
+      },
+      "address" : {
+        text : "address",
+        icon : ["fa-solid fa-location-arrow"],
       },
       "music-genre" : {
         text : "music genre",
