@@ -104,7 +104,7 @@ function processResultsSmithsonian3D( topicResults, struct, index ){
         let subtag        = '';
         let newtab        = false;
 
-        desc              = highlightTerms( description );
+        desc              = highlightTerms( desc );
 
         //console.log( title, url_ );
 

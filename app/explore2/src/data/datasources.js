@@ -449,7 +449,7 @@ const datasources = {
 
   'gbif': {
     active:                 false,
-    name:                   'GBIF species',
+    name:                   'GBIF',
     description:            'species observations - BETA',
     tag:                    'science',
     qid:                    'Q1531570',
@@ -625,7 +625,7 @@ const datasources = {
   'occrp': {
     active:                 false,
     name:                   'OCCRP Aleph',
-    description:            'investigative journalism - BETA',
+    description:            'investigative journalism entities- BETA',
     tag:                    'science',
     qid:                    'Q7102061',
     protocol:               'rest',
@@ -814,7 +814,7 @@ const datasources = {
 const datasource_set_map = {
   none:       [''],
   references: ['wikipedia', 'wikidata'],
-  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3d'],
+  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3D'],
   science:    ['archive_scholar', 'arxiv', 'openalex', 'gbif'],
   business:   ['gleif', 'eu', 'gdelt', 'occrp'],
 }
