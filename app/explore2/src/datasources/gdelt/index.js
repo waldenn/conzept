@@ -4,45 +4,15 @@ function autocompleteGDELT( results, dataset ){
 
   const source = 'gdelt';
 
-  /*
   let list = [];
 
   //console.log( results );
 
-  if ( valid( results.total > 0 ) ){
+  if ( valid( results.articles > 0 ) ){
 
-    $.each( results.results, function( i, item ){
+    $.each( results.articles, function( i, item ){
 
-      let title = '';
-
-      if ( valid( item?.properties?.name ) ){ // name
-
-        if ( Array.isArray( item.properties.name ) ){ // name list
-
-          title = stripHtml( item.properties.name[0] );
-
-        }
-        else { // name string
-
-          title = stripHtml( item.properties.name );
-
-        }
-
-      }
-      else if ( !valid( item?.properties?.alias ) ){ // alias
-
-        if ( Array.isArray( item.properties.alias ) ){ // alias list
-
-          title = stripHtml( item.properties.alias[0] );
-
-        }
-        else { // alias string
-
-          title = stripHtml( item.properties.alias );
-
-        }
-
-      }
+      let title = title = stripHtml( item.title );
 
       if ( title ){
 
@@ -53,7 +23,6 @@ function autocompleteGDELT( results, dataset ){
     })
 
   }
-  */
 
 }
 
@@ -65,14 +34,14 @@ function processResultsGDELT( topicResults, struct, index ){
 
   return new Promise(( resolve, reject ) => {
 
-    console.log( topicResults );
+    //console.log( topicResults );
 
-    if ( !valid( topicResults.results ) ){
+    if ( !valid( topicResults.articles ) ){
 
       resolve( [ [], [] ] );
 
     }
-    else if ( topicResults.results.length === 0 ){
+    else if ( topicResults.articles.length === 0 ){
 
       resolve( [ [], [] ] );
 
@@ -116,7 +85,7 @@ function processResultsGDELT( topicResults, struct, index ){
 
       };
 
-      $.each( topicResults.results, function( i, obj ){
+      $.each( topicResults.articles, function( i, obj ){
 
         // URL vars
         let gid           = '';
@@ -168,7 +137,7 @@ function processResultsGDELT( topicResults, struct, index ){
 
         if ( valid( obj?.context ) ){
 
-          desc += stripHtml( obj.context.substring(0, 300) + ' (...)' );
+          desc  += highlightTerms( stripHtml( obj.context.substring(0, 300) + ' (...)' )  );
 
         }
 
@@ -180,7 +149,7 @@ function processResultsGDELT( topicResults, struct, index ){
 					gid:          gid,
           web_url:      url,
 					display_url:  url, // maybe not viewable, due to CORS restriction
-					thumb:        '',
+					thumb:        thumb,
           start_date:   start_date,
 					qid:          '',
           countries:    [],
