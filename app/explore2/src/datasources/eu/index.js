@@ -98,7 +98,7 @@ function processResultsEU( topicResults, struct, index ){
         let url         = eval(`\`${ datasources[ source ].display_url }\``);
 
         let title       = '';
-        let description = '';
+        let desc        = '';
 
         let start_date    = valid( obj.modified )? obj.modified : '';
         start_date        = start_date.split('-')[0];
@@ -120,12 +120,19 @@ function processResultsEU( topicResults, struct, index ){
 
           if ( valid( obj.description[ explore.language ] ) ){ // requested language
 
-            description = obj.description[ explore.language ];
+            desc = obj.description[ explore.language ];
+
+            if ( desc.length > 300 ){
+
+              desc = desc.substring(0, 300) + ' (...)';
+
+            }
+
 
           }
           else if ( valid( obj.description['en'] ) ){ // fallback language
 
-            title = obj.description['en'];
+            title = obj.description['en'].substring(0, 50);
 
           }
 
@@ -135,9 +142,8 @@ function processResultsEU( topicResults, struct, index ){
         // TODO: create an utility function for this text-cleaning
         // clean some text values
         title = title.replace( /[`']/g , '"');
-        description = description.replace( /[`']/g, '"');
-
-        description             = highlightTerms( description );
+        desc  = desc.replace( /[`']/g, '"');
+        desc  = highlightTerms( desc );
 
         let csv_url_list      = [];
         let jsonstat_url_list = [];
@@ -257,7 +263,7 @@ function processResultsEU( topicResults, struct, index ){
 				let item = {
           source:             source,
 					title:              title,
-					description:        description,
+					description:        desc,
 					gid:                gid,
 					display_url:        url,
 					start_date:	        start_date,

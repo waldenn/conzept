@@ -214,8 +214,6 @@ function processResultsOCCRP( topicResults, struct, index ){
 
         }
 
-        desc = desc + `<a target="_blank" title="source" aria-label="source" href="${url}">source</a><br/><br/>`;
-
         if ( valid( obj?.collection?.label ) ){
 
             desc += obj.collection.label;

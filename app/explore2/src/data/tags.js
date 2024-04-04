@@ -217,6 +217,10 @@ var conzept_tags = {
         text : "written work",
         icon : ["fa-solid fa-book"],
       },
+      "news-article" : {
+        text : "news article",
+        icon : ["fa-regular fa-newspaper"],
+      },
       "science-article" : {
         text : "science article",
         icon : ["fa-regular fa-newspaper"],
