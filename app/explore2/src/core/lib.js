@@ -1885,7 +1885,7 @@ function setupSearch() {
 
 			}).catch( error => {
 
-				  console.log('some request failed: ', request, error );
+				  console.log('some autocomplete request failed: ', request, error );
 
           $.toast({
             heading: `datasource autocomplete failed`,
@@ -2235,8 +2235,6 @@ function setupSearch() {
   });
 
   $('#search-in').on( 'change', function (e) {
-
-    console.log( 'change datasource set');
 
     e.preventDefault();
 

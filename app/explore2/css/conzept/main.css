@@ -51,6 +51,12 @@
   border-radius: 0.4em;
 }
 
+.editor-buttons {
+  position: absolute;
+  top: 2em;
+  left: -1em;
+}
+
 #editor-run {
   padding: 0.1em 2em;
 }
