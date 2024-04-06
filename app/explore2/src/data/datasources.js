@@ -165,6 +165,7 @@ const datasources = {
                               'archive'         : 'archive',
                               'entity'          : '',
                             },
+                            // ${ valid( d.filter_map[ filterby ] )? d.filter_map[ filterby ] : "bitmap|drawing" }
     url:                    '${datasources.commons.endpoint}?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=${datasources.commons.pagesize}&gsrnamespace=6&gsroffset=${ (explore.page -1) * ( datasources.commons.pagesize + 1 ) }&gsrsearch=filetype:bitmap|drawing%20-fileres:0%20custommatch:depicts_or_linked_from=${explore.q_qid}&origin=*',
     icon:                   '<img class="datasource-icon" alt="Wikimedia Commons datasource" src="/assets/icons/commons.svg" alt="Wikimedia Commons logo">',
     icon_invert:            false,
@@ -221,7 +222,7 @@ const datasources = {
                               'archive'         : 'web',
                               'entity'          : '',
                             },
-    url:                    '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=${term}',
+    url:                    '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=${term}${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }',
     icon:                   '<img class="datasource-icon" alt="Internet Archive datasource" src="/assets/icons/archive.svg" alt="Internet Archive logo">',
     icon_invert:            true,
     display_url:            'https://archive.org/details/${gid}/?q=${ setQuotes( term ) }&autoplay=1',
@@ -232,7 +233,8 @@ const datasources = {
     code_render_mark:       'renderMarkArchive( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22',
+                            // ${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }
+    autocomplete_url:       '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -567,7 +569,7 @@ const datasources = {
     code_data_collect:      'my_promises.push( processResultsArchiveScholar( topicResults, struct, index ) );',
     code_resolve:           'resolveArchiveScholar( result, renderObject )',
     code_render_mark:       'renderMarkArchiveScholar( inputs, source, q_, show_raw_results, id )',
-    autocomplete_active:    true,
+    autocomplete_active:    false, // Note: It seems this API is too rate-limited to allow autocompletion-requests
     autocomplete_protocol:  'json',
     autocomplete_url:       '${datasources.archive_scholar.endpoint}/search?sort_order=${ valid( sortby )? sortby : "relevancy" }&limit=${datasources.archive_scholar.pagesize}&offset=0&q=lang%3A${language}+"${term}"',
     autocomplete_format:    'json',

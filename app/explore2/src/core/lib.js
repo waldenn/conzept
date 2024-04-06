@@ -1752,17 +1752,48 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    let filterby  = '';
-    let sortby    = '';
+    let filterby        = '';    // default
+    let skip_datasource = false; // default
 
-    if ( valid( d.filter_map[ explore.filterby ] ) ){
+    let sortby          = '';
 
-      filterby = d.filter_map[ explore.filterby ];
+    console.log('fetchAutocompleteData(): ');
+
+    if ( valid( explore.filterby ) ){ // filter requested
+
+      console.log( '  filter requested: ', explore.filterby );
+
+      if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
+    
+        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+
+        if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
+
+          filterby = d.filter_map[ explore.filterby ];
+
+          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+
+        }
+        else { // just use the datasource _as is_, no 
+
+          // do nothing
+          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+
+        }
+
+      }
+      else { // filter-media-type is NOT supported by the datasource
+
+        skip_datasource = true;
+
+      }
 
     }
-    else {
+    else { // no filter was set
 
       filterby = d.filter_map[ 'none' ];
+
+      console.log( '  no filter requested:', d.name, filterby );
 
     }
 
@@ -1777,7 +1808,7 @@ async function fetchAutocompleteData( term ) {
 
     }
 
-    if ( valid( d.active && d.autocomplete_active ) ){ // active autocomplete
+    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource ] ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
 
@@ -1789,6 +1820,10 @@ async function fetchAutocompleteData( term ) {
 
     }
     else { // disabled autocomplete: use a dummy promise query
+
+      if ( skip_datasource ){
+        console.log( '  skipping datasource: ', d.name );
+      }
 
       autocomplete_fetches.push( Promise.resolve([]) );
 
@@ -10268,17 +10303,48 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
-    let filterby  = '';
-    let sortby    = '';
+    let filterby        = '';
+    let skip_datasource = false; // default
 
-    if ( valid( d.filter_map[ explore.filterby ] ) ){
+    let sortby          = '';
 
-      filterby = d.filter_map[ explore.filterby ];
+    console.log('fetchDatasources(): ');
+
+    if ( valid( explore.filterby ) ){ // filter requested
+
+      console.log( '  filter requested: ', explore.filterby );
+
+      if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
+
+        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+
+        if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
+
+          filterby = d.filter_map[ explore.filterby ];
+
+          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+
+        }
+        else { // just use the datasource _as is_, no
+
+          // do nothing
+          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+
+        }
+
+      }
+      else { // filter-media-type is NOT supported by the datasource
+
+        skip_datasource = true;
+
+      }
 
     }
-    else {
+    else { // no filter was set
 
       filterby = d.filter_map[ 'none' ];
+
+      console.log( '  no filter requested:', d.name, filterby );
 
     }
 
@@ -10295,13 +10361,22 @@ async function fetchDatasources(){
 
 		if ( explore.page === 1 ){ // on first page
 
-      if ( d.protocol === 'sparql' ){ // SPARQL-fetch: first set the "count url"
+      if ( d.protocol === 'sparql' && !skip_datasource ){ // SPARQL-fetch: first set the "count url"
 
         struct.push({ name: source, count: true, done: false });
 
       }
 
-      d.done = false; // we always need to fetch
+      if ( skip_datasource ){
+
+        d.done = true;
+
+      }
+      else {
+
+        d.done = false;
+
+       }
 
       // always reset the total on the first page
       d.total = 0;
@@ -10309,7 +10384,7 @@ async function fetchDatasources(){
 		}
     else { // on following page
 
-      if ( d.done ){ // done fetching for this datasource
+      if ( d.done || skip_datasource ){ // done fetching for this datasource
 
         console.log( 'done fetching for this datasource: ', source );
 
@@ -10326,21 +10401,53 @@ async function fetchDatasources(){
   // setup fetch-calls
   $.each( explore.datasources, function( index, source ){ // for each active datasource
 
-    let d		= datasources[ source ];
+    let d = datasources[ source ];
 
-    let filterby  = '';
-    let sortby    = '';
+    let filterby        = '';
+    let skip_datasource = false; // default
+    let sortby          = '';
 
-    if ( valid( d.filter_map[ explore.filterby ] ) ){
+    console.log( 'fetchDatasource() fetch call part: ...' );
 
-      filterby = d.filter_map[ explore.filterby ];
+    if ( valid( explore.filterby ) ){ // filter requested
+
+      console.log( '  filter requested: ', explore.filterby );
+
+      if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
+
+        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+
+        if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
+
+          filterby = d.filter_map[ explore.filterby ];
+
+          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+
+        }
+        else { // just use the datasource _as is_, no
+
+          // do nothing
+          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+
+        }
+
+      }
+      else { // filter-media-type is NOT supported by the datasource
+
+        skip_datasource = true;
+
+      }
 
     }
-    else {
+    else { // no filter was set
 
       filterby = d.filter_map[ 'none' ];
 
+      console.log( '  no filter requested:', d.name, filterby );
+
     }
+
+
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
@@ -10350,7 +10457,7 @@ async function fetchDatasources(){
 
 		let qid = '';
 
-		if ( explore.page === 1 && d.protocol === 'sparql' ){ // SPARQL-fetch: first set the "count url"
+		if ( explore.page === 1 && d.protocol === 'sparql' && !skip_datasource ){ // SPARQL-fetch: first set the "count url"
 
 			//console.log( 'count url: ', encodeURI( eval(`\`${ d.count_url }\``) ) );
 

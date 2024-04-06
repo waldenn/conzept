@@ -230,6 +230,19 @@ $sticky_html = '
           <option value="business" id="app-menu-search-in-option-business">business</option>
         </select>
 
+        <span id="app-menu-filter-by">filter by</span>: <select id="filterby" class="browser-default">
+          <option value="none" selected></option>
+          <option value="text" id="app-menu-filter-by-option-text">text</option>
+          <option value="image" id="app-menu-filter-by-option-image">image</option>
+          <option value="video" id="app-menu-filter-by-option-video">video</option>
+          <option value="audio" id="app-menu-filter-by-option-audio">audio</option>
+          <option value="data" id="app-menu-filter-by-option-data">data</option>
+          <option value="3D" id="app-menu-filter-by-option-3D">3D</option>
+          <option value="software" id="app-menu-filter-by-option-software">software</option>
+          <option value="archive" id="app-menu-filter-by-option-archive">archive</option>
+          <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
+        </select>
+
         <span id="app-menu-sort-by">sort by</span>: <select id="sortby" class="browser-default">
           <option value="none" selected></option>
           <option value="relevance-desc" id="app-menu-sort-by-option-relevance-desc">relevance ↓ </option>
@@ -245,19 +258,6 @@ $sticky_html = '
           <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
           <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
           <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
-        </select>
-
-        <span id="app-menu-filter-by">filter by</span>: <select id="filter-by" class="browser-default">
-          <option value="none" selected></option>
-          <option value="text" id="app-menu-filter-by-option-text">text</option>
-          <option value="image" id="app-menu-filter-by-option-image">image</option>
-          <option value="video" id="app-menu-filter-by-option-video">video</option>
-          <option value="audio" id="app-menu-filter-by-option-audio">audio</option>
-          <option value="data" id="app-menu-filter-by-option-data">data</option>
-          <option value="3D" id="app-menu-filter-by-option-3D">3D</option>
-          <option value="software" id="app-menu-filter-by-option-software">software</option>
-          <option value="archive" id="app-menu-filter-by-option-archive">archive</option>
-          <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
       </div>
