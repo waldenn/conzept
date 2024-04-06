@@ -1429,7 +1429,7 @@ function openBookmark( event, newtab ) {
 
 function setupDatasourceSet(){
 
-  if ( !valid( explore.datasource_set_param ) || explore?.datasource_set_param === 'none' ){ // no "datasource set" parameter set
+  if ( !valid( explore.datasource_set_selection ) || explore?.datasource_set_selection === 'none' ){ // no "datasource set" parameter set
 
     (async () => { // check browser storage for "datasource set"
 
@@ -1440,16 +1440,16 @@ function setupDatasourceSet(){
       }
       else { // use browser storage datasource-set
 
-        if ( datasource_sets.includes( explore.datasource_set_param ) ){
+        if ( datasource_sets.includes( datasource_set ) ){
 
-          explore.datasource_set        = datasource_set;
-          explore.datasource_set_param  = explore.datasource_set;
+          explore.datasource_set            = datasource_set;
+          explore.datasource_set_selection  = datasource_set;
 
         }
         else { // unkown "datasource set" param
 
-          explore.datasource_set        = '';
-          explore.datasource_set_param  = '';
+          explore.datasource_set            = '';
+          explore.datasource_set_selection  = '';
 
         }
 
@@ -1470,9 +1470,9 @@ function setupDatasourceSet(){
 
 function setActiveDatasourceSet(){
     
-  if ( datasource_sets.includes( explore.datasource_set_param ) ){ // valid set
+  if ( datasource_sets.includes( explore.datasource_set_selection ) ){ // valid set
 
-    explore.datasource_set = explore.datasource_set_param;
+    explore.datasource_set = explore.datasource_set_selection;
 
     // when "singleuse" is active, prevent permanently storing datasource-set
     if ( ! valid( explore.singleuse ) ){
@@ -1490,7 +1490,7 @@ function setActiveDatasourceSet(){
 
     // reset datasource set
     explore.datasource_set        = '';
-    explore.datasource_set_param  = '';
+    explore.datasource_set_selection  = '';
 
     // when "singleuse" is active, prevent permanently storing datasource-set
     if ( ! valid( explore.singleuse ) ){
@@ -1619,7 +1619,16 @@ function activateDatasources(){
 
   explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
 
-  setParameter( 'd', explore.datasources.join(','), explore.hash );
+  if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
+
+      setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+  }
+  else {
+
+      setParameter( 'ds', explore.datasource_set, explore.hash );
+
+  }
 
   // when "singleuse" is active, prevent permanently storing the datasources
   if ( ! valid( explore.singleuse ) ){
@@ -1680,7 +1689,7 @@ async function toggleDatasource( source ) {
       // clear the "datasource set"
       (async () => { await explore.db.set( 'datasource_set', '' ); })();
       explore.datasource_set        = '';
-      explore.datasource_set_param  = '';
+      explore.datasource_set_selection  = '';
       $('#search-in').val('none');
 
       setParameter( 'ds', '', explore.hash );
@@ -1711,7 +1720,16 @@ async function toggleDatasource( source ) {
 
   explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
 
-  setParameter( 'd', explore.datasources.join(','), explore.hash );
+  if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
+
+      setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+  }
+  else {
+
+      setParameter( 'ds', explore.datasource_set, explore.hash );
+
+  }
 
   // when "singleuse" is active, prevent permanently storing the datasources
   if ( ! valid( explore.singleuse ) ){
@@ -1734,6 +1752,9 @@ async function fetchAutocompleteData( term ) {
     let d = datasources[ source ];
 
     let sortby = '';
+    let filterby = '';
+
+    // TODO: implement filtering
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
@@ -2241,7 +2262,7 @@ function setupSearch() {
     if ( datasource_sets.includes( $('#search-in').val() ) ){
 
       explore.datasource_set        = $('#search-in').val();
-      explore.datasource_set_param  = $('#search-in').val();
+      explore.datasource_set_selection  = $('#search-in').val();
 
       setParameter( 'ds', explore.datasource_set, explore.hash );
 
@@ -2270,6 +2291,29 @@ function setupSearch() {
     }
 
   });
+
+  $('#filterby').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    console.log('filter changed to: ', $('#filterby').val() );
+
+    /*
+    if ( valid_sort_options.includes( $('#sortby').val() ) ){
+
+      explore.sortby        = $('#sortby').val();
+      explore.sortby_param  = $('#sortby').val();
+
+      setParameter( 'sortby', explore.sortby, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+    */
+
+  });
+
+
 
   $('a.link.clear').on( 'click', function (e) {
 
@@ -3204,9 +3248,9 @@ function setupLanguage(){
   }
 
   // determine datasource-set-key
-  if ( valid( explore.datasource_set_param ) ){
+  if ( valid( explore.datasource_set_selection ) ){
 
-    explore.datasource_set = explore.datasource_set_param;
+    explore.datasource_set = explore.datasource_set_selection;
 
     if ( datasource_sets.includes( explore.datasource_set ) ){
 
@@ -3228,6 +3272,23 @@ function setupLanguage(){
     }
 
   }
+
+  // determine filter-key
+  if ( valid( explore.filterby_param ) ){
+
+    explore.filterby = explore.filterby_param;
+
+    if ( valid_filter_options.includes( explore.filterby ) ){
+
+      console.log( 'valid filter found: ', explore.filterby );
+
+      $('#filterby').val( explore.filterby );
+
+    }
+
+  }
+
+
 
   // determine language
   if ( !valid( explore.language ) && !valid( explore.language_param ) ){ // no language
@@ -4158,6 +4219,9 @@ function setupURL() {
     // set sort-key
     explore.sortby = getParameterByName('sortby');
 
+    // set filter-key
+    explore.filterby = getParameterByName('filterby');
+
     // set custom data
     explore.custom = getParameterByName('c');
 
@@ -4644,8 +4708,17 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   }
 
-  // TODO: check why this is needed
-  setParameter( 'd', explore.datasources.join(','), explore.hash );
+  // TODO: could we avoid this here?
+  if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
+
+      setParameter( 'd', explore.datasources.join(','), explore.hash );
+
+  }
+  else {
+
+      setParameter( 'ds', explore.datasource_set, explore.hash );
+
+  }
 
 }
 
@@ -7185,9 +7258,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.sortby + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -7471,6 +7544,13 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
       p.ds = '&ds=' + explore.datasource_set;
 
+    }
+
+    // filterby parameter
+    p.filterby = '';
+
+    if ( !valid( explore.filterby ) || explore.filterby === 'none' ){ explore.filterby = '' } else {
+      p.filterby = '&filterby=' + explore.filterby;
     }
 
     // sortby parameter
@@ -10182,6 +10262,9 @@ async function fetchDatasources(){
     let d = datasources[ source ];
 
     let sortby = '';
+    let filterby = '';
+
+    // TODO: implement filtering
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
@@ -10230,6 +10313,9 @@ async function fetchDatasources(){
     let d		= datasources[ source ];
 
     let sortby = '';
+    let filterby = '';
+
+    // TODO: implement filtering
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 

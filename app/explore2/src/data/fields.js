@@ -14081,6 +14081,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 310,
 },
 
+'hacker_news_deephn' : {
+  create_condition: true,
+  title: 'DeepHN - Hacker News search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https%3A%2F%2Fmatterverse.ai%2Fquery%3Fcollection%3DM3GNet_data_websearch%26search_string%3DH2O%26submit%3DSearch&s=true#',
+  icon: 'fa-solid fa-microchip',
+  text: 'DeepHN',
+  section: 'news-tech',
+  rank: 9,
+},
+
 'hacker_news' : {
   create_condition: true,
   title: 'Hacker News',

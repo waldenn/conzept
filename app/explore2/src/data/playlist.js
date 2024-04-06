@@ -87,6 +87,7 @@ const PLAYLIST = {
   }
   ],
 
+  /*
   "classical music": [
    {
     "name": "Arabesque no.1 - Chris Breemer",
@@ -108,6 +109,7 @@ const PLAYLIST = {
   },
 
   ],
+  */
 
   'uncategorized': [ 
   {

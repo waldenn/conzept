@@ -46,11 +46,12 @@ const explore = {
   lang_book           : undefined,
   lang_bookre         : undefined,
   lang_current_events_page : undefined,
-  language_param      : getParameterByName('l') || undefined, // requested language from the URL
-  locale_param        : getParameterByName('h') || undefined, // requested 'human locale' language from the URL
-  query_param         : getParameterByName('query') || undefined, // requested 'structured query' from the URL
-  sortby_param        : getParameterByName('sortby') || undefined, // requested sorting-key from the URL
-  commands_param      : getParameterByName('commands') || undefined, // requested 'commands' from the URL
+  language_param      : getParameterByName('l') || undefined,       // requested language
+  locale_param        : getParameterByName('h') || undefined,       // requested 'human locale' language
+  query_param         : getParameterByName('query') || undefined,   // requested 'structured query'
+  sortby_param        : getParameterByName('sortby') || undefined,  // requested sorting-key
+  filterby_param      : getParameterByName('filterby') || undefined,// requested filter-key
+  commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
 
   //country           : 'us', // default is "United States"
 
@@ -78,7 +79,7 @@ const explore = {
   fragment            : getParameterByName('f') || '',  // allow for going directly to a detail-fragment
 
   datasource_selection: getParameterByName('d')   || '', // requested datasources
-  datasource_set_param: getParameterByName('ds')  || '', // requested datasource-set-key from the URL
+  datasource_set_selection: getParameterByName('ds')  || '', // requested datasource-set-key from the URL
   datasource_set      : '',
   datasources         : [], // active datasources
 

@@ -325,7 +325,7 @@ li.id.noKids, li.size.noKids {
 }
 
 .sticky-title {
-  top: 0.35rem;
+  top: 0rem; /* top: 0.35rem; */
   background: #fbfaf9;
   position: -webkit-sticky;
   position: sticky;
@@ -2384,13 +2384,16 @@ h1 {
 }
 
 #search-options {
+  font-size: 50%;
   margin-left: 0.3em;
   background-color: #fbfaf9;
 }
 
 #search-in, #sortby {
   width: fit-content;
-  margin-right: 0.5em;
+  max-width: 150px;
+  margin-right: 0.3em;
+  padding: 0rem 0.1rem;
   display: inline;
   font-size: 100%;
 }
