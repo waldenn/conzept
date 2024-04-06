@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.1"
-   width="220mm"
+   width="180mm"
    height="60mm"
-   viewBox="0 0 831.49607 226.77172"
+   viewBox="0 0 680.31496 226.77172"
    xml:space="preserve"
    id="svg20"
    sodipodi:docname="gdelt.svg"
@@ -30,14 +30,19 @@
    inkscape:window-maximized="1"
    inkscape:current-layer="svg20"
    units="mm"
-   inkscape:document-units="mm" />
+   inkscape:document-units="mm"
+   showguides="true"
+   inkscape:guide-bbox="true"><sodipodi:guide
+     position="288.72181,36.215278"
+     orientation="1,0"
+     id="guide119" /></sodipodi:namedview>
 <desc
    id="desc2">Created with Fabric.js 3.6.6</desc>
 <defs
    id="defs4">
 </defs>
 <g
-   transform="matrix(2.1828029,0,0,2.425812,10764.54,126.57531)"
+   transform="matrix(1.7337895,0,0,2.425812,8553.2792,126.57531)"
    id="g18">
 		<text
    xml:space="preserve"

@@ -165,8 +165,9 @@ const datasources = {
                               'archive'         : 'archive',
                               'entity'          : '',
                             },
-                            // ${ valid( d.filter_map[ filterby ] )? d.filter_map[ filterby ] : "bitmap|drawing" }
-    url:                    '${datasources.commons.endpoint}?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=${datasources.commons.pagesize}&gsrnamespace=6&gsroffset=${ (explore.page -1) * ( datasources.commons.pagesize + 1 ) }&gsrsearch=filetype:bitmap|drawing%20-fileres:0%20custommatch:depicts_or_linked_from=${explore.q_qid}&origin=*',
+                            // https://commons.wikimedia.org/w/api.php?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=4&gsrnamespace=6&gsroffset=0&gsrsearch=filetype:bitmap|drawing%20-fileres:0%20custommatch:depicts_or_linked_from=Q152&origin=*
+    url:                    '${datasources.commons.endpoint}?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=${datasources.commons.pagesize}&gsrnamespace=6&gsroffset=${ (explore.page -1) * ( datasources.commons.pagesize + 1 ) }&gsrsearch=${ valid( d.filter_map[ filterby ] )? "filetype:" + d.filter_map[ filterby : "bitmap|drawing" }%20-fileres:0%20custommatch:depicts_or_linked_from=${explore.q_qid}&origin=*',
+                            // or search all: bitmap|drawing|video|audio|executable|archive
     icon:                   '<img class="datasource-icon" alt="Wikimedia Commons datasource" src="/assets/icons/commons.svg" alt="Wikimedia Commons logo">',
     icon_invert:            false,
     display_url:            'https://commons.wikimedia.org/wiki/File:${ file }',
@@ -222,7 +223,7 @@ const datasources = {
                               'archive'         : 'web',
                               'entity'          : '',
                             },
-    url:                    '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=${term}${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }',
+    url:                    '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.pagesize}&output=json&page=${explore.page}&language%3A"${ wp_languages[ explore.language ].name }"&q=${term}${ Object.values( d.filter_map ).includes( filterby ) ? "+AND+mediatype%3A(" + filterby + ")" : "" }',
     icon:                   '<img class="datasource-icon" alt="Internet Archive datasource" src="/assets/icons/archive.svg" alt="Internet Archive logo">',
     icon_invert:            true,
     display_url:            'https://archive.org/details/${gid}/?q=${ setQuotes( term ) }&autoplay=1',
@@ -233,8 +234,7 @@ const datasources = {
     code_render_mark:       'renderMarkArchive( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-                            // ${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }
-    autocomplete_url:       '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22${ valid( d.filter_map[ filterby ] )? "+AND+mediatype%3A(" + d.filter_map[ filterby ] + ")" : "" }',
+    autocomplete_url:       '${datasources.archive.endpoint}?sort[]=${ valid( sortby )? sortby : "" }&rows=${datasources.archive.autocomplete_limit}&output=json&page=1&language%3A"${ wp_languages[ explore.language ].name }"&fl[]=title&q=%22${term}%22${  Object.values( d.filter_map ).includes( filterby ) ? "+AND+mediatype%3A(" + filterby + ")" : "" }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
@@ -280,7 +280,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }',
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=text,image,video,sound" }',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     icon_invert:            true,
     display_url:            'https://www.europeana.eu/${language}/item${gid}',
