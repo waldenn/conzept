@@ -1791,7 +1791,7 @@ async function fetchAutocompleteData( term ) {
     }
     else { // no filter was set
 
-      filterby = d.filter_map[ 'none' ];
+      filterby = d.filter_map[ 'none' ]; // TODO: selects the default filter-value (IF the datasource url uses custom filters)
 
       console.log( '  no filter requested:', d.name, filterby );
 
@@ -10447,8 +10447,6 @@ async function fetchDatasources(){
 
     }
 
-
-
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
       sortby = d.sort_map[ explore.sortby ];
@@ -10480,7 +10478,7 @@ async function fetchDatasources(){
 
 		}
 
-    if ( struct[ index ].done ){ // datasource "done"
+    if ( struct[ index ].done || skip_datasource ){ // datasource "done"
 
      fetches.push( Promise.resolve([]) ); // dummy fetch call
 
