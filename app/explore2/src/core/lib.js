@@ -1499,6 +1499,7 @@ function setActiveDatasourceSet(){
 
     }
 
+    setParameter( 'd', '', explore.hash );
     setParameter( 'ds', '', explore.hash );
 
     //setActiveDatasources();
@@ -1751,10 +1752,19 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    let sortby = '';
-    let filterby = '';
+    let filterby  = '';
+    let sortby    = '';
 
-    // TODO: implement filtering
+    if ( valid( d.filter_map[ explore.filterby ] ) ){
+
+      filterby = d.filter_map[ explore.filterby ];
+
+    }
+    else {
+
+      filterby = d.filter_map[ 'none' ];
+
+    }
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
@@ -2261,9 +2271,10 @@ function setupSearch() {
 
     if ( datasource_sets.includes( $('#search-in').val() ) ){
 
-      explore.datasource_set        = $('#search-in').val();
+      explore.datasource_set            = $('#search-in').val();
       explore.datasource_set_selection  = $('#search-in').val();
 
+      setParameter( 'd', '', explore.hash );
       setParameter( 'ds', explore.datasource_set, explore.hash );
 
       setActiveDatasourceSet();
@@ -2298,22 +2309,18 @@ function setupSearch() {
 
     console.log('filter changed to: ', $('#filterby').val() );
 
-    /*
-    if ( valid_sort_options.includes( $('#sortby').val() ) ){
+    if ( valid_filter_options.includes( $('#filterby').val() ) ){
 
-      explore.sortby        = $('#sortby').val();
-      explore.sortby_param  = $('#sortby').val();
+      explore.filterby        = $('#filterby').val();
+      explore.filterby_param  = $('#filterby').val();
 
-      setParameter( 'sortby', explore.sortby, explore.hash );
+      setParameter( 'filterby', explore.filterby, explore.hash );
 
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
-    */
 
   });
-
-
 
   $('a.link.clear').on( 'click', function (e) {
 
@@ -10261,10 +10268,19 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
-    let sortby = '';
-    let filterby = '';
+    let filterby  = '';
+    let sortby    = '';
 
-    // TODO: implement filtering
+    if ( valid( d.filter_map[ explore.filterby ] ) ){
+
+      filterby = d.filter_map[ explore.filterby ];
+
+    }
+    else {
+
+      filterby = d.filter_map[ 'none' ];
+
+    }
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
@@ -10312,10 +10328,19 @@ async function fetchDatasources(){
 
     let d		= datasources[ source ];
 
-    let sortby = '';
-    let filterby = '';
+    let filterby  = '';
+    let sortby    = '';
 
-    // TODO: implement filtering
+    if ( valid( d.filter_map[ explore.filterby ] ) ){
+
+      filterby = d.filter_map[ explore.filterby ];
+
+    }
+    else {
+
+      filterby = d.filter_map[ 'none' ];
+
+    }
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
 
