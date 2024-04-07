@@ -2880,6 +2880,7 @@ details[open].conf summary ~ * {
 
 .topic-description {
   font-weight: 450;
+  overflow: hidden;
 }
 
 .topic-description.motto {

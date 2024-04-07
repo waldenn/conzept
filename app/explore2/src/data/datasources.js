@@ -129,7 +129,8 @@ const datasources = {
     tag:                    'arts-culture',
     qid:                    'Q565',
     protocol:               'rest',
-    endpoint:               'https://commons.wikimedia.org/w/api.php', // see: https://commons.wikimedia.org/w/api.php
+    endpoint:               'https://commons.wikimedia.org/w/api.php',// see: https://commons.wikimedia.org/w/api.php
+                                                                      //      https://commons.wikimedia.org/w/api.php?action=help&modules=query
     format:                 'json',
     connect:                'json',
     pagesize:               4,
@@ -166,8 +167,7 @@ const datasources = {
                               'entity'          : '',
                             },
                             // https://commons.wikimedia.org/w/api.php?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=4&gsrnamespace=6&gsroffset=0&gsrsearch=filetype:bitmap|drawing%20-fileres:0%20custommatch:depicts_or_linked_from=Q152&origin=*
-    url:                    '${datasources.commons.endpoint}?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=${datasources.commons.pagesize}&gsrnamespace=6&gsroffset=${ (explore.page -1) * ( datasources.commons.pagesize + 1 ) }&gsrsearch=${ valid( d.filter_map[ filterby  )? "filetype:" + d.filter_map[ filterby ] : "bitmap|drawing" }%20-fileres:0%20custommatch:depicts_or_linked_from=${explore.q_qid}&origin=*',
-                            // or search all: bitmap|drawing|video|audio|executable|archive
+    url:                    '${datasources.commons.endpoint}?action=query&cirrusDumpResult=true&format=json&generator=search&gsrlimit=${datasources.commons.pagesize}&gsrnamespace=6&gsroffset=${ (explore.page -1) * ( datasources.commons.pagesize + 1 ) }&gsrsearch=${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "filetype:" + filterby  : "filetype:bitmap|drawing|video|audio|text|executable|archive" }%20-fileres:0%20custommatch:depicts_or_linked_from=${ valid( explore.q_qid ) ? explore.q_qid : "Q0" }&origin=*',
     icon:                   '<img class="datasource-icon" alt="Wikimedia Commons datasource" src="/assets/icons/commons.svg" alt="Wikimedia Commons logo">',
     icon_invert:            false,
     display_url:            'https://commons.wikimedia.org/wiki/File:${ file }',

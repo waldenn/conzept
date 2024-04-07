@@ -27,7 +27,7 @@
         * handle CORS issues
 
   * Improve existing search modalities:
-    * ? Wikidata: Allow filtering by text in "structured search" (currently not supported in the Wikidata-query-builder)
+    * ? Wikidata: Allow for filtering by raw-text-strings in "structured search" (currently not supported in the Wikidata-query-builder)
     * Wikidata: Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * Candidate new search-in datasource-sets:
@@ -38,16 +38,6 @@
     * education
     * wisdom / spirituality
     * youtube (requires approval)
-
-  * Research how to implement datasource search-filters:
-    * base media types and their specialized sub-types:
-      * text
-      * video
-      * audio
-      * image
-      * 3d
-      * data
-      * ...
 
 ===== frontend ideas =====
 
