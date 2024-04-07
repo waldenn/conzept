@@ -24,6 +24,21 @@
   margin-right: 1em;
 }
 
+/* presentation revealjs */
+
+.reveal .controls .controls-arrow {
+  font-size: 1.8em !important;
+}
+
+.reveal:not(.rtl) .controls[data-controls-back-arrows=faded] .navigate-left.enabled {
+  opacity: 1 !important;
+}
+
+.reveal .controls button {
+  color: #00a4e9f0 !important;
+}
+
+
 #aichat {
   background: #fbfaf10;
 }
@@ -2384,14 +2399,14 @@ h1 {
 }
 
 #search-options {
-  font-size: 50%;
+  font-size: smaller;
   margin-left: 0.3em;
   background-color: #fbfaf9;
 }
 
 #search-in, #sortby, #filterby {
   width: fit-content;
-  max-width: 150px;
+  max-width: 25%;
   margin-right: 0.3em;
   padding: 0rem 0.1rem;
   display: inline;

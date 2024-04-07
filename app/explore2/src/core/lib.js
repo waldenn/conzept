@@ -3494,7 +3494,7 @@ function setupLanguage(){
   $('#voices').change(function(){
 
 		explore.voice_code_selected = explore.voice_code = $(this).val();
-		explore.voice_name_selected = $("#voices option:selected").text();
+		explore.voice_name_selected = explore.voice_name = $("#voices option:selected").text();
 
     console.log('voice selected: ', explore.voice_code_selected, explore.voice_name_selected );
 

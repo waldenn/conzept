@@ -47,11 +47,9 @@ if ( typeof synth !== "undefined" ) {
 
 }
 
-let utterance = new SpeechSynthesisUtterance();
-
+let utterance   = new SpeechSynthesisUtterance();
 utterance.rate  = app.voice_rate;
 utterance.pitch = app.voice_pitch;
-
 
 let __PDF_DOC,
 	__CURRENT_PAGE = 1, //This is the page which is currently being spoken
