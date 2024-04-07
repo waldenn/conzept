@@ -1685,11 +1685,9 @@ async function toggleDatasource( source ) {
 
     //if ( event.hasOwnProperty('originalEvent') ){ // user-click
 
-      console.log( 'manual click on datasource: resetting the "datasource set"' );
-
       // clear the "datasource set"
       (async () => { await explore.db.set( 'datasource_set', '' ); })();
-      explore.datasource_set        = '';
+      explore.datasource_set            = '';
       explore.datasource_set_selection  = '';
       $('#search-in').val('none');
 
@@ -1757,27 +1755,27 @@ async function fetchAutocompleteData( term ) {
 
     let sortby          = '';
 
-    console.log('fetchAutocompleteData(): ');
+    //console.log('fetchAutocompleteData(): ');
 
     if ( valid( explore.filterby ) ){ // filter requested
 
-      console.log( '  filter requested: ', explore.filterby );
+      //console.log( '  filter requested: ', explore.filterby );
 
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
     
-        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+        //console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
 
         if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
 
           filterby = d.filter_map[ explore.filterby ];
 
-          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+          //console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
 
         }
         else { // just use the datasource _as is_, no 
 
           // do nothing
-          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+          //console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
 
         }
 
@@ -1793,7 +1791,7 @@ async function fetchAutocompleteData( term ) {
 
       filterby = d.filter_map[ 'none' ]; // TODO: selects the default filter-value (IF the datasource url uses custom filters)
 
-      console.log( '  no filter requested:', d.name, filterby );
+      //console.log( '  no filter requested:', d.name, filterby );
 
     }
 
@@ -1822,7 +1820,7 @@ async function fetchAutocompleteData( term ) {
     else { // disabled autocomplete: use a dummy promise query
 
       if ( skip_datasource ){
-        console.log( '  skipping datasource: ', d.name );
+        //console.log( '  skipping datasource: ', d.name );
       }
 
       autocomplete_fetches.push( Promise.resolve([]) );
@@ -1898,7 +1896,7 @@ function setupSearch() {
             explore.q = getSearchValue();
             //$('#srsearch').val( ui.item.label );
 
-            console.log( 'Safari: ', explore.q,  getSearchValue() );
+            //console.log( 'Safari: ', explore.q,  getSearchValue() );
 
           }
 
@@ -10316,27 +10314,27 @@ async function fetchDatasources(){
 
     let sortby          = '';
 
-    console.log('fetchDatasources(): ');
+    //console.log('fetchDatasources(): ');
 
     if ( valid( explore.filterby ) ){ // filter requested
 
-      console.log( '  filter requested: ', explore.filterby );
+      //console.log( '  filter requested: ', explore.filterby );
 
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
 
-        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+        //console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
 
         if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
 
           filterby = d.filter_map[ explore.filterby ];
 
-          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+          //console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
 
         }
         else { // just use the datasource _as is_, no
 
           // do nothing
-          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+          //console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
 
         }
 
@@ -10352,7 +10350,7 @@ async function fetchDatasources(){
 
       filterby = d.filter_map[ 'none' ];
 
-      console.log( '  no filter requested:', d.name, filterby );
+      //console.log( '  no filter requested:', d.name, filterby );
 
     }
 
@@ -10415,27 +10413,27 @@ async function fetchDatasources(){
     let skip_datasource = false; // default
     let sortby          = '';
 
-    console.log( 'fetchDatasource() fetch call part: ...' );
+    //console.log( 'fetchDatasource() fetch call part: ...' );
 
     if ( valid( explore.filterby ) ){ // filter requested
 
-      console.log( '  filter requested: ', explore.filterby );
+      //console.log( '  filter requested: ', explore.filterby );
 
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
 
-        console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
+        //console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
 
         if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
 
           filterby = d.filter_map[ explore.filterby ];
 
-          console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
+          //console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
 
         }
         else { // just use the datasource _as is_, no
 
           // do nothing
-          console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
+          //console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
 
         }
 
@@ -10451,7 +10449,7 @@ async function fetchDatasources(){
 
       filterby = d.filter_map[ 'none' ];
 
-      console.log( '  no filter requested:', d.name, filterby );
+      //console.log( '  no filter requested:', d.name, filterby );
 
     }
 
