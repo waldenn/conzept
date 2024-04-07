@@ -2228,7 +2228,7 @@ summary:hover {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax( 3em, 1fr));
-  grid-gap: 1.4rem;
+  grid-gap: 0.4rem;
   padding-bottom: 1rem;
 }
 
@@ -2672,8 +2672,8 @@ ul.country-list li {
 
 #results.grid { /* sidebar grid mode */
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
-  /*grid-template-columns: auto auto auto;*/
+  grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
+  grid-column-gap: 0.2em;
 }
 
 .sidebar-grid-item {

@@ -3330,8 +3330,6 @@ function setupLanguage(){
 
   }
 
-
-
   // determine language
   if ( !valid( explore.language ) && !valid( explore.language_param ) ){ // no language
 
@@ -3351,6 +3349,7 @@ function setupLanguage(){
 				if ( explore.voice_code_selected.startsWith( explore.language ) ){
 
 					explore.voice_code = explore.voice_code_selected;
+					explore.voice_name = explore.voice_name_selected;
 
 				} 
 				else {
@@ -3497,11 +3496,20 @@ function setupLanguage(){
   $('#voices').change(function(){
 
 		explore.voice_code_selected = explore.voice_code = $(this).val();
+		explore.voice_name_selected = $("#voices option:selected").text();
 
-    (async () => { await explore.db.set('voice_code_selected', explore.voice_code_selected ); })();
+    console.log('voice selected: ', explore.voice_code_selected, explore.voice_name_selected );
 
-    // also update the voice-code of any open Wikikipedia-app-pane
+    (async () => {
+
+      await explore.db.set('voice_code_selected', explore.voice_code_selected );
+      await explore.db.set('voice_name_selected', explore.voice_name_selected );
+
+    })();
+
+    // also update the voice-code of any open + receptive app-pane (eg. Wikipedia app)
     updateValueInPanes( 'voice_code', explore.voice_code_selected );
+    updateValueInPanes( 'voice_name', explore.voice_name_selected );
 
   });
 
@@ -11334,6 +11342,24 @@ function reloadVoices() {
       $('#voices option[value=' + explore.voice_code_selected + ']').attr('selected','selected');
 
     }
+
+    // TODO: use voice_name_selected first
+    /*
+      if (valid( [ explore.voice_name_selected ] ) ){ // try to select option by name
+
+        $('#voices option[text=' + explore.voice_name_selected + ']').attr('selected','selected');
+
+        $.each( $("#voices option"), function(key, item) {
+
+          if ( explore.voice_name_selected === $(this).text() ){
+            console.log( $(this).text() );
+          }
+
+        })
+      }
+      else { // use "voice_code_selected"
+      }
+    */
 
 	}
 

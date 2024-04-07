@@ -807,7 +807,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.full_work )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${explore.language}&voice_code=${explore.voice_code}&voice_name=${explore.voice_name}&voice_rate=${explore.voice_rate}&voice_pitch=${explore.voice_pitch}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.full_work )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
@@ -2746,7 +2746,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/pdf-speaker/index.html?l=${ valid( item.document_language )? item.document_language : explore.language  }&voice=${ getTTSVoiceCode( item ) }&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
+  url: '${explore.base}/app/pdf-speaker/index.html?l=${ valid( item.document_language )? item.document_language : explore.language  }&voice_code=${ getTTSVoiceCode( item ) }&voice_name=${explore.voice_name}&voice_rate=${explore.voice_rate}&voice_pitch=${explore.voice_pitch}&u=${ encodeURI( "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_tts_link )}',
   icon: 'fa-solid fa-headphones',
   text: 'PDF TTS',
   section: ['media-audio','main'],
@@ -5157,7 +5157,7 @@ conzept_fields = {
   icon: 'fa-brands fa-reddit',
   text: 'Reddit forum',
   section: ['social','main'],
-  rank: [26,8920],
+  rank: [26.1,8920],
 },
 
 'reddit_username' : {
@@ -5170,7 +5170,20 @@ conzept_fields = {
   icon: 'fa-brands fa-reddit',
   text: 'Reddit username',
   section: ['social','main'],
-  rank: [27,8921],
+  rank: [26.2,8921],
+},
+
+'reddit_stats' : {
+  create_condition: 'valid( item.reddit )',
+  title: 'Reddit forum statistics',
+  prop: '',
+  type: 'link',
+  url: 'https://www.reddit.com/r/${item.reddit}',
+  mv: false,
+  icon: 'fa-brands fa-reddit',
+  text: 'Reddit stats',
+  section: ['social'],
+  rank: [26.3],
 },
 
 'reddit_search' : {
@@ -5183,7 +5196,7 @@ conzept_fields = {
   icon: 'fa-brands fa-reddit',
   text: 'Reddit search',
   section: 'social',
-  rank: 27,
+  rank: 26.4,
 },
 
 'pubchem' : {

@@ -166,24 +166,26 @@ const explore = {
   synth_paused        : false,
   //tts_removals      : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, math',
 
-  // TTS helper
-  voice_code          : undefined,    // used voice code like "en-GB", etc.
-  voice_code_selected : '',           // user-selected voice code like "en-GB", etc.
+  // TTS support
+  voice_code          : undefined,      // used voice code like "en-GB", etc.
+  voice_code_selected : '',             // user-selected voice code like: "en-GB"
+  voice_name_selected : '',             // user-selected voice name like: "Microsoft Natasha Online (Natural) - English (Australia)"
   voice_rate          : 1.00,
+  voice_pitch         : 1.00,
   speakingNow         : 'false',
   speakingTitle       : '',
 
-  baseframe           : '#infoframe', // desktop
+  baseframe           : '#infoframe',   // desktop
 
   // default font styles
-  default_font        : 'Hind',       // 'IBM Plex Sans Condensed',
+  default_font        : 'Hind',         // 'IBM Plex Sans Condensed',
   default_fontsize    : 16,             // default for mobile screens
   default_fontsize_small_desktop : 19,  // default for small desktops (<1300)
   default_fontsize_medium_desktop: 19,  // default for medium desktops (<1600)
   default_fontsize_large_desktop : 19,  // default for large desktops (>1600)
 
-  thumb_width         : '350px',  // sidebar image-thumb size
-  banner_width        : '1200px', // desktop size
+  thumb_width         : '350px',        // sidebar image-thumb size
+  banner_width        : '1200px',       // desktop size
 
   // styling options
   bold                : undefined,
@@ -317,12 +319,21 @@ $( document ).ready( function() {
     explore.linkbgcolor = await explore.db.get('linkbgcolor');
     explore.fontsize    = await explore.db.get('fontsize');
 
-    // load user defined voice code (but will only be used for a matching language)
+    // load user "voice code"
     let vcs = await explore.db.get('voice_code_selected');
 
     if ( vcs !== null && vcs !== 'null' && vcs !== '' ){
 
       explore.voice_code_selected = await explore.db.get('voice_code_selected');
+
+    }
+
+    // load user "voice name"
+    let vns = await explore.db.get('voice_name_selected');
+
+    if ( vns !== null && vns !== 'null' && vns !== '' ){
+
+      explore.voice_name_selected = await explore.db.get('voice_name_selected');
 
     }
 
@@ -351,7 +362,6 @@ $( document ).ready( function() {
 
     explore.language  = window.language = await explore.db.get('language');
     explore.locale    = await explore.db.get('locale');
-    //explore.voice_code_selected = await explore.db.get( 'voice_code_selected' );
     setupLanguage();
 
     createSectionDOM();
