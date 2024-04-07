@@ -1,4 +1,22 @@
-const app = {};
+const app = {
+
+  language:             getParameterByName( 'l' )           || 'en',
+
+  url:                  getParameterByName( 'u' )           || '',
+  current_url:          getParameterByName( 'u' )           || '', // used for page reloads
+
+  voice_code:           getParameterByName( 'voice_code' )  || '',
+  voice_name:           getParameterByName( 'voice_name' )  || '',
+  voice_rate:           getParameterByName( 'voice_rate' )  || 1.00,
+  voice_pitch:          getParameterByName( 'voice_pitch' ) || 1.00,
+
+  timerID:              '',
+  scroll_update_time:   7000,
+  auto_scroll_enabled:  false,
+
+}
+
+console.log( app );
 
 let parentref = '';
 
@@ -30,6 +48,11 @@ if ( typeof synth !== "undefined" ) {
 }
 
 let utterance = new SpeechSynthesisUtterance();
+
+utterance.rate  = app.voice_rate;
+utterance.pitch = app.voice_pitch;
+
+
 let __PDF_DOC,
 	__CURRENT_PAGE = 1, //This is the page which is currently being spoken
 	__TOTAL_PAGES,
@@ -38,16 +61,7 @@ let canvas_width = 1000;
 let pageHeight = -1;
 let __VIEWING_PAGE = __CURRENT_PAGE;
 
-app.language            = getParameterByName( 'l' ) || 'en';
-app.url                 = getParameterByName( 'u' ) || '';
-app.voice               = getParameterByName( 'voice' ) || ''; // TODO: rate and pitch parameters
-
-app.current_url         = app.url; // used for page reloads
-app.scroll_update_time  = 7000;
-app.auto_scroll_enabled = false;
-//app.timerID = setInterval( scrollTo, app.scroll_update_time );
-
-const lang = valid( app.voice )? app.voice : app.language;
+const lang = valid( app.voice_code )? app.voice_code : app.language;
 
 async function init(){
 
@@ -77,7 +91,7 @@ function populateVoiceList( lang ) {
 
     const voices = synth.getVoices();
 
-    const voice_code_length = valid( app.voice )? 5 : 2; 
+    const voice_code_length = valid( app.voice_code )? 5 : 2; 
 
     for (const element of voices){
 
@@ -124,9 +138,9 @@ function startTextToSpeech(startWord){
 
 	let selectedVoice = '';
 
-  if ( valid( app.voice ) ){
+  if ( valid( app.voice_code ) ){
 
-    selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice )[document.getElementById("voiceSelect").selectedIndex];
+    selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
 
   }
   else {
@@ -250,9 +264,9 @@ function loadPage(pageNumber) {
 
     let selectedVoice = '';
 
-    if ( valid( app.voice ) ){
+    if ( valid( app.voice_code ) ){
 
-      selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice )[document.getElementById("voiceSelect").selectedIndex];
+      selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
 
     }
     else {
