@@ -671,7 +671,7 @@ function receiveMessage(event){
 
   if ( event.data.event_id === 'set-value' ){
 
-    explore[ event.data.data[0] ] = event.data.data[1];
+    app[ event.data.data[0] ] = event.data.data[1];
 
   }
 

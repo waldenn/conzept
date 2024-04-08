@@ -1007,7 +1007,7 @@ const datasources = {
 // Note: Update this list and the "index.template.php" datasource-set select-options when needed;
 const datasource_set_map = {
   none:       [''],
-  references: ['wikipedia', 'wikidata'],
+  reference:  ['wikipedia', 'wikidata'],
   culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3D'],
   science:    ['archive_scholar', 'arxiv', 'openalex', 'gbif'],
   business:   ['gleif', 'eu', 'gdelt', 'occrp'],

@@ -3660,7 +3660,7 @@ async function updateLocaleInterface(){
   $('#app-menu-api-keys').html( explore.banana.i18n('app-menu-api-keys') );
 
   $('#app-menu-search-in').html( explore.banana.i18n('app-menu-search-in') );
-  $('#app-menu-search-in-option-references').html( explore.banana.i18n('app-menu-search-in-option-references') );
+  $('#app-menu-search-in-option-reference').html( explore.banana.i18n('app-menu-search-in-option-reference') );
   $('#app-menu-search-in-option-culture').html( explore.banana.i18n('app-menu-search-in-option-culture') );
   $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
