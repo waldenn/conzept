@@ -10,13 +10,14 @@ const app = {
   voice_rate:           getParameterByName( 'voice_rate' )  || 1.00,
   voice_pitch:          getParameterByName( 'voice_pitch' ) || 1.00,
 
+  voices:               [],
+
   timerID:              '',
   scroll_update_time:   7000,
   auto_scroll_enabled:  false,
 
+  utterance:            new SpeechSynthesisUtterance(),
 }
-
-console.log( app );
 
 let parentref = '';
 
@@ -46,10 +47,6 @@ if ( typeof synth !== "undefined" ) {
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
 
 }
-
-let utterance   = new SpeechSynthesisUtterance();
-utterance.rate  = app.voice_rate;
-utterance.pitch = app.voice_pitch;
 
 let __PDF_DOC,
 	__CURRENT_PAGE = 1, //This is the page which is currently being spoken
@@ -87,21 +84,22 @@ function populateVoiceList( lang ) {
       return;
     }
 
-    const voices = synth.getVoices();
+    app.voices = synth.getVoices();
 
     const voice_code_length = valid( app.voice_code )? 5 : 2; 
 
-    for (const element of voices){
+    for (const element of app.voices){
 
       if ( element.lang.substring(0, voice_code_length ) === lang ){
         
-           // element.lang.substring(0, 2 ) === 'en' ) { // use "en" as the default fallback language
-
         const option        = document.createElement("option");
+
         option.textContent  = `${element.name} (${element.lang})`;
 
         if (element.default){
+
           option.textContent += " — DEFAULT";
+
         }
 
         option.setAttribute("data-lang", element.lang);
@@ -117,14 +115,16 @@ function populateVoiceList( lang ) {
 
 }
 
-
 function startTextToSpeech(startWord){
 
 	if (synth.speaking) {
+
 		synth.cancel();
+
 	}
 
-	let voices = synth.getVoices();
+  app.utterance.rate  = app.voice_rate;
+  app.utterance.pitch = app.voice_pitch;
 
 	if (prevId !== 0){
 
@@ -134,55 +134,78 @@ function startTextToSpeech(startWord){
 
 	prevId = 0;
 
-	let selectedVoice = '';
+	let selectedVoice   = '';
 
-  if ( valid( app.voice_code ) ){
+  if ( valid( app.voice_name ) ){ // check for the more specific "voice name"
 
-    selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
+    app.voices.forEach( ( element ) => {
+
+      if ( element.name === app.voice_name ){
+
+        selectedVoice = element;
+        return element;
+
+      }
+
+    });
 
   }
-  else {
+  else if ( valid( app.voice_code ) ){ // fallback to the first "voice-code" option
 
-    selectedVoice = voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+    selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+  else { // fallback to the first iso2 language matching option
+
+    selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
 
   }
 
 	if (selectedVoice !== null) {
 
-    //console.log( 'selected voice: ', selectedVoice );
-
-		utterance.voice = selectedVoice;
+		app.utterance.voice = selectedVoice;
 
 	}
 
 	let textContent = "";
+
 	__PDF_DOC
 		.getPage(__CURRENT_PAGE)
 		.then(function (page) {
 			return page.getTextContent();
 		})
-		.then(function (content) {
+		.then( function (content) {
+
 			textContent = content.items
+
 				.map(function (item) {
 					return item.str;
 				})
 				.join(" ");
-			if (startWord) {
+
+			if (startWord){
 				let startIndex = textContent.indexOf(startWord);
-				utterance.text = refineText(textContent.slice(startIndex));
-			} else {
-				utterance.text = refineText(textContent);
+				app.utterance.text = refineText(textContent.slice(startIndex));
 			}
-			//utterance.onerror = (error) => console.log(error);
-			//utterance.onpause = () => console.log("Paused");
-			//utterance.onmark = () => console.log("On Mark");
-			utterance.onboundary = (event) => {
+      else {
+				app.utterance.text = refineText(textContent);
+			}
+
+			//app.utterance.onerror = (error) => console.log(error);
+			//app.utterance.onpause = () => console.log("Paused");
+			//app.utterance.onmark = () => console.log("On Mark");
+
+			app.utterance.onboundary = (event) => {
 				// console.log(event);
 				highlightWord();
 			};
 
-			utterance.onend = function () {
+			app.utterance.onend = function () {
+
 				//console.log("Ended");
+
 				if (__CURRENT_PAGE != __TOTAL_PAGES) {
 					document
 						.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
@@ -194,19 +217,27 @@ function startTextToSpeech(startWord){
 					startTextToSpeech();
 					scrollTo();
 				}
+
 			};
-			synth.speak(utterance);
+
+			synth.speak(app.utterance);
 
 			resume();
+
 		})
 		.catch(function (error) {
+
 			console.log(error);
+
 		});
 }
+
 function loadPage(pageNumber) {
+
 	if (pageNumber > __TOTAL_PAGES) {
 		return;
 	}
+
 	let canvas = document.createElement("canvas");
 	canvas.id = "page" + pageNumber;
 	canvas.width = canvas_width;
@@ -254,22 +285,23 @@ function loadPage(pageNumber) {
 				})
 				.get()
 				.join(" ");
-		// Set the text to the utterance
+		// Set the text to the app.utterance
 		if (synth.speaking) {
 			synth.cancel();
 		}
-		let voices = synth.getVoices();
+
+		app.voices = synth.getVoices();
 
     let selectedVoice = '';
 
     if ( valid( app.voice_code ) ){
 
-      selectedVoice = voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
+      selectedVoice = app.voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
 
     }
     else {
 
-		  selectedVoice = voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+		  selectedVoice = app.voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
 
     }
 
@@ -277,23 +309,22 @@ function loadPage(pageNumber) {
 
       //console.log( 'selected voice: ', selectedVoice );
 
-	    utterance.voice = selectedVoice;
+	    app.utterance.voice = selectedVoice;
 
 		}
 
-		//utterance.onerror = (error) => console.log(error);
-		//utterance.onpause = () => console.log("Paused");
-		//utterance.onmark = () => console.log("On Mark");
+		//app.utterance.onerror = (error) => console.log(error);
+		//app.utterance.onpause = () => console.log("Paused");
+		//app.utterance.onmark = () => console.log("On Mark");
 
-		utterance.onboundary = (event) => {
+		app.utterance.onboundary = (event) => {
 			highlightWord();
 		};
 
-		utterance.text = refineText(clickedWord + " " + nextPageWords);
-		// Start the text-to-speech feature
-		utterance.onend = function () {
+		app.utterance.text = refineText(clickedWord + " " + nextPageWords);
 
-			//console.log("Ended");
+		// Start the text-to-speech feature
+		app.utterance.onend = function () {
 
 			if (__CURRENT_PAGE != __TOTAL_PAGES) {
 				try {
@@ -309,14 +340,14 @@ function loadPage(pageNumber) {
 
 			}
 		};
-		synth.speak(utterance);
+
+		synth.speak(app.utterance);
 		resume();
+
 	});
 }
 
 function showPDF(pdf_url) {
-
-  console.log( 'PDF url: ', pdf_url );
 
 	$("#pdf-loader").show();
   $("button#play-button, button#pause-button, button#resume-button, button#stop-button").show();
@@ -635,3 +666,15 @@ $( document ).ready(function() {
   init();
 
 });
+
+function receiveMessage(event){
+
+  if ( event.data.event_id === 'set-value' ){
+
+    explore[ event.data.data[0] ] = event.data.data[1];
+
+  }
+
+}
+
+window.addEventListener("message", receiveMessage, false);

@@ -3505,9 +3505,11 @@ function setupLanguage(){
 
     })();
 
-    // also update the voice-code of any open + receptive app-pane (eg. Wikipedia app)
+    // also update the voice-code of any open + receptive app-pane (used for: Wikipedia and PDF-Speaker app)
     updateValueInPanes( 'voice_code', explore.voice_code_selected );
     updateValueInPanes( 'voice_name', explore.voice_name_selected );
+    updateValueInPanes( 'voice_rate', explore.voice_rate );
+    updateValueInPanes( 'voice_pitch', explore.voice_pitch );
 
   });
 
@@ -11322,6 +11324,7 @@ function reloadVoices() {
 
 		$('#voices').empty();
 
+		// insert all the available voices.
 		$('#voices').append( `<option value="${explore.voice_code}"></option>` ); 
 
 		voices.forEach(function(voice, i) {
@@ -11334,30 +11337,32 @@ function reloadVoices() {
 
 		});
 
-    // use user-preference if the language matches
-    if ( explore.voice_code_selected.startsWith( explore.language ) ){
+		// choose a voice
 
-      $('#voices option[value=' + explore.voice_code_selected + ']').attr('selected','selected');
+    // first try to select option by "voice name"
+    if (valid( [ explore.voice_name_selected ] ) ){
+
+      $.each( $("#voices option"), function(key, item) {
+
+        if ( explore.voice_name_selected === $(this).text() ){
+
+          $(this).attr('selected','selected');
+
+        }
+
+      })
 
     }
+    else { // use "voice_code" _selected"
 
-    // TODO: use voice_name_selected first
-    /*
-      if (valid( [ explore.voice_name_selected ] ) ){ // try to select option by name
+      // use user-preference if the language matches
+      if ( explore.voice_code_selected.startsWith( explore.language ) ){
 
-        $('#voices option[text=' + explore.voice_name_selected + ']').attr('selected','selected');
+        $('#voices option[value=' + explore.voice_code_selected + ']').attr('selected','selected');
 
-        $.each( $("#voices option"), function(key, item) {
-
-          if ( explore.voice_name_selected === $(this).text() ){
-            console.log( $(this).text() );
-          }
-
-        })
       }
-      else { // use "voice_code_selected"
-      }
-    */
+
+    }
 
 	}
 
