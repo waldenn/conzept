@@ -39,6 +39,12 @@
     * wisdom / spirituality
     * youtube (requires approval)
 
+===== browser extension =====
+
+  * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
+    * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
+    * Goal: Provide a right-click menu-option to search on Conzept (make it work in embedded iframes and perhaps PDFs too, if possible)
+
 ===== frontend ideas =====
 
   * **Bookmarking**:

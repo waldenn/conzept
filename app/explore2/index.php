@@ -224,7 +224,7 @@ $sticky_html = '
 
         <span id="app-menu-search-in">search in</span>: <select id="search-in" class="browser-default">
           <option value="none" selected></option>
-          <option value="references" id="app-menu-search-in-option-references">references</option>
+          <option value="reference" id="app-menu-search-in-option-reference">reference works</option>
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
           <option value="science" id="app-menu-search-in-option-science">science</option>
           <option value="business" id="app-menu-search-in-option-business">business</option>
@@ -468,6 +468,54 @@ $settings_html = '
             </details>
 
             <details class="auto conf" closed>
+              <summary><span id="app-menu-interface-language"></span></summary>
+
+              <div class="style-form">
+
+                <div class="switch">
+
+                  <label style="display:inline;" for="locale"><span id="app-menu-locale"></span>: &nbsp;</label>
+                  <select id="locale" width="20px" style="top: 0px !important;">
+                    <option value="">select locale</option>' .
+                    $locale_options_html .
+                  '</select>
+
+               </div>
+
+              </div>
+
+            </details>
+
+            <details class="auto conf" closed>
+              <summary><span id="app-menu-voice"></span>
+                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#voice" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+              </summary>
+
+              <div class="style-form">
+
+                <div class="switch">
+
+                  <label style="display:inline;" for="voices"><span id="app-menu-style"></span>: &nbsp;</label>
+                  <select id="voices" class="browser-default" width="20px" style="top: 0px !important;">
+                  </select>
+
+                  <br/><br/>
+
+                  <label style="display:inline;" for="voice-rate"><span id="app-menu-speed"></span>: <span id="voicerate"></span></label>
+                  <input id="voice-rate" type="range" min="0.5" max="1.5" step="0.01" value="1">
+
+                  <br/><br/>
+
+                  <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
+                  <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
+
+                </div>
+
+              </div>
+
+            </details>
+
+            <details class="auto conf" closed>
               <summary><span id="app-menu-reading-assistance">reading assistance</span></summary>
 
               <div class="style-form">
@@ -498,26 +546,6 @@ $settings_html = '
                 </div>
 
                 <br/>
-
-              </div>
-
-            </details>
-
-
-            <details class="auto conf" closed>
-              <summary><span id="app-menu-interface-language"></span></summary>
-
-              <div class="style-form">
-
-                <div class="switch">
-
-                  <label style="display:inline;" for="locale"><span id="app-menu-locale"></span>: &nbsp;</label>
-                  <select id="locale" width="20px" style="top: 0px !important;">
-                    <option value="">select locale</option>' .
-                    $locale_options_html .
-                  '</select>
-
-               </div>
 
               </div>
 
@@ -560,35 +588,6 @@ $settings_html = '
                   </span>
                 </div>
                 <br/>
-
-              </div>
-
-            </details>
-
-            <details class="auto conf" closed>
-              <summary><span id="app-menu-voice"></span>
-                <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#voice" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
-              </summary>
-
-              <div class="style-form">
-
-                <div class="switch">
-
-                  <label style="display:inline;" for="voices"><span id="app-menu-style"></span>: &nbsp;</label>
-                  <select id="voices" class="browser-default" width="20px" style="top: 0px !important;">
-                  </select>
-
-                  <br/><br/>
-
-                  <label style="display:inline;" for="voice-rate"><span id="app-menu-speed"></span>: <span id="voicerate"></span></label>
-                  <input id="voice-rate" type="range" min="0.5" max="1.5" step="0.01" value="1">
-
-                  <br/><br/>
-
-                  <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
-                  <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
-
-                </div>
 
               </div>
 

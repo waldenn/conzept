@@ -1,5 +1,9 @@
 ====== issues ======
 
+===== datasources =====
+
+  * MAJOR BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
+
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.
@@ -12,7 +16,7 @@
 
 ===== touch navigation =====
 
-  * TODO: Note the core app & embedded app parts that fail for touch-interactions.
+  * TODO: Note all the core-app & embedded-app parts that fail for touch-interactions.
 
 =====  browser navigation =====
 
@@ -53,10 +57,6 @@
 
   * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
 
-===== datasources =====
-
-  * BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
-
 ===== bookmarking =====
 
   * BUG: view boomark URL is wrong? It does not bookmark the search-query?
@@ -69,12 +69,6 @@
   * Cover fetching:
     * Monthly cronjob based fetching not yet implement.
     * The "CONZEPT_PREVENT_COVER_FETCH" option does not work yet.
-
-===== browser extension =====
-
-  * Re-implement the extension with **[[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support** (MV3). This is a requirement for the Chrome extension store.
-    * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
-    * Goal: Provide a right-click menu-option to search on Conzept (make it work in embedded iframes and perhaps PDFs too, if possible)
 
 ===== Wikidata / SPARQL issues =====
 
