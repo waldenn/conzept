@@ -305,6 +305,20 @@ $settings_html = '
           <div class="overflow-content indent">
 
             <details class="auto conf" closed>
+              <summary><span id="app-menu-inline-help">inline help</span></summary>
+
+                <div id="showhelp-setting" class="switch">
+                  <label for="showhelp" style="display:none;">show help</label>
+                  <label>
+                  <input type="checkbox" id="showhelp">
+                  <span class="lever"></span>
+                  <span id="app-menu-showhelp">show help</span>
+                  </label>
+                </div>
+
+            </details>
+
+            <details class="auto conf" closed>
               <summary><span id="app-menu-datasources">datasources</span>
                 <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#datasources" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
               </summary>
@@ -517,17 +531,6 @@ $settings_html = '
 
               <div class="style-form">
 
-                <div id="showhelp-setting" class="switch">
-                  <label for="showhelp" style="display:none;">show help</label> 
-                  <label>
-                  <input type="checkbox" id="showhelp">
-                  <span class="lever"></span>
-                  <span id="app-menu-showhelp">show help</span>
-                  </label>
-                </div>
-
-                <br/>
-
                 <div id="colorfilter-setting">
 
                   <label style="display:inline;" for="colorfilter"><span id="app-menu-color-filter"></span>: &nbsp;</label>
@@ -541,6 +544,17 @@ $settings_html = '
                   </select>
 
                 </div>
+
+                <!--br/>
+
+                <div id="showhelp-setting" class="switch">
+                  <label for="showhelp" style="display:none;">show help</label> 
+                  <label>
+                  <input type="checkbox" id="showhelp">
+                  <span class="lever"></span>
+                  <span id="app-menu-showhelp">show help</span>
+                  </label>
+                </div-->
 
                 <br/>
 

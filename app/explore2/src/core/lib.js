@@ -11331,7 +11331,7 @@ function reloadVoices() {
 
 			if ( voice.lang.startsWith( explore.language ) ){
         
-        if ( voice.lang.split('-').length > 3 ){ // more than two parts -> only use the first two parts (needed for Firefox)
+        if ( voice.lang.split('-').length > 2 ){ // more than two parts -> only use the first two parts (needed for Firefox)
 
           if ( /\d/.test( voice.lang.split('-')[1] ) ){ // 2nd part contains useless numbers, eg. "en-029" 
 

@@ -144,8 +144,6 @@ function startTextToSpeech(startWord){
 
         selectedVoice = element;
 
-        return element;
-
       }
 
     });
@@ -164,11 +162,17 @@ function startTextToSpeech(startWord){
 
   }
 
-	if (selectedVoice !== null) {
+	if ( valid( selectedVoice ) ) {
 
 		app.utterance.voice = selectedVoice;
 
 	}
+  else { // fallback to the first iso2 language matching option
+
+    selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
 
 	let textContent = "";
 
@@ -306,13 +310,17 @@ function loadPage(pageNumber) {
 
     }
 
-    if (selectedVoice !== null) {
+    if ( valid( selectedVoice ) ) {
 
-      //console.log( 'selected voice: ', selectedVoice );
+      app.utterance.voice = selectedVoice;
 
-	    app.utterance.voice = selectedVoice;
+    }
+    else { // fallback to the first iso2 language matching option
 
-		}
+      selectedVoice = app.voices.filter( (element) =>
+        element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+    }
 
 		//app.utterance.onerror = (error) => console.log(error);
 		//app.utterance.onpause = () => console.log("Paused");
