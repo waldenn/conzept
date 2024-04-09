@@ -11330,6 +11330,21 @@ function reloadVoices() {
 		voices.forEach(function(voice, i) {
 
 			if ( voice.lang.startsWith( explore.language ) ){
+        
+        if ( voice.lang.split('-').length > 3 ){ // more than two parts -> only use the first two parts (needed for Firefox)
+
+          if ( /\d/.test( voice.lang.split('-')[1] ) ){ // 2nd part contains useless numbers, eg. "en-029" 
+
+            return;
+
+          }
+          else { // looks to be a normal voice-code (but only use the first two parts)
+
+            voice = voice.lang.split('-')[0] + '-' + voice.lang.split('-')[1]; 
+
+          }
+
+        }
 
 				$('#voices').append( `<option value="${voice.lang}">${voice.name}</option>` ); 
 

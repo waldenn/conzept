@@ -143,6 +143,7 @@ function startTextToSpeech(startWord){
       if ( element.name === app.voice_name ){
 
         selectedVoice = element;
+
         return element;
 
       }

@@ -243,22 +243,28 @@ $sticky_html = '
           <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
-        <span id="app-menu-sort-by">sort by</span>: <select id="sortby" class="browser-default">
-          <option value="none" selected></option>
-          <option value="relevance-desc" id="app-menu-sort-by-option-relevance-desc">relevance ↓ </option>
-          <option value="relevance-asc" id="app-menu-sort-by-option-relevance-asc">relevance ↑</option>
-          <option value="date-desc" id="app-menu-sort-by-option-date-desc">date ↓</option>
-          <option value="date-asc" id="app-menu-sort-by-option-date-asc">date ↑</option>
-          <option value="update-desc" id="app-menu-sort-by-option-update-desc">update ↓</option>
-          <option value="update-asc" id="app-menu-sort-by-option-update-asc">update ↑</option>
-          <option value="random" id="app-menu-sort-by-option-random">random</option>
-          <option value="citations-desc" id="app-menu-sort-by-option-citations-desc">citations ↓</option>
-          <option value="citations-asc" id="app-menu-sort-by-option-citations-asc">citations ↑</option>
-          <option value="title-asc" id="app-menu-sort-by-option-title-asc">title ↑</option>
-          <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
-          <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
-          <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
-        </select>
+        <span id="app-menu-sort-by">sort by</span>:
+          <select id="sortby" class="browser-default">
+            <option value="none" selected></option>
+            <option value="relevance-desc" id="app-menu-sort-by-option-relevance-desc">relevance ↓ </option>
+            <option value="relevance-asc" id="app-menu-sort-by-option-relevance-asc">relevance ↑</option>
+            <option value="date-desc" id="app-menu-sort-by-option-date-desc">date ↓</option>
+            <option value="date-asc" id="app-menu-sort-by-option-date-asc">date ↑</option>
+            <option value="update-desc" id="app-menu-sort-by-option-update-desc">update ↓</option>
+            <option value="update-asc" id="app-menu-sort-by-option-update-asc">update ↑</option>
+            <option value="random" id="app-menu-sort-by-option-random">random</option>
+            <option value="citations-desc" id="app-menu-sort-by-option-citations-desc">citations ↓</option>
+            <option value="citations-asc" id="app-menu-sort-by-option-citations-asc">citations ↑</option>
+            <option value="title-asc" id="app-menu-sort-by-option-title-asc">title ↑</option>
+            <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
+            <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
+            <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
+          </select>
+
+        <span id="year-range-test" style="display:none;">
+          <span id="app-menu-filter-by-year-range">year range</span>:
+            <input id="year-range-start" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />—<input id="year-range-end" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />
+        </span>
 
       </div>
 
@@ -319,7 +325,7 @@ $settings_html = '
                   <label>
                   <input type="checkbox" id="structured-search">
                   <span class="lever"></span>
-                  <span id="app-menu-structured-search">structured search</span>
+                  <span id="app-menu-structured-search">structured search</span> (Wikidata)
                   </label>
                   <br/>
                 </div>
@@ -392,15 +398,6 @@ $settings_html = '
                   <input type="checkbox" id="bgmode">
                   <span class="lever"></span>
                   cover background
-                  </label>
-                </div>
-
-                <div id="showhelp-setting" class="switch">
-                  <label for="showhelp" style="display:none;">show help</label> 
-                  <label>
-                  <input type="checkbox" id="showhelp">
-                  <span class="lever"></span>
-                  <span id="app-menu-showhelp">show help</span>
                   </label>
                 </div>
 
@@ -520,12 +517,12 @@ $settings_html = '
 
               <div class="style-form">
 
-                <div id="bread-setting" class="switch">
-                  <label for="bread" style="display:none;">bread</label> 
+                <div id="showhelp-setting" class="switch">
+                  <label for="showhelp" style="display:none;">show help</label> 
                   <label>
-                  <input type="checkbox" id="bread">
+                  <input type="checkbox" id="showhelp">
                   <span class="lever"></span>
-                  <span id="app-menu-bread">word-start bolding</span>
+                  <span id="app-menu-showhelp">show help</span>
                   </label>
                 </div>
 
@@ -543,6 +540,17 @@ $settings_html = '
                     <!--option value="blur">blur</option-->
                   </select>
 
+                </div>
+
+                <br/>
+
+                <div id="bread-setting" class="switch">
+                  <label for="bread" style="display:none;">bread</label> 
+                  <label>
+                  <input type="checkbox" id="bread">
+                  <span class="lever"></span>
+                  <span id="app-menu-bread">word-start bolding</span>
+                  </label>
                 </div>
 
                 <br/>

@@ -2404,7 +2404,8 @@ h1 {
   background-color: #fbfaf9;
 }
 
-#search-in, #sortby, #filterby {
+#search-in, #sortby, #filterby,
+#year-range-start, #year-range-end {
   width: fit-content;
   max-width: 25%;
   margin-right: 0.3em;
@@ -2415,6 +2416,10 @@ h1 {
 
 #search-options::before {
   content: "";
+}
+
+input#year-range-start, input#year-range-end {
+  width: 3em;
 }
 
 #language {
