@@ -688,7 +688,8 @@ body.rtl span.nobreak {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 2.8rem;
+  margin-top: 4.0rem;
+  scrollbar-width: thin;
 }
 
 .overflow-container:focus {
@@ -2399,6 +2400,8 @@ h1 {
 }
 
 #search-options {
+  overflow-x: scroll;
+  scrollbar-width: thin;
   font-size: smaller;
   margin-left: 0.3em;
   background-color: #fbfaf9;
@@ -3533,6 +3536,15 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
 
   .overflow-container {
     padding-bottom: 13rem;
+    margin-top: 2rem;
+  }
+
+  .search-option-label {
+    display: none;
+  }
+
+  #search-options select {
+    max-width: 20%;
   }
 
   .global-action {

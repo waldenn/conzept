@@ -222,7 +222,7 @@ $sticky_html = '
 
       <div id="search-options" style="">&nbsp;
 
-        <span id="app-menu-search-in">search in</span>: <select id="search-in" class="browser-default">
+        <span class="search-option-label"><span id="app-menu-search-in">search in</span>: </span><select id="search-in" class="browser-default">
           <option value="none" selected></option>
           <option value="reference" id="app-menu-search-in-option-reference">reference works</option>
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
@@ -230,7 +230,7 @@ $sticky_html = '
           <option value="business" id="app-menu-search-in-option-business">business</option>
         </select>
 
-        <span id="app-menu-filter-by">filter by</span>: <select id="filterby" class="browser-default">
+        <span class="search-option-label"><span id="app-menu-filter-by">filter by</span>: </span><select id="filterby" class="browser-default">
           <option value="none" selected></option>
           <option value="text" id="app-menu-filter-by-option-text">text</option>
           <option value="image" id="app-menu-filter-by-option-image">image</option>
@@ -243,7 +243,7 @@ $sticky_html = '
           <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
-        <span id="app-menu-sort-by">sort by</span>:
+        <span class="search-option-label"><span id="app-menu-sort-by">sort by</span>: </span>
           <select id="sortby" class="browser-default">
             <option value="none" selected></option>
             <option value="relevance-desc" id="app-menu-sort-by-option-relevance-desc">relevance ↓ </option>
@@ -258,11 +258,11 @@ $sticky_html = '
             <option value="title-asc" id="app-menu-sort-by-option-title-asc">title ↑</option>
             <option value="title-desc" id="app-menu-sort-by-option-title-desc">title ↓</option>
             <option value="distance-asc" id="app-menu-sort-by-option-distance-asc">distance ↑</option>
-            <option value="distance-desc" id="app-menu-sort-by-option-relevance-desc">distance ↓</option>
+            <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span id="year-range-test" style="display:none;">
-          <span id="app-menu-filter-by-year-range">year range</span>:
+        <span class="search-option-label"><span id="year-range-test" style="display:none;">
+          <span id="app-menu-filter-by-year-range">year range</span>: </span>
             <input id="year-range-start" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />—<input id="year-range-end" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />
         </span>
 

@@ -1070,10 +1070,12 @@ function insertRelatedPresentationTopics( qid ){
     'P9241',  // demography-of-topic  https://www.wikidata.org/wiki/Property:P9241
     'P1557',  // manifestation-of     https://www.wikidata.org/wiki/Property:P1557
     'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
+    'P495',   // country of origin    https://www.wikidata.org/wiki/Property:P495
     'P276',   // location             https://www.wikidata.org/wiki/Property:P276
     'P131',   // loc. present admin   https://www.wikidata.org/wiki/Property:P131
     'P2633',  // geography-of         https://www.wikidata.org/wiki/Property:P2633
     'P47',    // shares-border-with   https://www.wikidata.org/wiki/Property:P47
+    'P186',   // material             https://www.wikidata.org/wiki/Property:P186
     'P527',   // has-parts            https://www.wikidata.org/wiki/Property:P527
     'P2670',  // has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
     'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
