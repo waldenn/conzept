@@ -3665,6 +3665,19 @@ async function updateLocaleInterface(){
   $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
 
+  $('#app-menu-filter-by').html( explore.banana.i18n('app-menu-filter-by') );
+  $('#app-menu-filter-by-option-text').html( explore.banana.i18n('app-menu-filter-by-option-text') );
+  $('#app-menu-filter-by-option-image').html( explore.banana.i18n('app-menu-filter-by-option-image') );
+  $('#app-menu-filter-by-option-video').html( explore.banana.i18n('app-menu-filter-by-option-video') );
+  $('#app-menu-filter-by-option-audio').html( explore.banana.i18n('app-menu-filter-by-option-audio') );
+  $('#app-menu-filter-by-option-data').html( explore.banana.i18n('app-menu-filter-by-option-data') );
+  $('#app-menu-filter-by-option-3D').html( explore.banana.i18n('app-menu-filter-by-option-3D') );
+  $('#app-menu-filter-by-option-software').html( explore.banana.i18n('app-menu-filter-by-option-software') );
+  $('#app-menu-filter-by-option-archive').html( explore.banana.i18n('app-menu-filter-by-option-archive') );
+  $('#app-menu-filter-by-option-entity').html( explore.banana.i18n('app-menu-filter-by-option-entity') );
+
+  $('#app-menu-filter-by-year-range').html( explore.banana.i18n('app-menu-filter-by-year-range') );
+
   $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
   $('#app-menu-sort-by-option-relevance-desc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-desc') );
   $('#app-menu-sort-by-option-relevance-asc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-asc') );
@@ -3690,6 +3703,8 @@ async function updateLocaleInterface(){
   $('#app-menu-theme').html( explore.banana.i18n('app-menu-theme') );
   $('#app-menu-interface-language').html( explore.banana.i18n('app-menu-interface-language') );
   $('#app-menu-voice').html( explore.banana.i18n('app-menu-voice') );
+  $('#app-menu-inline-help').html( explore.banana.i18n('app-menu-inline-help') );
+  $('#app-menu-show-inline-help').html( explore.banana.i18n('app-menu-show-inline-help') );
   $('#app-menu-user-manual').html( explore.banana.i18n('app-menu-user-manual') );
   $('#app-menu-keyboard-shortcuts').html( explore.banana.i18n('app-menu-keyboard-shortcuts') );
   $('#app-menu-credits').html( explore.banana.i18n('app-menu-credits') );
@@ -3700,6 +3715,7 @@ async function updateLocaleInterface(){
   $('#app-menu-compare-topics').html( explore.banana.i18n('app-menu-compare-topics') );
   $('#app-menu-toggle-fullscreen').html( explore.banana.i18n('app-menu-toggle-fullscreen') );
   $('#app-menu-clone-tab').html( explore.banana.i18n('app-menu-clone-tab') );
+  $('#app-menu-nature-location-quiz').html( explore.banana.i18n('app-menu-nature-location-quiz') );
   $('#app-menu-plant-identification').html( explore.banana.i18n('app-menu-plant-identification') );
   $('#app-menu-text-identification').html( explore.banana.i18n('app-menu-text-identification') );
   //$('#app-menu-visual-identification').html( explore.banana.i18n('app-menu-visual-identification') ); // TODO: add to locales

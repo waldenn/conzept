@@ -2298,6 +2298,20 @@ function setQuotes( text ){ // used for the correct quoting of the Archive.org "
 
 }
 
+function checkMaxInput( num, max ){
+
+  const number = Math.abs( num );
+
+  //console.log( number.toString().length, max );
+
+  if ( number.toString().length >= max ){
+
+    return false;
+
+  }
+
+}
+
 function cleanText( text ){
 
   // escape double-quotes
@@ -2310,3 +2324,5 @@ function cleanText( text ){
   return text.replace(/(\r\n|\n|\r|`|\(|\)|\[|\])/gm, '');
 
 }
+
+

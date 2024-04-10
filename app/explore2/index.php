@@ -517,17 +517,6 @@ $settings_html = '
 
               <div class="style-form">
 
-                <div id="showhelp-setting" class="switch">
-                  <label for="showhelp" style="display:none;">show help</label> 
-                  <label>
-                  <input type="checkbox" id="showhelp">
-                  <span class="lever"></span>
-                  <span id="app-menu-showhelp">show help</span>
-                  </label>
-                </div>
-
-                <br/>
-
                 <div id="colorfilter-setting">
 
                   <label style="display:inline;" for="colorfilter"><span id="app-menu-color-filter"></span>: &nbsp;</label>
@@ -1018,6 +1007,20 @@ $settings_html = '
           <div class="tab-title" id="app-tab-help-title" style="font-family: ' . $font . ' !important;">help</div>
 
           <div class="overflow-content indent">
+
+            <details class="auto conf" closed>
+              <summary><span id="app-menu-inline-help">inline help</span></summary>
+
+                <div id="showhelp-setting" class="switch">
+                  <label for="showhelp" style="display:none;">show help</label>
+                  <label>
+                  <input type="checkbox" id="showhelp">
+                  <span class="lever"></span>
+                  <span id="app-menu-show-inline-help">show inline help</span>
+                  </label>
+                </div>
+
+            </details>
 
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
