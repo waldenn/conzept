@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
   <title>ORCID publications</title>
+
+  <link rel='stylesheet' href='../explore2/css/various/materialize.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <link rel="stylesheet" href="./css/main.css">
 
   <!-- conzept resources -->
   <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.01" rel="stylesheet" type="text/css"><link  href="/app/explore2/dist/css/conzept/common.css?v0.51.466" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.466"></script><script src="/app/explore2/dist/core/utils.js?v0.51.466"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
 
 </head>
 
-<body>
-  <h1><i class="fa-brands fa-stack-overflow"></i> Publications</h1>
-  <div id="publications"></div>
+<body id="app">
 
-  <!--h1>Funding</h1>
-  <div id="myFunding"></div-->
+  <h1 id="title"></h1>
+
+  <!-- partial:index.partial.html -->
+  <div class="row">
+    <div id="admin" class="col s12">
+      <div class="card material-table">
+        <div class="table-header">
+
+          <span id="table-title"></span>
+
+          <span class="actions">
+            <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+          </span>
+        </div>
+        <table id="datatable">
+          <thead>
+            <tr>
+              <th>year</th>
+              <th>title</th>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+
+  <script src='../explore2/libs/jquery.dataTables.min.js'></script>
+  <script src='../explore2/libs/materialize.min.js'></script>
+  <script  src="./src/main.js"></script>
 
 </body>
-
-<script src="src/main.js"></script>
-<!--script>
-  createORCIDProfile("0000-0002-9563-0691", "myPublications");
-  createORCIDFundingProfile("0000-0002-9563-0691", "myFunding");
-</script-->
-
 </html>
