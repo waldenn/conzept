@@ -115,8 +115,6 @@ $(document).ready(function() {
 
 function gotoExplore( title, newtab ){
 
-  const url = CONZEPT_WEB_BASE + '/app/video/#/search/' + title;
-
   if ( newtab ){
 
     openInNewTab( 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + title + '?l=' + language + '&t=wikipedia&i=' + qid );

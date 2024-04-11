@@ -20947,7 +20947,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '',
   icon: 'fa-solid fa-chalkboard-user',
-  text: 'org',
+  text: 'person',
   section: ['meta'],
   rank: [2],
   headline_create: 'valid( item.presentation_person )',

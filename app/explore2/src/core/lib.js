@@ -3701,6 +3701,7 @@ async function updateLocaleInterface(){
   $('#app-menu-various-links').html( explore.banana.i18n('app-menu-various-links') );
   $('#app-menu-font').html( explore.banana.i18n('app-menu-font') );
   $('#app-menu-theme').html( explore.banana.i18n('app-menu-theme') );
+  $('#app-menu-grid-mode').html( explore.banana.i18n('app-menu-grid-mode') );
   $('#app-menu-interface-language').html( explore.banana.i18n('app-menu-interface-language') );
   $('#app-menu-voice').html( explore.banana.i18n('app-menu-voice') );
   $('#app-menu-inline-help').html( explore.banana.i18n('app-menu-inline-help') );

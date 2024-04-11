@@ -47,23 +47,22 @@
     * Currently this is used a little for AI-chat and simple mathematical graph plotting.
     * How could we combine this with multi-modal, client-side AI?
     * What other search-commands are needed?
+
 ===== datasources =====
 
   * Implement async wikidata-enriching (partly done)
 
   * More control over how datasources are used, with toggle-switches for:
-    * datasource is active
-      * datasource autocomplete
-      * datasource searching
+    * datasource is active (boolean toggle)
+      * datasource autocomplete (boolean toggle)
+      * datasource searching (boolean toggle)
 
   * Candidate new search-in datasource-sets:
-    * news
-    * jobs
-    * health
-    * mobility
-    * education
-    * wisdom / spirituality
+    * art / museum archives
     * youtube (requires approval)
+    * ...
+
+  * Candidate new search-in datasource-sets:
 
 ===== presentation system =====
 

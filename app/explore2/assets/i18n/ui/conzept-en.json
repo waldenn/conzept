@@ -108,6 +108,7 @@
   "app-menu-toggle-sidebar": "toggle the sidebar",
   "app-menu-note-1": "note 1: only available when the focus is on the sidebar or a Wikipedia article pane.",
   "app-menu-features": "features",
+  "app-menu-grid-mode": "grid mode sidebar",
   "app-menu-persona": "persona",
   "app-menu-country-select": "country",
   "app-menu-interests": "interests",

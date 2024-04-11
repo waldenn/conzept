@@ -406,7 +406,7 @@ $settings_html = '
                   <label>
                   <input type="checkbox" id="gridmode">
                   <span class="lever"></span>
-                  <span id="app-menu-gridmode">grid sidebar</span>
+                  <span id="app-menu-grid-mode">grid mode sidebar</span>
                   </label>
                 </div>
 
