@@ -12012,6 +12012,22 @@ if ( valid( item.found_in_taxon ) ){
   rank: [10,200,9150],
 },
 
+'orcid_publications_view' : {
+  create_condition: 'valid( item.orcid )',
+  title: 'ORCID publications',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/orcid/?id=${item.ordic}',
+  icon: 'fa-brands fa-orcid',
+  //icon: 'fa-brands fa-stack-overflow',
+  text: 'publications',
+  section: ['science-search-tools','main'],
+  rank: [220,8820],
+  headline_create: 'valid( item.orcid )',
+  headline_rank: 375,
+},
+
 'archive_scholar_orcid' : {
   value: 'archive-scholar:${item.orcid}:true',
   render_condition: 'valid( item.orcid )',
