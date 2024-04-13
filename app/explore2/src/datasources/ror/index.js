@@ -8,11 +8,9 @@ function autocompleteROR( results, dataset ){
 
   if ( valid( results.items ) ){
 
-    console.log( items );
-
     $.each( results.items, function( i, org ){
 
-      if ( valid( org.names ) ){
+      if ( i < 5 && valid( org.names ) ){
 
         dataset.push( org.names[0].value );
 
@@ -28,16 +26,16 @@ function processResultsROR( topicResults, struct, index ){
 
   const source = 'ror';
 
-  console.log( topicResults, );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
-    if ( !valid( topicResults.data ) ){
+    if ( !valid( topicResults.items ) ){
 
       resolve( [ [], [] ] );
 
     }
-    else if ( topicResults.data.length === 0 ){
+    else if ( topicResults.items.length === 0 ){
 
       resolve( [ [], [] ] );
 
@@ -82,23 +80,28 @@ function processResultsROR( topicResults, struct, index ){
 
       };
 
-      console.log('foo1');
-
       $.each( topicResults.items, function( i, org ){
 
-        console.log('foo2');
-
         // URL vars
-        let gid         = org.attributes.id.replace('https://ror.org/', '');
+        let gid         = org.id.replace('https://ror.org/', '');
         let qid         = '';
         let language    = explore.language;
 
         // setup URL
         let url         = eval(`\`${ datasources[ source ].display_url }\``);
 
-        if ( valid( org?.external_ids?.all ) ){
+        if ( valid( org.external_ids ) ){
 
-          qid = org.external_ids.all[0];
+          $.each( org.external_ids, function( i, eid ){
+
+           if ( valid( eid.type === 'wikidata') ){
+
+            qid = eid.all[0];
+
+           }
+
+
+          });
 
         }
 
