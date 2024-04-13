@@ -12,8 +12,8 @@ body {
 }
 
 .name {
-  font-weight: bold;
-  margin-left: 0.5em;
+  /*font-weight: bold;*/
+  /*margin-left: 0.5em;*/
 }
 
 .table-header {
@@ -42,7 +42,12 @@ table tr td:first-child::before {
 }
 
 td .name {
-  font-size: 1.6em;
+  font-size: 1.3rem;
+}
+
+th.sorting {
+  position: relative !important;
+  left: 6.5em !important;
 }
 
 /*
@@ -210,16 +215,19 @@ div.material-table table tr td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  vertical-align: middle;
 }
 
 div.material-table table tr td a {
   color: inherit;
 }
 
+/*
 div.material-table table tr td a i {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.54);
 }
+*/
 
 div.material-table table tr {
   font-size: 12px;

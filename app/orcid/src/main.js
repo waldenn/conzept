@@ -29,93 +29,107 @@ else { // desktop
 
 function createORCIDProfile(orcidID, elementID) {
 
-  var ORCIDLink = "https://pub.orcid.org/v2.0/" + orcidID + "/works";
+  const ORCIDLink = "https://pub.orcid.org/v2.0/" + orcidID + "/works";
 
   //console.log( ORCIDLink );
 
-  fetch(ORCIDLink,
+  fetch( ORCIDLink, { headers: { "Accept": "application/orcid+json" } })
+  .then(
 
-      {
-        headers: {
-          "Accept": "application/orcid+json"
-        }
-      })
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status);
-          return;
-        }
+    function(response) {
 
-        // Examine the text in the response
-        response.json().then(function(data) {
+      if (response.status !== 200) {
 
-          //console.log(data);
+        return;
 
-          var output = "";
-          for (var i in data.group) {
-            //PAPER NAME
-            if (data.group[i]["work-summary"]["0"].title.title.value != null) {
-              var publicationName = data.group[i]["work-summary"]["0"].title.title.value;
-            }
+      }
 
+      response.json().then(function(data) {
 
-            //PUBLICATION YEAR
-            if (data.group[i]["work-summary"]["0"]["publication-date"] != null) {
-              var publicationYear = data.group[i]["work-summary"]["0"]["publication-date"].year.value;
-            } else {
-              var publicationYear = "";
-            }
+        let output = "";
 
-            //DOI REFERENCE
-            if (data.group[i]["external-ids"]["external-id"]["length"] != 0) {
-              for (var j in data.group[i]["external-ids"]["external-id"]) {
-                if (data.group[i]["external-ids"]["external-id"][j]["external-id-type"] == 'doi') {
-                  var doiReference = data.group[i]["external-ids"]["external-id"][j]["external-id-value"];
-                  break;
-                }
-              }
-            } else {
-              var doiReference = "";
-            }
+        for ( const i in data.group) {
 
-            //JOURNAL NAME
-            var putcode = data.group[i]["work-summary"]["0"]["put-code"];
-            //console.log(journalTitle);
+          let publicationName = '';
+          let publicationYear = '';
+          let doiReference    = '';
+          let putcode         = '';
 
-            let url_string = `https://doi.org/${ doiReference }`;
+          // paper name
+          if ( data.group[i]["work-summary"]["0"].title.title.value != null ) {
 
-            output +=`
-            <div id="item">
-              ${ publicationYear  }
-              <span id="exploreTopic"><button onclick="gotoExplore( &quot;${ publicationName }&quot;)" onauxclick="gotoExplore( true )" class="dropbtn" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span>
-              <a class="item-link" href="javascript:void(0)" onclick="openInNewTab( &quot;${ url_string }&quot; )">${ publicationName }</a>
-            </div>
-          `;
-
-            my_data.push( {
-              'year' :  publicationYear,
-              'title':  publicationName,
-              'url':    url_string,
-              //'doi':  doiReference,
-            } );
-
-            //getJournalTitle(orcidID, putcode, i);
+            publicationName = data.group[i]["work-summary"]["0"].title.title.value;
 
           }
 
-          //console.log( my_data );
+          // publication year
+          if ( data.group[i]["work-summary"]["0"]["publication-date"] != null ) {
 
-          //document.getElementById(elementID).innerHTML = output;
+            publicationYear = data.group[i]["work-summary"]["0"]["publication-date"].year.value;
 
-          renderTable();
+          }
+          else {
+            publicationYear = "";
+          }
 
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+          // DOI reference
+          if (data.group[i]["external-ids"]["external-id"]["length"] != 0) {
+
+            for ( const j in data.group[i]["external-ids"]["external-id"]) {
+
+              if (data.group[i]["external-ids"]["external-id"][j]["external-id-type"] == 'doi') {
+
+                doiReference = data.group[i]["external-ids"]["external-id"][j]["external-id-value"];
+
+                break;
+
+              }
+
+            }
+
+          }
+          else {
+            doiReference = "";
+          }
+
+          // journal name
+          // putcode = data.group[i]["work-summary"]["0"]["put-code"];
+          //console.log(journalTitle);
+
+          let url_string = `https://doi.org/${ doiReference }`;
+
+          output +=`
+          <div id="item">
+            ${ publicationYear  }
+            <span id="exploreTopic"><button onclick="gotoExplore( &quot;${ publicationName }&quot;)" onauxclick="gotoExplore( true )" class="dropbtn" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span>
+            <a class="item-link" href="javascript:void(0)" onclick="openInNewTab( &quot;${ url_string }&quot; )">${ publicationName }</a>
+          </div>
+        `;
+
+          my_data.push( {
+            'year' :  publicationYear,
+            'title':  publicationName,
+            'url':    url_string,
+            //'doi':  doiReference,
+          } );
+
+          //getJournalTitle(orcidID, putcode, i);
+
+        }
+
+        $('#title').append( `&nbsp; <small>(${ my_data.length })</small>` );
+
+        renderTable();
+
+      });
+    }
+  )
+  .catch(function(err) {
+
+    console.log( 'fetch error: ', err );
+
+  });
+
 }
 
 /*
@@ -145,21 +159,18 @@ function getJournalTitle(orcidID, journalID, i) {
       }
     )
     .catch(function(err) {
-      console.log('Fetch Error :-S', err);
+      console.log('fetch error: ', err);
     });
 
 }
 */
 
-//console.log( heading, filter, group_by );
-
 function renderTable(){
-
-  //console.log( data );
 
   $('#datatable').dataTable({
 
     columns: [
+
       { data: 'year' },
       { data: 'title' , render: function (data, type, row) {
 
@@ -206,18 +217,13 @@ function renderTable(){
 
 $(document).ready(function() {
 
-
-  //$('#table-title').html( '<i class="fa-brands fa-stack-overflow"></i> ' +  name );
   $('#title').html( '<i class="fa-brands fa-stack-overflow"></i> ' +  name );
 
   if ( valid( orcidID ) ){
 
-    //$('#title').html( '<i class="fa-brands fa-stack-overflow"></i> ' +  name );
-
     createORCIDProfile(orcidID, 'publications');
 
   }
-
 
   $( '.search-toggle' ) .on( 'click', function() { $('.input-sm').focus(); });
 
@@ -244,10 +250,12 @@ function gotoExplore( title, newtab ){
     "use strict";
 
     $('.search-toggle').click(function() {
+
       if ($('.hiddensearch').css('display') == 'none')
         $('.hiddensearch').slideDown();
       else
         $('.hiddensearch').slideUp();
+
     });
 
     /* Set the defaults for DataTables initialisation */
@@ -278,9 +286,13 @@ function gotoExplore( title, newtab ){
         var i, ien, node, button;
 
         var clickHandler = function(e) {
+
           e.preventDefault();
-          if (!$(e.currentTarget).hasClass('disabled')) {
+
+          if ( !$(e.currentTarget).hasClass('disabled') ) {
+
             api.page(e.data.action).draw(false);
+
           }
 
         };

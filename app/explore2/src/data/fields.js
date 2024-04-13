@@ -12018,7 +12018,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/app/orcid/?id=${item.orcid}&t=${item.title_}',
+  url: '${explore.base}/app/orcid/?id=${item.orcid}&t=${title_}',
   icon: 'fa-brands fa-orcid',
   //icon: 'fa-brands fa-stack-overflow',
   text: 'publications',
