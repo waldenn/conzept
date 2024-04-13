@@ -12009,7 +12009,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-brands fa-orcid',
   text: 'ORCID',
   section: ['library-identity','science-search-tools','main'],
-  rank: [10,200,9150],
+  rank: [10,201,9150],
 },
 
 'orcid_publications_view' : {
@@ -12023,7 +12023,7 @@ if ( valid( item.found_in_taxon ) ){
   //icon: 'fa-brands fa-stack-overflow',
   text: 'publications',
   section: ['science-search-tools','main'],
-  rank: [220,8820],
+  rank: [200,9147],
   headline_create: 'valid( item.orcid )',
   headline_rank: 177,
 },

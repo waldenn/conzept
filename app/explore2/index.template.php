@@ -174,6 +174,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/wikipedia/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/wikidata/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script>
