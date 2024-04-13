@@ -12025,7 +12025,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['science-search-tools','main'],
   rank: [220,8820],
   headline_create: 'valid( item.orcid )',
-  headline_rank: 375,
+  headline_rank: 177,
 },
 
 'archive_scholar_orcid' : {
@@ -17806,7 +17806,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 58.9,
   headline_create: '!valid( item.openalex )',
   headline_type: 'link',
-  headline_rank: 99,
+  headline_rank: 180,
 },
 
 'openalex_topic_ranked_country_works' : {
@@ -20276,11 +20276,11 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Semantic Scholar author',
   section: ['science-search-tools','main'],
   rank: [20,3310],
-  headline_create: 'valid( item.semantic_scholar_author_id )',
-  headline_trigger: 'console.log( "fixme: semantic_scholar" )', // FIXME: headline button is not showing
-  headline_type: 'code',
-  headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
-  headline_rank: 200,
+  //headline_create: 'valid( item.semantic_scholar_author_id )',
+  //headline_trigger: 'console.log( "fixme: semantic_scholar" )', // FIXME: headline button is not showing
+  //headline_type: 'code',
+  //headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
+  //headline_rank: 200,
 },
 
 'semantic_scholar_query_inline' : {

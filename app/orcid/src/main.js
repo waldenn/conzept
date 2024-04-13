@@ -117,7 +117,7 @@ function createORCIDProfile(orcidID, elementID) {
 
         }
 
-        $('#title').append( `&nbsp; <small>(${ my_data.length })</small>` );
+        $('#title').append( `&nbsp; <small>(${ my_data.length }) <a class="orcid" target="_blank" href="https://orcid.org/${ orcidID }"><i class="fa-brands fa-orcid"></i> ${ orcidID }</a></small>` );
 
         renderTable();
 
@@ -191,7 +191,7 @@ function renderTable(){
 
     data: my_data,
 
-    "pageLength": 50,
+    "pageLength": 10,
 
     oLanguage: {
       "sStripClasses": "",

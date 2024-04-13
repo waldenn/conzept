@@ -7,6 +7,13 @@ body {
   background: #fbfaf9;
 }
 
+a.orcid {
+  float: right;
+  padding-right: 1em;
+  color: black;
+  font-size: 0.7em;
+}
+
 #exploreTopic {
   float: right;
 }
@@ -45,9 +52,9 @@ td .name {
   font-size: 1.3rem;
 }
 
-th.sorting {
+tr th:first-child {
   position: relative !important;
-  left: 6.5em !important;
+  text-align: revert;
 }
 
 /*
