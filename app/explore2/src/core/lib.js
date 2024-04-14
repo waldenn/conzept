@@ -11057,6 +11057,22 @@ function pauseSpeaking(){
 
 }
 
+async function testVoice(){
+
+  stopSpeaking();
+
+  let text = explore.banana.i18n('app-guide-welcome-text');
+
+  if ( explore.locale !== explore.language ){ // locale not supported yet
+
+    text = '1, 2, 3, 4, 5, 6, 7, 8, 9, 10';
+
+  }
+
+  startSpeaking( text );
+
+}
+
 async function stopSpeaking(){
 
   if ( valid( explore.synth ) ){
@@ -11358,6 +11374,8 @@ function reloadVoices() {
           else { // looks to be a normal voice-code (but only use the first two parts)
 
             voice = voice.lang.split('-')[0] + '-' + voice.lang.split('-')[1]; 
+
+            voice = voice.replace('+', ' '); // Firefox hack
 
           }
 

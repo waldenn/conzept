@@ -1,5 +1,23 @@
 'use strict';
 
+/*
+
+  TODO:
+
+  - use promise-chain to dependent async-steps
+
+  - Step 1: get ROR data
+
+  - Step 2: get Wikidata metadata
+
+    let d = await fetchWikidata( [ qid ], '', 'wikipedia', false );
+    item = d[0].source.data;
+
+  - Step 3: return final results
+
+
+*/
+
 function autocompleteROR( results, dataset ){
 
   const source = 'ror';
@@ -94,12 +112,11 @@ function processResultsROR( topicResults, struct, index ){
 
           $.each( org.external_ids, function( i, eid ){
 
-           if ( valid( eid.type === 'wikidata') ){
+            if ( valid( eid.type === 'wikidata') ){
 
-            qid = eid.all[0];
+              qid = eid.all[0];
 
-           }
-
+            }
 
           });
 

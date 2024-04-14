@@ -507,6 +507,11 @@ $settings_html = '
                   <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
                   <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
 
+                  <br/><br/>
+
+                  <label style="display:inline;" for="voice-test"><span id="app-menu-voice-test">test voice</span>: &nbsp;</label>
+                  <a class="waves-effect waves-light btn" id="voice-test-button" tabindex="0" title="voice test" aria-label="voice test" role="button" onclick="testVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a>
+
                 </div>
 
               </div>

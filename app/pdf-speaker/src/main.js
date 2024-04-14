@@ -17,6 +17,8 @@ const app = {
   auto_scroll_enabled:  false,
 
   utterance:            new SpeechSynthesisUtterance(),
+
+  selectedVoice:        '',
 }
 
 let parentref = '';
@@ -40,10 +42,10 @@ else { // desktop
 let synth = window.speechSynthesis;
 
 if ( typeof synth !== "undefined" ) {
+
   synth.cancel();
 
-  // TODO:
-  // also stop parent-frame speaking (if needed)
+  // also stop any parent-frame speaking (if needed)
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
 
 }
@@ -52,6 +54,7 @@ let __PDF_DOC,
 	__CURRENT_PAGE = 1, //This is the page which is currently being spoken
 	__TOTAL_PAGES,
 	__PAGE_RENDERING_IN_PROGRESS = 0;
+
 let canvas_width = 1000;
 let pageHeight = -1;
 let __VIEWING_PAGE = __CURRENT_PAGE;
@@ -68,12 +71,43 @@ async function init(){
 
     $('#download-button').show();
 
-    await populateVoiceList( lang );
+    let s = setSpeech();
 
-    showPDF( app.current_url );
+    s.then( async ( voices ) => {
+
+      await populateVoiceList( lang );
+
+      app.selectedVoice = setVoice();
+
+      showPDF( app.current_url );
+
+    });
 
   }
 
+}
+
+function setSpeech() {
+
+    return new Promise(
+
+        function (resolve, reject) {
+
+            let synth = window.speechSynthesis;
+            let id;
+
+            id = setInterval(() => {
+
+                if (synth.getVoices().length !== 0) {
+
+                    resolve( synth.getVoices() );
+                    clearInterval( id );
+
+                }
+
+            }, 10);
+        }
+    )
 }
 
 function populateVoiceList( lang ) {
@@ -111,7 +145,56 @@ function populateVoiceList( lang ) {
 
     }
 
+
   })
+
+}
+
+function setVoice(){
+
+  if ( valid( app.voice_name ) ){ // check "voice name"
+
+    app.voices.forEach( ( element ) => {
+
+      //console.log( element.name, app.voice_name );
+
+      if ( element.name.replace('+', ' ') == app.voice_name ){ // Firefox voice-name needs '+' -> ' '
+
+        app.selectedVoice = element;
+
+        //console.log('found: ', element );
+
+      }
+
+    });
+
+  }
+  else if ( valid( app.voice_code ) ){ // fallback to the first "voice-code" option found
+
+    app.selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+  else { // fallback to the first iso2-language-matching option
+
+    app.selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+
+	if ( valid( app.selectedVoice ) ) {
+
+		app.utterance.voice = app.selectedVoice;
+
+	}
+  else { // fallback to the first iso2 language matching option
+
+    app.selectedVoice = app.voices.filter( (element) =>
+      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
+
+  }
+
+  return app.selectedVoice;
 
 }
 
@@ -133,46 +216,6 @@ function startTextToSpeech(startWord){
   }
 
 	prevId = 0;
-
-	let selectedVoice   = '';
-
-  if ( valid( app.voice_name ) ){ // check for the more specific "voice name"
-
-    app.voices.forEach( ( element ) => {
-
-      if ( element.name === app.voice_name ){
-
-        selectedVoice = element;
-
-      }
-
-    });
-
-  }
-  else if ( valid( app.voice_code ) ){ // fallback to the first "voice-code" option
-
-    selectedVoice = app.voices.filter( (element) =>
-      element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
-
-  }
-  else { // fallback to the first iso2 language matching option
-
-    selectedVoice = app.voices.filter( (element) =>
-      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
-
-  }
-
-	if ( valid( selectedVoice ) ) {
-
-		app.utterance.voice = selectedVoice;
-
-	}
-  else { // fallback to the first iso2 language matching option
-
-    selectedVoice = app.voices.filter( (element) =>
-      element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
-
-  }
 
 	let textContent = "";
 
@@ -240,16 +283,20 @@ function startTextToSpeech(startWord){
 function loadPage(pageNumber) {
 
 	if (pageNumber > __TOTAL_PAGES) {
+
 		return;
+
 	}
 
-	let canvas = document.createElement("canvas");
-	canvas.id = "page" + pageNumber;
-	canvas.width = canvas_width;
+	let canvas    = document.createElement("canvas");
+	canvas.id     = "page" + pageNumber;
+	canvas.width  = canvas_width;
+
 	let textLayer = document.createElement("div");
-	textLayer.id = "textLayer" + pageNumber;
+	textLayer.id  = "textLayer" + pageNumber;
+
 	let annotationLayer = document.createElement("div");
-	annotationLayer.id = "annotationLayer" + pageNumber;
+	annotationLayer.id  = "annotationLayer" + pageNumber;
 
 	canvas.classList.add("canvas");
 	textLayer.classList.add("textLayer");
@@ -262,17 +309,20 @@ function loadPage(pageNumber) {
 
 	showPage(pageNumber, canvas, canvas.getContext("2d"));
 
-	// Add click event listeners to each word in the text layer
+	// add click event listeners to each word in the text layer
 	$("#textLayer" + pageNumber).on("click", "span", function () {
+
 		if (prevId !== 0) {
 			document
 				.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
 				.classList.remove("highlight");
 		}
+
 		__CURRENT_PAGE = pageNumber;
 		prevId = parseInt($(this).attr("id").split("-")[2]) - 1;
 		const clickedWord = $(this).text().trim();
-		// Get the text content of the rest of the page
+
+		// get the text content of the rest of the page
 		const nextPageWords =
 			$(this)
 				.nextAll("span")
@@ -290,37 +340,12 @@ function loadPage(pageNumber) {
 				})
 				.get()
 				.join(" ");
-		// Set the text to the app.utterance
+
 		if (synth.speaking) {
+
 			synth.cancel();
+
 		}
-
-		app.voices = synth.getVoices();
-
-    let selectedVoice = '';
-
-    if ( valid( app.voice_code ) ){
-
-      selectedVoice = app.voices.filter( (element) => element.lang.substring(0, 5) === app.voice_code )[document.getElementById("voiceSelect").selectedIndex];
-
-    }
-    else {
-
-		  selectedVoice = app.voices.filter( (element) => element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
-
-    }
-
-    if ( valid( selectedVoice ) ) {
-
-      app.utterance.voice = selectedVoice;
-
-    }
-    else { // fallback to the first iso2 language matching option
-
-      selectedVoice = app.voices.filter( (element) =>
-        element.lang.substring(0, 2) === app.language )[document.getElementById("voiceSelect").selectedIndex];
-
-    }
 
 		//app.utterance.onerror = (error) => console.log(error);
 		//app.utterance.onpause = () => console.log("Paused");
@@ -336,10 +361,13 @@ function loadPage(pageNumber) {
 		app.utterance.onend = function () {
 
 			if (__CURRENT_PAGE != __TOTAL_PAGES) {
+
 				try {
+
 					document
 						.getElementById("word-" + __CURRENT_PAGE + "-" + prevId)
 						.classList.remove("highlight");
+
 				} catch {}
 
 				__CURRENT_PAGE++;
@@ -348,9 +376,11 @@ function loadPage(pageNumber) {
 				scrollTo();
 
 			}
+
 		};
 
-		synth.speak(app.utterance);
+		synth.speak( app.utterance );
+
 		resume();
 
 	});
@@ -364,10 +394,8 @@ function showPDF(pdf_url) {
 
 	PDFJS.getDocument({ url: pdf_url }).then( function (pdf_doc){
 
-		__PDF_DOC = pdf_doc;
+		__PDF_DOC     = pdf_doc;
 		__TOTAL_PAGES = __PDF_DOC.numPages;
-
-    //console.log( __TOTAL_PAGES );
 
 		// hide the pdf loader and show pdf container in HTML
 		$("#pdf-loader").hide();
@@ -376,8 +404,6 @@ function showPDF(pdf_url) {
 		loadPage(1);
 
 		$(window).on( 'scroll', function(){
-
-      //console.log('scroll event');
 
 			let cont = document.getElementById("pdfContainer");
 
@@ -410,11 +436,14 @@ function highlightWord() {
 
 	if (document.getElementById(wordId + prevId) !== null)
 		document.getElementById(wordId + prevId).classList.remove("highlight");
+
 	if (document.getElementById(wordId + ++prevId) !== null)
 		document.getElementById(wordId + prevId).classList.add("highlight");
+
 	else {
-		//console.log("Null id", prevId);
+
 		prevId = 0;
+
 	}
 
 }
@@ -427,7 +456,7 @@ function showPage( page_no, newCanvas, newCtx ) {
 	$("#page" + page_no).hide();
 	$("#page-loader").show();
 
-	// Fetch the page
+	// fetch the page
 	__PDF_DOC.getPage(page_no).then(function (page) {
 		// As the canvas is of a fixed width we need to set the scale of the viewport accordingly
 		let scale_required = newCanvas.width / page.getViewport(1).width;
@@ -480,6 +509,7 @@ function showPage( page_no, newCanvas, newCtx ) {
 				}
 
 				const text = await page.getTextContent();
+
 				// Assign the CSS created to the text-layer element
 				$(`#textLayer${page_no}`).css({
 					left: canvas_offset.left + "px",
@@ -487,6 +517,7 @@ function showPage( page_no, newCanvas, newCtx ) {
 					height: newCanvas.height + "px",
 					width: newCanvas.width + "px",
 				});
+
 				PDFJS.renderTextLayer({
 					textContent: text,
 					container: $(`#textLayer${page_no}`).get(0),
@@ -495,21 +526,32 @@ function showPage( page_no, newCanvas, newCtx ) {
 				});
 			})
 			.then(function () {
+
 				let allDivs = document.querySelectorAll(`#textLayer${page_no} > div`);
 				let sum = 1;
+
 				for (const element of allDivs) {
+
 					const words = element.innerText.split(" ");
+
 					let newSentence = "";
+
 					for (const word of words) {
+
 						if (word.length !== 0 && word.trim()[0] !== "-") {
+
 							const wordId = `word-${page_no}-${sum++}`;
 							newSentence += `<span id="${wordId}">${word.trim()} </span>`;
+
 						}
+
 					}
 					element.innerHTML = newSentence;
+
 				}
 
 				const currentPageElement = document.getElementById("pdf-current-page");
+
 				pageHeight = parseInt(
 					$("#page1")
 						.css("height")
@@ -550,8 +592,6 @@ $("#file-to-upload").on("change", async function () {
 
   $('#pdfContainer').empty();
 
-  await populateVoiceList( lang );
-
   app.current_url = URL.createObjectURL( $('#file-to-upload').get(0).files[0] );
 
 	showPDF( app.current_url );
@@ -562,13 +602,6 @@ $("#file-to-upload").on("change", async function () {
 $("#download-button").on( 'click', function(){
 	
   openInNewTab( app.url.replace( `https://${CONZEPT_HOSTNAME}${CONZEPT_WEB_BASE}/app/cors/raw/?url=`, '' ) );
-
-  /*
-  var link = document.createElement('a');
-  link.href = url;
-  link.download = 'file.pdf';
-  link.dispatchEvent(new MouseEvent('click'));
-  */
 
 });
 
@@ -637,8 +670,6 @@ $("#scroll-to-button").on("click", function () {
 });
 
 function scrollTo(){
-
-	//document.getElementById("page" + __CURRENT_PAGE).scrollIntoView();
 
   $('html').animate({
 
