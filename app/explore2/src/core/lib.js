@@ -3704,6 +3704,7 @@ async function updateLocaleInterface(){
   $('#app-menu-grid-mode').html( explore.banana.i18n('app-menu-grid-mode') );
   $('#app-menu-interface-language').html( explore.banana.i18n('app-menu-interface-language') );
   $('#app-menu-voice').html( explore.banana.i18n('app-menu-voice') );
+  $('#app-menu-hear-voice').html( explore.banana.i18n('app-menu-hear-voice') );
   $('#app-menu-inline-help').html( explore.banana.i18n('app-menu-inline-help') );
   $('#app-menu-show-inline-help').html( explore.banana.i18n('app-menu-show-inline-help') );
   $('#app-menu-user-manual').html( explore.banana.i18n('app-menu-user-manual') );
@@ -11057,7 +11058,7 @@ function pauseSpeaking(){
 
 }
 
-async function testVoice(){
+async function hearVoice(){
 
   stopSpeaking();
 

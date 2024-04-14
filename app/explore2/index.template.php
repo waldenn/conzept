@@ -509,8 +509,8 @@ $settings_html = '
 
                   <br/><br/>
 
-                  <label style="display:inline;" for="voice-test"><span id="app-menu-voice-test">test voice</span>: &nbsp;</label>
-                  <a class="waves-effect waves-light btn" id="voice-test-button" tabindex="0" title="voice test" aria-label="voice test" role="button" onclick="testVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a>
+                  <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
+                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a>
 
                 </div>
 
