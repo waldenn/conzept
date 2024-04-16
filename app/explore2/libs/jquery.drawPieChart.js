@@ -21,7 +21,7 @@
       PI = Math.PI,
       settings = $.extend({
         segmentShowStroke : true,
-        segmentStrokeColor : "#fff",
+        segmentStrokeColor : "#fbfaf9",
         segmentStrokeWidth : 1,
         baseColor: "#fff",
         baseOffset: 15,
@@ -128,17 +128,17 @@
     function pathMouseEnter(e){
       var index = $(this).data().order;
       $tip.text(data[index].title + ": " + data[index].value).fadeIn(200);
-      if ($groups[index][0].getAttribute("data-active") !== "active"){
+      //if ($groups[index][0].getAttribute("data-active") !== "active"){
         $lightPies[index].animate({opacity: .8}, 180);
-      }
+      //}
       settings.onPieMouseenter.apply($(this),[e,data]);
     }
     function pathMouseLeave(e){
       var index = $(this).data().order;
       $tip.hide();
-      if ($groups[index][0].getAttribute("data-active") !== "active"){
+      //if ($groups[index][0].getAttribute("data-active") !== "active"){
         $lightPies[index].animate({opacity: settings.lightPiesOpacity}, 100);
-      }
+      //}
       settings.onPieMouseleave.apply($(this),[e,data]);
     }
     function pathMouseMove(e){

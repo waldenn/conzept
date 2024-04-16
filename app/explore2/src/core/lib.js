@@ -1666,6 +1666,7 @@ function renderResultSummary(){
 
   //console.log( search_results );
 
+  $(".pieTip").remove();
   $("#pieChart").empty();
   $("#pieChart").drawPieChart( search_results );
 
@@ -4576,7 +4577,8 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   explore.topic_cursor = 'n1-1';
 
-  $("#pieChart").empty();
+  $('.pieTip').remove();
+  $('.#pieChart.).empty();
 
 	$( '#results-paging' ).css( 'display', 'none' );
 	$( '#results-label' ).css( 'display', 'inline-block' );

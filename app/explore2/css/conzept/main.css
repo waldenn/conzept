@@ -2706,6 +2706,12 @@ body {
       line-height: 0;
 }
 
+/*
+.pieSegmentGroup:hover {
+  filter: opacity(0.6) !important;
+}
+*/
+
 .result-summary-chart path { cursor: pointer; }
 
 
