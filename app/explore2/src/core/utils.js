@@ -896,7 +896,7 @@ function findObjectByKey(array, key, value) {
 
 }
 
-function sortObjectsArrayByNestedProperty( arr, prop ) {
+function sortObjectsArrayByNestedProperty( arr, prop ){
 
   prop = prop.split('.');
 

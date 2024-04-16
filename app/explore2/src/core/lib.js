@@ -1668,6 +1668,9 @@ function renderResultSummary(){
 
   $(".pieTip").remove();
   $("#pieChart").empty();
+
+  sortObjectsArray( search_results, value );
+
   $("#pieChart").drawPieChart( search_results );
 
 }
@@ -4578,7 +4581,7 @@ async function setDefaultDisplaySettings( cover, type ) {
   explore.topic_cursor = 'n1-1';
 
   $('.pieTip').remove();
-  $('.#pieChart.).empty();
+  $('.#pieChart').empty();
 
 	$( '#results-paging' ).css( 'display', 'none' );
 	$( '#results-label' ).css( 'display', 'inline-block' );
