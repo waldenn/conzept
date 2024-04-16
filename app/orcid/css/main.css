@@ -112,8 +112,9 @@ div.material-table .table-header .actions {
 }
 
 div.material-table .table-header .btn-flat {
-    min-width: 36px;
-    padding: 0 8px;
+  width: 100%;
+  min-width: 36px;
+  padding: 0 8px;
 }
 
 div.material-table .table-header input {

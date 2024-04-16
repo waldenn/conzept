@@ -111,7 +111,7 @@ function processResultsArxiv( topicResults, struct, index ){
         let img           = '';
 
         let document_language   = 'en';
-        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
+        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
         let tts_link            = doc_url;
 
         $(this).find('author').each( function( j ){

@@ -113,6 +113,7 @@ $main_script = '
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.languagefilter.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.core.js"></script>
   <script src="../app/explore2/libs/jquery.fontselect.js?v0.51.466"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
+  <script src="../app/explore2/libs/jquery.drawPieChart.js?v0.51.466"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
   <script src="../app/explore2/node_modules/jqtree/tree.jquery.js"></script>
   <script src="../app/explore2/node_modules/select2/dist/js/select2.min.js"></script>
   <script src="../app/explore2/libs/materialize.min.js?v0.51.466"></script> <!-- no NPM-package -->
@@ -620,6 +621,16 @@ $settings_html = '
             <div class="tab-title" id="app-tab-topics-title" style="font-family: ' . $font . ' !important; padding-bottom: 0.3em;">topics</div>
 
             <div class="overflow-content">
+
+              <details id="detail-result-summary" class="special-detail" title="result summary" style="display:none;">
+                <summary>
+                  <i title="result summary" class="fa-solid fa-chart-pie" title="result summary"></i> <span id="app-menu-result-summary">result summary</span>
+                  <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#result_summary" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
+                </summary>
+
+                <div id="pieChart" class="pieChart" title="search result summary"></div>
+
+              </details>
 
               <details id="detail-structured-search" class="special-detail" title="structured search" style="display:none;">
 

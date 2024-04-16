@@ -1631,6 +1631,31 @@ function activateDatasources(){
 
   }
 
+  
+
+  // indicate the active datasources in the topic-tab
+  let search_results = [];
+
+  explore.datasources.forEach( ( key, index ) => {
+
+    let d = datasources[key];
+
+    //`<span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>`;
+
+    search_results.push({
+
+      title: d.name,
+      value: d.total,
+      color: getRandomColorHex(),
+
+    });
+
+  });
+
+  $("#pieChart").drawPieChart( search_results );
+
+  //$('#app-tab-topics-title').after( `<div id="show_datasources"> ${ show_datasources_html } </div>`);
+
   // when "singleuse" is active, prevent permanently storing the datasources
   if ( ! valid( explore.singleuse ) ){
 
@@ -11062,7 +11087,7 @@ async function hearVoice(){
 
   stopSpeaking();
 
-  let text = explore.banana.i18n('app-guide-welcome-text');
+  let text = stripHtml( explore.banana.i18n('app-guide-welcome-text') );
 
   if ( explore.locale !== explore.language ){ // locale not supported yet
 

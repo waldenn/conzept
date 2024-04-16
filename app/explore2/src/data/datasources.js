@@ -1068,7 +1068,7 @@ const datasource_set_map = {
   none:       [''],
   reference:  ['wikipedia', 'wikidata'],
   culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3D'],
-  science:    ['archive_scholar', 'arxiv', 'openalex', 'gbif', /*'ror'*/ ],
+  science:    [ /*'archive_scholar',*/ 'arxiv', 'openalex', 'gbif', /*'ror'*/ ],
   business:   ['gleif', 'eu', 'gdelt', 'occrp'],
 }
 
