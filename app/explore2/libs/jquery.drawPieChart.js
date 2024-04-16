@@ -25,7 +25,7 @@
         segmentStrokeWidth : 1,
         baseColor: "#fff",
         baseOffset: 15,
-        edgeOffset: 30,//offset from edge of $this
+        edgeOffset: 15, //offset from edge of $this
         pieSegmentGroupClass: "pieSegmentGroup",
         pieSegmentClass: "pieSegment",
         lightPiesOffset: 12,//lighten pie's width
@@ -63,7 +63,7 @@
           };
       }();
 
-    var $wrapper = $('<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>').appendTo($this);
+    var $wrapper = $('<svg viewBox="1 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>').appendTo($this);
     var $groups = [],
         $pies = [],
         $lightPies = [],
@@ -77,7 +77,7 @@
       var $base = $(base).appendTo($wrapper);
       base.setAttribute("cx", centerX);
       base.setAttribute("cy", centerY);
-      base.setAttribute("r", pieRadius+settings.baseOffset);
+      base.setAttribute("r", Math.abs( pieRadius ) + Math.abs( settings.baseOffset ) );
       base.setAttribute("fill", settings.baseColor);
     }();
 
@@ -199,7 +199,7 @@
           'Z'
         ];
         $pies[i][0].setAttribute("d",cmd.join(' '));
-        $lightPies[i][0].setAttribute("d", cmd2.join(' '));
+        //$lightPies[i][1].setAttribute("d", cmd2.join(' '));
         startRadius += segmentAngle;
       }
     }

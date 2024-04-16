@@ -2651,24 +2651,34 @@ body {
 .pieChart {
   /*
   position: absolute;
-  width: 450px;
-  height: 450px;
-  top: 50%;
-  left: 50%;
   margin: -225px 0 0 -225px;
   */
+  width: 450px;
+  height: 450px;
+  max-width: 100%;
+  max-height: min-content;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
 }
-
 .pieTip {
   position: absolute;
+  z-index: 9999;
   float: left;
+
+  /*
   min-width: 30px;
   max-width: 300px;
+  */
+
+  min-width: 1rem;
+  max-width: 12rem;
+
   padding: 5px 18px 6px;
   border-radius: 2px;
   background: rgba(255,255,255,.97);
   color: #444;
-  font-size: 19px;
+  font-size: 1rem;
   text-shadow: 0 1px 0 #fff;
   text-transform: uppercase;
   text-align: center;

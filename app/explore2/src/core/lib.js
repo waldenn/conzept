@@ -1631,30 +1631,6 @@ function activateDatasources(){
 
   }
 
-  
-
-  // indicate the active datasources in the topic-tab
-  let search_results = [];
-
-  explore.datasources.forEach( ( key, index ) => {
-
-    let d = datasources[key];
-
-    console.log( d.name, valid( d.total )? d.total : 0, getRandomColorHex() );
-
-    search_results.push({
-
-      title: d.name,
-      value: valid( d.total )? d.total : 0,
-      color: getRandomColorHex(),
-
-    });
-
-  });
-
-  $("#pieChart").empty();
-  $("#pieChart").drawPieChart( search_results );
-
   //`<span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>`;
   //$('#app-tab-topics-title').after( `<div id="show_datasources"> ${ show_datasources_html } </div>`);
 
@@ -1666,6 +1642,34 @@ function activateDatasources(){
   }
 
   setupOptionActiveDatasources(); // update datasource toggles
+
+}
+
+function renderResultSummary(){
+  
+  // indicate the active datasources in the topic-tab
+  let search_results = [];
+
+  explore.datasources.forEach( ( key, index ) => {
+
+    let d = datasources[key];
+
+    //console.log( d.name, valid( d.total )? parseInt( d.total ) : 0, getRandomColorHex() );
+
+    search_results.push({
+
+      title: d.name,
+      value: valid( d.total )? parseInt( d.total ) : 0,
+      color: getRandomColorHex(),
+
+    });
+
+  });
+
+  console.log( search_results );
+
+  $("#pieChart").empty();
+  $("#pieChart").drawPieChart( search_results );
 
 }
 
@@ -10260,6 +10264,8 @@ function loadTopics( nextpage ){
       .then( (value) => {
 
         renderTopics( renderObject ); // finally render all topics
+
+      	renderResultSummary();
 
       })
       .catch( error => {

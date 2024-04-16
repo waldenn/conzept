@@ -816,7 +816,8 @@ function getRandomInt2(min, max) {
 
 function getRandomColorHex(){
 
-  return '#' + Math.floor( ( Math.random() * 0xffffff ) ).toString(16);
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return '#' + n.slice(0, 6);
 
 };
 

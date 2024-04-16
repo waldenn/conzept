@@ -622,13 +622,13 @@ $settings_html = '
 
             <div class="overflow-content">
 
-              <details id="detail-result-summary" class="special-detail" title="result summary" style="display:none;">
+              <details id="detail-result-summary" class="special-detail" style="display:none;">
                 <summary>
-                  <i title="result summary" class="fa-solid fa-chart-pie" title="result summary"></i> <span id="app-menu-result-summary">result summary</span>
+                  <i title="result summary" class="fa-solid fa-chart-pie"></i> <span id="app-menu-result-summary">result summary</span>
                   <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#result_summary" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
                 </summary>
 
-                <div id="pieChart" class="pieChart" title="search result summary"></div>
+                <div id="pieChart" class="pieChart"></div>
 
               </details>
 
@@ -1110,7 +1110,7 @@ $framewrap_html = '
 echo '
   <!DOCTYPE html>
   <html lang="en">
-  <!-- © Copyright 2019-2023 Jama Poulsen -->
+  <!-- © Copyright 2019-2024 Jama Poulsen -->
 
   <head>
     <meta charset="utf-8" />
