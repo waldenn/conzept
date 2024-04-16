@@ -1640,20 +1640,22 @@ function activateDatasources(){
 
     let d = datasources[key];
 
-    //`<span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>`;
+    console.log( d.name, valid( d.total )? d.total : 0, getRandomColorHex() );
 
     search_results.push({
 
       title: d.name,
-      value: d.total,
+      value: valid( d.total )? d.total : 0,
       color: getRandomColorHex(),
 
     });
 
   });
 
+  $("#pieChart").empty();
   $("#pieChart").drawPieChart( search_results );
 
+  //`<span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>`;
   //$('#app-tab-topics-title').after( `<div id="show_datasources"> ${ show_datasources_html } </div>`);
 
   // when "singleuse" is active, prevent permanently storing the datasources
