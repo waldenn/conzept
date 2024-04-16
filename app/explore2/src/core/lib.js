@@ -1654,8 +1654,6 @@ function renderResultSummary(){
 
     let d = datasources[key];
 
-    //console.log( d.name, valid( d.total )? parseInt( d.total ) : 0, getRandomColorHex() );
-
     search_results.push({
 
       title: d.name,
@@ -1666,7 +1664,7 @@ function renderResultSummary(){
 
   });
 
-  console.log( search_results );
+  //console.log( search_results );
 
   $("#pieChart").empty();
   $("#pieChart").drawPieChart( search_results );
@@ -4577,6 +4575,8 @@ async function setDefaultDisplaySettings( cover, type ) {
   }
 
   explore.topic_cursor = 'n1-1';
+
+  $("#pieChart").empty();
 
 	$( '#results-paging' ).css( 'display', 'none' );
 	$( '#results-label' ).css( 'display', 'inline-block' );

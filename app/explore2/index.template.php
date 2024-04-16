@@ -622,16 +622,6 @@ $settings_html = '
 
             <div class="overflow-content">
 
-              <details id="detail-result-summary" class="special-detail" style="display:none;">
-                <summary>
-                  <i title="result summary" class="fa-solid fa-chart-pie"></i> <span id="app-menu-result-summary">result summary</span>
-                  <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#result_summary" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
-                </summary>
-
-                <div id="pieChart" class="pieChart"></div>
-
-              </details>
-
               <details id="detail-structured-search" class="special-detail" title="structured search" style="display:none;">
 
                 <summary>
@@ -680,6 +670,15 @@ $settings_html = '
               </details>
 
               <span id="total-results"></span>
+
+              <details id="detail-result-summary" class="special-detail" style="">
+                <summary>
+                  <i title="result summary" class="fa-solid fa-chart-pie"></i> <span id="app-menu-result-summary"></span>
+                  <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#result_summary" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
+                </summary>
+
+                <div id="pieChart" class="pieChart"></div>
+              </details>
 
               <div id="results" class="inner noselect"></div>
 
