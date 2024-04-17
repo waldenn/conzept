@@ -284,7 +284,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=text,image,video,sound" }',
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     icon_invert:            true,
     color:                  '#0a72cc',
@@ -710,6 +710,7 @@ const datasources = {
     qid:                    'Q110235640',
     protocol:               'rest',
     endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
+                                                                    //      https://ror.readme.io/v2/docs/data-structure
                                                                     //      https://ror.org/events/2023-02-01-intro-ror-api/
     format:                 'json',
     connect:                'json',

@@ -257,7 +257,7 @@ function processResultsEU( topicResults, struct, index ){
 
         }
 
-        console.log( csv_url_list );
+        //console.log( csv_url_list );
 
 				// fill fields
 				let item = {

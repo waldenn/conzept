@@ -1658,36 +1658,47 @@ function activateDatasources(){
 }
 
 function renderResultSummary(){
-  
+
   // indicate the active datasources in the topic-tab
   let search_results = [];
+  let last_color = '';
 
-  explore.datasources.forEach( ( key, index ) => {
+  $.each( explore.datasources, function( index, source ){ // for each active datasource
 
-    let d = datasources[key];
+    let d = datasources[ source ];
+          last_color = valid( d.color )? d.color : getRandomColorHex();
+
+    //console.log( index, source, d );
 
     search_results.push({
 
       title: d.name,
       value: valid( d.total )? parseInt( d.total ) : 0,
-      color: valid( d.color )? d.color : '#ffd000', // getRandomColorHex()
+      color: last_color,
 
     });
 
   });
 
-  console.log( search_results );
+  console.log( search_results.length, search_results );
+
 
   $(".pieTip").remove();
   $("#pieChart").empty();
 
-  if ( search_results.length > 0 ){
+  if ( search_results.length <= 1 ){
 
-    sortObjectsArray( search_results, 'value' );
-
-    $("#pieChart").drawPieChart( search_results );
+    // Hack, see: https://github.com/githiro/drawPieChart/issues/2
+    search_results.push( { title: '', value : 0,  color: last_color });
 
   }
+  else if ( search_results.length > 3 ){
+
+    search_results = sortObjectsArray( search_results, 'value' );
+
+  }
+
+  $("#pieChart").drawPieChart( search_results );
 
 }
 

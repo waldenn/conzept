@@ -22,7 +22,7 @@
       settings = $.extend({
         segmentShowStroke : true,
         segmentStrokeColor : "#fbfaf9",
-        segmentStrokeWidth : 1,
+        segmentStrokeWidth : 0.4,
         baseColor: "#fff",
         baseOffset: 15,
         edgeOffset: 15, //offset from edge of $this
