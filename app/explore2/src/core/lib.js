@@ -1670,13 +1670,13 @@ function renderResultSummary(){
 
       title: d.name,
       value: valid( d.total )? parseInt( d.total ) : 0,
-      color: getRandomColorHex(),
+      color: valid( d.color )? d.color : '#ffd000', // getRandomColorHex()
 
     });
 
   });
 
-  //console.log( search_results );
+  console.log( search_results );
 
   $(".pieTip").remove();
   $("#pieChart").empty();
