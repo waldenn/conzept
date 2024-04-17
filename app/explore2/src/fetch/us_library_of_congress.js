@@ -76,6 +76,7 @@ async function fetchLoCImages( args, total_results, page, sortby ){
   }
 
   // see:
+  //  https://www.loc.gov/apis/
   //  https://libraryofcongress.github.io/data-exploration/requests.html
   //  https://www.loc.gov/about/general-information/#year-at-a-glance
   const search_url = 'https://www.loc.gov/photos/?sp=' + page + '&c=' + page_size + '&q=' + keyword + '&sb=' + sortby + '&fo=json';
