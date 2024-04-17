@@ -7,6 +7,7 @@ import {
   LonLat,
   Popup,
   utils,
+  control,
   //Entity,
   //Vector,
   //math,
@@ -22,7 +23,7 @@ import {
 
 */
 
-// FIXME
+/*
 let sat = new XYZ("sat", {
 
   subdomains:     ['t0', 't1', 't2', 't3'],
@@ -49,7 +50,9 @@ let sat = new XYZ("sat", {
   nightTextureCoefficient: 2.7
 
 });
+*/
 
+/*
 document.getElementById("btnOSM").onclick = function () {
   osm.setVisibility(true);
 };
@@ -57,6 +60,7 @@ document.getElementById("btnOSM").onclick = function () {
 document.getElementById("btnMQS").onclick = function () {
   sat.setVisibility(true);
 };
+*/
 
 
 let app = {
@@ -88,11 +92,12 @@ let app = {
 
 window.app = app;
 
-const osm = new og.layer.XYZ("OpenStreetMap", {
-    isBaseLayer: true,
-    url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    visibility: true,
-    attribution: '© OpenStreetMap contributors, ODbL'
+const osm = new XYZ("OpenStreetMap", {
+  isBaseLayer: true,
+  url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  visibility: true,
+  attribution: 'Data @ OpenStreetMap contributors, ODbL',
+  iconSrc: "https://tile.openstreetmap.org/8/138/95.png",
 });
 
 // setup wikibase library
@@ -259,11 +264,33 @@ async function init(){
 
 	});
 
-  const opentopo = new og.layer.XYZ("OpenTopo", {
+  const opentopo = new XYZ("OpenTopo", {
+    isBaseLayer: true,
+    url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+    visibility: false,
+    attribution: 'Data @ OpenStreetMap contributors, ODbL',
+    iconSrc: "https://c.tile.opentopomap.org/4/9/5.png",
+  });
+
+  const sat = new XYZ("sat", {
+      iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
+      subdomains: ['t0', 't1', 't2', 't3'],
+      url: "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
       isBaseLayer: true,
-      url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
-      visibility: false,
-      attribution: '© OpenStreetMap contributors, ODbL'
+      maxNativeZoom: 19,
+      defaultTextures: [{ color: "#001522" }, { color: "#E4E6F3" }],
+      attribution: `<div style="transform: scale(0.8); margin-top:-2px;"><a href="http://www.bing.com" target="_blank"><img style="position: relative; top: 2px;" title="Bing Imagery" src="https://sandbox.openglobus.org/bing_maps_credit.png"></a> © 2021 Microsoft Corporation</div>`,
+      urlRewrite: function (s, u) {
+          return utils.stringTemplate(u, {
+              's': this._getSubdomain(),
+              'quad': toQuadKey(s.tileX, s.tileY, s.tileZoom)
+          });
+      },
+      specular: [0.00063, 0.00055, 0.00032],
+      ambient: "rgb(90,90,90)",
+      diffuse: "rgb(350,350,350)",
+      shininess: 20,
+      nightTextureCoefficient: 2.7
   });
 
   const sat1 = new og.layer.XYZ("Satellite (Esri)", {
@@ -311,13 +338,11 @@ async function init(){
     fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
     autoActivated: true,
     viewExtent: app.view_extent,
-    layers: [ osm, app.markerLayer, opentopo, sat1, sat2, sat3, mapbox_light, mapbox_dark ]
+    layers: [ osm, app.markerLayer, opentopo, sat, /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
 
   });
 
-  // FIXME: not showing up
-  // working demo: https://www.openglobus.org/examples/layerSwitcher/layerSwitcher.html
-  app.globus.planet.addControl(new og.control.LayerSwitcher());
+  app.globus.planet.addControl(new control.LayerSwitcher());
 
 	let myPopup = new og.Popup({
 		planet: app.globus.planet,
@@ -791,6 +816,23 @@ async function renderMultipleMarkers( markers, color ){
   });
 
 }
+
+function toQuadKey(x, y, z) {
+
+    var index = '';
+
+    for (let i = z; i > 0; i--) {
+        var b = 0;
+        var mask = 1 << (i - 1);
+        if ((x & mask) !== 0) b++;
+        if ((y & mask) !== 0) b += 2;
+        index += b.toString();
+    }
+
+    return index;
+}
+
+
 
 document.toggleFullscreen = function() {
 

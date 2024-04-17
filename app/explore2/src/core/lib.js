@@ -1431,33 +1431,45 @@ function setupDatasourceSet(){
 
   if ( !valid( explore.datasource_set_selection ) || explore?.datasource_set_selection === 'none' ){ // no "datasource set" parameter set
 
-    (async () => { // check browser storage for "datasource set"
+    if ( valid( explore.datasource_selection ) ){ // no "datasource set", but "datasources" requested: dont use any datasource-set.
 
-      let datasource_set = await explore.db.get( 'datasource_set' );
+      explore.datasource_set            = '';
+      explore.datasource_set_selection  = '';
 
-      if ( ! valid( datasource_set ) || datasource_set === 'null' || datasource_set === null ){ // no browser storage datasource-set found
+      return 0;
 
-      }
-      else { // use browser storage datasource-set
+    }
+    else {
 
-        if ( datasource_sets.includes( datasource_set ) ){
+      (async () => { // check browser storage for "datasource set"
 
-          explore.datasource_set            = datasource_set;
-          explore.datasource_set_selection  = datasource_set;
+        let datasource_set = await explore.db.get( 'datasource_set' );
 
-        }
-        else { // unkown "datasource set" param
-
-          explore.datasource_set            = '';
-          explore.datasource_set_selection  = '';
+        if ( ! valid( datasource_set ) || datasource_set === 'null' || datasource_set === null ){ // no browser storage datasource-set found
 
         }
+        else { // use browser storage datasource-set
 
-        setActiveDatasourceSet();
+          if ( datasource_sets.includes( datasource_set ) ){
 
-      }
+            explore.datasource_set            = datasource_set;
+            explore.datasource_set_selection  = datasource_set;
 
-    })();
+          }
+          else { // unkown "datasource set" param
+
+            explore.datasource_set            = '';
+            explore.datasource_set_selection  = '';
+
+          }
+
+          setActiveDatasourceSet();
+
+        }
+
+      })();
+
+    }
 
   }
   else { // valid datasource-set param
@@ -1669,9 +1681,13 @@ function renderResultSummary(){
   $(".pieTip").remove();
   $("#pieChart").empty();
 
-  sortObjectsArray( search_results, value );
+  if ( search_results.length > 0 ){
 
-  $("#pieChart").drawPieChart( search_results );
+    sortObjectsArray( search_results, 'value' );
+
+    $("#pieChart").drawPieChart( search_results );
+
+  }
 
 }
 
@@ -4581,7 +4597,7 @@ async function setDefaultDisplaySettings( cover, type ) {
   explore.topic_cursor = 'n1-1';
 
   $('.pieTip').remove();
-  $('.#pieChart').empty();
+  $('#pieChart').empty();
 
 	$( '#results-paging' ).css( 'display', 'none' );
 	$( '#results-label' ).css( 'display', 'inline-block' );
