@@ -1,25 +1,4 @@
-const app = {
-
-  language:             getParameterByName( 'l' )           || 'en',
-
-  url:                  getParameterByName( 'u' )           || '',
-  current_url:          getParameterByName( 'u' )           || '', // used for page reloads
-
-  voice_code:           getParameterByName( 'voice_code' )  || '',
-  voice_name:           getParameterByName( 'voice_name' )  || '',
-  voice_rate:           getParameterByName( 'voice_rate' )  || 1.00,
-  voice_pitch:          getParameterByName( 'voice_pitch' ) || 1.00,
-
-  voices:               [],
-
-  timerID:              '',
-  scroll_update_time:   7000,
-  auto_scroll_enabled:  false,
-
-  utterance:            new SpeechSynthesisUtterance(),
-
-  selectedVoice:        '',
-}
+let app = {};
 
 let parentref = '';
 
@@ -59,8 +38,6 @@ let canvas_width = 1000;
 let pageHeight = -1;
 let __VIEWING_PAGE = __CURRENT_PAGE;
 
-const lang = valid( app.voice_code )? app.voice_code : app.language;
-
 async function init(){
 
   $("#pdf-contents").show();
@@ -75,7 +52,7 @@ async function init(){
 
     s.then( async ( voices ) => {
 
-      await populateVoiceList( lang );
+      await populateVoiceList( app.lang );
 
       app.selectedVoice = setVoice();
 
@@ -110,7 +87,7 @@ function setSpeech() {
     )
 }
 
-function populateVoiceList( lang ) {
+function populateVoiceList( l ) {
 
   new Promise((resolve) => {
 
@@ -124,7 +101,7 @@ function populateVoiceList( lang ) {
 
     for (const element of app.voices){
 
-      if ( element.lang.substring(0, voice_code_length ) === lang ){
+      if ( element.lang.substring(0, voice_code_length ) === l ){
         
         const option        = document.createElement("option");
 
@@ -701,7 +678,56 @@ $( window, document ).bind('unload', function(event) {
 
 });
 
-$( document ).ready(function() {
+$( document ).ready( async function() {
+
+  // main app config
+  app = {
+
+    language:             getParameterByName( 'l' )           || 'en',
+
+    url:                  getParameterByName( 'u' )           || '',
+    current_url:          getParameterByName( 'u' )           || '', // used for page reloads
+
+    voices:               [],
+
+    timerID:              '',
+    scroll_update_time:   7000,
+    auto_scroll_enabled:  false,
+
+    utterance:            new SpeechSynthesisUtterance(),
+
+    selectedVoice:        '',
+  }
+
+  // first try get the voice-settings from web storage
+  app.db = ImmortalDB.ImmortalDB;
+
+  app.voice_code = await app.db.get('voice_code_selected');
+  app.voice_code = ( app.voice_code === null || app.voice_code === undefined ) ? getParameterByName( 'voice_code' ) : app.voice_code;
+
+  app.voice_name = await app.db.get('voice_name_selected');
+  app.voice_name = ( app.voice_name === null || app.voice_name === undefined ) ? getParameterByName( 'voice_name' ) : app.voice_name;
+
+  app.voice_rate = await app.db.get('voice_rate');
+  app.voice_rate = ( app.voice_rate === null || app.voice_rate === undefined ) ? getParameterByName( 'voice_rate' ) : app.voice_rate;
+
+  app.voice_pitch = await app.db.get('voice_pitch');
+  app.voice_pitch = ( app.voice_pitch === null || app.voice_pitch === undefined ) ? getParameterByName( 'voice_pitch' ) : app.voice_pitch;
+
+  if ( !valid( app.voice_rate ) ){
+
+    app.voice_rate = 1.00;
+
+  }
+
+  if ( !valid( app.voice_pitch ) ){
+
+    app.voice_pitch = 1.00;
+
+  }
+
+  // final language
+  app.lang = valid( app.voice_code )? app.voice_code : app.language;
 
   init();
 
