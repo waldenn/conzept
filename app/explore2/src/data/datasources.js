@@ -404,7 +404,7 @@ const datasources = {
     color:                  '#808080',
     display_url:            '',
     code_autocomplete:      'autocompleteLoC( r, dataset )',
-    code_data_collect:      'my_promises.push( processResultsRijksmuseum( topicResults, struct, index ) );',
+    code_data_collect:      'my_promises.push( processResultsLoC( topicResults, struct, index ) );',
     code_resolve:           'resolveLoC( result, renderObject )',
     code_render_mark:       'renderMarkLoC( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
@@ -1203,7 +1203,7 @@ const datasources = {
 const datasource_set_map = {
   none:       [''],
   reference:  ['wikipedia', 'wikidata'],
-  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'smithsonian3D'],
+  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'loc', 'smithsonian3D'],
   science:    [ /*'archive_scholar',*/ 'arxiv', 'openalex', 'gbif', /*'ror'*/ ],
   business:   ['gleif', 'eu', 'gdelt', 'occrp'],
 }

@@ -2,13 +2,11 @@
 
 function autocompleteLoC( results, dataset ){
 
-  console.log( results );
-
   const source = 'loc';
 
   let list = [];
 
-  if ( valid( results?.results > 0 ) ){
+  if ( valid( results?.results ) ){
 
     $.each( results.results, function( i, item ){
 
@@ -26,7 +24,7 @@ function processResultsLoC( topicResults, struct, index ){
 
   const source = 'loc';
 
-  console.log( 'processLoCResults: ', topicResults );
+  //console.log( 'processLoCResults: ', topicResults );
 
   return new Promise(( resolve, reject ) => {
 
@@ -88,7 +86,7 @@ function processResultsLoC( topicResults, struct, index ){
 
       $.each( topicResults.results, function( i, obj ){
 
-        console.log( obj );
+        //console.log( obj );
 
         // URL vars
         let gid           = valid( obj.id )? obj.id : '';
@@ -97,7 +95,7 @@ function processResultsLoC( topicResults, struct, index ){
 
         let title         = valid( obj.title )? obj.title : '---';
 
-        let description   = valid( obj?.description[0] )? obj.description[0] : '';
+        let description   = valid( obj?.description )? obj.description[0] : '';
 
         if ( !valid( description ) ){
 
@@ -107,6 +105,12 @@ function processResultsLoC( topicResults, struct, index ){
 
         let maintag       = '';
         let subtag        = '';
+
+        // TODO:
+        //  - check "obj.online_format" array
+        //    - image --> IIIF viewable image
+        //    - ...
+        //  - set displayable URL
 
         let author        = '';
 

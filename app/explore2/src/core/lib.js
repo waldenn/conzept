@@ -1680,8 +1680,7 @@ function renderResultSummary(){
 
   });
 
-  console.log( search_results.length, search_results );
-
+  //console.log( search_results.length, search_results );
 
   $(".pieTip").remove();
   $("#pieChart").empty();
@@ -1698,6 +1697,7 @@ function renderResultSummary(){
 
   }
 
+  $('#detail-result-summary').show();
   $("#pieChart").drawPieChart( search_results );
 
 }
@@ -4607,6 +4607,8 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   explore.topic_cursor = 'n1-1';
 
+  // results summary stats
+  $('#detail-result-summary').hide();
   $('.pieTip').remove();
   $('#pieChart').empty();
 
