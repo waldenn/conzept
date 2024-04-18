@@ -15406,6 +15406,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [60],
 },
 
+'infocuria' : {
+  create_condition: true,
+  title: 'InfoCuria - EU Court of Justice case-law search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://curia.europa.eu/juris/documents.jsf?nat=or&mat=or&pcs=Oor&jur=C%2CT%2CF&for=&jge=&dates=&language=${explore.language}&pro=&cit=none%252CC%252CCJ%252CR%252C2008E%252C%252C%252C%252C%252C%252C%252C%252C%252C%252Ctrue%252Cfalse%252Cfalse&oqp=&td=%3BALL&avg=&page=1&text=${title_quoted}&lg=&cid=3427967',
+  icon: 'fa-solid fa-gavel',
+  text: 'EU case-law',
+  section: ['library-legal'],
+  rank: [62],
+},
+
 'anylaw' : {
   create_condition: 'checkLC( "en", "US" )',
   title: 'AnyLaw',

@@ -1,10 +1,12 @@
+body {
+  background: #fbfaf9;
+  margin-bottom: 5rem;
+  font-size:  18px;
+}
+
 h1 {
   font-size: 2.2rem !important;
   margin-left: 0.5em !important;
-}
-
-body {
-  background: #fbfaf9;
 }
 
 a.orcid {
