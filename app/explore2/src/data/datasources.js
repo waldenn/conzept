@@ -44,7 +44,7 @@ const datasources = {
     url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=0|14&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
     // SORTING: 
     icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
-    color:                  '#c8ccd16b',
+    color:                  '#00B1BB', // '#c8ccd16b',
     icon_invert:            false,
     display_url:            'https://${explore.host}${explore.base}/app/wikipedia/?q=${qid}&lang=${language}', // TODO
     code_data_collect:      'my_promises.push( processResultsWikipedia( topicResults, struct, index ) );', // FIXME: invert control (see next line)
@@ -401,7 +401,7 @@ const datasources = {
     url:                    '${datasources.loc.endpoint}?sp=${ explore.page }&c=${ datasources.loc.pagesize }&q=${ term }&sb=${ valid( sortby )? sortby : "" }&fo=json', 
     icon:                   '<img class="datasource-icon" alt="US Library of Congress datasource" src="/assets/icons/loc.svg" alt="US Library of Congress logo">',
     icon_invert:            true,
-    color:                  '#808080',
+    color:                  '#F05129',
     display_url:            '',
     code_autocomplete:      'autocompleteLoC( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsLoC( topicResults, struct, index ) );',
@@ -648,6 +648,64 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  'doaj': {
+    active:                 false,
+    name:                   'DOAJ',
+    description:            'Directory of Open Access Journals - BETA',
+    tag:                    'science',
+    qid:                    'Q1227538',
+    protocol:               'rest',
+    endpoint:               'https://doaj.org/api/search/journals/', // see: https://doaj.org/api/v3/docs#!/Search/get_api_search_journals_search_query
+    format:                 'json',
+    connect:                'json',
+    pagesize:               5,
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : '',
+                              'date-asc'        : '',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : 'issn:desc',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : 'title:desc',
+                              'title-asc'       : 'title:asc',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'entity' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.doaj.endpoint}/${term}?page=${ explore.page }&pageSize=${ datasources.doaj.pagesize }&${ valid( sortby )? "sort=" + sortby : "" }',
+    icon:                   '<img class="datasource-icon" alt="Directory of Open Access Journals" src="/assets/icons/doaj.svg" alt="Directory of Open Access Journals">',
+    icon_invert:            true,
+    color:                  '#982e0a',
+    display_url:            '',
+    code_autocomplete:      'autocompleteDOAJ( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsDOAJ( topicResults, struct, index ) );',
+    code_resolve:           'resolveDOAJ( result, renderObject )',
+    code_render_mark:       'renderMarkDOAJ( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.doaj.endpoint}?page=1&pageSize=${ datasources.doaj.pagesize }&${ valid( sortby )? "sort=" + sortby : "" }',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     5,
+  },
+
+  /*
   'archive_scholar': {
     active:                 false,
     name:                   'Internet Archive Scholar',
@@ -704,6 +762,7 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
+  */
 
   'gbif': {
     active:                 false,
@@ -761,7 +820,6 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
-
 
   'gleif': {
     active:                 false,
@@ -1203,8 +1261,8 @@ const datasources = {
 const datasource_set_map = {
   none:       [''],
   reference:  ['wikipedia', 'wikidata'],
-  culture:    ['commons', 'archive', 'europeana', 'rijksmuseum', 'loc', 'smithsonian3D'],
-  science:    [ /*'archive_scholar',*/ 'arxiv', 'openalex', 'gbif', /*'ror'*/ ],
+  culture:    ['commons', 'archive', 'europeana', 'loc', 'rijksmuseum', 'smithsonian3D'],
+  science:    [ 'arxiv', 'openalex', 'doaj', 'gbif', /*'archive_scholar',*/ /*'ror'*/ ],
   business:   ['gleif', 'eu', 'gdelt', 'occrp'],
 }
 

@@ -2141,6 +2141,7 @@ function setupSearch() {
     // FIXME
     $('.searchbox').autocomplete('close');
     $('#srsearch').blur();
+    $('#detail-result-summary').hide();
 
     explore.searchmode = 'string';
 
@@ -2400,7 +2401,7 @@ function setupSearch() {
 
     e.preventDefault();
 
-    console.log('filter changed to: ', $('#filterby').val() );
+    //console.log('filter changed to: ', $('#filterby').val() );
 
     if ( valid_filter_options.includes( $('#filterby').val() ) ){
 
@@ -10170,6 +10171,7 @@ function refreshArticles(){
 
   }
 
+  $('#detail-result-summary').hide();
 	$('#results').empty();
   $('#total-results').empty();
   $('#scroll-end').hide();

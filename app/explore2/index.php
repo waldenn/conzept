@@ -178,16 +178,17 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
+  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.466"></script-->
   <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/loc/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/gdelt/index.js?v0.51.466"></script>
   <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script-->
@@ -512,7 +513,8 @@ $settings_html = '
                   <br/><br/>
 
                   <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
-                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a>
+                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a> &nbsp;
+                  <a class="waves-effect waves-light btn" id="stop-voice-button" tabindex="0" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeaking()"><i class="fa-solid fa-stop fa-2x"></i></a>
 
                 </div>
 
@@ -672,7 +674,7 @@ $settings_html = '
 
               <span id="total-results"></span>
 
-              <details id="detail-result-summary" class="special-detail" style="">
+              <details id="detail-result-summary" class="special-detail" style="display:none;">
                 <summary>
                   <i title="result summary" class="fa-solid fa-chart-pie"></i> <span id="app-menu-result-summary"></span>
                   <!--a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#result_summary" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a-->
