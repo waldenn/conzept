@@ -4973,6 +4973,20 @@ conzept_fields = {
   rank: 160,
 },
 
+'issn_custom_link' : {
+  create_condition: 'valid( item.issn_link )',
+  title: 'OpenAlex journal ISSN information',
+  type: 'link',
+  url: '${ item.issn_link }',
+  mv: false,
+  icon: 'fa-regular fa-newspaper',
+  text: 'OpenAlex ISSN',
+  section: ['science-search-tools','main'],
+  rank: [55,8500],
+  headline_create: 'valid( item.issn_link )',
+  headline_rank: 175,
+},
+
 'worldcat_identity' : {
   title: 'WorldCat identity',
   prop: '7859',

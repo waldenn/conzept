@@ -699,7 +699,7 @@ const datasources = {
     code_render_mark:       'renderMarkDOAJ( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.doaj.endpoint}?page=1&pageSize=${ datasources.doaj.pagesize }&${ valid( sortby )? "sort=" + sortby : "" }',
+    autocomplete_url:       '${datasources.doaj.endpoint}/${term}?page=1&pageSize=${ datasources.doaj.pagesize }&${ valid( sortby )? "sort=" + sortby : "" }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
