@@ -2408,7 +2408,7 @@ h1 {
 }
 
 #search-options select {
-  font-size: smaller;
+  font-size: larger;
 }
 
 #search-in, #sortby, #filterby,

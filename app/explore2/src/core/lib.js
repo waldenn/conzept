@@ -7049,6 +7049,15 @@ async function renderType( args ){
     explore.firstAction = false;
 
   }
+	else if ( type === 'presentation' ){
+
+    if ( valid( explore.qid ) ){
+
+      makePresentation( explore.qid );
+
+    }
+
+  }
 
   // store URL-query title for future uses
   explore.q_prev = explore.q;

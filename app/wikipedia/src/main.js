@@ -244,7 +244,7 @@ $( document ).ready( function() {
     }
 
 		// allow for embedded-apps to trigger the Wikipedia-app with only a title (and no Qid), then check for a matching Qid.
-		if ( current_pane === 'ps2' && valid( explore.title )  ){ // only do this for second-content frame calls
+		if ( !valid( explore.qid ) && valid( explore.title )  ){
 
 			let qid_ = await checkForQid();
 
@@ -1180,6 +1180,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             '<span id="printPage"><button onclick="window.print()" class="dropbtn" tabIndex="0" title="print page" aria-label="print page"><span class="icon"><i class="fa-solid fa-print"></i></span></button></span> ' +
 
             ai_toggle_button + // AI task UI toggle
+
+            presentation_button +
 
             '</span>' +
 
