@@ -7184,6 +7184,8 @@ async function handleClick( args ) {
   let languages     = args.languages;
   let datasource    = valid( args.source )? args.source : '';
 
+  explore.singleuse = valid( args.singleuse )? true : '';
+
   let current_pane  = '';
   let target_pane   = '';
 

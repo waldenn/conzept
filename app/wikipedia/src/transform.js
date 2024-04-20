@@ -1094,6 +1094,24 @@ function goExplore( newtab ){
 
 }
 
+function gotoPresentation( newtab ){
+
+  let url = `https://${explore.host}${explore.base}/explore?l=${language}&t=presentation&singleuse=true&i=${explore.qid}`;
+
+  if ( newtab ){
+    openInNewTab( url );
+  }
+  else if ( explore.embedded ){
+    location.href = url;
+  }
+  else {
+
+    parentref.postMessage({ event_id: 'handleClick', data: { type: 'presentation', title: title, hash: hash, language: language, qid: explore.qid, singleuse: true } }, '*' );
+
+  }
+
+}
+
 function gotoChat( newtab, t ){ // AI chat
 
   let tutor = explore.tutor; 

@@ -1126,6 +1126,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       const ai_toggle_button = ( current_pane !== 'ps2' )? '<span id="showAI"><button onclick="showAI()" onauxclick="showAI()" class="dropbtn" tabIndex="0" title="show AI tasks" aria-label="show AI tasks"><span class="icon"><i class="fa-solid fa-wand-sparkles"></i></span></button>' : '';
 
+      const presentation_button = valid( explore.qid )? '<span id="gotoPresentation"><button onclick="gotoPresentation()" onauxclick="gotoPresentation( true )" class="dropbtn" tabIndex="0" title="topic presentation" aria-label="topic presenation"><span class="icon"><i class="fa-solid fa-chalkboard-user"></i></span></button></span> ' : '';
+
       const language_variants_toggle_button = ( explore.language === 'zh' && current_pane !== 'ps2' )? '<span id="showLanguageVariants"><button onclick="showLanguageVariants()" onauxclick="showLanguageVariants()" class="dropbtn" tabIndex="0" title="switch language variant" aria-label="switch language variant"><span class="icon"><i class="fa-solid fa-language"></i></span></button>' : '';
 
       let class_bookmarked = '';

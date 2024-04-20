@@ -81,10 +81,11 @@ let app = {
 
 	view_extent:  '',
 
+  // see: https://sandbox.openglobus.org/examples/fonts
   label_size:   13,
   //label_offset: [10,30],
-  //outline:      0.77,
-  //outline_color:'rgba(255,255,255,.1)',
+  outline:      0.77,
+  outline_color:'rgba(255,255,255,.1)',
 
   colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
 

@@ -2407,6 +2407,10 @@ h1 {
   background-color: #fbfaf9;
 }
 
+#search-options select {
+  font-size: smaller;
+}
+
 #search-in, #sortby, #filterby,
 #year-range-start, #year-range-end {
   width: fit-content;
