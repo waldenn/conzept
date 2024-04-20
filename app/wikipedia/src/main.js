@@ -1124,7 +1124,7 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
       const commons_page_button = valid( explore.qid )? '<span id="gotoCommons"><button onclick="gotoCommons()" onauxclick="gotoCommons( true )" class="dropbtn" tabIndex="0" title="Wikimedia Commons images" aria-label="Wikimedia Commons images"><span class="icon"><i class="fa-regular fa-images"></i></span></button></span> ' : '';
 
-      const ai_toggle_button = ( current_pane !== 'ps2' )? '<span id="showAI"><button onclick="showAI()" onauxclick="showAI()" class="dropbtn" tabIndex="0" title="show AI tasks" aria-label="show AI tasks"><span class="icon"><i class="fa-solid fa-wand-sparkles"></i></span></button>' : '';
+      const ai_toggle_button = ( current_pane !== 'ps2' )? '<span id="showAI"><button onclick="showAI()" onauxclick="showAI()" class="dropbtn" tabIndex="0" title="show AI tasks" aria-label="show AI tasks"><span class="icon"><i class="fa-solid fa-wand-sparkles"></i></span></button></span>' : '';
 
       const presentation_button = valid( explore.qid )? '<span id="gotoPresentation"><button onclick="gotoPresentation()" onauxclick="gotoPresentation( true )" class="dropbtn" tabIndex="0" title="topic presentation" aria-label="topic presenation"><span class="icon"><i class="fa-solid fa-chalkboard-user"></i></span></button></span> ' : '';
 
@@ -1181,10 +1181,6 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
 
             ai_toggle_button + // AI task UI toggle
 
-            presentation_button +
-
-            '</span>' +
-
             // AI task actions
             '<div id="ai-tasks" style="display:none;">' + 
 
@@ -1197,6 +1193,8 @@ function renderWikipediaHTML( title, lang, hash_, doc, type, cat_members, raw_ht
             '</div>' +
 
             //summary_page_button +
+
+            presentation_button +
 
             //talk_page_button +
             commons_page_button +
