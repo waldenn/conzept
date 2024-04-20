@@ -13903,17 +13903,19 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'topotijdreis' : {
-  create_condition: 'valid( item.lat ) && valid( item.iso2 )',
-  render_condition: '"${item.iso2}" === "NL"',
+  create_condition: 'valid( item.lat ) && valid( item.country )',
+  render_condition: '"${item.country}" === "Q55"', // Netherlands
   title: 'TopoTijdReis historic maps',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://www.topotijdreis.nl/kaart/1815/@120457,456068,9',
+  url: 'https://www.topotijdreis.nl/kaart/1815/@${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 0 ) },${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 1 ) },9',
   icon: 'fa-regular fa-map',
-  text: 'OMO',
-  section: ['library-history','location-geography'],
-  rank: [20,305],
+  text: 'TopoTijdReis',
+  section: ['library-history','location-geography','main'],
+  rank: [20,305,6355],
+  headline_create: 'valid( item.topotijdreis )',
+  headline_rank: 125,
 },
 
 'twitter_search' : {

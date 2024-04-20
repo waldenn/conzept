@@ -2047,15 +2047,18 @@ function setThumbnail( item ){
 
 }
 
-function convert_coordinates_WGS84_to_EPSG_28992( lat, lon ){
+function convert_coordinates_WGS84_to_EPSG_28992( lat, lon, pos ){
 
-  proj4.defs("EPSG:28992","+proj=sterea +lat_0=52.1561605555556 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.4171,50.3319,465.5524,1.9342,-1.6677,9.1019,4.0725 +units=m +no_defs +type=crs");
+  // see: https://github.com/proj4js/proj4js
+  proj4.defs('EPSG:28992','+proj=sterea +lat_0=52.1561605555556 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.4171,50.3319,465.5524,1.9342,-1.6677,9.1019,4.0725 +units=m +no_defs +type=crs');
 
-  var r = proj4("WGS84", "EPSG:28992", [ lon, lat ]);
+  const r = proj4( 'WGS84', 'EPSG:28992', [ parseFloat( lon ), parseFloat( lat ) ] );
 
-  console.log( r );
+  if ( valid( r ) ){
 
-  return [ r[0], r[y] ];
+    return r[ pos ];
+
+  }
 
 }
 
