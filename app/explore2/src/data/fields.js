@@ -13895,11 +13895,25 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'url',
   mv: false,
-  url: 'https://www.oldmapsonline.org/en/${title_}', // TODO: research this weird search-site better
+  url: 'https://www.oldmapsonline.org/en/${title_}', // TODO: research this weird search-site
   icon: 'fa-regular fa-map',
   text: 'OMO',
   section: ['library-history','location-geography'],
   rank: [299,310],
+},
+
+'topotijdreis' : {
+  create_condition: 'valid( item.lat ) && valid( item.iso2 )',
+  render_condition: '"${item.iso2}" === "NL"',
+  title: 'TopoTijdReis historic maps',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.topotijdreis.nl/kaart/1815/@120457,456068,9',
+  icon: 'fa-regular fa-map',
+  text: 'OMO',
+  section: ['library-history','location-geography'],
+  rank: [20,305],
 },
 
 'twitter_search' : {

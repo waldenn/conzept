@@ -130,9 +130,11 @@ $main_script = '
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
   <script src="../app/explore2/node_modules/web-share-wrapper/dist/web-share-wrapper.min.js" async></script>
-  <script src="../app/explore2/libs/s-express-beautify.js" async></script>
+  <script src="../app/explore2/node_modules/proj4/dist/proj4.js" async></script>
   <script src="../app/explore2/node_modules/marked/marked.min.js" async></script>
+
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
+  <script src="../app/explore2/libs/s-express-beautify.js" async></script> <!-- no dist-bundle in the NPM -->
 
   <!--script src="../app/explore2/dist/webcomponent/chat.js?v0.51.466" type="module"></script-->
   <!--chat-ai data-message="bla bla"></chat-ai-->

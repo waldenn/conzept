@@ -577,7 +577,7 @@ const datasources = {
     url:                    '${datasources.openalex.endpoint}?search=${term}&sort=${ valid( sortby )? sortby : "relevance_score:desc" }&filter=language:${explore.language},language:en&page=${explore.page}&per-page=${datasources.openalex.pagesize}',
     icon:                   '<img class="datasource-icon" alt="OpenAlex logo" src="/assets/icons/openalex.svg" alt="OpenAlex logo">',
     icon_invert:            true,
-    color:                  '#e9f1fb',
+    color:                  '#cbdff7',
     display_url:            '${url}',
     code_autocomplete:      'autocompleteOpenAlex( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsOpenAlex( topicResults, struct, index ) );',
