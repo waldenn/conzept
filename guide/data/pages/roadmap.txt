@@ -52,17 +52,20 @@
 
   * Implement async wikidata-enriching (partly done)
 
-  * More control over how datasources are used, with toggle-switches for:
+  * Indepent active/autocomplete/search toggles per DS (eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)
       * datasource autocomplete (boolean toggle)
       * datasource searching (boolean toggle)
 
+  * Improve existing datasources (use more datasource meta-data, better view-pages, etc.)
+
   * Candidate new search-in datasource-sets:
+    * "web search" datasource
     * art / museum archives
     * youtube (requires approval)
     * ...
 
-  * Candidate new search-in datasource-sets:
+  * Add a datasources search-filter (needed when the list gets too large)
 
 ===== presentation system =====
 

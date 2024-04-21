@@ -180,6 +180,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/openlibrary/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/arxiv/index.js?vCONZEPT_VERSION"></script>
   <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script-->

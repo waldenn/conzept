@@ -248,6 +248,64 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
+  'openlibrary': {
+    active:                 false,
+    name:                   'Open Library',
+    set:                    'culture',
+    description:            'books library',
+    tag:                    'arts-culture',
+    qid:                    'Q1201876',
+    protocol:               'rest',
+    endpoint:               'https://openlibrary.org/search.json',
+    format:                 'json',
+    connect:                'json',
+    pagesize:               5,
+    sort_map:               { // see: https://openlibrary.org/dev/docs/api/search
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : 'new',
+                              'date-asc'        : 'old',
+                              'update-desc'     : 'new',
+                              'update-asc'      : 'old',
+                              'random'          : 'random',
+                              'citations-desc'  : 'rating',
+                              'citations-asc'   : 'rating%20desc',
+                              'title-desc'      : '',
+                              'title-asc'       : 'title',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'text' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.openlibrary.endpoint}?q=${term}&lang=${explore.language}&page=${explore.page}&limit=${datasources.openlibrary.pagesize}&sort=${ valid( sortby )? sortby : "" }',
+    icon:                   '<img class="datasource-icon" alt="Open Library datasource" src="/assets/icons/openlibrary.svg" alt="Open Library logo">',
+    icon_invert:            true,
+    color:                  '#e1dcc5',
+    display_url:            '',
+    code_autocomplete:      'autocompleteOpenLibrary( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsOpenLibrary( topicResults, struct, index ) );',
+    code_resolve:           'resolveOpenLibrary( result, renderObject )',
+    code_render_mark:       'renderMarkOpenLibrary( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.openlibrary.endpoint}?q=${term}&lang=${explore.language}&page=1&limit=${datasources.openlibrary.autocomplete_limit}&sort=${ valid( sortby )? sortby : "" }',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     5,
+  },
+
   'europeana': {
     active:                 false,
     name:                   'Europeana',
@@ -366,7 +424,7 @@ const datasources = {
 
   'loc': {
     active:                 false,
-    name:                   'US Library of Congress',
+    name:                   'Library of Congress',
     set:                    'culture',
     description:            '🇺🇸 national library - BETA',
     tag:                    'arts-culture',
@@ -661,7 +719,7 @@ const datasources = {
 
   'doaj': {
     active:                 false,
-    name:                   'DOAJ',
+    name:                   'DOAJ journals',
     set:                    'science',
     description:            'Directory of Open Access Journals - BETA',
     tag:                    'science',
@@ -779,7 +837,7 @@ const datasources = {
 
   'gbif': {
     active:                 false,
-    name:                   'GBIF',
+    name:                   'GBIF species',
     set:                    'science',
     description:            'species observations - BETA',
     tag:                    'science',
@@ -837,7 +895,7 @@ const datasources = {
 
   'ror': {
     active:                 false,
-    name:                   'ROR',
+    name:                   'ROR research organizations',
     set:                    '', // science (too many results returned currently, only set once the page-size-parameter is available)
     description:            'research organizations',
     tag:                    'organization',
@@ -895,11 +953,9 @@ const datasources = {
     autocomplete_limit:     20,
   },
 
-
-
   'gleif': {
     active:                 false,
-    name:                   'GLEIF',
+    name:                   'GLEIF legal entities',
     set:                    'business',
     description:            'legal entities',
     tag:                    'business',
@@ -957,7 +1013,7 @@ const datasources = {
 
   'eu': {
     active:                 false,
-    name:                   'EU',
+    name:                   'European Union data',
     set:                    'business',
     tag:                    'government',
     description:            '🇪🇺 European Union datasets - BETA',
@@ -1015,7 +1071,7 @@ const datasources = {
 
   'gdelt': {
     active:                 false,
-    name:                   'GDELT',
+    name:                   'GDELT news',
     set:                    'business',
     description:            'news reports - BETA',
     tag:                    'work',
@@ -1074,7 +1130,7 @@ const datasources = {
 
   'occrp': {
     active:                 false,
-    name:                   'OCCRP Aleph',
+    name:                   'OCCRP entities',
     set:                    'business',
     description:            'investigative journalism entities - BETA',
     tag:                    'science',
