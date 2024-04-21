@@ -28,7 +28,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   }
   else {
 
-    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} topic"><span class="icon ${ valid( datasources[ source ].icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
+    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} item"><span class="icon ${ valid( datasources[ source ].icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
 
   }
 

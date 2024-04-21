@@ -41,7 +41,7 @@ function processResultsOpenLibrary( topicResults, struct, index ){
     }
     else {
 
-      datasources[ source ].total = topicResults.response.num_found;
+      datasources[ source ].total = topicResults.num_found;
 
       // standard result structure (modelled after the Wikipedia API)
       let result = {
@@ -84,7 +84,7 @@ function processResultsOpenLibrary( topicResults, struct, index ){
 
 				const title				= valid( obj.title )? obj.title : '';
 
-        const url         = `https://openlibrary.org${qid}`; //eval(`\`${ datasources[ source ].display_url  }\``);
+        const url         = `https://openlibrary.org${obj.key}`; //eval(`\`${ datasources[ source ].display_url  }\``);
 
         const start_date  = valid( obj.first_publish_year )? obj.first_publish_year : '';
 
@@ -101,9 +101,9 @@ function processResultsOpenLibrary( topicResults, struct, index ){
 					$.each( obj.author_name, function ( j, author ) {
 
 						let author_name = author;
-						let author_url  = 'https://openlibrary.org/authors/' + v.author_key[j];
+						let author_url  = 'https://openlibrary.org/authors/' + obj.author_key[j];
 
-						creators.push( '<a href="javascript:void(0)" title="author" aria-label="author" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author_name + '</a>' );
+						creators.push( '<a href="javascript:void(0)" title="author" aria-label="author" role="button"' + setOnClick( Object.assign({}, {}, { type: 'link', title: author_name, url: author_url, qid: '', language : explore.language } ) ) + '">' + author_name + '</a>' );
 
 					});
 

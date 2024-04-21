@@ -217,6 +217,10 @@ var conzept_tags = {
         text : "written work",
         icon : ["fa-solid fa-book"],
       },
+      "book" : {
+        text : "book",
+        icon : ["fa-solid fa-book"],
+      },
       "news-article" : {
         text : "news article",
         icon : ["fa-regular fa-newspaper"],
@@ -227,6 +231,10 @@ var conzept_tags = {
       },
       "periodical" : {
         text : "periodical publication",
+        icon : ["fa-regular fa-newspaper"],
+      },
+      "newspaper" : {
+        text : "newspaper",
         icon : ["fa-regular fa-newspaper"],
       },
       "comics" : {
@@ -272,6 +280,10 @@ var conzept_tags = {
       },
       "website" : {
         text : "website",
+        icon : ["fa-regular fa-copy"],
+      },
+      "webpage" : {
+        text : "webpage",
         icon : ["fa-regular fa-copy"],
       },
       "software" : {

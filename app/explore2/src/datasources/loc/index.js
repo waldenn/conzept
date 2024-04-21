@@ -24,8 +24,6 @@ function processResultsLoC( topicResults, struct, index ){
 
   const source = 'loc';
 
-  //console.log( 'processLoCResults: ', topicResults );
-
   return new Promise(( resolve, reject ) => {
 
     if ( !valid( topicResults.results ) ){
@@ -86,12 +84,21 @@ function processResultsLoC( topicResults, struct, index ){
 
       $.each( topicResults.results, function( i, obj ){
 
-        //console.log( obj );
-
         // URL vars
         let gid           = valid( obj.id )? obj.id : '';
 
-        const url         = valid( obj.url )? obj.url : ''; // eval(`\`${ datasources[ source ].display_url  }\``);
+        let url     	 		= valid( obj.url )? obj.url : ''; // eval(`\`${ datasources[ source ].display_url  }\``);
+
+        let doc_url    		= '';
+        let document_language   = 'en'; // default
+
+				// TODO: use the field: obj.language[0] === 'english'
+				//if ( valid( obj.language ) ){
+				// 	... match "english|spanish|etc" with known iso2-languages
+				//}
+
+        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
+        let tts_link     	= '';
 
         let title         = valid( obj.title )? obj.title : '---';
 
@@ -103,8 +110,23 @@ function processResultsLoC( topicResults, struct, index ){
 
         }
 
-        let maintag       = '';
+        let maintag       = 'work';
         let subtag        = '';
+
+        if ( valid( obj.original_format ) ){
+
+          console.log( obj.original_format );
+
+          if ( obj.original_format.includes('book') ){ subtag = 'book' }
+          else if ( obj.original_format.includes('web page') ){ subtag = 'webpage' }
+          else if ( obj.original_format.includes('periodical') ){ subtag = 'periodical' }
+          else if ( obj.original_format.includes('newspaper') ){ subtag = 'newspaper' }
+          else if ( obj.original_format.includes('photo, print, drawing') ){ subtag = 'image' }
+          else {
+            console.log('tag missing for this original format: ', obj.original_format );
+          }
+
+        }
 
         // TODO:
         //  - check "obj.online_format" array
@@ -139,17 +161,54 @@ function processResultsLoC( topicResults, struct, index ){
 
 				//const description_plain = description;
 
-				description       			= highlightTerms( description );
+        if ( !valid( obj.access_restricted ) && valid( obj.digitized ) ){ // some media is avaiable
+
+          if ( valid( obj.resources ) ){
+
+           let media_found = false;
+
+            $.each( Object.keys( obj.resources[0] ), function( j, resource_key ){
+
+              if ( resource_key === 'pdf' ){
+
+								if ( valid( obj.resources[0]?.pdf ) ){
+
+									url = obj.resources[0].pdf;
+									tts_link = url;
+									media_found = true;
+
+								}
+
+              }
+
+            });
+
+						if ( !valid( media_found ) ) {
+
+							console.log( 'no media used: ', obj.resources[0] );
+
+						}
+
+          }
+
+        }
+
+				description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
 
         // fill fields
 				let item = {
           source:       source,
-					title:        title,
+					title:        title.substring(0,150),
 					description:  ' ' + description + '<br/></br>' + author,
 					gid:          gid,
-					display_url:  url, // url may get overidden later
+					display_url:  url,
 					thumb:        thumb,
           start_date:   start_date,
+
+          document_language:    document_language,
+          document_voice_code:  document_voice_code,
+          pdf_tts_link: tts_link,
+
 					qid:          '',
           countries:    [],
           tags:         [],
@@ -157,7 +216,7 @@ function processResultsLoC( topicResults, struct, index ){
 					// TODO: add fields: license link + license name
 				};
 
-        /*
+        /* TODO
         if ( valid( img ) ){
 
 					// create IIIF-viewer-link
@@ -182,14 +241,12 @@ function processResultsLoC( topicResults, struct, index ){
 				}
         */
 
+				setWikidata( item, [ ], true, 'p' + explore.page );
+
 				item.tags[0]	= 'work';
 				item.tags[1]	= subtag;
 
-				setWikidata( item, [ ], true, 'p' + explore.page );
-
         result.source.data.query.search.push( item ); 
-
-        //console.log( item );
 
       });
 
@@ -230,3 +287,4 @@ function renderMarkLoC( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+
