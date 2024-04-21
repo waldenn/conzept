@@ -1730,7 +1730,7 @@ function setupOptionActiveDatasources(){
           <span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>
           <span class="datasource-name"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
           <span class="datasource-description"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description})</a></span>
-          <span class="datasource-set-label">${d.set}</span>
+          <span class="datasource-set-label">${ valid( d.set )? explore.banana.i18n( 'app-menu-search-in-option-' + d.set ) : '' }</span>
         </label>
       </div>`;
 
@@ -3669,6 +3669,7 @@ function updateLocale( l ){ // set from user-locale
 
       explore.banana.load( messages, explore.banana.locale)
       updateLocaleInterface();
+      setupOptionActiveDatasources(); // updates the datasource labels 
 
       $('#locale').find('option[value="' + explore.locale + '"]').prop('selected', true);
       $('#locale').formSelect();

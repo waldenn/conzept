@@ -777,66 +777,6 @@ const datasources = {
   },
   */
 
-  'ror': {
-    active:                 false,
-    name:                   'ROR',
-    set:                    'science',
-    description:            'research organizations',
-    tag:                    'organization',
-    qid:                    'Q110235640',
-    protocol:               'rest',
-    endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
-                                                                    //      https://ror.readme.io/v2/docs/data-structure
-                                                                    //      https://ror.org/events/2023-02-01-intro-ror-api/
-    format:                 'json',
-    connect:                'json',
-    pagesize:               20, // seems like there is no page size paramater
-    sort_map:               { // 
-                              'none'            : '',
-                              'relevance-desc'  : '',
-                              'relevance-asc'   : '',
-                              'date-desc'       : '',
-                              'date-asc'        : '',
-                              'update-desc'     : '',
-                              'update-asc'      : '',
-                              'random'          : '',
-                              'citations-desc'  : '',
-                              'citations-asc'   : '',
-                              'title-desc'      : '',
-                              'title-asc'       : '',
-                              'distance-desc'   : '',
-                              'distance-asc'    : '',
-                            },
-    media:                  [ 'entity' ],
-    filter_map:             {
-                              'none'            : '',
-                              'text'            : '',
-                              'image'           : '',
-                              'video'           : '',
-                              'audio'           : '',
-                              'data'            : '',
-                              '3D'              : '',
-                              'software'        : '',
-                              'archive'         : '',
-                              'entity'          : '',
-                            },
-    url:                    '${datasources.ror.endpoint}?query=${term}&page=${explore.page}',
-    icon:                   '<img class="datasource-icon" alt="ROR datasource" src="/assets/icons/ror.svg" alt="ROR logo">',
-    icon_invert:            true,
-    color:                  '#53baa1',
-    display_url:            'https://ror.org/${gid}',
-    code_autocomplete:      'autocompleteROR( r, dataset )',
-    code_data_collect:      'my_promises.push( processResultsROR( topicResults, struct, index ) );',
-    code_resolve:           'resolveROR( result, renderObject )',
-    code_render_mark:       'renderMarkROR( inputs, source, q_, show_raw_results, id )',
-    autocomplete_active:    true,
-    autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.ror.endpoint}?query=${term}&page=1',
-    autocomplete_format:    'json',
-    autocomplete_connect:   'json',
-    autocomplete_limit:     20,
-  },
-
   'gbif': {
     active:                 false,
     name:                   'GBIF',
@@ -894,6 +834,68 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
+
+  'ror': {
+    active:                 false,
+    name:                   'ROR',
+    set:                    '', // science (too many results returned currently, only set once the page-size-parameter is available)
+    description:            'research organizations',
+    tag:                    'organization',
+    qid:                    'Q110235640',
+    protocol:               'rest',
+    endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
+                                                                    //      https://ror.readme.io/v2/docs/data-structure
+                                                                    //      https://ror.org/events/2023-02-01-intro-ror-api/
+    format:                 'json',
+    connect:                'json',
+    pagesize:               20, // seems like there is no page size paramater
+    sort_map:               { // 
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : '',
+                              'date-asc'        : '',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'entity' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.ror.endpoint}?query=${term}&page=${explore.page}',
+    icon:                   '<img class="datasource-icon" alt="ROR datasource" src="/assets/icons/ror.svg" alt="ROR logo">',
+    icon_invert:            true,
+    color:                  '#53baa1',
+    display_url:            'https://ror.org/${gid}',
+    code_autocomplete:      'autocompleteROR( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsROR( topicResults, struct, index ) );',
+    code_resolve:           'resolveROR( result, renderObject )',
+    code_render_mark:       'renderMarkROR( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.ror.endpoint}?query=${term}&page=1',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     20,
+  },
+
+
 
   'gleif': {
     active:                 false,
@@ -1279,20 +1281,20 @@ const datasources = {
 
 };
 
-const D_ = Object.keys( datasources );
+const d_ = Object.keys( datasources );
 
 // Note: Update this list and the "index.template.php" datasource-set select-options when needed;
 const datasource_set_map = {
   none:       [''],
-  reference:  d_.filter( function( d ) { return d.set === 'reference'; } ),
-  culture:    d_.filter( function( d ) { return d.set === 'culture'; } ),
-  science:    d_.filter( function( d ) { return d.set === 'science'; } ),
-  business:   d_.filter( function( d ) { return d.set === 'business'; } ),
+  reference:  d_.filter( function( d ) { return datasources[ d ].set === 'reference'; } ),
+  culture:    d_.filter( function( d ) { return datasources[ d ].set === 'culture'; } ),
+  science:    d_.filter( function( d ) { return datasources[ d ].set === 'science'; } ),
+  business:   d_.filter( function( d ) { return datasources[ d ].set === 'business'; } ),
 }
 
 const datasource_sets = Object.keys( datasource_set_map );
 
-delete D_;
+delete d_;
 
 // Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
 const valid_sort_options = [

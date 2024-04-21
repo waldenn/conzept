@@ -306,13 +306,14 @@ $( document ).ready( function() {
     const stores = [ ImmortalDB.LocalStorageStore, ImmortalDB.IndexedDbStore ];
     explore.db = new ImmortalDB.ImmortalStorage( stores ); //explore.db = ImmortalDB.ImmortalDB;
 
-    setupDatasourceSet();
-    setActiveDatasources();
-
     // i18n engine: https://github.com/wikimedia/banana-i18n
     // set default locale and locale-fallback, we will set the true user-locale later.
     explore.banana        = new Banana( 'en', { finalFallback: 'en' } ); // used for the UI interface
     explore.banana_native = new Banana( 'en', { finalFallback: 'en' } ); // allows for translating to the native-content language
+
+    explore.language  = window.language = await explore.db.get('language');
+    explore.locale    = await explore.db.get('locale');
+    setupLanguage();
 
     explore.font1			  = await explore.db.get('font1');
     explore.linkcolor   = await explore.db.get('linkcolor');
@@ -353,16 +354,15 @@ $( document ).ready( function() {
 
     }
 
+    setupDatasourceSet();
+    setActiveDatasources();
+
     setupFonts();
     setupSwiping();
     setupBookmarks();
     setupOptionTopicCover(); // needs to be called earlier (so the topic is set when we display the default cover page)
     setupKeyboardNavigation();
     setupKeyboardCombos();
-
-    explore.language  = window.language = await explore.db.get('language');
-    explore.locale    = await explore.db.get('locale');
-    setupLanguage();
 
     createSectionDOM();
 

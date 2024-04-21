@@ -926,18 +926,27 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 }
 
 .datasource-name {
-  margin-left: 0.2em;
+  margin-left: 0.4em;
   font-weight: 500;
 }
 
 .datasource-description {
+  display: none;
   font-size: smaller;
 }
 
 .datasource-set-label {
   float: right;
   font-size: 0.3rem;
+  margin-right: 1em;
+  padding: 0em 2em;
 }
+
+/* TODO: do this from datasoures.js */
+#datasources-setting .reference { background: #ffff002b; }
+#datasources-setting .culture { background: #d3570c2b; }
+#datasources-setting .science { background: #2ed30c2b; }
+#datasources-setting .business { background: #0c91d32b; }
 
 .jdropdown-default .jdropdown-header {
   border: none;
