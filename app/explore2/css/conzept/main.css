@@ -934,6 +934,11 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   font-size: smaller;
 }
 
+.datasource-set-label {
+  float: right;
+  font-size: 0.3rem;
+}
+
 .jdropdown-default .jdropdown-header {
   border: none;
   border-bottom: 1px solid #000;

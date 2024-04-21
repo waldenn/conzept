@@ -3,6 +3,7 @@ const datasources = {
   'wikipedia': {
     active:                 false,
     name:                   'Wikipedia',
+    set:                    'reference',
     description:            'encyclopedic topics',
     tag:                    'general',
     qid:                    'Q52',
@@ -65,6 +66,7 @@ const datasources = {
   'wikidata': {
     active:                 false,
     name:                   'Wikidata',
+    set:                    'reference',
     description:            'knowledge base topics',
     tag:                    'general',
     qid:                    'Q2013',
@@ -127,6 +129,7 @@ const datasources = {
   'commons': {
     active:                 false,
     name:                   'Wikimedia Commons',
+    set:                    'culture',
     description:            'media library',
     tag:                    'arts-culture',
     qid:                    'Q565',
@@ -189,6 +192,7 @@ const datasources = {
   'archive': {
     active:                 false,
     name:                   'Internet Archive',
+    set:                    'culture',
     description:            'media library',
     tag:                    'arts-culture',
     qid:                    'Q461',
@@ -247,6 +251,7 @@ const datasources = {
   'europeana': {
     active:                 false,
     name:                   'Europeana',
+    set:                    'culture',
     description:            '🇪🇺 European media library',
     tag:                    'arts-culture',
     qid:                    'Q461',
@@ -304,6 +309,7 @@ const datasources = {
   'rijksmuseum': {
     active:                 false,
     name:                   'Rijksmuseum',
+    set:                    'culture',
     description:            '🇳🇱 museum image library',
     tag:                    'arts-culture',
     qid:                    'Q190804',
@@ -361,6 +367,7 @@ const datasources = {
   'loc': {
     active:                 false,
     name:                   'US Library of Congress',
+    set:                    'culture',
     description:            '🇺🇸 national library - BETA',
     tag:                    'arts-culture',
     qid:                    'Q131454',
@@ -419,6 +426,7 @@ const datasources = {
   'met': {
     active:                 false,
     name:                   'Metropolitan Museum of Art',
+    set:                    'culture',
     description:            '🇺🇸 art museum - BETA',
     tag:                    'arts-culture',
     qid:                    'Q160236',
@@ -479,6 +487,7 @@ const datasources = {
   'smithsonian3D': {
     active:                 false,
     name:                   'Smithsonian 3D',
+    set:                    'culture',
     description:            '🇺🇸 physical object scans - BETA',
     tag:                    'arts-culture',
     qid:                    'Q131626',
@@ -537,6 +546,7 @@ const datasources = {
   'openalex': {
     active:                 false,
     name:                   'OpenAlex',
+    set:                    'science',
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q107507571',
@@ -594,6 +604,7 @@ const datasources = {
   'arxiv': {
     active:                 false,
     name:                   'arXiv',
+    set:                    'science',
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q118398',
@@ -651,6 +662,7 @@ const datasources = {
   'doaj': {
     active:                 false,
     name:                   'DOAJ',
+    set:                    'science',
     description:            'Directory of Open Access Journals - BETA',
     tag:                    'science',
     qid:                    'Q1227538',
@@ -709,6 +721,7 @@ const datasources = {
   'archive_scholar': {
     active:                 false,
     name:                   'Internet Archive Scholar',
+    set:                    'science',
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q115667709',
@@ -764,9 +777,70 @@ const datasources = {
   },
   */
 
+  'ror': {
+    active:                 false,
+    name:                   'ROR',
+    set:                    'science',
+    description:            'research organizations',
+    tag:                    'organization',
+    qid:                    'Q110235640',
+    protocol:               'rest',
+    endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
+                                                                    //      https://ror.readme.io/v2/docs/data-structure
+                                                                    //      https://ror.org/events/2023-02-01-intro-ror-api/
+    format:                 'json',
+    connect:                'json',
+    pagesize:               20, // seems like there is no page size paramater
+    sort_map:               { // 
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : '',
+                              'date-asc'        : '',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'entity' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.ror.endpoint}?query=${term}&page=${explore.page}',
+    icon:                   '<img class="datasource-icon" alt="ROR datasource" src="/assets/icons/ror.svg" alt="ROR logo">',
+    icon_invert:            true,
+    color:                  '#53baa1',
+    display_url:            'https://ror.org/${gid}',
+    code_autocomplete:      'autocompleteROR( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsROR( topicResults, struct, index ) );',
+    code_resolve:           'resolveROR( result, renderObject )',
+    code_render_mark:       'renderMarkROR( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.ror.endpoint}?query=${term}&page=1',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     20,
+  },
+
   'gbif': {
     active:                 false,
     name:                   'GBIF',
+    set:                    'science',
     description:            'species observations - BETA',
     tag:                    'science',
     qid:                    'Q1531570',
@@ -824,6 +898,7 @@ const datasources = {
   'gleif': {
     active:                 false,
     name:                   'GLEIF',
+    set:                    'business',
     description:            'legal entities',
     tag:                    'business',
     qid:                    'Q6517388',
@@ -878,68 +953,10 @@ const datasources = {
     autocomplete_limit:     5,
   },
 
-  'ror': {
-    active:                 false,
-    name:                   'ROR',
-    description:            'research organizations',
-    tag:                    'organization',
-    qid:                    'Q110235640',
-    protocol:               'rest',
-    endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
-                                                                    //      https://ror.readme.io/v2/docs/data-structure
-                                                                    //      https://ror.org/events/2023-02-01-intro-ror-api/
-    format:                 'json',
-    connect:                'json',
-    pagesize:               20, // seems like there is no page size paramater
-    sort_map:               { // 
-                              'none'            : '',
-                              'relevance-desc'  : '',
-                              'relevance-asc'   : '',
-                              'date-desc'       : '',
-                              'date-asc'        : '',
-                              'update-desc'     : '',
-                              'update-asc'      : '',
-                              'random'          : '',
-                              'citations-desc'  : '',
-                              'citations-asc'   : '',
-                              'title-desc'      : '',
-                              'title-asc'       : '',
-                              'distance-desc'   : '',
-                              'distance-asc'    : '',
-                            },
-    media:                  [ 'entity' ],
-    filter_map:             {
-                              'none'            : '',
-                              'text'            : '',
-                              'image'           : '',
-                              'video'           : '',
-                              'audio'           : '',
-                              'data'            : '',
-                              '3D'              : '',
-                              'software'        : '',
-                              'archive'         : '',
-                              'entity'          : '',
-                            },
-    url:                    '${datasources.ror.endpoint}?query=${term}&page=${explore.page}',
-    icon:                   '<img class="datasource-icon" alt="ROR datasource" src="/assets/icons/ror.svg" alt="ROR logo">',
-    icon_invert:            true,
-    color:                  '#53baa1',
-    display_url:            'https://ror.org/${gid}',
-    code_autocomplete:      'autocompleteROR( r, dataset )',
-    code_data_collect:      'my_promises.push( processResultsROR( topicResults, struct, index ) );',
-    code_resolve:           'resolveROR( result, renderObject )',
-    code_render_mark:       'renderMarkROR( inputs, source, q_, show_raw_results, id )',
-    autocomplete_active:    true,
-    autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.ror.endpoint}?query=${term}&page=1',
-    autocomplete_format:    'json',
-    autocomplete_connect:   'json',
-    autocomplete_limit:     20,
-  },
-
   'eu': {
     active:                 false,
     name:                   'EU',
+    set:                    'business',
     tag:                    'government',
     description:            '🇪🇺 European Union datasets - BETA',
     qid:                    'Q458',
@@ -997,6 +1014,7 @@ const datasources = {
   'gdelt': {
     active:                 false,
     name:                   'GDELT',
+    set:                    'business',
     description:            'news reports - BETA',
     tag:                    'work',
     qid:                    'Q18357239',
@@ -1055,6 +1073,7 @@ const datasources = {
   'occrp': {
     active:                 false,
     name:                   'OCCRP Aleph',
+    set:                    'business',
     description:            'investigative journalism entities - BETA',
     tag:                    'science',
     qid:                    'Q7102061',
@@ -1115,6 +1134,7 @@ const datasources = {
   /*
   'inaturalist': {
     active:                 false,
+    set:                    'science',
     name:                   'iNaturalist',
     description:            'taxon observations - BETA',
     tag:                    'science',
@@ -1162,6 +1182,7 @@ const datasources = {
   'rkd': {
     active:                 false,
     name:                   'RKD',
+    set:                    'culture',
     description:            '🇳🇱 art-history library - FAILING',
     tag:                    'arts-culture',
     qid:                    'Q758610',
@@ -1213,6 +1234,7 @@ const datasources = {
   'snomed': {
     active:                 false,
     name:                   'SNOMED CT',
+    set:                    'science',
     description:            'medical ontology',
     tag:                    'science',
     qid:                    'Q1753883',
@@ -1257,16 +1279,20 @@ const datasources = {
 
 };
 
+const D_ = Object.keys( datasources );
+
 // Note: Update this list and the "index.template.php" datasource-set select-options when needed;
 const datasource_set_map = {
   none:       [''],
-  reference:  ['wikipedia', 'wikidata'],
-  culture:    ['commons', 'archive', 'europeana', 'loc', 'rijksmuseum', 'smithsonian3D'],
-  science:    [ 'arxiv', 'openalex', 'doaj', 'gbif', /*'archive_scholar',*/ /*'ror'*/ ],
-  business:   ['gleif', 'eu', 'gdelt', 'occrp'],
+  reference:  d_.filter( function( d ) { return d.set === 'reference'; } ),
+  culture:    d_.filter( function( d ) { return d.set === 'culture'; } ),
+  science:    d_.filter( function( d ) { return d.set === 'science'; } ),
+  business:   d_.filter( function( d ) { return d.set === 'business'; } ),
 }
 
 const datasource_sets = Object.keys( datasource_set_map );
+
+delete D_;
 
 // Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
 const valid_sort_options = [

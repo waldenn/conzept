@@ -1723,13 +1723,14 @@ function setupOptionActiveDatasources(){
     }
 
     html += `
-      <div id="datasource-setting-${key}" class="switch">
+      <div id="datasource-setting-${key}" class="switch ${d.set}">
         <label>
           <input type="checkbox" ${checked} id="datasource-${key}" onclick="toggleDatasource( &quot;${key}&quot;)">
           <span class="lever"></span>
           <span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>
           <span class="datasource-name"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">${d.name}</a></span>
           <span class="datasource-description"><a class="" title="more info" aria-label="more info" role="button" href="${explore.base}/app/wikipedia/?t=&l=${explore.language}&qid=${d.qid}&tutor=${explore.tutor}" target="infoframe">(${d.description})</a></span>
+          <span class="datasource-set-label">${d.set}</span>
         </label>
       </div>`;
 
