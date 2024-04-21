@@ -451,17 +451,23 @@ const datasources = {
                               'distance-asc'    : '',
                             },
     media:                  [ 'image' ],
+                            /* TODO: filter mapping
+                                - https://www.loc.gov/apis/json-and-yaml/requests/endpoints/
+                                - see: https://www.loc.gov/search/?fa=partof:motion+picture,+broadcasting+%26+recorded+sound+division
+                                - fa=original-format:<photo,%20print,%20drawing|book|periodical|web%20page|newspaper|map>
+                            */
     filter_map:             {
-                              'none'            : '',
-                              'text'            : '',
-                              'image'           : '',
-                              'video'           : '',
-                              'audio'           : '',
+                              'none'            : '', // manuscript/mixed+material
+                              'text'            : '', // book|periodical|web%20page|newspaper
+                              'image'           : '', // photo,%20print,%20drawing|map
+                              'video'           : '', // film,%20video
+                              'audio'           : '', // sound%20recording
                               'data'            : '',
-                              '3D'              : '',
-                              'software'        : '',
+                              '3D'              : '', // 3d%20object
+                              'software'        : '', // software,+e-resource
                               'archive'         : '',
                               'entity'          : '',
+                                                      // personal+narrative
                             },
     url:                    '${datasources.loc.endpoint}?sp=${ explore.page }&c=${ datasources.loc.pagesize }&q=${ term }&sb=${ valid( sortby )? sortby : "" }&fo=json', 
     icon:                   '<img class="datasource-icon" alt="US Library of Congress datasource" src="/assets/icons/loc.svg" alt="US Library of Congress logo">',

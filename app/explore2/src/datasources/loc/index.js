@@ -115,13 +115,14 @@ function processResultsLoC( topicResults, struct, index ){
 
         if ( valid( obj.original_format ) ){
 
-          console.log( obj.original_format );
+          //console.log( obj.original_format );
 
           if ( obj.original_format.includes('book') ){ subtag = 'book' }
           else if ( obj.original_format.includes('web page') ){ subtag = 'webpage' }
           else if ( obj.original_format.includes('periodical') ){ subtag = 'periodical' }
           else if ( obj.original_format.includes('newspaper') ){ subtag = 'newspaper' }
           else if ( obj.original_format.includes('photo, print, drawing') ){ subtag = 'image' }
+          else if ( obj.original_format.includes('map') ){ subtag = 'map' }
           else {
             console.log('tag missing for this original format: ', obj.original_format );
           }
@@ -138,7 +139,7 @@ function processResultsLoC( topicResults, struct, index ){
 
         let start_date    = valid( obj.timestamp ) ? obj.timestamp.split('-')[0] : '';
 
-        const license_link= '';
+        let license_link  = '';
         let license_name  = '';
 
         let img           = '';
@@ -150,6 +151,10 @@ function processResultsLoC( topicResults, struct, index ){
 
             thumb = obj.image_url.pop().split("#")[0];
 
+		  // TODO: image not working in IIIF, why?
+	    img   = obj.image_url.at(-1);
+		  //console.log( 'HQ image: ', img );
+
           }
           else { // no image found
 
@@ -159,7 +164,7 @@ function processResultsLoC( topicResults, struct, index ){
 
         }
 
-				//const description_plain = description;
+        const description_plain = 'foo bar baz';
 
         if ( !valid( obj.access_restricted ) && valid( obj.digitized ) ){ // some media is avaiable
 
@@ -180,6 +185,18 @@ function processResultsLoC( topicResults, struct, index ){
 								}
 
               }
+              if ( resource_key === 'image' ){
+
+								if ( valid( obj.resources[0]?.image ) ){
+
+									media_found = true;
+									subtag	= 'image';
+
+								}
+
+              }
+
+
 
             });
 
@@ -216,32 +233,30 @@ function processResultsLoC( topicResults, struct, index ){
 					// TODO: add fields: license link + license name
 				};
 
-        /* TODO
-        if ( valid( img ) ){
+        if ( valid( obj.image_url ) && obj?.image_url.length > 0 ){
 
-					// create IIIF-viewer-link
-					let coll = { "images": [ ]};
+		// create IIIF-viewer-link
+		let coll = { "images": [ ]};
 
-          let source_name = datasources[ item.source ].name;
+let source_name = datasources[ item.source ].name;
 
-					coll.images.push( [ img, item.title, encodeURIComponent( description_plain + '<br/><br/>License: ' + license_link + '<br/><br/>' + license_name ), 'author: ' + author, 'source: ' + source_name ] );
+		coll.images.push( [ thumb, item.title, encodeURIComponent( description_plain + '<br/><br/>License: ' + license_link + '<br/><br/>' + license_name ), 'author: ' + '-', 'source: ' + source_name ] );
 
-					if ( coll.images.length > 0 ){ // we found some images
+		if ( coll.images.length > 0 ){ // we found some images
 
-						// create an IIIF image-collection file
-						let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + encodeURIComponent( item.title ) + '&json=' + JSON.stringify( coll );
+			// create an IIIF image-collection file
+			let iiif_manifest_link = '/app/response/iiif-manifest.php?l=en&single=true&t=' + encodeURIComponent( item.title ) + '&json=' + JSON.stringify( coll );
 
-						let iiif_viewer_url = `https://${explore.host}${explore.base}/app/iiif/dist/uv.html#?c=&m=&s=&cv=&manifest=${ encodeURIComponent( iiif_manifest_link ) }`;
+			let iiif_viewer_url = `https://${explore.host}${explore.base}/app/iiif/dist/uv.html#?c=&m=&s=&cv=&manifest=${ encodeURIComponent( iiif_manifest_link ) }`;
 
-						item.iiif         = iiif_viewer_url;
-						item.display_url  = encodeURIComponent( iiif_viewer_url );
+			item.iiif         = iiif_viewer_url;
+			item.display_url  = encodeURIComponent( iiif_viewer_url );
 
-					}
+		}
 
-				}
-        */
+	}
 
-				setWikidata( item, [ ], true, 'p' + explore.page );
+	setWikidata( item, [ ], true, 'p' + explore.page );
 
 				item.tags[0]	= 'work';
 				item.tags[1]	= subtag;

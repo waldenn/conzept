@@ -209,6 +209,10 @@ var conzept_tags = {
         text : "beverage",
         icon : ["fa-solid fa-wine-glass-alt"],
       },
+      "map" : {
+        text : "",
+        icon : ["fa-regular fa-map"],
+      },
       "document" : { // non-book, non-science-article
         text : "document",
         icon : ["fa-regular fa-file-lines"],
