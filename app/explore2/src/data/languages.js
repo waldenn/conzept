@@ -7073,12 +7073,12 @@ const wp_languages = {
     "qid": "9199"
   },
   "vls": {
-    "name": "West Flemish",
-    "namelocal": "West-Vlams",
+    "name": "Flemish", // "West Flemish",
+    "namelocal": "West-Vlaams",
     "script": "Latn",
     "iso3": "",
     "langcode": "",
-    "voice": "en-GB",
+    "voice": "nl-BE",
     "urs": 1,
     "title": "West Flemish Wikipedia",
     "librivox": "",

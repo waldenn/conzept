@@ -89,13 +89,50 @@ function processResultsLoC( topicResults, struct, index ){
 
         let url     	 		= valid( obj.url )? obj.url : ''; // eval(`\`${ datasources[ source ].display_url  }\``);
 
-        let doc_url    		= '';
-        let document_language   = 'en'; // default
+        let doc_url           = '';
+        let document_language = 'en'; // default
 
-				// TODO: use the field: obj.language[0] === 'english'
-				//if ( valid( obj.language ) ){
-				// 	... match "english|spanish|etc" with known iso2-languages
-				//}
+        let used_languages = [];
+
+				if ( valid( obj.language ) ){ // languages indication
+
+          // find language match
+          $.each( obj.language, function( j, lang ){
+
+            $.each( Object.keys( wp_languages ), function( n, wp_lang ){
+
+              if ( lang === wp_languages[ wp_lang ].name.toLowerCase() ){
+
+                //console.log('language match found: ', lang, wp_lang );
+
+                used_languages.push( wp_lang );
+
+              }
+
+            });
+
+				 	  //... match "english|spanish|etc" with known iso2-languages
+
+          });
+
+          //console.log( 'supported languages: ', used_languages );
+
+          if ( used_languages.length === 1 ){
+
+            document_language = used_languages[0];
+
+            //console.log( 'choosing the first language: ', document_language );
+
+          }
+          else {
+
+            document_language = used_languages[0];
+
+            //console.log( 'choosing the first language out of multiple: ', document_language );
+
+          }
+
+				}
 
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
         let tts_link     	= '';
@@ -164,15 +201,13 @@ function processResultsLoC( topicResults, struct, index ){
 
         }
 
-        const description_plain = 'foo bar baz';
-
         if ( !valid( obj.access_restricted ) && valid( obj.digitized ) ){ // some media is avaiable
 
           if ( valid( obj.resources ) ){
 
            let media_found = false;
 
-            $.each( Object.keys( obj.resources[0] ), function( j, resource_key ){
+            $.each( Object.keys( obj.resources[0] ), function( k, resource_key ){
 
               if ( resource_key === 'pdf' ){
 
@@ -210,6 +245,7 @@ function processResultsLoC( topicResults, struct, index ){
 
         }
 
+        const description_plain = ''; // TODO: stripHtml( description.substring(0, 300) + ' (...)';
 				description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
 
         // fill fields
