@@ -261,6 +261,10 @@ var conzept_tags = {
         text : "data",
         icon : ["fa-solid fa-database"],
       },
+      "audio" : {
+        text : "audio",
+        icon : ["fa-regular fa-file-audio"],
+      },
       "image" : {
         text : "image",
         icon : ["fa-regular fa-image"],

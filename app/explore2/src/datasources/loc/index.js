@@ -155,11 +155,14 @@ function processResultsLoC( topicResults, struct, index ){
           //console.log( obj.original_format );
 
           if ( obj.original_format.includes('book') ){ subtag = 'book' }
+          else if ( obj.original_format.includes('film, video') ){ subtag = 'film' }
+          else if ( obj.original_format.includes('sound recording') ){ subtag = 'audio' }
+          else if ( obj.original_format.includes('media') ){ subtag = 'audio' }
+          else if ( obj.original_format.includes('map') ){ subtag = 'map' }
           else if ( obj.original_format.includes('web page') ){ subtag = 'webpage' }
           else if ( obj.original_format.includes('periodical') ){ subtag = 'periodical' }
           else if ( obj.original_format.includes('newspaper') ){ subtag = 'newspaper' }
           else if ( obj.original_format.includes('photo, print, drawing') ){ subtag = 'image' }
-          else if ( obj.original_format.includes('map') ){ subtag = 'map' }
           else {
             console.log('tag missing for this original format: ', obj.original_format );
           }
@@ -209,6 +212,8 @@ function processResultsLoC( topicResults, struct, index ){
 
             $.each( Object.keys( obj.resources[0] ), function( k, resource_key ){
 
+              //console.log( obj.resources[0] );
+
               if ( resource_key === 'pdf' ){
 
 								if ( valid( obj.resources[0]?.pdf ) ){
@@ -216,11 +221,47 @@ function processResultsLoC( topicResults, struct, index ){
 									url = obj.resources[0].pdf;
 									tts_link = url;
 									media_found = true;
+                  subtag = 'book';
+                  console.log( url );
 
 								}
 
               }
-              if ( resource_key === 'image' ){
+              else if ( resource_key === 'video' ){
+
+                if ( valid( obj.resources[0]?.video ) ){
+
+                        url = obj.resources[0].video
+                        media_found = true;
+                        subtag  = 'film';
+
+                }
+
+              }
+              else if ( resource_key === 'audio' ){
+
+                if ( valid( obj.resources[0]?.audio ) ){
+
+                        url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].audio )}`;
+                        media_found = true;
+                        subtag  = 'audio';
+
+                }
+
+              }
+              else if ( resource_key === 'media' ){
+
+                if ( valid( obj.resources[0]?.media ) ){
+
+                        url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].media )}`;
+                        media_found = true;
+                        subtag  = 'audio';
+
+                }
+
+              }
+
+              else if ( resource_key === 'image' ){
 
 								if ( valid( obj.resources[0]?.image ) ){
 
@@ -230,8 +271,6 @@ function processResultsLoC( topicResults, struct, index ){
 								}
 
               }
-
-
 
             });
 
@@ -246,7 +285,17 @@ function processResultsLoC( topicResults, struct, index ){
         }
 
         const description_plain = ''; // TODO: stripHtml( description.substring(0, 300) + ' (...)';
-				description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
+
+        if ( description.length > 300 ){
+
+				  description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
+
+        }
+        else {
+
+				  description	= highlightTerms( stripHtml( description ) );
+
+        }
 
         // fill fields
 				let item = {
@@ -286,7 +335,10 @@ let source_name = datasources[ item.source ].name;
 			let iiif_viewer_url = `https://${explore.host}${explore.base}/app/iiif/dist/uv.html#?c=&m=&s=&cv=&manifest=${ encodeURIComponent( iiif_manifest_link ) }`;
 
 			item.iiif         = iiif_viewer_url;
-			item.display_url  = encodeURIComponent( iiif_viewer_url );
+
+      if ( subtag === 'image' ){
+        item.display_url  = encodeURIComponent( iiif_viewer_url );
+      }
 
 		}
 

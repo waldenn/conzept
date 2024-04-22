@@ -450,26 +450,26 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'image' ],
+    media:                  [ 'text', 'image', 'video', 'audio', '3D', 'software' ],
                             /* TODO: filter mapping
                                 - https://www.loc.gov/apis/json-and-yaml/requests/endpoints/
                                 - see: https://www.loc.gov/search/?fa=partof:motion+picture,+broadcasting+%26+recorded+sound+division
                                 - fa=original-format:<photo,%20print,%20drawing|book|periodical|web%20page|newspaper|map>
                             */
     filter_map:             {
-                              'none'            : '', // manuscript/mixed+material
-                              'text'            : '', // book|periodical|web%20page|newspaper
-                              'image'           : '', // photo,%20print,%20drawing|map
-                              'video'           : '', // film,%20video
-                              'audio'           : '', // sound%20recording
+                              'none'            : '',
+                              'text'            : 'book', // book|periodical|web%20page|newspaper
+                              'image'           : 'photo,%20print,%20drawing', // photo,%20print,%20drawing|map
+                              'video'           : 'film,%20video', // film,%20video
+                              'audio'           : 'sound%20recording', // sound%20recording
                               'data'            : '',
-                              '3D'              : '', // 3d%20object
-                              'software'        : '', // software,+e-resource
-                              'archive'         : '',
+                              '3D'              : '3d%20object', // 3d%20object
+                              'software'        : 'software,+e-resource', // software,+e-resource
+                              'archive'         : '', // manuscript/mixed+material
                               'entity'          : '',
                                                       // personal+narrative
                             },
-    url:                    '${datasources.loc.endpoint}?sp=${ explore.page }&c=${ datasources.loc.pagesize }&q=${ term }&sb=${ valid( sortby )? sortby : "" }&fo=json', 
+    url:                    '${datasources.loc.endpoint}?sp=${ explore.page }&c=${ datasources.loc.pagesize }&q=${ term }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "fa=original-format:" + filterby : "" }&sb=${ valid( sortby )? sortby : "" }&fo=json', 
     icon:                   '<img class="datasource-icon" alt="US Library of Congress datasource" src="/assets/icons/loc.svg" alt="US Library of Congress logo">',
     icon_invert:            true,
     color:                  '#F05129',
