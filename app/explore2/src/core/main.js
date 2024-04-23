@@ -194,9 +194,7 @@ const explore = {
   linkpreview         : undefined,
   showhelp            : undefined,
   darkmode            : undefined,
-  bgmode              : undefined,
   theme               : getParameterByName('theme') || '',
-  //gridmode            : undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,
@@ -372,11 +370,9 @@ $( document ).ready( function() {
     // user-customizable options:
     setupOptionBoldLinks();
     setupOptionUnderlineLinks();
-    setupOptionBgmode();
     setupOptionDarkmode();
     setupOptionShowHelp();
     setupOptionTheme();
-    //setupOptionGridmode();
     setupOptionBread();
     setupOptionApiKeys();
     setupOptionStructuredSearch();

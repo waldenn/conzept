@@ -2471,72 +2471,6 @@ function setupSearch() {
 
 }
 
-function setBgmode( ) {
-
-  if ( explore.wallpaper === ''  ){ // no wallpaper set, just use the default background
-
-    return 0;
-  }
-
-  if ( explore.bgmode ){
-
-    if ( explore.type === 'string' || explore.type === 'video' ){
-      $( explore.baseframe ).contents().find("body").addClass('wallpaper').trigger('classChange');
-      $( explore.baseframe ).contents().find("body").css( 'background-image', 'linear-gradient(to right, rgba(251, 250, 249,0.95), rgba(251, 250, 249,0.80)), url("' + explore.wallpaper + '"', 'important' );
-      $( explore.baseframe ).contents().find("aside").css( 'background-color', 'transparent', 'important');
-    }
-
-  }
-  else {
-
-    $( explore.baseframe ).contents().find("body").removeClass('wallpaper').trigger('classChange');
-    $( explore.baseframe ).contents().find("body").css( 'background', '#fbfaf9', 'important');
-    $( explore.baseframe ).contents().find("body").css( 'background-image', 'none', 'important');
-    $( explore.baseframe ).contents().find("aside").css( 'background-color', 'inherit', 'important');
-
-  }
-
-}
-
-function setupOptionBgmode() {
-
-  (async () => {
-
-    explore.bgmode = await explore.db.get('bgmode');
-    explore.bgmode = ( explore.bgmode === null || explore.bgmode === 'false' ) ? false : true;
-
-    if ( explore.bgmode ){
-      $('#bgmode').prop('checked', true);
-    }
-    else {
-      $('#bgmode').prop('checked', false);
-    }
-
-    setBgmode();
-
-    $('#bgmode').change(function() {
-
-      if ( $('#bgmode').prop('checked') ){
-
-        (async () => { await explore.db.set('bgmode', true); })();
-        explore.bgmode = true;
-        setBgmode();
-
-      }
-      else {
-
-        (async () => { await explore.db.set('bgmode', false); })();
-        explore.bgmode = false;
-        setBgmode();
-
-      }
-
-    })
-
-  })();
-
-}
-
 function setDarkmode() {
 
   // also check user preference for darkmode
@@ -2757,21 +2691,33 @@ function setupOptionTheme(){
 
   (async () => {
 
-    explore.theme = await explore.db.get('theme');
-    explore.theme = ( explore.theme === null || explore.theme === '' ) ? '' : explore.theme;
+    if ( valid( explore.theme ) ){ // theme requested by parameter
 
-    if ( !valid( explore.theme ) ){
-      explore.theme = 'pillar'; // default fallback theme
+      (async () => { await explore.db.set('theme', $(this).val() ); })();
+
     }
+    else { // check storage
 
-    console.log( 'theme set to: ', explore.theme );
+      explore.theme = await explore.db.get('theme');
+      explore.theme = ( explore.theme === null || explore.theme === '' ) ? '' : explore.theme;
+
+      if ( !valid( explore.theme ) ){ // still nothing found
+
+        explore.theme = 'pillar'; // default fallback theme
+
+      }
+
+    }
 
     setTheme();
 
     $('#theme').change(function() {
 
       explore.theme = $(this).val();
-      (async () => { await explore.db.set('theme', $(this).val() ); })();
+
+      (async () => { await explore.db.set('theme', explore.theme ); })();
+
+      setParameter( 'theme', explore.theme, explore.hash );
 
       setTheme();
 
@@ -2780,76 +2726,6 @@ function setupOptionTheme(){
   })();
 
 }
-
-/*
-function setGridmode() {
-
-  // also check user preference for gridmode
-  if ( explore.gridmode ){
-    $('#gridmode').prop('checked', true);
-    $('#results').addClass('grid');
-    $('#results .entry').addClass('sidebar-grid-item'); // also update existing sidebar results
-  }
-  else {
-    $('#gridmode').prop('checked', false);
-    $('#results').removeClass('grid');
-    $('#results .entry').removeClass('sidebar-grid-item'); // also update existing sidebar results
-  }
-
-}
-
-function setupOptionGridmode() {
-
-  (async () => {
-
-    explore.gridmode = await explore.db.get('gridmode');
-
-    let prefersGridMode   = '';
-    let gridmode_was_set  = false;
-
-    gridmode_was_set = ( explore.gridmode === null ) ? false : true;
-
-    if ( !gridmode_was_set ){ // no gridmode was set previously
-
-      // follow prefersGridmode
-      //prefersGridMode = window.matchMedia('(prefers-color-scheme: grid)').matches;
-
-      if ( prefersGridMode ) {
-        explore.gridmode = true;
-      }
-
-    }
-    else { // use the set gridmode
-
-        explore.gridmode = ( explore.gridmode === null || explore.gridmode === 'false' ) ? false : true;
-
-    }
-
-    setGridmode();
-
-    $('#gridmode').change(function() {
-
-      if ( $('#gridmode').prop('checked') ){
-
-        (async () => { await explore.db.set('gridmode', true); })();
-        explore.gridmode = true;
-        setGridmode();
-
-      }
-      else {
-
-        (async () => { await explore.db.set('gridmode', false); })();
-        explore.gridmode = false;
-        setGridmode();
-
-      }
-
-    })
-
-  })();
-
-}
-*/
 
 function setBread() {
 
@@ -3828,7 +3704,6 @@ async function updateLocaleInterface(){
   $('#app-menu-various-links').html( explore.banana.i18n('app-menu-various-links') );
   $('#app-menu-font').html( explore.banana.i18n('app-menu-font') );
   $('#app-menu-theme').html( explore.banana.i18n('app-menu-theme') );
-  $('#app-menu-grid-mode').html( explore.banana.i18n('app-menu-grid-mode') );
   $('#app-menu-interface-language').html( explore.banana.i18n('app-menu-interface-language') );
   $('#app-menu-voice').html( explore.banana.i18n('app-menu-voice') );
   $('#app-menu-hear-voice').html( explore.banana.i18n('app-menu-hear-voice') );

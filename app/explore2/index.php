@@ -101,8 +101,8 @@ $main_css = '
   <!-- Conzept CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.51.466" type="text/css">
   <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_masonry.css?v0.51.466" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_lattice.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_masonry.css?v0.51.466" type="text/css">
   <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.466"  type="text/css">
 ';
 
@@ -395,8 +395,8 @@ $settings_html = '
                   <select id="theme" width="20px">
                     <option value="none">none</option>
                     <option value="pillar">pillar column</option>
-                    <option value="masonry">masonry grid</option>
                     <option value="lattice">lattice grid</option>
+                    <option value="masonry">masonry grid</option>
                   </select>
 
                 </div>
@@ -418,24 +418,6 @@ $settings_html = '
                   </label>
                 </div>
 
-                <!--div id="bgmode-setting" class="switch" style="display:none;">
-                  <label for="bgmode" style="display:none;">bgmode</label> 
-                  <label>
-                  <input type="checkbox" id="bgmode">
-                  <span class="lever"></span>
-                  cover background
-                  </label>
-                </div-->
-
-                <!--div id="gridmode-setting" class="switch">
-                  <label for="gridmode" style="display:none;">gridmode</label> 
-                  <label>
-                  <input type="checkbox" id="gridmode">
-                  <span class="lever"></span>
-                  <span id="app-menu-grid-mode">grid mode sidebar</span>
-                  </label>
-                </div-->
-
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -445,15 +427,6 @@ $settings_html = '
                   </label>
                   <br/>
                 </div>
-
-                <!--div id="multicolumn-setting" class="switch" style="display:none;">
-                  <label for="multicolumn" style="display:none;">multicolumn</label> 
-                  <label>
-                  <input type="checkbox" id="multicolumn">
-                  <span class="lever"></span>
-                  multicolumn <span class="tinytext">(beta)</span>
-                  </label>
-                </div-->
 
             </div>
 
