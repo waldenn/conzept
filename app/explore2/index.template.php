@@ -101,8 +101,8 @@ $main_css = '
   <!-- Conzept CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?vCONZEPT_VERSION" type="text/css">
   <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?vCONZEPT_VERSION" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_masonry.css?vCONZEPT_VERSION" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_lattice.css?vCONZEPT_VERSION" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_masonry.css?vCONZEPT_VERSION" type="text/css">
   <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?vCONZEPT_VERSION"  type="text/css">
 ';
 
@@ -395,8 +395,8 @@ $settings_html = '
                   <select id="theme" width="20px">
                     <option value="none">none</option>
                     <option value="pillar">pillar column</option>
-                    <option value="masonry">masonry grid</option>
                     <option value="lattice">lattice grid</option>
+                    <option value="masonry">masonry grid</option>
                   </select>
 
                 </div>

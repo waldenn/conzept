@@ -2735,16 +2735,16 @@ async function setTheme() {
     $('#results .entry').addClass('theme-sidebar-item-pillar');
 
   }
-  else if ( explore.theme === 'masonry' ){
-
-    $('#results').addClass('theme-masonry');
-    $('#results .entry').addClass('theme-sidebar-item-masonry');
-
-  }
   else if ( explore.theme === 'lattice' ){
 
     $('#results').addClass('theme-lattice');
     $('#results .entry').addClass('theme-sidebar-item-lattice');
+
+  }
+  else if ( explore.theme === 'masonry' ){
+
+    $('#results').addClass('theme-masonry');
+    $('#results .entry').addClass('theme-sidebar-item-masonry');
 
   }
   else {
@@ -7469,7 +7469,7 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
     const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby + p.i + '&t=' + explore.type + p.u + p.query;
 
@@ -7769,6 +7769,13 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( !valid( explore.sortby ) || explore.sortby === 'none' ){ explore.sortby = '' } else {
       p.sortby = '&sortby=' + explore.sortby;
+    }
+
+    // theme parameter
+    p.theme = '';
+
+    if ( !valid( explore.theme ) || explore.theme === 'none' ){ explore.theme = '' } else {
+      p.theme = '&theme=' + explore.theme;
     }
 
     // line marks parameter
