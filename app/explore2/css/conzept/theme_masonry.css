@@ -1,0 +1,20 @@
+#results.theme-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  grid-template-rows: masonry;
+  gap: 0.5em;
+}
+
+#results.theme-masonry .summary-thumb {
+  padding-left: 0rem;
+  width: 100%;
+}
+
+#results.theme-masonry .thumbnail {
+  max-height: unset;
+  width: 100%;
+}
+
+.theme-sidebar-item-masonry {
+  display: grid;
+}

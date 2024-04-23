@@ -2719,6 +2719,69 @@ function setupOptionApiKeys(){
 
 }
 
+async function setTheme() {
+
+  $('#theme').find('option[value="' + explore.theme + '"]').prop('selected', true);
+  $('#theme').formSelect();
+
+  // remove existing theme styling
+  $('#results').attr('class', function(i, c){ return c.replace(/\btheme-\S+/g, ''); });
+  $('#results .entry').attr('class', function(i, c){ return c.replace(/\btheme-sidebar-item\S+/g, ''); });
+
+  // add new theme styling
+  if ( explore.theme === 'pillar' ){
+
+    $('#results').addClass('theme-pillar');
+    $('#results .entry').addClass('theme-sidebar-item-pillar');
+
+  }
+  else if ( explore.theme === 'masonry' ){
+
+    $('#results').addClass('theme-masonry');
+    $('#results .entry').addClass('theme-sidebar-item-masonry');
+
+  }
+  else if ( explore.theme === 'lattice' ){
+
+    $('#results').addClass('theme-lattice');
+    $('#results .entry').addClass('theme-sidebar-item-lattice');
+
+  }
+  else {
+    console.log('missing theme: ', explore.theme );
+  }
+
+}
+
+function setupOptionTheme(){
+
+  (async () => {
+
+    explore.theme = await explore.db.get('theme');
+    explore.theme = ( explore.theme === null || explore.theme === '' ) ? '' : explore.theme;
+
+    if ( !valid( explore.theme ) ){
+      explore.theme = 'pillar'; // default fallback theme
+    }
+
+    console.log( 'theme set to: ', explore.theme );
+
+    setTheme();
+
+    $('#theme').change(function() {
+
+      explore.theme = $(this).val();
+      (async () => { await explore.db.set('theme', $(this).val() ); })();
+
+      setTheme();
+
+    })
+
+  })();
+
+}
+
+/*
 function setGridmode() {
 
   // also check user preference for gridmode
@@ -2786,6 +2849,7 @@ function setupOptionGridmode() {
   })();
 
 }
+*/
 
 function setBread() {
 

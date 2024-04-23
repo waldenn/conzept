@@ -1,0 +1,19 @@
+#results.theme-lattice {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
+  grid-column-gap: 0.2em;
+}
+
+#results.theme-lattice .summary-thumb {
+  padding-left: 0rem;
+  width: 100%;
+}
+
+#results.theme-lattice .thumbnail {
+  max-height: unset;
+  width: 100%;
+}
+
+.theme-sidebar-item-lattice {
+  display: grid;
+}

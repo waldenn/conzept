@@ -195,7 +195,8 @@ const explore = {
   showhelp            : undefined,
   darkmode            : undefined,
   bgmode              : undefined,
-  gridmode            : undefined, // TODO: allow as a param-setting?
+  theme               : getParameterByName('theme') || '',
+  //gridmode            : undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,
@@ -374,7 +375,8 @@ $( document ).ready( function() {
     setupOptionBgmode();
     setupOptionDarkmode();
     setupOptionShowHelp();
-    setupOptionGridmode();
+    setupOptionTheme();
+    //setupOptionGridmode();
     setupOptionBread();
     setupOptionApiKeys();
     setupOptionStructuredSearch();

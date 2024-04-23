@@ -286,14 +286,18 @@ function processResultsLoC( topicResults, struct, index ){
 
         const description_plain = ''; // TODO: stripHtml( description.substring(0, 300) + ' (...)';
 
-        if ( description.length > 300 ){
+        if ( valid( description ) ){
 
-				  description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
+          if ( description.length > 300 ){
 
-        }
-        else {
+            description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
 
-				  description	= highlightTerms( stripHtml( description ) );
+          }
+          else {
+
+            description	= highlightTerms( stripHtml( description ) );
+
+          }
 
         }
 
