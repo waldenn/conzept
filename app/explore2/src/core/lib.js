@@ -10268,7 +10268,7 @@ function loadTopics( nextpage ){
         }
         else { // no more to fetch
 
-          console.log( 'loadTopics: no more to fetch...', datasources );
+          //console.log( 'loadTopics: no more to fetch...', datasources );
 
           datasources[ source ].done = true;
 
@@ -10578,9 +10578,15 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
-    let filterby        = '';
     let skip_datasource = false; // default
+
+    let filterby        = '';
     let sortby          = '';
+
+    let datemin         = '';
+    let datemax         = '';
+
+		let qid = '';
 
     //console.log( 'fetchDatasource() fetch call part: ...' );
 
@@ -10628,7 +10634,16 @@ async function fetchDatasources(){
 
     }
 
-		let qid = '';
+    if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
+
+      datemin = new Date( explore.datemin ).toISOString();
+      datemax = new Date( explore.datemax ).toISOString();
+
+    }
+    else { // dont use the incomplete date-range
+      datemin = '';
+      datemax = '';
+    }
 
 		if ( explore.page === 1 && d.protocol === 'sparql' && !skip_datasource ){ // SPARQL-fetch: first set the "count url"
 
