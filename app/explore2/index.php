@@ -101,10 +101,10 @@ $main_css = '
   <!-- Conzept CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.51.466" type="text/css">
   <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/pillar.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/lattice.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/masonry.css?v0.51.466" type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/dark/explore.css?v0.51.466"  type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/pillar.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/lattice.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/masonry.css?v0.51.466" type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/dark_explore.css?v0.51.466"  type="text/css">
 ';
 
 $main_script = '
