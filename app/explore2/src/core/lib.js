@@ -1863,10 +1863,19 @@ async function fetchAutocompleteData( term ) {
 
     if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
 
-      datemin = explore.datemin;
-      datemax = explore.datemax;
+      datemin = new Date( explore.datemin ).toISOString();
+      datemax = new Date( explore.datemax ).toISOString();
 
     }
+    else { // dont use the incomplete date-range
+      datemin = '';
+      datemax = '';
+    }
+
+    // new Date( datemin ).toISOString()
+    // new Date( datemax ).toISOString()
+    // getISODateString( datemin ) 
+    // getISODateString( datemax ) 
 
     if ( valid( [ d.active, d.autocomplete_active, !skip_datasource ] ) ){ // active autocomplete
 
@@ -2431,7 +2440,15 @@ function setupSearch() {
 
       setParameter( 'datemin', explore.datemin, explore.hash );
 
-      $('a.submitSearch').trigger('click'); // trigger a new search
+      if ( valid( explore.datemax ) ){
+
+        if ( new Date( explore.datemin ) < new Date( explore.datemax ) ){
+
+          $('a.submitSearch').trigger('click'); // trigger a new search
+
+        }
+
+      }
 
     }
 
@@ -2450,14 +2467,19 @@ function setupSearch() {
 
       setParameter( 'datemax', explore.datemax, explore.hash );
 
-      $('a.submitSearch').trigger('click'); // trigger a new search
+      if ( valid( explore.datemin ) ){
+
+        if ( new Date( explore.datemin ) < new Date( explore.datemax ) ){
+
+          $('a.submitSearch').trigger('click'); // trigger a new search
+
+        }
+
+      }
 
     }
 
   });
-
-
-
 
   $('a.link.clear').on( 'click', function (e) {
 
@@ -10447,6 +10469,9 @@ async function fetchDatasources(){
 
     let sortby          = '';
 
+    let datemin         = '';
+    let datemax         = '';
+
     //console.log('fetchDatasources(): ');
 
     if ( valid( explore.filterby ) ){ // filter requested
@@ -10496,6 +10521,17 @@ async function fetchDatasources(){
 
       sortby = d.sort_map[ 'none' ];
 
+    }
+
+    if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
+
+      datemin = new Date( explore.datemin ).toISOString();
+      datemax = new Date( explore.datemax ).toISOString();
+
+    }
+    else { // dont use the incomplete date-range
+      datemin = '';
+      datemax = '';
     }
 
 		if ( explore.page === 1 ){ // on first page
