@@ -2660,25 +2660,25 @@ async function setTheme() {
 
   // remove existing theme styling
   $('#results').attr('class', function(i, c){ return c.replace(/\btheme-\S+/g, ''); });
-  $('#results .entry').attr('class', function(i, c){ return c.replace(/\btheme-sidebar-item\S+/g, ''); });
+  //$('#results .entry').attr('class', function(i, c){ return c.replace(/\btheme-sidebar-item\S+/g, ''); });
 
   // add new theme styling
   if ( explore.theme === 'pillar' ){
 
     $('#results').addClass('theme-pillar');
-    $('#results .entry').addClass('theme-sidebar-item-pillar');
+    //$('#results .entry').addClass('theme-sidebar-item-pillar');
 
   }
   else if ( explore.theme === 'lattice' ){
 
     $('#results').addClass('theme-lattice');
-    $('#results .entry').addClass('theme-sidebar-item-lattice');
+    //$('#results .entry').addClass('theme-sidebar-item-lattice');
 
   }
   else if ( explore.theme === 'masonry' ){
 
     $('#results').addClass('theme-masonry');
-    $('#results .entry').addClass('theme-sidebar-item-masonry');
+    //$('#results .entry').addClass('theme-sidebar-item-masonry');
 
   }
   else {
@@ -7689,7 +7689,7 @@ function resizeFont() {
 
 }
 
-function postIframeLoad() {
+function postIframeLoad(){
 
   setLanguageDirection();
   renderLanguageDirection();
@@ -7698,13 +7698,13 @@ function postIframeLoad() {
   $('#loader').hide();
   $('#blink').hide();
 
-  setBold();
-  setUnderline();
-  setBgmode();
+  //setBold();
+  //setUnderline();
+
   setDarkmode();
   setColorFilter();
   setTopicCover();
-  setMulticolumn();
+  //setMulticolumn();
   setLinkPreview();
   updateLocale( explore.locale );
   updateLocaleNative();
@@ -7740,7 +7740,6 @@ function postIframeLoad() {
 
       //explore.hash = ''; // reset hash
     }
-
 
   }
 

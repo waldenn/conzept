@@ -394,9 +394,9 @@ $settings_html = '
                   <label style="display:inline;" for="theme"><span id="app-menu-theme">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
                     <option value="none">none</option>
-                    <option value="pillar">pillar column</option>
-                    <option value="lattice">lattice grid</option>
-                    <option value="masonry">masonry grid</option>
+                    <option value="pillar">pillar</option>
+                    <option value="lattice">lattice</option>
+                    <option value="masonry">masonry</option>
                   </select>
 
                 </div>

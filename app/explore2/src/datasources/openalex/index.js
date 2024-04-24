@@ -148,6 +148,8 @@ function processResultsOpenAlex( topicResults, struct, index ){
 
             $.each( obj.authorships, function ( j, a ) {
 
+              // TODO: create a detail-element and display all authors with their institutions
+
 							if ( valid( a.author.display_name ) ){
 
                 let author_url = '';

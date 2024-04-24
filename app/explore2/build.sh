@@ -63,7 +63,7 @@ cd ../explore2 &&
 esbuild src/core/* src/command/* src/datasources/*/* src/fetch/* src/data/* src/webcomponent/* --outdir=dist --minify &&
 
 # build CSS
-esbuild css/conzept/* css/openmoji/* css/various/* --outdir=dist/css/ --minify &&
+esbuild css/conzept/* css/concept/themes/* css/openmoji/* css/various/* --outdir=dist/css/ --minify &&
 
 # bundle all API fetch scripts into one file
 cat dist/fetch/* > dist/core/fetches.js &&

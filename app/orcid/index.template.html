@@ -45,5 +45,26 @@
   <script src='../explore2/libs/materialize.min.js'></script>
   <script  src="./src/main.js?v004"></script>
 
+  <script>
+    // keyboard control
+    $('body').keydown(function(event) {
+
+      if ( $(event.target).is( 'input, select, button' ) ){
+
+        return;
+
+      }
+
+      let key = (event.keyCode ? event.keyCode : event.which);
+
+      if ( key == '70' ){ // "f"
+
+        document.toggleFullscreen();
+
+      }
+
+    });
+  </script>
+
 </body>
 </html>

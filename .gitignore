@@ -12,6 +12,7 @@ app/radio/
 app/iiif-ng/
 app/iptv*
 app/citation/
+app/vosviewer/
 presentations
 
 app/ai-graph/
