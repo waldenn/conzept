@@ -1811,10 +1811,13 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    let filterby        = '';    // default
-    let skip_datasource = false; // default
 
+    // defaults
+    let skip_datasource = false;
+    let filterby        = '';
     let sortby          = '';
+    let datemin         = '';
+    let datemax         = '';
 
     //console.log('fetchAutocompleteData(): ');
 
@@ -2416,6 +2419,47 @@ function setupSearch() {
     }
 
   });
+
+  $('#datemin').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    console.log('datemin changed to: ', $('#datemin').val() );
+
+    if ( valid( $('#datemin').val() ) ){
+
+      explore.datemin        = $('#datemin').val();
+      explore.datemin_param  = $('#datemin').val();
+
+      setParameter( 'datemin', explore.datemin, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+
+  });
+
+  $('#datemax').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    console.log('datemax changed to: ', $('#datemax').val() );
+
+    if ( valid( $('#datemax').val() ) ){
+
+      explore.datemax        = $('#datemax').val();
+      explore.datemax_param  = $('#datemax').val();
+
+      setParameter( 'datemax', explore.datemax, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+
+  });
+
+
+
 
   $('a.link.clear').on( 'click', function (e) {
 
@@ -3325,6 +3369,36 @@ function setupLanguage(){
       console.log( 'valid filter found: ', explore.filterby );
 
       $('#filterby').val( explore.filterby );
+
+    }
+
+  }
+
+  // determine datemin
+  if ( valid( explore.datemin_param ) ){
+
+    explore.datemin = explore.datemin_param;
+
+    if ( valid( explore.datemin ) ){
+
+      console.log( 'valid datemin found: ', explore.datemin );
+
+      $('#datemin').val( explore.datemin );
+
+    }
+
+  }
+
+  // determine datemax
+  if ( valid( explore.datemax_param ) ){
+
+    explore.datemax = explore.datemax_param;
+
+    if ( valid( explore.datemax ) ){
+
+      console.log( 'valid datemax found: ', explore.datemax );
+
+      $('#datemax').val( explore.datemax );
 
     }
 
@@ -7344,9 +7418,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.datemin + p.datemax + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby +  p.datemin + p.datemax + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -7644,6 +7718,20 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( !valid( explore.sortby ) || explore.sortby === 'none' ){ explore.sortby = '' } else {
       p.sortby = '&sortby=' + explore.sortby;
+    }
+
+    // datemin parameter
+    p.datemin = '';
+
+    if ( !valid( explore.datemin ) || explore.datemin === 'none' ){ explore.datemin = '' } else {
+      p.datemin = '&datemin=' + explore.datemin;
+    }
+
+    // datemax parameter
+    p.datemax = '';
+
+    if ( !valid( explore.datemax ) || explore.datemax === 'none' ){ explore.datemax = '' } else {
+      p.datemax = '&datemax=' + explore.datemax;
     }
 
     // theme parameter

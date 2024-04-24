@@ -271,9 +271,10 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span class="search-option-label" style="display:none;"><span id="year-range-test">
-          <span id="app-menu-filter-by-year-range">year range</span>: </span>
-            <input id="year-range-start" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />—<input id="year-range-end" class="browser-default" type="number" step="1" min="-9000" max="2024" value="" onKeyPress="if(this.value.length===5) return false;" />
+        <span class="search-option-label" style="">
+          <span id="app-menu-filter-by-date-range">date range</span>: </span>
+          <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
+          <input id="datemax" class="date-input" aria-label="Date to" max="" min="" type="date">
         </span>
 
       </div>

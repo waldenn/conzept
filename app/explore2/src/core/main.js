@@ -51,6 +51,8 @@ const explore = {
   query_param         : getParameterByName('query') || undefined,   // requested 'structured query'
   sortby_param        : getParameterByName('sortby') || undefined,  // requested sorting-key
   filterby_param      : getParameterByName('filterby') || undefined,// requested filter-key
+  datemin_param       : getParameterByName('datemin') || undefined, // requested minimum date
+  datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
 
   //country           : 'us', // default is "United States"
