@@ -101,8 +101,9 @@ $main_css = '
   <!-- Conzept CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.51.466" type="text/css">
   <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_lattice.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/theme_masonry.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/pillar.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/lattice.css?v0.51.466" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/masonry.css?v0.51.466" type="text/css">
   <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.466"  type="text/css">
 ';
 
@@ -394,9 +395,9 @@ $settings_html = '
                   <label style="display:inline;" for="theme"><span id="app-menu-theme">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
                     <option value="none">none</option>
-                    <option value="pillar">pillar column</option>
-                    <option value="lattice">lattice grid</option>
-                    <option value="masonry">masonry grid</option>
+                    <option value="pillar">pillar</option>
+                    <option value="lattice">lattice</option>
+                    <option value="masonry">masonry</option>
                   </select>
 
                 </div>
