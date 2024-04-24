@@ -1823,23 +1823,16 @@ async function fetchAutocompleteData( term ) {
 
     if ( valid( explore.filterby ) ){ // filter requested
 
-      //console.log( '  filter requested: ', explore.filterby );
-
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
     
-        //console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
-
         if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
 
           filterby = d.filter_map[ explore.filterby ];
 
-          //console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
-
         }
-        else { // just use the datasource _as is_, no 
+        else { // just use the datasource _as is_
 
           // do nothing
-          //console.log( '    --> use this datasource as is (but no custom "filterby" is needed!): ', d.name, filterby );
 
         }
 
@@ -1855,8 +1848,6 @@ async function fetchAutocompleteData( term ) {
 
       filterby = d.filter_map[ 'none' ]; // TODO: selects the default filter-value (IF the datasource url uses custom filters)
 
-      //console.log( '  no filter requested:', d.name, filterby );
-
     }
 
     if ( valid( d.sort_map[ explore.sortby ] ) ){
@@ -1867,6 +1858,13 @@ async function fetchAutocompleteData( term ) {
     else {
 
       sortby = d.sort_map[ 'none' ];
+
+    }
+
+    if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
+
+      datemin = explore.datemin;
+      datemax = explore.datemax;
 
     }
 

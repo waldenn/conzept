@@ -274,7 +274,7 @@ $sticky_html = '
         <span class="search-option-label" style="">
           <span id="app-menu-filter-by-date-range">date range</span>: </span>
           <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
-          <input id="datemax" class="date-input" aria-label="Date to" max="" min="" type="date">
+          <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">
         </span>
 
       </div>

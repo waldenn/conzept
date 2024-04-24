@@ -347,7 +347,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }',
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }${ valid( [ datemin, datemax ] )? "qf=timestamp_created:%5B" + new Date( datemin ).toISOString() + "+TO+" + new Date( datemax ).toISOString() + "%5D": "qf=" }',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     icon_invert:            true,
     color:                  '#0a72cc',
