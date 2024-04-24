@@ -104,7 +104,7 @@ $main_css = '
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/pillar.css?v0.51.466" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/lattice.css?v0.51.466" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/masonry.css?v0.51.466" type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.466"  type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/dark/explore.css?v0.51.466"  type="text/css">
 ';
 
 $main_script = '

@@ -101,10 +101,10 @@ $main_css = '
   <!-- Conzept CSS -->
   <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?vCONZEPT_VERSION" type="text/css">
   <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?vCONZEPT_VERSION" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/pillar.css?vCONZEPT_VERSION" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/lattice.css?vCONZEPT_VERSION" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/themes/masonry.css?vCONZEPT_VERSION" type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?vCONZEPT_VERSION"  type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/pillar.css?vCONZEPT_VERSION" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/lattice.css?vCONZEPT_VERSION" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/masonry.css?vCONZEPT_VERSION" type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/dark_explore.css?vCONZEPT_VERSION"  type="text/css">
 ';
 
 $main_script = '
