@@ -195,6 +195,7 @@ function setupSwiping(){
 			slidesPerView: 1,
 			spaceBetween: 30,
 			autoHeight: true,
+      allowTouchMove: fals,
 			keyboard: {
 				enabled: true,
 			},

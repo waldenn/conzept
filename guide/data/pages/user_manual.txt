@@ -91,10 +91,15 @@ Some points of inspiration for this project were:
 
 [{{ :app_layout.jpg?direct|application layout}}]
 
-The layout of Conzept consists of two main areas:
+On **large-screen devices** (such as laptops and desktops computers), layout of Conzept consists of two main areas:
   * The **[[#conzept sidebar|sidebar]]** ("core app"), which is used for showing the [[#string search|search interface]], the language selection and various tabs.
 
   * The **content area**, which consists of one or two **[[#content panes]]**. These panes are used to show [[apps|apps]] and (embeddable) websites.
+
+On **small-screen devices** (such as mobile phones) the layout is different:
+  * The sidebar and the two content-panes are each on their own page.
+  * To move between panes, you tap the blue buttons on the bottom of the screen. For some apps swiping left / right is enabled also. (Note: This swiping is disabled on the sidebar page, to allow for more specific swiping actions on that page.)
+
 ==== conzept sidebar ====
 
 [{{ :sidebar_screenshot_1.jpg?direct|sidebar example }}]
@@ -165,6 +170,54 @@ To search for **literal phrases**, you can put double-quotes around your search 
 The results will be shown in the sidebar and the next results are loaded once you scroll to the bottom of the results.
 
 If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
+
+===== search options =====
+
+[{{ ::search_options_001.jpg?direct| search options ([[https://conze.pt/explore/geography?l=en&d=openlibrary&t=string&filterby=text&sortby=relevance-desc&datemin=2005-06-14&datemax=2006-01-01&theme=lattice&s=true#|link]]) }}]
+
+The term-based searching can be augmented with various **search options**, to filter and sort the results further.
+
+Note that not all these search-options are supported by all datasources, most datasources only implement a limited set.
+So when you set these search-options, be aware that the options you set will not always be reflected in the search results (for some datasources).
+
+These are the available search options:
+
+  * **Datasource set** categories (these are pre-selections of individual datasources):
+    * Reference works
+    * Culture
+    * Science
+    * Business (also includes news and governmental data for now)
+
+  * **Filter by** media-type:
+    * Text
+    * Image
+    * Video
+    * Audio
+    * Data (CSV, JSON, etc. )
+    * 3D object models
+    * Software
+    * Archive (zips, mixed collections)
+    * Entity (organizations, people, etc.)
+
+  * **Sort by** (in the descending "↓" and ascending "↑" direction):
+    * Relevance
+    * Date (of creation of event, or the most relevant date-attribute of the datasource)
+    * Update
+    * Random
+    * Title
+    * Citations
+    * Title
+    * Distance (Note: not yet implemented)
+
+  * **Date range**: from start-date to end-date.
+    * Notes: Most datasources don't (yet) support date-range searches, but sometimes support a more limited date filter.
+      * Full support: Europeana.
+      * Semi support:
+        * Rijksmuseum (uses century of the start-date)
+        * OpenLibrary (uses the start-date as the "first_publish_year")
+      * All the other datasources have no date-range support.
+      * Datasources to be determined / implemented: Wikipedia, Wikidata, Library of Congress, ...
+      * OpenAlex support this date-range searchign, but this feature requires commercial access.
 
 ===== structured search =====
 
