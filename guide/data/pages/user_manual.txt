@@ -25,9 +25,6 @@ Conzept encyclopedia allows you to explore any of the millions of topics on Wiki
 
 Client-side [[topic classification|topic-classification]] in addition, allows for a fast, higher-level semantic logic, throughout the whole user experience. The user-interface supports any of the ~[[explore>List of Wikipedias|300 Wikipedia languages]] and even some language-variants (such as the Chinese language variants).
 
-
-
-
 ===== thanks =====
 
   * {{ :nlnet.svg?200}} {{ :eu.png?200}} Conzept has been [[https://nlnet.nl/project/Conzept/|funded]] through the **[[https://nlnet.nl/NGI0/|NGI0]] [[https://nlnet.nl/discovery/|Discovery]]** Fund, under grant agreement No 825322.
@@ -189,17 +186,17 @@ These are the available search options:
     * Business (also includes news and governmental data for now)
 
   * **Filter by** media-type:
-    * Text
+    * Text (article, book, PDF, etc.)
     * Image
     * Video
     * Audio
     * Data (CSV, JSON, etc. )
     * 3D object models
     * Software
-    * Archive (zips, mixed collections)
+    * Archive (zip file, mixed-media collections)
     * Entity (organizations, people, etc.)
 
-  * **Sort by** (in the descending "↓" and ascending "↑" direction):
+  * **Sort by** (in either the descending "↓" and ascending "↑" direction):
     * Relevance
     * Date (of creation of event, or the most relevant date-attribute of the datasource)
     * Update
@@ -209,7 +206,7 @@ These are the available search options:
     * Title
     * Distance (Note: not yet implemented)
 
-  * **Date range**: from start-date to end-date.
+  * **Date-range filter**: from start-date to end-date.
     * Notes: Most datasources don't (yet) support date-range searches, but sometimes support a more limited date filter.
       * Full support: Europeana.
       * Semi support:

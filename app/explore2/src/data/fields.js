@@ -17838,7 +17838,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'openalex_search' : {
-  create_condition: true,
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "doaj", "ror", "gbif" ], item.datasource )',
   title: 'OpenAlex - science articles search',
   prop: '',
   type: 'link',

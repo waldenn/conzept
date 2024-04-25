@@ -73,6 +73,24 @@ function checkTag( item, level, name ){
 
 }
 
+function activeOnDatasources( list, datasource ){
+
+  let r = false; // default
+
+  if ( valid( [ list, datasource ] ) ){
+
+    if ( Array.isArray( list ) ){ // list
+
+      r = list.includes( datasource );
+
+    }
+
+  }
+
+  return r;
+
+}
+
 function checkPersona( input ){
 
   let r = false; // default
