@@ -6473,8 +6473,22 @@ async function renderTopics( inputs ){
 
     }
 
-		// calculate total nr of pages (and force to one when no results are found)
-	  $('#total-results').html( '<b>' + explore.totalRecords + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>');;
+    let datasources_used_html = [];
+
+    $.each( explore.datasources, function( index, source ){ // for each active datasource
+
+      let d = datasources[ source ];
+
+      if ( valid( d.icon ) ){
+
+        datasources_used_html.push( `<div class="datasource-hits" title="${ d.name + ' : ' + d.total }" data-number="${ d.total }"><span class="datasource-hit-icon icon ${ valid( [ explore.darkmode, d.icon_invert ] )? 'invert' : '' }">${d.icon}</span> <span class="datasource-hits-label">${ d.total }</span></div>` );
+
+      }
+
+    });
+
+    // show number-of-pages and the datasources
+    $('#total-results').html( '<b>' + explore.totalRecords + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
 
     //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 

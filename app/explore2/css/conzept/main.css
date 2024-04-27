@@ -942,6 +942,28 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   text-wrap: nowrap;
 }
 
+/* */
+
+#datasources-used {
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax( 5em, 1fr ) );
+  grid-gap: 0.5rem;
+  padding: 0.5rem 0em 0.5rem 0rem;
+}
+
+.datasource-hits-label {
+  position: relative;
+  bottom: 0em;
+  right: -0.1em;
+  font-size: 0.7em;
+  background: inherit;
+  font-weight: bold;
+}
+
+.datasource-hit-icon {
+  vertical-align: middle;
+}
+
 /* TODO: do this from datasoures.js */
 #datasources-setting .reference { background: #ffff002b; }
 #datasources-setting .culture { background: #d3570c2b; }
@@ -2411,7 +2433,7 @@ h1 {
   background-color: #fbfaf9;
 }
 
-#search-options select {
+#search-options select, #search-options .date-range {
   font-size: larger;
   background: inherit;
   border: 2px solid #0000000a;

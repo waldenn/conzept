@@ -14,6 +14,14 @@ body.dark span.icon.invert {
   filter: invert(1);
 }
 
+body.dark #search-options select, body.dark #search-options .date-range {
+  border-color: #ffffff36;
+}
+
+body.dark .date-input {
+  color: white;
+}
+
 body.dark summary:focus {
   /* background: #f3a8ab1f; */
   /* color: #f009; */
