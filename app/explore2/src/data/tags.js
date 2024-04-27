@@ -4,7 +4,8 @@ var conzept_tags = {
 
   "raw-query-string" : {
     text : "raw-query-string",
-    icon : ["fa-solid fa-pen"],
+    icon : [],
+    //icon : ["fa-solid fa-pen"],
     sub : {
     },
   },

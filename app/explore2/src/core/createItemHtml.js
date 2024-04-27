@@ -24,7 +24,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   //console.log( 'datasources: ', datasources, source );
 
   if ( source === 'raw' ){
-    source_icon = `<span class="article-title-icon" title="plain string topic">...</span>`;
+    source_icon = `<span class="article-title-icon" title="plain string topic"><span class="icon"><i class="fa-solid fa-pen"></i></span></span>`;
   }
   else {
 
