@@ -202,11 +202,11 @@ These are the available search options:
     * Update
     * Random
     * Title
-    * Citations
+    * Citations (or some similar available "reference" count)
     * Title
-    * Distance (Note: not yet implemented)
+    * Distance (note: not yet implemented)
 
-  * **Date-range filter**: from start-date to end-date.
+  * **Date-range filter**: from start-date to end-date. Both dates //must// be entered for this search-option to be active!
     * Notes: Most datasources don't (yet) support date-range searches, but sometimes support a more limited date filter.
       * Full support: Europeana.
       * Semi support:
@@ -214,7 +214,8 @@ These are the available search options:
         * OpenLibrary (uses the start-date as the "first_publish_year")
       * All the other datasources have no date-range support.
       * Datasources to be determined / implemented: Wikipedia, Wikidata, Library of Congress, ...
-      * OpenAlex support this date-range searchign, but this feature requires commercial access.
+      * OpenAlex supports date-range search, but this feature requires a paid subscription.
+      * Currently the start/end date-range refer to the "creation" or "event" date of datasource items. In the future an option may be added to use other date-range item attributes (also depends on the broader datasource support for this search functionality).
 
 ===== structured search =====
 
@@ -250,6 +251,8 @@ The AI-chat app functionality allows the user to ask natural-language questions 
 The answer text may contain linked words. When these words are clicked a new sidebar topic query is created.
 
 This feature can be enabled through: **settings menu** -> **features** -> **AI search**.
+
+Note that the AI-chat feature requires filling in your OpenAI key at **settings menu** -> **API keys** -> **OpenAI**. This key is only stored locally in your browser.
 
 ===== topic presentations =====
 

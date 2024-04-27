@@ -307,6 +307,8 @@ $( document ).ready( function() {
     const stores = [ ImmortalDB.LocalStorageStore, ImmortalDB.IndexedDbStore ];
     explore.db = new ImmortalDB.ImmortalStorage( stores ); //explore.db = ImmortalDB.ImmortalDB;
 
+    setupOptionTopicCover(); // needs to be called earlier (so the topic is set when we display the default cover page)
+
     // i18n engine: https://github.com/wikimedia/banana-i18n
     // set default locale and locale-fallback, we will set the true user-locale later.
     explore.banana        = new Banana( 'en', { finalFallback: 'en' } ); // used for the UI interface
@@ -361,7 +363,6 @@ $( document ).ready( function() {
     setupFonts();
     setupSwiping();
     setupBookmarks();
-    setupOptionTopicCover(); // needs to be called earlier (so the topic is set when we display the default cover page)
     setupKeyboardNavigation();
     setupKeyboardCombos();
 

@@ -1456,6 +1456,8 @@ function setupDatasourceSet(){
             explore.datasource_set            = datasource_set;
             explore.datasource_set_selection  = datasource_set;
 
+            $('#search-in').val( explore.datasource_set );
+
           }
           else { // unkown "datasource set" param
 

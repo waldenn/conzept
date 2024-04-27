@@ -228,7 +228,13 @@ function processResultsArchive( topicResults, struct, index ){
 
           }
 
-          desc                  = highlightTerms( desc );
+          if ( desc.length > 300 ){
+
+            desc = desc.substring(0, 300) + ' (...)';
+
+          }
+
+          desc = highlightTerms( desc );
 
         }
 
