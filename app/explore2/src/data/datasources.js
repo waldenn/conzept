@@ -590,7 +590,7 @@ const datasources = {
                               'entity'          : '',
                             },
                             // FIXME: &q=mandible AND how to specify more than one file format?
-    url:                    '${datasources.smithsonian3D.endpoint}?q=${term}&model_type=gltf&rows=${datasources.smithsonian3D.pagesize}&start=${ (explore.page -1) * datasources.smithsonian3D.pagesize }',
+    url:                    '${datasources.smithsonian3D.endpoint}?q=%22${term}%22&model_type=gltf&rows=${datasources.smithsonian3D.pagesize}&start=${ (explore.page -1) * datasources.smithsonian3D.pagesize }',
     icon:                   '<img class="datasource-icon" alt="Smithsonian 3D datasource" src="/assets/icons/smithsonian3D.svg" alt="Smithsonian logo">',
     icon_invert:            false,
     color:                  '#F0B323',

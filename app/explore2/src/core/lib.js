@@ -2155,7 +2155,7 @@ function setupSearch() {
     // FIXME
     $('.searchbox').autocomplete('close');
     $('#srsearch').blur();
-    $('#detail-result-summary').hide();
+    //$('#detail-result-summary').hide();
 
     explore.searchmode = 'string';
 
@@ -4647,7 +4647,7 @@ async function setDefaultDisplaySettings( cover, type ) {
   explore.topic_cursor = 'n1-1';
 
   // results summary stats
-  $('#detail-result-summary').hide();
+  //$('#detail-result-summary').hide();
   $('.pieTip').remove();
   $('#pieChart').empty();
 
@@ -10254,7 +10254,7 @@ function refreshArticles(){
 
   }
 
-  $('#detail-result-summary').hide();
+  //$('#detail-result-summary').hide();
 	$('#results').empty();
   $('#total-results').empty();
   $('#scroll-end').hide();
@@ -10384,7 +10384,7 @@ function loadTopics( nextpage ){
 
         renderTopics( renderObject ); // finally render all topics
 
-      	renderResultSummary();
+      	//renderResultSummary();
 
       })
       .catch( error => {

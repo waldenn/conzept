@@ -951,6 +951,10 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   padding: 0.5rem 0em 0.5rem 0rem;
 }
 
+.datasource-hits {
+  text-align: center;
+}
+
 .datasource-hits-label {
   position: relative;
   bottom: 0em;
