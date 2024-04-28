@@ -1814,6 +1814,9 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
+    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+
+    console.log( pre_condition );
 
     // defaults
     let skip_datasource = false;
@@ -1880,7 +1883,7 @@ async function fetchAutocompleteData( term ) {
     // getISODateString( datemin ) 
     // getISODateString( datemax ) 
 
-    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource ] ) ){ // active autocomplete
+    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource, pre_condition ] ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
 
@@ -1893,9 +1896,9 @@ async function fetchAutocompleteData( term ) {
     }
     else { // disabled autocomplete: use a dummy promise query
 
-      if ( skip_datasource ){
+      //if ( skip_datasource ){
         //console.log( '  skipping datasource: ', d.name );
-      }
+      //}
 
       autocomplete_fetches.push( Promise.resolve([]) );
 
@@ -10335,7 +10338,10 @@ function loadTopics( nextpage ){
 
 				let d = datasources[ struct[ index ].name ];
 
-				if ( valid( d.code_data_collect ) ){
+        let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+        console.log( pre_condition );
+
+				if ( valid( [ d.code_data_collect, pre_condition ] ) ){
 
 					let topicResults = data[index];
 
@@ -10481,6 +10487,15 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
+    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+    console.log( pre_condition );
+
+    if ( ! pre_condition ){ // skip this datasource
+
+      return true;
+
+    }
+
     let filterby        = '';
     let skip_datasource = false; // default
 
@@ -10594,6 +10609,15 @@ async function fetchDatasources(){
   $.each( explore.datasources, function( index, source ){ // for each active datasource
 
     let d = datasources[ source ];
+
+    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+    console.log( pre_condition );
+
+    if ( ! pre_condition ){ // skip this datasource
+
+      return true;
+
+    }
 
     let skip_datasource = false; // default
 

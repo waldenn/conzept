@@ -949,6 +949,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   grid-template-columns: repeat( auto-fill, minmax( 5em, 1fr ) );
   grid-gap: 0.5rem;
   padding: 0.5rem 0em 0.5rem 0rem;
+  margin-left: 1em;
 }
 
 .datasource-hits {
