@@ -548,6 +548,7 @@ const datasources = {
   },
   */
 
+  /*
   'smithsonian3D': {
     active:                 false,
     name:                   'Smithsonian 3D',
@@ -606,6 +607,7 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     5,
   },
+  */
 
   'openalex': {
     active:                 false,

@@ -678,6 +678,46 @@ $( window, document ).bind('unload', function(event) {
 
 });
 
+function checkVoiceSettings(){
+
+  return new Promise(
+
+      async function (resolve, reject) {
+
+        app.voice_code = await app.db.get('voice_code_selected');
+        app.voice_code = ( app.voice_code === null || app.voice_code === undefined ) ? getParameterByName( 'voice_code' ) : app.voice_code;
+
+        app.voice_name = await app.db.get('voice_name_selected');
+        app.voice_name = ( app.voice_name === null || app.voice_name === undefined ) ? getParameterByName( 'voice_name' ) : app.voice_name;
+
+        app.voice_rate = await app.db.get('voice_rate');
+        app.voice_rate = ( app.voice_rate === null || app.voice_rate === undefined ) ? getParameterByName( 'voice_rate' ) : app.voice_rate;
+
+        app.voice_pitch = await app.db.get('voice_pitch');
+        app.voice_pitch = ( app.voice_pitch === null || app.voice_pitch === undefined ) ? getParameterByName( 'voice_pitch' ) : app.voice_pitch;
+
+        if ( !valid( app.voice_rate ) ){
+
+          app.voice_rate = 1.00;
+
+        }
+
+        if ( !valid( app.voice_pitch ) ){
+
+          app.voice_pitch = 1.00;
+
+        }
+
+        resolve();
+
+      }
+
+  )
+
+}
+
+
+
 $( document ).ready( async function() {
 
   // main app config
@@ -702,34 +742,16 @@ $( document ).ready( async function() {
   // first try get the voice-settings from web storage
   app.db = ImmortalDB.ImmortalDB;
 
-  app.voice_code = await app.db.get('voice_code_selected');
-  app.voice_code = ( app.voice_code === null || app.voice_code === undefined ) ? getParameterByName( 'voice_code' ) : app.voice_code;
-
-  app.voice_name = await app.db.get('voice_name_selected');
-  app.voice_name = ( app.voice_name === null || app.voice_name === undefined ) ? getParameterByName( 'voice_name' ) : app.voice_name;
-
-  app.voice_rate = await app.db.get('voice_rate');
-  app.voice_rate = ( app.voice_rate === null || app.voice_rate === undefined ) ? getParameterByName( 'voice_rate' ) : app.voice_rate;
-
-  app.voice_pitch = await app.db.get('voice_pitch');
-  app.voice_pitch = ( app.voice_pitch === null || app.voice_pitch === undefined ) ? getParameterByName( 'voice_pitch' ) : app.voice_pitch;
-
-  if ( !valid( app.voice_rate ) ){
-
-    app.voice_rate = 1.00;
-
-  }
-
-  if ( !valid( app.voice_pitch ) ){
-
-    app.voice_pitch = 1.00;
-
-  }
-
   // final language
   app.lang = valid( app.voice_code )? app.voice_code : app.language;
 
-  init();
+  let check = checkVoiceSettings();
+
+  check.then( async ( ) => {
+
+    init();
+
+  });
 
 });
 

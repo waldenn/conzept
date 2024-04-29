@@ -6488,8 +6488,14 @@ async function renderTopics( inputs ){
 
     });
 
+    let num_of_results = explore.totalRecords;
+
+    if ( num_of_results > 10000 ){
+      num_of_results = numbro( num_of_results ).format({ thousandSeparated: true, totalLength: 2 });
+    }
+
     // show number-of-pages and the datasources
-    $('#total-results').html( '<b>' + explore.totalRecords + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
+    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
 
     //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 
