@@ -6474,9 +6474,15 @@ async function renderTopics( inputs ){
 
       let d = datasources[ source ];
 
+      let num_of_hits = d.total;
+
+      if ( num_of_hits > 10000 ){
+        num_of_hits = numbro( num_of_hits ).format({ thousandSeparated: true, totalLength: 2 });
+      }
+
       if ( valid( d.icon ) ){
 
-        datasources_used_html.push( `<div class="datasource-hits" title="${ d.name + ' : ' + d.total }" data-number="${ d.total }"><span class="datasource-hit-icon icon ${ valid( [ explore.darkmode, d.icon_invert ] )? 'invert' : '' }">${d.icon}</span> <span class="datasource-hits-label">${ d.total }</span></div>` );
+        datasources_used_html.push( `<div class="datasource-hits" title="${ d.name + ' : ' + d.total }" data-number="${ d.total }"><span class="datasource-hit-icon icon ${ valid( [ explore.darkmode, d.icon_invert ] )? 'invert' : '' }">${d.icon}</span> <span class="datasource-hits-label">${ num_of_hits }</span></div>` );
 
       }
 
