@@ -977,11 +977,22 @@ function sortObjectsArray(objectsArray, sortKey){
   return retVal;
 }
 
-function countDecimals(value) {
+function countDecimals( value ) {
 
-    if ( Math.floor(value) === value ) return 0;
+  if ( valid( value ) && isNumeric( value ) ){
 
-    return value.toString().split(".")[1].length || 0; 
+    if ( Math.floor(value) === value && valid( value.toString().split(".")[1] ) ){
+
+      return value.toString().split(".")[1].length || 0;
+
+    }
+    else {
+
+      return 0;
+
+    }
+
+  }
 
 }
 

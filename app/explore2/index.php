@@ -271,7 +271,7 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span class="search-option-label" style="date-range">
+        <span class="search-option-label date-range" style="date-range">
           <span id="app-menu-filter-by-date-range">date range</span>:
           <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">

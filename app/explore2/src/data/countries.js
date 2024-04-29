@@ -1177,19 +1177,6 @@ const countries = {
 			"chamber2_members": "Q18067639",
 			"gdelt": "CI"
 	},
-	"Q29999": {
-			"iso2": "NL",
-			"iso3": "NLD",
-			"name": "Netherlands",
-			"chatham_house_id": "528",
-			"capital": "Q727",
-			"capitalName": "Amsterdam",
-			"chamber1": "Q59486",
-			"chamber1_members": "Q19305384",
-			"chamber2": "Q233262",
-			"chamber2_members": "Q18887908",
-			"gdelt": "NL"
-	},
 	"Q31": {
 			"iso2": "BE",
 			"iso3": "BEL",
@@ -1581,6 +1568,19 @@ const countries = {
 			"highest_judicial": "Q133765",
 			"chamber1": "Q59486",
 			"chamber1_members": "Q19305384",
+			"gdelt": "NL"
+	},
+	"Q29999": {
+			"iso2": "NL",
+			"iso3": "NLD",
+			"name": "Netherlands",
+			"chatham_house_id": "528",
+			"capital": "Q727",
+			"capitalName": "Amsterdam",
+			"chamber1": "Q59486",
+			"chamber1_members": "Q19305384",
+			"chamber2": "Q233262",
+			"chamber2_members": "Q18887908",
 			"gdelt": "NL"
 	},
 	"Q574": {

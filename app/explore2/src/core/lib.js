@@ -1814,9 +1814,8 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-
-    console.log( pre_condition );
+    //let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+    //console.log( pre_condition );
 
     // defaults
     let skip_datasource = false;
@@ -1883,7 +1882,7 @@ async function fetchAutocompleteData( term ) {
     // getISODateString( datemin ) 
     // getISODateString( datemax ) 
 
-    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource, pre_condition ] ) ){ // active autocomplete
+    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource, /*pre_condition*/ ] ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
 
@@ -3392,7 +3391,7 @@ function setupLanguage(){
 
     if ( valid_filter_options.includes( explore.filterby ) ){
 
-      console.log( 'valid filter found: ', explore.filterby );
+      //console.log( 'valid filter found: ', explore.filterby );
 
       $('#filterby').val( explore.filterby );
 
@@ -10275,7 +10274,7 @@ function loadTopics( nextpage ){
       // check if we should fetch more results
       if ( valid( datasources[ source ].done ) ){ // datasource already marked as "done"
 
-        console.log('datasource already marked as "done"');
+        console.log( `loadTopics: datasource ${ datasources[ source ].name } already marked as done` );
 
         // do nothing
       }
@@ -10288,7 +10287,7 @@ function loadTopics( nextpage ){
         }
         else { // no more to fetch
 
-          //console.log( 'loadTopics: no more to fetch...', datasources );
+          console.log( `loadTopics: datasource ${ datasources[ source ].name }: no more to fetch` );
 
           datasources[ source ].done = true;
 
@@ -10338,10 +10337,10 @@ function loadTopics( nextpage ){
 
 				let d = datasources[ struct[ index ].name ];
 
-        let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-        console.log( pre_condition );
+        //let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
+        //console.log( pre_condition );
 
-				if ( valid( [ d.code_data_collect, pre_condition ] ) ){
+				if ( valid( [ d.code_data_collect, /*pre_condition*/ ] ) ){
 
 					let topicResults = data[index];
 
@@ -10487,6 +10486,7 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
+    /*
     let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
     console.log( pre_condition );
 
@@ -10495,6 +10495,7 @@ async function fetchDatasources(){
       return true;
 
     }
+    */
 
     let filterby        = '';
     let skip_datasource = false; // default
@@ -10610,6 +10611,7 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
+    /*
     let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
     console.log( pre_condition );
 
@@ -10618,6 +10620,7 @@ async function fetchDatasources(){
       return true;
 
     }
+    */
 
     let skip_datasource = false; // default
 
