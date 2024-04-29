@@ -218,11 +218,12 @@ function processResultsLoC( topicResults, struct, index ){
 
 								if ( valid( obj.resources[0]?.pdf ) ){
 
-									url = obj.resources[0].pdf;
-									tts_link = url;
+									url         = obj.resources[0].pdf;
+									tts_link    = url;
 									media_found = true;
-                  subtag = 'book';
-                  console.log( url );
+                  subtag      = 'book';
+
+                  //console.log( url );
 
 								}
 

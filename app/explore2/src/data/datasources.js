@@ -7,7 +7,6 @@ const datasources = {
     description:            'encyclopedic topics',
     tag:                    'general',
     qid:                    'Q52',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'wikipedia.org/w/api.php',
     format:                 'json',
@@ -71,7 +70,6 @@ const datasources = {
     description:            'knowledge base topics',
     tag:                    'general',
     qid:                    'Q2013',
-    pre_condition:          true,
     protocol:               'sparql',
     endpoint:               'https://query.wikidata.org/sparql',
     format:                 'json',
@@ -135,7 +133,6 @@ const datasources = {
     description:            'media library',
     tag:                    'arts-culture',
     qid:                    'Q565',
-    pre_condition:          'valid( explore.q_qid )', // only use this datasource with a valid topic Qid
     protocol:               'rest',
     endpoint:               'https://commons.wikimedia.org/w/api.php',// see: https://commons.wikimedia.org/w/api.php
                                                                       //      https://commons.wikimedia.org/w/api.php?action=help&modules=query
@@ -199,7 +196,6 @@ const datasources = {
     description:            'media library',
     tag:                    'arts-culture',
     qid:                    'Q461',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://archive.org/advancedsearch.php',
     format:                 'json',
@@ -259,7 +255,6 @@ const datasources = {
     description:            'books library',
     tag:                    'arts-culture',
     qid:                    'Q1201876',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://openlibrary.org/search.json',
     format:                 'json',
@@ -318,7 +313,6 @@ const datasources = {
     description:            '🇪🇺 European media library',
     tag:                    'arts-culture',
     qid:                    'Q461',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.europeana.eu', // see: https://pro.europeana.eu/page/search
     format:                 'json',
@@ -377,7 +371,6 @@ const datasources = {
     description:            '🇳🇱 museum image library',
     tag:                    'arts-culture',
     qid:                    'Q190804',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://www.rijksmuseum.nl/api', // see: https://data.rijksmuseum.nl/object-metadata/api/
     format:                 'json',
@@ -436,7 +429,6 @@ const datasources = {
     description:            '🇺🇸 national library - BETA',
     tag:                    'arts-culture',
     qid:                    'Q131454',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://www.loc.gov/items/', // see: https://www.loc.gov/apis/json-and-yaml/requests/endpoints/
     format:                 'json',
@@ -502,7 +494,6 @@ const datasources = {
     description:            '🇺🇸 art museum - BETA',
     tag:                    'arts-culture',
     qid:                    'Q160236',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://collectionapi.metmuseum.org/public/collection/v1/search', // see: https://metmuseum.github.io/
     format:                 'json',
@@ -564,7 +555,6 @@ const datasources = {
     description:            '🇺🇸 physical object scans - BETA',
     tag:                    'arts-culture',
     qid:                    'Q131626',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://3d-api.si.edu/api/v1.0/content/file/search', // see: https://3d-api.si.edu/api-docs/
     format:                 'json',
@@ -600,7 +590,7 @@ const datasources = {
                               'entity'          : '',
                             },
                             // FIXME: &q=mandible AND how to specify more than one file format?
-    url:                    '${datasources.smithsonian3D.endpoint}?q=%22${term}%22&model_type=gltf&rows=${datasources.smithsonian3D.pagesize}&start=${ (explore.page -1) * datasources.smithsonian3D.pagesize }',
+    url:                    '${datasources.smithsonian3D.endpoint}?q=%22${term.replace( /"/gm, "" )}%22&model_type=gltf&rows=${datasources.smithsonian3D.pagesize}&start=${ (explore.page 0) * datasources.smithsonian3D.pagesize }',
     icon:                   '<img class="datasource-icon" alt="Smithsonian 3D datasource" src="/assets/icons/smithsonian3D.svg" alt="Smithsonian logo">',
     icon_invert:            false,
     color:                  '#F0B323',
@@ -624,7 +614,6 @@ const datasources = {
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q107507571',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.openalex.org/works', // see: https://docs.openalex.org/how-to-use-the-api/api-overview
     format:                 'json',
@@ -683,7 +672,6 @@ const datasources = {
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q118398',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://export.arxiv.org/api/query', // see: https://info.arxiv.org/help/api/user-manual.html
     format:                 'json',
@@ -742,7 +730,6 @@ const datasources = {
     description:            'Directory of Open Access Journals - BETA',
     tag:                    'science',
     qid:                    'Q1227538',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://doaj.org/api/search/journals/', // see: https://doaj.org/api/v3/docs#!/Search/get_api_search_journals_search_query
     format:                 'json',
@@ -802,7 +789,6 @@ const datasources = {
     description:            'science articles',
     tag:                    'science',
     qid:                    'Q115667709',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://scholar.archive.org', // see: https://scholar.archive.org/api/redoc
     format:                 'json',
@@ -862,7 +848,6 @@ const datasources = {
     description:            'species observations - BETA',
     tag:                    'science',
     qid:                    'Q1531570',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.gbif.org/v1/species', // see: https://www.gbif.org/developer/species
     format:                 'json',
@@ -921,7 +906,6 @@ const datasources = {
     description:            'research organizations',
     tag:                    'organization',
     qid:                    'Q110235640',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.ror.org/v2/organizations', // see: https://ror.readme.io/v2/docs/api-list
                                                                     //      https://ror.readme.io/v2/docs/data-structure
@@ -982,7 +966,6 @@ const datasources = {
     description:            'legal entities',
     tag:                    'business',
     qid:                    'Q6517388',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.gleif.org/api/v1/lei-records', // see: https://documenter.getpostman.com/view/7679680/SVYrrxuU?version=latest
     format:                 'json',
@@ -1041,7 +1024,6 @@ const datasources = {
     tag:                    'government',
     description:            '🇪🇺 European Union datasets - BETA',
     qid:                    'Q458',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://data.europa.eu/api/hub/search/search', // see: https://data.europa.eu/api/hub/search/
     format:                 'json',
@@ -1100,7 +1082,6 @@ const datasources = {
     description:            'news reports - BETA',
     tag:                    'work',
     qid:                    'Q18357239',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.gdeltproject.org/api/v2/context/context', // see: https://blog.gdeltproject.org/announcing-the-gdelt-context-2-0-api/
     format:                 'json',
@@ -1160,7 +1141,6 @@ const datasources = {
     description:            'investigative journalism entities - BETA',
     tag:                    'science',
     qid:                    'Q7102061',
-    pre_condition:          true,
     protocol:               'rest',
                               // see:
                               //  https://redocly.github.io/redoc/?url=https://aleph.occrp.org/api/openapi.json#tag/Entity
@@ -1223,7 +1203,6 @@ const datasources = {
     description:            'taxon observations - BETA',
     tag:                    'science',
     qid:                    'Q16958215',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://api.inaturalist.org/v1/taxa', // see: https://api.inaturalist.org/v1/docs/#!/Taxa/get_taxa
     format:                 'json',
@@ -1271,7 +1250,6 @@ const datasources = {
     description:            '🇳🇱 art-history library - FAILING',
     tag:                    'arts-culture',
     qid:                    'Q758610',
-    pre_condition:          true,
     protocol:               'rest',
     // see: https://api.rkd.nl/api
     //endpoint:             'https://api.rkd.nl/api/instant/images',
@@ -1324,7 +1302,6 @@ const datasources = {
     description:            'medical ontology',
     tag:                    'science',
     qid:                    'Q1753883',
-    pre_condition:          true,
     protocol:               'rest',
     endpoint:               'https://browser.ihtsdotools.org/snowstorm/snomed-ct/browser/MAIN/2023-04-30/descriptions',
     format:                 'json',

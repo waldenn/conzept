@@ -63,6 +63,8 @@ const loadNextPage = async function() {
 
         combined_pagesize += parseInt( datasources[ source ].pagesize );
 
+				//console.log( `loadNextPage: ${source} is NOT done` );
+
       }
 
     });
@@ -355,14 +357,14 @@ function triggerQueryForm(){
   }
   else if ( explore.type === 'presentation' && explore.qid !== '' ){ // presentation request from Qid
 
-    console.log('make presentation from Qid: ', explore.qid );
+    //console.log('make presentation from Qid: ', explore.qid );
    
     makePresentation( explore.qid );
 
   }
   else if ( explore.type === 'presentation' && explore.q !== '' ){ // presentation request from title
 
-    console.log('make presentation from title: ', explore.q );
+    //console.log('make presentation from title: ', explore.q );
    
     makePresentation( explore.q );
 
@@ -1814,11 +1816,7 @@ async function fetchAutocompleteData( term ) {
 
     let d = datasources[ source ];
 
-    //let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-    //console.log( pre_condition );
-
     // defaults
-    let skip_datasource = false;
     let filterby        = '';
     let sortby          = '';
     let datemin         = '';
@@ -1844,7 +1842,7 @@ async function fetchAutocompleteData( term ) {
       }
       else { // filter-media-type is NOT supported by the datasource
 
-        skip_datasource = true;
+        d.done = true;
 
       }
 
@@ -1882,7 +1880,7 @@ async function fetchAutocompleteData( term ) {
     // getISODateString( datemin ) 
     // getISODateString( datemax ) 
 
-    if ( valid( [ d.active, d.autocomplete_active, !skip_datasource, /*pre_condition*/ ] ) ){ // active autocomplete
+    if ( valid( [ d.active, d.autocomplete_active, !d.done ] ) ){ // active autocomplete
 
       autocomplete_fetches.push( $.ajax({
 
@@ -1894,10 +1892,6 @@ async function fetchAutocompleteData( term ) {
 
     }
     else { // disabled autocomplete: use a dummy promise query
-
-      //if ( skip_datasource ){
-        //console.log( '  skipping datasource: ', d.name );
-      //}
 
       autocomplete_fetches.push( Promise.resolve([]) );
 
@@ -6334,7 +6328,7 @@ async function renderTopics( inputs ){
 
   setDisplayForResults();
 
-  //console.log( 'inputs: ',  inputs );
+  //console.log( 'renderTopics(): inputs: ',  inputs );
 
   explore.totalRecords  = 0; // default reset
   let combined_pagesize = 0; // default
@@ -6353,8 +6347,7 @@ async function renderTopics( inputs ){
 
   });
 
-  // QQQ
-  console.log( 'explore.totalRecords set to: ', explore.totalRecords, ', combined_pagesize: ', combined_pagesize );
+  //console.log( 'explore.totalRecords set to: ', explore.totalRecords, ', combined_pagesize: ', combined_pagesize );
 
   if ( explore.totalRecords === 0 ){
 
@@ -6999,9 +6992,10 @@ async function renderType( args ){
       },
 
       error: function (xhr, ajaxOptions, thrownError) {
-        console.log(xhr.status);
-        console.log(thrownError);
+
+        console.log(xhr.status, thrownError );
         explore.firstAction = false;
+
       }
 
     });
@@ -7320,7 +7314,7 @@ async function handleClick( args ) {
 
     if ( lang.trim() !== explore.language ){ // only updated when different
 
-      console.log( 'language update: ', lang.trim(), explore.language );
+      //console.log( 'language update: ', lang.trim(), explore.language );
 
       setLanguage ( lang.trim() );
 
@@ -8125,8 +8119,6 @@ function receiveMessage(event){
 
         if ( event.data.data.type === 'explore' ){
 
-          console.log( 'explore language: ', explore.language );
-
           explore.preventSliding = true;
           explore.swiper.slideTo( 0 ); // go back to sidebar on mobile when 'exploring'
 
@@ -8164,14 +8156,14 @@ function receiveMessage(event){
 
     let iframeEl = document.getElementById( 'infoframe' );
 
-    console.log( 'passing data: ', event.data.data.value, event.data.data.value );
+    //console.log( 'passing data: ', event.data.data.value, event.data.data.value );
 
     if ( valid( iframeEl ) ){
 
       // use only for self-hosted apps (which have a receivedMessage()-listener containing a "goto"-handler).
       if ( iframeEl.src.startsWith( `https://${CONZEPT_HOSTNAME}` ) ){
 
-        console.log( 'passing data 2: ', event.data.data.value );
+        //console.log( 'passing data 2: ', event.data.data.value );
 
         iframeEl.contentWindow.postMessage( { event_id: 'goto', data: [ event.data.data.value ] }, '*' );
 
@@ -8368,7 +8360,7 @@ function receiveMessage(event){
 				}
 				else if ( view === 'url' ){
 
-          console.log('open the external URL: ', view, data );
+          //console.log('open the external URL: ', view, data );
 
           openInNewTab( decodeURI( data[0] ) );
 
@@ -8527,11 +8519,11 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'update-language-variant' ){
 
-    console.log( 'update-language-variant', event.data.data );
+    //console.log( 'update-language-variant', event.data.data );
 
     if ( valid( event.data.data.language_variant ) ){
 
-      console.log( 'updating explore.language_variant to: ', event.data.data.language_variant );
+      //console.log( 'updating explore.language_variant to: ', event.data.data.language_variant );
 
       explore.language_variant = event.data.data.variant;
 
@@ -8672,7 +8664,7 @@ function receiveMessage(event){
     $('#blink').hide();
   }
   else if ( event.data.event_id === 'next-presentation-slide' ){
-    console.log( event.data.event_id );
+    //console.log( event.data.event_id );
   }
   //else if ( event.data.event_id === 'go-to-previous-slide' ){ // TODO
   //  console.log( event.data.event_id );
@@ -8773,7 +8765,7 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'remove-bookmark' ){
 
-    console.log( event.data.data.id );
+    //console.log( event.data.data.id );
 
     if ( event.data.data.id !== '' ){
 
@@ -9658,7 +9650,7 @@ function runBookmarkAction( action ){
 
       }
 
-      console.log( command );
+      //console.log( command );
 
       runLISP( command );
 
@@ -10062,7 +10054,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
       // URL, text-selection
       // -> https://example.com/#:~:text=for
 
-      console.log( data.url, data.text );
+      //console.log( data.url, data.text );
 
       explore.custom = ''; // reset custom value
 
@@ -10071,7 +10063,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
       link_     = data.url + '#:~:text=' + data.text;
       type      = 'url';
 
-      console.log( display_, link_ );
+      //console.log( display_, link_ );
 
     }
 
@@ -10267,6 +10259,8 @@ function refreshArticles(){
 
 function loadTopics( nextpage ){
 
+	//console.log( `loadTopics: ${nextpage}` );
+
   if ( nextpage ){ // request for the next page of results
 
     $.each( explore.datasources, function( index, source ){ // for each active datasource
@@ -10274,20 +10268,24 @@ function loadTopics( nextpage ){
       // check if we should fetch more results
       if ( valid( datasources[ source ].done ) ){ // datasource already marked as "done"
 
-        console.log( `loadTopics: datasource ${ datasources[ source ].name } already marked as done` );
+        //console.log( `loadTopics: datasource ${ datasources[ source ].name } already marked as done` );
 
         // do nothing
       }
       else if ( valid( datasources[ source ].total ) ){ // total results available
 
+        //console.log( `loadTopics: datasource ${ datasources[ source ].name } total: ${ datasources[ source ].total }` );
+
         if ( ( explore.page - 1 ) * datasources[ source ].pagesize < datasources[ source ].total ){ // more to fetch for this datasource
+
+					//console.log( `loadTopics: more to fetch for datasource ${ datasources[ source ].name }`);
 
           datasources[ source ].done = false;
 
         }
         else { // no more to fetch
 
-          console.log( `loadTopics: datasource ${ datasources[ source ].name }: no more to fetch` );
+          //console.log( `loadTopics: datasource ${ datasources[ source ].name }: no more to fetch` );
 
           datasources[ source ].done = true;
 
@@ -10318,10 +10316,14 @@ function loadTopics( nextpage ){
 
   // TODO: handle any cases of "no results found"
 
+	//console.log( 'loadTopics: calling fetchDatasources()' );
+
   fetchDatasources().then(( ret ) => {
 
     let struct  = ret[0];
     let data    = ret[1];
+
+	  //console.log( 'loadTopics: ', struct, data );
 
     let my_promises = [];
 
@@ -10332,15 +10334,15 @@ function loadTopics( nextpage ){
 
       if ( struct[ index ].count ){ // skip count-query data
         // do nothing
+				//console.log('skip count-query');
       }
 			else {
 
 				let d = datasources[ struct[ index ].name ];
 
-        //let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-        //console.log( pre_condition );
+      	//console.log( 'loadTopics: ', d.name );
 
-				if ( valid( [ d.code_data_collect, /*pre_condition*/ ] ) ){
+				if ( valid( [ d.code_data_collect, ! d.done ] ) ){
 
 					let topicResults = data[index];
 
@@ -10354,12 +10356,14 @@ function loadTopics( nextpage ){
 
     let renderObject = {};
 
+		//console.log('loadTopics: calling "processResults<Datasource>()"');
+
     // call and resolve all my promise functions
     Promise.allSettled( my_promises )
 
       .then( (results) => results.forEach( ( result, index ) => {
 
-        //console.log( 'results: ', results );
+        //console.log( 'results: ', results.length, result );
 
         // determine source name
         let name = '';
@@ -10371,12 +10375,22 @@ function loadTopics( nextpage ){
         }
         else { // wikipedia struct
 
+					//console.log( 'missing name: ', result );
           name = 'wikipedia'; // FIXME: can we make the struct the same?
 
         }
 
 				let d = datasources[ name ];
+
+				if ( d.done ){
+
+					//console.log( name, 'done' );
+
+				}
+
 				//let d = datasources[ struct[ index ].name ];
+
+        //console.log( name, 'results: ', results );
 
 				if ( valid( d.code_resolve ) ){
 
@@ -10411,7 +10425,7 @@ async function getWikidataLabel( qid, language ) {
 
   try {
 
-    console.log( `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json` );
+    //console.log( `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json` );
 
     const response  = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
     const data      = await response.json();
@@ -10474,6 +10488,8 @@ function checkForQid( title, pane ){ // get qid and wikidata data
 
 async function fetchDatasources(){
 
+  //console.log( 'fetchDatasources()' );
+
   let struct  = []; // structure to map the array of fetch results to the datasources
   let fetches = []; // holds all fetch-function calls
   let done    = '';
@@ -10486,40 +10502,20 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
-    /*
-    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-    console.log( pre_condition );
-
-    if ( ! pre_condition ){ // skip this datasource
-
-      return true;
-
-    }
-    */
-
     let filterby        = '';
-    let skip_datasource = false; // default
 
     let sortby          = '';
 
     let datemin         = '';
     let datemax         = '';
 
-    //console.log('fetchDatasources(): ');
-
     if ( valid( explore.filterby ) ){ // filter requested
 
-      //console.log( '  filter requested: ', explore.filterby );
-
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
-
-        //console.log( '  filter-media-type supported by datasource: ', d.name, explore.filterby );
 
         if ( valid( d.filter_map[ explore.filterby ] ) ){ // specific filter-parameter-mapping found
 
           filterby = d.filter_map[ explore.filterby ];
-
-          //console.log( '    --> use this specific filter-parameter mapping: ', d.name, filterby );
 
         }
         else { // just use the datasource _as is_, no
@@ -10532,7 +10528,7 @@ async function fetchDatasources(){
       }
       else { // filter-media-type is NOT supported by the datasource
 
-        skip_datasource = true;
+        d.done = true;
 
       }
 
@@ -10569,22 +10565,11 @@ async function fetchDatasources(){
 
 		if ( explore.page === 1 ){ // on first page
 
-      if ( d.protocol === 'sparql' && !skip_datasource ){ // SPARQL-fetch: first set the "count url"
+      if ( d.protocol === 'sparql' && !d.done ){ // SPARQL-fetch: first set the "count url"
 
         struct.push({ name: source, count: true, done: false });
 
       }
-
-      if ( skip_datasource ){
-
-        d.done = true;
-
-      }
-      else {
-
-        d.done = false;
-
-       }
 
       // always reset the total on the first page
       d.total = 0;
@@ -10592,9 +10577,9 @@ async function fetchDatasources(){
 		}
     else { // on following page
 
-      if ( d.done || skip_datasource ){ // done fetching for this datasource
+      if ( d.done ){ // done fetching for this datasource
 
-        console.log( 'done fetching for this datasource: ', source );
+        //console.log( 'done fetching for this datasource: ', source );
 
         done = true;
 
@@ -10611,19 +10596,6 @@ async function fetchDatasources(){
 
     let d = datasources[ source ];
 
-    /*
-    let pre_condition = eval(`\`${ d.pre_condition }\``); // expand conditional datasource-code variables
-    console.log( pre_condition );
-
-    if ( ! pre_condition ){ // skip this datasource
-
-      return true;
-
-    }
-    */
-
-    let skip_datasource = false; // default
-
     let filterby        = '';
     let sortby          = '';
 
@@ -10631,6 +10603,8 @@ async function fetchDatasources(){
     let datemax         = '';
 
 		let qid = '';
+
+		//console.log( 'A: ', source, d.done );
 
     //console.log( 'fetchDatasource() fetch call part: ...' );
 
@@ -10659,7 +10633,7 @@ async function fetchDatasources(){
       }
       else { // filter-media-type is NOT supported by the datasource
 
-        skip_datasource = true;
+				d.done					= true;
 
       }
 
@@ -10689,7 +10663,7 @@ async function fetchDatasources(){
       datemax = '';
     }
 
-		if ( explore.page === 1 && d.protocol === 'sparql' && !skip_datasource ){ // SPARQL-fetch: first set the "count url"
+		if ( explore.page === 1 && d.protocol === 'sparql' && !d.done ){ // SPARQL-fetch: first set the "count url"
 
 			//console.log( 'count url: ', encodeURI( eval(`\`${ d.count_url }\``) ) );
 
@@ -10712,7 +10686,11 @@ async function fetchDatasources(){
 
 		}
 
-    if ( struct[ index ].done || skip_datasource ){ // datasource "done"
+		//console.log( 'B: ', source, d.done );
+
+    if ( d.done ){ // datasource "done"
+
+		 //console.log( source, 'done' );
 
      fetches.push( Promise.resolve([]) ); // dummy fetch call
 
@@ -10871,7 +10849,7 @@ function markSentence( t, sid, inSideFrame ){
 
   if ( inSideFrame ){ // in wikipedia side frame
 
-    console.log('sentence mark: ', sid );
+    //console.log('sentence mark: ', sid );
 
     $('#infoframeSplit2').contents().find( explore.baseframe ).contents().find('.highlight').removeClass("highlight");
     $('#infoframeSplit2').contents().find( explore.baseframe ).contents().find('#' + sid ).addClass('highlight');
