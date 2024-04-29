@@ -277,6 +277,8 @@ $sticky_html = '
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">
         </span>
 
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+
       </div>
 
     </span>

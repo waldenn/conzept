@@ -307,11 +307,17 @@ Bookmarks can also be added manually using the "add bookmark" form.
 
 [{{::settings.jpg?direct|settings tab}}]
 
-The following settings are available:
+The following settings are available: (TODO)
 
 ==== datasources ====
 
-  * Set the active **[[datasources]]**
+[{{::datasources.png?direct|datasource options}}]
+
+Here you can individually set the active **[[datasources]]**.
+
+The search interface provides a more general datasources selection method, by allowing selection of sets of datasources in a certain category ("reference works", "culture", "science", etc.).
+
+Note that (un)selecting any individual datasources, while the datasource-set selection of the search interface.
 
 ==== font size ====
 

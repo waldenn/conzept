@@ -1,9 +1,5 @@
 ====== issues ======
 
-===== datasources =====
-
-  * MAJOR BUG: Fix [[datsources|datasource]]-starvation causing a wrong total result count: [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|total is wrongly modified]], [[https://conze.pt/explore/krmo?l=en&t=string&d=wikipedia,wikidata,europeana|another example]]
-
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.
@@ -61,6 +57,10 @@
 
   * BUG: view boomark URL is wrong? It does not bookmark the search-query?
   * BUG: "Villa Park" search --> bookmark view-URL --> quotes not stored in the bookmark ([[https://conze.pt/explore/%22Villa%20Park%22?l=en&d=wikipedia,wikidata,commons,openalex,arxiv&t=string&s=true#|example]])
+
+===== datasources =====
+
+  * Implement a meta-data result-augementation API. This is used for API-results with a Wikidata Qid (for now). This is multi-step async process, which needs a good developer API.
 
 ===== docker =====
 
