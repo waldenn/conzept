@@ -95,6 +95,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         let desc          = $(this).find('summary').text();
 
+
         const max_length_desc = 500;
 
         if ( desc.length > max_length_desc ){
@@ -103,7 +104,11 @@ function processResultsArxiv( topicResults, struct, index ){
 
         }
 
+        console.log( 'input: ', desc );
+
         desc             = highlightTerms( desc );
+
+        console.log( 'output: ', desc );
 
         let creators      = [];
         let concepts      = [];
@@ -126,7 +131,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         if ( creators.length > 0 ){
 
-          desc = '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '<br/><br/>' + desc;
+          desc += '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '<br/><br/>' + desc;
 
         }
 

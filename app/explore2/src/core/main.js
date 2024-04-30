@@ -54,6 +54,7 @@ const explore = {
   datemin_param       : getParameterByName('datemin') || undefined, // requested minimum date
   datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
+  theme_param         : getParameterByName('theme') || undefined,
 
   //country           : 'us', // default is "United States"
 
@@ -196,7 +197,6 @@ const explore = {
   linkpreview         : undefined,
   showhelp            : undefined,
   darkmode            : undefined,
-  theme               : getParameterByName('theme') || undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,

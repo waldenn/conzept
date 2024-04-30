@@ -8565,16 +8565,18 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'astrobin_search' : {
-  create_condition: 'checkTag(item, 1, "astronomical-object")',
-  title: 'AstroBin search',
+  create_condition: 'valid( item.catalog_code )', // && checkTag(item, 1, "astronomical-object")',
+  title: 'AstroBin astrophotography search',
   prop: '',
   type: 'link',
-  url: 'https://www.astrobin.com/search/?q=${ title_ }',
+  url: 'https://www.astrobin.com/search/?q=${ item.catalog_code }',
   mv: false,
   icon: 'fa-solid fa-binoculars',
-  text: 'AstroBin.',
+  text: 'AstroBin',
   section: ['science-astronomy','main'],
   rank: [101,6350],
+  headline_create: 'valid( item.astrobin_search )',
+  headline_rank: 550,
 },
 
 'satellite' : {
