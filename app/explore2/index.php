@@ -104,7 +104,7 @@ $main_css = '
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/pillar.css?v0.51.466" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/lattice.css?v0.51.466" type="text/css">
   <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/masonry.css?v0.51.466" type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/dark_explore.css?v0.51.466"  type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.466"  type="text/css">
 ';
 
 $main_script = '
@@ -276,6 +276,8 @@ $sticky_html = '
           <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">
         </span>
+
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       </div>
 
