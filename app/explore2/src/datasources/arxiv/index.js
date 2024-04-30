@@ -131,7 +131,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         if ( creators.length > 0 ){
 
-          desc += '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '<br/><br/>' + desc;
+          desc += '<div><i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '</div><br/>' + desc;
 
         }
 
