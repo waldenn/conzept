@@ -8564,6 +8564,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [81,6300],
 },
 
+'astrobin_search' : {
+  create_condition: 'checkTag(item, 1, "astronomical-object")',
+  title: 'AstroBin search',
+  prop: '',
+  type: 'link',
+  url: 'https://www.astrobin.com/search/?q=${ title_ }',
+  mv: false,
+  icon: 'fa-solid fa-binoculars',
+  text: 'AstroBin.',
+  section: ['science-astronomy','main'],
+  rank: [101,6350],
+},
+
 'satellite' : {
   create_trigger: true,
   title: 'American Astronomical Society',
@@ -16005,6 +16018,21 @@ if ( valid( item.found_in_taxon ) ){
   text: '🇳🇱 RCE',
   section: 'media-image',
   rank: 215,
+},
+
+'allecijfers_nl_municipality_stats' : {
+  create_condition: 'listed( item.instances, [ 2039348 ] )',
+  title: 'AlleCijfers: Dutch municipality statistics',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://allecijfers.nl/gemeente/${title_dashed}',
+  icon: 'fa-solid fa-globe',
+  text: '🇳🇱 AlleCijfers',
+  section: ['location-demography','main'],
+  rank: [40,6400],
+  headline_create: 'valid( item.allecijfers_nl_municipality_stats )',
+  headline_rank: 150,
 },
 
 'panorama_cities' : {

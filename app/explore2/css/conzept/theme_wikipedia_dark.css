@@ -1,0 +1,276 @@
+body.dark {
+  background: #121212 !important; 
+  color: #ffffffd9 !important;
+}
+
+body.dark .missing-link {
+  color: #ee0b0bd1;
+}
+
+body.dark a.underline.missing-link {
+  text-decoration-color: rgb(242, 130, 182);
+}
+
+body.dark .lcl_minimal #lcl_subj {
+  background-color: #121212 !important;
+}
+
+body.dark .lcl_minimal.lcl_fullscreen_mode #lcl_subj {
+  background-color: #121212 !important;
+}
+
+body.dark #lcl_subj.lcl_switching_el > * {
+  opacity: 1 !important; 
+}
+
+body.dark .lcl_toggling_fs #lcl_contents_wrap {
+  opacity: 1 !important;
+}
+
+body.dark .catheadline ul {
+  border: 2px solid #ffffff96;
+}
+
+body.dark pre {
+  background-color: rgba(113, 155, 201, 0.24);
+}
+
+body.dark .main_template_info {
+  background: #2d9b3963 !important;
+}
+
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6 {
+  border-color: #066d98;
+}
+
+body.dark .floatThead-container {
+  background: rgba(255,255,255,0.9);
+}
+
+body.dark .floatThead-container {
+  background: rgba(128,128,128,0.8);
+}
+
+body.dark .highlight {
+  background-color: #622e31;
+}
+
+body.dark .uls-menu  {
+  border: 1px solid white !important;
+}
+
+body.dark .uls-search {
+  background: #121212 !important;
+  border-bottom: none;
+}
+
+body.dark .uls-languagefilter {
+  color: white;
+  background-color: #121212;
+}
+
+body.dark .uls-lcd-region-title {
+  color: white;
+}
+
+body.dark .uls-lcd {
+  background-color: #121212 !important;
+  color: white;
+}
+
+body.dark .uls-language-block a {
+  color: white;
+}
+
+body.dark .uls-language-block > ul > li:hover {
+  background-color: #ee6e739e;;
+}
+
+body.dark .uls-filterinput.uls-languagefilter.languagefilter {
+  border-bottom: 1px solid #9e9e9e;
+}
+
+/* table */
+
+body.dark table.toccolours { /* example: https://conze.pt/app/wikipedia/?t=Franse Revolutie&l=nl&voice=nl-NL&qid=Q6534 */
+  border: 1px solid white;
+}
+
+body.dark .tableFloatingHeaderOriginal {
+  background-color: #5b7193;
+}
+
+/*
+body.dark table.infobox * {
+
+  color: white !important;
+  background: black !important;
+
+}
+
+body.dark th.sidebar-heading {
+  color: white !important;
+}
+
+body.dark table tr:nth-child(even){
+  background-color: #f2f2f21a;
+}
+*/
+
+body.dark ::selection {
+  background: #8c8558;
+}
+
+body.dark a.underline {
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,1);
+}
+
+body.dark a {
+  text-decoration: underline;
+  color: #ffffffd9 !important;
+}
+
+body.dark .link:focus {
+  background: #ee6e735c !important;
+  border:none;
+  outline:none;
+}
+
+body.dark *:focus {
+  outline: 1px solid white;
+  border: none;
+}
+
+body.dark a.elem:focus, body.dark a.elem:hover {
+  border: none;
+  outline: #ffffffd9 solid 3px;
+}
+
+body.dark img.mwe-math-fallback-image-inline {
+  filter: invert(0.9) !important;
+}
+
+body.dark .mwe-math-fallback-image-inline {
+  filter: invert(1);
+}
+
+body.dark img.svg {
+  background: #f1f1f1;
+}
+
+body.dark figcaption {
+  border-bottom: 1px solid #fffafaa6;
+}
+
+body.dark .toc-list-item.is-active-li {
+  /* background: rgba(155, 148, 148, 0.42); */
+  background: #ee6e7361;
+}
+
+body.dark .dropbtn {
+  color: #ffffffd9;
+}
+
+body.dark .dropbtn:hover, .dropbtn:focus {
+}
+
+body.dark .dropdown-content {
+  background: #121212;
+  color: white
+}
+
+body.dark #legalnotice {
+  color: #ffffffe0;
+}
+
+.mw-collapsible.mw-collapsed * {
+  border: none !important;
+}
+
+body.dark .media-block {
+  background: transparent !important;
+  color: white !important;
+  border-bottom: 1px solid #fffafaa6 !important;
+}
+
+/* webcomponent */
+body.dark midi-player {
+  color: black;
+  filter: invert(90%);
+}
+
+/*
+body.dark table {
+  overflow: clip;
+}
+*/
+
+body.dark table * {
+  color: black !important;
+  background: white !important;
+}
+
+body.dark .infobox {
+  background-color: white !important;
+}
+
+body.dark .quotebox {
+  background-color: #121212;
+}
+
+body.dark blockquote, body.dark .poem, body.dark .templatequote {
+  font-weight: normal;
+}
+
+/* dark table / infobox testing */
+
+body.dark table, body.dark table * {
+  color: white !important;
+  background: #484848 !important;
+}
+
+body.dark .infobox {
+  background-color: #484848 !important;
+}
+
+body.dark .infobox *, body.dark table.sidebar *, body.dark .NavFrame * {
+  color: white !important;
+  background: transparent !important;
+}
+
+body.dark .infobox {
+  background-color: transparent !important;
+}
+
+body.dark .mw-parser-output .sidebar {
+  background: transparent !important;
+}
+
+body.dark .mw-parser-output .navbox {
+  background: transparent !important;
+}
+
+body.dark table, body.dark table * {
+  background: transparent !important;
+}
+
+body.dark .mw-parser-output tr + tr > .navbox-abovebelow, body.dark .mw-parser-output tr + tr > .navbox-group, body.dark .mw-parser-output tr + tr > .navbox-image, body.dark .mw-parser-output tr + tr > .navbox-list {
+  border-top: 2px solid #8f8f8f !important;
+}
+
+body.dark .mw-parser-output .navbox-list {
+  border-color: #8f8f8f !important;
+}
+
+body.dark table.infobox {
+  border: 1px solid #8f8f8f !important;
+}
+
+/* FIXME style default browser media-player background */
+
+/*
+body.dark audio::-webkit-media-controls-panel, body.dark video::-webkit-media-controls-panel {
+  background-color: #ee6e7361;
+}
+*/

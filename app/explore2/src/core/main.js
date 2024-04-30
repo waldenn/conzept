@@ -196,7 +196,7 @@ const explore = {
   linkpreview         : undefined,
   showhelp            : undefined,
   darkmode            : undefined,
-  theme               : getParameterByName('theme') || '',
+  theme               : getParameterByName('theme') || undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,
