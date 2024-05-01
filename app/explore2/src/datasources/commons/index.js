@@ -112,10 +112,14 @@ function processResultsCommons( topicResults, struct, index ){
         let file          = valid( obj._source.title )? obj._source.title : '';
         file              = file.replace(/ /g, '_' );
 
-        const url         = eval(`\`${ datasources[ source ].display_url  }\``);
+        //console.log( file );
+
+        let url       		= eval(`\`${ datasources[ source ].display_url  }\``);
 
         let title         = valid( obj._source.title )? obj._source.title : '';
         title             = title.split('.').slice(0, -1).join('.');
+
+        let file_suffix   = valid( file )? file.split('.').pop() : '';
 
         let description   = '';
         let subtag        = 'image';
@@ -140,19 +144,53 @@ function processResultsCommons( topicResults, struct, index ){
         }
 
         //console.log( thumb );
+        //console.log( file_suffix );
 
-       /*
-        if ( valid( obj.type ) ){
+				// http://commons.wikimedia.org/wiki/Special:FilePath/PogledNaZid.pdf?width=300px
 
-          if ( obj.type === 'TEXT' ){ subtag = 'written-work' }
-          else if ( obj.type === 'SOUND' ){ subtag = 'music' }
-          else if ( obj.type === 'VIDEO' ){ subtag = 'film' }
-          else if ( obj.type === 'IMAGE' ){ subtag = 'image' }
-          else if ( obj.type === '3D' ){ subtag = '3d-model' }
-          else { obj.type = 'unkown type'; console.log( 'TODO: new commons.org type: ', obj.type ); }
+        if ( valid( file_suffix ) ){
+
+          if ( file_suffix === 'pdf' || file_suffix === 'djvu' ){
+
+            subtag = 'written-work';
+
+						//console.log( 'http://commons.wikimedia.org/wiki/Special:FilePath/' + file );
+
+						url =  'http://commons.wikimedia.org/wiki/Special:FilePath/' + file;
+
+          }
+          else if (
+						file_suffix === 'ogg'		||
+						file_suffix === 'opus'		||
+						file_suffix === 'flac'	||
+						file_suffix === 'mp3'		||
+						file_suffix === 'midi'  ||
+						file_suffix === 'wav'
+						){
+
+            subtag = 'music';
+
+						url =  'http://commons.wikimedia.org/wiki/Special:FilePath/' + file;
+
+						console.log( url );
+
+          }
+          else if ( file_suffix === 'ogv' || file_suffix === 'webm' ){
+
+            subtag = 'film'
+
+						url =  'http://commons.wikimedia.org/wiki/Special:FilePath/' + file;
+
+          }
+          else { // default to image
+
+            subtag = 'image';
+
+						// image media already being handled
+
+          }
 
         }
-        */
 
 				// TODO: abstract this away into a utility function?
 				const description_plain = description;
@@ -195,7 +233,12 @@ function processResultsCommons( topicResults, struct, index ){
 						let iiif_viewer_url = `https://${explore.host}${explore.base}/app/iiif/dist/uv.html#?c=&m=&s=&cv=&manifest=${ encodeURIComponent( iiif_manifest_link ) }`;
 
 						item.iiif         = iiif_viewer_url;
-						item.display_url  = encodeURIComponent( iiif_viewer_url );
+
+						if ( subtag === 'image' ){
+
+							item.display_url  = encodeURIComponent( iiif_viewer_url );
+
+						}
 
 					}
 
@@ -264,3 +307,4 @@ function renderMarkCommons( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+

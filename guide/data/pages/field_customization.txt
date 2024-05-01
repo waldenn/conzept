@@ -118,6 +118,7 @@ Here is a list of often used utility functions, to make the field definitions ea
 | **checkTag()** | **item-object** (required),\\ \\ **[tag-field-index]** (required),\\ \\ **tag string** or list-of-strings | boolean | Check if a topic has either a certain main-[[topic classification|tag]] (0) or a certain sub-[[topic classification|tag]] (1) tag. | **checkTag(item, 0, "person")** -> true, if the topic's main-tag is "person" \\ \\ **checkTag( item, 1, ["writer", "written-work" ] )** -> true, if topic's sub-class is either "writer" or "work" |
 | **setTags()** |**item**, \\ \\ **[ main-tag-string, sub-tag-string ]** | (none) | Set main and/or sub-tag of a topic. If either of the tags is left as an empty string, this part will be skipped. | **setTags( item, [ "work", "painting" ] )** -> set the main-tag ("work") and the sub-tag "painting "| 
 | **listed()** |**list-of-reference-qids**, \\ \\ **list-of-provided-qids** | boolean | check if the provided Qid of the topic | **listed( item.instances, [ 3305213 ] )** -> check if the topic instance-Qids contains a Qid for [[https://www.wikidata.org/wiki/Q3305213|painting]] | 
+| **activeOnDatasources()** |**list-of-activating-datasources**, item.datasource\\ \\ **list-of-provided-qids** | boolean | returns true if the item's datasource matches the supplied list of activation datasources | **activeOnDatasources( [ 'openalex', 'arxiv' ], item.datasource )** -> check if the item datasource matches OpenAlex or arXiv | 
 
 ===== types of fields =====
 

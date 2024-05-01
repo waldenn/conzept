@@ -1166,6 +1166,13 @@ echo '
     <link id="fontlink">
 ';
 
+// iOS Safari style-fixes
+if ( strstr($ua_string, " AppleWebKit/") && strstr($ua_string, " Safari/") && !strstr($ua_string, " CriOS") ){
+
+    echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/safari.css?v0.51.466">';
+
+};
+
 // Any mobile device (phones or tablets).
 if ( $viewMode == 'mobile' ){
 

@@ -82,12 +82,6 @@ function processResultsArchive( topicResults, struct, index ){
         const language    = explore.language;
         const term 				= removebracesTitle( getSearchTerm() );
 
-        // TODO: fetch item metadata. API: https://archive.org/developers/md-read.html
-        //let item_data = await fetch( 'https://archive.org/metadata/' + gid );
-				//let metadata	= await item_data.json();
-        //console.log( metadata );
-        // --> store in: item.speech_audio_link
-
         const url         = eval(`\`${ datasources[ source ].display_url  }\``);
 
         const start_date  = valid( obj.date )? obj.date : '';
@@ -101,6 +95,15 @@ function processResultsArchive( topicResults, struct, index ){
         let document_voice_code   = '';
         let tts_link              = '';
         let drm_book              = false;
+
+        // fetch item metadata
+        //  see:  https://archive.org/developers/md-read.html
+        //        https://blog.archive.org/2013/07/04/metadata-api/
+        fetch( 'https://archive.org/metadata/' + gid ).then( (response) => response.json() ).then( metadata => {
+
+          console.log( metadata );
+
+        });
 
         if ( valid( obj.language ) ){
 

@@ -1,0 +1,4 @@
+/* do not show the ugly select-input button-shading */
+#search-options select {
+  -webkit-appearance: none;
+}
