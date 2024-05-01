@@ -177,26 +177,36 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?vCONZEPT_VERSION"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
 
   <!-- TODO: include by PHP foreach datasource from the Conzept settings -->
+
+  <!-- reference works -->
   <script src="../app/explore2/dist/datasources/wikipedia/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/wikidata/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
+
+  <!-- culture -->
+  <script src="../app/explore2/dist/datasources/commons/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/openlibrary/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/arxiv/index.js?vCONZEPT_VERSION"></script>
-  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script-->
-  <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/doaj/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/commons/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/europeana/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/loc/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/occrp/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?vCONZEPT_VERSION"></script>
+
+  <!-- science -->
+  <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/arxiv/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/doaj/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
+
+  <!-- business -->
+  <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gdelt/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/occrp/index.js?vCONZEPT_VERSION"></script>
+
+  <!-- other / inactive -->
+  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script-->
   <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?vCONZEPT_VERSION"></script-->
   <!--script src="../app/explore2/dist/datasources/rkd/index.js?vCONZEPT_VERSION"></script-->
   <!--script src="../app/explore2/dist/datasources/snomed/index.js?vCONZEPT_VERSION"></script-->

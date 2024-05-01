@@ -177,26 +177,36 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?v0.51.466"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
 
   <!-- TODO: include by PHP foreach datasource from the Conzept settings -->
+
+  <!-- reference works -->
   <script src="../app/explore2/dist/datasources/wikipedia/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/wikidata/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/gleif/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.466"></script>
+
+  <!-- culture -->
+  <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/archive/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/openlibrary/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
-  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.466"></script-->
-  <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/loc/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
+
+  <!-- science -->
+  <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.466"></script>
+
+  <!-- business -->
+  <script src="../app/explore2/dist/datasources/gleif/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.466"></script>
   <script src="../app/explore2/dist/datasources/gdelt/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.466"></script>
+
+  <!-- other / inactive -->
+  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.466"></script-->
   <!--script src="../app/explore2/dist/datasources/snomed/index.js?v0.51.466"></script-->
