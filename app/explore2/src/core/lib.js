@@ -2404,6 +2404,17 @@ function setupSearch() {
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
+    else {
+
+      explore.sortby        = '';
+      explore.sortby_param  = '';
+
+      setParameter( 'sortby', explore.sortby, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+
+    }
 
   });
 
@@ -2417,6 +2428,16 @@ function setupSearch() {
 
       explore.filterby        = $('#filterby').val();
       explore.filterby_param  = $('#filterby').val();
+
+      setParameter( 'filterby', explore.filterby, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+    else {
+
+      explore.filterby        = '';
+      explore.filterby_param  = '';
 
       setParameter( 'filterby', explore.filterby, explore.hash );
 
