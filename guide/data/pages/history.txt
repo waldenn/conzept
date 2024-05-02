@@ -13,6 +13,6 @@ This page documents the history of the Conzept project through user-interface sc
 [{{::explore-screenshot-009.jpg?direct|2022}}]
 [{{::explore-screenshot-010.jpg?direct|2022}}]
 [{{::explore-screenshot-011.jpg?direct|2023.07}}]
-[{{::explore-screenshot-012.jpg?direct|2024.03}}]
+[{{::explore-screenshot-012.jpg?direct|2024.04}}]
 [{{::explore-screenshot-013.jpg?direct|2024.05}}]
-[{{::explore-screenshot-013.jpg?direct|2024.05}}]
+[{{::explore-screenshot-014.jpg?direct|2024.05}}]

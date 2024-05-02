@@ -104,7 +104,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         }
 
-        console.log( 'input: ', desc );
+        //console.log( 'input: ', desc );
 
         desc             = highlightTerms( desc );
 
@@ -131,7 +131,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         if ( creators.length > 0 ){
 
-          desc += '<div><i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '</div><br/>' + desc;
+          desc += '<br/><div><i class="fa-solid fa-users-line"></i> ' + creators.join(', ') + '</div>';
 
         }
 
