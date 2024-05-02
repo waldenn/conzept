@@ -12,7 +12,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { FiMinus, FiPlus, FiPrinter } from "react-icons/fi";
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 
 import { FaRegShareSquare } from "react-icons/fa";
@@ -22,6 +22,26 @@ import { RiFocus3Line } from "react-icons/ri";
 import { SITE_NAME } from "constants/meta";
 import fitEdges from "treeHelpers/fitEdges";
 import { useAppSelector } from "store";
+
+// CONZEPT PATCH START
+const documentRef = useRef( document );
+
+documentRef.current.addEventListener('keydown', function(event) {
+
+  if ( event.key === 'f' ) {
+
+    const fullscreenButton = document.getElementById( 'fullscreen-button' );
+
+    if (fullscreenButton) {
+
+      fullscreenButton.click();
+
+    }
+
+  }
+
+});
+// CONZEPT PATCH END
 
 export const Navigation = ({
   zoomIn,
@@ -210,7 +230,7 @@ const ShareButton = memo(() => {
         placement="right"
         overlay={<Tooltip id="share">toggle fullscreen</Tooltip>}
       >
-        <Button variant="light" onClick={onShowShareModal}>
+        <Button id="fullscreen-button" variant="light" onClick={onShowShareModal}>
           <IoMdExpand />
         </Button>
       </OverlayTrigger>
