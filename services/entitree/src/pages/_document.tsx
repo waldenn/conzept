@@ -45,23 +45,6 @@ export default class MyDocument extends Document {
             name="keywords"
             content="Family, Entity, Item, Tree, Taxonomy, Graph, Wikipedia, Wikidata, Diagram, Chart, D3, Hierarchy"
           />
-          <script>
-            document.addEventListener('keydown', function(event) {
-
-              if ( event.key === 'f' ) {
-
-                const fullscreenButton = document.getElementById( 'fullscreen-button' );
-
-                if (fullscreenButton) {
-
-                  fullscreenButton.click();
-
-                }
-
-              }
-
-            });
-          </script>
         </Head>
         <body>
           <Main />
