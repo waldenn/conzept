@@ -207,9 +207,9 @@ function processResultsEuropeana( topicResults, struct, index ){
 
         }
 
-        if ( description.length > 300 ){
+        if ( description.length > explore.text_limit ){
 
-          description = description.substring(0, 300) + ' (...)';
+          description = description.substring(0, explore.text_limit ) + ' (...)';
 
         }
 

@@ -122,9 +122,9 @@ function processResultsEU( topicResults, struct, index ){
 
             desc = obj.description[ explore.language ];
 
-            if ( desc.length > 300 ){
+            if ( desc.length > explore.text_limit ){
 
-              desc = desc.substring(0, 300) + ' (...)';
+              desc = desc.substring(0, explore.text_limit ) + ' (...)';
 
             }
 
@@ -132,7 +132,7 @@ function processResultsEU( topicResults, struct, index ){
           }
           else if ( valid( obj.description['en'] ) ){ // fallback language
 
-            title = obj.description['en'].substring(0, 50);
+            title = obj.description['en'].substring(0, explore.text_limit );
 
           }
 

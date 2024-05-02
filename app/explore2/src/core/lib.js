@@ -2779,13 +2779,9 @@ function setupOptionTheme(){
     else { // check storage
 
       explore.theme = await explore.db.get('theme');
-      explore.theme = ( explore.theme === null || explore.theme === '' ) ? '' : explore.theme;
+      explore.theme = !valid( explore.theme ) ? 'pillar' : explore.theme;
 
-      if ( !valid( explore.theme ) ){ // still nothing found
-
-        explore.theme = 'pillar'; // default fallback theme
-
-      }
+      console.log( 'theme set to: ', explore.theme );
 
     }
 

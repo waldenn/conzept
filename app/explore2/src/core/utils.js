@@ -1275,7 +1275,7 @@ function setupAppKeyboardNavigation() {
 
       if (e.key === 'ArrowLeft') { // move to sidebar
 
-        console.log('  move to sidebar');
+        //console.log('  move to sidebar');
 
         if ( ! $('input').is(':focus') ){
 
@@ -1287,11 +1287,11 @@ function setupAppKeyboardNavigation() {
 
       if (e.key === 'ArrowRight') { // move to second content-pane
 
-        console.log('  move to content-pane');
+        //console.log('  move to content-pane');
 
         if ( ! $('input').is(':focus') ){
 
-          console.log('TODO: move to second content-pane');
+          //console.log('TODO: move to second content-pane');
 
         }
 

@@ -95,12 +95,9 @@ function processResultsArxiv( topicResults, struct, index ){
 
         let desc          = $(this).find('summary').text();
 
+        if ( desc.length > explore.text_limit ){
 
-        const max_length_desc = 500;
-
-        if ( desc.length > max_length_desc ){
-
-          desc = desc.slice( 0, max_length_desc - 3) + '...';
+          desc = desc.slice( 0, explore.text_limit ) + ' (...)';
 
         }
 
@@ -108,7 +105,7 @@ function processResultsArxiv( topicResults, struct, index ){
 
         desc             = highlightTerms( desc );
 
-        console.log( 'output: ', desc );
+        //console.log( 'output: ', desc );
 
         let creators      = [];
         let concepts      = [];

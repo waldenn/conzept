@@ -188,6 +188,16 @@ button:hover {
   padding: 1em;
 }
 
+a.elem {
+  height: max-content;
+  display: inline-block;
+}
+
+a.elem:focus-visible {
+  outline: #E8646A solid 8px;
+  border-radius: 0.5em;
+}
+
 .thumbimage.enlargable {
   border-radius: 0.5em;
 }

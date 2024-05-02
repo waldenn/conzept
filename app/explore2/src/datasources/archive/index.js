@@ -206,16 +206,16 @@ function processResultsArchive( topicResults, struct, index ){
 
         if ( valid( obj.description ) ){
 
-          if ( obj.description.length > 300 ){
+          if ( obj.description.length > explore.text_limit ){
 
-            desc = obj.description.substring(0, 300) + ' (...)';           
+            desc = obj.description.substring(0, explore.text_limit ) + ' (...)';           
 
           }
           else if ( Array.isArray( obj.description ) ){
 
-            if ( obj.description[0].length > 300 ){
+            if ( obj.description[0].length > explore.text_limit ){
 
-             desc = obj.description[0].substring(0, 300) + ' (...)';
+             desc = obj.description[0].substring(0, explore.text_limit ) + ' (...)';
 
             }
             else {
@@ -231,9 +231,9 @@ function processResultsArchive( topicResults, struct, index ){
 
           }
 
-          if ( desc.length > 300 ){
+          if ( desc.length > explore.text_limit ){
 
-            desc = desc.substring(0, 300) + ' (...)';
+            desc = desc.substring(0, explore.text_limit ) + ' (...)';
 
           }
 
@@ -245,7 +245,7 @@ function processResultsArchive( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        obj.title,
-					description:  desc + '<br/><br/>' + creators.join(', '),
+					description:  desc + '<br/><br/>' + highlightTerms( creators.join(', ') ),
 					gid:          obj.identifier,
 					display_url:  url ,
 

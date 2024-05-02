@@ -41,6 +41,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.png" />
+          <script async src="/app/explore2/libs/entitree_fullscreen.js" />
           <meta
             name="keywords"
             content="Family, Entity, Item, Tree, Taxonomy, Graph, Wikipedia, Wikidata, Diagram, Chart, D3, Hierarchy"

@@ -243,13 +243,13 @@ function processResultsSmithsonian( topicResults, struct, index ){
         // date -> label -> content
         // physicalDescription -> [0] -> content
 
-       	if ( desc.length > 400 ){
+       	if ( desc.length > explore.text_limit ){
 
-       		desc = desc.substring(0, 400) + ' (...)</br>';
+       		desc = desc.substring(0, explore.text_limit ) + ' (...)</br>';
 
        	}
 
-        desc              = highlightTerms( desc );
+        desc = highlightTerms( desc );
 
         //console.log( title, url, desc );
 

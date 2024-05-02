@@ -137,7 +137,17 @@ function processResultsGDELT( topicResults, struct, index ){
 
         if ( valid( obj?.context ) ){
 
-          desc  += highlightTerms( stripHtml( obj.context.substring(0, 300) + ' (...)' )  );
+          if ( obj.context > explore.text_limit ){
+
+            desc  += highlightTerms( stripHtml( obj.context.substring(0, explore.text_limit ) + ' (...)' ) );
+
+          }
+          else {
+
+            desc  += highlightTerms( stripHtml( obj.context ) );
+
+          }
+
 
         }
 

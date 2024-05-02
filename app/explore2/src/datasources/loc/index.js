@@ -285,13 +285,13 @@ function processResultsLoC( topicResults, struct, index ){
 
         }
 
-        const description_plain = ''; // TODO: stripHtml( description.substring(0, 300) + ' (...)';
+        const description_plain = ''; // TODO: stripHtml( description.substring(0, explore.text_limit ) + ' (...)';
 
         if ( valid( description ) ){
 
-          if ( description.length > 300 ){
+          if ( description.length > explore.text_limit ){
 
-            description	= highlightTerms( stripHtml( description.substring(0, 300) + ' (...)' ) );
+            description	= highlightTerms( stripHtml( description.substring(0, explore.text_limit ) + ' (...)' ) );
 
           }
           else {

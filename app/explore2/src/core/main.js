@@ -123,6 +123,8 @@ const explore = {
   nearby_radius_limit : 10000,// distance in meters
   nearby_max_results  : 250,  // maximum nearby results
 
+  text_limit          : 300,  // used for limiting the number of characters in topic descriptions (or other card texts)
+
   vids_mute           : '',
 
   // UI state

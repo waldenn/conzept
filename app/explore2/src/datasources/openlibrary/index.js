@@ -126,16 +126,16 @@ function processResultsOpenLibrary( topicResults, struct, index ){
 				/*
         if ( valid( obj.description ) ){
 
-          if ( obj.description.length > 300 ){
+          if ( obj.description.length > explore.text_limit ){
 
-            desc = obj.description.substring(0, 300) + ' (...)';           
+            desc = obj.description.substring(0, explore.text_limit ) + ' (...)';           
 
           }
           else if ( Array.isArray( obj.description ) ){
 
-            if ( obj.description[0].length > 300 ){
+            if ( obj.description[0].length > explore.text_limit ){
 
-             desc = obj.description[0].substring(0, 300) + ' (...)';
+             desc = obj.description[0].substring(0, explore.text_limit ) + ' (...)';
 
             }
             else {
