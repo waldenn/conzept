@@ -12,7 +12,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { FiMinus, FiPlus, FiPrinter } from "react-icons/fi";
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { memo, useEffect, useState /*, useRef*/ } from "react";
 import styled, { useTheme } from "styled-components";
 
 import { FaRegShareSquare } from "react-icons/fa";
@@ -24,6 +24,7 @@ import fitEdges from "treeHelpers/fitEdges";
 import { useAppSelector } from "store";
 
 // CONZEPT PATCH START
+/*
 const documentRef = useRef( document );
 
 documentRef.current.addEventListener('keydown', function(event) {
@@ -41,6 +42,7 @@ documentRef.current.addEventListener('keydown', function(event) {
   }
 
 });
+*/
 // CONZEPT PATCH END
 
 export const Navigation = ({
