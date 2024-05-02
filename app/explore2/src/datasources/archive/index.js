@@ -99,11 +99,11 @@ function processResultsArchive( topicResults, struct, index ){
         // fetch item metadata
         //  see:  https://archive.org/developers/md-read.html
         //        https://blog.archive.org/2013/07/04/metadata-api/
-        fetch( 'https://archive.org/metadata/' + gid ).then( (response) => response.json() ).then( metadata => {
+        //fetch( 'https://archive.org/metadata/' + gid ).then( (response) => response.json() ).then( metadata => {
 
-          console.log( metadata );
+          //console.log( metadata );
 
-        });
+        //});
 
         if ( valid( obj.language ) ){
 

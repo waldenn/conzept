@@ -489,7 +489,7 @@ const datasources = {
   'smithsonian': {
     active:                 false,
     name:                   'Smithsonian',
-    set:                    '',
+    set:                    'culture',
     description:            '🇺🇸 museum collection - BETA',
     tag:                    'arts-culture',
     qid:                    'Q131626',
@@ -527,7 +527,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.smithsonian.endpoint}?q=${ term }&rows=${ datasources.smithsonian.pagesize }&start=${ ( ( explore.page - 1) * datasources.smithsonian.pagesize ) }&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
+    url:                    '${datasources.smithsonian.endpoint}?q=${ term }&rows=${ datasources.smithsonian.pagesize }&start=${ ( ( explore.page - 1) * datasources.smithsonian.pagesize ) }&sort=${ valid( sortby )? sortby : "relevancy" }&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
     icon:                   '<img class="datasource-icon" alt="Smithsonian datasource" src="/assets/icons/smithsonian.svg" alt="Smithsonian logo">',
     icon_invert:            false,
     color:                  '#F0B323',
