@@ -41,11 +41,27 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.png" />
-          <script async src="https://platform.twitter.com/widgets.js" />
           <meta
             name="keywords"
             content="Family, Entity, Item, Tree, Taxonomy, Graph, Wikipedia, Wikidata, Diagram, Chart, D3, Hierarchy"
           />
+          <script>
+            document.addEventListener('keydown', function(event) {
+
+              if ( event.key === 'f' ) {
+
+                const fullscreenButton = document.getElementById( 'fullscreen-button' );
+
+                if (fullscreenButton) {
+
+                  fullscreenButton.click();
+
+                }
+
+              }
+
+            });
+          </script>
         </Head>
         <body>
           <Main />
