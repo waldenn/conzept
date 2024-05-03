@@ -111,19 +111,24 @@
         });
 
         resize();
+
       });
 
-      $('body').keydown(function(event) {
+      $( document ).ready( function() {
 
-        let key = (event.keyCode ? event.keyCode : event.which);
+        $('body').keydown(function(event) {
 
-        if ( key == '70' ){ // "f"
+          let key = (event.keyCode ? event.keyCode : event.which);
 
-          event.preventDefault();
+          if ( key == '70' ){ // "f"
 
-          document.toggleFullscreen();
+            event.preventDefault();
 
-        }
+            document.toggleFullscreen();
+
+          }
+
+        });
 
       });
 

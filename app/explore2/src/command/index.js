@@ -1058,6 +1058,15 @@ function insertRelatedPresentationTopics( qid ){
     'P149',   // architectural-style  https://www.wikidata.org/wiki/Property:P149
     'P1142',  // political-ideology   https://www.wikidata.org/wiki/Property:P1142
 
+    'P53',    // family               https://www.wikidata.org/wiki/Property:P53
+    'P8810',  // parent               https://www.wikidata.org/wiki/Property:P8810
+    'P22',    // father               https://www.wikidata.org/wiki/Property:P22
+    'P25',    // mother               https://www.wikidata.org/wiki/Property:P25
+    'P3373',  // sibling              https://www.wikidata.org/wiki/Property:P3373
+    'P26',    // spouse               https://www.wikidata.org/wiki/Property:P26
+    'P451',   // unmarried partner    https://www.wikidata.org/wiki/Property:P451
+    'P40',    // child                https://www.wikidata.org/wiki/Property:P40
+
     'P112',   // founder              https://www.wikidata.org/wiki/Property:P112
     'P170',   // creator              https://www.wikidata.org/wiki/Property:P170
     'P50',    // author               https://www.wikidata.org/wiki/Property:P50
@@ -1065,6 +1074,7 @@ function insertRelatedPresentationTopics( qid ){
     'P102',   // member of pol. party https://www.wikidata.org/wiki/Property:P102
     'P39',    // position held        https://www.wikidata.org/wiki/Property:P39
     'P101',   // field-of-work        https://www.wikidata.org/wiki/Property:P101
+    'P97',    // noble title          https://www.wikidata.org/wiki/Property:P97
 
     'P1066',  // student-of           https://www.wikidata.org/wiki/Property:P1066
     'P802',   // student              https://www.wikidata.org/wiki/Property:P802
@@ -1078,7 +1088,7 @@ function insertRelatedPresentationTopics( qid ){
     'P793',   // significant-event    https://www.wikidata.org/wiki/Property:P793
     'P9241',  // demography-of-topic  https://www.wikidata.org/wiki/Property:P9241
     'P1557',  // manifestation-of     https://www.wikidata.org/wiki/Property:P1557
-
+ 
     'P127',   // owned-by             https://www.wikidata.org/wiki/Property:P127
     'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
 
