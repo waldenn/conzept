@@ -2,3 +2,15 @@
 #search-options select {
   -webkit-appearance: none;
 }
+
+/* forcing to show horizontal scroll bars */
+::-webkit-scrollbar { 
+  -webkit-appearance: none; 
+  width: 0.6rem; 
+} 
+
+::-webkit-scrollbar-thumb { 
+  border-radius: 0.3rem; 
+  background-color: rgba(0,0,0,.5); 
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5); 
+} 

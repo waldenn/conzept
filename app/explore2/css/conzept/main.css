@@ -2444,6 +2444,7 @@ h1 {
 }
 
 #search-options select, #search-options .date-range {
+  font-family: inherit;
   font-size: larger;
   background: inherit;
   border: 2px solid #0000000a;

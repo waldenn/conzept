@@ -6,6 +6,14 @@ body {
   float: right;
 }
 
+.pk_tbc {
+  text-wrap: nowrap;
+}
+
+.pk_tb .pk_selection .pk_btn {
+  text-wrap: auto;
+}
+
 @media only screen and (max-width: 600px) {
 
   .pk_btn.filename {

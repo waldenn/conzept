@@ -112,6 +112,21 @@
 
         resize();
       });
+
+      $('body').keydown(function(event) {
+
+        let key = (event.keyCode ? event.keyCode : event.which);
+
+        if ( key == '70' ){ // "f"
+
+          event.preventDefault();
+
+          document.toggleFullscreen();
+
+        }
+
+      });
+
     </script>
 
      <script type="text/javascript" src="umd/UV.js"></script>
