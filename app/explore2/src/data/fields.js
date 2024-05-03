@@ -3502,6 +3502,19 @@ conzept_fields = {
   rank: 5.1,
 },
 
+'conzept_reference_works_datasources_search' : {
+  create_condition: true,
+  title: 'Conzept reference-works datasources search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title}?l=${explore.language}&ds=culture&t=string&singleuse=true',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Conzept reference DS',
+  section: ['main'],
+  rank: [18.1],
+},
+
 'conzept_culture_datasources_search' : {
   create_condition: true,
   title: 'Conzept culture datasources search',
@@ -3512,7 +3525,7 @@ conzept_fields = {
   icon: 'fa-brands fa-searchengin',
   text: 'Conzept culture DS',
   section: ['main'],
-  rank: [18.1],
+  rank: [18.2],
 },
 
 'conzept_science_datasources_search' : {
@@ -3525,7 +3538,7 @@ conzept_fields = {
   icon: 'fa-brands fa-searchengin',
   text: 'Conzept science DS',
   section: ['main'],
-  rank: [18.2],
+  rank: [18.3],
 },
 
 'conzept_business_datasources_search' : {
@@ -3538,7 +3551,7 @@ conzept_fields = {
   icon: 'fa-brands fa-searchengin',
   text: 'Conzept business DS',
   section: ['main'],
-  rank: [18.3],
+  rank: [18.4],
 },
 
 'bing' : {

@@ -67,6 +67,13 @@
 
   * Add a datasources search-filter (needed when the list gets too large)
 
+  * Add well-structured, asynchronous hooks for pre- and post-processing of the API data.
+    * Add hooks to enrich the API data (with Wikipedia and Wikidata information)
+
+  * Add support for self-hosted data-files used as a datasource: JSON, Parquet, CSV, RDF, etc.
+    * Research offline datasource support.
+    * Research decentralized, community managed, synced datasources.
+
 ===== presentation system =====
 
   * Allow for extra Text-to-Speech (TTS) storylines around a topic (beyond Wikipedia and Wikidata information). 
