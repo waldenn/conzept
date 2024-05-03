@@ -114,21 +114,16 @@
 
       });
 
-      $( document ).ready( function() {
+      // fullscreen f-key
+      document.addEventListener('keydown', function(event) {
 
-        $('body').keydown(function(event) {
+        if ( event.key === 'f' ) {
 
-          let key = (event.keyCode ? event.keyCode : event.which);
+          event.preventDefault();
 
-          if ( key == '70' ){ // "f"
+          document.toggleFullscreen();
 
-            event.preventDefault();
-
-            document.toggleFullscreen();
-
-          }
-
-        });
+        }
 
       });
 

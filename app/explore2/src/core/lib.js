@@ -2779,7 +2779,7 @@ function setupOptionTheme(){
     else { // check storage
 
       explore.theme = await explore.db.get('theme');
-      explore.theme = !valid( explore.theme ) ? 'pillar' : explore.theme;
+      explore.theme = !valid( explore.theme ) ? '' : explore.theme;
 
       console.log( 'theme set to: ', explore.theme );
 
