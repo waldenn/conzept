@@ -3502,17 +3502,43 @@ conzept_fields = {
   rank: 5.1,
 },
 
-'conzept_datasources_search' : {
+'conzept_culture_datasources_search' : {
   create_condition: true,
-  title: 'Conzept datasources search',
+  title: 'Conzept culture datasources search',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${explore.base}/explore/${title}?l=${explore.language}&d=wikipedia,wikidata,commons,archive,archive_scholar,openalex,europeana,rijksmuseum&t=string&singleuse=true',
+  url: '${explore.base}/explore/${title}?l=${explore.language}&ds=culture&t=string&singleuse=true',
   icon: 'fa-brands fa-searchengin',
-  text: 'Conzept datasources',
+  text: 'Conzept culture DS',
   section: ['main'],
-  rank: [18],
+  rank: [18.1],
+},
+
+'conzept_science_datasources_search' : {
+  create_condition: true,
+  title: 'Conzept science datasources search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title}?l=${explore.language}&ds=science&t=string&singleuse=true',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Conzept science DS',
+  section: ['main'],
+  rank: [18.2],
+},
+
+'conzept_business_datasources_search' : {
+  create_condition: true,
+  title: 'Conzept business datasources search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title}?l=${explore.language}&ds=business&t=string&singleuse=true',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Conzept business DS',
+  section: ['main'],
+  rank: [18.3],
 },
 
 'bing' : {
@@ -19407,6 +19433,8 @@ if ( valid( item.found_in_taxon ) ){
   text: 'explore',
   section: 'main',
   rank: 1,
+  headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  headline_rank: 35,
 },
 
 'mark' : {
@@ -19423,7 +19451,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: 'checkLC(["en","fr","nl"]) && valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
   title: 'AI chat with tutor',
   prop: '',
   type: 'link-split',
@@ -19441,7 +19469,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat_quiz' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkLC(["en","fr","nl"])',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkLC(["en","fr","nl"])',
   title: 'AI quiz',
   prop: '',
   type: 'link-split',
@@ -19454,7 +19482,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat_related_topics' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkLC(["en","fr","nl"])',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkLC(["en","fr","nl"])',
   title: 'AI: related topics',
   prop: '',
   type: 'link-split',
@@ -19571,7 +19599,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'search_by_date' : {
   value: 'dates:',
-  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
+  render_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
   //render_condition: 'valid( item.iso2 )',
   title: 'see topic by year',
   prop: '0',
@@ -19588,7 +19616,7 @@ if ( valid( item.found_in_taxon ) ){
 //  https://github.com/mnzpk/wikinav
 //  https://techblog.wikimedia.org/2021/09/17/analyzing-the-wikipedia-clickstream-just-got-easier-with-wikinav/
 'wikinav' : {
-  create_condition: 'valid( item.datasource === "wikipedia" )',
+  create_condition: 'activeOnDatasources( [ "wikipedia" ], item.datasource )',
   title: 'WikiNav - Wikipedia-reader click-navigation analysis',
   prop: '',
   type: 'link',
@@ -19601,7 +19629,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'similar_headline' : {
-  create_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
   title: '',
   prop: '',
   type: 'link',
@@ -19634,7 +19662,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'linkgraph' : {
-  create_condition: 'valid( item.datasource === "wikipedia" )',
+  create_condition: 'activeOnDatasources( [ "wikipedia" ], item.datasource )',
   title: 'graph of outgoing Wikipedia links',
   prop: '',
   type: 'link-split',
@@ -19671,7 +19699,7 @@ if ( valid( item.found_in_taxon ) ){
 'wikipedia_inline' : {
   // FIXME
   value: 'iframe-url:${explore.host}${explore.base}/app/wikipedia/?t=${ encodeURIComponent( item.title ) }&l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&qid=${item.qid}&tutor=${explore.tutor}&embedded=true',
-  render_condition: 'valid( item.datasource === "wikipedia" ) && valid( item.title ) && !explore.isMobile',
+  render_condition: 'activeOnDatasources( [ "wikipedia" ], item.datasource ) && valid( item.title ) && !explore.isMobile',
   title: 'inline Wikipedia article',
   prop: '0',
   type: 'rest-json', // TODO: change type
@@ -20427,7 +20455,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'ebooks meta',
   section: ['library-general','main'],
   rank: [50,1210],
-  headline_create: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && ( valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group", "time" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] ) )',
+  headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && ( valid( item.openlibrary_id ) || checkTag( item, 0, ["meta-concept", "group", "time" ] ) || checkTag( item, 1, ["writer", "written-work", "role", "scientist"] ) )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 260,
@@ -20461,7 +20489,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'audio',
   section: ['media-audio','main'],
   rank: [10,1230],
-  headline_create: 'valid( item.datasource !== "archive" ) && ( checkTag( item, 1, ["music", "music-genre", "musician", "music-group"] ) || valid( item.is_musician ) )',
+  headline_create: 'activeOnDatasources( [ "archive" ], item.datasource ) && ( checkTag( item, 1, ["music", "music-genre", "musician", "music-group"] ) || valid( item.is_musician ) )',
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
   headline_rank: 240,
@@ -20549,7 +20577,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'timeline',
   section: ['library-history'],
   rank: [10],
-  headline_create: 'valid( item.wikipedia_timeline ) && valid( item.datasource === "wikipedia" ) && checkTag( item, 0, "time")', // TODO: add the "source" check in create_condition
+  headline_create: 'valid( item.wikipedia_timeline ) && activeOnDatasources( [ "wikipedia" ], item.datasource ) && checkTag( item, 0, "time")', // TODO: add the "source" check in create_condition
   //headline_trigger: 'console.log( item.datasource )',
   headline_rank: 400,
 },
@@ -20611,7 +20639,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'outlinks' : {
   value: 'outlinks:${item.title}:true',
-  render_condition: 'valid( item.datasource === "wikipedia" ) || valid( item.datasource === "wikidata" )',
+  render_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
   title: 'outgoing links',
   prop: '0',
   type: 'rest-json',
@@ -20643,7 +20671,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'inlinks' : {
   value: 'inlinks:${item.title}:true',
-  render_condition: 'valid( item.datasource === "wikipedia" )',
+  render_condition: 'activeOnDatasources( [ "wikipedia" ], item.datasource )',
   title: 'incoming links',
   prop: '0',
   type: 'rest-json',
@@ -20882,7 +20910,7 @@ if ( valid( item.found_in_taxon ) ){
 /* PRESENTATIONS */
 
 'presentation_substance' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "substance") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "substance") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20899,7 +20927,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_meta_concept' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "meta-concept") && !isEmbedded() && ! valid( item.presentation_mathematics )',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "meta-concept") && !isEmbedded() && ! valid( item.presentation_mathematics )',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20931,7 +20959,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_work' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "work") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "work") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20948,7 +20976,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_cultural_concept' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "cultural-concept") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "cultural-concept") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20964,8 +20992,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_location' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
-  //create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "location") && valid( ${item.lat} ) && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20981,7 +21008,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_natural_concept' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "natural-concept") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "natural-concept") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -20997,7 +21024,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_time' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag( item, 0, "time") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, "time") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -21013,7 +21040,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_organization' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "organization") && !isEmbedded()', // && valid( item.datasource === "wikipedia")',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag(item, 0, "organization") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -21029,7 +21056,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_person' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "person") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag(item, 0, "person") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',
@@ -21045,7 +21072,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'presentation_group' : {
-  create_condition: 'valid( item.datasource === "wikipedia" || item.datasource === "wikidata" ) && checkTag(item, 0, "group") && !isEmbedded()',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag(item, 0, "group") && !isEmbedded()',
   title: 'presentation',
   prop: '',
   type: 'code',

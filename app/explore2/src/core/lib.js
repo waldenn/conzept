@@ -3795,7 +3795,7 @@ async function updateLocaleInterface(){
   $('#app-menu-filter-by-option-archive').html( explore.banana.i18n('app-menu-filter-by-option-archive') );
   $('#app-menu-filter-by-option-entity').html( explore.banana.i18n('app-menu-filter-by-option-entity') );
 
-  $('#app-menu-filter-by-year-range').html( explore.banana.i18n('app-menu-filter-by-year-range') );
+  $('#app-menu-filter-by-date-range').html( explore.banana.i18n('app-menu-filter-by-date-range') );
 
   $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
   $('#app-menu-sort-by-option-relevance-desc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-desc') );
@@ -3820,6 +3820,7 @@ async function updateLocaleInterface(){
   $('#app-menu-various-links').html( explore.banana.i18n('app-menu-various-links') );
   $('#app-menu-font').html( explore.banana.i18n('app-menu-font') );
   $('#app-menu-theme').html( explore.banana.i18n('app-menu-theme') );
+  $('#app-menu-theme-select').html( explore.banana.i18n('app-menu-theme') );
   $('#app-menu-interface-language').html( explore.banana.i18n('app-menu-interface-language') );
   $('#app-menu-voice').html( explore.banana.i18n('app-menu-voice') );
   $('#app-menu-hear-voice').html( explore.banana.i18n('app-menu-hear-voice') );

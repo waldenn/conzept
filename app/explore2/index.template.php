@@ -405,7 +405,7 @@ $settings_html = '
               <div class="style-form">
 
                 <div id="theme-setting">
-                  <label style="display:inline;" for="theme"><span id="app-menu-theme">theme</span>: &nbsp;</label>
+                  <label style="display:inline;" for="theme"><span id="app-menu-theme-select">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
                     <option value="none">none</option>
                     <option value="pillar">pillar</option>
@@ -495,6 +495,12 @@ $settings_html = '
 
                 <div class="switch">
 
+                  <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
+                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a> &nbsp;
+                  <a class="waves-effect waves-light btn" id="stop-voice-button" tabindex="0" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeaking()"><i class="fa-solid fa-stop fa-2x"></i></a>
+
+                  <br/><br/>
+
                   <label style="display:inline;" for="voices"><span id="app-menu-style"></span>: &nbsp;</label>
                   <select id="voices" class="browser-default" width="20px" style="top: 0px !important;">
                   </select>
@@ -508,12 +514,6 @@ $settings_html = '
 
                   <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
                   <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
-
-                  <br/><br/>
-
-                  <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
-                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a> &nbsp;
-                  <a class="waves-effect waves-light btn" id="stop-voice-button" tabindex="0" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeaking()"><i class="fa-solid fa-stop fa-2x"></i></a>
 
                 </div>
 

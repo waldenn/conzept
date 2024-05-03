@@ -50,6 +50,7 @@
   "app-menu-sort-by-option-title-desc": "title ↓",
   "app-menu-sort-by-option-distance-asc": "distance ↑",
   "app-menu-sort-by-option-distance-desc": "distance ↓",
+  "app-menu-filter-by-date-range": "date range",
   "app-menu-actions": "actions",
   "app-menu-background-audio": "audio",
   "app-menu-background-midi": "MIDI",
