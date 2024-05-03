@@ -121,7 +121,19 @@
 
           event.preventDefault();
 
-          document.toggleFullscreen();
+            const enterFullscreenButton = document.getElementsByClassName( 'fullScreen' )[0];
+            const exitFullscreenButton  = document.getElementsByClassName( 'exitFullscreen' )[0];
+
+            if ( enterFullscreenButton === undefined ){
+
+              exitFullscreenButton.click();
+
+            }
+            else {
+
+              enterFullscreenButton.click();
+
+            }
 
         }
 

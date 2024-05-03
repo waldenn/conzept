@@ -1061,7 +1061,7 @@ $settings_html = '
                   <li><kbd>&larr;</kbd> &nbsp; <b><span id="app-menu-goto-previous-pane"></span></b></li>
                   <li><kbd>' . $alt_key . '</kbd> + <kbd>x</kbd> &nbsp; <b><span id="app-menu-new-search"></span></b> <sup>1</sup></li>
                   <li><kbd>' . $alt_key . '</kbd> + <kbd>y</kbd> &nbsp; <b><span id="app-menu-toggle-sidebar"></span></b> <sup>1</sup></li>
-                  <li><kbd>' . $alt_key . '</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark"></span></b> <sup>1</sup></li>
+                  <li><kbd>' . $alt_key . '</kbd> + <kbd>i</kbd> &nbsp; <b><span id="app-menu-add-bookmark-key"></span></b> <sup>1</sup></li>
                   <li><kbd>' . $alt_key . '</kbd> + <kbd>r</kbd> &nbsp; <b><span id="app-menu-random-topic-key"></span></b> <sup>1</sup></li>
                 </ol>
                 &nbsp; <small>- <span id="app-menu-note-1"></span></small> <br/>

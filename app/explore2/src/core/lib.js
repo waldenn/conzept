@@ -3862,6 +3862,7 @@ async function updateLocaleInterface(){
   $('#app-menu-toggle-sidebar').html( explore.banana.i18n('app-menu-toggle-sidebar') );
   $('#app-menu-bookmark-current-view').html( explore.banana.i18n('app-menu-bookmark-current-view') );
   $('#app-menu-add-bookmark').html( explore.banana.i18n('app-menu-add-bookmark') );
+  $('#app-menu-add-bookmark-key').html( explore.banana.i18n('app-menu-add-bookmark') );
   $('#app-menu-add-bookmark-title').html( explore.banana.i18n('app-menu-add-bookmark-title') );
   $('#app-menu-add-bookmark-url').html( explore.banana.i18n('app-menu-add-bookmark-url') );
   $('#app-menu-add-bookmark-images').html( explore.banana.i18n('app-menu-add-bookmark-images') );
