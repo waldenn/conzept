@@ -111,13 +111,13 @@
         });
 
         resize();
+
       });
 
-      $('body').keydown(function(event) {
+      // fullscreen f-key
+      document.addEventListener('keydown', function(event) {
 
-        let key = (event.keyCode ? event.keyCode : event.which);
-
-        if ( key == '70' ){ // "f"
+        if ( event.key === 'f' ) {
 
           event.preventDefault();
 
