@@ -281,8 +281,8 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span class="search-option-label date-range" style="date-range">
-          <span id="app-menu-filter-by-date-range">date range</span>:
+        <span id="app-menu-filter-by-date-range">date range</span>:
+        <span class="search-option-label date-range">
           <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">
         </span>
@@ -495,25 +495,29 @@ $settings_html = '
 
                 <div class="switch">
 
-                  <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
-                  <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a> &nbsp;
-                  <a class="waves-effect waves-light btn" id="stop-voice-button" tabindex="0" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeaking()"><i class="fa-solid fa-stop fa-2x"></i></a>
+                  <span id="voice-conf-container" style="display:none;">
 
-                  <br/><br/>
+                    <label style="display:inline;" for="hear-voice"><span id="app-menu-hear-voice">hear voice</span>: &nbsp;</label>
+                    <a class="waves-effect waves-light btn" id="hear-voice-button" tabindex="0" title="hear voice" aria-label="hear voice" role="button" onclick="hearVoice()"><i class="fa-solid fa-ear-listen fa-2x"></i></a> &nbsp;
+                    <a class="waves-effect waves-light btn" id="stop-voice-button" tabindex="0" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeaking()"><i class="fa-solid fa-stop fa-2x"></i></a>
 
-                  <label style="display:inline;" for="voices"><span id="app-menu-style"></span>: &nbsp;</label>
-                  <select id="voices" class="browser-default" width="20px" style="top: 0px !important;">
-                  </select>
+                    <br/><br/>
 
-                  <br/><br/>
+                    <label style="display:inline;" for="voices"><span id="app-menu-style"></span>: &nbsp;</label>
+                    <select id="voices" class="browser-default" width="20px" style="top: 0px !important;">
+                    </select>
 
-                  <label style="display:inline;" for="voice-rate"><span id="app-menu-speed"></span>: <span id="voicerate"></span></label>
-                  <input id="voice-rate" type="range" min="0.5" max="1.5" step="0.01" value="1">
+                    <br/><br/>
 
-                  <br/><br/>
+                    <label style="display:inline;" for="voice-rate"><span id="app-menu-speed"></span>: <span id="voicerate"></span></label>
+                    <input id="voice-rate" type="range" min="0.5" max="1.5" step="0.01" value="1">
 
-                  <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
-                  <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
+                    <br/><br/>
+
+                    <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
+                    <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
+
+                  </span>
 
                 </div>
 

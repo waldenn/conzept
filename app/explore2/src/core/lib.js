@@ -3594,6 +3594,8 @@ function setupLanguage(){
 
 		explore.tts_enabled = true;
 
+    $('#voice-conf-container').show();
+
 	  reloadVoices(); // needed for Firefox
 
     window.speechSynthesis.onvoiceschanged = () =>{ // needed for Chromium-browsers
@@ -3606,6 +3608,8 @@ function setupLanguage(){
 	else {
 
 		explore.tts_enabled = false;
+
+    $('#voice-conf-container').hide();
 
 	}
 
