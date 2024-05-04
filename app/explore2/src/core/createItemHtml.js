@@ -987,7 +987,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   if ( args.id == 'n00' ){ // raw-search-string
 
-    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title_.replace(/:/g, ': ') + '</a>';
+    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title_.replace(/:/g, ': ') ) + '</a>';
 
     item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
   }
@@ -996,7 +996,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( valid( item.newtab ) ){ // open link in a new tab
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
 
       // FIXME
       //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
@@ -1006,14 +1006,14 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     }
     else {
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + title + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
 
     }
 
   }
   else { // assume wikipedia / wikidata render
 
-    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia" role="button"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + title.replace(/:/g, ': ') + source_icon + '</a>';
+    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia" role="button"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + highlightTerms( title.replace(/:/g, ': ') ) + source_icon + '</a>';
 
   }
 

@@ -1050,6 +1050,7 @@ function insertRelatedPresentationTopics( qid ){
     'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
     'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
     'P31',    // instance-of          https://www.wikidata.org/wiki/Property:P31
+    'P279',   // subclass-of          https://www.wikidata.org/wiki/Property:P279
     'P171',   // parent taxon         https://www.wikidata.org/wiki/Property:P171
 
     'P800',   // notable-work         https://www.wikidata.org/wiki/Property:P800
@@ -1075,6 +1076,9 @@ function insertRelatedPresentationTopics( qid ){
     'P39',    // position held        https://www.wikidata.org/wiki/Property:P39
     'P101',   // field-of-work        https://www.wikidata.org/wiki/Property:P101
     'P97',    // noble title          https://www.wikidata.org/wiki/Property:P97
+
+    'P1995',  // health-speciality    https://www.wikidata.org/wiki/Property:P1995
+    'P780',   // symptoms-signs       https://www.wikidata.org/wiki/Property:P780
 
     'P1066',  // student-of           https://www.wikidata.org/wiki/Property:P1066
     'P802',   // student              https://www.wikidata.org/wiki/Property:P802

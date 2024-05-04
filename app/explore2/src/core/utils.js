@@ -1573,9 +1573,16 @@ function getSearchTerm(){
 
 }
 
-function highlightTerms( text ){
+function highlightTerms( phrase ) {
 
-  return text.replace( new RegExp( getSearchTerm().replace(/"/g, ''), 'gi'), `<span class="highlight"> ${ getSearchTerm() } </span>` );
+  // split the search-phrase into words
+  const words = getSearchTerm().replace(/"/g, '').split(/\s+/);
+
+  // create a regexp to match each word
+  const regex = new RegExp("\\b(" + words.join("|") + ")\\b", "gi");
+
+  // markup each matched word
+  return phrase.replace(regex, '<span class="highlight">$1</span>');
 
 }
 
