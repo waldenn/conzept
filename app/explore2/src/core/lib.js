@@ -402,8 +402,6 @@ function triggerQueryForm(){
     $('#srsearch').val( explore.q );
     explore.q = getSearchValue();
 
-    if ( explore.isSafari ){ console.log('triggerQueryForm() ', explore.q ); }
-
     $('.submitSearch').trigger('click'); // synthetic trigger submit
 
     //console.log('trigger form: ', explore.q, explore.type, explore.qid, explore.gid, explore.uri );
@@ -2779,7 +2777,7 @@ function setupOptionTheme(){
     else { // check storage
 
       explore.theme = await explore.db.get('theme');
-      explore.theme = !valid( explore.theme ) ? '' : explore.theme;
+      explore.theme = !valid( explore.theme ) ? 'lattice' : explore.theme; // FIXME theme gets reset somewhere
 
       console.log( 'theme set to: ', explore.theme );
 
@@ -8064,7 +8062,17 @@ function resetIframe( mode, leftWidth, rightWidth ){
 
   }
 
-  if ( explore.isMobile && explore.isSafari ){ fixSafari(); }
+  if ( explore.isSafari ){ // all Safari browsers
+
+    $('#search-options select').css({ '-webkit-appearance': 'none' });
+
+    if ( explore.isMobile ){ // mobile Safari browsers
+
+      fixSafari();
+
+    }
+
+  }
 
   if ( ! explore.isMobile ){
 

@@ -3503,7 +3503,7 @@ conzept_fields = {
 },
 
 'conzept_reference_works_datasources_search' : {
-  create_condition: true,
+  create_condition: '! isEmbedded()',
   title: 'Conzept reference-works datasources search',
   prop: '',
   type: 'link',
@@ -3516,7 +3516,7 @@ conzept_fields = {
 },
 
 'conzept_culture_datasources_search' : {
-  create_condition: true,
+  create_condition: '! isEmbedded()',
   title: 'Conzept culture datasources search',
   prop: '',
   type: 'link',
@@ -3529,7 +3529,7 @@ conzept_fields = {
 },
 
 'conzept_science_datasources_search' : {
-  create_condition: true,
+  create_condition: '! isEmbedded()',
   title: 'Conzept science datasources search',
   prop: '',
   type: 'link',
@@ -3542,7 +3542,7 @@ conzept_fields = {
 },
 
 'conzept_business_datasources_search' : {
-  create_condition: true,
+  create_condition: '! isEmbedded()',
   title: 'Conzept business datasources search',
   prop: '',
   type: 'link',
