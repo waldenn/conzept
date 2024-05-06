@@ -281,10 +281,10 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span id="app-menu-filter-by-date-range">date range</span>:
-        <span class="search-option-label date-range">
-          <input id="datemin" class="date-input" aria-label="Date from" max="" min="" type="date">
-          <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" type="date">
+        <span class="search-option-label"><span id="app-menu-filter-by-date-range">date range</span>: </span>
+        <span class="date-range">
+          <input id="datemin" class="date-input" aria-label="Date from" max="" min="" placeholder="yyyy-mm-dd" type="date">
+          <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
         </span>
 
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>

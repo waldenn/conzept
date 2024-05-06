@@ -2771,15 +2771,13 @@ function setupOptionTheme(){
 
     if ( valid( explore.theme ) ){ // theme requested by parameter
 
-      (async () => { await explore.db.set('theme', $(this).val() ); })();
+      (async () => { await explore.db.set('theme', explore.theme ); })();
 
     }
     else { // check storage
 
       explore.theme = await explore.db.get('theme');
-      explore.theme = !valid( explore.theme ) ? 'lattice' : explore.theme; // FIXME theme gets reset somewhere
-
-      console.log( 'theme set to: ', explore.theme );
+      explore.theme = valid( explore.theme ) ? explore.theme : explore.default_theme;
 
     }
 
@@ -8833,6 +8831,8 @@ function setLanguageDirection(){
   // set direction
   if ( rtl_scripts.includes( explore.language_script.trim().toLowerCase() ) ){  // right-to-left
 
+    console.log('setting language direction to "rtl" with script: ', explore.language_script );
+
     explore.language_direction = 'rtl';
 
     if ( explore.language_direction !== explore.splitter_direction ){
@@ -8873,9 +8873,9 @@ function setLanguageDirection(){
 
 function renderLanguageDirection(){
 
-  //console.log('script direction: ', explore.language_script , explore.language_direction,  explore.language );
-
   if ( explore.language_direction === 'rtl' ){
+
+    console.log('renderLanguageDirection(): script direction: ', explore.language_script , explore.language_direction,  explore.language );
 
     updateValueInPanes( 'rtl', true );
 

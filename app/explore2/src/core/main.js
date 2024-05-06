@@ -55,6 +55,7 @@ const explore = {
   datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
   theme_param         : getParameterByName('theme') || undefined,
+  default_theme       : 'lattice',
 
   //country           : 'us', // default is "United States"
 
