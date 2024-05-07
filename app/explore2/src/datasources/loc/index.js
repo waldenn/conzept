@@ -163,6 +163,9 @@ function processResultsLoC( topicResults, struct, index ){
           else if ( obj.original_format.includes('periodical') ){ subtag = 'periodical' }
           else if ( obj.original_format.includes('newspaper') ){ subtag = 'newspaper' }
           else if ( obj.original_format.includes('photo, print, drawing') ){ subtag = 'image' }
+          //TODO: handle multiple images as IIIF: else if ( obj.original_format.includes('manuscript/mixed material') ){ subtag = 'image' }
+          else if ( obj.original_format.includes('legislation') ){ subtag = 'legislation' } // TODO
+          else if ( obj.original_format.includes('web archive') ){ subtag = 'archive' } // TODO
           else {
             console.log('tag missing for this original format: ', obj.original_format );
           }

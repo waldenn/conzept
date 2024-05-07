@@ -242,6 +242,11 @@ var conzept_tags = {
         text : "newspaper",
         icon : ["fa-regular fa-newspaper"],
       },
+      "legislation" : {
+        text : "legislation",
+        icon : ["fa-solid fa-scale-balanced"],
+
+      },
       "comics" : {
         text : "comics",
         icon : ["fa-solid fa-mask"],
@@ -294,6 +299,10 @@ var conzept_tags = {
       "webpage" : {
         text : "webpage",
         icon : ["fa-regular fa-copy"],
+      },
+      "archive" : {
+        text : "archive",
+        icon : ["fa-solid fa-box-archive"],
       },
       "software" : {
         text : "software",

@@ -2997,7 +2997,7 @@ details[open].conf summary ~ * {
   color: black;
   font-size: 97%;
   line-height: 130%;
-  font-weight: 300;
+  font-weight: 400;
   padding-bottom: 3px;
   /*margin-left: 1%;*/
   margin-right: 2%;
@@ -3007,11 +3007,10 @@ details[open].conf summary ~ * {
 }
 
 .item-description {
-  /*margin-left: 1%;*/
+  font-weight: 450;
 }
 
 .topic-description {
-  font-weight: 450;
   overflow: hidden;
 }
 
