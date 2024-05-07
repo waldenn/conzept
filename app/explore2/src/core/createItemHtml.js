@@ -1059,29 +1059,23 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     if ( valid( item.display_url ) ){ // assume we can render an embedded page-link
 
       description =
-        // FIXME: the link-wrap breaks the "topic-card-div", why?
-        // TODO: separate the "topic-description" from the link-wrap
-        //`<a href="javascript:void(0)" class="summary-link aria-label="topic description" role="button" tabindex="-1" ` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) ) +
-          '<div class="topic-description">' +
-            '<span class="item-description">' + item.description + '</span>' +
-            thumbnail +
-            '<div class="summary ' + pid + '">' + snippet + '</div>' +
-          '</div>' ;
-        //'</a>';
+        '<div class="topic-description">' +
+          '<span class="item-description">' + item.description + '</span>' +
+          thumbnail +
+          '<div class="summary ' + pid + '">' + snippet + '</div>' +
+        '</div>' ;
 
     }
     else { // assume wikipedia / wikidata render
 
       description =
-        //'<a href="javascript:void(0)" class="summary-link" aria-label="topic description" role="button" tabindex="-1" ' + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) ) +
-          '<div class="topic-description">' +
-            '<span class="item-description">' + item.description + '</span>' +
-            thumbnail +
-            '<div class="summary ' + pid + '">'
-              + snippet +
-            '</div>' +
-          '</div>' ;
-        //'</a>'; 
+        '<div class="topic-description">' +
+          '<span class="item-description"><b>' + item.description + '</b></span>' +
+          thumbnail +
+          '<div class="summary ' + pid + '">'
+            + snippet +
+          '</div>' +
+        '</div>' ;
 
     }
 

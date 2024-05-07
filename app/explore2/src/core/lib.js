@@ -1810,7 +1810,7 @@ async function fetchAutocompleteData( term ) {
 
   let autocomplete_fetches = [];
 
-  $.each( Object.keys( datasources), function( index, source ){ // for each active datasource
+  $.each( Object.keys( datasources ), function( index, source ){ // for each active datasource
 
     let d = datasources[ source ];
 
