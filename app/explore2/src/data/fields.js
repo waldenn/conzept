@@ -10491,6 +10491,21 @@ if ( valid( item.found_in_taxon ) ){
   rank: 20,
 },
 
+'thecocktaildb_drink' : {
+  create_trigger: 'setTags( item, [ "work", "beverage" ] ) }',
+  title: 'TheCocktailDB drink',
+  prop: '9056',
+  type: 'link',
+  mv: false,
+  url: 'https://www.thecocktaildb.com/drink/${item.thecocktaildb_drink}',
+  icon: 'fa-solid fa-martini-glass',
+  text: 'CocktailDB',
+  section: ['society-food','main'],
+  rank: [220,7000],
+  headline_create: 'valid( item.thecocktaildb_drink )',
+  headline_rank: 180,
+},
+
 'factgrid' : {
   title: 'FactGrid',
   prop: '8168',
@@ -114940,20 +114955,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'Olympedia event',
   section: ['library-identity'],
   rank: [29055],
-  auto: true,
-},
-
-'thecocktaildb_drink' : {
-  title: 'TheCocktailDB drink',
-  prop: '9056',
-  type: 'url',
-  mv: false,
-  url_format: 'https://www.thecocktaildb.com/drink/$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'TheCocktailDB drink',
-  section: ['library-identity'],
-  rank: [29056],
   auto: true,
 },
 

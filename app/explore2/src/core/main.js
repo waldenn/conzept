@@ -48,14 +48,18 @@ const explore = {
   lang_current_events_page : undefined,
   language_param      : getParameterByName('l') || undefined,       // requested language
   locale_param        : getParameterByName('h') || undefined,       // requested 'human locale' language
+
   query_param         : getParameterByName('query') || undefined,   // requested 'structured query'
   sortby_param        : getParameterByName('sortby') || undefined,  // requested sorting-key
   filterby_param      : getParameterByName('filterby') || undefined,// requested filter-key
   datemin_param       : getParameterByName('datemin') || undefined, // requested minimum date
   datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
+
   theme_param         : getParameterByName('theme') || undefined,
+  themes              : CONZEPT_THEMES.split(',').map( theme => theme.trim() ),
   default_theme       : 'lattice',
+  bordered_themes     : [ 'lattice', 'masonry' ], // themes which may need border-styling (this also depends on the column count)
 
   //country           : 'us', // default is "United States"
 

@@ -10,7 +10,7 @@ $font         = 'Hind'; // IBM Plex Sans Condensed', 'Quicksand';
 $ua_string    = '';
 $alt_key      = 'Alt';
 
-$url_root     = "https://";
+$url_root     = "https://localhost";
 
 $window_bottom_margin   = '3rem';
 $content_bottom_margin  = '3rem';
@@ -69,8 +69,18 @@ foreach ($locales as &$loc) {
   $locale_options_html .= '<option value="' . $loc . '">' . $loc . '</option>';
 }
 
+// themes
+$themes = array_map('trim', explode(',', 'CONZEPT_THEMES' ) );
+asort( $themes );
+$theme_options_html = '';
+foreach ($themes as &$theme) {
+  $theme_options_html .= '<option value="' . $theme . '">' . $theme . '</option>';
+}
+
+
+
 // AI tutors
-$tutors = array_map('trim', explode(',', 'auto-select, default, advisor-related-websites, advisor-topic-differences, advisor-related-topics, advisor-topic-commonality, advisor-topic-implications, advisor-related-books, advisor-related-science-articles, language-helper, examinator, teacher, historian, scientist, philosopher, mathematician, chemist, economist, politician, art-history, artist, travel-guide, statistician, nutritionist, psychologist, legislator, theologian, poet, storyteller, biologist, doctor, investor, lifecoach, entrepreneur, farmer, ecologist, military-expert, financial-expert, engineer, professor, demographer, social-scientist, linguist' ) );
+$tutors = array_map('trim', explode(',', 'auto-select, default, advisor-related-websites, advisor-topic-differences, advisor-related-topics, advisor-topic-commonality, advisor-topic-similarity, advisor-topic-implications, advisor-related-books, advisor-related-science-articles, language-helper, examinator, teacher, historian, scientist, philosopher, mathematician, chemist, economist, politician, art-history, artist, travel-guide, statistician, nutritionist, psychologist, legislator, theologian, poet, storyteller, biologist, doctor, investor, lifecoach, entrepreneur, farmer, ecologist, military-expert, financial-expert, engineer, professor, demographer, social-scientist, linguist' ) );
 asort( $tutors );
 $tutor_options_html = '';
 foreach ($tutors as &$tutor) {
@@ -99,37 +109,37 @@ $main_css = '
   <link rel="stylesheet" href="../app/explore2/node_modules/country-select-js/build/css/countrySelect.min.css" type="text/css">
 
   <!-- Conzept CSS -->
-  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.51.466" type="text/css">
-  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/pillar.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/lattice.css?v0.51.466" type="text/css">
-  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/masonry.css?v0.51.466" type="text/css">
-  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.466"  type="text/css">
+  <link rel="stylesheet" href="../app/explore2/dist/css/conzept/common.css?v0.51.4836" type="text/css">
+  <link rel="stylesheet" id="maincss" href="../app/explore2/dist/css/conzept/main.css?v0.51.4836" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/pillar.css?v0.51.4836" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/lattice.css?v0.51.4836" type="text/css">
+  <link rel="stylesheet"              href="../app/explore2/dist/css/conzept/masonry.css?v0.51.4836" type="text/css">
+  <link rel="stylesheet" id="darkcss" href="../app/explore2/dist/css/conzept/theme_dark.css?v0.51.4836"  type="text/css">
 ';
 
 $main_script = '
   <!-- jQuery dependent scripts -->
-  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.51.466"></script>
+  <script src="../app/explore2/node_modules/jquery/dist/jquery.min.js?v0.51.4836"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.data.utils.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.lcd.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.languagefilter.js"></script>
   <script src="../app/explore2/node_modules/jquery.uls/src/jquery.uls.core.js"></script>
-  <script src="../app/explore2/libs/jquery.fontselect.js?v0.51.466"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
-  <script src="../app/explore2/libs/jquery.drawPieChart.js?v0.51.466"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
+  <script src="../app/explore2/libs/jquery.fontselect.js?v0.51.4836"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
+  <script src="../app/explore2/libs/jquery.drawPieChart.js?v0.51.4836"></script> <!-- no NPM-package: https://github.com/av01d/fontselect-jquery-plugin -->
   <script src="../app/explore2/node_modules/jqtree/tree.jquery.js"></script>
   <script src="../app/explore2/node_modules/select2/dist/js/select2.min.js"></script>
-  <script src="../app/explore2/libs/materialize.min.js?v0.51.466"></script> <!-- no NPM-package -->
+  <script src="../app/explore2/libs/materialize.min.js?v0.51.4836"></script> <!-- no NPM-package -->
   <script src="../app/explore2/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.51.466"></script>
-  <script src="../app/explore2/node_modules/country-select-js/build/js/countrySelect.min.js?v0.51.466"></script>
+  <script src="../app/explore2/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js?v0.51.4836"></script>
+  <script src="../app/explore2/node_modules/country-select-js/build/js/countrySelect.min.js?v0.51.4836"></script>
 
   <!-- non-jQuery dependent scripts -->
-  <script src="../app/explore2/libs/splitter.js?v0.51.466"></script> <!-- contains some custom code modifications -->
-  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.51.466"></script>
-  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.51.466"></script>
+  <script src="../app/explore2/libs/splitter.js?v0.51.4836"></script> <!-- contains some custom code modifications -->
+  <script src="../app/explore2/node_modules/urijs/src/URI.min.js?v0.51.4836"></script>
+  <script src="../app/explore2/node_modules/immortal-db/dist/immortal-db.min.js?v0.51.4836"></script>
   <script src="../app/explore2/node_modules/banana-i18n/dist/banana-i18n.js"></script>
-  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.51.466"></script>
+  <script src="../app/explore2/node_modules/mark.js/dist/mark.min.js?v0.51.4836"></script>
   <script src="../app/explore2/node_modules/numbro/dist/numbro.min.js"></script>
   <script src="../app/explore2/node_modules/katex/dist/katex.min.js" async></script>
   <script src="../app/explore2/node_modules/web-share-wrapper/dist/web-share-wrapper.min.js" async></script>
@@ -139,10 +149,10 @@ $main_script = '
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
   <script src="../app/explore2/libs/s-express-beautify.js" async></script> <!-- no dist-bundle in the NPM -->
 
-  <!--script src="../app/explore2/dist/webcomponent/chat.js?v0.51.466" type="module"></script-->
+  <!--script src="../app/explore2/dist/webcomponent/chat.js?v0.51.4836" type="module"></script-->
   <!--chat-ai data-message="bla bla"></chat-ai-->
 
-  <!--script src="../app/explore2/libs/weaviate.js?v0.51.466" async></script--> <!-- no NPM dist-package yet -->
+  <!--script src="../app/explore2/libs/weaviate.js?v0.51.4836" async></script--> <!-- no NPM dist-package yet -->
   <!--script src="../app/explore2/node_modules/compromise/builds/compromise.js" async></script-->
 
   <!-- Scheme command-editor -->
@@ -151,71 +161,71 @@ $main_script = '
   <script src="../app/explore2/node_modules/@jcubic/lips/dist/lips.min.js" bootstrap></script>
 
   <!-- Conzept data scripts -->
-  <script src="../app/explore2/dist/data/datasources.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/fields.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/data/datasources.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/fields.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/data/iso2_codes.js"></script>
-  <script src="../app/explore2/dist/data/languages.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/indicators.js?v0.225"></script>
-  <script src="../app/explore2/dist/data/countries.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/former_countries.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/economic_regions.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/tags.js?v0.51.466"></script>
-  <!--script src="../app/explore2/dist/data/tags-ores.js?v0.51.466"></script-->
-  <script src="../app/explore2/dist/data/chains.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/cover_data.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/osm_tags.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/playlist.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/music_by_year.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/sections.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/data/sections_init.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/data/languages.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/indicators.js?v0.0233"></script>
+  <script src="../app/explore2/dist/data/countries.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/former_countries.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/economic_regions.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/tags.js?v0.51.4836"></script>
+  <!--script src="../app/explore2/dist/data/tags-ores.js?v0.51.4836"></script-->
+  <script src="../app/explore2/dist/data/chains.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/cover_data.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/osm_tags.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/playlist.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/music_by_year.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/sections.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/data/sections_init.js?v0.51.4836"></script>
 
   <!-- Conzept core scripts -->
-  <script src="../app/explore2/dist/core/env.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/core/show.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/core/utils.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/command/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?v0.51.466"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
+  <script src="../app/explore2/dist/core/env.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/core/show.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/core/utils.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/command/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?v0.51.4836"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
 
   <!-- TODO: include by PHP foreach datasource from the Conzept settings -->
 
   <!-- reference works -->
-  <script src="../app/explore2/dist/datasources/wikipedia/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/wikidata/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/wikipedia/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/wikidata/index.js?v0.51.4836"></script>
 
   <!-- culture -->
-  <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/archive/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/openlibrary/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/loc/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/smithsonian/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/commons/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/archive/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/openlibrary/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/europeana/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/loc/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?v0.51.4836"></script>
 
   <!-- science -->
-  <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/openalex/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.4836"></script>
 
   <!-- business -->
-  <script src="../app/explore2/dist/datasources/gleif/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/gdelt/index.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.466"></script>
+  <script src="../app/explore2/dist/datasources/gleif/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/gdelt/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.4836"></script>
 
   <!-- other / inactive -->
-  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.466"></script-->
-  <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.466"></script-->
-  <!--script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.466"></script-->
-  <!--script src="../app/explore2/dist/datasources/snomed/index.js?v0.51.466"></script-->
+  <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?v0.51.4836"></script-->
+  <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?v0.51.4836"></script-->
+  <!--script src="../app/explore2/dist/datasources/rkd/index.js?v0.51.4836"></script-->
+  <!--script src="../app/explore2/dist/datasources/snomed/index.js?v0.51.4836"></script-->
 
-  <script src="../app/explore2/dist/core/createItemHtml.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/core/fetch_lib.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/core/fetches.js?v0.51.466"></script>
-  <script src="../app/explore2/dist/core/lib.js?v0.51.466"></script> <!-- Conzept app core library -->
-  <script src="../app/explore2/dist/core/main.js?v0.51.466"></script> <!-- Conzept app entry point -->
+  <script src="../app/explore2/dist/core/createItemHtml.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/core/fetch_lib.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/core/fetches.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/core/lib.js?v0.51.4836"></script> <!-- Conzept app core library -->
+  <script src="../app/explore2/dist/core/main.js?v0.51.4836"></script> <!-- Conzept app entry point -->
 
   <!-- tracker -->
   
@@ -408,9 +418,7 @@ $settings_html = '
                   <label style="display:inline;" for="theme"><span id="app-menu-theme-select">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
                     <option value="none">none</option>
-                    <option value="pillar">pillar</option>
-                    <option value="lattice">lattice</option>
-                    <option value="masonry">masonry</option>
+                    $theme_options_html .
                   </select>
 
                 </div>
@@ -1047,7 +1055,7 @@ $settings_html = '
             <details class="" closed>
               <summary><span id="app-menu-user-manual"></span></summary>
                 <ul>
-                  <li> &nbsp; <a href="https:///guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
+                  <li> &nbsp; <a href="https://localhost/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
                 </ul>
             </details>
 
@@ -1073,7 +1081,7 @@ $settings_html = '
                 <ul>
                   <li>&nbsp; <span id="app-menu-license"></span>: GNU Public License v3, <a target="infoframe" href="https://conze.pt/guide/used_projects"><i class="fa-solid fa-circle-plus"></i></a></li>
                   <!--li>&nbsp; <span id="app-menu-license"></span>: <a href="https://github1s.com/waldenn/conzept/blob/master/LICENSE" target="infoframe" onclick="resetIframe()" title="license" aria-label="docs" role="button">GNU GPL v3</a></li-->
-                  <li>&nbsp; <span id="app-menu-version"></span>: v0.51.466</li>
+                  <li>&nbsp; <span id="app-menu-version"></span>: v0.51.4836</li>
                   <li>&nbsp; <span id="app-menu-made-by"></span>:
                   <li>&nbsp; &nbsp; Jama Poulsen</li>
                   <li>&nbsp; &nbsp; <a target="_blank" href="https://twitter.com/conzept__" aria-label="Twitter news" role="button"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
@@ -1120,7 +1128,7 @@ echo '
   <head>
     <meta charset="utf-8" />
 
-    <link rel="manifest" href="/manifest.json?v0.51.466">
+    <link rel="manifest" href="/manifest.json?v0.51.4836">
 
     <!-- title -->
     <title>Conzept encyclopedia</title>
@@ -1183,7 +1191,7 @@ echo '
 // iOS Safari style-fixes
 if ( strstr($ua_string, " AppleWebKit/") && strstr($ua_string, " Safari/") && !strstr($ua_string, " CriOS") ){
 
-    echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/safari.css?v0.51.466">';
+    echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/safari.css?v0.51.4836">';
 
 };
 
@@ -1193,13 +1201,13 @@ if ( $viewMode == 'mobile' ){
   // iOS Safari style-fixes
   if ( strstr($ua_string, " AppleWebKit/") && strstr($ua_string, " Safari/") && !strstr($ua_string, " CriOS") ){
 
-      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.51.466">';
+      echo '<link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_safari.css?v0.51.4836">';
 
   };
 
   echo '
-    <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css?v0.51.466">
-    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.51.466">
+    <link rel="stylesheet" href="../app/explore2/dist/css/various/swiper.min.css?v0.51.4836">
+    <link rel="stylesheet" href="../app/explore2/dist/css/conzept/mobile_mode.css?v0.51.4836">
   </head>
 
   <body class="mobile">
@@ -1228,7 +1236,7 @@ if ( $viewMode == 'mobile' ){
 
     </div>
 
-    <script src="../app/explore2/libs/swiper.min.js?v0.51.466"></script>
+    <script src="../app/explore2/libs/swiper.min.js?v0.51.4836"></script>
 
     ' . $main_css . '
     ' . $main_script . '

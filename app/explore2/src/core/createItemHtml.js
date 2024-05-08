@@ -1070,7 +1070,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
       description =
         '<div class="topic-description">' +
-          '<span class="item-description"><b>' + item.description + '</b></span>' +
+          '<span class="item-description" style="font-weight:450;">' + highlightTerms( item.description ) + '</span>' +
           thumbnail +
           '<div class="summary ' + pid + '">'
             + snippet +
@@ -1086,7 +1086,8 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   }
 
-  if ( getGridColumns('#results') > 1 ){
+  // themes which may need border-styling
+  if ( explore.bordered_themes.includes( explore.theme ) && getGridColumns('#results') > 1 ){
     extra_classes += ' bordered ';
   } 
 

@@ -54,6 +54,8 @@ function createORCIDProfile(orcidID, elementID) {
           let publicationYear = '';
           let doiReference    = '';
           let putcode         = '';
+          let nr_of_citations = 0;
+          let citation_level  = 0; // 0-20, see: https://noranta4.medium.com/why-betterscholar-051ffff7e46d
 
           // paper name
           if ( data.group[i]["work-summary"]["0"].title.title.value != null ) {
@@ -98,11 +100,48 @@ function createORCIDProfile(orcidID, elementID) {
 
           let url_string = `https://doi.org/${ doiReference }`;
 
+          /*
+
+          // TODO: show citation rank
+          // example: https://api.openalex.org/works/https://doi.org/10.4018/jswis.2009081901
+          // FIXME: HTTP 423 status code -> rate limited -> solution: ???
+          fetch( `https://api.openalex.org/works/${ url_string }` )
+          .then(
+
+            function( response ) {
+
+              //console.log( response );
+
+              if ( response.status !== 200) {
+
+                return;
+
+              }
+
+              response.json().then(function( alex ) {
+
+                //console.log( alex );
+
+                if ( valid( alex.cited_by_count ) ){
+
+                  console.log( alex.cited_by_count );
+                  nr_of_citations = alex.cited_by_count;
+
+                }
+
+              });
+
+            }
+
+          );
+          */
+
+          // HTML rendering
           output +=`
           <div id="item">
-            ${ publicationYear  }
+            ${ publicationYear }
             <span id="exploreTopic"><button onclick="gotoExplore( &quot;${ publicationName }&quot;)" onauxclick="gotoExplore( true )" class="dropbtn" title="explore this topic" aria-label="explore this topic"><span class="icon"><i class="fas fa-retweet"></i></span></button></span>
-            <a class="item-link" href="javascript:void(0)" onclick="openInNewTab( &quot;${ url_string }&quot; )">${ publicationName }</a>
+            <a class="item-link" href="javascript:void(0)" onclick="openInNewTab( &quot;${ url_string }&quot; )">${ publicationName } ${ nr_of_citations }</a>
           </div>
         `;
 
@@ -113,7 +152,7 @@ function createORCIDProfile(orcidID, elementID) {
             //'doi':  doiReference,
           } );
 
-          //getJournalTitle(orcidID, putcode, i);
+          // getJournalTitle(orcidID, putcode, i);
 
         }
 

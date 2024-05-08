@@ -69,6 +69,16 @@ foreach ($locales as &$loc) {
   $locale_options_html .= '<option value="' . $loc . '">' . $loc . '</option>';
 }
 
+// themes
+$themes = array_map('trim', explode(',', 'CONZEPT_THEMES' ) );
+asort( $themes );
+$theme_options_html = '';
+foreach ($themes as &$theme) {
+  $theme_options_html .= '<option value="' . $theme . '">' . $theme . '</option>';
+}
+
+
+
 // AI tutors
 $tutors = array_map('trim', explode(',', 'CONZEPT_AI_TUTORS' ) );
 asort( $tutors );
@@ -408,9 +418,7 @@ $settings_html = '
                   <label style="display:inline;" for="theme"><span id="app-menu-theme-select">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
                     <option value="none">none</option>
-                    <option value="pillar">pillar</option>
-                    <option value="lattice">lattice</option>
-                    <option value="masonry">masonry</option>
+                    $theme_options_html .
                   </select>
 
                 </div>
