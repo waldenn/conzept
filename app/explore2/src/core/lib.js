@@ -4553,19 +4553,8 @@ async function setupUI() {
         // resize sidebar
         $('div.sticky').css({ 'width' : explore.splitter.position() });
 
-        // some themes which may need *live* border-styling
-        if ( explore.bordered_themes.includes( explore.theme ) && getGridColumns('#results') > 1 ){ // multi-column layout
-
-          $( '#results div.entry.articles' ).addClass('bordered'); // add borders
-
-        }
-        else {
-
-          $( '#results div.entry.articles' ).removeClass('bordered'); // remove borders
-
-        }
-
         explore.splitter.refresh();
+
       }
 
       resizeEmbeddedSplitter();
@@ -9047,11 +9036,16 @@ function resizeEmbeddedSplitter( ){
 
   }
 
-  if ( getGridColumns('#results') === 1 ){ // remove topic-card borders in 1-column mode
-    $('.sidebar-grid-item').removeClass( 'bordered' );
+  // some themes which may need *live* border-styling
+  if (  explore.bordered_themes.includes( explore.theme ) && getGridColumns('#results') > 1 ){ // multi-column layout
+
+    $( '#results div.entry.articles' ).addClass('bordered'); // add borders
+
   }
   else {
-    $('.sidebar-grid-item').addClass( 'bordered' );
+
+    $( '#results div.entry.articles' ).removeClass('bordered'); // remove borders
+
   }
 
 }
