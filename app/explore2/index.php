@@ -70,7 +70,7 @@ foreach ($locales as &$loc) {
 }
 
 // themes
-$themes = array_map('trim', explode(',', 'CONZEPT_THEMES' ) );
+$themes = array_map('trim', explode(',', 'pillar, lattice, masonry' ) );
 asort( $themes );
 $theme_options_html = '';
 foreach ($themes as &$theme) {
@@ -417,9 +417,9 @@ $settings_html = '
                 <div id="theme-setting">
                   <label style="display:inline;" for="theme"><span id="app-menu-theme-select">theme</span>: &nbsp;</label>
                   <select id="theme" width="20px">
-                    <option value="none">none</option>
+                    <option value="none">none</option>' .
                     $theme_options_html .
-                  </select>
+                  '</select>
 
                 </div>
 

@@ -448,6 +448,11 @@ var conzept_tags = {
         text : "modern language",
         icon : ["fa-regular fa-comments"],
       },
+      "industry" : {
+        text : "industry",
+        icon : ["fa-solid fa-person-shelter"],
+        //icon : ["fa-solid fa-car-battery"],
+      },
 
     },
   },
