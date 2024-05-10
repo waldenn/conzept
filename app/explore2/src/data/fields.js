@@ -14259,7 +14259,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 9.1,
 },
 
-'hacker_news_hackerverse' : {
+'hacker_news_hackerverse_search' : {
   create_condition: true,
   title: 'hackerVerse - Hacker News AI-cluster search',
   prop: '',
@@ -14269,20 +14269,20 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-microchip',
   text: 'HackerVerse',
   section: 'news-tech',
-  rank: 9.1,
+  rank: 9.2,
 },
 
-'hacker_news_trends' : {
+'hacker_news_hackerverse_newest_posts' : {
   create_condition: true,
-  title: 'Hacker News frontpage trends',
+  title: 'hackerVerse - Hacker News AI-cluster newest posts',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://toddwschneider.com/dashboards/hacker-news-trends/?q=${title_no_braces}',
+  url: 'https://hn.wilsonl.in/s/${title_quoted}',
   icon: 'fa-solid fa-microchip',
-  text: 'Hacker News trends',
+  text: 'HackerVerse new posts',
   section: 'news-tech',
-  rank: 9.2,
+  rank: 9.3,
 },
 
 'hacker_news' : {
@@ -14305,11 +14305,25 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://news.ycombinator.com/user?id=${item.hacker_news_username}',
   icon: 'fa-solid fa-microchip',
-  text: 'Hacker News username',
+  text: 'Hacker News user',
   section: 'news-tech',
   rank: 9.6,
 },
 
+'hacker_news_trends' : {
+  create_condition: true,
+  title: 'Hacker News frontpage trends',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://toddwschneider.com/dashboards/hacker-news-trends/?q=${title_no_braces}',
+  icon: 'fa-solid fa-microchip',
+  text: 'HN trends',
+  section: 'news-tech',
+  rank: 9.7,
+},
+
+/*
 'phind' : {
   create_condition: true,
   title: 'Phind tech search',
@@ -14322,6 +14336,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'news-tech',
   rank: 50,
 },
+*/
 
 /*
 'blogsurf' : {
