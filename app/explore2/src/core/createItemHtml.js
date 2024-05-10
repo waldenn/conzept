@@ -69,17 +69,17 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   let thumbnail = '';
 
-  // prioritize "logo"-image when available OR if no Wikipedia-thumbnail was set.
-  if ( valid( item.logo ) || args.thumbnail === ''  ){
+  if ( args.thumbnail === '' ){ // no thumnail set yet
 
-    setThumbnail( item );
+    setThumbnail( item ); // tries to set "item.thumbnail"
 
   }
-  else if ( valid( args.thumbnail ) ){ // use the standard thumbnail (coming from the wikipedia search API)
+  else if ( valid( args.thumbnail ) ){ // use the standard thumb (coming from the wikipedia search API)
 
-		thumbnail = args.thumbnail;
+    thumbnail = args.thumbnail;
 
-	}
+  }
+
 
   item.thumbnail = thumbnail; // store so we can use it in field-conditions
 
