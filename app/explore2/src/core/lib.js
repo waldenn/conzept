@@ -11632,7 +11632,7 @@ function reloadVoices() {
 		// choose a voice
 
     // first try to select option by "voice name"
-    if (valid( [ explore.voice_name_selected ] ) ){
+    if ( valid( explore.voice_name_selected ) ){
 
       $.each( $("#voices option"), function(key, item) {
 

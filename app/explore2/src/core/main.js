@@ -194,6 +194,7 @@ const explore = {
   default_fontsize_medium_desktop: 19,  // default for medium desktops (<1600)
   default_fontsize_large_desktop : 19,  // default for large desktops (>1600)
 
+  // image-display options
   thumb_width         : '350px',        // sidebar image-thumb size
   banner_width        : '1200px',       // desktop size
 
@@ -323,7 +324,6 @@ $( document ).ready( function() {
 
     explore.language  = window.language = await explore.db.get('language');
     explore.locale    = await explore.db.get('locale');
-    setupLanguage();
 
     explore.font1			  = await explore.db.get('font1');
     explore.linkcolor   = await explore.db.get('linkcolor');
@@ -364,6 +364,9 @@ $( document ).ready( function() {
 
     }
 
+    // various setup steps
+
+    setupLanguage();
     setupDatasourceSet();
     setActiveDatasources();
 

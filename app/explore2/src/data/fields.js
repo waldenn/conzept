@@ -10683,6 +10683,29 @@ if ( valid( item.found_in_taxon ) ){
   rank: [190,8680],
 },
 
+'expressed_in' : {
+  title: 'Gene or protein is expressed during a specific condition, cell cycle or process',
+  prop: '5572',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-dna',
+  text: 'expressed in',
+  section: ['science-biology','main'],
+  rank: [193,8683],
+},
+
+'genetic_association' : {
+  title: 'Genetic association - general link between a disease and the causal genetic entity',
+  prop: '2293',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-solid fa-head-side-cough',
+  //icon: 'fa-solid fa-dna',
+  text: 'genetic association',
+  section: ['science-biology','main'],
+  rank: [200,8690],
+},
+
 'europeana' : {
   value: 'https://data.europeana.eu/${wd.claims.P7704[0]}',
   title: 'Europeana',
@@ -14210,30 +14233,43 @@ if ( valid( item.found_in_taxon ) ){
   rank: 310,
 },
 
+'hackernews_inline' : {
+  value: 'hackernews:${item.title}:true',
+  title: 'HackerNews search',
+  prop: '0',
+  type: 'rest-json',
+  mv: true,
+  url: '',
+  icon: 'fa-solid fa-microchip',
+  text: 'Hacker News inline',
+  section: 'news-tech',
+  rank: 9,
+},
+
 'hacker_news_deephn' : {
   create_condition: true,
   title: 'DeepHN - Hacker News search',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https%3A%2F%2Fmatterverse.ai%2Fquery%3Fcollection%3DM3GNet_data_websearch%26search_string%3DH2O%26submit%3DSearch&s=true#',
+  url: 'https://deephn.org/?q=${title_quoted}',
   icon: 'fa-solid fa-microchip',
   text: 'DeepHN',
   section: 'news-tech',
-  rank: 9,
+  rank: 9.1,
 },
 
-'hacker_news' : {
+'hacker_news_hackerverse' : {
   create_condition: true,
-  title: 'Hacker News',
+  title: 'hackerVerse - Hacker News AI-cluster search',
   prop: '',
-  type: 'url',
+  type: 'link',
   mv: false,
-  url: 'https://hn.algolia.com/?dateRange=all&page=0&prefix=false&query=${title_quoted}&sort=byDate&type=story',
+  url: 'https://hn.wilsonl.in/s/${title_quoted}',
   icon: 'fa-solid fa-microchip',
-  text: 'Hacker News',
+  text: 'HackerVerse',
   section: 'news-tech',
-  rank: 10,
+  rank: 9.1,
 },
 
 'hacker_news_trends' : {
@@ -14246,7 +14282,32 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-microchip',
   text: 'Hacker News trends',
   section: 'news-tech',
-  rank: 10.1,
+  rank: 9.2,
+},
+
+'hacker_news' : {
+  create_condition: true,
+  title: 'Hacker News',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://hn.algolia.com/?dateRange=all&page=0&prefix=false&query=${title_quoted}&sort=byDate&type=story',
+  icon: 'fa-solid fa-microchip',
+  text: 'Hacker News',
+  section: 'news-tech',
+  rank: 9.5,
+},
+
+'hacker_news_username' : {
+  title: 'Hacker News username',
+  prop: '7171',
+  type: 'url',
+  mv: false,
+  url: 'https://news.ycombinator.com/user?id=${item.hacker_news_username}',
+  icon: 'fa-solid fa-microchip',
+  text: 'Hacker News username',
+  section: 'news-tech',
+  rank: 9.6,
 },
 
 'phind' : {
@@ -20290,19 +20351,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'wQuote search',
   section: 'library-general',
   rank: 90,
-},
-
-'hackernews_inline' : {
-  value: 'hackernews:${item.title}:true',
-  title: 'HackerNews search',
-  prop: '0',
-  type: 'rest-json',
-  mv: true,
-  url: '',
-  icon: 'fa-solid fa-microchip',
-  text: 'Hacker News inline',
-  section: 'news-tech',
-  rank: 9,
 },
 
 /*
@@ -28383,18 +28431,6 @@ if ( valid( item.found_in_taxon ) ){
   auto: true,
 },
 
-'genetic_association' : {
-  title: 'Genetic association',
-  prop: '2293',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'genetic association',
-  section: ['main'],
-  rank: [52293],
-  auto: true,
-},
-
 'property_constraint' : {
   title: 'Property constraint',
   prop: '2302',
@@ -33792,18 +33828,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'registration district',
   section: ['main'],
   rank: [55564],
-  auto: true,
-},
-
-'expressed_in' : {
-  title: 'Expressed in',
-  prop: '5572',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'expressed in',
-  section: ['main'],
-  rank: [55572],
   auto: true,
 },
 
@@ -94185,20 +94209,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'register of real estate',
   section: ['library-identity'],
   rank: [27170],
-  auto: true,
-},
-
-'hacker_news_username' : {
-  title: 'Hacker News username',
-  prop: '7171',
-  type: 'url',
-  mv: false,
-  url_format: 'https://news.ycombinator.com/user?id=$1',
-  url: '',
-  icon: 'fa-regular fa-square',
-  text: 'Hacker News username',
-  section: ['library-identity'],
-  rank: [27171],
   auto: true,
 },
 
