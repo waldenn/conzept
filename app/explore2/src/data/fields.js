@@ -14271,18 +14271,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 9.2,
 },
 
+/*
 'hacker_news_deephn' : {
   create_condition: true,
   title: 'DeepHN - Hacker News search',
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://deephn.org/?q=${title_quoted}',
+  url: 'https://deephn.org/?q=${title_quoted}&sort=newest',
   icon: 'fa-solid fa-microchip',
   text: 'DeepHN',
   section: 'news-tech',
   rank: 9.3,
 },
+*/
 
 'hacker_news_hackerverse_search' : {
   create_condition: true,
