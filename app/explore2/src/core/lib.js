@@ -6684,27 +6684,30 @@ function addTopics( source, list ){
     let qid           = '';
     let custom        = '';
     let concept_class = '';
-    let thumb         = encodeURIComponent( item.thumb ) || '';
+    let thumb         = '';
 
     //console.log( item, item.title, title );
 
-    if ( thumb === 'undefined' ){ thumb = ''; }
+    if ( valid( item.thumbnail ) ){ // higher priority, selected thumbnail
+
+      thumb = item.thumbnail;
+
+    }
+    else if ( valid( item.thumb ) ){ // lower priority Wikipedia-thumbnail
+
+      thumb = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + encodeURIComponent( item.thumb ) + '?width=' + explore.thumb_width;
+
+    }
+
+    if ( thumb === 'undefined' ){
+			thumb = '';
+		}
 
     let thumbnail = '';
 
-    if ( thumb.length > 0 ){
+    if ( valid( thumb ) ){
 
-      if ( item.datasource === 'wikipedia' ){
-
-        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + thumb + '?width=' + explore.thumb_width + '" alt="" /></div>';
-
-      }
-      else {
-
-        //console.log( thumb );
         thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + decodeURIComponent( thumb ) + '" alt="" /></div>';
-
-      }
 
     }
 
