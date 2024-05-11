@@ -3,6 +3,8 @@
 import "/app/explore2/libs/ol.js";
 import "/app/explore2/libs/ol-ext.min.js";
 
+
+
 let map           = '';
 
 let gbifId        = '';
@@ -453,6 +455,33 @@ class GBIFMap extends HTMLElement {
 				</select>
 
       </div>
+
+      <script>
+        // fullscreen f-key
+        document.addEventListener('keydown', function(event) {
+
+          if ( event.key === 'f' ) {
+
+            event.preventDefault();
+
+              const enterFullscreenButton = document.getElementsByClassName( 'ol-full-screen-false' )[0];
+              const exitFullscreenButton  = document.getElementsByClassName( 'ol-full-screen-true' )[0];
+
+              if ( enterFullscreenButton === undefined ){
+
+                exitFullscreenButton.click();
+
+              }
+              else {
+
+                enterFullscreenButton.click();
+
+              }
+
+          }
+
+        });
+      </script>
 
     `;
 

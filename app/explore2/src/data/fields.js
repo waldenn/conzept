@@ -5152,6 +5152,7 @@ conzept_fields = {
   headline_rank: 274,
 },
 
+// TODO: check for "undefined" value also, example broken Twitter link: https://conze.pt/explore/Magnus%20S%C3%A4lg%C3%B6?
 'twitter' : {
   title: 'Twitter user',
   prop: '2002',

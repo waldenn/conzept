@@ -18,20 +18,6 @@
 
     <script>
       setupAppKeyboardNavigation();
-
-      // keyboard control
-      $("body").keydown(function(event) {
-
-        let key = (event.keyCode ? event.keyCode : event.which);
-
-        if ( key == "70" ){ // "f"
-
-          document.toggleFullscreen();
-
-        }
-
-      });
-
     </script>
 
     <script src="../explore2/dist/webcomponent/gbif-map.js?'. $version .'" type="module"></script>
