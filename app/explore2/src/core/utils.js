@@ -1558,8 +1558,8 @@ function quoteTitle( title ){
 
   }
 
-  // FIXME: this should be handle correctly for all languages
-  title = title.replace(/disambiguation/, '');
+  // FIXME: the "disambiguation"-string replacement should be correctly handled correctly for all languages
+  title = title.replace(/disambiguation/, '').replace(/"{2,}/g, '"');
 
   return title;
 
