@@ -14008,7 +14008,23 @@ if ( valid( item.found_in_taxon ) ){
   section: ['library-history','location-geography','main'],
   rank: [20,305,6355],
   headline_create: 'valid( item.topotijdreis )',
-  headline_rank: 125,
+  headline_rank: 125.1,
+},
+
+'pointcloud_nl' : {
+  create_condition: 'valid( item.lat ) && valid( item.country )',
+  render_condition: '"${item.country}" === "Q55"', // Netherlands
+  title: 'The Netherlands point cloud',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://ns_hwh.fundaments.nl/hwh-ahn/AHN_POTREE/index.html?position=[${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 0 ) };${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 1 ) };1500.00;]&target=[${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 800.00 ) };${ convert_coordinates_WGS84_to_EPSG_28992( item.lat, item.lon, 1 ) };21624.27;]',
+  icon: 'fa-regular fa-map',
+  text: '🇳🇱 pointcloud',
+  section: ['location-geography','main'],
+  rank: [309,6359],
+  //headline_create: 'valid( item.pointcloud_nl )',
+  //headline_rank: 125.2,
 },
 
 'twitter_search' : {
