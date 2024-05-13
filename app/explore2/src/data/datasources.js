@@ -1,4 +1,4 @@
-pagesize:const datasources = {
+const datasources = {
 
   'wikipedia': {
     active:                 false,
