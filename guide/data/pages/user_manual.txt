@@ -5,7 +5,7 @@
 **[[https://conze.pt|Conzept]] is an attempt to create a flexible topic exploration system for the 21st century.** It is a flexible, multi-lingual, semantic web tool build for **fun, education and research purposes**.
 
 Main features:
-  * Use any set of REST and SPARQL based **[[user_manual#datasources|datasource]]** API's. The SPARQL-endpoint needs to support full-text search.
+  * Use any set of REST and SPARQL API based **[[datasources|datasource]]**. (Note: The SPARQL-endpoint needs to support full-text search)
   * Easily **[[used_projects|embed apps]]** (including websites), either self-hosted or remotely hosted.
   * A **[[field_customization|data-defined]] software approach**, which allows for easy JSON-based configuration and administration of many parts of Conzept, such as the [[terms#topic_card|topic-card]] content.
 
@@ -52,7 +52,7 @@ Each Wikipedia "article" actually relates to a multi-faceted concept, which we i
 
 The main goals of Conzept are:
 
-  * A more **holistic presentation of the information** contained within datasources (such as Wikipedia and Wikidata), by integrating and linking with other information sources, semantic entities and application views. Aiming to allow you to 'forget' where the information is coming from and instead explore //that// which you are interested in.
+  * A more **holistic presentation of the information** contained within [[datasources]] (such as Wikipedia and Wikidata), by integrating and linking with other information sources, semantic entities and application views. Aiming to allow you to 'forget' where the information is coming from and instead explore //that// which you are interested in.
 
   * Significantly **improving the user experience** when taking in that wealth of information, by trying to reduce various cognitive-loads such as "website context-switching" (see eg. [[https://www.cmu.edu/news/stories/archives/2021/may/overcoming-tab-overload.html|tab overload]], relational discovery and understanding, topic revisiting and topic actions using bookmarks), and making the experience as fun and inspiring as possible.
 
@@ -174,7 +174,7 @@ If your search-string does not directly match any Wikipedia article, there will 
 
 The term-based searching can be augmented with various **search options**, to filter and sort the results further.
 
-Note that not all these search-options are supported by all datasources, most datasources only implement a limited set.
+Note that not all these search-options are supported by all [[datasources]], most datasources only implement a limited set.
 So when you set these search-options, be aware that the options you set will not always be reflected in the search results (for some datasources).
 
 These are the available search options:

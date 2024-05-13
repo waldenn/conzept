@@ -431,6 +431,16 @@ $settings_html = '
 
                 </div>
 
+                <!--div id="darkmode-setting">
+                  <label style="display:inline;" for="darkmode"><span id="app-menu-darkmode">darkmode</span>: &nbsp;</label>
+                  <select id="darkmode" width="20px">
+                    <option value="">none</option>
+                    <option value="off">off</option>
+                    <option value="on">on</option>
+                    <option value="system">system</option>
+                  </select>
+                </div-->
+
                 <div id="darkmode-setting" class="switch">
                   <label for="darkmode" style="display:none;">darkmode</label> 
                   <label>

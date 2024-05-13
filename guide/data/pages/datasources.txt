@@ -11,7 +11,7 @@ User benefits:
   * Let the topic results be augmented from Wikidata (if a Qid is provided for the topic).
 
 Developer benefits:
-  * Make adding a new datasource as easy as possible, but still flexible in terms of the rendered output.
+  * Makes adding new datasources simple and quick, but still flexible in terms of the rendered output.
 
 ===== use cases =====
 

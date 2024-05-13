@@ -116,6 +116,10 @@ const explore = {
 
   // global paging state
   page                : 1, // page number we are on
+
+  datasource_page_size: 5, // default number of page-results for each datasource
+  autocomplete_limit:   5, // default limit to autocomplete-results for each datasource
+
   //total_pages         : 0, // total number of pages available
   wikidata_query      : '',
   searchmode          : 'string', // string or wikidata
