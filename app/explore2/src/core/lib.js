@@ -6695,7 +6695,16 @@ function addTopics( source, list ){
     }
     else if ( valid( item.thumb ) ){ // lower priority Wikipedia-thumbnail
 
-      thumb = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + encodeURIComponent( item.thumb ) + '?width=' + explore.thumb_width;
+      if ( source !== 'wikipedia' ){
+
+        thumb = encodeURIComponent( item.thumb );
+
+      }
+      else {
+
+        thumb = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + encodeURIComponent( item.thumb ) + '?width=' + explore.thumb_width;
+
+      }
 
     }
 

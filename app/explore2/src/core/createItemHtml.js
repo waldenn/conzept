@@ -66,7 +66,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   args.languages    = item.languages;
 
-
   let thumbnail = '';
 
   if ( args.thumbnail === '' ){ // no thumnail set yet
