@@ -435,7 +435,7 @@ function showPresentation( item, type ){
 
 		let street_map_slide  = '';
 		let nearby_map_slide  = '';
-		let satellite_map     = '';
+		//let satellite_map     = '';
 
     // Wikipedia requirement
 		if ( item.datasource === 'wikipedia' ){
@@ -449,7 +449,7 @@ function showPresentation( item, type ){
 			street_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
 			nearby_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>nearby map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link-split \'( "/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${language}&layers=wikipedia" ) ) )\n`;
 
-			satellite_map     = `  ( slide "${ item.title } ${ sub_name } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
+			//satellite_map     = `  ( slide "${ item.title } ${ sub_name } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
 
 		}
 
@@ -618,7 +618,7 @@ function showPresentation( item, type ){
 			slides.push( street_map_slide );
 			slides.push( nearby_map_slide );
 
-			if ( valid( item.lat ) ){ slides.push( satellite_map ) };
+			//if ( valid( item.lat ) ){ slides.push( satellite_map ) };
 			//if ( valid( item.lat ) ){ slides.push( street_map_slide ) };
 
 			slides.push( commons_country_music_slide );
@@ -1079,6 +1079,7 @@ function insertRelatedPresentationTopics( qid ){
     'P39',    // position held        https://www.wikidata.org/wiki/Property:P39
     'P101',   // field-of-work        https://www.wikidata.org/wiki/Property:P101
     'P97',    // noble title          https://www.wikidata.org/wiki/Property:P97
+    'P137',   // operator             https://www.wikidata.org/wiki/Property:P137
 
     // medical metadata
     'P1995',  // health-speciality    https://www.wikidata.org/wiki/Property:P1995
@@ -1107,6 +1108,7 @@ function insertRelatedPresentationTopics( qid ){
     'P495',   // country of origin    https://www.wikidata.org/wiki/Property:P495
 
     // more indirect metadata
+    'P7153',  // significant place    https://www.wikidata.org/wiki/Property:P7153
     'P127',   // owned-by             https://www.wikidata.org/wiki/Property:P127
     'P156',   // followed-by          https://www.wikidata.org/wiki/Property:P156
     'P3095',  // practized-by         https://www.wikidata.org/wiki/Property:P3095

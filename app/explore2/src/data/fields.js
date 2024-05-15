@@ -13131,6 +13131,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 125,
 },
 
+/*
 'map3d' : {
   create_condition: 'valid( ${item.lat} && ! checkTag( item, 1, ["road"] ) )',
   //default_value: '',
@@ -13145,6 +13146,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['location-geography'],
   rank: [4.5],
 },
+*/
 
 'iiif_wikidata' : {
   title: 'IIIF media viewer',
@@ -13349,6 +13351,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+/*
 'satellite_map_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
   create_condition: 'valid( item.lat )',
   title: '',
@@ -13367,6 +13370,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_url: '${explore.base}/app/map3d/?lat=${item.lat}&lon=${item.lon}',
   headline_rank: 121,
 },
+*/
 
 'us_national_park' : {
   create_condition: 'valid( item.park_alpha_code )',

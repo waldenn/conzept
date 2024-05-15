@@ -1,6 +1,6 @@
 'use strict';
 
-const explore = {
+const explore_default = {
 
   host                : CONZEPT_HOSTNAME,
   base                : CONZEPT_WEB_BASE,
@@ -176,7 +176,6 @@ const explore = {
 
   // TTS system
   tts_enabled         : true,
-  synth               : window.speechSynthesis,
   synth_paused        : false,
   //tts_removals      : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, math',
 
@@ -270,20 +269,25 @@ const explore = {
   presentation_commands       : [],
   presentation_text_background_css : '',
 
-  // command-editor
-  editor                : ace.edit('editor'),
   lisp                  : ( typeof lips !== 'undefined' ? lips.exec : undefined ),
 
   position              : undefined,
   position_watch_id     : undefined,
 
-  broadcast_channel     : new BroadcastChannel('conzept') || undefined, // see: https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
 
   // client-side API keys
   api_key_openai        : undefined,
   openai_enabled        : undefined,
 
 }
+
+// merge the early and late explore-setting-objects into one final settings object
+const explore = { ...explore_init, ...explore_default };
+ 
+// set complex explore objects (to prevent any issues with shallow-copying)
+explore.synth             = window.speechSynthesis;
+explore.editor            = ace.edit('editor'); // command-editor
+explore.broadcast_channel = new BroadcastChannel('conzept') || undefined; // see: https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API
 
 if ( explore.type === 'wikipedia' ){ // rewrite legacy 'wikipedia'-type to 'string'-type
   explore.type = 'string';

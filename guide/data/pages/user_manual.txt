@@ -227,11 +227,11 @@ Structured searching is an easy way to **construct basic Wikidata [[explore>SPAR
 
 Structured search can be accessed by:
 
-  - Clicking on the "structured search" detail-element in the topics-tab. \\ \\
-  - Then define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
-  - Then click the "run query" button. \\ \\
+  - Enabling this feature by going to the **settings menu** tab -> **features** and then click enable **structured search**.
+  - Then go to the "structured search" detail-element in the topics-tab. \\ \\
+  - Here you can define one or more sets of a requested **entity class** and/or an **[[https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all|entity property]]** value. \\ \\
+  - Click the "run query" button. \\ \\
 
-This feature can be enabled through: **settings menu** -> **features** -> enable **structured search**.
 
 [ TODO: Describe the structured-query output options: sidebar topics, 2D, 3D, timeline, etc. ]
 
