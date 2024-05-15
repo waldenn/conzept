@@ -2503,17 +2503,10 @@ function setupSearch() {
 
     e.preventDefault();
 
-    let batch_size  = parseInt( $('#batch-size').val() );
-    batchsize_param = batch_size;
+    explore.batchsize       = parseInt( $('#batch-size').val() );
+    explore.batchsize_param = explore.batchsize;
 
-    // update all datasources with new batch size
-    Object.keys( datasources ).forEach(( key, index ) => {
-
-      let d = datasources[key];
-
-      d.pagesize = batch_size;
-
-    });
+    setBatchSize( explore.batchsize );
 
     $('a.submitSearch').trigger('click'); // trigger a new search
 
@@ -2570,6 +2563,19 @@ function setupSearch() {
   if ( explore.page === 1 ){
     $('#previous').css("visibility", "hidden");
   }
+
+}
+
+function setBatchSize( nr ) {
+
+  // update all datasources with new batch size
+  Object.keys( datasources ).forEach(( key, index ) => {
+
+    let d = datasources[key];
+
+    d.pagesize = nr;
+
+  });
 
 }
 
@@ -3458,6 +3464,8 @@ function setupLanguage(){
     }
 
     $('#batch-size').find('option[value="' + explore.batchsize + '"]').prop('selected', true);
+
+    setBatchSize( explore.batchsize );
 
   }
   else {
