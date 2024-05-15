@@ -21,7 +21,7 @@ let current_pane  = '';
 let parentref     = '';
 
 // main app state
-const explore = {
+const explore_default = {
 
   host          : CONZEPT_HOSTNAME,
   base          : CONZEPT_WEB_BASE,
@@ -87,7 +87,6 @@ const explore = {
   wp_languages  : wp_languages,
 
 	tts_enabled		: true,
-	synth 				: window.speechSynthesis,
 	synth_paused	: false,
 	tts_removals	: 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
   autospeak     : getParameterByName('autospeak') || false,
@@ -100,6 +99,12 @@ const explore = {
   bookmarks     : [],
 
 }
+
+// merge the early and late explore-setting-objects into one final "explore" settings object
+explore = { ...explore, ...explore_default };
+
+// set complex explore objects (to prevent any issues with shallow-copying)
+explore.synth = window.speechSynthesis;
 
 $( document ).ready( function() {
 

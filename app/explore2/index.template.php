@@ -161,7 +161,7 @@ $main_script = '
   <script src="../app/explore2/node_modules/@jcubic/lips/dist/lips.min.js" bootstrap></script>
 
   <!-- Conzept data scripts -->
-  <script src="../app/explore2/dist/data/explore_init.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/data/explore.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/data/datasources.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/data/fields.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/data/iso2_codes.js"></script>
