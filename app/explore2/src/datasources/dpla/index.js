@@ -164,29 +164,30 @@ function processResultsDPLA( topicResults, struct, index ){
 
         // TODO: use "sourceResource.type"
 
-        /*
-        if ( valid( obj.original_format ) ){
+        if ( valid( obj.sourceResource?.type ) ){
 
-          //console.log( obj.original_format );
+          let types = obj.sourceResource.type || [];
 
-          if ( obj.original_format.includes('book') ){ subtag = 'book' }
-          else if ( obj.original_format.includes('film, video') ){ subtag = 'film' }
-          else if ( obj.original_format.includes('sound recording') ){ subtag = 'audio' }
-          else if ( obj.original_format.includes('media') ){ subtag = 'audio' }
-          else if ( obj.original_format.includes('map') ){ subtag = 'map' }
-          else if ( obj.original_format.includes('web page') ){ subtag = 'webpage' }
-          else if ( obj.original_format.includes('periodical') ){ subtag = 'periodical' }
-          else if ( obj.original_format.includes('newspaper') ){ subtag = 'newspaper' }
-          else if ( obj.original_format.includes('photo, print, drawing') ){ subtag = 'image' }
-          //TODO: handle multiple images as IIIF: else if ( obj.original_format.includes('manuscript/mixed material') ){ subtag = 'image' }
-          else if ( obj.original_format.includes('legislation') ){ subtag = 'legislation' } // TODO
-          else if ( obj.original_format.includes('web archive') ){ subtag = 'archive' } // TODO
+          console.log( types );
+
+          if ( types.includes('text') ){ subtag = 'written-work' }
+          else if ( types.includes('moving image') ){ subtag = 'film' } 
+          else if ( types.includes('sound') ){ subtag = 'audio' }
+          //else if ( types.includes('map') ){ subtag = 'map' }
+          //else if ( types.includes('web page') ){ subtag = 'webpage' }
+          //else if ( types.includes('periodical') ){ subtag = 'periodical' }
+          //else if ( types.includes('newspaper') ){ subtag = 'newspaper' } 
+          else if ( types.includes('image') ){ subtag = 'image' }
+          //TODO: handle multiple images as IIIF: else if ( types.includes('manuscript/mixed material') ){ subtag = 'image' }
+          //else if ( types.includes('legislation') ){ subtag = 'legislation' } // TODO
+          //else if ( types.includes('web archive') ){ subtag = 'archive' } // TODO
           else {
-            console.log('tag missing for this original format: ', obj.original_format );
+            console.log('no matching tag found for these types: ', types );
           }
 
         }
-        */
+	/*
+	*/
 
         // TODO:
         //  - check "obj.online_format" array
@@ -196,14 +197,32 @@ function processResultsDPLA( topicResults, struct, index ){
 
         let author        = '';
 
-        let start_date    = valid( obj?.sourceResource?.date?.begin )? obj.sourceResource?.date.begin : '';
-        let end_date      = valid( obj?.sourceResource?.date?.end )? obj.sourceResource?.date.end : '';
+        let start_date    = '';
+        let end_date      = '';
+
 
         let license_link  = '';
         let license_name  = '';
 
         let img           = '';
-        let thumb         = '';
+        let thumb  	  = '';
+
+	      if ( valid( obj?.sourceResource?.date?.begin ) ){
+
+	        start_date = obj.sourceResource.date.begin.split('-')[0];
+
+	      }
+	      else if ( valid( obj?.sourceResource?.date[0]?.displayDate ) ){
+
+	        start_date = obj.sourceResource.date[0].displayDate.split('-')[0];
+
+	      }
+
+	      if ( valid( obj?.sourceResource?.date?.end ) ){
+
+	        end_date = obj.sourceResource.date.end.split('-')[0];
+
+	      }
 
         /*
         if ( obj.image_url ){
@@ -220,18 +239,31 @@ function processResultsDPLA( topicResults, struct, index ){
           }
 
         }
+	*/
 
-        if ( !valid( obj.access_restricted ) && valid( obj.digitized ) ){ // some media is avaiable
+        if ( valid( subtag ) ){ // some media is avaiable
 
-          if ( valid( obj.resources ) ){
+          if ( subtag === 'image' ){
+
+            thumb = valid( obj?.object )? obj.object : '';
+
+	        }
+          if ( subtag === 'film' ){
+
+            thumb = valid( obj?.object )? obj.object : '';
+
+	        }
+
+	      }
+
+	/*
+        if ( valid( subtag ) ){ // some media is avaiable
 
            let media_found = false;
 
-            $.each( Object.keys( obj.resources[0] ), function( k, resource_key ){
-
               //console.log( obj.resources[0] );
 
-              if ( resource_key === 'pdf' ){
+              if ( subtag === 'pdf' ){
 
 								if ( valid( obj.resources[0]?.pdf ) ){
 
@@ -245,7 +277,7 @@ function processResultsDPLA( topicResults, struct, index ){
 								}
 
               }
-              else if ( resource_key === 'video' ){
+              else if ( subtag === 'video' ){
 
                 if ( valid( obj.resources[0]?.video ) ){
 
@@ -290,7 +322,6 @@ function processResultsDPLA( topicResults, struct, index ){
 
               }
 
-            });
 
 						if ( !valid( media_found ) ) {
 
@@ -298,10 +329,9 @@ function processResultsDPLA( topicResults, struct, index ){
 
 						}
 
-          }
 
         }
-        */
+	*/
 
         const description_plain = ''; // TODO: stripHtml( description.substring(0, explore.text_limit ) + ' (...)';
 
@@ -339,6 +369,7 @@ function processResultsDPLA( topicResults, struct, index ){
           countries:    [],
           tags:         [],
           web_url:      url,
+          thumb:        thumb,
 					// TODO: add fields: license link + license name
 				};
 
@@ -416,4 +447,5 @@ function renderMarkDPLA( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+
 

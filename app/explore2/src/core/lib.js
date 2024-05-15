@@ -12166,7 +12166,7 @@ function handleBookmarkAddSubmit(event) {
 
 
 // used when sort-key and sort-param are two separate parameters in a datasource API
-function getSortDirection( source ){
+function getSortDirection( source, form ){
 
   let dir = '';
 
@@ -12174,12 +12174,30 @@ function getSortDirection( source ){
 
     if ( explore.sortby.split('-')[1] === 'desc' ){
 
-      dir = 'descending';
+      if ( form === 'long' ){
+
+        dir = 'descending';
+
+      }
+      else { // short
+
+        dir = 'desc';
+
+      }
 
     }
     else if ( explore.sortby.split('-')[1] === 'asc' ){
 
-      dir = 'ascending';
+      if ( form === 'long' ){
+
+        dir = 'ascending';
+
+      }
+      else { // short
+
+        dir = 'asc';
+
+      }
 
     }
     else {
