@@ -1047,6 +1047,8 @@ function insertRelatedPresentationTopics( qid ){
 
   // PROPS ON ITEM
   const props_on_item = [
+
+    // most relevant
     'P5125',  // outline-of           https://www.wikidata.org/wiki/Property:P5125
     'P921',   // main-subject         https://www.wikidata.org/wiki/Property:P921
     'P31',    // instance-of          https://www.wikidata.org/wiki/Property:P31
@@ -1118,9 +1120,11 @@ function insertRelatedPresentationTopics( qid ){
     'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
     'P1552',  // has-characteristic   https://www.wikidata.org/wiki/Property:P1552
     'P1542',  // has-effect           https://www.wikidata.org/wiki/Property:P1542
+    'P2283',  // uses                 https://www.wikidata.org/wiki/Property:P2283
     'P1365',  // replaces             https://www.wikidata.org/wiki/Property:P1365
     'P1366',  // replaced-by          https://www.wikidata.org/wiki/Property:P1366
     'P5004',  // in-opposition-to     https://www.wikidata.org/wiki/Property:P5004
+
   ];
 
   $.each( props_on_item, function ( index, prop ){

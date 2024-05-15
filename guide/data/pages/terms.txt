@@ -6,7 +6,7 @@ Here is a list of the most important terms used in the Conzept system.
 
 [{{ ::topic-card.jpg?direct|topic card}}]
 
-The [[user_manual#search_results|search results]] are rendered in the [[user_manual#conzept_sidebar|sidebar]] as a scrollable list of topic cards.
+The [[user_manual#search_results|search results]] are rendered in the [[user_manual#conzept_sidebar|sidebar]] as a scrollable list of **topic cards**.
 
 These topic cards are a container for all information about a topic, including:
   * Title

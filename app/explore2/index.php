@@ -298,6 +298,13 @@ $sticky_html = '
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
         </span>
 
+        <span class="search-option-label"><span id="app-menu-batch-size">batch size</span>: </span><select id="batch-size" class="browser-default">
+          <option value="5" selected>5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+        </select>
+
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       </div>

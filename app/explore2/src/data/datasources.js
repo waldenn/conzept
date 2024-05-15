@@ -960,6 +960,8 @@ const datasources = {
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
 
+  // re-enable once API-support for page-sizing is working
+  /*
   'ror': {
     active:                 false,
     name:                   'ROR research organizations',
@@ -1021,6 +1023,7 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     20, // TOWAIT: for API page-size support
   },
+  */
 
   'gleif': {
     active:                 false,

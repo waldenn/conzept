@@ -2499,6 +2499,25 @@ function setupSearch() {
 
   });
 
+  $('#batch-size').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    let batch_size = parseInt( $('#batch-size').val() );
+
+    // update all datasources with new batch size
+    Object.keys( datasources ).forEach(( key, index ) => {
+
+      let d = datasources[key];
+
+      d.pagesize = batch_size;
+
+    });
+
+    $('a.submitSearch').trigger('click'); // trigger a new search
+
+  });
+
   $('a.link.clear').on( 'click', function (e) {
 
     e.preventDefault();
@@ -3409,8 +3428,6 @@ function setupLanguage(){
 
     if ( valid( explore.datemin ) ){
 
-      console.log( 'valid datemin found: ', explore.datemin );
-
       $('#datemin').val( explore.datemin );
 
     }
@@ -3424,11 +3441,16 @@ function setupLanguage(){
 
     if ( valid( explore.datemax ) ){
 
-      console.log( 'valid datemax found: ', explore.datemax );
-
       $('#datemax').val( explore.datemax );
 
     }
+
+  }
+
+  // initially set the selected "batch size" to the default value from "explore.js"
+  if ( valid( explore.datasource_page_size ) ){
+
+    $('#batch-size').find('option[value="' + explore.datasource_page_size + '"]').prop('selected', true);
 
   }
 
