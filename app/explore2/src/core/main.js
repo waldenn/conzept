@@ -281,8 +281,8 @@ const explore_default = {
 
 }
 
-// merge the early and late explore-setting-objects into one final settings object
-const explore = { ...explore_init, ...explore_default };
+// merge the early and late explore-setting-objects into one final "explore" settings object
+explore = { ...explore, ...explore_default };
  
 // set complex explore objects (to prevent any issues with shallow-copying)
 explore.synth             = window.speechSynthesis;
