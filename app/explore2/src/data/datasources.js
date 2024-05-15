@@ -530,9 +530,8 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-	  			// sourceResource.language=${ explore.language_name }
-    url:                    'https://conze.pt/app/cors/raw/?url=${ encodeURIComponent( datasources.dpla.endpoint ) }%3Fq=${ encodeURIComponent( term ) }%26page_size=${ datasources.dpla.pagesize }%26page=${ explore.page }%26sort_by=${ valid( sortby )? sortby : "" }%26sort_order=${ getSortDirection( source, "short" ) }%26${ valid( [ datemin, datemax ] )? "%26sourceResource.date.after=" + datemin.split("T")[0] + "%26sourceResource.date.before=" + datemax.split("T")[0] : "" }%26api_key=5da031c24e1d76c95e3d69f27ea5a875',
-    //url:                    'https://conze.pt/app/cors/raw/?url=${ encodeURIComponent( datasources.dpla.endpoint ) }%3Fq=${ encodeURIComponent( term ) }%26page_size=${ datasources.dpla.pagesize }%26page=${ explore.page }%26${ valid( filterby ) ? Object.values( d.filter_map ).includes( filterby ) ? "sourceResource.format=" + filterby : "" }%26sort_by=${ valid( sortby )? sortby : "" }%26sortOrder=${ getSortDirection( source ) }%26${ valid( [ datemin, datemax ] )? "%26sourceResource.date.after=" + datemin + "%26sourceResource.date.before=" + datemax : "" }%26api_key=5da031c24e1d76c95e3d69f27ea5a875',
+	  // TODO: not working: sourceResource.language=${ explore.language_name }
+    url:                    'https://conze.pt/app/cors/raw/?url=${ encodeURIComponent( datasources.dpla.endpoint ) }%3Fq=${ encodeURIComponent( term ) }%26page_size=${ datasources.dpla.pagesize }%26page=${ explore.page }%26${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "sourceResource.type=" + filterby : "" }%26sort_by=${ valid( sortby )? sortby : "" }%26sort_order=${ getSortDirection( source, "short" ) }%26${ valid( [ datemin, datemax ] )? "%26sourceResource.date.after=" + datemin.split("T")[0] + "%26sourceResource.date.before=" + datemax.split("T")[0] : "" }%26api_key=5da031c24e1d76c95e3d69f27ea5a875',
     icon:                   '<img class="datasource-icon" alt="Digital Public Library of America datasource" src="/assets/icons/dpla.svg" alt="Digital Public Library of America logo">',
     icon_invert:            false,
     color:                  '#F05129',

@@ -4,7 +4,7 @@ function autocompleteDPLA( results, dataset ){
 
   const source = 'dpla';
 
-  console.log( results );
+  //console.log( results );
 
   let list = [];
 
@@ -32,7 +32,7 @@ function processResultsDPLA( topicResults, struct, index ){
 
   return new Promise(( resolve, reject ) => {
 
-    console.log( topicResults );
+    //console.log( topicResults );
 
     if ( !valid( topicResults.docs ) ){
 
@@ -186,8 +186,6 @@ function processResultsDPLA( topicResults, struct, index ){
           }
 
         }
-	/*
-	*/
 
         // TODO:
         //  - check "obj.online_format" array
@@ -212,9 +210,30 @@ function processResultsDPLA( topicResults, struct, index ){
 	        start_date = obj.sourceResource.date.begin.split('-')[0];
 
 	      }
-	      else if ( valid( obj?.sourceResource?.date[0]?.displayDate ) ){
+	      else if ( valid( obj?.sourceResource?.date ) ){
 
-	        start_date = obj.sourceResource.date[0].displayDate.split('-')[0];
+	      	if ( valid( obj?.sourceResource?.date[0] ) ){
+
+		  //console.log( obj.sourceResource.date[0] );
+
+	      	  if ( valid( obj?.sourceResource?.date[0].begin ) ){
+
+	            start_date = obj.sourceResource.date[0].begin.split('-')[0];
+
+            }
+            else if ( valid( obj?.sourceResource?.date[0]?.displayDate ) ){
+
+              start_date = obj.sourceResource.date[0].displayDate.split('-')[0];
+
+            }
+
+            if ( valid( obj?.sourceResource?.date[0].end ) ){
+
+              end_date = obj.sourceResource.date[0].end.split('-')[0];
+
+            }
+
+          }
 
 	      }
 
@@ -447,5 +466,6 @@ function renderMarkDPLA( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+
 
 
