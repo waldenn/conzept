@@ -1,18 +1,24 @@
 'use strict';
 
-function autocompleteLoC( results, dataset ){
+function autocompleteDPLA( results, dataset ){
 
-  const source = 'loc';
+  const source = 'dpla';
+
+  console.log( results );
 
   let list = [];
 
-  if ( valid( results?.results ) ){
+  if ( valid( results?.docs) ){
 
-    $.each( results.results, function( i, item ){
+    $.each( results.docs, function( i, item ){
 
-      let title = item.title;
+      if ( valid( item?.sourceResource?.title ) ){
 
-      dataset.push( title );
+        let title = item.sourceResource.title[0];
+
+        dataset.push( title );
+
+      }
 
     })
 
@@ -20,27 +26,29 @@ function autocompleteLoC( results, dataset ){
 
 }
 
-function processResultsLoC( topicResults, struct, index ){
+function processResultsDPLA( topicResults, struct, index ){
 
-  const source = 'loc';
+  const source = 'dpla';
 
   return new Promise(( resolve, reject ) => {
 
-    if ( !valid( topicResults.results ) ){
+    console.log( topicResults );
+
+    if ( !valid( topicResults.docs ) ){
 
       resolve( [ [], [] ] );
 
       datasources[ source ].done = true;
 
     }
-    else if ( topicResults.results.length === 0 ){
+    else if ( topicResults.docs.length === 0 ){
 
       resolve( [ [], [] ] );
 
       datasources[ source ].done = true;
 
     }
-    else if ( ( Math.max( Math.ceil( topicResults.search.hits / ( datasources[ source ].pagesize *  (explore.page - 1) ) ), 1) === 1 ) ){ // no more results
+    else if ( ( Math.max( Math.ceil( topicResults.count / ( datasources[ source ].pagesize *  (explore.page - 1) ) ), 1) === 1 ) ){ // no more results
 
       resolve( [ [], [] ] );
 
@@ -49,7 +57,7 @@ function processResultsLoC( topicResults, struct, index ){
     }
     else {
 
-      datasources[ source ].total = topicResults.search.hits;
+      datasources[ source ].total = topicResults.count;
 
       // standard result structure (modelled after the Wikipedia API)
       let result = {
@@ -82,18 +90,19 @@ function processResultsLoC( topicResults, struct, index ){
 
       };
 
-      $.each( topicResults.results, function( i, obj ){
+      $.each( topicResults.docs, function( i, obj ){
 
         // URL vars
         let gid           = valid( obj.id )? obj.id : '';
 
-        let url     	 		= valid( obj.url )? obj.url : ''; // eval(`\`${ datasources[ source ].display_url  }\``);
+        let url     	 		= valid( obj.isShownAt )? obj.isShownAt : '';
 
         let doc_url           = '';
         let document_language = 'en'; // default
 
         let used_languages = [];
 
+        /*
 				if ( valid( obj.language ) ){ // languages indication
 
           // find language match
@@ -133,23 +142,29 @@ function processResultsLoC( topicResults, struct, index ){
           }
 
 				}
+        */
 
-        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
-        let tts_link     	= '';
+        //let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
+        //let tts_link     	= '';
 
-        let title         = valid( obj.title )? obj.title : '---';
+        let title         = valid( obj?.sourceResource?.title )? obj.sourceResource.title[0] : '---';
 
-        let description   = valid( obj?.description )? obj.description[0] : '';
+        let description   = valid( obj?.sourceResource?.description )? obj.sourceResource.description[0] : '';
 
+        /*
         if ( !valid( description ) ){
 
           description   = valid( obj?.item?.summary )? obj.item.summary : '';
 
         }
+        */
 
         let maintag       = 'work';
         let subtag        = '';
 
+        // TODO: use "sourceResource.type"
+
+        /*
         if ( valid( obj.original_format ) ){
 
           //console.log( obj.original_format );
@@ -171,6 +186,7 @@ function processResultsLoC( topicResults, struct, index ){
           }
 
         }
+        */
 
         // TODO:
         //  - check "obj.online_format" array
@@ -180,7 +196,8 @@ function processResultsLoC( topicResults, struct, index ){
 
         let author        = '';
 
-        let start_date    = valid( obj.timestamp ) ? obj.timestamp.split('-')[0] : '';
+        let start_date    = valid( obj?.sourceResource?.date?.begin )? obj.sourceResource?.date.begin : '';
+        let end_date      = valid( obj?.sourceResource?.date?.end )? obj.sourceResource?.date.end : '';
 
         let license_link  = '';
         let license_name  = '';
@@ -188,15 +205,12 @@ function processResultsLoC( topicResults, struct, index ){
         let img           = '';
         let thumb         = '';
 
+        /*
         if ( obj.image_url ){
 
           if ( Array.isArray( obj.image_url ) && obj.image_url.length > 0 ){
 
             thumb = obj.image_url.pop().split("#")[0];
-
-            // TODO: image not working in IIIF, why?
-            img   = obj.image_url.at(-1);
-            //console.log( 'HQ image: ', img );
 
           }
           else { // no image found
@@ -287,6 +301,7 @@ function processResultsLoC( topicResults, struct, index ){
           }
 
         }
+        */
 
         const description_plain = ''; // TODO: stripHtml( description.substring(0, explore.text_limit ) + ' (...)';
 
@@ -314,10 +329,11 @@ function processResultsLoC( topicResults, struct, index ){
 					display_url:  url,
 					thumb:        thumb,
           start_date:   start_date,
+          end_date:     end_date,
 
-          document_language:    document_language,
-          document_voice_code:  document_voice_code,
-          pdf_tts_link: tts_link,
+          //document_language:    document_language,
+          //document_voice_code:  document_voice_code,
+          //pdf_tts_link: tts_link,
 
 					qid:          '',
           countries:    [],
@@ -326,6 +342,7 @@ function processResultsLoC( topicResults, struct, index ){
 					// TODO: add fields: license link + license name
 				};
 
+        /*
         if ( valid( obj.image_url ) && obj?.image_url.length > 0 ){
 
           // create IIIF-viewer-link
@@ -351,6 +368,7 @@ function processResultsLoC( topicResults, struct, index ){
           }
 
         }
+        */
 
         setWikidata( item, [ ], true, 'p' + explore.page );
 
@@ -369,11 +387,11 @@ function processResultsLoC( topicResults, struct, index ){
 
 }
 
-function resolveLoC( result, renderObject ){
+function resolveDPLA( result, renderObject ){
 
-  //console.log( 'resolveLoC: ', result );
+  //console.log( 'resolveDPLA: ', result );
 
-  const source = 'loc';
+  const source = 'dpla';
 
   if ( !valid( result.value[0] ) ){ // no results were found
 
@@ -393,7 +411,7 @@ function resolveLoC( result, renderObject ){
 
 }
 
-function renderMarkLoC( inputs, source, q_, show_raw_results, id ){
+function renderMarkDPLA( inputs, source, q_, show_raw_results, id ){
 
   // TODO
 
