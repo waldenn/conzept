@@ -54,6 +54,7 @@ const explore_default = {
   filterby_param      : getParameterByName('filterby') || undefined,// requested filter-key
   datemin_param       : getParameterByName('datemin') || undefined, // requested minimum date
   datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
+  batchsize_param     : getParameterByName('batchsize') || undefined,// requested datasource nr-of-results-per-page
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
 
   theme_param         : getParameterByName('theme') || undefined,

@@ -2503,7 +2503,8 @@ function setupSearch() {
 
     e.preventDefault();
 
-    let batch_size = parseInt( $('#batch-size').val() );
+    let batch_size  = parseInt( $('#batch-size').val() );
+    batchsize_param = batch_size;
 
     // update all datasources with new batch size
     Object.keys( datasources ).forEach(( key, index ) => {
@@ -3413,8 +3414,6 @@ function setupLanguage(){
 
     if ( valid_filter_options.includes( explore.filterby ) ){
 
-      //console.log( 'valid filter found: ', explore.filterby );
-
       $('#filterby').val( explore.filterby );
 
     }
@@ -3447,12 +3446,33 @@ function setupLanguage(){
 
   }
 
-  // initially set the selected "batch size" to the default value from "explore.js"
-  if ( valid( explore.datasource_page_size ) ){
+  // determine datasource batchsize per page
+  if ( valid( explore.batchsize_param ) ){
 
-    $('#batch-size').find('option[value="' + explore.datasource_page_size + '"]').prop('selected', true);
+    explore.batchsize = explore.batchsize_param;
+
+    if ( explore.batchsize > 50 ){ // to prevent API abuse
+
+      explore.batchsize = 40;
+
+    }
+
+    $('#batch-size').find('option[value="' + explore.batchsize + '"]').prop('selected', true);
 
   }
+  else {
+
+    // initially set the batchsize to the default value from "explore.js"
+    if ( valid( explore.datasource_page_size ) ){
+
+      explore.batchsize = explore.datasource_page_size;
+
+      $('#batch-size').find('option[value="' + explore.batchsize + '"]').prop('selected', true);
+
+    }
+
+  }
+
 
   // determine theme
   if ( valid( explore.theme_param ) ){
@@ -4431,6 +4451,9 @@ function setupURL() {
 
     // set filter-key
     explore.filterby = getParameterByName('filterby');
+
+    // set batchsize
+    explore.batchsize = getParameterByName('batchsize');
 
     // set custom data
     explore.custom = getParameterByName('c');
@@ -7523,9 +7546,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.datemin + p.datemax + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.datemin + p.datemax + p.batchsize + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby +  p.datemin + p.datemax + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby +  p.datemin + p.datemax + p.batchsize + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -7837,6 +7860,16 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( !valid( explore.datemax ) || explore.datemax === 'none' ){ explore.datemax = '' } else {
       p.datemax = '&datemax=' + explore.datemax;
+    }
+
+    // batchsize parameter
+    p.batchsize = '';
+
+    if ( !valid( explore.batchsize ) ){
+      explore.batchsize = explore.datasource_page_size; // use default
+    }
+    else {
+      p.batchsize = '&batchsize=' + explore.batchsize;
     }
 
     // theme parameter
