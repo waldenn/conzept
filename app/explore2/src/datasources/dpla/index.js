@@ -388,7 +388,6 @@ function processResultsDPLA( topicResults, struct, index ){
           countries:    [],
           tags:         [],
           web_url:      url,
-          thumb:        thumb,
 					// TODO: add fields: license link + license name
 				};
 
