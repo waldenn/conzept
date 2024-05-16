@@ -16406,7 +16406,20 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-trash-can',
   text: 'WasteMAP',
   section: ['location-ecology','location-geography'],
-  rank: [250, 274.4],
+  rank: [250.1, 274.40],
+},
+
+'osm_live_waste_map' : {
+  create_condition: 'valid( item.lat )',
+  title: 'OpenStreetMap live waste map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://umap.openstreetmap.fr/en/map/the-real-time-global-pollution-and-waste-map_911641#8/${item.lat}/${item.lon}',
+  icon: 'fa-regular fa-trash-can',
+  text: 'Live waste map',
+  section: ['location-ecology','location-geography'],
+  rank: [250.2, 274.42],
 },
 
 'electricy_map' : {
