@@ -3647,9 +3647,11 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
     margin-top:3rem;
   }
 
+  /*
   .search-option-label {
     display: none;
   }
+  */
 
   #search-options select {
     max-width: 20%;

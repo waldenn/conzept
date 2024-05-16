@@ -13550,6 +13550,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 122,
 },
 
+/*
 'map_buildings' : {
   create_condition: 'valid( item.lat )',
   title: '3D buildings map',
@@ -13562,6 +13563,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'location-geography',
   rank: 13.2,
 },
+*/
 
 'country_l1_subdivisions_query' : {
   create_condition: 'valid( item.iso2 ) && valid ( countries[ "${ item.qid }" ] )',
@@ -16392,6 +16394,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'OpenInfra map',
   section: 'location-geography',
   rank: 274.3,
+},
+
+'country_waste_map' : {
+  create_condition: 'valid( item.iso2 ) && valid( item.country_name )',
+  title: 'WasteMAP: Country and city-level waste maps',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://wastemap.earth/map?mode=country&country=${item.iso3}',
+  icon: 'fa-regular fa-trash-can',
+  text: 'WasteMAP',
+  section: ['location-ecology','location-geography'],
+  rank: [250, 274.4],
 },
 
 'electricy_map' : {
