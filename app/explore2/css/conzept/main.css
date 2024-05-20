@@ -2109,7 +2109,7 @@ ul.ui-autocomplete {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax( 3em, 1fr));
-  grid-gap: 0.4rem;
+  grid-gap: 1rem;
   padding-bottom: 1rem;
 }
 
