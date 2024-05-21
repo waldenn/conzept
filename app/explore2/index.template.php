@@ -1060,6 +1060,13 @@ $settings_html = '
 
           <div class="overflow-content indent">
 
+            <details class="" closed>
+              <summary><span id="app-menu-user-manual"></span></summary>
+                <ul>
+                  <li> &nbsp; <a href="https://CONZEPT_HOSTNAME/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
+                </ul>
+            </details>
+
             <details class="auto conf" closed>
               <summary><span id="app-menu-inline-help">inline help</span></summary>
 
@@ -1072,13 +1079,6 @@ $settings_html = '
                   </label>
                 </div>
 
-            </details>
-
-            <details class="" closed>
-              <summary><span id="app-menu-user-manual"></span></summary>
-                <ul>
-                  <li> &nbsp; <a href="https://CONZEPT_HOSTNAME/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
-                </ul>
             </details>
 
             <details class="" closed>

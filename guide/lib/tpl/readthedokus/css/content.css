@@ -1,3 +1,24 @@
+/* CONZEPT PATCH */
+
+body.dark div {
+  color: white !important;
+}
+
+body.dark, body.dark #dokuwiki__content > .group, body.dark #sidebarheader, body.dark #dokuwiki__aside {
+  background-color: #121212 !important;
+}
+
+body.dark #dokuwiki__aside ul > li > div.li > a, #dokuwiki__aside ul > li > div.li > span > a {
+  color: #d57878 !important;
+  background-color: #121212 !important;
+}
+
+body.dark table td {
+  background-color: #121212 !important;
+}
+
+
+
 h1, h2 {
 	border-bottom: 2px solid #009ee0a6;
 	border-bottom: 1px solid #009ee0;

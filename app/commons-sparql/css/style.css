@@ -7,6 +7,14 @@ body {
   background: #fbfaf9;
 }
 
+body.dark {
+  background: #121212;
+}
+
+body.dark #topic-title {
+  color: white;
+}
+
 h1 {
   font-size: 4em;
   color: #005799;
