@@ -693,8 +693,8 @@ async function setupKeyboardCombos(){
 		// only go fullscreen if no other input/editor/etc. element has focus!
     if (	!($('input').is(':focus')) &&
           !($('canvas').is(':focus')) &&
-          !($('#my-cy').is(':focus')) ) &&
-          !($('.my-cy-node').is(':focus')) ) &&
+          !($('#my-cy').is(':focus')) &&
+          !($('.my-cy-node').is(':focus')) &&
           !($('.ace_text-input').is(':focus'))
         ){
 

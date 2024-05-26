@@ -725,9 +725,11 @@ $settings_html = '
                 <div id="pieChart" class="pieChart"></div>
               </details>
 
+              <!-- sidebar graph view -->
               <div id="my-cy" class="my-cy" style="display:none;"></div>
-              <script type="module" src="../app/explore2/dist/core/graphview.js"></script>
+              <script type="module" src="../app/explore2/dist/core/graphview.js?v0.51.4836"></script>
 
+              <!-- sidebar standard view -->
               <div id="results" class="inner noselect"></div>
 
               <div id="scroll-end" style=display:none;></div>
