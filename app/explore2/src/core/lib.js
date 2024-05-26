@@ -2684,7 +2684,6 @@ function setGraphmode() {
 
     // hide normal results
 	  $( '#results-paging' ).css( 'display', 'none', 'important' );
-    $( '#results-label' ).hide();
     $('#scroll-end').hide();
     $('#next').hide();
 
@@ -2701,7 +2700,6 @@ function setGraphmode() {
 
     // show normal results
     $( '#results-paging' ).css( "display", "inline-block" );
-    $( '#results-label' ).hide();
     $('#scroll-end').show();
     $('#next').show();
 
@@ -2726,6 +2724,8 @@ function setupOptionGraphmode() {
         (async () => { await explore.db.set('graphmode', true); })();
         explore.graphmode = true;
 
+        $('a.submitSearch').trigger('click'); // trigger a new search
+
       }
       else {
 
@@ -2741,8 +2741,6 @@ function setupOptionGraphmode() {
   })();
 
 }
-
-
 
 function setShowHelp() {
 
@@ -5479,8 +5477,12 @@ async function setPopularCover() {
 
 // display the hidden elements meant for results.
 async function setDisplayForResults() {
-	$( '#results-paging' ).css( "display", "inline-block" );
-	$( '#results-label' ).css( "display", "inline-block" );
+
+  if ( ! valid( explore.graphmode ) ){
+    $( '#results-paging' ).css( "display", "inline-block" );
+    $( '#results-label' ).css( "display", "inline-block" );
+  }
+
 }
 
 // prepares data for query to get random pages and triggers request.
@@ -12339,7 +12341,7 @@ function checkNetworkStatus(){
 window.addEventListener('online', checkNetworkStatus );
 window.addEventListener('offline', checkNetworkStatus );
 
-// run the layout
+// run the graph layout
 function updateCytoscapeLayout(){
 
   window.cy.layout({ // https://js.cytoscape.org/#layouts
@@ -12353,6 +12355,13 @@ function updateCytoscapeLayout(){
     //randomize: false,
 
   }).run();
+
+}
+
+function clearGraph(){
+
+  window.cy.elements = [];
+  $('.my-cy-node').remove();
 
 }
 

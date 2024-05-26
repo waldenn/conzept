@@ -726,7 +726,7 @@ $settings_html = '
               </details>
 
               <div id="my-cy" class="my-cy" style="display:none;"></div>
-              <script type="module" src="../app/explore2/dist/core/cyto.js"></script>
+              <script type="module" src="../app/explore2/dist/core/graphview.js"></script>
 
               <div id="results" class="inner noselect"></div>
 
