@@ -2681,7 +2681,8 @@ function setGraphmode() {
     $('#graphmode').prop('checked', true);
 
     // hide normal results
-	  $( '#results-paging' ).css( 'display', 'none', 'important' );
+    $('#results').hide();
+	  $('#results-paging').css( 'display', 'none', 'important' );
     $('#scroll-end').hide();
     $('#next').hide();
 
@@ -2705,7 +2706,8 @@ function setGraphmode() {
     $('#my-cy').hide();
 
     // show normal results
-    $( '#results-paging' ).css( "display", "inline-block" );
+    $('#results').show();
+    $('#results-paging').css( "display", "inline-block" );
     $('#scroll-end').show();
     $('#next').show();
 

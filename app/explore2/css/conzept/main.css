@@ -30,7 +30,7 @@
   height: 1200px !important;
   width: 1000px !important;
   padding: 50px !important;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: #fbfaf9;
 }
 
@@ -55,19 +55,20 @@
   padding: 0.57em;
   background: #ffffffa8;
 
-  #my-cy-fullscreen {
-    left: 0.5em;
-  }
-
-  #my-cy-fit-to-view {
-    left: 2.5em;
-  }
-
-  #my-cy-fetch-more {
-    left: 4.5em;
-  }
-
 }
+
+#my-cy-fullscreen {
+  left: 0.5em;
+}
+
+#my-cy-fit-to-view {
+  left: 2.5em;
+}
+
+#my-cy-fetch-more {
+  left: 4.5em;
+}
+
 
 .my-cy-node:selected {
   overlay-color: blue;
