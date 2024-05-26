@@ -61,6 +61,18 @@
   left: 3em;
 }
 
+.my-cy-node:selected {
+  overlay-color: blue;
+  overlay-opacity: 0.5;
+  overlay-padding: 5;
+}
+
+/*
+.my-cy-node.theme-lattice .summary-thumb {
+  padding-left: 0rem;
+  width: 100%;
+}
+*/
 
 /* cytoscape zoom levels */
 [data-zoom="10"] {
@@ -143,17 +155,6 @@
   .entry { display: none !important; }
 }
 
-.my-cy-node:selected {
-  overlay-color: blue;
-  overlay-opacity: 0.5;
-  overlay-padding: 5;
-}
-
-/*
-.my-cy-node.theme-lattice .summary-thumb {
-  padding-left: 0rem;
-  width: 100%;
-}
 
 /* end cytoscape styling */
 
