@@ -23,13 +23,28 @@
 .my-cy {
   width: 100vw;
   height: 100vh;
-  background-color:#fbfaf9;
+  background-color:#fbfaf9 !important;
 }
 
 .my-cy-node {
+  height: 1200px !important;
+  width: 1000px !important;
+  padding: 50px !important;
+  overflow-y: hidden;
   background-color: #fbfaf9;
-  border: 4px solid #0000006b;
-  border-radius: 1.5em;
+}
+
+.my-cy-node {
+
+  .summary-thumb {
+    padding-left: 0rem;
+    width: 100%;
+  }
+
+  .thumbnail {
+    max-height: unset;
+    width: 100%;
+  }
 
 }
 
@@ -43,20 +58,26 @@
 }
 
 [data-zoom="8"] {
+/*
   .topic-tts-buttons { display: none !important }
   .summary, .medialinks, .topic-tts-buttons { display: none }
+*/
   .article-title { font-size: 200%; }
 }
 
 [data-zoom="7"] {
+/*
   .topic-tts-buttons { display: none !important }
   .summary, .medialinks, .topic-tts-buttons { display: none }
+*/
   .article-title { font-size: 250%; }
 }
 
 [data-zoom="6"] {
+/*
   .topic-tts-buttons { display: none }
   .summary, .medialinks, .topic-tts-buttons { display: none !important }
+*/
   .article-title { font-size: 300%; }
   .highlight { background-color: transparent !important; }
 }
@@ -64,32 +85,39 @@
 [data-zoom="5"] {
   .summary, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 350%; }
+  .item-description { font-size: 150%; }
+	.article-title-icon { font-size: 50%; }
   .highlight { background-color: transparent !important; }
 }
 
 [data-zoom="4"] {
-  .summary, .medialinks, .topic-tts-buttons { display: none !important }
+  .topic, .summary, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 400%; }
+  .item-description { font-size: 175%; }
+	.article-title-icon { font-size: 60%; }
   .highlight { background-color: transparent !important; }
 }
 
 [data-zoom="3"] {
-  .summary, .topic-description, .summary-thumb, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
+  .topic, .summary, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 450%; }
+  .item-description { font-size: 200%; }
+	.article-title-icon { font-size: 70%; }
   .highlight { background-color: transparent !important; }
 }
 
 [data-zoom="2"] {
-  .summary, .article-title-icon, .topic-description, .summary, .summary-thumb, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
+  .topic, .summary, .article-title-icon, .item-description, .summary, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 500%; }
   .highlight { background-color: transparent !important; }
+  .my-cy-node { background-color: transparent !important; border: 4px solid #0000006b; border-radius: 1.5em; }
 }
 
 [data-zoom="1"] {
-  .topic, .article-title-icon, .topic-description, .summary, .summary-thumb, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
+  .topic, .article-title-icon, .topic-description, .summary, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 550%; }
   .highlight { background-color: transparent !important; }
-  .my-cy-node { background-color: transparent !important; }
+  .my-cy-node { background-color: transparent !important; border: 4px solid #0000006b; border-radius: 1.5em; }
   /*.entry { display: none !important; }*/
 }
 

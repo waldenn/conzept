@@ -44,6 +44,9 @@ if ( ! isEmbedded() ){
 
     ],
 
+    //boxSelectionEnabled: true,
+    //autounselectify: true,
+
     /*
     zoom: 1,
 

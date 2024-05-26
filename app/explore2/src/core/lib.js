@@ -1954,9 +1954,6 @@ function setupSearch() {
 
           explore.topic_cursor = 'n1-1';
 
-          // CYTO
-          //$('#my-cy').empty();
-
           // reset any structured-search query-data
           explore.query     = '';
           explore.hash      = '';
@@ -2690,6 +2687,7 @@ function setGraphmode() {
     // show graphview in sidebar
     $('#my-cy').show();
     $('#my-cy-fetch-more').show();
+    $('#my-cy-fullscreen').show();
 
   }
   else {
@@ -2697,6 +2695,7 @@ function setGraphmode() {
     // hide graphview in sidebar
     $('#my-cy').hide();
     $('#my-cy-fetch-more').hide();
+    $('#my-cy-fullscreen').hide();
 
     // show normal results
     $( '#results-paging' ).css( "display", "inline-block" );
@@ -12344,17 +12343,21 @@ window.addEventListener('offline', checkNetworkStatus );
 // run the graph layout
 function updateCytoscapeLayout(){
 
-  window.cy.layout({ // https://js.cytoscape.org/#layouts
+  if ( valid( explore.graphmode ) ){
 
-    name: 'grid', // 'cose-bilkent',
-    fit:  false,
-    padding: 30,
-    //rows: 1, // force num of rows in the grid
-    //cols: 1, // force num of columns in the grid
+    window.cy.layout({ // https://js.cytoscape.org/#layouts
 
-    //randomize: false,
+      name: 'grid', // 'cose-bilkent',
+      fit:  false,
+      padding: 30,
+      //rows: 1, // force num of rows in the grid
+      //cols: 1, // force num of columns in the grid
 
-  }).run();
+      //randomize: false,
+
+    }).run();
+
+  }
 
 }
 
