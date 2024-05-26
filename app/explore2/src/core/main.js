@@ -199,7 +199,7 @@ const explore_default = {
   default_fontsize_large_desktop : 19,  // default for large desktops (>1600)
 
   // image-display options
-  thumb_width         : '350px',        // sidebar image-thumb size
+  thumb_width         : 350,          // sidebar image-thumb size
   banner_width        : '1200px',       // desktop size
 
   // styling options
@@ -209,6 +209,7 @@ const explore_default = {
   linkpreview         : undefined,
   showhelp            : undefined,
   darkmode            : undefined,
+  graphmode           : undefined,
   bread               : undefined, // reading help using bolded word beginnings
   structured_search   : undefined,
   geospatial_search   : undefined,
@@ -393,6 +394,7 @@ $( document ).ready( function() {
     setupOptionBoldLinks();
     setupOptionUnderlineLinks();
     setupOptionDarkmode();
+    setupOptionGraphmode();
     setupOptionShowHelp();
     setupOptionTheme();
     setupOptionBread();

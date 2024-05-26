@@ -462,6 +462,15 @@ $settings_html = '
                   </label>
                 </div>
 
+                <div id="graphmode-setting" class="switch">
+                  <label for="graphmode" style="display:none;">graphmode</label> 
+                  <label>
+                  <input type="checkbox" id="graphmode">
+                  <span class="lever"></span>
+                  <span id="app-menu-graphmode"></span>
+                  </label>
+                </div>
+
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -715,6 +724,9 @@ $settings_html = '
 
                 <div id="pieChart" class="pieChart"></div>
               </details>
+
+              <div id="my-cy" class="my-cy" style="display:none;"></div>
+              <script type="module" src="../app/explore2/dist/core/graphview.js"></script>
 
               <div id="results" class="inner noselect"></div>
 

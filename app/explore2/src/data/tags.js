@@ -534,6 +534,10 @@ var conzept_tags = {
         text : "genome",
         icon : ["fa-regular fa-gem"],
       },
+     "group-of-chemical-entities" : {
+        text : "group of chemical entities",
+        icon : ["fa-solid fa-flask"],
+      },
     },
   },
 

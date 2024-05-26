@@ -462,6 +462,15 @@ $settings_html = '
                   </label>
                 </div>
 
+                <div id="graphmode-setting" class="switch">
+                  <label for="graphmode" style="display:none;">graphmode</label> 
+                  <label>
+                  <input type="checkbox" id="graphmode">
+                  <span class="lever"></span>
+                  <span id="app-menu-graphmode"></span>
+                  </label>
+                </div>
+
                 <div id="linkpreview-setting" class="switch">
                   <label for="linkpreview" style="display:none;">linkpreview</label> 
                   <label>
@@ -715,6 +724,9 @@ $settings_html = '
 
                 <div id="pieChart" class="pieChart"></div>
               </details>
+
+              <div id="my-cy" class="my-cy" style="display:none;"></div>
+              <script type="module" src="../app/explore2/dist/core/cyto.js"></script>
 
               <div id="results" class="inner noselect"></div>
 
@@ -1060,6 +1072,13 @@ $settings_html = '
 
           <div class="overflow-content indent">
 
+            <details class="" closed>
+              <summary><span id="app-menu-user-manual"></span></summary>
+                <ul>
+                  <li> &nbsp; <a href="https://localhost/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
+                </ul>
+            </details>
+
             <details class="auto conf" closed>
               <summary><span id="app-menu-inline-help">inline help</span></summary>
 
@@ -1072,13 +1091,6 @@ $settings_html = '
                   </label>
                 </div>
 
-            </details>
-
-            <details class="" closed>
-              <summary><span id="app-menu-user-manual"></span></summary>
-                <ul>
-                  <li> &nbsp; <a href="https://localhost/guide/user_manual" target="infoframe" onclick="resetIframe()" title="guide" aria-label="guide" role="button"><i class="fa-solid fa-book fa-2x"></i></a></li>
-                </ul>
             </details>
 
             <details class="" closed>

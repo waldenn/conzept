@@ -135,7 +135,7 @@ function processResultsCommons( topicResults, struct, index ){
 
         if ( valid( obj._source.title ) ){
 
-          let base_img  = `http://commons.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( obj._source.title.replace(/ /g, '_' ) ) }`;
+          let base_img  = `https://commons.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( obj._source.title.replace(/ /g, '_' ) ) }`;
           img           = base_img + '?width=2000px';
           thumb         = base_img + '?width=300px';
 

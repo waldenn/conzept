@@ -1685,6 +1685,8 @@ function renderResultSummary(){
 
   //console.log( search_results.length, search_results );
 
+  clearGraph();
+
   $(".pieTip").remove();
   $("#pieChart").empty();
 
@@ -1952,6 +1954,9 @@ function setupSearch() {
 
           explore.topic_cursor = 'n1-1';
 
+          // CYTO
+          //$('#my-cy').empty();
+
           // reset any structured-search query-data
           explore.query     = '';
           explore.hash      = '';
@@ -2152,6 +2157,8 @@ function setupSearch() {
     //$('#detail-result-summary').hide();
 
     explore.searchmode = 'string';
+
+    clearGraph();
 
     // discern user-click from synthetic-click
     if ( e.hasOwnProperty('originalEvent') ){ // user-click
@@ -2634,7 +2641,7 @@ function setupOptionDarkmode() {
     }
     else { // use the set darkmode
 
-        explore.darkmode = ( explore.darkmode === null || explore.darkmode === 'false' ) ? false : true;
+      explore.darkmode = ( explore.darkmode === null || explore.darkmode === 'false' ) ? false : true;
 
     }
 
@@ -2662,6 +2669,80 @@ function setupOptionDarkmode() {
   })();
 
 }
+
+function setGraphmode() {
+
+  // also check user preference for darkmode
+  if ( explore.graphmode ){
+    $('#graphmode').prop('checked', true);
+  }
+  else {
+    $('#graphmode').prop('checked', false);
+  }
+
+  if ( explore.graphmode ){
+
+    // hide normal results
+	  $( '#results-paging' ).css( 'display', 'none', 'important' );
+    $( '#results-label' ).hide();
+    $('#scroll-end').hide();
+    $('#next').hide();
+
+    // show graphview in sidebar
+    $('#my-cy').show();
+    $('#my-cy-fetch-more').show();
+
+  }
+  else {
+
+    // hide graphview in sidebar
+    $('#my-cy').hide();
+    $('#my-cy-fetch-more').hide();
+
+    // show normal results
+    $( '#results-paging' ).css( "display", "inline-block" );
+    $( '#results-label' ).hide();
+    $('#scroll-end').show();
+    $('#next').show();
+
+  }
+
+}
+
+function setupOptionGraphmode() {
+
+  (async () => {
+
+    explore.graphmode = await explore.db.get('graphmode');
+
+    explore.graphmode = ( explore.graphmode === null || explore.graphmode === 'false' ) ? false : true;
+
+    setGraphmode();
+
+    $('#graphmode').change(function() {
+
+      if ( $('#graphmode').prop('checked') ){
+
+        (async () => { await explore.db.set('graphmode', true); })();
+        explore.graphmode = true;
+
+      }
+      else {
+
+        (async () => { await explore.db.set('graphmode', false); })();
+        explore.graphmode = false;
+
+      }
+
+      setGraphmode();
+
+    })
+
+  })();
+
+}
+
+
 
 function setShowHelp() {
 
@@ -3898,6 +3979,7 @@ async function updateLocaleInterface(){
   $('#app-menu-font-type').html( explore.banana.i18n('app-menu-font-type') );
   $('#app-menu-font-size').html( explore.banana.i18n('app-menu-font-size') );
   $('#app-menu-darkmode').html( explore.banana.i18n('app-menu-darkmode') );
+  $('#app-menu-graphmode').html( explore.banana.i18n('app-menu-graphmode') );
   $('#app-menu-link-preview').html( explore.banana.i18n('app-menu-link-preview') );
   $('#app-menu-color-filter').html( explore.banana.i18n('app-menu-color-filter') );
   $('#app-menu-locale').html( explore.banana.i18n('app-menu-locale') );
@@ -4720,6 +4802,8 @@ async function setDefaultDisplaySettings( cover, type ) {
   }
 
   explore.topic_cursor = 'n1-1';
+
+  clearGraph();
 
   // results summary stats
   //$('#detail-result-summary').hide();
@@ -6755,7 +6839,7 @@ function addTopics( source, list ){
       }
       else {
 
-        thumb = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + encodeURIComponent( item.thumb ) + '?width=' + explore.thumb_width;
+        thumb = 'https://'+ explore.language + '.wikipedia.org/wiki/' + explore.language + ':Special:Filepath/' + encodeURIComponent( item.thumb ) + '?width=' + explore.thumb_width + 'px';
 
       }
 
@@ -6813,6 +6897,13 @@ function addTopics( source, list ){
 
     // wikipedia article
     $('#results').append( html_result_list );
+
+    // add graph node
+    if ( valid( explore.graphmode ) ){
+
+      window.cy.add( cy_node_def( title, html_result_list ) );
+
+    }
 
     //if ( explore.type === 'articles'){
       //explore.type = '';
@@ -12247,3 +12338,51 @@ function checkNetworkStatus(){
 
 window.addEventListener('online', checkNetworkStatus );
 window.addEventListener('offline', checkNetworkStatus );
+
+// run the layout
+function updateCytoscapeLayout(){
+
+  window.cy.layout({ // https://js.cytoscape.org/#layouts
+
+    name: 'grid', // 'cose-bilkent',
+    fit:  false,
+    padding: 30,
+    //rows: 1, // force num of rows in the grid
+    //cols: 1, // force num of columns in the grid
+
+    //randomize: false,
+
+  }).run();
+
+}
+
+// returns a definition for a new graph node
+function cy_node_def( label, content, rp ){
+
+  let id = `n${cy.nodes().length}`;
+  let div = document.createElement("div");
+  div.innerHTML = `${content}`; // `node ${id} ${content}`;
+  div.classList = ['my-cy-node'];
+
+  // zoom-dependent?
+  div.style.width  = ( explore.thumb_width + 250 ) + 'px';
+  div.style.height = ( explore.thumb_width + 250 ) + 'px';
+
+  return {
+
+    'data': {
+
+      'id':     id,
+      'label':  label || `n${cy.nodes().length}`,
+      'dom':    div,
+
+    },
+
+    'renderedPosition': rp,
+
+  };
+
+} 
+
+let intervalCytoscape = setInterval( updateCytoscapeLayout , 5000);
+// clearInterval( intervalCytoscape );
