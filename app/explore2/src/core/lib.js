@@ -2732,7 +2732,11 @@ function setupOptionGraphmode() {
         (async () => { await explore.db.set('graphmode', true); })();
         explore.graphmode = true;
 
-        $('a.submitSearch').trigger('click'); // trigger a new search
+        if ( $('#my-cy-fullscreen').length < 1 ){ // graphview not yet active
+
+          $('a.submitSearch').trigger('click'); // trigger a new search, to properly setup the graphview
+
+        }
 
       }
       else {
