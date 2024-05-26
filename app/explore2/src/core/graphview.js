@@ -66,6 +66,7 @@ if ( ! isEmbedded() ){
   window.cy.autoungrabify( false );
 
   window.cy.on( 'zoom', function( event ){
+
     // target holds a reference to the originator
     // of the event (core or element)
     var evtTarget = event.target;

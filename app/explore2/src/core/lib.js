@@ -2689,13 +2689,17 @@ function setGraphmode() {
     // show graphview in sidebar
     $('#my-cy').show();
 
-    $('#my-cy').append(
+    if ( $('#my-cy-fullscreen').length < 1 ){
 
-      '<a id="my-cy-fullscreen" class="cy-button" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a>' +
-      '<a id="my-cy-fit-to-view" class="cy-button" href="javascript:void(0)" title="fit to view" aria-label="fit to view" role="button" onclick="window.cy.fit()"><i class="fa-solid fa-grip"></i></a>' +
-      '<a href="javascript:void(0)" id="my-cy-fetch-more" class="cy-button" role="button" title="fetch more graph view results" onclick="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>'
+      $('#my-cy').append( // add graphview tools 
 
-    );
+        '<a id="my-cy-fullscreen" class="cy-button" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a>' +
+        '<a id="my-cy-fit-to-view" class="cy-button" href="javascript:void(0)" title="fit to view" aria-label="fit to view" role="button" onclick="window.cy.fit()"><i class="fa-solid fa-grip"></i></a>' +
+        '<a href="javascript:void(0)" id="my-cy-fetch-more" class="cy-button" role="button" title="fetch more graph view results" onclick="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>'
+
+      );
+
+    }
 
   }
   else {
@@ -2722,6 +2726,15 @@ function setupOptionGraphmode() {
     explore.graphmode = await explore.db.get('graphmode');
 
     explore.graphmode = ( explore.graphmode === null || explore.graphmode === 'false' ) ? false : true;
+
+    // set the graphview dynamically set "datasource" color styles
+    if ( valid( explore.graphmode ) ){
+
+      let styleSheet        = document.createElement("style");
+      styleSheet.innerText  = graphview_css;
+      document.head.appendChild( styleSheet );
+
+    }
 
     setGraphmode();
 

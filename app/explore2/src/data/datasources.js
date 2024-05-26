@@ -1484,6 +1484,21 @@ const datasource_sets = Object.keys( datasource_set_map );
 
 delete d_;
 
+// add user-configured graphview styles for each datasource
+let graphview_css = '';
+
+$.each( Object.keys( datasources ), function( index, source ){
+
+  if ( valid( datasources[source] ) ){
+
+    let color = datasources[source].color;
+
+    graphview_css += '.my-cy-node:has(.entry[data-source="' + source + '"]) { border: 2em solid ' + color + '; border-radius: 7em; }';
+
+  }
+
+});
+
 // Note: Update this list and the "index.template.php" select-options, whenever the datasource "sort_map" structure changes.
 const valid_sort_options = [
   'none',

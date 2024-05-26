@@ -160,7 +160,7 @@
   .topic, .article-title-icon, .topic-description, .summary, .summary-thumb, .audio-widget, .medialinks, .topic-tts-buttons { display: none }
   .article-title { font-size: 600%; }
   .highlight { background-color: transparent !important; }
-  .my-cy-node { background-color: #747274 !important; }
+  .my-cy-node { background-color: #00000054 !important; }
   .entry { display: none !important; }
 }
 

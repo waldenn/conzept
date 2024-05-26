@@ -1092,7 +1092,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   } 
 
   // compose HTML output
-  const html_output = '<div id="' + id + '" class="entry articles box ' + extra_classes + ' ' + grid_class + '" style="' + hide + '">' + 
+  const html_output = `<div id="${id}" class="entry articles box ${extra_classes} ${grid_class}" style="${hide}" data-source="${source}">` + 
 
     topic_title +
 
