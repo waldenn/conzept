@@ -2669,15 +2669,9 @@ function setupOptionDarkmode() {
 
 function setGraphmode() {
 
-  // also check user preference for darkmode
-  if ( explore.graphmode ){
-    $('#graphmode').prop('checked', true);
-  }
-  else {
-    $('#graphmode').prop('checked', false);
-  }
+  if ( valid( explore.graphmode ) ){
 
-  if ( explore.graphmode ){
+    $('#graphmode').prop('checked', true);
 
     // hide normal results
 	  $( '#results-paging' ).css( 'display', 'none', 'important' );
@@ -2686,16 +2680,21 @@ function setGraphmode() {
 
     // show graphview in sidebar
     $('#my-cy').show();
-    $('#my-cy-fetch-more').show();
-    $('#my-cy-fullscreen').show();
+
+    $('#my-cy').append(
+
+      '<a id="my-cy-fullscreen" class="cy-button" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a>'
+      '<a href="javascript:void(0)" id="my-cy-fetch-more" class="cy-button" role="button" title="fetch more graph view results" onclick="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>' +
+
+    );
 
   }
   else {
 
+    $('#graphmode').prop('checked', false);
+
     // hide graphview in sidebar
     $('#my-cy').hide();
-    $('#my-cy-fetch-more').hide();
-    $('#my-cy-fullscreen').hide();
 
     // show normal results
     $( '#results-paging' ).css( "display", "inline-block" );

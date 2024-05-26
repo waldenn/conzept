@@ -726,8 +726,6 @@ $settings_html = '
               </details>
 
               <!-- sidebar graph view -->
-              <a href="javascript:void(0)" id="my-cy-fetch-more" role="button" title="fetch more results" onclick="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>
-              <a id="my-cy-fullscreen" style="display:none;" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a> &nbsp;
               <div id="my-cy" class="my-cy" style="display:none;"></div>
               <script type="module" src="../app/explore2/dist/core/graphview.js?vCONZEPT_VERSION"></script>
 

@@ -30,7 +30,7 @@
   height: 1200px !important;
   width: 1000px !important;
   padding: 50px !important;
-  overflow-y: hidden;
+  overflow-y: scroll;
   background-color: #fbfaf9;
 }
 
@@ -47,6 +47,20 @@
   }
 
 }
+
+.cy-button {
+  position: absolute;
+  top: 1em;
+}
+
+#my-cy-fullscreen.cy-button {
+  left: 1em;
+}
+
+#my-cy-fetch-more.cy-button {
+  left: 3em;
+}
+
 
 /* cytoscape zoom levels */
 [data-zoom="10"] {
@@ -125,7 +139,7 @@
   .topic, .article-title-icon, .topic-description, .summary, .summary-thumb, .audio-widget, .medialinks, .topic-tts-buttons { display: none }
   .article-title { font-size: 600%; }
   .highlight { background-color: transparent !important; }
-  .my-cy-node { background-color: #000 !important; }
+  .my-cy-node { background-color: #747274 !important; }
   .entry { display: none !important; }
 }
 
