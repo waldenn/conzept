@@ -1493,7 +1493,7 @@ $.each( Object.keys( datasources ), function( index, source ){
 
     let color = datasources[source].color;
 
-    graphview_css += '.my-cy-node:has(.entry[data-source="' + source + '"]) { border: 2em solid ' + color + '; border-radius: 7em; }';
+    graphview_css += '.my-cy-node:has(.entry[data-source="' + source + '"]) { border: 1em solid ' + color + '; border-radius: 7em; }';
 
   }
 
