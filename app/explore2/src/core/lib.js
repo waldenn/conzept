@@ -4827,6 +4827,7 @@ async function setDefaultDisplaySettings( cover, type ) {
   explore.topic_cursor = 'n1-1';
 
   clearGraph();
+  $('#my-cy').hide();
 
   // results summary stats
   //$('#detail-result-summary').hide();
@@ -5504,8 +5505,15 @@ async function setPopularCover() {
 async function setDisplayForResults() {
 
   if ( ! valid( explore.graphmode ) ){
+
     $( '#results-paging' ).css( "display", "inline-block" );
     $( '#results-label' ).css( "display", "inline-block" );
+
+  }
+  else {
+
+    $('#my-cy').show();
+
   }
 
 }
@@ -10497,6 +10505,7 @@ function refreshArticles(){
   }
 
   //$('#detail-result-summary').hide();
+  clearGraph();
 	$('#results').empty();
   $('#total-results').empty();
   $('#scroll-end').hide();

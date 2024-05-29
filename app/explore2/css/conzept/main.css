@@ -21,9 +21,14 @@
 
 /* cytoscape styling */
 .my-cy {
-  width: 100vw;
-  height: 100vh;
-  background-color:#fbfaf9 !important;
+  width: auto;
+  height: 60vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-color: #fbfaf9 !important;
+  border: 1px solid black;
+  border-radius: 0.2em;
+
 }
 
 .my-cy-node {

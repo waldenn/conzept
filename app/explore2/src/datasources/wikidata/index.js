@@ -473,6 +473,7 @@ async function runWikidataQuery( paging_mode ){
   $('#total-results').empty();
   $('#scroll-end').hide();
   $('#results').empty();
+  clearGraph();
 
  if ( explore.page === 1 ){ // first time fetch
 
