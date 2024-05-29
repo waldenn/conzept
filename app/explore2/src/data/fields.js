@@ -2745,7 +2745,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: '${ "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_link )}',
+  url: '${ item.pdf_link }',
   icon: 'fa-regular fa-file-pdf',
   text: 'PDF',
   section: ['main'],

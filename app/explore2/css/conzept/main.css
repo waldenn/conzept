@@ -98,27 +98,29 @@
 }
 
 [data-zoom="8"] {
-/*
+  /*
   .topic-tts-buttons { display: none !important }
   .summary, .medialinks, .topic-tts-buttons { display: none }
-*/
+  */
   .article-title { font-size: 200%; }
 }
 
 [data-zoom="7"] {
-/*
+  /*
   .topic-tts-buttons { display: none !important }
   .summary, .medialinks, .topic-tts-buttons { display: none }
-*/
+  */
+  .topic { font-size: 125%; }
   .article-title { font-size: 250%; }
 }
 
 [data-zoom="6"] {
-/*
+  /*
   .topic-tts-buttons { display: none }
   .summary, .medialinks, .topic-tts-buttons { display: none !important }
-*/
+  */
   .article-title { font-size: 300%; }
+  .topic { font-size: 150%; }
   .highlight { background-color: transparent !important; }
 }
 
@@ -126,23 +128,25 @@
   .summary, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 350%; }
   .item-description { font-size: 150%; }
-	.article-title-icon { font-size: 50%; }
+  .topic { font-size: 175%; }
+  .article-title-icon { font-size: 50%; }
   .highlight { background-color: transparent !important; }
 }
 
 [data-zoom="4"] {
-  .topic, .summary, .medialinks, .topic-tts-buttons { display: none !important }
+  .item-description, .summary, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 400%; }
   .item-description { font-size: 175%; }
-	.article-title-icon { font-size: 60%; }
+  .topic { font-size: 200%; }
+  .article-title-icon { font-size: 60%; }
   .highlight { background-color: transparent !important; }
 }
 
 [data-zoom="3"] {
-  .topic, .summary, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
+  .topic, .item-description, .summary, .audio-widget, .medialinks, .topic-tts-buttons { display: none !important }
   .article-title { font-size: 450%; }
   .item-description { font-size: 200%; }
-	.article-title-icon { font-size: 70%; }
+  .article-title-icon { font-size: 70%; }
   .highlight { background-color: transparent !important; }
 }
 
@@ -168,7 +172,6 @@
   .my-cy-node { background-color: #00000054 !important; }
   .entry { display: none !important; }
 }
-
 
 /* end cytoscape styling */
 
