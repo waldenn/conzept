@@ -1,14 +1,16 @@
 import cytoscape            from "https://cdn.skypack.dev/cytoscape@3.19.0";
-//import cytoscapeCoseBilkent from "https://cdn.skypack.dev/cytoscape-cose-bilkent@4.1.0";
+import cytoscapeCoseBilkent from "https://cdn.skypack.dev/cytoscape-cose-bilkent@4.1.0";
 import cytoscapeDomNode     from "https://cdn.skypack.dev/cytoscape-dom-node@1.0.0";
+
+let cy = {};
 
 if ( ! isEmbedded() ){
 
-  //cytoscape.use(cytoscapeCoseBilkent);
-  cytoscape.use( cytoscapeDomNode );
+  cytoscape.use(cytoscapeCoseBilkent);
+  //cytoscape.use( cytoscapeDomNode );
 
   // cytoscape instance
-  window.cy = cytoscape({
+  cy = cytoscape({
 
     container: document.getElementById('my-cy'),
 
@@ -61,44 +63,33 @@ if ( ! isEmbedded() ){
   });
 
   // enable extension for instance
-  window.cy.domNode();
+  cy.domNode();
 
-  window.cy.autoungrabify( false );
+  cy.autoungrabify( false );
 
-  window.cy.on( 'zoom', function( event ){
+  cy.on( 'zoom', function( event ){
 
-    // target holds a reference to the originator
-    // of the event (core or element)
+    // target holds a reference to the originator of the event (core or element)
     var evtTarget = event.target;
 
     //console.log( evtTarget );
 
-    // updated zoom-level
-    //if ( window.cy.zoom() < 0.5 ){
+    const zoom_level = Math.min( Math.floor( cy.zoom() * 10 ), 10 );
 
-      //console.log( 'zoom is: ', window.cy.zoom() );
+    if ( valid( zoom_level ) ){
 
-      // register zoom-level data on each topic-card
-      const zoom_level = Math.min( Math.floor( cy.zoom() * 10 ), 10 );
+      $('#my-cy').attr( 'data-zoom', zoom_level );
+      $('#my-cy div.entry').attr( 'data-zoom', zoom_level );
 
-      if ( valid( zoom_level ) ){
-
-        $('#my-cy').attr( 'data-zoom', zoom_level );
-        $('#my-cy div.entry').attr( 'data-zoom', zoom_level );
-
-        // $('#my-cy div.entry').addClass('theme-lattice');
-
-      }
-
-    //}
+    }
 
   });
 
-  window.cy.on('tap', 'node', function(evt){
+  cy.on('tap', 'node', function(evt){
 
     let node = evt.target;
     //console.log("tapped " + node.id() );
-    window.cy.nodes(node).addClass('selected'); // FIXME
+    cy.nodes(node).addClass('selected'); // FIXME
 
   });
 
@@ -108,7 +99,7 @@ if ( ! isEmbedded() ){
 // run the layout
 function layout() {
 
-  window.cy.layout({
+  cy.layout({
     'name':      'grid', // 'cose-bilkent',
     'randomize': false,
   }).run();
@@ -143,7 +134,7 @@ function cy_node_def( label, rp ){
 }
 
 // add node
-window.cy.add( cy_node_def() );
+cy.add( cy_node_def() );
 layout();
 
 let last_added_id    = 'n0';
@@ -160,10 +151,11 @@ let cy_n = cy.getElementById(cy_n_id);
 let new_n_cydef = cy_node_def( undefined, cy_n.renderedPosition() );
 console.log( cy_n.renderedPosition() );
 let new_n_id    = new_n_cydef.data.id;
-//let new_e_cydef = {'data': {'id': new_n_id + '_' + cy_n_id, 'source': new_n_id, 'target': cy_n_id}};
+let new_e_cydef = {'data': {'id': new_n_id + '_' + cy_n_id, 'source': new_n_id, 'target': cy_n_id}};
 
 cy.add(new_n_cydef);
-//cy.add(new_e_cydef);
+
+cy.add(new_e_cydef);
 
 last_added_id    = new_n_id;
 last_extended_id = cy_n_id;

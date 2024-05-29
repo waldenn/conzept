@@ -2696,7 +2696,7 @@ function setGraphmode() {
       $('#next').hide();
 
       // show graphview in sidebar
-      window.cy.fit();
+      cy.fit();
       $('#my-cy').show();
 
     }
@@ -2706,7 +2706,7 @@ function setGraphmode() {
       $('#my-cy').append( // add graphview tools 
 
         '<a id="my-cy-fullscreen" class="cy-button" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }" ontouchstart="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a>' +
-        '<a id="my-cy-fit-to-view" class="cy-button" href="javascript:void(0)" title="fit to view" aria-label="fit to view" role="button" onclick="window.cy.fit()" ontouchstart="window.cy.fit()"><i class="fa-solid fa-grip"></i></a>' +
+        '<a id="my-cy-fit-to-view" class="cy-button" href="javascript:void(0)" title="fit to view" aria-label="fit to view" role="button" onclick="cy.fit()" ontouchstart="cy.fit()"><i class="fa-solid fa-grip"></i></a>' +
         '<a href="javascript:void(0)" id="my-cy-fetch-more" class="cy-button" role="button" title="fetch more graph view results" onclick="loadNextPage()" ontouchstart="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>'
 
       );
@@ -6645,7 +6645,23 @@ async function renderTopics( inputs ){
 
       //console.log( key, inputs[ key ].data.value[0].source.data.query.search  );
 
-      addTopics( key, inputs[ key ].data.value[0].source.data.query.search );
+      let parent_node_id = '';
+
+      // add graph node
+      if ( valid( explore.graphmode ) ){
+
+        // only on the first page: create a datasource parent-node
+        if ( explore.page === 1 ){
+
+          parent_node_id = `n${cy.nodes().length}`;
+
+          cy.add( cy_node_def( key, `${key} datasource: ${ parent_node_id }` ), '' ); // NOTE: node without a parent node
+
+        }
+
+      }
+
+      addTopics( key, inputs[ key ].data.value[0].source.data.query.search, parent_node_id );
 
     });
 
@@ -6879,7 +6895,7 @@ async function renderTopics( inputs ){
 
 }
 
-function addTopics( source, list ){
+function addTopics( source, list, parent_node_id ){
 
   //console.log( source, list );
 
@@ -6946,7 +6962,6 @@ function addTopics( source, list ){
 
     const scrollTriggerClass = ( i === ( list.length - 1) ) ? 'triggerLoading' : '';
 
-
     const args = { 
       id            : id,
       language      : explore.language,
@@ -6970,7 +6985,23 @@ function addTopics( source, list ){
     // add graph node
     if ( valid( explore.graphmode ) ){
 
-      window.cy.add( cy_node_def( title, html_result_list ) );
+      console.log( 'ID before add: ', cy.nodes().length );
+
+      // topic node
+      cy.add( cy_node_def( title, html_result_list, parent_node_id ) );
+
+      console.log( 'ID after add: ', cy.nodes().length );
+
+      let cy_topic_id = cy.nodes().length;
+
+      // get parent-node ref
+      let cy_parent_node = cy.getElementById( parent_node );
+
+      // create edge from topic-node to parent-datasource-node
+      let new_edge_cydef = {'data': {'id': cy_topic_id + '_' + parent_node_id, 'source': cy_topic_id, 'target': parent_node_id }};
+
+      // add the edge
+      cy.add( new_edge_cydef );
 
     }
 
@@ -12414,15 +12445,17 @@ function updateCytoscapeLayout(){
 
   if ( valid( explore.graphmode ) ){
 
-    window.cy.layout({ // https://js.cytoscape.org/#layouts
+    cy.layout({ // https://js.cytoscape.org/#layouts
 
-      name: 'grid', // 'cose-bilkent',
-      fit:  false,
-      padding: 30,
+      //name: 'grid',
       //rows: 1, // force num of rows in the grid
       //cols: 1, // force num of columns in the grid
 
-      //randomize: false,
+      name: 'cose-bilkent',
+      randomize: false,
+
+      fit:  false,
+      padding: 30,
 
     }).run();
 
@@ -12432,13 +12465,15 @@ function updateCytoscapeLayout(){
 
 function clearGraph(){
 
-  window.cy.elements = [];
+  cy.elements = [];
   $('.my-cy-node').remove();
 
 }
 
 // returns a definition for a new graph node
-function cy_node_def( label, content, rp ){
+function cy_node_def( label, content, parent_node, rp ){
+
+  console.log( label, parent_node, `n${cy.nodes().length}` );
 
   let id = `n${cy.nodes().length}`;
   let div = document.createElement("div");

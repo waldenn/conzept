@@ -527,8 +527,6 @@ function showPresentation( item, type ){
 
 			//if ( valid( item.has_taxon ) ){ slides.push( `  ( slide "${ item.title } <br><h3><i class='fa-solid fa-sitemap' title='taxon tree'></i></h3>"\n    ( show \'link-split \'( "/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20wd%3A${item.qid}%20wdt%3AP171*%20%3Fitem%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7D%23defaultView%3AGraph%0A%23meta%3A${title_enc}%3Alayout-topdown" ) ) )\n` ); }
 
-			if ( valid( item.inaturalist_taxa ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-puzzle-piece' title='taxon location quiz'></i></h3>"\n    ( show \'link \'( "/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}" ) ) )\n` ); }
-
 			slides.push( linkgraph_slide );
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
@@ -882,6 +880,9 @@ function showPresentation( item, type ){
 
     // common end slides
     slides.push( ai_chat_slide );
+
+	  if ( valid( item.inaturalist_taxa ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-puzzle-piece' title='taxon location quiz'></i></h3>"\n    ( show \'link \'( "/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}" ) ) )\n` ); }
+
     slides.push( similar_slide );
 
 		/*
