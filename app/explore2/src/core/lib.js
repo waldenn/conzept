@@ -2680,14 +2680,25 @@ function setGraphmode() {
 
     $('#graphmode').prop('checked', true);
 
-    // hide normal results
-    $('#results').hide();
-	  $('#results-paging').css( 'display', 'none', 'important' );
-    $('#scroll-end').hide();
-    $('#next').hide();
+    if ( explore.firstAction && explore.q === '' ){ // no query yet: show the welcome screen
 
-    // show graphview in sidebar
-    $('#my-cy').show();
+      $('#my-cy').hide();
+
+      setDefaultDisplaySettings();
+
+    }
+    else {
+
+      // hide normal results
+      $('#results').hide();
+      $('#results-paging').css( 'display', 'none', 'important' );
+      $('#scroll-end').hide();
+      $('#next').hide();
+
+      // show graphview in sidebar
+      $('#my-cy').show();
+
+    }
 
     if ( $('#my-cy-fullscreen').length < 1 ){
 
@@ -2979,6 +2990,14 @@ function setupOptionBread(){
 
 function setStructuredSearch(){
 
+  /*
+  if ( valid( explore.graphmode ) ){
+
+    $( '#results' ).hide();
+
+  }
+  */
+
   if ( explore.structured_search ){
 
     $('#structured-search').prop('checked', true);
@@ -3162,6 +3181,12 @@ function doGeospatialSearch( url, custom ){
   if ( ! valid( explore.geospatial_search ) ){ // enable geospatial_search iframe first, which will use any custom map data provided
 
     $('#geospatial-search').prop("checked", true).change();
+
+  }
+
+  if ( valid( explore.graphmode ) ){
+
+    $( '#results' ).hide();
 
   }
 
@@ -4848,8 +4873,8 @@ async function setDefaultDisplaySettings( cover, type ) {
   let quote         = '';
   let wp_prefix     = '';
 
-  $( '#results' ).html( 
-    '<div class="intro-box">' +
+  $( '#results' ).before().html( 
+    '<div id="intro-box">' +
       '<img title="Boston Public Library" alt="Boston Public Library" style="width: 100%; border-radius:0.2em;" src="' + explore.base + '/app/explore2/assets/images/front.jpg">' +
 
       '<p>' + 
@@ -5037,6 +5062,12 @@ async function setDefaultDisplaySettings( cover, type ) {
     $('#loader').hide();
 
     return 0;
+
+  }
+
+  if ( ! valid( explore.graphmode ) ){
+
+    $( '#results' ).show();
 
   }
 

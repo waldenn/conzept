@@ -1027,7 +1027,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   font-style: normal;
 }
 
-.intro-box {
+#intro-box {
   /* text-align: justify; */
   background-color: rgba(204, 204, 204, 0.16);
   box-shadow: 0 4px 4px 0 transparent, 0 2px 5px 0 rgba(0, 0, 0, 0.23);
@@ -1044,7 +1044,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   */
 }
 
-.intro-box a {
+#intro-box a {
   text-decoration: underline !important;
 }
 
@@ -1403,7 +1403,7 @@ i.oma .subtext {
   /*line-height: 1em;*/
 }
 
-.intro-box a:hover .oma {
+#intro-box a:hover .oma {
   filter: invert(66%) sepia(11%) saturate(5452%) hue-rotate(312deg) brightness(93%) contrast(101%) !important;
 }
 
@@ -3896,7 +3896,7 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
     padding: 0 5px;
   }
 
-  .intro-box {
+  #intro-box {
     width: 91%;
     margin-bottom: 10rem;
   }
