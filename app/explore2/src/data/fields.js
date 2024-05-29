@@ -13988,6 +13988,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [298,20],
 },
 
+'nasa_firms_map' : {
+  create_condition: 'valid( ${item.lat} )',
+  title: 'NASA FIRMS map - Fire Information for Resource Management System',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@${item.lon},${item.lat},14.00z',
+  icon: 'fa-solid fa-fire',
+  text: 'FIRMS',
+  section: ['location-ecology','location-geography'],
+  rank: [900,305],
+},
+
 'old_maps_online' : {
   create_condition: 'checkTag( item, 0, "location")',
   title: 'Old Maps Online',
@@ -13996,7 +14009,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://www.oldmapsonline.org/en/${title_}', // TODO: research this weird search-site
   icon: 'fa-regular fa-map',
-  text: 'OMO',
+  text: 'OldMaps',
   section: ['library-history','location-geography'],
   rank: [299,310],
 },

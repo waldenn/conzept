@@ -2758,6 +2758,8 @@ function setupOptionGraphmode() {
 
         if ( $('#my-cy-fullscreen').length < 1 ){ // graphview not yet active
 
+          $('#results').hide();
+
           $('a.submitSearch').trigger('click'); // trigger a new search, to properly setup the graphview
 
         }
