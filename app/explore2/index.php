@@ -160,6 +160,8 @@ $main_script = '
   <script src="../app/explore2/node_modules/ace-builds/src-min/ext-language_tools.js"></script>
   <script src="../app/explore2/node_modules/@jcubic/lips/dist/lips.min.js" bootstrap></script>
 
+  <script src="../app/explore2/dist/core/utils.js?v0.51.4836"></script>
+
   <!-- Conzept data scripts -->
   <script src="../app/explore2/dist/data/explore.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/data/datasources.js?v0.51.4836"></script>
@@ -183,7 +185,6 @@ $main_script = '
   <!-- Conzept core scripts -->
   <script src="../app/explore2/dist/core/env.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/core/show.js?v0.51.4836"></script>
-  <script src="../app/explore2/dist/core/utils.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/command/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/wikidata/setWikidata.js?v0.51.4836"></script> <!-- NOTE: also used by other apps needing Wikidata-info such as Wikipedia -->
 

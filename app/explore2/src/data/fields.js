@@ -2739,6 +2739,22 @@ conzept_fields = {
   rank: [5,1225],
 },
 
+'pdf_custom' : {
+  create_condition: 'valid( item.pdf_link )',
+  title: 'PDF document',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${ "https://" + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + "/app/cors/raw/?url=" + item.pdf_link )}',
+  icon: 'fa-regular fa-file-pdf',
+  text: 'PDF',
+  section: ['main'],
+  rank: [1150],
+  headline_create: 'valid( item.pdf_link )',
+  headline_type: 'link',
+  headline_rank: 250,
+},
+
 'pdf_tts_custom' : {
   create_condition: 'valid( item.pdf_tts_link )',
   //create_trigger: 'console.log( item.pdf_tts_link )',

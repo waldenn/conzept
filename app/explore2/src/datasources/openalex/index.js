@@ -104,6 +104,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
         let document_language   = 'en';
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
         let tts_link      = '';
+        let pdf_link      = '';
 
         if ( valid( obj.id ) ){
 
@@ -117,6 +118,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
           doc_url = obj.open_access.oa_url;
 
           tts_link = doc_url;
+          pdf_link = doc_url;
 
         }
         else if ( valid( obj.doi ) ){
@@ -238,6 +240,7 @@ function processResultsOpenAlex( topicResults, struct, index ){
           document_language:    document_language,
           document_voice_code:  document_voice_code,
           pdf_tts_link: tts_link,
+          pdf_link:     pdf_link,
 
 					qid:          '',
           countries:    [],

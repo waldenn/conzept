@@ -115,6 +115,7 @@ function processResultsArxiv( topicResults, struct, index ){
         let document_language   = 'en';
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
         let tts_link            = doc_url;
+        let pdf_link            = doc_url;
 
         $(this).find('author').each( function( j ){
 
@@ -151,6 +152,7 @@ function processResultsArxiv( topicResults, struct, index ){
           document_language:    document_language,
           document_voice_code:  document_voice_code,
           pdf_tts_link: tts_link,
+          pdf_link:     pdf_link,
 
 					qid:          '',
           countries:    [],

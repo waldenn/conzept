@@ -136,6 +136,7 @@ function processResultsLoC( topicResults, struct, index ){
 
         let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
         let tts_link     	= '';
+        let pdf_link     	= '';
 
         let title         = valid( obj.title )? obj.title : '---';
 
@@ -223,6 +224,7 @@ function processResultsLoC( topicResults, struct, index ){
 
 									url         = obj.resources[0].pdf;
 									tts_link    = url;
+									pdf_link    = url;
 									media_found = true;
                   subtag      = 'book';
 
@@ -318,6 +320,7 @@ function processResultsLoC( topicResults, struct, index ){
           document_language:    document_language,
           document_voice_code:  document_voice_code,
           pdf_tts_link: tts_link,
+          pdf_link:     pdf_link,
 
 					qid:          '',
           countries:    [],
