@@ -7014,8 +7014,8 @@ function addTopics( source, list, parent_node_id ){
     // add graph node
     if ( valid( explore.graphmode ) ){
 
-      // add the topic node
-      let cy_topic_def = cy_node_def( title, html_result_list, parent_node_id );
+      // topic node
+      let cy_topic_def = cy_node_def( cy.nodes().length, title, html_result_list, parent_node_id );
       cy.add( cy_topic_def );
 
       if ( valid( parent_node_id ) ){
@@ -12537,7 +12537,22 @@ function updateCytoscapeLayout(){
       randomize: false,
 
       fit:  false,
-      padding: 30,
+
+      padding: 100, // fit padding
+
+      boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
+
+      animate: true, // whether to transition the node positions
+      animationDuration: 500, // duration of animation in ms if enabled
+      animationEasing: undefined, // easing of animation if enabled
+      animateFilter: function ( node, i ){ return true; }, // a function that determines whether the node should be animated.  All nodes animated by default on animate enabled.  Non-animated nodes are positioned immediately when the layout starts
+
+      ready: undefined, // callback on layoutready
+      stop: undefined, // callback on layoutstop
+
+      //transform: function (node, position ){ return position; } // transform a given node position. Useful for changing flow direction in discrete layouts
+
+      spacingFactor: 1.8,
 
     }).run();
 
@@ -12553,9 +12568,9 @@ function clearGraph(){
 }
 
 // returns a definition for a new graph node
-function cy_node_def( label, content, parent_node, rp ){
+function cy_node_def( id, label, content, parent_node, rp ){
 
-  console.log( label, parent_node, `n${cy.nodes().length}` );
+  //console.log( label, parent_node, `n${cy.nodes().length}` );
 
   let id = `n${cy.nodes().length}`;
   let div = document.createElement("div");
@@ -12567,6 +12582,8 @@ function cy_node_def( label, content, parent_node, rp ){
   div.style.height = ( explore.thumb_width + 250 ) + 'px';
 
   return {
+
+    'group': 'nodes',
 
     'data': {
 
@@ -12582,5 +12599,5 @@ function cy_node_def( label, content, parent_node, rp ){
 
 } 
 
-let intervalCytoscape = setInterval( updateCytoscapeLayout , 5000);
+//let intervalCytoscape = setInterval( updateCytoscapeLayout , 5000);
 // clearInterval( intervalCytoscape );
