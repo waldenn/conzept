@@ -12570,9 +12570,8 @@ function clearGraph(){
 // returns a definition for a new graph node
 function cy_node_def( id, label, content, parent_node, rp ){
 
-  //console.log( label, parent_node, `n${cy.nodes().length}` );
+  //console.log( id, label, parent_node );
 
-  let id = `n${cy.nodes().length}`;
   let div = document.createElement("div");
   div.innerHTML = `${content}`; // `node ${id} ${content}`;
   div.classList = ['my-cy-node'];
