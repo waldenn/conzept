@@ -284,11 +284,11 @@ $sticky_html = '
 
         <span class="search-option-label"><span id="app-menu-filter-by-location">near</span>: </span>
         <span class="geofilter">
-          <button class="btn" popovertarget="geofilter-popover"><i class="fa-solid fa-location-dot"></i></button> &nbsp;
+          <button id="geofilter-button" class="btn" title="pick location from map" popovertarget="geofilter-popover"><i class="fa-solid fa-globe"></i></button> &nbsp;
           <input type="text" id="geofilter">
           <div id="geofilter-popover" class="resizer" popover="auto" style="display:none;">
 
-            <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=en&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="50vw height="50vh%" loading="lazy">geofilter map</iframe>
+            <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="100%" height="100%" loading="lazy">geofilter map</iframe>
 
           </div>
         </span>

@@ -1435,6 +1435,34 @@ function openBookmark( event, newtab ) {
 
 }
 
+function setupGeofilter(){
+
+  const geofilterButton   = document.getElementById( 'geofilter-button' );
+  const geofilterPopover  = document.getElementById( 'geofilter-popover' );
+
+  let isPopoverShowing = false;
+
+  geofilterButton.addEventListener("click", () => {
+    
+    if ( isPopoverShowing ) {
+
+      isPopoverShowing = false;
+      $('#geofilter-popover').hide();
+      geofilterPopover.hidePopover();
+
+    }
+    else {
+      
+      isPopoverShowing = true;
+      $('#geofilter-popover').show();
+      geofilterPopover.showPopover();
+
+    }
+
+  });
+
+}
+
 function setupDatasourceSet(){
 
   if ( !valid( explore.datasource_set_selection ) || explore?.datasource_set_selection === 'none' ){ // no "datasource set" parameter set
@@ -8928,12 +8956,15 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'set-geosearch' ){
 
-    if ( valid( [ event.data.data.custom ] ) ){
+    if ( valid( event.data.data.geofilter ) ){
 
-      // set "geofilter" parameter
-      explore.geofilter  = event.data.data.custom; // 'lat;lon;radius'
+      explore.geofilter  = event.data.data.geofilter; // 'lat;lon;radius'
 
-      console.log( explore.geofilter );
+      if ( valid( explore.geofilter ) ){
+
+        $('#geofilter').val( explore.geofilter );
+
+      }
 
       updatePushState( explore.q, 'add' );
 

@@ -389,6 +389,8 @@ $( document ).ready( function() {
     setupKeyboardNavigation();
     setupKeyboardCombos();
 
+    setupGeofilter();
+
     createSectionDOM();
 
     setupSearch();

@@ -254,24 +254,11 @@ function showTopics( loc ){
 
       myPopup.setContent(`lon = ${loc.lon.toFixed(5)}<br/>lat = ${loc.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
 
-      // search for nearby Wikidata entities
-      let url = `https://query.wikidata.org/sparql?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20%3Flocation%20%3Fdistance%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Aaround%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP625%20%3Flocation.%0A%20%20%20%20bd%3AserviceParam%20wikibase%3Acenter%20%22Point(${ loc.lon.toFixed(5) }%2C${ loc.lat.toFixed(5) })%22%5E%5Egeo%3AwktLiteral%3B%0A%20%20%20%20%20%20wikibase%3Aradius%20%22${ window.app.radius }%22%3B%0A%20%20%20%20%20%20wikibase%3Adistance%20%3Fdistance.%0A%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${ window.app.language}%2Cen%2Cceb%2Csv%2Cde%2Cfr%2Cnl%2Cru%2Cit%2Ces%2Cpl%2Cwar%2Cvi%2Cja%2Czh%2Carz%2Car%2Cuk%2Cpt%2Cfa%2Cca%2Csr%2Cid%2Cno%2Cko%2Cfi%2Chu%2Ccs%2Csh%2Cro%2Cnan%2Ctr%2Ceu%2Cms%2Cce%2Ceo%2Che%2Chy%2Cbg%2Cda%2Cazb%2Csk%2Ckk%2Cmin%2Chr%2Cet%2Clt%2Cbe%2Cel%2Caz%2Csl%2Cgl%2Cur%2Cnn%2Cnb%2Chi%2Cka%2Cth%2Ctt%2Cuz%2Cla%2Ccy%2Cta%2Cvo%2Cmk%2Cast%2Clv%2Cyue%2Ctg%2Cbn%2Caf%2Cmg%2Coc%2Cbs%2Csq%2Cky%2Cnds%2Cnew%2Cbe-tarask%2Cml%2Cte%2Cbr%2Ctl%2Cvec%2Cpms%2Cmr%2Csu%2Cht%2Csw%2Clb%2Cjv%2Csco%2Cpnb%2Cba%2Cga%2Cszl%2Cis%2Cmy%2Cfy%2Ccv%2Clmo%2Cwuu%2Cbn%22.%20%7D%0A%7D%0AORDER%20BY%20(%3Fdistance%29%0A%20OFFSET%200%20LIMIT%2010`;
-
-       // let url = `https://qlever.cs.uni-freiburg.de/api/wikidata?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wd%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+wdt%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+geof%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Fdef%2Ffunction%2Fgeosparql%2F%3E%0ASELECT+%3Fitem+%3FitemLabel+%3Fdistance+%3Flocation+WHERE+%7B%0A++%3Fitem+wdt%3AP625+%3Flocation+.%0A++%3Fitem+rdfs%3Alabel+%3FitemLabel+.%0A++FILTER+%28LANG%28%3FitemLabel%29+%3D+%22${ window.app.language}%22%29+.%0A++BIND+%28geof%3Adistance%28%3Flocation%2C+%22POINT%28${ loc.lon.toFixed(5) }+${ loc.lat.toFixed(5) }%29%22%29+AS+%3Fdistance%29%0A++FILTER+%28%3Fdist+%3C%3D+${ window.app.radius }%29%0A%7D%0AORDER+BY+ASC%28%3Fdist%29`;
-
-        // FIX COUNT URL: https://qlever.cs.uni-freiburg.de/api/wikidata?query=PREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wd%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+wdt%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+geof%3A+%3Chttp%3A%2F%2Fwww.opengis.net%2Fdef%2Ffunction%2Fgeosparql%2F%3E%0ASELECT+%3Fitem+%3FitemLabel+%3Fdistance+%3Flocation+WHERE+%7B%0A++%3Fitem+wdt%3AP625+%3Flocation+.%0A++%3Fitem+rdfs%3Alabel+%3FitemLabel+.%0A++FILTER+%28LANG%28%3FitemLabel%29+%3D+%22en%22%29+.%0A++BIND+%28geof%3Adistance%28%3Flocation%2C+%22POINT%284.17416+19.20677%29%22%29+AS+%3Fdistance%29%0A++FILTER+%28%3Fdist+%3C%3D+1000%29%0A%7D%0AORDER+BY+ASC%28%3Fdist%29
-
-      console.log( url );
-
-      // render topics
       // TODO: get the success/fail result of the query (failure modes: 0 results found, query timed out, ...)
       // lat;lon;radius
-      let custom = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
+      let geo = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
 
-      //parentref.postMessage({ event_id: 'run-query', data: { url: url, custom: custom } }, '*' );
-
-      // TODO: send back "lat;lon;radius" to explore-app 
-      parentref.postMessage({ event_id: 'set-geosearch', data: { custom: custom } }, '*' );
+      parentref.postMessage({ event_id: 'set-geosearch', data: { geofilter: geo } }, '*' );
 
     }
 
