@@ -254,8 +254,6 @@ function showTopics( loc ){
 
       myPopup.setContent(`lon = ${loc.lon.toFixed(5)}<br/>lat = ${loc.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
 
-      // TODO: get the success/fail result of the query (failure modes: 0 results found, query timed out, ...)
-      // lat;lon;radius
       let geo = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
 
       parentref.postMessage({ event_id: 'set-geosearch', data: { geofilter: geo } }, '*' );

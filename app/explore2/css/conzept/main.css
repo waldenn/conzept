@@ -2638,9 +2638,8 @@ input#geofilter {
 
 #geofilter-popover {
   display: none;
-  width: 50%;
-  height: 50%;
-  display: none;
+  width: 90% !important;
+  height: 50vh !important;
   background: white !important;
   margin-top: 20vh !important;
 }
