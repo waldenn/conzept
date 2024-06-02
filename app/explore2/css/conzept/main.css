@@ -70,10 +70,13 @@
   left: 2.5em;
 }
 
-#my-cy-fetch-more {
+#my-cy-update-layout {
   left: 4.5em;
 }
 
+#my-cy-fetch-more {
+  left: 6.5em;
+}
 
 .my-cy-node:selected {
   overlay-color: blue;

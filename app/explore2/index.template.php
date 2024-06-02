@@ -310,6 +310,17 @@ $sticky_html = '
           <option value="50">50</option>
         </select>
 
+        <span class="search-option-label"><span id="app-menu-filter-by-location">location filter</span>: </span>
+        <span class="geofilter">
+          <button class="btn" popovertarget="geofilter-popover"><i class="fa-solid fa-location-dot"></i></button> &nbsp;
+          <input type="text" id="geofilter">
+          <div id="geofilter-popover" class="resizer" popover="auto">
+
+            <iframe id="geospatial-search-frame" class="resized" title="geospatial search" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=${explore.language}&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="70vw height="70vh%" loading="lazy">geofilter iframe</iframe>
+
+          </div>
+        </span>
+
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       </div>
@@ -468,7 +479,7 @@ $settings_html = '
                   <label>
                   <input type="checkbox" id="graphmode">
                   <span class="lever"></span>
-                  <span id="app-menu-graphmode"></span>
+                  <span id="app-menu-graphmode"></span> (experimental)
                   </label>
                 </div>
 
@@ -477,7 +488,7 @@ $settings_html = '
                   <label>
                   <input type="checkbox" id="linkpreview">
                   <span class="lever"></span>
-                  <span id="app-menu-link-preview"></span>
+                  <span id="app-menu-link-preview"></span> (Wikipedia)
                   </label>
                   <br/>
                 </div>
@@ -699,7 +710,7 @@ $settings_html = '
               <details id="detail-geospatial-search" class="special-detail" title="geospatial search" style="display:none;">
 
                 <summary>
-                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search-title">geospatial search</span>
+                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search-title"></span> (Wikidata)
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geospatial_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 

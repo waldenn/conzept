@@ -1,5 +1,7 @@
 'use strict';
 
+let cy = {};
+
 const explore_default = {
 
   host                : CONZEPT_HOSTNAME,
@@ -54,6 +56,7 @@ const explore_default = {
   filterby_param      : getParameterByName('filterby') || undefined,// requested filter-key
   datemin_param       : getParameterByName('datemin') || undefined, // requested minimum date
   datemax_param       : getParameterByName('datemax') || undefined, // requested maximum date
+  geofilter_param     : getParameterByName('geofilter') || undefined,// requested geofilter (lat;lon;radius)
   batchsize_param     : getParameterByName('batchsize') || undefined,// requested datasource nr-of-results-per-page
   commands_param      : getParameterByName('commands') || undefined,// requested 'commands'
 

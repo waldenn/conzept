@@ -1824,10 +1824,11 @@ async function fetchAutocompleteData( term ) {
     let d = datasources[ source ];
 
     // defaults
-    let filterby        = '';
-    let sortby          = '';
-    let datemin         = '';
-    let datemax         = '';
+    let filterby  = '';
+    let sortby    = '';
+    let datemin   = '';
+    let datemax   = '';
+    let geofilter = '';
 
     //console.log('fetchAutocompleteData(): ');
 
@@ -1880,6 +1881,15 @@ async function fetchAutocompleteData( term ) {
     else { // dont use the incomplete date-range
       datemin = '';
       datemax = '';
+    }
+
+    if ( valid( explore.geofilter ) ){ // geofilter request
+
+      console.log('TODO: set geofilter datasource-URL values');
+
+    }
+    else {
+      // ...
     }
 
     // new Date( datemin ).toISOString()
@@ -2399,6 +2409,35 @@ function setupSearch() {
 
   });
 
+  $('#geofilter').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    console.log('geofilter changed to: ', $('#geofilter').val() );
+
+    if ( valid( $('#geofilter').val() ) ){
+
+      explore.geofilter        = $('#geofilter').val();
+      explore.geofilter_param  = $('#geofilter').val();
+
+      setParameter( 'geofilter', explore.geofilter, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+    else {
+
+      explore.geofilter        = '';
+      explore.geofilter_param  = '';
+
+      setParameter( 'geofilter', explore.geofilter, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+
+  });
+
   $('#sortby').on( 'change', function (e) {
 
     e.preventDefault();
@@ -2422,35 +2461,6 @@ function setupSearch() {
 
       $('a.submitSearch').trigger('click'); // trigger a new search
 
-
-    }
-
-  });
-
-  $('#filterby').on( 'change', function (e) {
-
-    e.preventDefault();
-
-    //console.log('filter changed to: ', $('#filterby').val() );
-
-    if ( valid_filter_options.includes( $('#filterby').val() ) ){
-
-      explore.filterby        = $('#filterby').val();
-      explore.filterby_param  = $('#filterby').val();
-
-      setParameter( 'filterby', explore.filterby, explore.hash );
-
-      $('a.submitSearch').trigger('click'); // trigger a new search
-
-    }
-    else {
-
-      explore.filterby        = '';
-      explore.filterby_param  = '';
-
-      setParameter( 'filterby', explore.filterby, explore.hash );
-
-      $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
 
@@ -2707,6 +2717,7 @@ function setGraphmode() {
 
         '<a id="my-cy-fullscreen" class="cy-button" href="javascript:void(0)" title="toggle fullscreen graph view" aria-label="toggle fullscreen graph view" role="button" onclick="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }" ontouchstart="if ( screenfull.isFullscreen ){ screenfull.exit(); } else { screenfull.request( document.getElementById(&quot;my-cy&quot;) ); }"><i class="fa-solid fa-expand"></i></a>' +
         '<a id="my-cy-fit-to-view" class="cy-button" href="javascript:void(0)" title="fit to view" aria-label="fit to view" role="button" onclick="cy.fit()" ontouchstart="cy.fit()"><i class="fa-solid fa-grip"></i></a>' +
+        '<a href="javascript:void(0)" id="my-cy-update-layout" class="cy-button" role="button" title="update graph layout" onclick="updateCytoscapeLayout()" ontouchstart="updateCytoscapeLayout()"><i class="fa-solid fa-star-of-life"></i></a>' +
         '<a href="javascript:void(0)" id="my-cy-fetch-more" class="cy-button" role="button" title="fetch more graph view results" onclick="loadNextPage()" ontouchstart="loadNextPage()"><i class="fa-solid fa-circle-plus"></i></a>'
 
       );
@@ -3553,6 +3564,19 @@ function setupLanguage(){
     if ( valid_filter_options.includes( explore.filterby ) ){
 
       $('#filterby').val( explore.filterby );
+
+    }
+
+  }
+
+  // determine geofilter
+  if ( valid( explore.geofilter_param ) ){
+
+    explore.geofilter = explore.geofilter_param;
+
+    if ( valid( explore.geofilter ) ){
+
+      $('#geofilter').val( explore.geofilter );
 
     }
 
@@ -4592,6 +4616,9 @@ function setupURL() {
 
     // set filter-key
     explore.filterby = getParameterByName('filterby');
+
+    // set geofilter-key
+    explore.geofilter = getParameterByName('geofilter');
 
     // set batchsize
     explore.batchsize = getParameterByName('batchsize');
@@ -6643,19 +6670,24 @@ async function renderTopics( inputs ){
 
     Object.keys( inputs ).forEach(( key, index ) => {
 
-      //console.log( key, inputs[ key ].data.value[0].source.data.query.search  );
-
       let parent_node_id = '';
 
       // add graph node
       if ( valid( explore.graphmode ) ){
 
+        parent_node_id = key;
+
         // only on the first page: create a datasource parent-node
         if ( explore.page === 1 ){
 
-          parent_node_id = `n${cy.nodes().length}`;
+          // FIXME: why is there a duplicate node, even after clearGraph()?
+          if ( cy.getElementById( key ).length > 0 ){ // node with this ID already exists!
 
-          cy.add( cy_node_def( key, `${key} datasource: ${ parent_node_id }` ), '' ); // NOTE: node without a parent node
+            cy.remove( cy.getElementById( key ) );
+
+          }
+
+          cy.add( cy_node_def( key, `${key} datasource: ${ parent_node_id }`, `${key} datasource: ${ parent_node_id }`, '' ) ); // NOTE: node without a parent node
 
         }
 
@@ -6977,31 +7009,38 @@ function addTopics( source, list, parent_node_id ){
       source        : source,
     }
 
-    const html_result_list = createItemHtml( args );
-
-    // wikipedia article
     $('#results').append( html_result_list );
 
     // add graph node
     if ( valid( explore.graphmode ) ){
 
-      console.log( 'ID before add: ', cy.nodes().length );
+      // add the topic node
+      let cy_topic_def = cy_node_def( title, html_result_list, parent_node_id );
+      cy.add( cy_topic_def );
 
-      // topic node
-      cy.add( cy_node_def( title, html_result_list, parent_node_id ) );
+      if ( valid( parent_node_id ) ){
 
-      console.log( 'ID after add: ', cy.nodes().length );
+        // get parent-node
+        let cy_parent_node = cy.getElementById( parent_node_id );
 
-      let cy_topic_id = cy.nodes().length;
+        // create edge from topic-node to parent-datasource-node
+        let new_edge = {
 
-      // get parent-node ref
-      let cy_parent_node = cy.getElementById( parent_node );
+          'data': {
 
-      // create edge from topic-node to parent-datasource-node
-      let new_edge_cydef = {'data': {'id': cy_topic_id + '_' + parent_node_id, 'source': cy_topic_id, 'target': parent_node_id }};
+            'group':  'edges',
+            'id':     cy_topic_def.data.id + '_' + parent_node_id,
+            'source': cy_topic_def.data.id,
+            'target': parent_node_id,
 
-      // add the edge
-      cy.add( new_edge_cydef );
+          }
+
+        };
+
+        // add the edge
+        cy.add( new_edge );
+
+      }
 
     }
 
@@ -7745,9 +7784,9 @@ function updatePushState( title, mode ){
     // encode any path-influencing (URL-reloading relevant) properties correcly first:
     const t = title.replace('/', '%252F').replace('?', '%253F'); //.replace(' ', '%20');
 
-    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.datemin + p.datemax + p.batchsize + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
+    const url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + '&t=' + explore.type +  p.filterby + p.sortby + p.datemin + p.datemax + p.geofilter + p.batchsize + p.i + p.u + p.c + p.t2 + p.i2 + p.u2 + p.c2 + p.m + p.v + p.f + p.theme + '&s=' + explore.show_sidebar + p.query + p.commands + '#' + explore.hash.replace(/#/g, '');
 
-    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby +  p.datemin + p.datemax + p.batchsize + p.i + '&t=' + explore.type + p.u + p.query;
+    const linked_url = 'https://' + explore.host + explore.base + '/explore/' + t + '?l=' + explore.language + p.ds + p.d + p.filterby + p.sortby +  p.datemin + p.datemax + p.geofilter + p.batchsize + p.i + '&t=' + explore.type + p.u + p.query;
 
     $('link[rel=canonical]').attr('href', linked_url );
     $('meta[property="og:url"]').attr('content', linked_url );
@@ -8059,6 +8098,13 @@ function buildURLParameters(){ // builds a URL state object from the current sta
 
     if ( !valid( explore.datemax ) || explore.datemax === 'none' ){ explore.datemax = '' } else {
       p.datemax = '&datemax=' + explore.datemax;
+    }
+
+    // geofilter parameter
+    p.geofilter = '';
+
+    if ( !valid( explore.geofilter ) || explore.geofilter === 'none' ){ explore.geofilter = '' } else {
+      p.geofilter = '&geofilter=' + explore.geofilter;
     }
 
     // batchsize parameter
@@ -8874,6 +8920,20 @@ function receiveMessage(event){
     if ( valid( [ event.data.data.url, event.data.data.custom ] ) ){
 
       doGeospatialSearch( event.data.data.url, event.data.data.custom );
+
+    }
+
+  }
+  else if ( event.data.event_id === 'set-geosearch' ){
+
+    if ( valid( [ event.data.data.custom ] ) ){
+
+      // set "geofilter" parameter
+      explore.geofilter  = event.data.data.custom; // 'lat;lon;radius'
+
+      console.log( explore.geofilter );
+
+      updatePushState( explore.q, 'add' );
 
     }
 
@@ -10831,6 +10891,8 @@ async function fetchDatasources(){
     let datemin         = '';
     let datemax         = '';
 
+    let geofilter       = '';
+
     if ( valid( explore.filterby ) ){ // filter requested
 
       if ( d.media.includes( explore.filterby ) ){ // filter-media-type is supported by the datasource
@@ -10885,6 +10947,15 @@ async function fetchDatasources(){
       datemax = '';
     }
 
+    if ( valid( explore.geofilter ) ){ // geofilter request
+
+      console.log('TODO: set geofilter datasource-URL values');
+
+    }
+    else {
+      // ...
+    }
+
 		if ( explore.page === 1 ){ // on first page
 
       if ( d.protocol === 'sparql' && !d.done ){ // SPARQL-fetch: first set the "count url"
@@ -10923,6 +10994,8 @@ async function fetchDatasources(){
 
     let datemin         = '';
     let datemax         = '';
+
+    let geofilter       = '';
 
 		let qid = '';
 
@@ -10983,6 +11056,15 @@ async function fetchDatasources(){
     else { // dont use the incomplete date-range
       datemin = '';
       datemax = '';
+    }
+
+    if ( valid( explore.geofilter ) ){ // geofilter request
+
+      console.log('TODO: set geofilter datasource-URL values');
+
+    }
+    else {
+      // ...
     }
 
 		if ( explore.page === 1 && d.protocol === 'sparql' && !d.done ){ // SPARQL-fetch: first set the "count url"
