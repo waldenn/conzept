@@ -276,6 +276,23 @@ $sticky_html = '
           <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
+        <span class="search-option-label"><span id="app-menu-filter-by-date-range">date range</span>: </span>
+        <span class="date-range">
+          <input id="datemin" class="date-input" aria-label="Date from" max="" min="" placeholder="yyyy-mm-dd" type="date">
+          <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
+        </span>
+
+        <span class="search-option-label"><span id="app-menu-filter-by-location">near</span>: </span>
+        <span class="geofilter">
+          <button class="btn" popovertarget="geofilter-popover"><i class="fa-solid fa-location-dot"></i></button> &nbsp;
+          <input type="text" id="geofilter">
+          <div id="geofilter-popover" class="resizer" popover="auto" style="display:none;">
+
+            <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=en&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="50vw height="50vh%" loading="lazy">geofilter map</iframe>
+
+          </div>
+        </span>
+
         <span class="search-option-label"><span id="app-menu-sort-by">sort by</span>: </span>
           <select id="sortby" class="browser-default">
             <option value="none" selected></option>
@@ -294,12 +311,6 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <span class="search-option-label"><span id="app-menu-filter-by-date-range">date range</span>: </span>
-        <span class="date-range">
-          <input id="datemin" class="date-input" aria-label="Date from" max="" min="" placeholder="yyyy-mm-dd" type="date">
-          <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
-        </span>
-
         <span class="search-option-label"><span id="app-menu-batch-size">batch size</span>: </span><select id="batch-size" class="browser-default">
           <option value="1">1</option>
           <option value="5" selected>5</option>
@@ -309,17 +320,6 @@ $sticky_html = '
           <option value="40">40</option>
           <option value="50">50</option>
         </select>
-
-        <span class="search-option-label"><span id="app-menu-filter-by-location">location filter</span>: </span>
-        <span class="geofilter">
-          <button class="btn" popovertarget="geofilter-popover"><i class="fa-solid fa-location-dot"></i></button> &nbsp;
-          <input type="text" id="geofilter">
-          <div id="geofilter-popover" class="resizer" popover="auto" style="display:none;">
-
-            <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=${explore.language}&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="70vw height="70vh%" loading="lazy">geofilter map</iframe>
-
-          </div>
-        </span>
 
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 

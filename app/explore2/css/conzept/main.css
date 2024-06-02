@@ -2596,13 +2596,14 @@ h1 {
 
 #search-options {
   overflow-x: scroll;
+  overflow-y: hidden;
   scrollbar-width: thin;
   font-size: smaller;
   margin-left: 0.3em;
   background-color: #fbfaf9;
 }
 
-#search-options select, #search-options .date-range {
+#search-options select, #search-options .date-range, #geofilter {
   font-family: inherit;
   font-size: larger;
   background: inherit;
@@ -2627,6 +2628,21 @@ h1 {
 .date-input {
   width: 8em !important;
   margin-right: 1em !important;
+}
+
+input#geofilter {
+  max-width: 10em;
+  width: min-content;
+  line-height: 100%;
+}
+
+#geofilter-popover {
+  display: none;
+  width: 50%;
+  height: 50%;
+  display: none;
+  background: white !important;
+  margin-top: 20vh !important;
 }
 
 #language {
