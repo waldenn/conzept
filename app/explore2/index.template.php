@@ -316,7 +316,7 @@ $sticky_html = '
           <input type="text" id="geofilter">
           <div id="geofilter-popover" class="resizer" popover="auto">
 
-            <iframe id="geospatial-search-frame" class="resized" title="geospatial search" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=${explore.language}&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="70vw height="70vh%" loading="lazy">geofilter iframe</iframe>
+            <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=${explore.language}&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="70vw height="70vh%" loading="lazy">geofilter map</iframe>
 
           </div>
         </span>
