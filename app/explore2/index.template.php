@@ -314,7 +314,7 @@ $sticky_html = '
         <span class="geofilter">
           <button class="btn" popovertarget="geofilter-popover"><i class="fa-solid fa-location-dot"></i></button> &nbsp;
           <input type="text" id="geofilter">
-          <div id="geofilter-popover" class="resizer" popover="auto">
+          <div id="geofilter-popover" class="resizer" popover="auto" style="display:none;">
 
             <iframe id="geofilter-map" class="resized" title="geofilter map" role="application" loading="lazy" style="min-height: 401px" src="https://CONZEPT_HOSTNAME/app/geofilter/index.html?l=${explore.language}&lat=&lon=&radius=" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="70vw height="70vh%" loading="lazy">geofilter map</iframe>
 

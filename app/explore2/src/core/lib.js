@@ -7009,6 +7009,8 @@ function addTopics( source, list, parent_node_id ){
       source        : source,
     }
 
+    const html_result_list = createItemHtml( args );
+
     $('#results').append( html_result_list );
 
     // add graph node
