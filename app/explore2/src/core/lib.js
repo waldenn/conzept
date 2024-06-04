@@ -8959,7 +8959,7 @@ function receiveMessage(event){
 
       if ( valid( explore.geofilter ) ){
 
-        $('#geofilter').val( explore.geofilter );
+        $('#geofilter').val( explore.geofilter ).change();
 
       }
 

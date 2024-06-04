@@ -283,3 +283,9 @@ if ( valid( [ window.app.lat, window.app.lat, window.app.radius ] ) ){
   globe.planet.camera.flyDistance( ell.lonLatToCartesian( point ), distance );
 
 }
+
+function hideGeosearch(){
+
+  parentref.postMessage({ event_id: 'hide-geosearch', data: { geofilter: geo } }, '*' );
+
+}
