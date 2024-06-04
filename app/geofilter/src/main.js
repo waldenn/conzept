@@ -252,7 +252,7 @@ function showTopics( loc ){
 
     if ( valid( loc.lon ) ){
 
-      myPopup.setContent(`lon = ${loc.lon.toFixed(5)}<br/>lat = ${loc.lat.toFixed(5)}<br/>height(msl) = ${Math.round(h)} m`);
+      myPopup.setContent(`lon = ${loc.lon.toFixed(5)}<br/>lat = ${loc.lat.toFixed(5)}<br/>radius = ${ window.app.radius }<br/>height(msl) = ${Math.round(h)} m`);
 
       let geo = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius;
 

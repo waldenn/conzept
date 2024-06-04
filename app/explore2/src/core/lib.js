@@ -4028,6 +4028,8 @@ async function updateLocaleInterface(){
 
   $('#app-menu-filter-by-date-range').html( explore.banana.i18n('app-menu-filter-by-date-range') );
 
+  $('#app-menu-near').html( explore.banana.i18n('app-menu-near') );
+
   $('#app-menu-sort-by').html( explore.banana.i18n('app-menu-sort-by') );
   $('#app-menu-sort-by-option-relevance-desc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-desc') );
   $('#app-menu-sort-by-option-relevance-asc').html( explore.banana.i18n('app-menu-sort-by-option-relevance-asc') );
