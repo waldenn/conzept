@@ -282,7 +282,7 @@ $sticky_html = '
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
         </span>
 
-        <span class="search-option-label"><span id="app-menu-filter-by-location">near</span>: </span>
+        <span class="search-option-label"><span id="app-menu-near"></span>: </span>
         <span class="geofilter">
           <button id="geofilter-button" class="btn" title="pick location from map" popovertarget="geofilter-popover"><i class="fa-solid fa-globe"></i></button> &nbsp;
           <input type="text" id="geofilter">
@@ -392,7 +392,7 @@ $settings_html = '
                   <label>
                   <input type="checkbox" id="geospatial-search">
                   <span class="lever"></span>
-                  <span id="app-menu-geospatial-search">geospatial search</span>
+                  <span id="app-menu-geospatial-search">geospatial search</span> (Wikidata)
                   </label>
                   <br/>
                 </div>
@@ -710,7 +710,7 @@ $settings_html = '
               <details id="detail-geospatial-search" class="special-detail" title="geospatial search" style="display:none;">
 
                 <summary>
-                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search-title"></span> (Wikidata)
+                  <i title="geospatial search" class="fa-solid fa-search fa-flip-horizontal" title="geospatial search"></i> <span id="app-menu-geospatial-search-title"></span>
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#geospatial_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 

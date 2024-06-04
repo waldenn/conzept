@@ -1856,7 +1856,9 @@ async function fetchAutocompleteData( term ) {
     let sortby    = '';
     let datemin   = '';
     let datemax   = '';
-    let geofilter = '';
+    let geofilter_lat     = '';
+    let geofilter_lon     = '';
+    let geofilter_radius  = '';
 
     //console.log('fetchAutocompleteData(): ');
 
@@ -1906,18 +1908,13 @@ async function fetchAutocompleteData( term ) {
       datemax = new Date( explore.datemax ).toISOString();
 
     }
-    else { // dont use the incomplete date-range
-      datemin = '';
-      datemax = '';
-    }
 
     if ( valid( explore.geofilter ) ){ // geofilter request
 
-      console.log('TODO: set geofilter datasource-URL values');
+      geofilter_lat     = explore.geofilter.split(';')[0];
+      geofilter_lon     = explore.geofilter.split(';')[1];
+      geofilter_radius  = explore.geofilter.split(';')[2];
 
-    }
-    else {
-      // ...
     }
 
     // new Date( datemin ).toISOString()
@@ -8971,6 +8968,14 @@ function receiveMessage(event){
     }
 
   }
+  else if ( event.data.event_id === 'hide-geosearch' ){
+
+    const geofilterPopover  = document.getElementById( 'geofilter-popover' );
+
+    $('#geofilter-popover').hide();
+    geofilterPopover.hidePopover();
+
+  }
   else if ( event.data.event_id === 'structured-query' ){
 
     $('#structured-search').prop('checked', true).change();
@@ -10924,7 +10929,9 @@ async function fetchDatasources(){
     let datemin         = '';
     let datemax         = '';
 
-    let geofilter       = '';
+    let geofilter_lat     = '';
+    let geofilter_lon     = '';
+    let geofilter_radius  = '';
 
     if ( valid( explore.filterby ) ){ // filter requested
 
@@ -10975,18 +10982,13 @@ async function fetchDatasources(){
       datemax = new Date( explore.datemax ).toISOString();
 
     }
-    else { // dont use the incomplete date-range
-      datemin = '';
-      datemax = '';
-    }
 
     if ( valid( explore.geofilter ) ){ // geofilter request
 
-      console.log('TODO: set geofilter datasource-URL values');
+      geofilter_lat     = explore.geofilter.split(';')[0];
+      geofilter_lon     = explore.geofilter.split(';')[1];
+      geofilter_radius  = explore.geofilter.split(';')[2];
 
-    }
-    else {
-      // ...
     }
 
 		if ( explore.page === 1 ){ // on first page
@@ -11028,7 +11030,9 @@ async function fetchDatasources(){
     let datemin         = '';
     let datemax         = '';
 
-    let geofilter       = '';
+    let geofilter_lat     = '';
+    let geofilter_lon     = '';
+    let geofilter_radius  = '';
 
 		let qid = '';
 
@@ -11086,18 +11090,13 @@ async function fetchDatasources(){
       datemax = new Date( explore.datemax ).toISOString();
 
     }
-    else { // dont use the incomplete date-range
-      datemin = '';
-      datemax = '';
-    }
 
     if ( valid( explore.geofilter ) ){ // geofilter request
 
-      console.log('TODO: set geofilter datasource-URL values');
+      geofilter_lat     = explore.geofilter.split(';')[0];
+      geofilter_lon     = explore.geofilter.split(';')[1];
+      geofilter_radius  = explore.geofilter.split(';')[2];
 
-    }
-    else {
-      // ...
     }
 
 		if ( explore.page === 1 && d.protocol === 'sparql' && !d.done ){ // SPARQL-fetch: first set the "count url"
