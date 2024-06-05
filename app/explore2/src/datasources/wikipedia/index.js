@@ -60,6 +60,12 @@ function processResultsWikipedia( topicResults, struct, index ){
       data_titles.push( item.title );
       //data_titles.push( encodeURIComponent( item.title ) );
 
+      if ( valid( item.snippet )  ){
+
+        item.snippet = highlightTerms( stripHtml( item.snippet ) );
+
+      }
+
     });
 
     const data_titles_ = data_titles.join('|');

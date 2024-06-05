@@ -6818,9 +6818,9 @@ async function renderTopics( inputs ){
 			$('#next').css("display", "inline-block");
     }
  
-    // QQQ
     //console.log( 'explore.totalRecords: ', explore.totalRecords, ', combined_pagesize: ', combined_pagesize, ', explore.remaining_topics: ', '...', ', page: ', explore.page );
 
+    /*
     // FIXME why does the highlighting not work when the following "instance" line is moved to the to top the function?
     const markjs_instance = new Mark( document.querySelectorAll( '.p' + explore.page ) ) ;
 
@@ -6841,6 +6841,7 @@ async function renderTopics( inputs ){
       //  'limiters': [',', '.'],
       //},
     });
+    */
 
     if ( valid( explore.tab ) ){
       explore.tabsInstance.select( explore.tab );
