@@ -561,7 +561,7 @@ $settings_html = '
                     <br/><br/>
 
                     <label style="display:inline;" for="voice-rate"><span id="app-menu-speed"></span>: <span id="voicerate"></span></label>
-                    <input id="voice-rate" type="range" min="0.5" max="1.5" step="0.01" value="1">
+                    <input id="voice-rate" type="range" min="0.5" max="2.0" step="0.01" value="1">
 
                     <br/><br/>
 

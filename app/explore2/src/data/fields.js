@@ -18174,6 +18174,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 188,
 },
 
+'mdpi_search' : {
+  create_condition: true,
+  title: 'MDPI - Multidisciplinary Digital Publishing Institute',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.mdpi.com/search?q=${title_quoted}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'MDPI',
+  section: 'science-search-tools',
+  rank: 189,
+},
+
 'scientific_american' : {
   create_condition: true,
   title: 'Scientific American',

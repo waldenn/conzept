@@ -41,8 +41,11 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    // Wikipedia API: https://www.mediawiki.org/wiki/API:Main_page
+    // Wikipedia API:
+    //  https://www.mediawiki.org/wiki/API:Main_page
+    //  https://www.mediawiki.org/wiki/Help:CirrusSearch#Geo_Search
     url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=0|14&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
+    //url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=0|14&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}&${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "srsearch=nearcoord%3A" + geofilter_radius / 1000 + "km%2C" + geofilter_lat + "%2C" + geofilter_lon : "" }',
     // SORTING: 
     icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
     color:                  '#00B1BB', // '#c8ccd16b',

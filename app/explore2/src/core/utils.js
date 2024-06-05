@@ -1569,20 +1569,57 @@ function getSearchTerm(){
 
   const searchterm = $('#srsearch').val();
 
-  return searchterm;
+  return searchterm.trim();
+
+}
+
+function isQuoted( str ) {
+
+  if ( ! valid( str ) ){
+
+    return false;
+
+  }
+  else if ( str.length < 2 ){
+
+    return false;
+
+  }
+
+  const firstChar = str.trim().charAt(0);
+  const lastChar  = str.trim().slice(-1);
+
+  return ( firstChar === '"' && lastChar === '"');
 
 }
 
 function highlightTerms( phrase ) {
 
-  // split the search-phrase into words
-  const words = getSearchTerm().replace(/"/g, '').split(/\s+/);
+  if ( isQuoted( getSearchTerm() ) ){
 
-  // create a regexp to match each word
-  const regex = new RegExp("\\b(" + words.join("|") + ")\\b", "gi");
+    return phrase.replace(
 
-  // markup each matched word
-  return phrase.replace(regex, '<span class="highlight">$1</span>');
+      new RegExp( getSearchTerm().replace(/"/g, ''), 'gi'),
+      '<span class="highlight">' + getSearchTerm().replace(/"/g, '') + '</span>'
+
+    );
+
+  }
+  else {
+
+    // TODO: handle one or more quoted-strings WITHIN the search terms
+    // ...
+
+    // split the search-phrase into words
+    const words = getSearchTerm().replace(/"/g, '').split(/\s+/);
+
+    // create a regexp to match each word
+    const regex = new RegExp("\\b(" + words.join("|") + ")\\b", "gi");
+
+    // markup each matched word
+    return phrase.replace(regex, '<span class="highlight">$1</span>');
+
+  }
 
 }
 
