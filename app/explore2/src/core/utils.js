@@ -1573,7 +1573,7 @@ function getSearchTerm(){
 
 }
 
-function isQuoted( str ) {
+function isFullyQuoted( str ) {
 
   if ( ! valid( str ) ){
 
@@ -1586,16 +1586,64 @@ function isQuoted( str ) {
 
   }
 
-  const firstChar = str.trim().charAt(0);
-  const lastChar  = str.trim().slice(-1);
+  const nr_of_double_quotes = str.split('"').length - 1;
 
-  return ( firstChar === '"' && lastChar === '"');
+  if ( nr_of_double_quotes === 2 ){
+
+    const firstChar = str.trim().charAt(0);
+    const lastChar  = str.trim().slice(-1);
+
+    return ( firstChar === '"' && lastChar === '"');
+
+  }
+  else {
+
+    return false;
+
+  }
+
+}
+
+function isPartlyQuoted( str ) {
+
+  if ( ! valid( str ) ){
+
+    return false;
+
+  }
+
+  const nr_of_double_quotes = str.split('"').length - 1;
+
+  if ( nr_of_double_quotes >= 2 && nr_of_double_quotes % 2 === 0 ){
+
+    return true;
+
+  }
+  else {
+
+    return false;
+
+  }
+
+}
+
+
+function highlightEachWord( phrase ){
+
+  // split the search-phrase into words
+  const words = getSearchTerm().replace(/"/g, '').split(/\s+/);
+
+  // create a regexp to match each word
+  const regex = new RegExp("\\b(" + words.join("|") + ")\\b", "gi");
+
+  // markup each matched word
+  return phrase.replace(regex, '<span class="highlight">$1</span>');
 
 }
 
 function highlightTerms( phrase ) {
 
-  if ( isQuoted( getSearchTerm() ) ){
+  if ( isFullyQuoted( getSearchTerm() ) ){ // highlight as a one phrase
 
     return phrase.replace(
 
@@ -1605,19 +1653,15 @@ function highlightTerms( phrase ) {
     );
 
   }
-  else {
+  if ( isPartlyQuoted( getSearchTerm() ) ){ // mix of quoted phrases and single words 
 
     // TODO: handle one or more quoted-strings WITHIN the search terms
-    // ...
+    return highlightEachWord( phrase ); 
 
-    // split the search-phrase into words
-    const words = getSearchTerm().replace(/"/g, '').split(/\s+/);
+  }
+  else { // no double-quotes in use: highlight all words separately
 
-    // create a regexp to match each word
-    const regex = new RegExp("\\b(" + words.join("|") + ")\\b", "gi");
-
-    // markup each matched word
-    return phrase.replace(regex, '<span class="highlight">$1</span>');
+    return highlightEachWord( phrase ); 
 
   }
 
