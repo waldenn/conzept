@@ -2439,6 +2439,35 @@ function setupSearch() {
 
   });
 
+  $('#filterby').on( 'change', function (e) {
+
+    e.preventDefault();
+
+    //console.log('filter changed to: ', $('#filterby').val() );
+
+    if ( valid_filter_options.includes( $('#filterby').val() ) ){
+
+      explore.filterby        = $('#filterby').val();
+      explore.filterby_param  = $('#filterby').val();
+
+      setParameter( 'filterby', explore.filterby, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+    else {
+
+      explore.filterby        = '';
+      explore.filterby_param  = '';
+
+      setParameter( 'filterby', explore.filterby, explore.hash );
+
+      $('a.submitSearch').trigger('click'); // trigger a new search
+
+    }
+
+  });
+
   $('#geofilter').on( 'change', function (e) {
 
     e.preventDefault();
