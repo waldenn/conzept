@@ -789,9 +789,16 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     item          = { dist: '' };
 
   }
+  else if ( explore.hide_datasource_results.includes( source ) ){
+
+    hide = 'display:none;';
+
+  }
 
   if ( title.startsWith( explore.lang_category + ':' ) ){ // category page
+
     hide_meta  = 'display:none;';
+
   }
 
   // set tag_icon

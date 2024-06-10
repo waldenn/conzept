@@ -2000,6 +2000,7 @@ function setupSearch() {
           explore.query     = '';
           explore.hash      = '';
           explore.commands  = '';
+          explore.hide_datasource_results = [];
 
           explore.type  = 'string'; // set to default type
 
@@ -2122,8 +2123,10 @@ function setupSearch() {
     // reset any structured-search query-data
     explore.query     = '';
     explore.commands  = '';
+    explore.hide_datasource_results = [];
 
     explore.type  = 'string'; // set default type
+
 
     // discern user-click from synthetic-click
     if ( event.hasOwnProperty('originalEvent') ){ // user-click
@@ -2206,6 +2209,7 @@ function setupSearch() {
       explore.query     = '';
       explore.hash      = '';
       explore.commands  = '';
+      explore.hide_datasource_results = [];
 
       if ( explore.isMobile ){
 
@@ -2226,6 +2230,7 @@ function setupSearch() {
     // reset any structured-search query-data
     explore.query     = '';
     explore.commands  = '';
+    explore.hide_datasource_results = [];
 
     e.preventDefault();
 
@@ -4906,7 +4911,8 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   }
 
-  explore.topic_cursor = 'n1-1';
+  explore.topic_cursor            = 'n1-1';
+  explore.hide_datasource_results = [];
 
   clearGraph();
   $('#my-cy').hide();
@@ -6789,7 +6795,7 @@ async function renderTopics( inputs ){
 
       if ( valid( d.icon ) ){
 
-        datasources_used_html.push( `<div class="datasource-hits" title="${ d.name + ' : ' + d.total }" data-number="${ d.total }"><span class="datasource-hit-icon icon ${ valid( [ explore.darkmode, d.icon_invert ] )? 'invert' : '' }">${d.icon}</span> <span class="datasource-hits-label">${ num_of_hits }</span></div>` );
+        datasources_used_html.push( `<a onclick="toggleDatasourceResults( &quot;${source}&quot; )" class="datasource-hits" title="${ d.name + ' : ' + d.total }" data-source="${ source }"  data-number="${ d.total }"><span class="datasource-hit-icon icon ${ valid( [ explore.darkmode, d.icon_invert ] )? 'invert' : '' }">${d.icon}</span> <span class="datasource-hits-label">${ num_of_hits }</span></a>` );
 
       }
 
@@ -6954,6 +6960,30 @@ async function renderTopics( inputs ){
   explore.preventSliding = false;
 
 }
+
+function toggleDatasourceResults( source ){
+
+  const sel_icon = `.datasource-hits[data-source="${ source }"]`;
+  const sel_results = `.entry.articles[data-source="${ source }"]`;                                                                                                                                                                                                   $( sel_results ).toggle();
+  let visible = $( sel_results ).first().is( ':visible' );
+
+  if ( visible ){
+
+    $( sel_icon ).css({ "opacity" : 1.0 })
+
+    explore.hide_datasource_results = explore.hide_datasource_results.filter( (i) => i !== source );
+    console.log( explore.hide_datasource_results );
+
+  }
+  else {
+
+    $( sel_icon ).css({ "opacity" : 0.5 })
+
+    explore.hide_datasource_results.push( source );
+    console.log( explore.hide_datasource_results );
+
+  }
+                                                                                                                                  }
 
 function addTopics( source, list, parent_node_id ){
 

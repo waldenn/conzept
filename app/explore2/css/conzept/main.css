@@ -2992,6 +2992,7 @@ body {
 
 #results a {
   color: #3f3f3f;
+  text-decoration: none !important;
 }
 
 a:link {

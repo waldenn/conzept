@@ -94,6 +94,7 @@ const explore_default = {
   datasource_set_selection: getParameterByName('ds')  || '', // requested datasource-set-key from the URL
   datasource_set      : '', // TODO: turn into a list datastructure
   datasources         : [], // active datasources
+  hide_datasource_results : [], // list of datasources to hide in the sidebar results 
 
   marks               : getParameterByName('m') || '',  // list of linemarks (m=2-4,6,30-32)
 

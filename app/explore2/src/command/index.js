@@ -1120,6 +1120,7 @@ function insertRelatedPresentationTopics( qid ){
     'P2670',  // has-parts-of-class   https://www.wikidata.org/wiki/Property:P2670  
     'P941',   // inspired-by          https://www.wikidata.org/wiki/Property:P941
     'P1552',  // has-characteristic   https://www.wikidata.org/wiki/Property:P1552
+    'P828',   // has-cause            https://www.wikidata.org/wiki/Property:P828
     'P1542',  // has-effect           https://www.wikidata.org/wiki/Property:P1542
     'P2283',  // uses                 https://www.wikidata.org/wiki/Property:P2283
     'P1365',  // replaces             https://www.wikidata.org/wiki/Property:P1365
