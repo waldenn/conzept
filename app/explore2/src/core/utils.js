@@ -2447,15 +2447,15 @@ function getCountryFromLatLon( lat, lon ){
 
   let ret = '';
 
-  let country = get_country( lat, lon ) || {};
+  let country = get_country( parseFloat( lat ), parseFloat( lon ) ) || {};
 
   if ( valid( country?.code ) ){
 
-    console.log( 'country code: ', country.code, country.name );
+    //console.log( 'country code: ', country.code, country.name );
 
     Object.keys( countries ).forEach( (( qid ) => {
 
-      if ( countries[ qid ].iso3 === 'NLD' ){
+      if ( countries[ qid ].iso3 === country.code ){
 
         ret = countries[ qid ].iso2;
         
