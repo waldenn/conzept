@@ -2443,6 +2443,20 @@ function checkMaxInput( num, max ){
 
 }
 
+function getCountryFromLatLon( lat, lon ){
+
+  // TODO: add continent extraction
+  console.log( 'country: ', get_country( lat, lon ) );
+
+  return get_country( lat, lon );
+
+}
+
+// TODO getContinentFromLatLon(): this would be useful in eg. https://docs.openalex.org/api-entities/geo/regions
+//function getContinentFromLatLon( lat, lon ){
+//  ...
+// }
+
 function cleanText( text ){
 
   // escape double-quotes
@@ -2455,5 +2469,3 @@ function cleanText( text ){
   return text.replace(/(\r\n|\n|\r|`|\(|\)|\[|\])/gm, '');
 
 }
-
-
