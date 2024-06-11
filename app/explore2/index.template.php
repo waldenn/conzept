@@ -145,7 +145,7 @@ $main_script = '
   <script src="../app/explore2/node_modules/web-share-wrapper/dist/web-share-wrapper.min.js" async></script>
   <script src="../app/explore2/node_modules/proj4/dist/proj4.js" async></script>
   <script src="../app/explore2/node_modules/marked/marked.min.js" async></script>
-  <script src="../app/explore2/node_modules/country-reverse-geocoding/lib/country_reverse_geocoding.js" async></script>
+  <script src="../app/explore2/lib/country_reverse_geocoding.js" async></script>
 
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
   <script src="../app/explore2/libs/s-express-beautify.js" async></script> <!-- no dist-bundle in the NPM -->

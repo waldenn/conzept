@@ -2445,10 +2445,27 @@ function checkMaxInput( num, max ){
 
 function getCountryFromLatLon( lat, lon ){
 
-  // TODO: add continent extraction
-  console.log( 'country: ', get_country( lat, lon ) );
+  let ret = '';
 
-  return get_country( lat, lon );
+  let country = get_country( lat, lon ) || {};
+
+  if ( valid( country?.code ) ){
+
+    console.log( 'country code: ', country.code, country.name );
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( countries[ qid ].iso3 === 'NLD' ){
+
+        ret = countries[ qid ].iso2;
+        
+      }
+
+    }));
+
+  }
+
+  return ret;
 
 }
 

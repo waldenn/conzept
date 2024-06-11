@@ -860,6 +860,7 @@ const datasources = {
     tag:                    'science',
     qid:                    'Q1227538',
     protocol:               'rest',
+                            // TODO add "geofilter -> country-iso2 -> country-param
     endpoint:               'https://doaj.org/api/search/journals/', // see: https://doaj.org/api/v3/docs#!/Search/get_api_search_journals_search_query
     format:                 'json',
     connect:                'json',
@@ -1134,7 +1135,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.gleif.endpoint}?page[size]=${datasources.gleif.pagesize}&page[number]=${explore.page}&filter[entity.names]=${term}',
+    url:                    '${datasources.gleif.endpoint}?page[size]=${datasources.gleif.pagesize}&page[number]=${explore.page}&filter[entity.names]=${term}&${ valid( geofilter_country ) ? "filter%5Bentity.legalAddress.country%5D=" + geofilter_country : "" }',
     icon:                   '<img class="datasource-icon" alt="GLEIF datasource" src="/assets/icons/gleif.svg" alt="Gleif logo">',
     icon_invert:            false,
     color:                  '#51dac5',
