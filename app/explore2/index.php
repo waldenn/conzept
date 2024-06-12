@@ -265,7 +265,7 @@ $sticky_html = '
           <option value="business" id="app-menu-search-in-option-business">business</option>
         </select>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_search_in" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_in" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-filter-by">filter by</span>: </span><select id="filterby" class="browser-default">
           <option value="none" selected></option>
@@ -280,7 +280,7 @@ $sticky_html = '
           <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_filter_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#filter_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-filter-by-date-range">date range</span>: </span>
         <span class="date-range">
@@ -288,7 +288,7 @@ $sticky_html = '
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
         </span>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_date_range" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#date_range" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-near"></span>: </span>
         <span class="geofilter">
@@ -301,7 +301,7 @@ $sticky_html = '
           </div>
         </span>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_near" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#near" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-sort-by">sort by</span>: </span>
           <select id="sortby" class="browser-default">
@@ -321,7 +321,7 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_sort_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#sort_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-batch-size">batch size</span>: </span><select id="batch-size" class="browser-default">
           <option value="1">1</option>
@@ -333,7 +333,7 @@ $sticky_html = '
           <option value="50">50</option>
         </select>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_batch_size" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#batch_size" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       </div>
 

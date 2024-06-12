@@ -1878,7 +1878,14 @@ async function fetchAutocompleteData( term ) {
     let geofilter_lat     = '';
     let geofilter_lon     = '';
     let geofilter_radius  = '';
-    let geofilter_country = '';
+ 
+    if ( valid( explore.geofilter.split(';')[3] ) ){
+      geofilter_country = explore.geofilter.split(';')[3];
+    }
+    else {
+      geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+    }
+
 
     //console.log('fetchAutocompleteData(): ');
 
@@ -1934,7 +1941,13 @@ async function fetchAutocompleteData( term ) {
       geofilter_lat     = explore.geofilter.split(';')[0];
       geofilter_lon     = explore.geofilter.split(';')[1];
       geofilter_radius  = explore.geofilter.split(';')[2];
-      geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+
+      if ( valid( explore.geofilter.split(';')[3] ) ){
+        geofilter_country = explore.geofilter.split(';')[3];
+      }
+      else {
+        geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+      }
 
     }
 
@@ -3266,7 +3279,7 @@ function doDOISearch( doi ){
 
 function doGeospatialSearch( url, custom ){
 
-  explore.custom  = custom; // 'lat;lon;radius'
+  explore.custom  = custom; // 'lat;lon;radius;country'
   explore.uri     = url;
   explore.type    = 'geospatial';
 
@@ -11015,7 +11028,13 @@ async function fetchDatasources(){
     let geofilter_lat     = '';
     let geofilter_lon     = '';
     let geofilter_radius  = '';
-    let geofilter_country = '';
+
+    if ( valid( explore.geofilter.split(';')[3] ) ){
+      geofilter_country = explore.geofilter.split(';')[3];
+    }
+    else {
+      geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+    }
 
     if ( valid( explore.filterby ) ){ // filter requested
 
@@ -11072,7 +11091,13 @@ async function fetchDatasources(){
       geofilter_lat     = explore.geofilter.split(';')[0];
       geofilter_lon     = explore.geofilter.split(';')[1];
       geofilter_radius  = explore.geofilter.split(';')[2];
-      geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+
+      if ( valid( explore.geofilter.split(';')[3] ) ){
+        geofilter_country = explore.geofilter.split(';')[3];
+      }
+      else {
+        geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+      }
 
     }
 
@@ -11182,7 +11207,13 @@ async function fetchDatasources(){
       geofilter_lat     = explore.geofilter.split(';')[0];
       geofilter_lon     = explore.geofilter.split(';')[1];
       geofilter_radius  = explore.geofilter.split(';')[2];
-      geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+
+      if ( valid( explore.geofilter.split(';')[3] ) ){
+        geofilter_country = explore.geofilter.split(';')[3];
+      }
+      else {
+        geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+      }
 
     }
 

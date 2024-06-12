@@ -20,3 +20,13 @@ html, body {
 #radius {
   padding: 0.45em;
 }
+
+.prop-name {
+  min-width: fit-content;
+  display: inline-block;
+  min-width: 6em;
+}
+
+.prop-value {
+  font-weight: bold;
+}

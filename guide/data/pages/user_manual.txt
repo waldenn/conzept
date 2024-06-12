@@ -177,11 +177,15 @@ The term-based searching can be augmented with various **search options**, to fi
 Note that not all these search-options are supported by all [[datasources]], most datasources only implement a limited set.
 So when you set these search-options, be aware that the options you set will not always be reflected in the search results (for some datasources).
 
-These are the available search options:
+Below are the available search options.
 
 ==== search in ====
 
-**Datasource set** categories (these are pre-selections of individual datasources):
+The **search in** option allow you to set the **category of datasource sets** to search in. "Datasource sets" are groups of similar datasources.
+
+Note: When you toggle an individual datasource in the settings-menu, the category set in this option will be de-selected.
+
+The following categories are currently available:
   * Reference works
   * Culture
   * Science
@@ -216,7 +220,7 @@ Notes: Most datasources don't (yet) support date-range searches, but sometimes s
 
 ==== near ====
 
-Allows you to search by geolocation and country using a 3D globe popup.
+The **near** option allows you to search by geolocation and country using a 3D globe popup.
 The country is automatically inferred based on the geolocation or can be selected directly through the country-selection-mode.
 
 Most datasources dont (yet) support geolocation-based searching, but these datasources currently do:
@@ -238,7 +242,7 @@ Most datasources dont (yet) support geolocation-based searching, but these datas
 
 ==== batch size ====
 
-The **batch size** indicated the maximum amount of results to fetch per page, for each datasource.
+The **batch size** indicates the maximum amount of results to fetch per page, for each datasource.
 
 ===== structured search =====
 
