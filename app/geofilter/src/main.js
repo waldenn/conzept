@@ -243,11 +243,11 @@ function showTopics( loc, country, country_name ){
 
       myPopup.setContent(
       `<div>
-        <div><span class="prop-name">country</span> <span class="prop-value">${country_name}</span></div>
-        <div><span class="prop-name">lon:</span> <span class="prop-value">${loc.lon.toFixed(5)}</span></div>
+        <div><span class="prop-name">country</span> <span class="prop-value">${country_name} (${country})</span></div>
         <div><span class="prop-name">lat:</span> <span class="prop-value">${loc.lat.toFixed(5)}</span></div>
-        <div><span class="prop-name">radius:</span> <span class="prop-value">${ window.app.radius } m</span></div>
+        <div><span class="prop-name">lon:</span> <span class="prop-value">${loc.lon.toFixed(5)}</span></div>
         <div><span class="prop-name">height (msl):</span> <span class="prop-value">${Math.round(h)} m</span></div>
+        <div><span class="prop-name">radius:</span> <span class="prop-value">${ window.app.radius } m</span></div>
       </div>`);
 
       let geo = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius + ';' + country;
