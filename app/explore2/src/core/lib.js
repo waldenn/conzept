@@ -605,6 +605,25 @@ async function showStartPage(){
 
 }
 
+async function setupMouseNavigation(){
+
+	const container = document.getElementById('search-options');
+
+	container.addEventListener( 'wheel', function (e) {
+
+		if (e.deltaY > 0) {
+			container.scrollLeft += 100;
+			e.preventDefault(); // avoid inclusion of vertical scroll 
+		}
+		else {
+			container.scrollLeft -= 100;
+			e.preventDefault();
+		}
+
+	});
+
+}
+
 async function setupKeyboardNavigation(){
 
     document.addEventListener('keyup', e => {

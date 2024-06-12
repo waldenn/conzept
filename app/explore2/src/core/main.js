@@ -387,6 +387,7 @@ $( document ).ready( function() {
     setupFonts();
     setupSwiping();
     setupBookmarks();
+    setupmMouseNavigation();
     setupKeyboardNavigation();
     setupKeyboardCombos();
 

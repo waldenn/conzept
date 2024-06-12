@@ -2451,8 +2451,6 @@ function getCountryFromLatLon( lat, lon ){
 
   if ( valid( country?.code ) ){
 
-    //console.log( 'country code: ', country.code, country.name );
-
     Object.keys( countries ).forEach( (( qid ) => {
 
       if ( countries[ qid ].iso3 === country.code ){
@@ -2469,10 +2467,17 @@ function getCountryFromLatLon( lat, lon ){
 
 }
 
-// TODO getContinentFromLatLon(): this would be useful in eg. https://docs.openalex.org/api-entities/geo/regions
-//function getContinentFromLatLon( lat, lon ){
-//  ...
-// }
+/*
+// TODO useful in eg. https://docs.openalex.org/api-entities/geo/regions
+function getContinentFromCountry( country_iso2 ){
+
+  let ret = '';
+
+  ...
+
+  return ret;
+}
+*/
 
 function cleanText( text ){
 

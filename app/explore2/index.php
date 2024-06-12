@@ -145,7 +145,8 @@ $main_script = '
   <script src="../app/explore2/node_modules/web-share-wrapper/dist/web-share-wrapper.min.js" async></script>
   <script src="../app/explore2/node_modules/proj4/dist/proj4.js" async></script>
   <script src="../app/explore2/node_modules/marked/marked.min.js" async></script>
-  <script src="../app/explore2/lib/country_reverse_geocoding.js" async></script>
+
+  <script src="../app/explore2/libs/country_reverse_geocoding.js" async></script>
 
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
   <script src="../app/explore2/libs/s-express-beautify.js" async></script> <!-- no dist-bundle in the NPM -->
@@ -264,6 +265,8 @@ $sticky_html = '
           <option value="business" id="app-menu-search-in-option-business">business</option>
         </select>
 
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_search_in" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+
         <span class="search-option-label"><span id="app-menu-filter-by">filter by</span>: </span><select id="filterby" class="browser-default">
           <option value="none" selected></option>
           <option value="text" id="app-menu-filter-by-option-text">text</option>
@@ -277,11 +280,15 @@ $sticky_html = '
           <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
         </select>
 
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_filter_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+
         <span class="search-option-label"><span id="app-menu-filter-by-date-range">date range</span>: </span>
         <span class="date-range">
           <input id="datemin" class="date-input" aria-label="Date from" max="" min="" placeholder="yyyy-mm-dd" type="date">
           <input id="datemax" class="date-input" aria-label="Date to"   max="" min="" placeholder="yyyy-mm-dd" type="date">
         </span>
+
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_date_range" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-near"></span>: </span>
         <span class="geofilter">
@@ -293,6 +300,8 @@ $sticky_html = '
 
           </div>
         </span>
+
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_near" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
         <span class="search-option-label"><span id="app-menu-sort-by">sort by</span>: </span>
           <select id="sortby" class="browser-default">
@@ -312,6 +321,8 @@ $sticky_html = '
             <option value="distance-desc" id="app-menu-sort-by-option-distance-desc">distance ↓</option>
           </select>
 
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_sort_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+
         <span class="search-option-label"><span id="app-menu-batch-size">batch size</span>: </span><select id="batch-size" class="browser-default">
           <option value="1">1</option>
           <option value="5" selected>5</option>
@@ -322,7 +333,7 @@ $sticky_html = '
           <option value="50">50</option>
         </select>
 
-        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+        <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_options_batch_size" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       </div>
 

@@ -179,43 +179,66 @@ So when you set these search-options, be aware that the options you set will not
 
 These are the available search options:
 
-  * **Datasource set** categories (these are pre-selections of individual datasources):
-    * Reference works
-    * Culture
-    * Science
-    * Business (also includes news and governmental data for now)
+==== search in ====
 
-  * **Filter by** media-type:
-    * Text (article, book, PDF, etc.)
-    * Image
-    * Video
-    * Audio
-    * Data (CSV, JSON, etc. )
-    * 3D object models
-    * Software
-    * Archive (zip file, mixed-media collections)
-    * Entity (organizations, people, etc.)
+**Datasource set** categories (these are pre-selections of individual datasources):
+  * Reference works
+  * Culture
+  * Science
+  * Business (also includes news and governmental data for now)
 
-  * **Sort by** (in either the descending "↓" and ascending "↑" direction):
-    * Relevance
-    * Date (of creation of event, or the most relevant date-attribute of the datasource)
-    * Update
-    * Random
-    * Title
-    * Citations (or some similar available "reference" count)
-    * Title
-    * Distance (note: not yet implemented)
+==== filter by ====
 
-  * **Date-range filter**: from start-date to end-date. Both dates //must// be entered for this search-option to be active!
-    * Notes: Most datasources don't (yet) support date-range searches, but sometimes support a more limited date filter.
-      * Full support: Europeana.
-      * Semi support:
-        * Rijksmuseum (uses century of the start-date)
-        * OpenLibrary (uses the start-date as the "first_publish_year")
-      * All the other datasources have no date-range support.
-      * Datasources to be determined / implemented: Wikipedia, Wikidata, Library of Congress, ...
-      * OpenAlex supports date-range search, but this feature requires a paid subscription.
-      * Currently the start/end date-range refer to the "creation" or "event" date of datasource items. In the future an option may be added to use other date-range item attributes (also depends on the broader datasource support for this search functionality).
+**Filter by** media-type:
+  * Text (article, book, PDF, etc.)
+  * Image
+  * Video
+  * Audio
+  * Data (CSV, JSON, etc. )
+  * 3D object models
+  * Software
+  * Archive (zip file, mixed-media collections)
+  * Entity (organizations, people, etc.)
+
+==== date range ====
+
+**Date-range filter**: from start-date to end-date. Both dates //must// be entered for this search-option to be active!
+
+Notes: Most datasources don't (yet) support date-range searches, but sometimes support a more limited date filter.
+  * Full support: Europeana.
+  * Semi support:
+    * Rijksmuseum (uses century of the start-date)
+    * OpenLibrary (uses the start-date as the "first_publish_year")
+  * All the other datasources have no date-range support.
+  * Datasources to be determined / implemented: Wikipedia, Wikidata, Library of Congress, ...
+  * OpenAlex supports date-range search, but this feature requires a paid subscription.
+  * Currently the start/end date-range refer to the "creation" or "event" date of datasource items. In the future an option may be added to use other date-range item attributes (also depends on the broader datasource support for this search functionality).
+
+==== near ====
+
+Allows you to search by geolocation and country using a 3D globe popup.
+The country is automatically inferred based on the geolocation or can be selected directly through the country-selection-mode.
+
+Most datasources dont (yet) support geolocation-based searching, but these datasources currently do:
+  * Europeana (by geobox - note: not yet implemented)
+  * OpenAlex (by country)
+  * GLEIF (by country)
+
+==== sort by ====
+
+**Sort by** (in either the descending "↓" and ascending "↑" direction):
+  * Relevance
+  * Date (of creation of event, or the most relevant date-attribute of the datasource)
+  * Update
+  * Random
+  * Title
+  * Citations (or some similar available "reference" count)
+  * Title
+  * Distance (note: not yet implemented)
+
+==== batch size ====
+
+The **batch size** indicated the maximum amount of results to fetch per page, for each datasource.
 
 ===== structured search =====
 
