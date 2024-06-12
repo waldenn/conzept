@@ -265,6 +265,12 @@ function showTopics( loc, country, country_name ){
 
 }
 
+function hideGeosearch(){
+
+  parentref.postMessage({ event_id: 'hide-geosearch', data: { geofilter: geo } }, '*' );
+
+}
+
 function addCountryLayer() {
 
   fetch("/app/explore2/assets/geojson/countries.json")
@@ -333,4 +339,3 @@ function addCountryLayer() {
   });
 
 }
-

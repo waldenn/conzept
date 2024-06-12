@@ -1477,9 +1477,6 @@ function setupGeofilter(){
       $('#geofilter-popover').show();
       geofilterPopover.showPopover();
 
-      $('#geofilter-popover').show();
-      geofilterPopover.showPopover();
-
     }
 
   });
@@ -9071,10 +9068,10 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'hide-geosearch' ){
 
-    const geofilterPopover  = document.getElementById( 'geofilter-popover' );
-
     $('#geofilter-popover').hide();
-    geofilterPopover.hidePopover();
+
+    const geofilterButton   = document.getElementById( 'geofilter-button' );
+    geofilterButton.click();
 
   }
   else if ( event.data.event_id === 'structured-query' ){
