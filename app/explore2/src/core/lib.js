@@ -1473,6 +1473,10 @@ function setupGeofilter(){
     else {
       
       isPopoverShowing = true;
+
+      $('#geofilter-popover').show();
+      geofilterPopover.showPopover();
+
       $('#geofilter-popover').show();
       geofilterPopover.showPopover();
 
@@ -1878,6 +1882,7 @@ async function fetchAutocompleteData( term ) {
     let geofilter_lat     = '';
     let geofilter_lon     = '';
     let geofilter_radius  = '';
+    let geofilter_country = '';
  
     if ( valid( explore.geofilter.split(';')[3] ) ){
       geofilter_country = explore.geofilter.split(';')[3];
@@ -11028,6 +11033,7 @@ async function fetchDatasources(){
     let geofilter_lat     = '';
     let geofilter_lon     = '';
     let geofilter_radius  = '';
+    let geofilter_country = '';
 
     if ( valid( explore.geofilter.split(';')[3] ) ){
       geofilter_country = explore.geofilter.split(';')[3];
