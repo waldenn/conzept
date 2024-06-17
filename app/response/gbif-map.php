@@ -14,7 +14,7 @@
 
     <script src="../explore2/dist/core/utils.js?'. $version .'"></script>
 
-    <link rel="stylesheet" href="/app/explore2/css/conzept/common.css?v001" type="text/css">
+    <link rel="stylesheet" href="/app/explore2/css/conzept/common.css?'. $version .'" type="text/css">
 
     <script>
       setupAppKeyboardNavigation();

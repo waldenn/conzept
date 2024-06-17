@@ -8621,6 +8621,21 @@ if ( valid( item.found_in_taxon ) ){
   rank: [81,6300],
 },
 
+'esasky_search' : {
+  create_condition: 'valid( item.catalog_code ) && checkTag(item, 1, "astronomical-object")',
+  title: 'ESASky - sky atlas',
+  prop: '',
+  type: 'link',
+  url: '/app/esasky/index.html?code=${ item.catalog_code }',
+  mv: false,
+  icon: 'fa-regular fa-star',
+  text: 'ESASky',
+  section: ['science-astronomy','main'],
+  rank: [100,6350],
+  headline_create: 'valid( item.esasky_search )',
+  headline_rank: 550,
+},
+
 'astrobin_search' : {
   create_condition: 'valid( item.catalog_code ) && checkTag(item, 1, "astronomical-object")',
   title: 'AstroBin astrophotography search',
@@ -8628,12 +8643,12 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   url: 'https://www.astrobin.com/search/?q=${ item.catalog_code }',
   mv: false,
-  icon: 'fa-solid fa-binoculars',
+  icon: 'fa-solid fa-camera',
   text: 'AstroBin',
   section: ['science-astronomy','main'],
-  rank: [101,6350],
+  rank: [101,6351],
   headline_create: 'valid( item.astrobin_search )',
-  headline_rank: 550,
+  headline_rank: 551,
 },
 
 'satellite' : {
