@@ -1,0 +1,7 @@
+.error {
+  font-size: 1.5em;
+  background: #ffa50073;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0.3em;
+}

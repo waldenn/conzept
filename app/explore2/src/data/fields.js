@@ -8628,7 +8628,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link',
   url: '/app/esasky/index.html?code=${ item.catalog_code }',
   mv: false,
-  icon: 'fa-regular fa-star',
+  icon: 'fa-regular fa-sun',
   text: 'ESASky',
   section: ['science-astronomy','main'],
   rank: [100,6350],

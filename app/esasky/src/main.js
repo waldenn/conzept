@@ -1,43 +1,46 @@
-const code    = getParameterByName('code') || '';
-let language  = getParameterByName('l') || 'en';
+const code            = getParameterByName('code') || '';
+let language          = getParameterByName('l') || 'en';
+const valid_languages = [ 'en', 'es', 'zh' ];
 
-valid_languages = [ 'en', 'es', 'zh' ];
+if ( valid( code ) ){
 
-if ( !valid_languages.includes( language ) ){
+  if ( !valid_languages.includes( language ) ){ // unsupported language
 
-	language = 'en';
+    language = 'en'; // fallback language
+
+  }
+
+  init();
 
 }
-
-let json = '';
 
 async function init(){
 
 	const url = '/app/cors/raw/?url=' + encodeURIComponent( 'https://sky.esa.int/esasky-tap/generalresolver?action=bytarget&target=' + code );
 
-  let response = await fetch( url );
+  const response = await fetch( url );
 
-  json = await response.text();
-  json = JSON.parse( json );
-
-	//console.log( json.simbadResult );
+  let json  = await response.text();
+  json      = JSON.parse( json );
 
 	if ( valid( json?.simbadResult?.simbadMainId ) ){
 
-		//console.log( json.simbadResult.simbadMainId );
+    const d = json.simbadResult;
 
-		const target_x			= valid( json.simbadResult.simbadRaDeg )? json.simbadResult.simbadRaDeg : '';
-		const target_y			= valid( json.simbadResult.userDecDeg )? json.simbadResult.userDecDeg : '';
-		const field_of_view = valid( json.simbadResult.foVDeg )? json.simbadResult.foVDeg : '';
-		const cooframe			= valid( json.simbadResult.simbadCooFrame )? json.simbadResult.simbadCooFrame : '';
+		const target_x			= valid( d.simbadRaDeg )? d.simbadRaDeg : '';
+		const target_y			= valid( d.userDecDeg )? d.userDecDeg : '';
+		const field_of_view = valid( d.foVDeg )? d.foVDeg : '';
+		const cooframe			= valid( d.simbadCooFrame )? d.simbadCooFrame : '';
 
 		window.location.href = `https://sky.esa.int/esasky/?target=${target_x}%20${target_y}&hips=DSS2+color&fov=${field_of_view}&cooframe=${cooframe}&sci=true&lang=${language}`;
 
 	}
+  else { // show an error message
+
+    $('body').append( `<div class="error">No ESASky results found for: "${code}"</div>` );
+
+  }
 
 }
 
-if ( valid( code ) ){
-  console.log( code );
-  init();
-}
+
