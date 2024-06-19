@@ -426,7 +426,7 @@ function checkForQid(){
 
 	return $.ajax({
 
-		url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&titles=' + title,
+		url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&normalize=true&titles=' + title,
 		dataType: "jsonp",
 
 		success: function( wd ) {

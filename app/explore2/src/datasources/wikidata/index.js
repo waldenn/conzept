@@ -171,7 +171,7 @@ function getWikidataFromTitle( title, allow_recheck, target_pane ){
   // https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&format=json&titles=Karachi
 
   $.ajax({
-    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&titles=' + title,
+    url: datasources.wikidata.instance_api + '?action=wbgetentities&sites=' + explore.language + 'wiki&format=json&normalize=true&titles=' + title,
     dataType: "jsonp",
 
     success: function( wd ) {

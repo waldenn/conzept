@@ -6441,6 +6441,7 @@ async function insertSelectMenuDates( args, fields ){
 
 }
 
+/*
 function insertQidTopics( args, list ){
 
 	let obj = {};
@@ -6529,6 +6530,7 @@ function insertQidTopics( args, list ){
 	});
 
 }
+*/
 
 async function insertMultiValuesHTML( args, obj, meta ){
 
