@@ -475,6 +475,10 @@ var conzept_tags = {
         text : "virus",
         icon : ["fa-solid fa-virus"],
       },
+      "bacteria" : {
+        text : "bacteria",
+        icon : ["fa-solid fa-bacterium"],
+      },
       "bird" : {
         text : "bird",
         icon : ["fa-solid fa-crow"],
@@ -487,9 +491,17 @@ var conzept_tags = {
         text : "amphibian",
         icon : ["fa-solid fa-frog"],
       },
-      "insect" : {
+      "fish" : {
+        text : "fish",
+        icon : ["fa-solid fa-fish"],
+      },
+      "insect" : { // TODO: find good indicators (prop "BugGuide" ?)
         text : "insect",
         icon : ["fa-solid fa-bug"],
+      },
+      "mammal" : { // TODO: find good indicators
+        text : "mammal",
+        icon : ["fa-solid fa-cat"],
       },
       "reptile" : {
         text : "reptile",

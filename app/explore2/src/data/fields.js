@@ -5394,7 +5394,7 @@ conzept_fields = {
   text: 'NCBI taxonomy',
   section: ['science-biology','main'],
   rank: [650,8860],
-  headline_create: 'valid( item.ncbi )',
+  headline_create: 'valid( item.ncbi ) && ! checkTag( item, 1, [ "bird", "insect", "amphibian", "fish", "reptile", "plant" ] ) && ! valid( [ item.bugguide, item.fishbase_species, item.wrms ] )', // exclude a lot, because micro-organisms are well supported on NCBI
   headline_rank: 46,
 },
 
