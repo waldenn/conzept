@@ -475,8 +475,8 @@ var conzept_tags = {
         text : "virus",
         icon : ["fa-solid fa-virus"],
       },
-      "bacteria" : {
-        text : "bacteria",
+      "bacterium" : {
+        text : "bacterium",
         icon : ["fa-solid fa-bacterium"],
       },
       "bird" : {
