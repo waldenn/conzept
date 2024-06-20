@@ -148,7 +148,7 @@ You can change the voice-settings from the Conzept settings-menu.
 
 ===== compare app =====
 
-[{{::compare_app.jpg?direct|[[https://conze.pt/explore/Trogon?l=en&t=compare&s=true&c=Q1268064,Q998535,Q1268477|example]] (fix link)}}]
+[{{::compare_app.jpg?direct|[[https://conze.pt/explore/?l=en&t=compare&s=true&c=Q1268064,Q998535,Q1268477|example]] }}]
 
 The compare app allows you to see the Wikidata property differences between a user-selected set of topics.
 

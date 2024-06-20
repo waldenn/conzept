@@ -202,6 +202,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/openlibrary/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/europeana/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/rijksmuseum/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/harvard/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/loc/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/dpla/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/smithsonian/index.js?vCONZEPT_VERSION"></script>

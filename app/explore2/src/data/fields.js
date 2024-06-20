@@ -9077,9 +9077,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'location quiz',
   section: ['education-quizzes'],
   rank: [52],
-  headline_create: 'valid( item.taxon_location_quiz )',
-  headline_type: 'link',
-  headline_rank: 645,
+  //headline_create: 'valid( item.taxon_location_quiz )',
+  //headline_type: 'link',
+  //headline_rank: 645,
 },
 
 'nature_location_quiz' : {
