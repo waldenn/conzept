@@ -485,7 +485,7 @@ const datasources = {
     code_render_mark:       'renderMarkHaravard( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.harvard.endpoint}/?q=$term}&size=${datasources.harvard.autocomplete_limit}&page=1&apikey=1a89f5c0-b799-4acf-9706-f3320bcc58a6',
+    autocomplete_url:       '${datasources.harvard.endpoint}/?q=${term}&size=${datasources.harvard.autocomplete_limit}&page=1&sort=${ valid( sortby )? sortby : "" }&sortorder=${ getSortDirection( source, "short" ) }&apikey=1a89f5c0-b799-4acf-9706-f3320bcc58a6',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
