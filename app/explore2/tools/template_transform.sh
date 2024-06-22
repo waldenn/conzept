@@ -54,5 +54,5 @@ done
 # json-proxy service config file
 if [ -f "../../../services/json-proxy/json-proxy.template.json" ]
 then
-  sed -e "s|CONZEPT_YOUTUBE_API_KEY|$CONZEPT_YOUTUBE_API_KEY|g" "../../../services/json-proxy/json-proxy.template.json" > "../../../services/json-proxy/json-proxy.json"
+  sed -e "s|CONZEPT_YOUTUBE_API_KEY|$CONZEPT_YOUTUBE_API_KEY|g; s|CONZEPT_MARGINALIA_API_KEY|$CONZEPT_MARGINALIA_API_KEY|g;" "../../../services/json-proxy/json-proxy.template.json" > "../../../services/json-proxy/json-proxy.json"
 fi

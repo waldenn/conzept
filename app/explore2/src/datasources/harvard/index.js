@@ -95,10 +95,10 @@ function processResultsHarvard( topicResults, struct, index ){
 
         let title         = valid( obj.title )? obj.title : gid;
 
-        let description   = valid( obj.description )? obj.description : '';
+        let description   = valid( obj.description )? obj.description + '<br/><br/>' : '';
         let subtag        = 'image';
 
-        let creators      = '';
+        let creators      = [];
 
         let start_date    = valid( obj.datebegin )? obj.datebegin : '';
 
@@ -108,6 +108,9 @@ function processResultsHarvard( topicResults, struct, index ){
         let img           = valid( obj.primaryimageurl )? obj.primaryimageurl : '';
         let thumb         = img;
 
+				const description_plain = description;
+        let authors_plain       = '';
+
         // get authors
         if ( valid( obj.people ) ){
 
@@ -115,38 +118,22 @@ function processResultsHarvard( topicResults, struct, index ){
 
             $.each( obj.people, function ( j, a ) {
 
-              if ( valid( a.display_name ) ){
+              if ( valid( a.displayname ) ){
 
                 let author_url = '';
 
-                /*
-                if ( valid( a.author.id ) ){
+                if ( valid( a.personid ) ){
 
-                  // https://harvardartmuseums.org/collections/person/19885
-                  let author_id = a.author.id.replace('https://openalex.org/', '');
-
-                  author_url = ``;
-
-                }
-                */
-
-                //const author_url = valid( a.author.id ) ? a.author.id : '';
-                //const author_country = valid( a.countries ) ? a.countries[0] : '';
-
-                // TODO: turn into a link
-                //const author_country_icon = valid( author_country ) ? `<span title="${author_country} country flag" class="flag-icon flag-icon-${ author_country.toLowerCase() }"></span>` : '';
-
-                let author_date = '';
-
-                if ( valid( a.displaydate ) ){
-
-                  author_date = ` (${a.displaydate})`; 
+                  let author_url = `https://harvardartmuseums.org/collections/person/${a.personid}`;
 
                 }
 
-                creators.push( `${a.display_name}${author_date}` );
+                const author_date = valid( a.displaydate )? ` (${a.displaydate})` : '';
 
-                //creators.push( `<a onclick="openInFrame( &quot;${author_url}&quot; )" href="javascript:void(0)" title="author link" aria-label="author link" aria-role="button">${a.author.display_name}</a> ${author_country_icon}`);
+                creators.push( `${a.displayname}${author_date}` );
+
+                // TODO
+                //creators.push( `<a onclick="openInNewTab( &quot;${author_url}&quot; )" href="javascript:void(0)" title="author link" aria-label="author link" aria-role="button">${a.author.display_name}</a> ${author_country_icon}`);
 
               }
 
@@ -156,13 +143,13 @@ function processResultsHarvard( topicResults, struct, index ){
 
           if ( creators.length > 0 ){
 
-            description = description + '<br/><br/><i class="fa-solid fa-users-line"></i> ' + creators.join(', ');
+            description   = description + '<i class="fa-solid fa-users-line"></i> ' + creators.join(', ');
+            authors_plain = creators.join(', ');
 
           }
 
         }
 
-				const description_plain = description;
 				description       			= highlightTerms( description );
 
         // fill fields
@@ -188,7 +175,7 @@ function processResultsHarvard( topicResults, struct, index ){
 
           let source_name = datasources[ item.source ].name;
 
-					coll.images.push( [ img, item.title, encodeURIComponent( description_plain + '<br/><br/>License: ' + license_link + '<br/><br/>' + license_name ), 'authors: ' + creators.join(', '), 'source: ' + source_name ] );
+					coll.images.push( [ img, item.title, encodeURIComponent( description_plain + '<br/><br/>License: ' + license_link + '<br/><br/>' + license_name ), 'author(s): ' + authors_plain, 'source: ' + source_name ] );
 
 					if ( coll.images.length > 0 ){ // we found some images
 

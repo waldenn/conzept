@@ -1390,7 +1390,6 @@ const datasources = {
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
 
-  /*
   'marginalia': {
     active:                 false,
     name:                   'Marginalia',
@@ -1399,10 +1398,7 @@ const datasources = {
     tag:                    'web',
     qid:                    '',
     protocol:               'rest',
-                              // see:
-                              //  https://www.marginalia.nu/marginalia-search/api/
-                              //  https://api.marginalia.nu/public/search/water?index=0&count=10
-    endpoint:               'https://api.marginalia.nu/public/search/',
+    endpoint:               '/marginalia', // see: https://www.marginalia.nu/marginalia-search/api/
     format:                 'json',
     connect:                'json',
     pagesize:               `${explore.datasource_page_size}`,
@@ -1435,23 +1431,22 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.occrp.endpoint}?q=${term}&page=${explore.page}&limit=${datasources.occrp.pagesize}&filter:schemata=Thing',
-    icon:                   '<img class="datasource-icon" alt="OCCRP logo" src="/assets/icons/occrp.svg" alt="OCCRP logo">',
-    icon_invert:            false,
-    color:                  '#982022',
+    url:                    '${datasources.marginalia.endpoint}/${term}?index=${ (explore.page -1) * datasources.marginalia.pagesize }&count=${datasources.marginalia.pagesize}',
+    icon:                   '<img class="datasource-icon" alt="Marginalia logo" src="/assets/icons/marginalia.svg" alt="Marginalia logo">',
+    icon_invert:            true,
+    color:                  '#ad08e838',
     display_url:            '${url}',
-    code_autocomplete:      'autocompleteOCCRP( r, dataset )',
-    code_data_collect:      'my_promises.push( processResultsOCCRP( topicResults, struct, index ) );',
-    code_resolve:           'resolveOCCRP( result, renderObject )',
-    code_render_mark:       'renderMarkOCCRP( inputs, source, q_, show_raw_results, id )',
+    code_autocomplete:      'autocompleteMarginalia( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsMarginalia( topicResults, struct, index ) );',
+    code_resolve:           'resolveMarginalia( result, renderObject )',
+    code_render_mark:       'renderMarkMarginalia( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.occrp.endpoint}?q=${term}&page=1&limit=${datasources.occrp.autocomplete_limit}&filter:schemata=Thing',
+    autocomplete_url:        '${datasources.marginalia.endpoint}/${term}?index=0&count=${datasources.marginalia.autocomplete_limit}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
-  */
 
   /*
   'inaturalist': {
@@ -1610,6 +1605,7 @@ const datasource_set_map = {
   culture:    d_.filter( function( d ) { return datasources[ d ].set === 'culture'; } ),
   science:    d_.filter( function( d ) { return datasources[ d ].set === 'science'; } ),
   business:   d_.filter( function( d ) { return datasources[ d ].set === 'business'; } ),
+  web:        d_.filter( function( d ) { return datasources[ d ].set === 'web'; } ),
 }
 
 const datasource_sets = Object.keys( datasource_set_map );

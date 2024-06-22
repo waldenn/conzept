@@ -221,6 +221,9 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/gdelt/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/occrp/index.js?vCONZEPT_VERSION"></script>
 
+  <!-- web search -->
+  <script src="../app/explore2/dist/datasources/marginalia/index.js?vCONZEPT_VERSION"></script>
+
   <!-- other / inactive -->
   <!--script src="../app/explore2/dist/datasources/archive_scholar/index.js?vCONZEPT_VERSION"></script-->
   <!--script src="../app/explore2/dist/datasources/inaturalist/index.js?vCONZEPT_VERSION"></script-->
@@ -264,6 +267,7 @@ $sticky_html = '
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
           <option value="science" id="app-menu-search-in-option-science">science</option>
           <option value="business" id="app-menu-search-in-option-business">business</option>
+          <option value="web" id="app-menu-search-in-option-web">web</option>
         </select>
 
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_in" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
