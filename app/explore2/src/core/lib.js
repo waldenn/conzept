@@ -4084,6 +4084,7 @@ async function updateLocaleInterface(){
   $('#app-menu-search-in-option-culture').html( explore.banana.i18n('app-menu-search-in-option-culture') );
   $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
+  $('#app-menu-search-in-option-web').html( explore.banana.i18n('app-menu-search-in-option-web') );
 
   $('#app-menu-filter-by').html( explore.banana.i18n('app-menu-filter-by') );
   $('#app-menu-filter-by-option-text').html( explore.banana.i18n('app-menu-filter-by-option-text') );

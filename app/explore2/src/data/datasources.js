@@ -1398,7 +1398,7 @@ const datasources = {
     tag:                    'web',
     qid:                    '',
     protocol:               'rest',
-    endpoint:               '/marginalia', // see: https://www.marginalia.nu/marginalia-search/api/
+    endpoint:               '/app/proxy/marginalia', // see: https://www.marginalia.nu/marginalia-search/api/
     format:                 'json',
     connect:                'json',
     pagesize:               `${explore.datasource_page_size}`,
