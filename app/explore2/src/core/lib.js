@@ -10275,9 +10275,43 @@ function runBookmarkAction( action ){
 
     }
 
+    let m = '';
+
     //console.log( topics );
 
-    let m = JSON.stringify( topics );
+    if ( action.startsWith('conceptologist-latency') ){
+
+      if ( topics > 1 ){
+
+        m = JSON.stringify( `express the latencies for: ${topics}` ); // FIXME: currently English only
+      
+      }
+      else {
+
+        m = `express latencies for "${topics}"`; // FIXME: currently English only
+        
+      }
+
+    }
+    else if ( action.startsWith('conceptologist') ){
+
+      if ( topics > 1 ){
+
+        m = JSON.stringify( `express the following topics as Concepts: ${topics}` ); // FIXME: currently English only
+      
+      }
+      else {
+
+        m = `express "${topics}" as a Concept`; // FIXME: currently English only
+        
+      }
+
+    }
+    else {
+
+      m = JSON.stringify( topics );
+
+    }
 
     handleClick({ 
       id        : 'n1-0',

@@ -338,7 +338,7 @@ pre a {
   overflow-x: auto;
   padding: 10px;
   position: relative;
-  background: rgba(180, 180, 180, 0.1);
+  background: rgba(180, 180, 180, 55% );
 }
 
 .m-mdic-copy-wrapper {
