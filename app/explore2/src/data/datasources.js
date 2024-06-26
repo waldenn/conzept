@@ -1333,7 +1333,7 @@ const datasources = {
 
   'gdelt': {
     active:                 false,
-    name:                   'GDELT news',
+    name:                   'GDELT',
     set:                    'news',
     description:            'global news reports - BETA',
     tag:                    'work',

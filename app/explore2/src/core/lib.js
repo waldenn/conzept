@@ -4227,7 +4227,7 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmarks-selected').text( explore.banana.i18n('app-guide-bookmarks-selected') );
   $('#app-guide-bookmarks-deselect-all').text( explore.banana.i18n('app-guide-bookmarks-deselect-all') );
 
-  $('#app-guide-bookmark-history').text( explore.banana.i18n('app-guide-bookmark-history') );
+  $('#app-guide-bookmark-conceptology').text( explore.banana.i18n('app-guide-bookmark-conceptology') );
   $('#app-guide-bookmark-implications').text( explore.banana.i18n('app-guide-bookmark-implications') );
   $('#app-guide-bookmark-similarities').text( explore.banana.i18n('app-guide-bookmark-similarities') );
   $('#app-guide-bookmark-commonalities').text( explore.banana.i18n('app-guide-bookmark-commonalities') );
@@ -10294,7 +10294,7 @@ function runBookmarkAction( action ){
 
   }
 
-} 
+}
 
 function exportBookmarks( format ){
 
