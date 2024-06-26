@@ -874,6 +874,8 @@ $settings_html = '
                       <div class="bookmark-action"><a class="" title="explain bookmark history" aria-label="explain bookmark history" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;historian&quot;)"><span class="icon"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-history">history</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="explain bookmark conceptology structure" aria-label="explain bookmark conceptology structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptology&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology">conceptology</span></span></a></div>
 
+                      <div class="bookmark-action"><a class="" title="explain bookmark conceptology minimal structure" aria-label="explain bookmark conceptology minimal structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptology-minimal&quot;)"><span class="icon"><i class="fa-solid fa-ellipsis-vertical fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology">conceptology</span></span></a></div>
+
                     </div>
                   </detail>
                 </div>
