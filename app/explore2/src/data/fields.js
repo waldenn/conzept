@@ -16358,6 +16358,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [290, 240],
 },
 
+'open_etymology_map' : {
+  create_condition: 'valid( item.lat )',
+  title: 'Open Etymology Map: Etymology of streetnames and points of interest based on OpenStreetMap and Wikidata',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://etymology.dsantini.it/#${item.lon},${item.lat},16.0,type,pmtiles_all,stadia_osm_bright,etymology',
+  icon: 'fa-solid fa-archway',
+  text: 'Open Etymology Map',
+  section: ['location-geography','library-history'],
+  rank: [292, 242],
+},
+
 /*
 'time_machine_map' : {
   create_condition: 'valid( item.lat )',

@@ -1138,7 +1138,8 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 #datasources-setting .culture { background: #d3570c2b; }
 #datasources-setting .science { background: #2ed30c2b; }
 #datasources-setting .business { background: #0c91d32b; }
-#datasources-setting .web { background: #ad08e838; }
+#datasources-setting .news { background: #9708e82b; }
+#datasources-setting .web { background: #4b95dc82; }
 
 .jdropdown-default .jdropdown-header {
   border: none;

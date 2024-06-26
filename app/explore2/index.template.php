@@ -218,8 +218,10 @@ $main_script = '
   <!-- business -->
   <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/eu/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/gdelt/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/occrp/index.js?vCONZEPT_VERSION"></script>
+
+  <!-- news -->
+  <script src="../app/explore2/dist/datasources/gdelt/index.js?vCONZEPT_VERSION"></script>
 
   <!-- web search -->
   <script src="../app/explore2/dist/datasources/marginalia/index.js?vCONZEPT_VERSION"></script>
@@ -267,6 +269,7 @@ $sticky_html = '
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
           <option value="science" id="app-menu-search-in-option-science">science</option>
           <option value="business" id="app-menu-search-in-option-business">business</option>
+          <option value="news" id="app-menu-search-in-option-news">news</option>
           <option value="web" id="app-menu-search-in-option-web">web</option>
         </select>
 
