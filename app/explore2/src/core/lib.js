@@ -10279,21 +10279,7 @@ function runBookmarkAction( action ){
 
     //console.log( topics );
 
-    if ( action.startsWith('conceptologist-latency') ){
-
-      if ( topics > 1 ){
-
-        m = JSON.stringify( `express the latencies for: ${topics}` ); // FIXME: currently English only
-      
-      }
-      else {
-
-        m = `express latencies for "${topics}"`; // FIXME: currently English only
-        
-      }
-
-    }
-    else if ( action.startsWith('conceptologist') ){
+    if ( action.startsWith('conceptologist') ){
 
       if ( topics > 1 ){
 

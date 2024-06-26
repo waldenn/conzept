@@ -213,11 +213,6 @@
   "act": "conceptologist-minimal",
   "act_label": "conceptologist-minimal",
   "prompt": "ModelScript := \r\n  STRUCTURE := name(params) : extended_structure {\r\n    PARAMETERS {\r\n      name : type = default_value\r\n      ...\r\n    }\r\n    \r\n    NOTATION {\r\n      custom_notation\r\n      ...  \r\n    }\r\n\r\n    DEF name := term\r\n    DEF name(params) := term\r\n    DEF name : type\r\n    ...\r\n\r\n    STRUCTURE name(params) : extends_structure {\r\n      ...\r\n    }\r\n    ...\r\n    \r\n    [assertion]\r\n    ...\r\n    \r\n    RETURN term\r\n  }\r\n\r\nassertion := expr rel expr\r\n           | expr IS pattern\r\n           | Q var : type, expr\r\n           | (expr)\r\n           | expr C expr\r\n           | ~expr\r\n           | struc(.struc)*(.def)?"
-  },
-  {
-  "act": "conceptologist-latency",
-  "act_label": "conceptologist-latency",
-  "prompt": ""
   }
 
 ]
