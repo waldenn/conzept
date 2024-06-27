@@ -80,7 +80,7 @@ function processResultsPeerTube( topicResults, struct, index ){
 
       };
 
-      $.each( topicResults.items, function( i, vid ){
+      $.each( topicResults.data, function( i, vid ){
 
         let gid         = valid( vid.id )? vid.id : '';
         let url         = valid( vid.embedUrl )? vid.embedUrl : '';
@@ -89,19 +89,20 @@ function processResultsPeerTube( topicResults, struct, index ){
         let start_date  = valid( vid.createdAt )? vid.createdAt.split('-')[0] : '';
 
         let description = valid( vid.description )? vid.description : '';
+
         description     = highlightTerms( description );
 
         let thumb       = valid( vid.thumbnailUrl )? vid.thumbnailUrl : '';
 
-        let duration    = valid( vid.duration )? '<div>' + new Date( vid.duration * 1000 ).toISOString().slice(11, 19) + '</div>' : '';
+        let duration    = valid( vid.duration )? new Date( vid.duration * 1000 ).toISOString().slice(11, 19) : '';
 
         let channel     = '';
 
         if ( valid( vid.channel ) ){
 
-         if ( valid( vid.channel.displayName ) ){
+          if ( valid( vid.channel.displayName ) ){
 
-          channel = '<div><a href="javascript:void(0)" title="channel" aria-label="channel" role="button"' + setOnClick( Object.assign({}, {}, { type: 'link', title: vid.channel.displayName, url: vid.channel.url, qid: '', language : explore.language } ) ) + '">' + vid.channel.displayName + '</a></div>';
+            channel= `<span style="float:right"><i title="channel" aria-label="channel" class="fa-solid fa-users"></i> <b><a onclick="openInNewTab( &quot;${vid.channel.url}&quot; )" href="javascript:void(0)" title="channel" aria-label="channel" aria-role="button">${vid.channel.displayName}</a></b></span>`;
 
          }
 
@@ -113,8 +114,9 @@ function processResultsPeerTube( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        title,
-					description:  channel + description + duration,
+					description:  '<div>' + duration + channel + '</div><br/>' + description,
 					gid:          gid,
+          qid:          '',
 					display_url:  url,
           thumb:        thumb,
           start_date:   start_date,
