@@ -482,7 +482,7 @@ const datasources = {
     code_autocomplete:      'autocompleteHarvard( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsHarvard( topicResults, struct, index ) );',
     code_resolve:           'resolveHarvard( result, renderObject )',
-    code_render_mark:       'renderMarkHaravard( inputs, source, q_, show_raw_results, id )',
+    code_render_mark:       'renderMarkHarvard( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
     autocomplete_url:       '${datasources.harvard.endpoint}/?q=${term}&size=${datasources.harvard.autocomplete_limit}&page=1&sort=${ valid( sortby )? sortby : "" }&sortorder=${ getSortDirection( source, "short" ) }&apikey=1a89f5c0-b799-4acf-9706-f3320bcc58a6',
@@ -623,7 +623,8 @@ const datasources = {
     tag:                    'arts-culture',
     qid:                    'Q131626',
     protocol:               'rest',
-    endpoint:               'https://api.si.edu/openaccess/api/v1.0/search', // see: https://edan.si.edu/openaccess/apidocs/
+    endpoint:               'https://api.si.edu/openaccess/api/v1.0/search',  // see: https://edan.si.edu/openaccess/apidocs/
+                                                                              //      https://www.si.edu/collection/search?edan_q=food
     format:                 'json',
     connect:                'json',
     pagesize:               `${explore.datasource_page_size}`,
@@ -644,19 +645,19 @@ const datasources = {
                               'distance-asc'    : '',
                             },
     media:                  [ 'text', 'image', 'video', 'audio', '3D' ],
-    filter_map:             { // edanmdm, ead_collection, ead_component, all
-                              'none'            : '',
-                              'text'            : '',
-                              'image'           : '',
-                              'video'           : '',
-                              'audio'           : '',
+    filter_map:             {
+                              'none'            : '', // 'Electronic+resource' (includes: "manuscripts, photographs, sound recordings, motion pictures, music, and maps.")
+                              'text'            : 'Full+text+documents',
+                              'image'           : 'Images',
+                              'video'           : 'Video+recordings',
+                              'audio'           : 'Sound+recordings',
                               'data'            : '',
-                              '3D'              : '',
+                              '3D'              : '3D+Models',
                               'software'        : '',
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.smithsonian.endpoint}?q=${ term }&rows=${ datasources.smithsonian.pagesize }&start=${ ( ( explore.page - 1) * datasources.smithsonian.pagesize ) }&sort=${ valid( sortby )? sortby : "relevancy" }&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
+    url:                    '${datasources.smithsonian.endpoint}?q=(${ term })${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "+AND+(online_media_type:" + filterby + ")" : "" }&rows=${ datasources.smithsonian.pagesize }&start=${ ( ( explore.page - 1) * datasources.smithsonian.pagesize ) }&sort=${ valid( sortby )? sortby : "relevancy" }&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
     icon:                   '<img class="datasource-icon" alt="Smithsonian datasource" src="/assets/icons/smithsonian.svg" alt="Smithsonian logo">',
     icon_invert:            false,
     color:                  '#F0B323',
@@ -667,7 +668,7 @@ const datasources = {
     code_render_mark:       'renderMarkSmithsonian( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.smithsonian.endpoint}?q=${ term }&rows=${ datasources.smithsonian.autocomplete_limit }&start=0&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
+    autocomplete_url:       '${datasources.smithsonian.endpoint}?q=(${ term })${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "+AND+(online_media_type:" + filterby + ")" : "" }&rows=${ datasources.smithsonian.autocomplete_limit }&start=0&api_key=${ "jWNRrR9oQ2V4mzj5cDdldlYSZbQs3tG22f8aqZTJ" }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
@@ -1398,7 +1399,7 @@ const datasources = {
     tag:                    'web',
     qid:                    'Q50938515',
     protocol:               'rest',
-    endpoint:               'https://sepiasearch.org/api/v1/search/videos', // see: ...
+    endpoint:               'https://sepiasearch.org/api/v1/search/videos', // see: https://framagit.org/framasoft/peertube/search-index/-/blob/master/client/src/models/search-url.model.ts?ref_type=heads
     format:                 'json',
     connect:                'json',
     pagesize:               `${explore.datasource_page_size}`,
@@ -1406,7 +1407,10 @@ const datasources = {
                               'none'            : '',
                               'relevance-desc'  : '',
                               'relevance-asc'   : '',
-                              'date-desc'       : '-publishedAt', // TODO: handle sortby with "-" as sort-order
+                               // TODO: handle sortby with "-" as sort-order
+                               //   https://framagit.org/framasoft/peertube/search-index/-/blob/master/server/types/video.model.ts?ref_type=heads
+                               //   sort options: -createdAt, createdAt, -updatedAt, updatedAt, -originallyPublishedAt, originallyPublishedAt 
+                              'date-desc'       : '-publishedAt',
                               'date-asc'        : 'publishedAt',
                               'update-desc'     : '',
                               'update-asc'      : '',
@@ -1431,7 +1435,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    // https://sepiasearch.org/api/v1/search/videos?search=water&boostLanguages[]=en&nsfw=false&languageOneOf[]=en&start=0&count=5
+                            // TODO: research the "publishedDateRange" parameter
     url:                    '${datasources.peertube.endpoint}/?search=${term}&nsfw=false&languageOneOf[]=${explore.language}&start=${ (explore.page -1) * datasources.peertube.pagesize }&count=${datasources.peertube.pagesize}',
     icon:                   '<img class="datasource-icon" alt="PeerTube logo" src="/assets/icons/peertube.svg" alt="PeerTube logo">',
     icon_invert:            false,
@@ -1448,6 +1452,71 @@ const datasources = {
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
+
+  /*
+  'iptv': {
+    active:                 false,
+    active_trigger:         'loadDataIPTV()',
+    name:                   'IPTV',
+    set:                    'media',
+    description:            'TV channels - BETA',
+    tag:                    'web',
+    qid:                    'Q177518',
+    protocol:               'rest',
+    endpoint:               '',
+    format:                 'json',
+    connect:                'json',
+    pagesize:               `${explore.datasource_page_size}`,
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                               // TODO: handle sortby with "-" as sort-order
+                               //   https://framagit.org/framasoft/IPTV/search-index/-/blob/master/server/types/video.model.ts?ref_type=heads
+                               //   sort options: -createdAt, createdAt, -updatedAt, updatedAt, -originallyPublishedAt, originallyPublishedAt 
+                              'date-desc'       : '-publishedAt',
+                              'date-asc'        : 'publishedAt',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'video' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+                            // TODO: research the "publishedDateRange" parameter
+    url:                    '${datasources.IPTV.endpoint}/?search=${term}&nsfw=false&languageOneOf[]=${explore.language}&start=${ (explore.page -1) * datasources.IPTV.pagesize }&count=${datasources.IPTV.pagesize}',
+    icon:                   '<img class="datasource-icon" alt="IPTV logo" src="/assets/icons/IPTV.svg" alt="IPTV logo">',
+    icon_invert:            false,
+    color:                  '#ee9d1e99',
+    display_url:            '${url}',
+    code_autocomplete:      'autocompleteIPTV( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsIPTV( topicResults, struct, index ) );',
+    code_resolve:           'resolveIPTV( result, renderObject )',
+    code_render_mark:       'renderMarkIPTV( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.IPTV.endpoint}/?search=${term}&nsfw=false&languageOneOf[]=${explore.language}&start=0&count=${datasources.IPTV.autocomplete_limit}',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
+  },
+  */
 
   'marginalia': {
     active:                 false,
