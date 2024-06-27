@@ -37,6 +37,7 @@ const Channels = () => {
 
     return(
         <Wrapper>
+            <span class="my-ui-back"><a href="#" onclick="window.history.back(); return false;">&larr;</a></span>
             <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',

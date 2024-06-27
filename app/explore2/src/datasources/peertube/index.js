@@ -94,7 +94,7 @@ function processResultsPeerTube( topicResults, struct, index ){
 
         let thumb       = valid( vid.thumbnailUrl )? vid.thumbnailUrl : '';
 
-        let duration    = valid( vid.duration )? new Date( vid.duration * 1000 ).toISOString().slice(11, 19) : '';
+        let duration    = valid( vid.duration )? '<span style="font-size: smaller"><i title="duration" aria-label="duration" class="fa-regular fa-clock"></i> ' + new Date( vid.duration * 1000 ).toISOString().slice(11, 19) + '</span>' : '';
 
         let channel     = '';
 
@@ -102,7 +102,7 @@ function processResultsPeerTube( topicResults, struct, index ){
 
           if ( valid( vid.channel.displayName ) ){
 
-            channel= `<span style="float:right"><i title="channel" aria-label="channel" class="fa-solid fa-users"></i> <b><a onclick="openInNewTab( &quot;${vid.channel.url}&quot; )" href="javascript:void(0)" title="channel" aria-label="channel" aria-role="button">${vid.channel.displayName}</a></b></span>`;
+            channel= `<span style="float:right"><i title="channel" aria-label="channel" class="fa-solid fa-user"></i> <b><a onclick="openInNewTab( &quot;${vid.channel.url}&quot; )" href="javascript:void(0)" title="channel" aria-label="channel" aria-role="button">${vid.channel.displayName}</a></b></span>`;
 
          }
 
