@@ -4697,6 +4697,7 @@ conzept_fields = {
   rank: [14.1,9070],
 },
 
+/*
 'mastodon_account_search' : {
   create_condition: true,
   title: 'Mastodon account search',
@@ -4709,6 +4710,7 @@ conzept_fields = {
   section: ['social'],
   rank: [14.4],
 },
+*/
 
 'blog' : {
   title: 'blog',
@@ -14559,35 +14561,6 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
-'tv_language' : {
-  create_condition: true,
-  title: 'TV in',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://iptv-org.github.io/?q=languages:${explore.lang3}', // TODO: use local app-fork
-  //url: '${explore.base}/app/tv/build/?l=${explore.lang3}',
-  icon: 'fa-solid fa-tv',
-  text: 'tv-lang',
-  section: '',
-  rank: 1,
-},
-
-'tv_country_button' : {
-  create_condition: true,
-  render_condition: 'checkTag(item, 1, "country")',
-  title: 'TV from',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://iptv-org.github.io/?q=country:${item.iso2}', // TODO: use local app-fork
-  //url: '${explore.base}/app/tv/build/?c=${item.iso2}',
-  icon: 'fa-solid fa-tv',
-  text: 'TV from',
-  section: '',
-  rank: 1,
-},
-
 'pinboard' : {
   create_condition: true,
   title: 'Pinboard tags',
@@ -19793,6 +19766,20 @@ if ( valid( item.found_in_taxon ) ){
 
 /* END OF CUSTOM BUTTONS */
 
+'iptv_by_country' : {
+  //value: 'https://iptv-org.github.io/iptv/countries/${ item.iso2 }.m3u',
+  create_condition: 'valid( item.iso2 )',
+  title: 'streaming TV for this country',
+  prop: '0',
+  type: 'link',
+  mv: false,
+  url: '/app/tv/build/index.html#/channels?country=${ item.iso2 }',
+  icon: 'fa-solid fa-tv',
+  text: 'country TV',
+  section: ['main','media-video'],
+  rank: [29, 91],
+},
+
 /*
 'iptv_by_language' : {
   value: 'https://iptv-org.github.io/iptv/languages/${explore.iptv}.m3u',
@@ -19808,18 +19795,18 @@ if ( valid( item.found_in_taxon ) ){
   rank: 90,
 },
 
-'iptv_by_country' : {
-  value: 'https://iptv-org.github.io/iptv/countries/${ item.iso2 }.m3u',
-  render_condition: 'valid( item.iso2 )',
-  title: 'streaming TV for this country',
-  prop: '0',
-  type: 'rest-json',
-  mv: true,
-  url: '',
+'tv_language' : {
+  create_condition: true,
+  title: 'TV in',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://iptv-org.github.io/?q=languages:${explore.lang3}', // TODO: use local app-fork
+  //url: '${explore.base}/app/tv/build/?l=${explore.lang3}',
   icon: 'fa-solid fa-tv',
-  text: 'country TV',
-  section: 'media-video',
-  rank: 91,
+  text: 'tv-lang',
+  section: '',
+  rank: 1,
 },
 */
 
