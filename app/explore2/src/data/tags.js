@@ -275,6 +275,10 @@ var conzept_tags = {
         text : "image",
         icon : ["fa-regular fa-image"],
       },
+      "video" : {
+        text : "video",
+        icon : ["fa-solid fa-film"],
+      },
       "film" : {
         text : "film",
         icon : ["fa-solid fa-film"],
