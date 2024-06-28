@@ -16,18 +16,22 @@
 [{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] using OpenAI }}]
 
   * **Integrate a client-side, WebGPU based LLM system**:
-    * Allow the user to select from a set of LLM models
-    * Candidates:
+    * Allow the user to select from a set of LLM models.
+    * Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images)
+    * Candidate frameworks:
       * [[https://github.com/xenova/transformers.js/|Transformer.js]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]]
+      * [[https://github.com/open-webui/open-webui|open-webui]]
 
-  * Main functions:
+  * Main AI functions:
     * Topical question-answering
     * Topical quizzing & examination
-    * Concent summarization
-    * Bookmark-selection reasoning
+    * Content summarization
+    * Bookmark-selection reasoning (over one or more topics)
       * See also: [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]]
+      * make this reasoning fully multi-lingual (currently only a few languages)
     * Presentation augmentation (combined with TTS)
+      * Add AI-entries (text + TTS) in the presentation table-of-contents
 
 ===== search =====
 
