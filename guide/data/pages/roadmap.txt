@@ -11,9 +11,13 @@
   * Get more **engagement and feedback** from users and software developers.
     * What should and could be improved for them in the knowledge exploration and learning process?
 
-===== AI =====
+===== frontend AI =====
 
 [{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] using OpenAI }}]
+
+The vision for Conzept with regards to frontend [[explore>Large language model|LLM AI]] is to try and integrate it both within a text-search based context and a semantic web context. Each of these "contexts" have their strengths. The semantic web context is more rigid, predictable and often precise, the AI-text context is more flexible, fluid and creative.
+
+A more semantic grounding of LLM functionality can help to provide a better...
 
   * **Integrate a client-side, WebGPU based LLM system**:
     * Allow the user to select from a set of LLM models.
@@ -22,6 +26,13 @@
       * [[https://github.com/xenova/transformers.js/|Transformer.js]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]]
       * [[https://github.com/open-webui/open-webui|open-webui]]
+    * Advantages of client-side AI models:
+      * Privacy
+      * Opensource
+      * Cheaper operation (after the initial hardware purchase)
+      * No 3rd-party AI-provider account needed
+      * No limits on AI-queries (both quantitative and qualitative)
+      * Flexibility and freedom how and where to use these AI models in the future.
 
   * Main AI functions:
     * Topical question-answering
@@ -33,11 +44,11 @@
     * Presentation augmentation (combined with TTS)
       * Add AI-entries (text + TTS) in the presentation table-of-contents
 
-===== search =====
+===== backend AI =====
 
-  * Allow admin/devs to create custom JSON-data API endpoints, for use as datasources.
-    * Research which software to use for this:
-     * ...
+Work in progress: LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typesense**.
+
+===== frontend search =====
 
   * **Structured search** using SPARQL (beyond Wikidata)
     * Ontology classes
@@ -61,9 +72,29 @@
     * How could we combine this with multi-modal, client-side AI?
     * What other search-commands are needed?
 
+===== backend search =====
+
+  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON or RDF).
+    * [[https://typesense.org|Typesense]] (C++/JS based search-engine backend with LLM/Vector search support)
+      * [[https://github.com/typesense|repo]]
+      * [[https://typesense.org/docs/|docs]]
+        * [[https://typesense.org/docs/26.0/api/|API]]
+          * [[https://github.com/typesense/typesense-api-spec|API specs]]
+      * Examples:
+        * [[https://github.com/typesense/showcase-hn-comments-semantic-search|HN]]
+    * Can be searched using: REST-API parameters or an LLM query.
+    * Research Conzept integration:
+      * How to setup multiple API datasources, each on its on localhost port?
+      * How should the Conzept Docker install workflow be changed to accomodate local APIs?
+    * Experiment: Create an IPTV datasource using Typesense [work in progress]
+
+  * Open issues:
+    * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
+    * Could we add important, but specific search-filters: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
+
 ===== datasources =====
 
-  * Improve existing datasources (use more datasource meta-data, better content views, etc.)
+  * Improve existing datasources (use more datasource meta-data, better content views, remove "BETA" label, etc.)
 
   * Implement async wikidata-enriching (partly done)
 

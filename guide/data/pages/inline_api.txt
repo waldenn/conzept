@@ -1,8 +1,10 @@
-==== integrating an API ====
+==== inline API ====
 
 [{{ ::rijksmuseum_api.jpg?direct|Rijksmuseum API in Conzept}}]
 
-The easiest way to integrate a new [[code_structure#api_code|API-endpoint]] is to copy a similar API-file from "[[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|app/explore2/src/fetch]]" and then making the necessary changes to it. You can choose how to present the results.
+[Note: Inline API integration is being deprecated, in favour of more the flexible [[datasources]] functionality ]
+
+The easiest way to integrate a new, **inline [[code_structure#api_code|API-endpoint]]** is to copy a similar API-file from "[[https://github.com/waldenn/conzept/tree/master/app/explore2/src/fetch|app/explore2/src/fetch]]" and then making the necessary changes to it. You can choose how to present the results.
 
 For some APIs you might want to render zoomable [[explore>International Image Interoperability Framework|IIIF]] images, for others you may just want a "open in a new tab" link to a webpage. Some APIs support sorting options, others do not.
 

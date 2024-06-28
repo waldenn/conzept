@@ -83,7 +83,7 @@ These types are currently available in field-definitions:
 | **link** | url | Open the URL in a single content-pane |
 | **url** | url | Open the URL in a new browser-tab |
 | **link-split** | url |Open the URL in two content panes. Load the supplied URL into the first content pane, in the second-content pane we try to load the Wikipedia / Wikidata page for this search-string / qid|
-| **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument-string}':true" | [[#exampleapi-based_link_field|Fetch API data]] from the [[integrating_an_api|supplied API-function]] and the argument-string (eg. a title-string or qid). The third boolean-argument can enable/disable the API data fetching. The results are rendered in the topic-card. \\ \\ Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. |
+| **rest-json** | "prop: 0", and "value: '${api-function-name}:${argument-string}':true" | [[#exampleapi-based_link_field|Fetch API data]] from the [[inline_api|inline API-function]] and the argument-string (eg. a title-string or qid). The third boolean-argument can enable/disable the API data fetching. The results are rendered in the topic-card. \\ \\ Note: The required field structure is likely to change in the future. Likely becoming a JS-object instead of a colon-delimited string. |
 
 ===== special values =====
 

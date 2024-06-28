@@ -1,7 +1,8 @@
 #version: "3"
 
 services:
-  certbot :
+
+  certbot:
     container_name: certbot
     image: certbot/certbot
     volumes:
@@ -10,6 +11,16 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     # depends_on:
     #   - conzept
+
+  #typesense:
+    #image: typesense/typesense:26.0
+    #restart: on-failure
+    #ports:
+    #  - "8108:8108"
+    #volumes:
+    #  - ./typesense-data:/var/lib/typesense
+    #command: '--data-dir /var/lib/typesense --api-key=xyz --enable-cors'
+
   conzept:
     container_name: conzept
     # env_file:
@@ -20,12 +31,10 @@ services:
       - sslvolume:/etc/ssl
       - ./data/certbot/conf:/etc/letsencrypt/
       - ./data/certbot/www:/var/www/certbot
-
       # only use these mappings during local development (never commit!):
       # FIXME: not yet producing a working build.
       #- app:/var/www/html/app
       #- /var/www/html/app/explore2/node_modules
-
     ports:
       - 80:80
       - 443:443

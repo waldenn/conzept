@@ -14,7 +14,7 @@ To add a new app to the existing set of apps, follow these steps:
     * Copy the "index.html" to index.template.html (or the "index.php" to "index.template.php", for PHP apps)
     * Insert the following template snippet into the HTML page, which will get substituted during the build step: **CONZEPT_COMMON_HTML_INCLUDE**. (If the project already includes jQuery, use: **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY**)
 
-  * Then **add a new [[field_customization|field]] definition**, to create a link to this specific app. Here is a simple example, which adds a link in two sections:
+  * Then **add a new [[field_customization|field]] definition**, to create a link to this specific app. Here is a simple "myapp" example, which adds a link in two sections:
 
 <code>
 'my_app_name' : {

@@ -65,7 +65,7 @@
 
 ===== docker =====
 
-  * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found / browser-security issues ). (CRITICAL ISSUE for development) 
+  * Docker-based [[https://github.com/waldenn/conzept/blob/a069bab0996bae8fe1d12b3c65a2348372c2d4df/docker-compose.yml#L24-L26|local-development mappings]] are not producing a working Conzept build (some directories are not found / browser-security issues ).
 
   * Cover fetching:
     * Monthly cronjob based fetching not yet implement.
