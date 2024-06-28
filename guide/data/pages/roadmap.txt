@@ -5,43 +5,52 @@
   * Fix the items mentioned in **[[issues|issues]]**.
 
   * **[[architecture|Architectural]] vision**
-    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' for various contexts (eg. datasources, fields, languages, content rendering functions).
+    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' for various contexts: datasources, fields (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
     * Improve and maintain **conceptual integrity** of how the various Conzept framework pieces fit together: [[datasources]], [[field customization|fields]], [[URL structure]], central configuration of common data across apps, easy intercommunication between apps, recursive Conzept views, 5D views (3D location + 1D time + 1D data-view).
 
   * Get more **engagement and feedback** from users and software developers.
     * What should and could be improved for them in the knowledge exploration and learning process?
 
+===== AI =====
+
+[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] using OpenAI }}]
+
+  * **Integrate a client-side, WebGPU based LLM system**:
+    * Allow the user to select from a set of LLM models
+    * Candidates:
+      * [[https://github.com/xenova/transformers.js/|Transformer.js]]
+      * [[https://github.com/mlc-ai/web-llm|web-llm]]
+
+  * Main functions:
+    * Topical question-answering
+    * Topical quizzing & examination
+    * Concent summarization
+    * Bookmark-selection reasoning
+      * See also: [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]]
+    * Presentation augmentation (combined with TTS)
 
 ===== search =====
 
-  * **Composable search** functionality (mostly done). Allow for combining:
-      * search terms
-        * including "double-quotes" (for literal phrase searching) (TODO: test for using multiple literal phrases)
-      * search scope: datasource set or individual datasources 
-      * search filters: media-type (done), geospatial contraints, temporal (year-range) contraints  
-      * search sorting: common sort-keys
+  * Allow admin/devs to create custom JSON-data API endpoints, for use as datasources.
+    * Research which software to use for this:
+     * ...
 
-  * Unfinshed search-modalities:
-    * **Geospatial search** (status: partly done for Wikidata)
-      * open issue: URL-serialization not working correctly.
-      * Implement for other datasources (with geo-search support)
-    * **Structured search** using SPARQL (beyond Wikidata)
-      * Ontology classes
-      * Ontology properties
-      * Autocompletion
-      * Multi-lingual labels
-      * Handle CORS issues
+  * **Structured search** using SPARQL (beyond Wikidata)
+    * Ontology classes
+    * Ontology properties
+    * Autocompletion
+    * Multi-lingual labels
+    * Handle CORS issues
 
-  * **Potential new search modalitites**:
-    * Temporal-range search (point-in-time, start-time, end-time) (status: implementation started)
+  * Enhance temporal-range input (date-min, date-max) with an optional, interactive range-slider.
 
   * Improve existing search modalities:
     * ? Wikidata: Allow for filtering by raw-text-strings in "structured search" (currently not supported in the Wikidata-query-builder)
     * Wikidata: Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
 
   * **Speech-based search input**
-    * how to allow for multi-line text input?
-    * hwo to combine speech-input with search commands?
+    * How to allow for multi-line text input?
+    * How to combine speech-input with search commands?
 
   * **[[user_manual#search_commands|Search commands]]**
     * Currently this is used a little for AI-chat and simple mathematical graph plotting.
@@ -50,37 +59,29 @@
 
 ===== datasources =====
 
+  * Improve existing datasources (use more datasource meta-data, better content views, etc.)
+
   * Implement async wikidata-enriching (partly done)
 
-  * Indepent active/autocomplete/search toggles per DS (eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
+  * Indepent active/autocomplete/search toggles per datasource (eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)
       * datasource autocomplete (boolean toggle)
       * datasource searching (boolean toggle)
-
-  * Improve existing datasources (use more datasource meta-data, better view-pages, etc.)
-
-  * Candidate new search-in datasource-sets:
-    * "web search" datasource
-    * art / museum archives
-    * youtube (requires approval)
-    * ...
 
   * Add a datasources search-filter (needed when the list gets too large)
 
   * Add well-structured, asynchronous hooks for pre- and post-processing of the API data.
     * Add hooks to enrich the API data (with Wikipedia and Wikidata information)
 
-  * Add support for self-hosted data-files used as a datasource: JSON, Parquet, CSV, RDF, etc.
-    * Research offline datasource support.
-    * Research decentralized, community managed, synced datasources.
-
 ===== presentation system =====
+
+  * Allow for presentation to be build from Conzept fields
+    * design reuirements: auto-positioning slides, handle the common start/end slides sets, ...
 
   * Allow for extra Text-to-Speech (TTS) storylines around a topic (beyond Wikipedia and Wikidata information). 
     * Related books, science articles (partly done), AI-generated summaries and other content, AI explain text selection, ...? 
 
-  * UI for creating and sharing user-created presentations around a topic.
-    * Allow for bookmarking presentations
+  * Allow for bookmarking presentations
 
 ===== browser extension =====
 
@@ -105,25 +106,18 @@
       * ? PDF
     * Research better drag-and-drop support
 
-  * Look into using more webcomponents:
+  * Look into using more Web Components:
     * [[https://shoelace.style|Shoelace webcomponent system]]
     * [[https://design-system.w3.org/|W3C design system]]
     * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
 
   * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
 
-  * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself!)
-
   * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
 
 ===== admin-dev workflows =====
 
   * Improve the workflow for adding [[datasources]].
-
-  * Improve the workflow for adding [[integrating_an_api|API integrations]].
-
-  * Clean up any issues with field definitions:
-    * Turn the the inline-API field-structure into an object (instead of a string)?
 
   * Field-translation support: Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
     * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
@@ -132,7 +126,7 @@
 
   * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
 
-===== educational-support enhancements  =====
+===== educational-support  =====
 
   * **Collaborative & social learning** features:
     * shared audio and chat (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
@@ -158,3 +152,4 @@
     * See also: **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]**
       * [[https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/|git repo]]
 
+  * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself)

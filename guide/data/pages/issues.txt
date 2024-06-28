@@ -55,12 +55,13 @@
 
 ===== bookmarking =====
 
+  * BUG: Update bookmarking system to handle datasource selection (originally only build for links / wikipedia).
   * BUG: view boomark URL is wrong? It does not bookmark the search-query?
   * BUG: "Villa Park" search --> bookmark view-URL --> quotes not stored in the bookmark ([[https://conze.pt/explore/%22Villa%20Park%22?l=en&d=wikipedia,wikidata,commons,openalex,arxiv&t=string&s=true#|example]])
 
 ===== datasources =====
 
-  * Implement a meta-data result-augementation API. This is used for API-results with a Wikidata Qid (for now). This is multi-step async process, which needs a good developer API.
+  * Implement a meta-data result-augmentation API. This is used for API-results which need multiple data-fetches. This is multi-step async process, which needs a good developer API.
 
 ===== docker =====
 
@@ -77,6 +78,8 @@
   * Abandoned Wikidata-based tools.
 
 ===== various =====
+
+  * Correctly highlight search-terms with multiple "quotea" phrases. 
 
   * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.
 

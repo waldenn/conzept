@@ -649,10 +649,10 @@ const datasources = {
                               'none'            : '', // 'Electronic+resource' (includes: "manuscripts, photographs, sound recordings, motion pictures, music, and maps.")
                               'text'            : 'Full+text+documents',
                               'image'           : 'Images',
-                              'video'           : 'Video+recordings',
-                              'audio'           : 'Sound+recordings',
+                              'video'           : 'Video+recordings', // FIXME: seems to not be correct
+                              'audio'           : 'Sound+recordings', // FIXME: seems to not be correct
                               'data'            : '',
-                              '3D'              : '3D+Models',
+                              '3D'              : '3D+Models',        // FIXME: seems to not be correct
                               'software'        : '',
                               'archive'         : '',
                               'entity'          : '',
