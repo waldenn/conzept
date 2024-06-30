@@ -1,6 +1,6 @@
 ====== browser extension ======
 
-(NOTE: The Conzept extension needs to be redesigned and rewritten)
+(NOTE: Currently offline. The Conzept extension needs to be redesigned and rewritten)
 
 [{{::extension_text_selection.jpg?direct|text-selection search}}]
 

@@ -1966,6 +1966,7 @@ async function fetchAutocompleteData( term ) {
       autocomplete_fetches.push( $.ajax({
 
         url:      eval(`\`${ d.autocomplete_url }\``),
+        headers:  d.headers,
         dataType: d.autocomplete_connect,
         success:  function( data ) { },
 
@@ -4087,6 +4088,7 @@ async function updateLocaleInterface(){
   $('#app-menu-search-in-option-culture').html( explore.banana.i18n('app-menu-search-in-option-culture') );
   $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
+  $('#app-menu-search-in-option-legal').html( explore.banana.i18n('app-menu-search-in-option-legal') );
   $('#app-menu-search-in-option-news').html( explore.banana.i18n('app-menu-search-in-option-news') );
   $('#app-menu-search-in-option-media').html( explore.banana.i18n('app-menu-search-in-option-media') );
   $('#app-menu-search-in-option-web').html( explore.banana.i18n('app-menu-search-in-option-web') );
@@ -11260,6 +11262,8 @@ async function fetchDatasources(){
 
         url:      eval(`\`${ d.count_url }\``),
 
+        headers:  d.headers,
+
         dataType: d.connect,
 
         success:  function( data ) {
@@ -11291,6 +11295,8 @@ async function fetchDatasources(){
       fetches.push( $.ajax({
 
         url:      eval(`\`${ d.url }\``),
+
+        headers:  d.headers,
 
         dataType: d.connect,
 

@@ -11,6 +11,7 @@ const datasources = {
     endpoint:               'wikipedia.org/w/api.php',
     format:                 'json',
     connect:                'jsonp',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               { // https://www.mediawiki.org/wiki/Help:CirrusSearch
                               'none'            : 'relevance',
@@ -77,6 +78,7 @@ const datasources = {
     endpoint:               'https://query.wikidata.org/sparql',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     //pagesize:               5, // FIXME: use datasource_page_size, // NOTE: sync this value with "structured query builder"!
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
@@ -147,6 +149,7 @@ const datasources = {
                                                                       //      https://commons.wikimedia.org/w/api.php?action=help&modules=query
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {  // no sort available?
                                 // https://phabricator.wikimedia.org/T219576
@@ -209,6 +212,7 @@ const datasources = {
     endpoint:               'https://archive.org/advancedsearch.php',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               { // see: https://archive.org/advancedsearch.php
                               'none'            : '',
@@ -268,6 +272,7 @@ const datasources = {
     endpoint:               'https://openlibrary.org/search.json',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               { // see: https://openlibrary.org/dev/docs/api/search
                               'none'            : '',
@@ -326,6 +331,7 @@ const datasources = {
     endpoint:               'https://api.europeana.eu', // see: https://pro.europeana.eu/page/search
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'score+desc',
@@ -385,6 +391,7 @@ const datasources = {
     endpoint:               'https://www.rijksmuseum.nl/api', // see: https://data.rijksmuseum.nl/object-metadata/api/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'relevance',
@@ -444,6 +451,7 @@ const datasources = {
                                                                         //      https://github.com/harvardartmuseums/api-docs/blob/master/sections/object.md
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -502,6 +510,7 @@ const datasources = {
     endpoint:               'https://www.loc.gov/items/', // see: https://www.loc.gov/apis/json-and-yaml/requests/endpoints/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -568,6 +577,7 @@ const datasources = {
                                                           //      https://pro.dp.la/developers/field-reference#sourceResource-spatial TODO
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               { // https://pro.dp.la/developers/requests#sortable
                               'none'            : '',
@@ -627,6 +637,7 @@ const datasources = {
                                                                               //      https://www.si.edu/collection/search?edan_q=food
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -686,6 +697,7 @@ const datasources = {
     endpoint:               'https://3d-api.si.edu/api/v1.0/content/file/search', // see: https://3d-api.si.edu/api-docs/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -747,6 +759,7 @@ const datasources = {
     endpoint:               'https://collectionapi.metmuseum.org/public/collection/v1/search', // see: https://metmuseum.github.io/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -808,6 +821,7 @@ const datasources = {
     endpoint:               'https://api.openalex.org/works', // see: https://docs.openalex.org/how-to-use-the-api/api-overview
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'relevance_score:desc',
@@ -866,6 +880,7 @@ const datasources = {
     endpoint:               'https://export.arxiv.org/api/query', // see: https://info.arxiv.org/help/api/user-manual.html
     format:                 'json',
     connect:                'xml',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'relevance',
@@ -925,6 +940,7 @@ const datasources = {
     endpoint:               'https://doaj.org/api/search/journals/', // see: https://doaj.org/api/v3/docs#!/Search/get_api_search_journals_search_query
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -984,6 +1000,7 @@ const datasources = {
     endpoint:               'https://scholar.archive.org', // see: https://scholar.archive.org/api/redoc
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'relevancy',
@@ -1043,6 +1060,7 @@ const datasources = {
     endpoint:               'https://api.gbif.org/v1/species', // see: https://www.gbif.org/developer/species
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1105,6 +1123,7 @@ const datasources = {
                                                                     //      https://ror.org/events/2023-02-01-intro-ror-api/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               20, // TOWAIT: no page-size parameter in the RoR API yet! Github issue: ...
                                 // https://github.com/ror-community/ror-api/issues/50
     //pagesize:               `${explore.datasource_page_size}`,
@@ -1166,6 +1185,7 @@ const datasources = {
     endpoint:               'https://api.gleif.org/api/v1/lei-records', // see: https://documenter.getpostman.com/view/7679680/SVYrrxuU?version=latest
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               { // MAYBE TODO: see sortable field: https://api.gleif.org/api/v1/fields the use as: "sort=entity.legalName"
                               'none'            : '',
@@ -1224,6 +1244,7 @@ const datasources = {
     endpoint:               'https://data.europa.eu/api/hub/search/search', // see: https://data.europa.eu/api/hub/search/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : 'relevance%2Bdesc',
@@ -1285,6 +1306,7 @@ const datasources = {
     endpoint:               'https://aleph.occrp.org/api/2/entities',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1343,6 +1365,7 @@ const datasources = {
     endpoint:               'https://api.gdeltproject.org/api/v2/context/context', // see: https://blog.gdeltproject.org/announcing-the-gdelt-context-2-0-api/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1402,6 +1425,7 @@ const datasources = {
     endpoint:               'https://sepiasearch.org/api/v1/search/videos', // see: https://framagit.org/framasoft/peertube/search-index/-/blob/master/client/src/models/search-url.model.ts?ref_type=heads
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1453,6 +1477,65 @@ const datasources = {
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
 
+  'courtlistener': {
+    active:                 false,
+    name:                   'CourtListener',
+    set:                    'legal',
+    description:            '🇺🇸 legal search - BETA',
+    tag:                    'legal',
+    qid:                    'Q117745639',
+    protocol:               'rest',
+    endpoint:               'https://www.courtlistener.com/api/rest/v3/search/', // see: https://www.courtlistener.com/help/api/rest/v3/search/
+    format:                 'json',
+    connect:                'json',
+    headers:                '{ "Authorization": "563492ad6f917000010000014808215632654fea8a525d4270585f00" }',
+    pagesize:               20, // `${explore.datasource_page_size}` // NOTE: no pagesize support it seems!
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : 'score+desc',
+                              'relevance-asc'   : 'score+asc',
+                              'date-desc'       : 'dateFiled+desc',
+                              'date-asc'        : 'dateFiled+asc',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : 'citeCount+desc',
+                              'citations-asc'   : 'citeCount+asc',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'text' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.courtlistener.endpoint}/?q=${term}&order_by=${ valid( sortby )? sortby : "" }&page=${ explore.page }',
+    icon:                   '<img class="datasource-icon" alt="CourtListener logo" src="/assets/icons/courtlistener.svg" alt="CourtListener logo">',
+    icon_invert:            true,
+    color:                  '#ed0e0e82',
+    display_url:            '${url}',
+    code_autocomplete:      'autocompleteCourtListener( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsCourtListener( topicResults, struct, index ) );',
+    code_resolve:           'resolveCourtListener( result, renderObject )',
+    code_render_mark:       'renderMarkCourtListener( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.courtlistener.endpoint}/?q=${term}&order_by=${ valid( sortby )? sortby : "" }&page=1',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     20, // `${explore.datasource_autocomplete_limit}`, // NOTE: no pagesize support it seems!
+  },
+
   /*
   'iptv': {
     active:                 false,
@@ -1466,6 +1549,7 @@ const datasources = {
     endpoint:               '',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1529,6 +1613,7 @@ const datasources = {
     endpoint:               '/app/proxy/marginalia', // see: https://www.marginalia.nu/marginalia-search/api/
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1588,6 +1673,7 @@ const datasources = {
     endpoint:               'https://api.inaturalist.org/v1/taxa', // see: https://api.inaturalist.org/v1/docs/#!/Taxa/get_taxa
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1637,6 +1723,7 @@ const datasources = {
     endpoint:               '/app/proxy/rkd',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1687,6 +1774,7 @@ const datasources = {
     endpoint:               'https://browser.ihtsdotools.org/snowstorm/snomed-ct/browser/MAIN/2023-04-30/descriptions',
     format:                 'json',
     connect:                'json',
+    headers:                '',
     pagesize:               `${explore.datasource_page_size}`,
     sort_map:               {
                               'none'            : '',
@@ -1733,6 +1821,7 @@ const datasource_set_map = {
   culture:    d_.filter( function( d ) { return datasources[ d ].set === 'culture'; } ),
   science:    d_.filter( function( d ) { return datasources[ d ].set === 'science'; } ),
   business:   d_.filter( function( d ) { return datasources[ d ].set === 'business'; } ),
+  legal:      d_.filter( function( d ) { return datasources[ d ].set === 'legal'; } ),
   news:       d_.filter( function( d ) { return datasources[ d ].set === 'news'; } ),
   media:      d_.filter( function( d ) { return datasources[ d ].set === 'media'; } ),
   web:        d_.filter( function( d ) { return datasources[ d ].set === 'web'; } ),

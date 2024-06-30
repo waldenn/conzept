@@ -125,7 +125,7 @@ The common image viewer has various advanced features:
 
 ===== IIIF image viewer =====
 
-[{{::iiif_image_viewer_app_001.jpg?direct|[[https://conze.pt/explore/Albrecht%20D%C3%BCrer,%20Drawings%20p88%20Knight%20in%20Armour?l=de&ds=culture&t=string&batchsize=5&theme=lattice&s=true#|example]]}}]
+[{{::iiif_image_viewer_app_001.jpg?direct|[[https://conze.pt/explore/Albrecht%20D%C3%BCrer?l=de&ds=culture&t=string&batchsize=5&theme=lattice&s=true#|example]]}}]
 
 This app allows for viewing zoomable IIIF files. Conzept also supports auto-creating a IIIF with metadata from an image.
 

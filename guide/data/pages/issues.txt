@@ -79,7 +79,7 @@
 
 ===== various =====
 
-  * Correctly highlight search-terms with multiple "quotea" phrases. 
+  * Correctly highlight search-terms with multiple "quoted" phrases. 
 
   * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.
 

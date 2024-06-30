@@ -98,6 +98,8 @@ Work in progress: LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-sea
 
   * Implement async wikidata-enriching (partly done)
 
+  * Implement "json-proxy" support for HTTP header "Authorization" (using the key from settings.conf)
+
   * Indepent active/autocomplete/search toggles per datasource (eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)
       * datasource autocomplete (boolean toggle)
@@ -160,6 +162,11 @@ Work in progress: LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-sea
   * Add a test-framework -> start adding tests for the most essential / complex code parts
 
   * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
+
+===== performance =====
+
+  * Add webworker-support and move (more and more) non-UI functionality to these workers.
+    * Research: What would be a good approach / framework for adding this?
 
 ===== educational-support  =====
 
