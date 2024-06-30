@@ -1384,19 +1384,28 @@ const datasources = {
                               'distance-asc'    : '',
                             },
     media:                  [ 'text' ],
+                            /*
+                              https://www.courtlistener.com/help/api/rest/v3/search/#type
+                              &type=o
+                              "o"	Case law opinions
+                              "r"	Federal filing documents from PACER
+                              "d"	Federal cases (dockets) from PACER
+                              "p"	Judges
+                              "oa"Oral argument audio files
+                            */
     filter_map:             {
                               'none'            : '',
-                              'text'            : '',
+                              'text'            : 'o',
                               'image'           : '',
                               'video'           : '',
-                              'audio'           : '',
+                              'audio'           : 'oa', // TODO: handle this type
                               'data'            : '',
                               '3D'              : '',
                               'software'        : '',
-                              'archive'         : '',
-                              'entity'          : '',
+                              'archive'         : 'r', // Federal filing documents from PACER (NOTE: Not an ideal fit, but useful for now)
+                              'entity'          : 'p', // TODO: handle this type. TO CONSIDER: Add a more specific "people" type?
                             },
-    url:                    '${datasources.courtlistener.endpoint}?q=${term}${ valid( [ datemin, datemax ] )? "&filed_after=" + convertToAmericanDate( datemin ) + "&filed_before=" + convertToAmericanDate( datemax ) : "" }&order_by=${ valid( sortby )? sortby : "" }&page=${ explore.page }',
+    url:                    '${datasources.courtlistener.endpoint}?q=${term}&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "type=" + filterby : "" }${ valid( [ datemin, datemax ] )? "&filed_after=" + convertToAmericanDate( datemin ) + "&filed_before=" + convertToAmericanDate( datemax ) : "" }&order_by=${ valid( sortby )? sortby : "" }&page=${ explore.page }',
     icon:                   '<img class="datasource-icon" alt="CourtListener logo" src="/assets/icons/courtlistener.svg" alt="CourtListener logo">',
     icon_invert:            true,
     color:                  '#ed0e0e82',
@@ -1407,7 +1416,7 @@ const datasources = {
     code_render_mark:       'renderMarkCourtListener( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.courtlistener.endpoint}?q=${term}&order_by=${ valid( sortby )? sortby : "" }&page=1',
+    autocomplete_url:       '${datasources.courtlistener.endpoint}?q=${term}&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "type=" + filterby : "" }${ valid( [ datemin, datemax ] )? "&filed_after=" + convertToAmericanDate( datemin ) + "&filed_before=" + convertToAmericanDate( datemax ) : "" }&order_by=${ valid( sortby )? sortby : "" }&page=1',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     20, // `${explore.datasource_autocomplete_limit}`, // NOTE: no pagesize support it seems!

@@ -98,7 +98,8 @@ Work in progress: LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-sea
 
   * Implement async wikidata-enriching (partly done)
 
-  * Implement "json-proxy" support for HTTP header "Authorization" (using the key from settings.conf)
+  * Implement "json-proxy" support for HTTP header Authorization" (using the key from settings.conf)
+    * To check: That the used header (on the frontend) is working for eg. CourtListener
 
   * Indepent active/autocomplete/search toggles per datasource (eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)
