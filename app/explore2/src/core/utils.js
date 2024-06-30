@@ -1033,6 +1033,15 @@ function convertToSeconds( myTime ) { // hh:mm:ss -> seconds
 
 }
 
+function convertToAmericanDate( date ){
+
+  date = date.split("T")[0];
+  date = date.split('-');
+
+  return `${date[1]}/${date[2]}/${date[0]}`;
+
+}
+
 function hashCode(str){
 
   let hash = 0;

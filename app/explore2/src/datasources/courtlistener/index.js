@@ -28,7 +28,7 @@ function processResultsCourtListener( topicResults, struct, index ){
 
   const source = 'courtlistener';
 
-  console.log( topicResults );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
@@ -88,15 +88,18 @@ function processResultsCourtListener( topicResults, struct, index ){
         let url         = valid( obj.absolute_url )? 'https://www.courtlistener.com' + obj.absolute_url : '';
         let title       = valid( obj.caseName )? obj.caseName : '';
 
-        let start_date  = valid( obj.timestamp )? obj.timestamp.split('-')[0] : '';
+        let start_date  = valid( obj.dateFiled )? obj.dateFiled.split('T')[0] : '';
 
-        let description = valid( obj.snippet )? '<div title="snippet"> <i class="fa-regular fa-file-lines"></i>&nbsp; ' + highlightTerms( obj.snippet ) + '</div><br/>': '';
-        let court       = valid( obj.court )? '<div title="court"><i class="fa-solid fa-landmark"></i>&nbsp; ' + obj.court + '</div>': '';
-
-        let attorney    = valid( obj.attorney )? '<div title="attorney"><i class="fa-solid fa-user-shield"></i>&nbsp; ' + obj.attorney + '</div>': '';
-        let judge       = valid( obj.judge )? '<div title="judge"><i class="fa-solid fa-gavel"></i>&nbsp; ' + obj.judge + '</div>': '';
-        let date_filed  = valid( obj.dateFiled )? '<div title="date filed"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp; ' + obj.dateFiled.split('T')[0] + '<div/>': '';
+        let docket_number = valid( obj.docketNumber )? '<div title="docket number"><i class="fa-regular fa-folder"></i></i>&nbsp; ' + obj.docketNumber + '</div>': '';
         let citations = valid( obj.cites )? '<div title="citations"><i class="fa-solid fa-quote-left"></i></i>&nbsp; ' + obj.citeCount + '</div>': '';
+
+        let description = valid( obj.snippet )? '<br/><div title="snippet"> <i class="fa-regular fa-file-lines"></i>&nbsp; ' + highlightTerms( obj.snippet ) + '</div><br/>': '';
+
+        let court       = valid( obj.court )? '<div title="court"><i class="fa-solid fa-landmark"></i>&nbsp; ' + obj.court + '</div>': '';
+        let judge       = valid( obj.judge )? '<div title="judge"><i class="fa-solid fa-gavel"></i>&nbsp; ' + obj.judge + '</div>': '';
+
+        let attorney    = valid( obj.attorney )? '<br/><div title="attorney"><i class="fa-solid fa-user-shield"></i>&nbsp; ' + obj.attorney + '</div>': '';
+        let date_filed  = valid( obj.dateFiled )? '<div title="date filed"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp; ' + obj.dateFiled.split('T')[0] + '<div/>': '';
 
 
         let thumb       = '';
@@ -109,10 +112,10 @@ function processResultsCourtListener( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        title,
-					description:  description + court + judge + attorney + date_filed + citations,
+					description:  docket_number + citations + description + court + judge + attorney,
 					gid:          gid,
           qid:          '',
-					display_url:  url,
+					display_url:  '/pages/blank.html', // TOFIX: URL CORS loading issues
           web_url:      url,
           thumb:        thumb,
           start_date:   start_date,
