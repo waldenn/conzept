@@ -88,6 +88,12 @@ function processResultsPeerTube( topicResults, struct, index ){
 
         let start_date  = valid( vid.createdAt )? vid.createdAt.split('-')[0] : '';
 
+        if ( !valid( start_date) ){ // fallback date
+
+          start_date  = valid( vid.dateArgued )? vid.dateArgued.split('-')[0] : '';
+
+        }
+
         let description = valid( vid.description )? vid.description : '';
 
         description     = highlightTerms( description );

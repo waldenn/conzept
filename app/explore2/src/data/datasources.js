@@ -1383,7 +1383,7 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'text' ],
+    media:                  [ 'text','audio','archive','entity' ],
                             /*
                               https://www.courtlistener.com/help/api/rest/v3/search/#type
                               &type=o
