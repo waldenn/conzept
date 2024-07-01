@@ -23,9 +23,12 @@ A more semantic grounding of LLM functionality can help to provide a more correc
     * Allow the user to select from a set of LLM models.
     * Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images)
     * Candidate frameworks:
-      * [[https://github.com/xenova/transformers.js/|Transformer.js]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]]
-      * [[https://github.com/open-webui/open-webui|open-webui]]
+    * Other projects:
+      * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
+      * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
+      * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
+      * [[https://github.com/reorproject/reor|reor]] (notes)
     * Advantages of client-side AI models:
       * Privacy
       * Opensource

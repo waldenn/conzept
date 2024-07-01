@@ -346,8 +346,8 @@ const datasources = {
                               'citations-asc'   : 'score+desc',
                               'title-desc'      : 'score+desc',
                               'title-asc'       : 'score+desc',
-                              'distance-desc'   : 'score+desc', // TO RESEARCH: geo-tag: https://pro.europeana.eu/page/annotations
-                              'distance-asc'    : 'score+desc',
+                              'distance-desc'   : 'distance+desc', // see also: https://europeana.atlassian.net/browse/EA-2996
+                              'distance-asc'    : 'distance+asc',
                             },
     media:                  [ 'text', 'image', 'video', 'audio', '3D' ],
     filter_map:             { // https://pro.europeana.eu/page/intro
@@ -362,8 +362,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }${ valid( [ datemin, datemax ] )? "&qf=timestamp_created:%5B" + datemin + "+TO+" + datemax + "%5D" : "" }',
-                            // TODO: add additional "qf" parameter for geo-bounding-box: "&qf=pl_wgs84_pos_lat%3A%5B45%20TO%2047%5D%20AND%20pl_wgs84_pos_long%3A%5B7%20TO%208%5D"
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }${ valid( [ datemin, datemax ] )? "&qf=timestamp_created:%5B" + datemin + "+TO+" + datemax + "%5D" : "" }${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "&qf=distance(coverageLocation," + geofilter_lat + "," + geofilter_lon + "," + geofilter_radius / 1000 + ")" : "" }',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     icon_invert:            true,
     color:                  '#0a72cc',
@@ -374,7 +373,7 @@ const datasources = {
     code_render_mark:       'renderMarkEuropeana( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}',
+    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}', // TODO: add filterby and geofilter
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
@@ -1464,7 +1463,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term.replaceAll( "\"", "\"") ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=5&format=json',
+    url:                    '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=5&format=json',
     icon:                   '<img class="datasource-icon" alt="GDELT logo" src="/assets/icons/gdelt.svg" alt="GDELT logo">',
     icon_invert:            true,
     color:                  '#fb7b10',
@@ -1475,7 +1474,7 @@ const datasources = {
     code_render_mark:       'renderMarkGDELT( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    false,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term.replaceAll( "\"", "\"") ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=${datasources.gdelt.autocomplete_limit}&format=json',
+    autocomplete_url:       '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=${datasources.gdelt.autocomplete_limit}&format=json',
 
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
