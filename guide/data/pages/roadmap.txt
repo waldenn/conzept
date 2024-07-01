@@ -75,17 +75,17 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
 ===== backend search =====
 
   * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON or RDF).
-    * [[https://typesense.org|Typesense]] (C++/JS based search-engine backend with LLM/Vector search support)
+
+    * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
       * [[https://github.com/typesense|repo]]
-      * [[https://typesense.org/docs/|docs]]
-        * [[https://typesense.org/docs/26.0/api/|API]]
-          * [[https://github.com/typesense/typesense-api-spec|API specs]]
-      * Examples:
-        * [[https://github.com/typesense/showcase-hn-comments-semantic-search|HN]]
+      * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
+
     * Can be searched using: REST-API parameters or an LLM query.
+
     * Research Conzept integration:
       * How to setup multiple API datasources, each on its on localhost port?
       * How should the Conzept Docker install workflow be changed to accomodate local APIs?
+
     * Experiment: Create an IPTV datasource using Typesense [work in progress]
 
   * Open issues:

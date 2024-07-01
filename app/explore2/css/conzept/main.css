@@ -1076,7 +1076,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 
 .datasource-icon {
   height: 1.5em;
-  max-width: 4em;
+  max-width: 6em;
 }
 
 .datasource-list-icon {
@@ -1090,7 +1090,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 }
 
 .datasource-name {
-  margin-left: 0.4em;
+  margin-left: 1.5em;
   font-weight: 500;
 }
 
@@ -1138,7 +1138,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 #datasources-setting .culture { background: #d3570c2b; }
 #datasources-setting .science { background: #2ed30c2b; }
 #datasources-setting .business { background: #0c91d32b; }
-#datasources-setting .legal { background: #ed0e0e82; }
+#datasources-setting .legal { background: #f3ddff96; }
 #datasources-setting .news { background: #9708e82b; }
 #datasources-setting .media { background: #ee9d1e99; }
 #datasources-setting .web { background: #4b95dc82; }

@@ -28,7 +28,7 @@ function processResultsCourtListener( topicResults, struct, index ){
 
   const source = 'courtlistener';
 
-  console.log( topicResults );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
@@ -88,33 +88,58 @@ function processResultsCourtListener( topicResults, struct, index ){
         let url         = valid( obj.absolute_url )? 'https://www.courtlistener.com' + obj.absolute_url : '';
         let title       = valid( obj.caseName )? obj.caseName : '';
 
+        let maintag     = 'work';
+        let subtag      = '';
+
         let audio_url   = valid( obj.download_url )? obj.download_url : '';
-        let duration    = valid( obj.duration )? '<span style="font-size: smaller"><i title="duration" aria-label="duration" class="fa-regular fa-clock"></i> ' + new Date( obj.duration * 1000 ).toISOString().slice(11, 19) + '</span>' : '';
+        let duration    = valid( obj.duration )? '<span style="float:right; font-size: smaller"><i title="duration" aria-label="duration" class="fa-regular fa-clock"></i> ' + new Date( obj.duration * 1000 ).toISOString().slice(11, 19) + '</span>' : '';
 
         let start_date  = valid( obj.dateFiled )? obj.dateFiled.split('T')[0] : '';
 
-        let docket_number = valid( obj.docketNumber )? '<div title="docket number"><i class="fa-regular fa-folder"></i></i>&nbsp; ' + obj.docketNumber + '</div>': '';
+        if ( !valid( start_date) ){ // fallback date
+
+          start_date  = valid( obj.dateArgued )? obj.dateArgued.split('-')[0] : '';
+
+        }
+
+        let docket_number = valid( obj.docketNumber )? '<span title="docket number"><i class="fa-regular fa-folder"></i></i>&nbsp; ' + obj.docketNumber + '</span>': '';
+
         let citations = valid( obj.cites )? '<div title="citations"><i class="fa-solid fa-quote-left"></i></i>&nbsp; ' + obj.citeCount + '</div>': '';
 
         let description = valid( obj.snippet )? '<br/><div title="snippet"> <i class="fa-regular fa-file-lines"></i>&nbsp; ' + highlightTerms( stripHtml( obj.snippet.substring(0, explore.text_limit ) + ' (...)' ) ) + '</div><br/>': '';
 
-        let court       = valid( obj.court )? '<div title="court"><i class="fa-solid fa-landmark"></i>&nbsp; ' + obj.court + '</div>': '';
-        let judge       = valid( obj.judge )? '<div title="judge"><i class="fa-solid fa-gavel"></i>&nbsp; ' + obj.judge + '</div>': '';
+        let court       = valid( obj.court )? obj.court : '';
 
-        let attorney    = valid( obj.attorney )? '<br/><div title="attorney"><i class="fa-solid fa-user-shield"></i>&nbsp; ' + obj.attorney + '</div>': '';
+        if ( valid( court ) ){
+
+          court         = '<div title="court"><a href="javascript:void(0)" title="court" aria-label="court" role="button"' + setOnClick( Object.assign({}, {}, { type: 'link', title: court, url: `${explore.base}/explore/%22${court}%22?l=${explore.language}&ds=reference&t=string&singleuse=true`, qid: '', language  : explore.language } ) ) + '"><i class="fa-solid fa-landmark"></i>&nbsp ' + court + '</a></div>';
+
+        }
+
+        let judge       = valid( obj.judge )? '<div title="judge"><i class="fa-solid fa-gavel"></i>&nbsp; ' + obj.judge + '</div>': '';
+        let person      = valid( obj.name )? '<div title="person"><i class="fa-solid fa-gavel"></i>&nbsp; ' + obj.name + '</div>': '';
+
+        let attorney    = valid( obj.attorney )? '<br/><div title="attorney"><i class="fa-solid fa-user-shield"></i>&nbsp; ' + stripHtml( obj.attorney.substring(0, 600 ) ) + '</div>': '';
+
+
         let date_filed  = valid( obj.dateFiled )? '<div title="date filed"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp; ' + obj.dateFiled.split('T')[0] + '<div/>': '';
 
         let thumb       = '';
-        let subtag      = '';
 
         description     = highlightTerms( description );
 
-        if ( valid( audio_url ) ){
+        if ( valid( audio_url ) ){ // legal document
 
           subtag  = 'audio';
 
         }
-        else {
+        else if ( valid( person ) ){ // judge
+
+          maintag = 'person';
+          subtag  = '';
+
+        }
+        else { // audio recording
 
           subtag  = 'audio';
 
@@ -124,7 +149,7 @@ function processResultsCourtListener( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        title,
-					description:  docket_number + duration + citations + description + court + judge + attorney,
+					description:  docket_number + duration + '<br/>' + citations + description + court + judge + person + attorney,
 					gid:          gid,
           qid:          '',
 					display_url:  '/pages/blank.html', // TOFIX: URL CORS loading issues
@@ -135,8 +160,6 @@ function processResultsCourtListener( topicResults, struct, index ){
           countries:    [],
           tags:         [],
 				};
-
-
 
 				item.tags[0]	= 'work';
 				item.tags[1]	= subtag;

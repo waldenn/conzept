@@ -119,7 +119,7 @@ function processResultsOCCRP( topicResults, struct, index ){
         let qid           = '';
 
         let start_date    = '';
-        let title         = '';
+        let title         = '---';
         let url           = '';
         let desc          = '';
         let creators      = [];
