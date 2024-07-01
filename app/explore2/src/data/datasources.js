@@ -1464,7 +1464,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=5&format=json',
+    url:                    '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term.replaceAll( "\"", "\"") ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=5&format=json',
     icon:                   '<img class="datasource-icon" alt="GDELT logo" src="/assets/icons/gdelt.svg" alt="GDELT logo">',
     icon_invert:            true,
     color:                  '#fb7b10',
@@ -1475,7 +1475,7 @@ const datasources = {
     code_render_mark:       'renderMarkGDELT( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    false,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=${datasources.gdelt.autocomplete_limit}&format=json',
+    autocomplete_url:       '${datasources.gdelt.endpoint}?format=html&timespan=2D&query=${ encodeURIComponent( term.replaceAll( "\"", "\"") ) }&searchlang=${explore.language_name}&mode=artlist&maxrecords=${datasources.gdelt.autocomplete_limit}&format=json',
 
     autocomplete_format:    'json',
     autocomplete_connect:   'json',

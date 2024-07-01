@@ -128,7 +128,7 @@ function processResultsCourtListener( topicResults, struct, index ){
 
         description     = highlightTerms( description );
 
-        if ( valid( audio_url ) ){ // legal document
+        if ( valid( audio_url ) ){ // audio recording
 
           subtag  = 'audio';
 
@@ -139,9 +139,9 @@ function processResultsCourtListener( topicResults, struct, index ){
           subtag  = '';
 
         }
-        else { // audio recording
+        else { // legal document
 
-          subtag  = 'audio';
+          subtag  = 'document';
 
         }
 
