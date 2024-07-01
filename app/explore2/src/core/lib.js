@@ -2512,7 +2512,7 @@ function setupSearch() {
 
     e.preventDefault();
 
-    console.log('geofilter changed to: ', $('#geofilter').val() );
+    //console.log('geofilter changed to: ', $('#geofilter').val() );
 
     if ( valid( $('#geofilter').val() ) ){
 
@@ -2589,6 +2589,12 @@ function setupSearch() {
       }
 
     }
+    else { // clear the value
+
+      explore.datemin        = '';
+      explore.datemin_param  = '';
+
+    }
 
   });
 
@@ -2614,6 +2620,12 @@ function setupSearch() {
         }
 
       }
+
+    }
+    else { // clear the value
+
+      explore.datemax        = '';
+      explore.datemax_param  = '';
 
     }
 

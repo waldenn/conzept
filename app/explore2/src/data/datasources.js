@@ -373,7 +373,7 @@ const datasources = {
     code_render_mark:       'renderMarkEuropeana( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}', // TODO: add filterby and geofilter
+    autocomplete_url:       '${datasources.europeana.endpoint}/entity/suggest?wskey=4ZViVZKMe&text=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&rows=${datasources.europeana.autocomplete_limit}&type=&scope=europeana&language=${explore.language}', // TODO: add filterby and geofilter?
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
