@@ -61,7 +61,11 @@
 
 ===== datasources =====
 
-  * Implement a meta-data result-augmentation API. This is used for API-results which need multiple data-fetches. This is multi-step async process, which needs a good developer API.
+  * Implement an async, meta-data result-augmentation workflow. This is used for API-results which need //multiple// data fetches.
+
+===== search =====
+
+  * Geospatial parameters should be re-applied to globe-map upon re-visits and zoomed-in when the globe-map is opened.
 
 ===== docker =====
 
@@ -82,4 +86,3 @@
   * Correctly highlight search-terms with multiple "quoted" phrases. 
 
   * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.
-

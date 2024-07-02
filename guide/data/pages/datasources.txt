@@ -24,7 +24,7 @@ Developer benefits:
   - Add a new datasource directory (using the name of the datasource, eg. "gleif")
   - Add a new JS file in that directory, implementing the required API access functions, example: [[https://conze.pt/app/explore2/src/datasources/gleif/index.js|src/datasources/gleif/index.js]]
 
-* See also:
+See also:
   * **[[issues#datasources|datasource issues]]**.
 
 ===== utility functions =====

@@ -115,8 +115,6 @@ const datasources = {
 
     url:                    '${datasources.wikidata.endpoint}?format=${datasources.wikidata.format}&query=SELECT ?item ?itemLabel WHERE { hint:Query hint:optimizer "None".  VALUES ?searchTerm { "${term.replace( /"/gm, "" )}" } ${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "SERVICE wikibase:around \{ ?item wdt:P625 ?location . bd:serviceParam wikibase:center %22Point(" + geofilter_lon + " " + geofilter_lat + ")%22^^geo:wktLiteral .  bd:serviceParam wikibase:radius %22" + geofilter_radius / 1000 + "%22 . \}" : " " } SERVICE wikibase:mwapi { bd:serviceParam wikibase:api "EntitySearch".  bd:serviceParam wikibase:endpoint "www.wikidata.org".  bd:serviceParam mwapi:search ?searchTerm.  bd:serviceParam mwapi:language "${explore.language}".  ?item wikibase:apiOutputItem mwapi:item.  } ${ setWikidataQueryFilter() } SERVICE wikibase:label { bd:serviceParam wikibase:language "${explore.language}". } } OFFSET ${ (explore.page -1) * datasources.wikidata.pagesize } LIMIT ${datasources.wikidata.pagesize}',
 
-    //count_url:              '${datasources.wikidata.endpoint}?format=${datasources.wikidata.format}&query=SELECT (COUNT(*) AS ?count) WHERE { hint:Query hint:optimizer "None".  VALUES ?searchTerm { "${term.replace( /"/gm, "" )}" } SERVICE wikibase:mwapi { bd:serviceParam wikibase:api "EntitySearch".  bd:serviceParam wikibase:endpoint "www.wikidata.org".  bd:serviceParam mwapi:search ?searchTerm.  bd:serviceParam mwapi:language "${explore.language}".  ?item wikibase:apiOutputItem mwapi:item.  } ${ setWikidataQueryFilter() } SERVICE wikibase:label { bd:serviceParam wikibase:language "${explore.language}". } }',
-    //url:                    '${datasources.wikidata.endpoint}?format=${datasources.wikidata.format}&query=SELECT ?item ?itemLabel WHERE { hint:Query hint:optimizer "None".  VALUES ?searchTerm { "${term.replace( /"/gm, "" )}" } SERVICE wikibase:mwapi { bd:serviceParam wikibase:api "EntitySearch".  bd:serviceParam wikibase:endpoint "www.wikidata.org".  bd:serviceParam mwapi:search ?searchTerm.  bd:serviceParam mwapi:language "${explore.language}".  ?item wikibase:apiOutputItem mwapi:item.  } ${ setWikidataQueryFilter() } SERVICE wikibase:label { bd:serviceParam wikibase:language "${explore.language}". } } OFFSET ${ (explore.page -1) * datasources.wikidata.pagesize } LIMIT ${datasources.wikidata.pagesize}',
     icon:                   '<img class="datasource-icon" alt="Wikidata datasource" src="/assets/icons/wikidata.png"></img>',
     icon_invert:            false,
     color:                  '#990000',
@@ -303,7 +301,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.openlibrary.endpoint}?q=${term}&lang=${explore.language}&page=${explore.page}&limit=${datasources.openlibrary.pagesize}&sort=${ valid( sortby )? sortby : "" }${ valid( [ datemin, datemax ] )? "&first_publish_year=" + datemin.split("-")[0] : "" }',
+    url:                    '${datasources.openlibrary.endpoint}?q=${term}&language=${explore.lang3}&page=${explore.page}&limit=${datasources.openlibrary.pagesize}&sort=${ valid( sortby )? sortby : "" }${ valid( [ datemin, datemax ] )? "&first_publish_year=" + datemin.split("-")[0] : "" }',
     icon:                   '<img class="datasource-icon" alt="Open Library datasource" src="/assets/icons/openlibrary.svg" alt="Open Library logo">',
     icon_invert:            true,
     color:                  '#e1dcc5',
@@ -314,7 +312,7 @@ const datasources = {
     code_render_mark:       'renderMarkOpenLibrary( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.openlibrary.endpoint}?q=${term}&lang=${explore.language}&page=1&limit=${datasources.openlibrary.autocomplete_limit}&sort=${ valid( sortby )? sortby : "" }',
+    autocomplete_url:       '${datasources.openlibrary.endpoint}?q=${term}&language=${explore.lang3}&page=1&limit=${datasources.openlibrary.autocomplete_limit}&sort=${ valid( sortby )? sortby : "" }',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
@@ -329,6 +327,7 @@ const datasources = {
     qid:                    'Q461',
     protocol:               'rest',
     endpoint:               'https://api.europeana.eu', // see: https://pro.europeana.eu/page/search
+                                                        //      https://europeana.atlassian.net/wiki/spaces/EF/pages/2385739812/Search+API+Documentation
     format:                 'json',
     connect:                'json',
     headers:                '',
@@ -362,7 +361,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }${ valid( [ datemin, datemax ] )? "&qf=timestamp_created:%5B" + datemin + "+TO+" + datemax + "%5D" : "" }${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "&qf=distance(coverageLocation," + geofilter_lat + "," + geofilter_lon + "," + geofilter_radius / 1000 + ")" : "" }',
+    url:                    '${datasources.europeana.endpoint}/record/search.json?wskey=4ZViVZKMe&view=grid&query=${term}&media=true&sort=${ valid( sortby )? sortby : "score+desc" }&profile=standard&rows=${datasources.europeana.pagesize}&start=${ ( (explore.page -1) * datasources.europeana.pagesize ) + 1 }&${ valid( filterby ) && Object.values( d.filter_map ).includes( filterby ) ? "qf=" + filterby : "qf=" }${ valid( [ datemin, datemax ] )? "&qf=timestamp_created:%5B" + datemin + "+TO+" + datemax + "%5D" : "" }${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "&qf=distance(location," + geofilter_lat + "," + geofilter_lon + "," + geofilter_radius / 1000 + ")" : "" }&qf=LANGUAGE:"${explore.language}"',
     icon:                   '<img class="datasource-icon" alt="Europeana datasource" src="/assets/icons/europeana.svg" alt="Europeana logo">',
     icon_invert:            true,
     color:                  '#0a72cc',
@@ -1547,7 +1546,6 @@ const datasources = {
   /*
   'iptv': {
     active:                 false,
-    active_trigger:         'loadDataIPTV()',
     name:                   'IPTV',
     set:                    'media',
     description:            'TV channels - BETA',

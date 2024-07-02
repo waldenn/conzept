@@ -187,9 +187,13 @@ Note: When you toggle an individual datasource in the settings-menu, the categor
 
 The following categories are currently available:
   * Reference works
-  * Culture
+  * Culture (GLAM data)
   * Science
-  * Business (also includes news and governmental data for now)
+  * Business (including government and corruption data)
+  * Legal
+  * News
+  * Media
+  * Web
 
 ==== filter by ====
 
@@ -224,21 +228,21 @@ The **near** option allows you to search by geolocation and country using a 3D g
 The country is automatically inferred based on the geolocation or can be selected directly through the country-selection-mode.
 
 Most datasources dont (yet) support geolocation-based searching, but these datasources currently do:
-  * Europeana (by geobox - note: not yet implemented)
-  * OpenAlex (by country)
-  * GLEIF (by country)
+  * Europeana
+  * OpenAlex (only by country)
+  * GLEIF (only by country)
 
 ==== sort by ====
 
 **Sort by** (in either the descending "↓" and ascending "↑" direction):
   * Relevance
-  * Date (of creation of event, or the most relevant date-attribute of the datasource)
+  * Date (of creation, or the most relevant date-related attribute of the datasource)
   * Update
   * Random
   * Title
   * Citations (or some similar available "reference" count)
   * Title
-  * Distance (note: not yet implemented)
+  * Distance
 
 ==== batch size ====
 

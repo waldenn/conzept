@@ -5,7 +5,7 @@
   * Fix the items mentioned in **[[issues|issues]]**.
 
   * **[[architecture|Architectural]] vision**
-    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' for various contexts: datasources, fields (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
+    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' for various contexts: [[datasources]], [[field_customization|fields]] (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
     * Improve and maintain **conceptual integrity** of how the various Conzept framework pieces fit together: [[datasources]], [[field customization|fields]], [[URL structure]], central configuration of common data across apps, easy intercommunication between apps, recursive Conzept views, 5D views (3D location + 1D time + 1D data-view).
 
   * Get more **engagement and feedback** from users and software developers.
@@ -24,6 +24,7 @@ A more semantic grounding of LLM functionality can help to provide a more correc
     * Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images)
     * Candidate frameworks:
       * [[https://github.com/mlc-ai/web-llm|web-llm]]
+      * [[https://github.com/danny-avila/LibreChat|LibreChat]]
     * Other projects:
       * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
       * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
@@ -53,14 +54,16 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
 
 ===== frontend search =====
 
+  * Enhance temporal-range input (date-min, date-max) with an optional, interactive range-slider.
+
+  * Research feasability to allow datasource searches without a search-term, but with one or more search filters.
+
   * **Structured search** using SPARQL (beyond Wikidata)
     * Ontology classes
     * Ontology properties
     * Autocompletion
     * Multi-lingual labels
     * Handle CORS issues
-
-  * Enhance temporal-range input (date-min, date-max) with an optional, interactive range-slider.
 
   * Improve existing search modalities:
     * ? Wikidata: Allow for filtering by raw-text-strings in "structured search" (currently not supported in the Wikidata-query-builder)
@@ -77,8 +80,7 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
 
 ===== backend search =====
 
-  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON or RDF).
-
+  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON, CSV or RDF). (work in progress)
     * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
       * [[https://github.com/typesense|repo]]
       * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
@@ -93,14 +95,14 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
 
   * Open issues:
     * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
-    * Could we add important, but specific search-filters: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
 
 ===== datasources =====
 
   * **Improve existing datasources** (use more datasource meta-data, better content views, remove "BETA" label, etc.)
 
-  * Research if it would be possible to **dynamically add datasource specific-types** (only when a single datasource is active!).
-    * This would allow for more fine-grained type-filters, finetuned to a particular datasource.
+  * Research if it would be possible to **dynamically add datasource-specific filter-types** (only when a single datasource is active!).
+    * This would allow for more fine-grained search type-filters, finetuned to a particular datasource.
+    * Eg. for library/book datasources: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
 
   * Consider adding **multi-select for datasource sets**.
 
