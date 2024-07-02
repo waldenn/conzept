@@ -6,7 +6,7 @@ function fetchWikiQuote( args, url ){
 
   const search_url = 'https://' + explore.language + '.wikiquote.org/w/api.php?action=query&srlimit=50&format=json&list=search&redirects=1&srsearch=' + keyword + '&srnamespace=0&srenablerewrites=1';
 
-	console.log( url, search_url  );
+	//console.log( url, search_url  );
 
 	let obj = {};
 

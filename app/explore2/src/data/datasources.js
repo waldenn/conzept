@@ -242,9 +242,9 @@ const datasources = {
                               'entity'          : '',
                             },
     url:                    'https://${explore.language}.${datasources.wikiquote.endpoint}?action=query&srlimit=${datasources.wikiquote.pagesize}&sroffset=${ (explore.page -1) * datasources.wikiquote.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&format=json&list=search&redirects=1&srsearch=${term}&srnamespace=0&srenablerewrites=1',
-    icon:                   '<i class="fa-solid fa-quote-left"></i>',
+    icon:                   '<img class="datasource-icon" alt="Wikiquote datasource" src="/assets/icons/wikiquote.svg" alt="Wikiquote logo">',
     color:                  '#069',
-    icon_invert:            true,
+    icon_invert:            false,
     display_url:            '',
     code_data_collect:      'my_promises.push( processResultsWikiquote( topicResults, struct, index ) );', // FIXME: invert control (see next line)
     code_autocomplete:      'autocompleteWikiquote( r, dataset )',

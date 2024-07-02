@@ -6,7 +6,7 @@ function autocompleteWikiquote( results, dataset ){
 
   let list = [];
 
-  console.log( results );
+  //console.log( results );
 
   if ( valid( results.query?.searchinfo?.totalhits ) ){
 
@@ -32,16 +32,16 @@ function processResultsWikiquote( topicResults, struct, index ){
 
   const source = 'wikiquote';
 
-  console.log( topicResults );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
-    if ( !valid( topicResults?.results?.query?.search ) ){
+    if ( !valid( topicResults?.query?.search ) ){
 
       resolve( [ [], [] ] );
 
     }
-    else if ( topicResults.results.query.search.length === 0 ){
+    else if ( topicResults.query.search.length === 0 ){
 
       resolve( [ [], [] ] );
 
@@ -95,7 +95,7 @@ function processResultsWikiquote( topicResults, struct, index ){
         let maintag     = 'work';
         let subtag      = 'document';
 
-        //let start_date  = valid( obj.dateFiled )? obj.dateFiled.split('T')[0] : '';
+        let start_date  = '';
 
         let description = valid( obj.snippet )? '<div title="snippet">' + highlightTerms( stripHtml( obj.snippet.substring(0, explore.text_limit ) + ' (...)' ) ) + '</div>': '';
 
@@ -109,7 +109,6 @@ function processResultsWikiquote( topicResults, struct, index ){
 					gid:          gid,
           qid:          '',
 					display_url:  url,
-          //web_url:      url,
           thumb:        thumb,
           start_date:   start_date,
           countries:    [],
@@ -160,4 +159,3 @@ function renderMarkWikiquote( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
-

@@ -52,11 +52,8 @@
 
   });
 
-  function hideGeosearch(){
-
-    parent.postMessage({ event_id: 'hide-geosearch', data: { } }, '*' );
-
-  }
+  function hideGeosearch(){ parent.postMessage({ event_id: 'hide-geosearch', data: {} }, '*' ); }
+  function clearGeosearch(){ parent.postMessage({ event_id: 'clear-geosearch', data: {} }, '*' ); }
 
 </script>
 
