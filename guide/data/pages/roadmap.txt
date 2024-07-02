@@ -5,19 +5,32 @@
   * Fix the items mentioned in **[[issues|issues]]**.
 
   * **[[architecture|Architectural]] vision**
-    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' for various contexts: [[datasources]], [[field_customization|fields]] (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
+    * Optimize the system for the user, to be: **accessible, in control, creative and fun.**
+    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' and open-ended, for various contexts: [[datasources]], [[field_customization|fields]] (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
     * Improve and maintain **conceptual integrity** of how the various Conzept framework pieces fit together: [[datasources]], [[field customization|fields]], [[URL structure]], central configuration of common data across apps, easy intercommunication between apps, recursive Conzept views, 5D views (3D location + 1D time + 1D data-view).
 
   * Get more **engagement and feedback** from users and software developers.
     * What should and could be improved for them in the knowledge exploration and learning process?
 
-===== frontend AI =====
+===== AI =====
+
+==== backend AI ====
+
+LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (work in progress)
+
+==== frontend AI ====
 
 [{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] using OpenAI }}]
 
-The vision for Conzept with regards to frontend [[explore>Large language model|LLM AI]], is to try and integrate that within a text-search based context and a semantic web context. Each of these "contexts" have their strengths. The semantic web context is more rigid, predictable and often more precise, the AI-text context is more flexible, fluid and creative.
+Conzept's current vision for frontend [[explore>Large language model|LLM AI]], is to enhance and combine the strengths of these two search contexts: 
 
-A more semantic grounding of LLM functionality can help to provide a more correct and steerable path for the user.
+  * **Semantic search** - Due to using clear graph "entities" (regardless of language), the semantic web context is __often more rigid / safe / predictable / cheaper / faster / multi-lingual / correct / precise__, than Vector-based searches.
+
+  * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute/time.
+
+If one starts with a more semantic grounding of LLM functionality, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic will have a clear context, upon which you can start prompting the AI for the preferred action/intention.
+
+See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark to be used with some AI-based reasoning function. This makes it possible to combine topics, categorize the topics and also preface context to each topic, for the LLM prompt (in a multi-lingual way).
 
   * **Integrate a client-side, WebGPU based LLM system**:
     * Allow the user to select from a set of LLM models.
@@ -41,22 +54,38 @@ A more semantic grounding of LLM functionality can help to provide a more correc
   * **Main AI functions**:
     * Topical question-answering
     * Topical quizzing & examination
-    * Content summarization
+    * Content summarization and Q&A of larger texts (including PDFs)
     * Bookmark-selection reasoning (over one or more topics)
       * See also: [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]]
       * make this reasoning fully multi-lingual (currently only a few languages)
     * Presentation augmentation (combined with TTS)
       * Add AI-entries (text + TTS) in the presentation table-of-contents
 
-===== backend AI =====
+===== search =====
 
-LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typesense**. (work in progress)
+==== backend search ====
 
-===== frontend search =====
+  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON, CSV or RDF). (work in progress)
+    * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
+      * [[https://github.com/typesense|repo]]
+      * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
 
-  * Enhance temporal-range input (date-min, date-max) with an optional, interactive range-slider.
+    * Allow both for **keyword** queries and **[[https://typesense.org/docs/26.0/api/vector-search.html|vector]]-based** queries (using a self-hosted LLM model).
 
-  * Research feasability to allow datasource searches without a search-term, but with one or more search filters.
+    * Research Conzept integration, regarding:
+      * The data-workflow (data files, insert/update/index scripts), for mulitple self-hosted datasources.
+      * Add the Typesense-server + setup steps to the Conzept Docker install.
+
+    * Experiment: Create an IPTV datasource using the Typesense-server.
+
+  * Open issues:
+    * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
+
+==== frontend search ====
+
+  * Enhance temporal-range input (date-min, date-max) with an optional, **interactive date-range slider**.
+
+  * Research feasability to **allow datasource searches without a search-term**, but with one or more search filters.
 
   * **Structured search** using SPARQL (beyond Wikidata)
     * Ontology classes
@@ -77,24 +106,6 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
     * Currently this is used a little for AI-chat and simple mathematical graph plotting.
     * How could we combine this with multi-modal, client-side AI?
     * What other search-commands are needed?
-
-===== backend search =====
-
-  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON, CSV or RDF). (work in progress)
-    * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
-      * [[https://github.com/typesense|repo]]
-      * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
-
-    * Can be searched using: REST-API parameters or an LLM query.
-
-    * Research Conzept integration:
-      * How to setup multiple API datasources, each on its on localhost port?
-      * How should the Conzept Docker install workflow be changed to accomodate local APIs?
-
-    * Experiment: Create an IPTV datasource using Typesense [work in progress]
-
-  * Open issues:
-    * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
 
 ===== datasources =====
 
@@ -135,7 +146,7 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
     * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
     * Goal: Provide a right-click menu-option to search on Conzept (make it work in embedded iframes and perhaps PDFs too, if possible)
 
-===== frontend ideas =====
+===== bookmarks =====
 
   * **Bookmarking**:
     * Cross-tab bookmark state-syncing
@@ -152,18 +163,11 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
       * ? PDF
     * Research better drag-and-drop support
 
-  * Look into using more **web components**:
-    * [[https://shoelace.style|Shoelace webcomponent system]]
-    * [[https://design-system.w3.org/|W3C design system]]
-    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
-
-  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
-
-  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
-
 ===== admin-dev workflows =====
 
   * Improve the workflow for adding [[datasources]].
+    * There are some minor manual issues, when adding new datasources which can be automated/scripted away.
+    * The "datasources.js" function-calls can be cleanup in a few places.
 
   * **Field-translation support**: Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
     * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
@@ -175,7 +179,7 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
 ===== performance =====
 
   * Add **webworker-support** and move (more and more) non-UI functionality to these workers.
-    * Research: What would be a good approach / framework for adding this?
+    * Research: What would be a good incremental approach (and framework) for adding this?
 
 ===== educational-support  =====
 
@@ -187,6 +191,15 @@ LLM/Vector/Hybrid **AI powered,  [[#backend search|backend-search]] using Typese
   * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
 
 ===== other ideas =====
+
+  * Look into using more **web components**:
+    * [[https://shoelace.style|Shoelace webcomponent system]]
+    * [[https://design-system.w3.org/|W3C design system]]
+    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
+
+  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
+
+  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
 
   * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
     * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]

@@ -126,8 +126,6 @@ function processResultsCourtListener( topicResults, struct, index ){
 
         let thumb       = '';
 
-        description     = highlightTerms( description );
-
         if ( valid( audio_url ) ){ // audio recording
 
           subtag  = 'audio';

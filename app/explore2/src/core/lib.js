@@ -9096,6 +9096,19 @@ function receiveMessage(event){
     geofilterButton.click();
 
   }
+  else if ( event.data.event_id === 'clear-geosearch' ){
+
+    explore.geofilter        = '';
+    explore.geofilter_param  = '';
+
+    $('#geofilter').val('');
+
+    $('#geofilter-popover').hide();
+
+    const geofilterButton   = document.getElementById( 'geofilter-button' );
+    geofilterButton.click();
+
+  }
   else if ( event.data.event_id === 'structured-query' ){
 
     $('#structured-search').prop('checked', true).change();

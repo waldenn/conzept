@@ -1079,6 +1079,10 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   max-width: 6em;
 }
 
+#datasources-used .datasource-icon {
+  max-width: 4em !important;
+}
+
 .datasource-list-icon {
   height: 1em;
   font-size: small;
@@ -2646,7 +2650,7 @@ input#geofilter {
   max-width: 500px;
   height: 50vh !important;
   background: white !important;
-  margin-top: 20vh !important;
+  margin-top: 22vh !important;
 }
 
 #language {

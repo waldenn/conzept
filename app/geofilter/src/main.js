@@ -142,6 +142,8 @@ globe.planet.renderer.events.on( 'lclick', (e) => {
 
 })
 
+window.globe = globe;
+
 function clickEvent( e ){
 
   let country       = '';
@@ -247,7 +249,7 @@ function showTopics( loc, country, country_name ){
         <div><span class="prop-name">lat:</span> <span class="prop-value">${loc.lat.toFixed(5)}</span></div>
         <div><span class="prop-name">lon:</span> <span class="prop-value">${loc.lon.toFixed(5)}</span></div>
         <div><span class="prop-name">height (msl):</span> <span class="prop-value">${Math.round(h)} m</span></div>
-        <div><span class="prop-name">radius:</span> <span class="prop-value">${ window.app.radius } m</span></div>
+        <div><span class="prop-name">radius:</span> <span class="prop-value">${ window.app.radius >= 1000 ? window.app.radius / 1000 + ' km': window.app.radius + ' m'}</span></div>
       </div>`);
 
       let geo = loc.lat.toFixed(5) + ';' + loc.lon.toFixed(5) + ';' + window.app.radius + ';' + country;
@@ -268,6 +270,12 @@ function showTopics( loc, country, country_name ){
 function hideGeosearch(){
 
   parentref.postMessage({ event_id: 'hide-geosearch', data: { geofilter: geo } }, '*' );
+
+}
+
+function clearGeosearch(){
+
+  parentref.postMessage({ event_id: 'clear-geosearch', data: {} }, '*' );
 
 }
 

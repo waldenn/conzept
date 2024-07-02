@@ -207,6 +207,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/dpla/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/smithsonian/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/smithsonian3D/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/wikiquote/index.js?vCONZEPT_VERSION"></script>
 
   <!-- science -->
   <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>

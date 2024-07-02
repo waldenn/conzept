@@ -7,12 +7,12 @@ html, body {
   z-index: 9999 !important;
 }
 
-#hide-geosearch, #radius {
+#hide-geosearch, #clear-geosearch, #radius {
   float: left;
   margin: 3px;
 }
 
-#hide-geosearch {
+#hide-geosearch, #clear-geosearch {
   padding: 0.5em;
   margin-right: 1em;
 }
