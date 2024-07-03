@@ -1110,10 +1110,6 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   text-wrap: nowrap;
 }
 
-.settings-container {
-  min-height: max-content;
-}
-
 /* */
 
 #datasources-used {

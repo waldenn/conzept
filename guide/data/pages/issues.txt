@@ -1,5 +1,9 @@
 ====== issues ======
 
+===== browser-specifc =====
+
+  * only on Firefox: Clicking any datasources-toggle (in the bottom-halve) causes the element-height to reset.
+
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.

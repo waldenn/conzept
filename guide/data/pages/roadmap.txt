@@ -35,10 +35,10 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
   * **Integrate a client-side, WebGPU based LLM system**:
     * Allow the user to select from a set of LLM models.
     * Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images)
-    * Candidate frameworks:
-      * [[https://github.com/mlc-ai/web-llm|web-llm]]
-      * [[https://github.com/danny-avila/LibreChat|LibreChat]]
+    * [[https://github.com/mlc-ai/web-llm-chat|web-llm-chat]] (AI chat app)
+      * [[https://github.com/mlc-ai/web-llm|web-llm]] (core framework)
     * Other projects:
+      * [[https://github.com/danny-avila/LibreChat|LibreChat]]
       * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
       * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
       * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
