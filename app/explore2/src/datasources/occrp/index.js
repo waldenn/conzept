@@ -119,7 +119,7 @@ function processResultsOCCRP( topicResults, struct, index ){
         let qid           = '';
 
         let start_date    = '';
-        let title         = '---';
+        let title         = '';
         let url           = '';
         let desc          = '';
         let creators      = [];
@@ -130,8 +130,8 @@ function processResultsOCCRP( topicResults, struct, index ){
 
         if ( valid( obj.id ) ){
 
-            gid = obj.id;
-            url = `https://aleph.occrp.org/entities/${obj.id}`;
+            title, gid   = obj.id;
+            url   = `https://aleph.occrp.org/entities/${obj.id}`;
 
         }
 
@@ -174,6 +174,7 @@ function processResultsOCCRP( topicResults, struct, index ){
 
         }
 
+        // set title
         if ( valid( obj?.properties?.name ) ){ // name
 
           if ( Array.isArray( obj.properties.name ) ){
@@ -188,7 +189,7 @@ function processResultsOCCRP( topicResults, struct, index ){
           }
 
         }
-        else if ( !valid( obj?.properties?.alias ) ){ // alias
+        else if ( valid( obj?.properties?.alias ) ){ // alias
 
           if ( Array.isArray( obj.properties.alias ) ){
 
@@ -202,9 +203,23 @@ function processResultsOCCRP( topicResults, struct, index ){
           }
 
         }
-        else {
+        else if ( valid( obj?.properties?.companiesMentioned ) ){ // merged names
 
-          title = '---';
+          if ( Array.isArray( obj.properties.companiesMentioned ) ){
+
+            title = stripHtml( obj.properties.companiesMentioned.join(', ') );
+
+          }
+          else {
+
+            title = stripHtml( obj.properties.companiesMentioned );
+
+          }
+
+        }
+        else if ( valid( obj?.cllection?.foreign_id ) ){ // merge ID?
+          
+          title = stripHtml( obj.collection.foreign_id );
 
         }
 
@@ -243,7 +258,7 @@ function processResultsOCCRP( topicResults, struct, index ){
         // fill fields
 				let item = {
           source:       source,
-					title:        title,
+					title:        valid( title )? title : gid,
 					description:  desc,
 					gid:          gid,
           web_url:      url,
@@ -301,3 +316,4 @@ function renderMarkOCCRP( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+

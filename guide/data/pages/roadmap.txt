@@ -16,7 +16,7 @@
 
 ==== backend AI ====
 
-LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (work in progress)
+LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (see below)
 
 ==== frontend AI ====
 
@@ -64,6 +64,10 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
 ===== search =====
 
 ==== backend search ====
+
+[{{::typesense_logo.jpg?direct|[[https://typesense.org|Typesense]] logo}}]
+
+[{{::typesense_features.jpg?direct|[[https://typesense.org/docs/overview/features.html|Typesense features]]}}]
 
   * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON, CSV or RDF). (work in progress)
     * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)

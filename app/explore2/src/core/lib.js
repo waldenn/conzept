@@ -2569,8 +2569,6 @@ function setupSearch() {
 
     e.preventDefault();
 
-    console.log('datemin changed to: ', $('#datemin').val() );
-
     if ( valid( $('#datemin').val() ) ){
 
       explore.datemin        = $('#datemin').val();
@@ -2601,8 +2599,6 @@ function setupSearch() {
   $('#datemax').on( 'change', function (e) {
 
     e.preventDefault();
-
-    console.log('datemax changed to: ', $('#datemax').val() );
 
     if ( valid( $('#datemax').val() ) ){
 

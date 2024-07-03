@@ -388,7 +388,7 @@ $settings_html = '
 
           <div class="tab-title" id="app-tab-settings-title" style="font-family: ' . $font . ' !important;">settings</div>
 
-          <div class="overflow-content indent">
+          <div class="overflow-content indent settings-container">
 
             <details class="auto conf" closed>
               <summary><span id="app-menu-datasources">datasources</span>

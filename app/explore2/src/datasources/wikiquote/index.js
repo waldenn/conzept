@@ -90,7 +90,7 @@ function processResultsWikiquote( topicResults, struct, index ){
 
         let gid         = valid( obj.pageid )? obj.pageid : '';
         let title       = valid( obj.title )? obj.title : '';
-        let url         = valid( title )? `https://${explore.language}.wikiquote.org/wiki/${obj.title}` : '';
+        let url         = valid( title )? `https://${explore.language}.m.wikiquote.org/wiki/${obj.title}` : '';
 
         let maintag     = 'work';
         let subtag      = 'document';
