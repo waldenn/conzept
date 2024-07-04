@@ -89,6 +89,9 @@ function processResultsLoC( topicResults, struct, index ){
 
         let url     	 		= valid( obj.url )? obj.url : ''; // eval(`\`${ datasources[ source ].display_url  }\``);
 
+        let audio_link        = '';
+        let video_link        = '';
+
         let doc_url           = '';
         let document_language = 'en'; // default
 
@@ -237,9 +240,10 @@ function processResultsLoC( topicResults, struct, index ){
 
                 if ( valid( obj.resources[0]?.video ) ){
 
-                        url = obj.resources[0].video
-                        media_found = true;
-                        subtag  = 'film';
+                  url         = obj.resources[0].video
+                  video_link  = url;
+                  media_found = true;
+                  subtag      = 'film';
 
                 }
 
@@ -248,9 +252,10 @@ function processResultsLoC( topicResults, struct, index ){
 
                 if ( valid( obj.resources[0]?.audio ) ){
 
-                        url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].audio )}`;
-                        media_found = true;
-                        subtag  = 'audio';
+                  url         = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].audio )}`;
+                  audio_link  = url;
+                  media_found = true;
+                  subtag      = 'audio';
 
                 }
 
@@ -314,6 +319,8 @@ function processResultsLoC( topicResults, struct, index ){
 					description:  ' ' + description + '<br/></br>' + author,
 					gid:          gid,
 					display_url:  url,
+          audio_link:   audio_link,
+          video_link:   video_link,
 					thumb:        thumb,
           start_date:   start_date,
 

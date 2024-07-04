@@ -586,7 +586,7 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'text', 'image', 'video', 'audio', '3D', 'software' ],
+    media:                  [ 'text', 'image', 'video', 'audio', '3D' ], // 'software'
                             /* TODO: filter mapping
                                 - https://www.loc.gov/apis/json-and-yaml/requests/endpoints/
                                 - see: https://www.loc.gov/search/?fa=partof:motion+picture,+broadcasting+%26+recorded+sound+division
@@ -595,12 +595,12 @@ const datasources = {
     filter_map:             {
                               'none'            : '',
                               'text'            : 'book', // book|periodical|web%20page|newspaper
-                              'image'           : 'photo,%20print,%20drawing', // photo,%20print,%20drawing|map
-                              'video'           : 'film,%20video', // film,%20video
-                              'audio'           : 'sound%20recording', // sound%20recording
+                              'image'           : 'photo,%20print,%20drawing',
+                              'video'           : 'film,%20video',
+                              'audio'           : 'sound%20recording',
                               'data'            : '',
-                              '3D'              : '3d%20object', // 3d%20object
-                              'software'        : 'software,+e-resource', // software,+e-resource
+                              '3D'              : '3d%20object', // NOTE: image of a 3D object!
+                              'software'        : '', // 'software,+e-resource' NOTE: weird mix of PDFs and other objects!
                               'archive'         : '', // manuscript/mixed+material
                               'entity'          : '',
                                                       // personal+narrative
@@ -653,8 +653,8 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'text', 'image', 'video', 'audio', '3D', 'software' ],
-    filter_map:             { // sourceResource.format="Lithograph+on+paper"
+    media:                  [ 'text', 'image', 'video', 'audio' ],
+    filter_map:             {
                               'none'            : '',
                               'text'            : 'text',
                               'image'           : 'image',
@@ -713,15 +713,15 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'text', 'image', 'video', 'audio', '3D' ],
+    media:                  [ 'text', 'image', 'audio' ], // 'video', '3D'
     filter_map:             {
                               'none'            : '', // 'Electronic+resource' (includes: "manuscripts, photographs, sound recordings, motion pictures, music, and maps.")
                               'text'            : 'Full+text+documents',
                               'image'           : 'Images',
                               'video'           : 'Video+recordings', // FIXME: seems to not be correct
-                              'audio'           : 'Sound+recordings', // FIXME: seems to not be correct
+                              'audio'           : 'Sound+recordings', // FIXME: seems to not be correct: no real audio avaiable!
                               'data'            : '',
-                              '3D'              : '3D+Models',        // FIXME: seems to not be correct
+                              '3D'              : '3D+Models',        // FIXME: seems to not be correct: picture of 3D object!
                               'software'        : '',
                               'archive'         : '',
                               'entity'          : '',

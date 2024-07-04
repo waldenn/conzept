@@ -2644,6 +2644,24 @@ conzept_fields = {
   rank: 1,
 },
 
+'video_custom_link' : {
+  create_condition: 'valid( item.video_link )',
+  title: 'audio link',
+  type: 'link',
+  url: '${ item.video_link }',
+  mv: false,
+  icon: '"fa-regular fa-file-video',
+  text: 'video',
+  section: 'main',
+  rank: 40,
+  headline_create: 'valid( item.video_link )',
+  headline_type: 'link',
+  headline_url: 'item.video_link',
+  headline_title: 'video',
+  headline_icon: '"fa-regular fa-file-video',
+  headline_rank: 199,
+},
+
 'audio' : {
   value: 'https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent( wd.claims.P51[0] )}',
   //render_condition: false,
