@@ -240,7 +240,7 @@ function processResultsLoC( topicResults, struct, index ){
 
                 if ( valid( obj.resources[0]?.video ) ){
 
-                  url         = obj.resources[0].video
+                  url         = obj.resources[0].video;
                   video_link  = url;
                   media_found = true;
                   subtag      = 'film';
@@ -253,7 +253,7 @@ function processResultsLoC( topicResults, struct, index ){
                 if ( valid( obj.resources[0]?.audio ) ){
 
                   url         = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].audio )}`;
-                  audio_link  = url;
+                  audio_link  = obj.resources[0].audio;
                   media_found = true;
                   subtag      = 'audio';
 
@@ -264,14 +264,30 @@ function processResultsLoC( topicResults, struct, index ){
 
                 if ( valid( obj.resources[0]?.media ) ){
 
-                        url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].media )}`;
-                        media_found = true;
-                        subtag  = 'audio';
+                  url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].media )}`;
+
+                  audio_link  = obj.resources[0].media;
+                  media_found = true;
+                  subtag  = 'audio';
 
                 }
 
               }
+              else if ( resource_key === 'files' ){
 
+								if ( valid( obj.resources[0]?.media ) ){
+
+                  // FIXME: check file suffix: .mp3, .mp4, etc.!
+
+                  url = `${explore.base}/app/audio/?url=${ encodeURIComponent( "/app/cors/raw/?url=" + obj.resources[0].media )}`;
+
+                  audio_link  = obj.resources[0].media;
+									media_found = true;
+									subtag	= 'audio';
+
+								}
+
+              }
               else if ( resource_key === 'image' ){
 
 								if ( valid( obj.resources[0]?.image ) ){

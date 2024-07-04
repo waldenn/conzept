@@ -202,11 +202,11 @@ The following categories are currently available:
   * Image
   * Video
   * Audio
+  * 3D (object models, or pictures of 3D objects)
+  * Entity (organizations, people, etc. Note: This might be split up later into sub-types)
   * Data (CSV, JSON, etc. )
-  * 3D object models
   * Software
   * Archive (zip file, mixed-media collections)
-  * Entity (organizations, people, etc.)
 
 ==== date range ====
 
