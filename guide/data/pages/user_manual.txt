@@ -204,9 +204,9 @@ The following categories are currently available:
   * Audio
   * 3D (object models, or pictures of 3D objects)
   * Entity (organizations, people, etc. Note: This might be split up later into sub-types)
-  * Data (CSV, JSON, etc. )
   * Software
   * Archive (zip file, mixed-media collections)
+  * Data (CSV, JSON, etc. )
 
 ==== date range ====
 
