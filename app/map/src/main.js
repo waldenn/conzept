@@ -2,7 +2,8 @@
 
 import {
   Globe,
-  GlobusTerrain,
+  GlobusRgbTerrain,
+  //GlobusTerrain,
   XYZ,
   LonLat,
   Popup,
@@ -333,7 +334,8 @@ async function init(){
 
     target:       "globus",
     name:         "Earth",
-    terrain:      new GlobusTerrain(),
+    terrain:      new GlobusRgbTerrain(),
+    //terrain:      new GlobusTerrain(),
     layers:       [osm, sat],
     resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
     fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",

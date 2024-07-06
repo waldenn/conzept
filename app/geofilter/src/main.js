@@ -1,6 +1,7 @@
 import {
   Globe,
-  GlobusTerrain,
+  GlobusRgbTerrain,
+  //GlobusTerrain,
   XYZ,
   LonLat,
   Popup,
@@ -109,7 +110,7 @@ let sat = new XYZ("sat", {
 const globe = new Globe({
   target: "globus",
   name: "Earth",
-  terrain: new GlobusTerrain(),
+  terrain: new GlobusRgbTerrain(),
   layers: [osm, sat, pointLayer ],
   resourcesSrc: "../../external/og/lib/@openglobus/res",
   fontsSrc: "../../external/og/lib/@openglobus/res/fonts"

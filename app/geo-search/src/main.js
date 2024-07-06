@@ -1,6 +1,7 @@
 import {
   Globe,
-  GlobusTerrain,
+  GlobusRgbTerrain,
+  //GlobusTerrain,
   XYZ,
   LonLat,
   Popup,
@@ -144,7 +145,7 @@ let globe = new Globe({
 
   target:       "globus",
   name:         "Earth",
-  terrain:      new GlobusTerrain(),
+  terrain:      new GlobusRgbTerrain(),
   layers:       [osm, sat, pointLayer ],
   resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
   fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts"

@@ -290,11 +290,11 @@ $sticky_html = '
           <option value="image" id="app-menu-filter-by-option-image">image</option>
           <option value="video" id="app-menu-filter-by-option-video">video</option>
           <option value="audio" id="app-menu-filter-by-option-audio">audio</option>
-          <option value="data" id="app-menu-filter-by-option-data">data</option>
           <option value="3D" id="app-menu-filter-by-option-3D">3D</option>
+          <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
           <option value="software" id="app-menu-filter-by-option-software">software</option>
           <option value="archive" id="app-menu-filter-by-option-archive">archive</option>
-          <option value="entity" id="app-menu-filter-by-option-entity">entity</option>
+          <option value="data" id="app-menu-filter-by-option-data">data</option>
         </select>
 
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#filter_by" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
