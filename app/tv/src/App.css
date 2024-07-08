@@ -1,13 +1,3 @@
-a {
-  text-decoration: none !important;
-}
-
-.my-ui-back {
-  font-size: 2em;
-  color: black;
-  margin-left: 1em;
-}
-
 .App {
   text-align: center;
   min-height: 100vh;

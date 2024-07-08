@@ -1,118 +1,133 @@
 const {writeFile} = require('fs');
 const {getName} = require('country-list');
 
-const DEFAULT_PLAYLIST = 'https://iptv-org.github.io/iptv/index.nsfw.m3u';
-
-const getCountryName = (data) => {
-    try {
-        if(!data) {
-            return ''
-        }
-        const index = data.indexOf('.')
-        let countryCode = data.slice(index + 1, index + 3).toUpperCase().replaceAll('"', '');
-        if(countryCode === 'UK') {
-            countryCode = 'GB'
-        }
-        return {code: countryCode};
-    }catch (e) {
-        console.debug(e)
-        return ''
+const getCountryCode = (channel) => {
+    const code = channel.country;
+    if(!code) {
+        throw new Error(`Country code is not available for channel ${channel.name}`)
     }
-    
+
+    if(code === 'UK') {
+        return 'GB'
+    }
+
+    return code
 }
 
-const getLogo = (data) => {
-    try {
-        return data.replaceAll('"', '');
-    }catch (e) {
-        console.debug(e)
-        return ''
-    }
-}
-
-const getChannelName = (data) => {
-    try {
-        const namePreProcessed = data.split(',')
-        return namePreProcessed[namePreProcessed.length - 1]
-    }catch (e) {
-        console.debug(e)
-        return ''
-    }
-    
-}
-
-const getChannelCategories = (data) => {
-    try {
-        let preprocessedGroup = data.split(',')[0];
-        preprocessedGroup = preprocessedGroup.split("user-agent")[0];
-        preprocessedGroup = preprocessedGroup.replaceAll('"', '')
-        preprocessedGroup = preprocessedGroup.replaceAll(' ', '')
-        preprocessedGroup = preprocessedGroup.split(';')
-        return preprocessedGroup
-    }catch (e) {
-        console.debug(e)
-        return ''
-    }
-}
-
-
-const playlistParser = async (url=DEFAULT_PLAYLIST) => {
-    const rawData = await fetch(DEFAULT_PLAYLIST);
-    let rawPlaylist = await rawData.text();
-    rawPlaylist = rawPlaylist.replace('#EXTM3U\n', '')
-    rawPlaylist = rawPlaylist.split('#EXTINF:-1 ')
+const playlistParser = async () => {
+    let rawStreams =  await (await fetch('https://iptv-org.github.io/api/streams.json')).json()
+    let rawChannels = await (await fetch('https://iptv-org.github.io/api/channels.json')).json()
     const channels = []
-    rawPlaylist.forEach((element, idx) => {
-        if(!element) {
+    const countryCodes = []
+    const categories = []
+
+    rawStreams.forEach( (eachStream, idx) => {
+
+        if(!eachStream.channel || !eachStream.url) {
+            // This means there are some streams whose channel details are not available
             return
         }
-        const splitData = element.split('\n');
-        const url = splitData.filter((eachStr) => {
-            let isUrl = false;
-            try {
-                new URL(eachStr);
-                isUrl = true;
-            } catch (_) {
-                isUrl = false;
-            }
-            return isUrl
-        })[0]
-        const channelData = splitData[0]
-        const preprocessedChannelData = channelData.replace('tvg-id=', '@').replace(' tvg-logo=', '@').replace(' group-title=', '@').split('@');
-        const country = getCountryName(preprocessedChannelData[1])
-        const logo = getLogo(preprocessedChannelData[2])
-        const name = getChannelName(preprocessedChannelData[3])
-        const categories = getChannelCategories(preprocessedChannelData[3])
-        
-        channels.push({id: idx, url, country, logo, name, group: categories})
-    });
-    return channels;
-}
 
-const getCategories = (channels) => {
-    let group = [];
-    channels.forEach((eachChannel) => {
-        eachChannel.group.forEach((eachGroup) => {
-            if(!group.includes(eachGroup) && eachGroup !== "") {
-                group.push(eachGroup)
+        const channel = rawChannels.find(eachChannel => eachChannel.id === eachStream.channel)
+
+        if(!channel) {
+            // This means there are some streams whose channel details are not available in Channels API
+            return
+        }
+
+        console.log( channel.languages );
+
+        /*
+         // Encode the title for URL
+          const encodedTitle = encodeURIComponent(channel.name);
+
+          // SPARQL query to get the QID by title
+          const query = `
+            SELECT ?item WHERE {
+              ?item rdfs:label "${encodedTitle}"@en.
+            } LIMIT 1
+          `;
+
+          // URL for the Wikidata Query Service
+          const url = `https://query.wikidata.org/sparql?format=json&query=${encodeURIComponent(query)}`;
+
+          try {
+            // Perform the fetch request
+            const response = await fetch(url, {
+              headers: {
+                'Accept': 'application/sparql-results+json'
+              }
+            });
+
+            // Check if the response is ok
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            // Parse the response JSON
+            const data = await response.json();
+
+            // Extract the QID from the results
+            if (data.results.bindings.length > 0) {
+              const qid = data.results.bindings[0].item.value.split('/').pop();
+              return qid;
+            } else {
+              return 'No QID found for the given title';
+            }
+          } catch (error) {
+            console.error('Error fetching data: ', error);
+            return 'Error fetching data';
+          }
+
+
+        console.log( qid, channel.name );
+        */
+
+        if(!channel.country) {
+            console.log(channel)
+        }
+
+        const toAdd =  {
+            id: idx,
+            url: eachStream.url,
+            country: {
+              code: getCountryCode(channel),
+            },
+            logo: channel.logo || '',
+            name: channel.name || '',
+            group: channel.categories ? channel.categories : ['general'],
+            languages: channel.languages,
+        }
+
+        if(!countryCodes.includes(toAdd.country.code)) {
+            countryCodes.push(toAdd.country.code)
+        }
+
+        toAdd.group.forEach((eachGroup) => {
+            if(!categories.includes(eachGroup) && eachGroup !== "") {
+                categories.push(eachGroup)
             }
         })
-    })
-    return group.sort();
-}
+        channels.push(toAdd)
 
-const getCountries = (channels) => {
-    let countries = [];
-    channels.forEach((eachChannel) => {
-        const index = countries.findIndex((eachCountry) => eachCountry.code === eachChannel.country.code)
-        
-        if(index < 0 && eachChannel.country.code !== "") {
-            let countryName =  getName(eachChannel.country.code)
-            let country = {...eachChannel.country, name: countryName};
-            countries.push(country);
-        }
     })
-    return countries.sort((a, b) => {
+
+    const countriesWithName = []
+
+    countryCodes.forEach((eachCountryCode) => {
+        if(eachCountryCode === 'XK') {
+            countriesWithName.push({code: eachCountryCode, name: 'Kosovo'})
+            return
+        }
+
+        const countryName = getName(eachCountryCode)
+        if(!countryName) {
+            throw new Error(`Country code ${eachCountryCode} does not exist in country-list`)
+        }
+        countriesWithName.push({code: eachCountryCode, name: countryName})
+    })
+
+    const countries = countriesWithName.sort((a, b) => {
         if ( a.name < b.name ){
             return -1;
         }
@@ -121,19 +136,14 @@ const getCountries = (channels) => {
         }
         return 0;
     });
-}
 
-playlistParser().then((playlist) => {
-    // get countries.
-    const countries = getCountries(playlist);
-    // get categories.
-    const categories = getCategories(playlist);
-    const toWrite = {channels: playlist, countries, categories}
-    writeFile('./playlist.json', JSON.stringify(toWrite, null, 2), (error) => {
+    writeFile('./playlist.json', JSON.stringify({channels, countries, categories}, null, 2), (error) => {
         if (error) {
           console.log('An error has occurred ', error);
           return;
         }
         console.log('Data written successfully to disk');
       });
-});
+}
+
+playlistParser()

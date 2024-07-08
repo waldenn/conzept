@@ -23,8 +23,7 @@ export const VideoJS = (props) => {
     } else {
       const player = playerRef.current;
 
-      player.autoplay( true );
-      //player.autoplay(options.autoplay);
+      player.autoplay(options.autoplay);
       player.src(options.sources);
     }
   }, [options, videoRef]);

@@ -1,4 +1,4 @@
-const URL = 'https://raw.githubusercontent.com/shriram-k/iptv-viewer/master/playlist.json';
+const URL = '../playlist.json'; // 'https://raw.githubusercontent.com/shriram-k/iptv-viewer/master/playlist.json';
 
 const getDataFromGithub = async () => {
     const data = await fetch(URL);

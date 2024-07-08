@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {capitalizeFirstLetter} from "../helpers";
 
 const ChannelCard = ({channel}) => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const ChannelCard = ({channel}) => {
             <div style={{flex: 1, padding: '5px', fontSize: '0.8rem'}} >
                 <div style={{}}>{channel.name}</div>
                 <div style={{fontWeight: 600, marginTop: '5px'}} >Genre:</div>
-                <div>{channel.group.join(', ')}</div>
+                <div>{channel.group.map(capitalizeFirstLetter).join(', ')}</div>
             </div>
         </div>
     )

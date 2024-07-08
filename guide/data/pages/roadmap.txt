@@ -20,7 +20,9 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
 
 ==== frontend AI ====
 
-[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] using OpenAI }}]
+[{{::llm_000.jpg?direct|AI reasoning over multiple bookmarks (using OpenAI }}]
+
+[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
 
 Conzept's current vision for frontend [[explore>Large language model|LLM AI]], is to enhance and combine the strengths of these two search contexts: 
 
@@ -38,6 +40,7 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * [[https://github.com/mlc-ai/web-llm-chat|web-llm-chat]] (AI chat app)
       * [[https://github.com/mlc-ai/web-llm|web-llm]] (core framework)
     * Other projects:
+      * [[https://github.com/abi/secret-llama|secret-llama]]
       * [[https://github.com/danny-avila/LibreChat|LibreChat]]
       * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
       * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)

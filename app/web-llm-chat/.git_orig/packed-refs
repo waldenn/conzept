@@ -1,0 +1,20 @@
+# pack-refs with: peeled fully-peeled sorted 
+a7882d6d36e0669bb7399b07c968795718566630 refs/remotes/origin/dependabot/npm_and_yarn/emoji-picker-react-4.11.1
+41403845946f5dc7a303957a5f10b0613dbd9020 refs/remotes/origin/dependabot/npm_and_yarn/eslint-config-next-14.2.3
+6af74da1674785c88f1882db2b6d0141ebbf30c3 refs/remotes/origin/dependabot/npm_and_yarn/hello-pangea/dnd-16.6.0
+0074bf83fcee10c1976f6dc2d8565ca4b1e0ee53 refs/remotes/origin/dependabot/npm_and_yarn/lint-staged-15.2.7
+44575a9dda6ea423ede3ec22192ce850004552c1 refs/remotes/origin/dependabot/npm_and_yarn/multi-7c401cbcf5
+faeaf453b4440cd91478cdf1daa7d4f1d996a005 refs/remotes/origin/dependabot/npm_and_yarn/multi-9d19999a5a
+70ef62c984c0abeea39e961989c43eb1c62c4645 refs/remotes/origin/dependabot/npm_and_yarn/next-14.2.4
+a4bbcf56ad91a09f91ad3f85873fca45ec835b12 refs/remotes/origin/dependabot/npm_and_yarn/next/third-parties-14.2.3
+7560a006a4dd1d2d62277324700fbb2191145bb1 refs/remotes/origin/dependabot/npm_and_yarn/node-fetch-3.3.2
+a73fd1d88c08ba2ec285cef41f8d872c89cd139e refs/remotes/origin/dependabot/npm_and_yarn/remark-math-6.0.0
+c5343a44722361d4cb62052e8ec021436d5b9a01 refs/remotes/origin/dependabot/npm_and_yarn/sass-1.77.1
+43ca44c9a146f0b0cbc44840d627e3cd945015b2 refs/remotes/origin/dependabot/npm_and_yarn/vercel/analytics-1.2.2
+63e4149b0566b0c75a46a5adfc429bb3ad7eb4ed refs/remotes/origin/dependabot/npm_and_yarn/vercel/speed-insights-1.0.10
+2c4535ab4ebb760277a54dadfedabe5fe2cad0b9 refs/remotes/origin/dependabot/npm_and_yarn/webpack-5.92.1
+28e92bcbe14446f316b9c1997ae46e43d70d2057 refs/remotes/origin/main
+26f2a9facc04ee8346c6eb4d25b40f6998d361dc refs/remotes/origin/script_bug
+a775fff41bc05dbc098f6529dd8db08c28e81a4a refs/remotes/origin/test
+c1c4420a999e7fe4bbe687cb42d443eb20a23be3 refs/remotes/origin/tqchen-patch-1
+846eb3f859bf280fd5c350826a19ec076f5d66ef refs/remotes/origin/webworker

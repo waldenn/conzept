@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {capitalizeFirstLetter} from "../helpers";
 
 const CategoryCard = ({category}) => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const CategoryCard = ({category}) => {
     }}
     >
         <div style={{fontSize: 24}} >
-            {category}
+            {capitalizeFirstLetter(category)}
         </div>
     </div>
     )

@@ -20,10 +20,6 @@ const Player = () => {
         player.on('dispose', () => {
             console.log('player will dispose');
         });
-
-        //player.on('ready', () => {
-        //    console.log('player ready');
-        //});
     };
 
     let channel = useMemo(() => {
@@ -31,18 +27,17 @@ const Player = () => {
         return channels.filter((eachChannel) => '' + eachChannel.id === channelId)[0]
     }, [channels, searchParams])
 
-    // see: https://videojs.com/guides/options/
-    return ( 
+    console.log( channel );
+
+    return (
         <Wrapper>
-            <span class="my-ui-back"><a href="#" onclick="window.history.back(); return false;">&larr;</a></span>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}} >
-                <div title="FooBar" style={{width: '90vw', maxWidth: '860px', marginTop: '30px'}} >
+                <div style={{width: '80vw', maxWidth: '860px', marginTop: '30px'}} >
                     <VideoJS options={{
-                        autoplay: true,
+                        autoplay: false,
                         controls: true,
                         responsive: true,
                         fluid: true,
-                        playsinline: true,
                         sources: [{
                         src: channel.url,
                         type: 'application/x-mpegURL'
