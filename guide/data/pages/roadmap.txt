@@ -14,10 +14,6 @@
 
 ===== AI =====
 
-==== backend AI ====
-
-LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (see below)
-
 ==== frontend AI ====
 
 [{{::llm_000.jpg?direct|LLM reasoning over multiple topics (bookmark titles) (using OpenAI) }}]
@@ -31,12 +27,6 @@ Conzept's current vision for frontend [[explore>Large language model|LLM AI]], i
   * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute/time.
 
 If one starts with a more semantic grounding of LLM functionality, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic will have a clear context, upon which you can start prompting the AI for the preferred action/intention.
-
-Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can utilize this extra meta-data.
-
-  * Candidate RAG tools:
-    * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
-    * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
 
 See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark to be used with some AI-based reasoning function. This makes it possible to combine topics, categorize the topics and also preface context to each topic, for the LLM prompt (in a multi-lingual way).
 
@@ -71,6 +61,11 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * Presentation augmentation (combined with TTS)
       * Add AI-entries (text + TTS) in the presentation table-of-contents
 
+    * Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can also utilize the extra meta-data from a more grounded understanding of a topic .
+      * Candidate RAG tools:
+        * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
+        * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
+
   * Similar projects:
     * [[https://github.com/abi/secret-llama|secret-llama]]
     * [[https://github.com/danny-avila/LibreChat|LibreChat]]
@@ -78,6 +73,10 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
     * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
     * [[https://github.com/reorproject/reor|reor]] (notes)
+
+==== backend AI ====
+
+LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (see below)
 
 ===== search =====
 

@@ -1539,6 +1539,8 @@ function setupDatasourceSet(){
 }
 
 function setActiveDatasourceSet(){
+
+  console.log( 'setActiveDatasourceSet()' );
     
   if ( datasource_sets.includes( explore.datasource_set_selection ) ){ // valid set
 
@@ -1551,9 +1553,11 @@ function setActiveDatasourceSet(){
 
     }
 
+    console.log( '  ...1: ', explore.datasources );
+
     explore.datasource_selection = datasource_set_map[ explore.datasource_set ].join();
 
-    setActiveDatasources();
+    //setActiveDatasources();
 
   }
   else {
@@ -1572,7 +1576,9 @@ function setActiveDatasourceSet(){
     setParameter( 'd', '', explore.hash );
     setParameter( 'ds', '', explore.hash );
 
-    setActiveDatasources();
+    console.log( '  ...2: ', explore.datasources );
+
+    //setActiveDatasources();
 
   }
 
