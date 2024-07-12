@@ -94,10 +94,10 @@ let app = {
 
 window.app = app;
 
-const osm = new XYZ("OpenStreetMap", {
+const osm = new XYZ("OSM", {
   isBaseLayer: true,
   url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  visibility: true,
+  visibility: ( app.language === 'de' || app.language === 'fr' ) ? false : true,
   attribution: 'Data @ OpenStreetMap contributors, ODbL',
   iconSrc: "https://tile.openstreetmap.org/8/138/95.png",
 });
@@ -274,60 +274,108 @@ async function init(){
     iconSrc: "https://c.tile.opentopomap.org/4/9/5.png",
   });
 
+  const osm_french = new XYZ("OSM-FR", {
+    isBaseLayer: true,
+    url: "https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+    visibility: app.language === 'fr' ? true : false,
+    attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+    iconSrc: "https://a.tile.openstreetmap.fr/osmfr/4/9/5.png",
+  });
+
+  const osm_german = new XYZ("OSM-DE", {
+    isBaseLayer: true,
+    url: "https://tile.openstreetmap.de/{z}/{x}/{y}.png",
+    visibility: app.language === 'de' ? true : false,
+    attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+    iconSrc: "https://tile.openstreetmap.de/4/9/5.png",
+  });
+
+  const osm_cycle = new XYZ("OSM-Bicycle", {
+    isBaseLayer: true,
+    url: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    visibility: false,
+    attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+    iconSrc: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/4/9/5.png",
+  });
+
+  const opensea = new XYZ("Nautic", {
+    isBaseLayer: false,
+    url: "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+    visibility: false,
+    attribution: 'Data @ OpenStreetMap contributors, ODbL',
+    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+  });
+
+  const openrailway = new XYZ("Railway", {
+    isBaseLayer: false,
+    url: "https://a.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+    visibility: false,
+    attribution: 'Data @ OpenStreetMap contributors, ODbL',
+    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+  });
+
+  const hiking = new XYZ("Hiking", {
+    isBaseLayer: false,
+    url: "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
+    visibility: false,
+    attribution: 'Data @ OpenStreetMap contributors, ODbL',
+    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+  });
+
   const sat = new XYZ("sat", {
-      iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
-      subdomains: ['t0', 't1', 't2', 't3'],
-      url: "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
-      isBaseLayer: true,
-      maxNativeZoom: 19,
-      defaultTextures: [{ color: "#001522" }, { color: "#E4E6F3" }],
-      attribution: `<div style="transform: scale(0.8); margin-top:-2px;"><a href="http://www.bing.com" target="_blank"><img style="position: relative; top: 2px;" title="Bing Imagery" src="https://sandbox.openglobus.org/bing_maps_credit.png"></a> © 2021 Microsoft Corporation</div>`,
-      urlRewrite: function (s, u) {
-          return utils.stringTemplate(u, {
-              's': this._getSubdomain(),
-              'quad': toQuadKey(s.tileX, s.tileY, s.tileZoom)
-          });
-      },
-      specular: [0.00063, 0.00055, 0.00032],
-      ambient: "rgb(90,90,90)",
-      diffuse: "rgb(350,350,350)",
-      shininess: 20,
-      nightTextureCoefficient: 2.7
+    iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
+    subdomains: ['t0', 't1', 't2', 't3'],
+    url: "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
+    isBaseLayer: true,
+    maxNativeZoom: 19,
+    defaultTextures: [{ color: "#001522" }, { color: "#E4E6F3" }],
+    attribution: `<div style="transform: scale(0.8); margin-top:-2px;"><a href="http://www.bing.com" target="_blank"><img style="position: relative; top: 2px;" title="Bing Imagery" src="https://sandbox.openglobus.org/bing_maps_credit.png"></a> © 2021 Microsoft Corporation</div>`,
+    urlRewrite: function (s, u) {
+      return utils.stringTemplate(u, {
+        's': this._getSubdomain(),
+        'quad': toQuadKey(s.tileX, s.tileY, s.tileZoom)
+      });
+    },
+    specular: [0.00063, 0.00055, 0.00032],
+    ambient: "rgb(90,90,90)",
+    diffuse: "rgb(350,350,350)",
+    shininess: 20,
+    nightTextureCoefficient: 2.7
   });
 
   const sat1 = new og.layer.XYZ("Satellite (Esri)", {
-      isBaseLayer: true,
-      url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-      visibility: false,
-      attribution: `© Esri`,
+    isBaseLayer: true,
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    visibility: false,
+    attribution: `© Esri`,
   });
 
   const sat2 = new og.layer.XYZ("Satellite (Mapbox without labels)", {
-      isBaseLayer: true,
-      url: "//api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-      visibility: false,
-      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+    isBaseLayer: true,
+    url: "//api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+    visibility: false,
+    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
   const sat3 = new og.layer.XYZ("Satellite (Mapbox with labels)", {
-      isBaseLayer: true,
-      url: "//api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-      visibility: false,
-      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+    isBaseLayer: true,
+    url: "//api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+    visibility: false,
+    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
   const mapbox_dark = new og.layer.XYZ("MapBox Dark", {
-      isBaseLayer: true,
-      url: "//api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-      visibility: false,
-      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+    isBaseLayer: true,
+    url: "//api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+    visibility: false,
+    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
   var mapbox_light = new og.layer.XYZ("MapBox Light", {
-      isBaseLayer: true,
-      url: "//api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-      visibility: false,
-      attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
+    isBaseLayer: true,
+    url: "//api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
+    visibility: false,
+    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
   app.globus = new Globe({
@@ -341,7 +389,7 @@ async function init(){
     fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
     autoActivated: true,
     viewExtent: app.view_extent,
-    layers: [ osm, app.markerLayer, opentopo, sat, /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
+    layers: [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, app.markerLayer, opensea, openrailway, hiking /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
 
   });
 

@@ -51,14 +51,68 @@ $('#radius').on('change', function() {
 
 });
 
-const osm = new XYZ("OpenStreetMap", {
+const osm = new XYZ("OSM", {
   specular: [0.0003, 0.00012, 0.00001],
   shininess: 20,
   diffuse: [0.89, 0.9, 0.83],
   isBaseLayer: true,
   url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  visibility: true,
+  visibility: ( window.app.language === 'de' || window.app.language === 'fr' ) ? false : true,
   attribution: 'Data @ OpenStreetMap contributors, ODbL'
+});
+
+const opentopo = new XYZ("OpenTopo", {
+  isBaseLayer: true,
+  url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap contributors, ODbL',
+  iconSrc: "https://c.tile.opentopomap.org/4/9/5.png",
+});
+
+const opensea = new XYZ("Nautic", {
+  isBaseLayer: false,
+  url: "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap contributors, ODbL',
+  //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+});
+
+const openrailway = new XYZ("Railway", {
+  isBaseLayer: false,
+  url: "https://a.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap contributors, ODbL',
+});
+
+const hiking = new XYZ("Hiking", {
+  isBaseLayer: false,
+  url: "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap contributors, ODbL',
+});
+
+const osm_french = new XYZ("OSM-FR", {
+  isBaseLayer: true,
+  url: "https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+  iconSrc: "https://a.tile.openstreetmap.fr/osmfr/4/9/5.png",
+});
+
+const osm_german = new XYZ("OSM-DE", {
+  isBaseLayer: true,
+  url: "https://tile.openstreetmap.de/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+  iconSrc: "https://tile.openstreetmap.de/4/9/5.png",
+});
+
+const osm_cycle = new XYZ("OSM-Bicycle", {
+  isBaseLayer: true,
+  url: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  visibility: false,
+  attribution: 'Data @ OpenStreetMap France contributors, ODbL',
+  iconSrc: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/4/9/5.png",
 });
 
 let pointLayer = new Vector( 'points', {
@@ -105,13 +159,11 @@ let sat = new XYZ("sat", {
     nightTextureCoefficient: 2.7
 });
 
-
-
 const globe = new Globe({
   target: "globus",
   name: "Earth",
   terrain: new GlobusRgbTerrain(),
-  layers: [osm, sat, pointLayer ],
+  layers: [osm, osm_french, osm_german, opentopo, sat, osm_cycle, opensea, openrailway, hiking, pointLayer ],
   resourcesSrc: "../../external/og/lib/@openglobus/res",
   fontsSrc: "../../external/og/lib/@openglobus/res/fonts"
 });
