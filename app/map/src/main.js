@@ -384,12 +384,11 @@ async function init(){
     name:         "Earth",
     terrain:      new GlobusRgbTerrain(),
     //terrain:      new GlobusTerrain(),
-    layers:       [osm, sat],
     resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
     fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
     autoActivated: true,
     viewExtent: app.view_extent,
-    layers: [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, app.markerLayer, opensea, openrailway, hiking /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
+    layers: [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, opensea, openrailway, hiking, app.markerLayer, /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
 
   });
 
