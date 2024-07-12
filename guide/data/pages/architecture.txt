@@ -19,3 +19,8 @@ The main architectural choices made in the Conzept application are:
   * Main types of data-types to use: **plain strings, URLs, entity ID's, JSON and lists of JavaScript objects.**
 
   * Allow the **safe use of [[explore>Eval|eval()]]** needed for flexible [[field_customization|field definitions]]. This is safe, as only the admins/devs can update the field definitions. Conzept is also a mainly client-side application, with no user-data being stored on the server.
+
+  
+===== see also =====
+
+  * "[[http://laputan.org/mud/|Big Ball of Mud]]"

@@ -20,7 +20,7 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
 
 ==== frontend AI ====
 
-[{{::llm_000.jpg?direct|AI reasoning over multiple bookmarks (using OpenAI }}]
+[{{::llm_000.jpg?direct|LLM reasoning over multiple topics (bookmark titles) (using OpenAI) }}]
 
 [{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
 
@@ -32,20 +32,27 @@ Conzept's current vision for frontend [[explore>Large language model|LLM AI]], i
 
 If one starts with a more semantic grounding of LLM functionality, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic will have a clear context, upon which you can start prompting the AI for the preferred action/intention.
 
+Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can utilize this extra meta-data.
+
+  * Candidate RAG tools:
+    * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
+    * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
+
 See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark to be used with some AI-based reasoning function. This makes it possible to combine topics, categorize the topics and also preface context to each topic, for the LLM prompt (in a multi-lingual way).
 
-  * **Integrate a client-side, WebGPU based LLM system**:
-    * Allow the user to select from a set of LLM models.
-    * Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images)
-    * [[https://github.com/mlc-ai/web-llm-chat|web-llm-chat]] (AI chat app)
+  * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]**
+    * **Conzept integration is a work in progress** (to replace the current, simple AI chat app)
+      * Current status: Self-hosting is working, TODO: URL parameter context.
+    * Features:
+      * Fully client-side
+      * Multi-model
+      * WebGPU based
+      * Multi-lingual (partly supported, open issues: [[https://github.com/mlc-ai/web-llm-chat/issues/46|parameter support]])
+      * Multi-modal (not yet supported)
+      * Application goals: Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images).
+    * Code:
+      * [[https://github.com/mlc-ai/web-llm-chat|repo]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]] (core framework)
-    * Other projects:
-      * [[https://github.com/abi/secret-llama|secret-llama]]
-      * [[https://github.com/danny-avila/LibreChat|LibreChat]]
-      * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
-      * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
-      * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
-      * [[https://github.com/reorproject/reor|reor]] (notes)
     * Advantages of client-side AI models:
       * Privacy
       * Opensource
@@ -63,6 +70,14 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
       * make this reasoning fully multi-lingual (currently only a few languages)
     * Presentation augmentation (combined with TTS)
       * Add AI-entries (text + TTS) in the presentation table-of-contents
+
+  * Similar projects:
+    * [[https://github.com/abi/secret-llama|secret-llama]]
+    * [[https://github.com/danny-avila/LibreChat|LibreChat]]
+    * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
+    * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
+    * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
+    * [[https://github.com/reorproject/reor|reor]] (notes)
 
 ===== search =====
 
@@ -197,30 +212,3 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
   * ? Note-taking integration  (eg.: [[https://bangle.io/|Bangle]], ...)
   * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
 
-===== other ideas =====
-
-  * Look into using more **web components**:
-    * [[https://shoelace.style|Shoelace webcomponent system]]
-    * [[https://design-system.w3.org/|W3C design system]]
-    * [[https://component.gallery/|component.gallery]] (overview of webcomponents)
-
-  * Add optional **geolocation-support**, so we could route a user from the current location to the location of a topic, using the [[https://twitter.com/conzept__/status/1490300622360518663|OSMR routing app]]. See also: [[https://github.com/jamealg/KT-companion|offline hiking-maps app]]
-
-  * JSON-LD enhancement: "Add schema:about properties that include #Wikidata (/entity/{id}) and #DBpedia (/resource/{id}) identifiers as property values." [[https://twitter.com/kidehen/status/1565006013350248449|*]] (this is useful when there are multiple subjects, beyond the main subject)
-
-  * ? Offline(-first) support with content-caching (especially useful when traveling and/or without reliable internet-connectivity).
-    * Example apps: [[https://github.com/jamealg/KT-companion|hiking-map app]]
-
-  * ? Research creating some kind of a simple web-application interface standard for input/output/event-handling:
-    * URL parameter IO (iso2 language, search-string, ID, ...)
-    * Event-handling (other view triggers, key-bindings, fullscreening, ...)
-
-  * ? [[https://github.com/sebferre/sparklis|Sparklis]] / [[https://github.com/epoz/shmarql|shmarql]] -> needs CORS-issue workaround
-    * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
-    * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 
-    * Handle HTTP GET/POST CORS issues with the SPARQL-endpoints (not sure POST is supported in the current Conzept proxy-service)
-    * build steps [[https://github.com/sebferre/sparklis/issues/9#issuecomment-1018673156|here]]
-    * See also: **[[https://open-source.pages.logilab.fr/SemWeb/sparqlexplorer/?endpoint=https%253A%252F%252Fldf.fi%252Fmufi%252Fsparql|SparqlExplorer]]**
-      * [[https://forge.extranet.logilab.fr/open-source/SemWeb/sparqlexplorer/|git repo]]
-
-  * Find and integrate a **more lightweight MIDI-webcomponent**, if available ([[https://github.com/cifkao/html-midi-player|html-midi-player]] is more than 0.5MB by itself)

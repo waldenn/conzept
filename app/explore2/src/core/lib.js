@@ -1553,13 +1553,13 @@ function setActiveDatasourceSet(){
 
     explore.datasource_selection = datasource_set_map[ explore.datasource_set ].join();
 
-    //setActiveDatasources();
+    setActiveDatasources();
 
   }
   else {
 
     // reset datasource set
-    explore.datasource_set        = '';
+    explore.datasource_set            = '';
     explore.datasource_set_selection  = '';
 
     // when "singleuse" is active, prevent permanently storing datasource-set
@@ -1572,7 +1572,7 @@ function setActiveDatasourceSet(){
     setParameter( 'd', '', explore.hash );
     setParameter( 'ds', '', explore.hash );
 
-    //setActiveDatasources();
+    setActiveDatasources();
 
   }
 

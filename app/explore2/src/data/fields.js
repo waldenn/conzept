@@ -13117,16 +13117,32 @@ if ( valid( item.found_in_taxon ) ){
   rank: [300,9190],
 },
 
-'geo' : {
-  create_condition: true,
+'geo_wikidata' : {
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
   render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined" && ! checkTag( item, 1, ["road", "itinerary", "watercourse" ] )', // FIXME
   title: 'map',
   prop: '',
   type: 'link',
   mv: false,
-  url: '${item.map}', // FIXME broken for datasource-topics
+  url: '${item.map}',
   icon: 'fa-solid fa-globe-asia',
-  //icon: 'fa-solid fa-map-marked-alt',
+  text: 'map',
+  section: ['location-geography','main'],
+  rank: [3,6350],
+  headline_create: 'valid( item.lat )',
+  headline_type: 'link',
+  headline_rank: 123,
+},
+
+'geo_other_datasources' : {
+  create_condition: '! activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
+  title: 'datasource map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/map/?l=${explore.language}&bbox=${ getBoundingBox(item.lon, item.lat, 0.05 ) }&lat=${item.lat}&lon=${item.lon}&title=${ encodeURIComponent( item.title ) }',
+  icon: 'fa-solid fa-globe-asia',
   text: 'map',
   section: ['location-geography','main'],
   rank: [3,6350],
