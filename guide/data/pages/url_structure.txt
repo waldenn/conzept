@@ -58,4 +58,6 @@ Here are some example URLs:
 
   * [[https://conze.pt/explore/Semantic%20Web?l=en&t=presentation|conze.pt/explore/Semantic_Web?l=en&t=presentation]] (Creates a presentation based on the search-string, if the topic also has an associated Wikidata Qid)
 
+  * [[https://conze.pt/explore/history?l=en&d=europeana&t=string&filterby=video&sortby=distance-asc&datemin=1900-07-01&datemax=2024-12-01&geofilter=37.98803;23.73168;50000;GR&batchsize=5&c=37.989166,23.732222|conze.pt/explore/history?l=en&d=europeana&t=string&filterby=video&sortby=distance-asc&datemin=1900-07-01&datemax=2024-12-01&geofilter=37.98803;23.73168;50000;GR&batchsize=5&c=37.989166,23.732222]] (search for the term "history", in the "Europeana" datasource, for videos, within 50km radius of a location in Athens, and published within a certain date-range)
+
 

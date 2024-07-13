@@ -134,7 +134,7 @@ human analogy
   * input: electrical energy, declarative application data, various user-input
   * hands (production tools): personal thoughts / emotion-intuition / memory / goals-mission
   * output and feedback: interactive infotainment rendering for humans
-  * memory: local storage of bookmarks and notes (future: server-side storage + auth)
+  * memory: local storage of bookmarks and notes (future: server-side storage + auth ?)
   * virtues: peaceful / kind / relaxed interface, flexible & courageous web-app approach
   * organs: invisible functions and embedded-systems that support the whole application
   * legs: user-experience journey

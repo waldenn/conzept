@@ -13603,7 +13603,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'f4map_map' : {
-  create_condition: 'valid( item.lat ) && ! checkTag( item, 1, ["road"] )',
+  create_condition: 'valid( item.lat ) && ! valid( item.iso2 ) && checkTag( item, 0, "location") && ! checkTag( item, 1, ["road"] )',
   title: 'F4map 3D map',
   prop: '',
   type: 'link',
@@ -13613,7 +13613,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'F4map 3D map',
   section: 'location-geography',
   rank: 13.1,
-  headline_create: 'checkTag( item, 0, "location") && valid( item.lat )',
+  headline_create: 'valid( item.f4map_map )',
   headline_type: 'link',
   headline_rank: 122,
 },
