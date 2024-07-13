@@ -51,6 +51,14 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
       * No limits on AI-queries (both quantitative and qualitative)
       * Flexibility and freedom how and where to use these AI models in the future.
 
+  * Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can also utilize the extra meta-data from a more grounded understanding of a topic .
+    * Candidate RAG tools:
+      * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
+      * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
+    * Research how to integrate a (frontend) RAG-tool with Conzept
+      * INPUT: PDF URL + user language -> RAG LLM UI
+      * What about "plain text" inputs?
+
   * **Main AI functions**:
     * Topical question-answering
     * Topical quizzing & examination
@@ -61,12 +69,7 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * Presentation augmentation (combined with TTS)
       * Add AI-entries (text + TTS) in the presentation table-of-contents
 
-    * Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can also utilize the extra meta-data from a more grounded understanding of a topic .
-      * Candidate RAG tools:
-        * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
-        * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
-
-  * Similar projects:
+  * See also:
     * [[https://github.com/abi/secret-llama|secret-llama]]
     * [[https://github.com/danny-avila/LibreChat|LibreChat]]
     * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
@@ -108,6 +111,14 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
 
   * Research feasability to **allow datasource searches without a search-term**, but with one or more search filters.
 
+  * Research if it would be possible to **dynamically add datasource-specific filter-types** (only when a single datasource is active!).
+    * This would allow for more fine-grained search type-filters, finetuned to a particular datasource.
+    * Eg. for library/book datasources: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
+
+  * Consider adding **multi-select for datasource sets**.
+
+  * Consider adding a **new global filter: "people"** (which is quite common, and more specific than "entities").
+
   * **Structured search** using SPARQL (beyond Wikidata)
     * Ontology classes
     * Ontology properties
@@ -128,23 +139,13 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
     * How could we combine this with multi-modal, client-side AI?
     * What other search-commands are needed?
 
-===== datasources =====
-
   * **Improve existing datasources** (use more datasource meta-data, better content views, remove "BETA" label, etc.)
-
-  * Research if it would be possible to **dynamically add datasource-specific filter-types** (only when a single datasource is active!).
-    * This would allow for more fine-grained search type-filters, finetuned to a particular datasource.
-    * Eg. for library/book datasources: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
-
-  * Consider adding **multi-select for datasource sets**.
-
-  * Consider adding a **new global filter: "people"** (which is quite common, and more specific than "entities").
 
   * Implement **async data-enriching in datasources** (work in progress)
     * This would eg. allow 3rd-party datasources with a Wikidata Qid (or some other related ID with metadata) in their results, to be enriched.
 
   * Implement **json-proxy support for HTTP header Authorization** (using the key from settings.conf)
-    * To check: That the used header (on the frontend) is working for eg. CourtListener
+    * To check: That the used header (on the frontend) is working for eg. "CourtListener"
 
   * **Indepent active/autocomplete/search toggles per datasource**. Eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)

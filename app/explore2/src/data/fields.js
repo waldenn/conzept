@@ -13949,6 +13949,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 153.2,
 },
 
+'who_data' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'WHO country data',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://data.who.int/countries/${ countries[ item.qid ]?.country_code }',
+  icon: 'fa-solid fa-globe',
+  text: 'WHO data',
+  section: 'location-demography',
+  rank: 154,
+},
+
 'world_food_program' : {
   create_condition: 'valid( item.iso2 )',
   title: 'United Nations: World Food Program',
@@ -18569,7 +18582,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://resourcetrade.earth/?year=2020&exporter=${ countries[ item.qid ]?.chatham_house_id }&units=value&autozoom=1',
+  url: 'https://resourcetrade.earth/?year=2020&exporter=${ countries[ item.qid ]?.country_code }&units=value&autozoom=1',
   icon: 'fa-solid fa-right-from-bracket',
   text: 'RTE export',
   section: 'business',
@@ -18585,7 +18598,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://resourcetrade.earth/?year=2020&importer=${ countries[ item.qid ]?.chatham_house_id }&units=value&autozoom=1',
+  url: 'https://resourcetrade.earth/?year=2020&importer=${ countries[ item.qid ]?.country_code }&units=value&autozoom=1',
   icon: 'fa-solid fa-right-to-bracket',
   text: 'RTE import',
   section: 'business',
