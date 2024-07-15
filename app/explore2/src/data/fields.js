@@ -9611,7 +9611,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'map_world_population_density' : {
-  create_condition: 'valid( ${item.lat} )',
+  create_condition: 'valid( ${item.lat} ) && onAstronomicalBody( item, "Q2")',
   title: 'world population density map',
   prop: '',
   type: 'link',
@@ -9624,7 +9624,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'born_here_timeline' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'timeline of people born in this location',
   prop: '',
   type: 'link-split',
@@ -9637,7 +9637,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'born_here_query' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'people born in this location',
   prop: '',
   type: 'link-split',
@@ -9661,7 +9661,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'died_here_query' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'people who died in this location',
   prop: '',
   type: 'link-split',
@@ -13594,7 +13594,7 @@ if ( valid( item.found_in_taxon ) ){
 // type_query_button = type_map_query_button = '<a href="javascript:void(0)" title="' + title_ + ' locations" aria-label="' + title_ + ' locations" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: encodeURI( url_ ) } ) ) + '"> <span class="icon"><i class="fa-solid fa-map-marked-alt" style="position:relative;"><span class="subtext">type</span></i></span> </a>';
 
 'google_earth' : {
-  create_condition: 'valid( ${item.lat} )',
+  create_condition: 'valid( ${item.lat} ) && onAstronomicalBody( item, "Q2")',
   title: 'Google Earth',
   prop: '',
   type: 'url',
@@ -13607,7 +13607,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'zoom_earth' : {
-  create_condition: 'valid( ${item.lat} )',
+  create_condition: 'valid( ${item.lat} ) && onAstronomicalBody( item, "Q2")',
   title: 'Zoom Earth live satelellite',
   prop: '',
   type: 'url',
@@ -14073,7 +14073,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'wikicommons_historic_maps' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Wikicommons historic maps',
   prop: '',
   type: 'link',
@@ -14100,7 +14100,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'nasa_firms_map' : {
-  create_condition: 'valid( ${item.lat} )',
+  create_condition: 'valid( ${item.lat} ) && onAstronomicalBody( item, "Q2")',
   title: 'NASA FIRMS map - Fire Information for Resource Management System',
   prop: '',
   type: 'url',
@@ -14113,7 +14113,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'old_maps_online' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Old Maps Online',
   prop: '',
   type: 'url',
@@ -16218,7 +16218,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'location_heritage_sites_commons_sparql' : {
-  create_condition: 'valid( item.qid ) && checkTag(item, 0, "location")',
+  create_condition: 'valid( item.qid ) && checkTag(item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Heritage sites photos',
   prop: '',
   type: 'link',
@@ -16234,7 +16234,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'location_heritage_sites' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Heritage sites map',
   prop: '',
   type: 'link-split',

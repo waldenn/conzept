@@ -2482,7 +2482,7 @@ function onAstronomicalBody( item, qid ){
 
   if ( valid ( item.located_on_astronomical_body ) ){ // item not located on Earth (Q2)
 
-    if ( item.located_on_astronomical_body === qid ){ // match
+    if ( item.located_on_astronomical_body[0] === qid ){ // match
 
       ret = true;
 
