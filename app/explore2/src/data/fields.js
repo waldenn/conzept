@@ -13165,7 +13165,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'geo_wikidata_mars' : {
   create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && onAstronomicalBody( item, "Q111")',
-  create_trigger: 'console.log("Mars planet");'
+  create_trigger: 'console.log("Mars planet");',
   render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
   title: 'Mars location map',
   prop: '',
