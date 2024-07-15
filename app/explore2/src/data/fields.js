@@ -13164,7 +13164,8 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'geo_wikidata_mars' : {
-  create_condition: 'onAstronomicalBody( item, "Q111")',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && onAstronomicalBody( item, "Q111")',
+  create_trigger: 'console.log("Mars planet");'
   render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
   title: 'Mars location map',
   prop: '',
@@ -13179,8 +13180,6 @@ if ( valid( item.found_in_taxon ) ){
   headline_type: 'link',
   headline_rank: 123,
 },
-
-
 
 'map_osm_road' : {
   create_condition: 'valid( item.osm_relation_id ) && checkTag( item, 1, ["road"] )',

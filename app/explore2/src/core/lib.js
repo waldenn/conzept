@@ -12466,33 +12466,6 @@ function getGridColumns( sel ){
 
 }
 
-function onAstronomicalBody( item, qid ){
-
-  let ret = false; // default
- 
-  if ( valid ( item.located_on_astronomical_body ) ){ // item not located on Earth (Q2)
-
-    if ( item.located_on_astronomical_body === qid ){ // match
-
-      ret = true;
-
-    }
-
-  }
-  else { // assume location on "Earth"
-
-    if ( qid === "Q2" ){
-
-      ret = true;
-
-    }
-
-  }
-
-  return ret;
-
-}
-
 // Open issues:
 //  - How to perma-link to a presentation by URL?
 //    - Example URL: https://conze.pt/explore/Netherlands?l=en&d=wikipedia,wikidata&t=presentation&i=Q55&s=true

@@ -2476,6 +2476,35 @@ function getCountryFromLatLon( lat, lon ){
 
 }
 
+function onAstronomicalBody( item, qid ){
+
+  console.log( 'onAstronomicalBody check: ', qid );
+
+  let ret = false; // default
+
+  if ( valid ( item.located_on_astronomical_body ) ){ // item not located on Earth (Q2)
+
+    if ( item.located_on_astronomical_body === qid ){ // match
+
+      ret = true;
+
+    }
+
+  }
+  else { // assume location on "Earth"
+
+    if ( qid === "Q2" ){
+
+      ret = true;
+
+    }
+
+  }
+
+  return ret;
+
+}
+
 /*
 // TODO useful in eg. https://docs.openalex.org/api-entities/geo/regions
 function getContinentFromCountry( country_iso2 ){
