@@ -1,0 +1,12 @@
+type BaselineType = "alphabetic" | "bottom" | "hanging" | "ideographic" | "middle" | "top";
+type AlignType = "center" | "end" | "left" | "right" | "start";
+export declare function addSeconds(date: Date, seconds: number): Date;
+export declare function dateToStr(date: Date, showTime?: boolean, showMilliseconds?: boolean): string;
+export declare function createCanvasHTML(): HTMLCanvasElement;
+export declare function getNearestTimeLeft(t: number, div: number): number;
+export declare function drawNotch(ctx: CanvasRenderingContext2D, xOffset?: number, size?: number, thickness?: number, color?: string): void;
+export declare function drawText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, font?: string, fillStyle?: string, align?: AlignType, baseLine?: BaselineType, rotDeg?: number): void;
+export declare const SCALES: [number, number][];
+export declare function getScale(seconds: number): [number, number] | undefined;
+export declare const MONTHS: string[];
+export {};

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@openglobus/og": "^0.20.0"
+  }
+}
