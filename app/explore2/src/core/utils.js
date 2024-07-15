@@ -2478,8 +2478,6 @@ function getCountryFromLatLon( lat, lon ){
 
 function onAstronomicalBody( item, qid ){
 
-  console.log( 'onAstronomicalBody check: ', qid );
-
   let ret = false; // default
 
   if ( valid ( item.located_on_astronomical_body ) ){ // item not located on Earth (Q2)
