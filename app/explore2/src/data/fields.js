@@ -15,6 +15,18 @@ conzept_fields = {
   rank: '301476',
 },
 
+'located_on_astronomical_body' : {
+  default_value: 'Q2', // Earth
+  title: 'Located on astronomical body',
+  prop: '376',
+  type: 'wikipedia-qid',
+  mv: true,
+  icon: 'fa-regular fa-circle',
+  text: 'located on astronomical body',
+  section: ['main'],
+  rank: [50376],
+},
+
 'image_full' : {
   value: '${ wd.claims.P18[0] }',
   //value: 'https://commons.m.wikimedia.org/wiki/Special:FilePath/${ encodeURIComponent( wd.claims.P18[0] )}?width=3500px',
@@ -7378,7 +7390,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'global_fishing_watch' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Global Fishing Watch',
   prop: '',
   type: 'url',
@@ -9565,7 +9577,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'event_parts_timeline' : {
-  create_condition: 'checkTag(item, 0, "time") && ( valid( item.lat ) || valid( item.location ) )',
+  create_condition: 'checkTag(item, 0, "time") && ( valid( item.lat ) || valid( item.location ) ) && onAstronomicalBody( item, "Q2")',
   //create_condition: '!checkTag(item, 1, "period") && checkTag(item, 0, "time") && ( valid( item.lat ) || valid( item.location ) )',
   title: 'Geo-timeline of the event parts',
   prop: '',
@@ -9582,7 +9594,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'significant_events_timeline' : {
-  create_condition: 'valid( item.significant_event ) && ( valid( item.lat ) || valid( item.location ) )',
+  create_condition: 'valid( item.significant_event ) && ( valid( item.lat ) || valid( item.location ) ) && onAstronomicalBody( item, "Q2")',
   title: 'Geo-timeline of the significant events',
   prop: '',
   type: 'link-split',
@@ -13129,7 +13141,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'map',
   section: ['location-geography','main'],
   rank: [3,6350],
-  headline_create: 'valid( item.lat )',
+  headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link',
   headline_rank: 123,
 },
@@ -13146,10 +13158,29 @@ if ( valid( item.found_in_taxon ) ){
   text: 'map',
   section: ['location-geography','main'],
   rank: [3,6350],
-  headline_create: 'valid( item.lat )',
+  headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link',
   headline_rank: 123,
 },
+
+'geo_wikidata_mars' : {
+  create_condition: 'onAstronomicalBody( item, "Q111")',
+  render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
+  title: 'Mars location map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/mars/?l=${explore.language}&lat=${item.lat}&lon=${item.lon}&dist=2000000&title=${ encodeURIComponent( item.title ) }',
+  icon: 'fa-solid fa-globe-asia',
+  text: 'map',
+  section: ['location-geography','main'],
+  rank: [3,6350],
+  headline_create: 'valid( item.geo_wikidata_mars )',
+  headline_type: 'link',
+  headline_rank: 123,
+},
+
+
 
 'map_osm_road' : {
   create_condition: 'valid( item.osm_relation_id ) && checkTag( item, 1, ["road"] )',
@@ -13401,7 +13432,7 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'map_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: '',
   prop: '',
   type: 'link',
@@ -13411,7 +13442,7 @@ if ( valid( item.found_in_taxon ) ){
   text: '',
   section: '',
   rank: 1,
-  headline_create: 'valid( item.lat )',
+  headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link',
   headline_title: 'map',
   headline_icon: 'fa-solid fa-globe-asia',
@@ -13422,7 +13453,7 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'satellite_map_headline' : { // only used for headline display (to create multiple geo-location-based URLs)
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: '',
   prop: '',
   type: 'link',
@@ -13432,7 +13463,7 @@ if ( valid( item.found_in_taxon ) ){
   text: '',
   section: '',
   rank: 1,
-  headline_create: 'valid( item.lat )',
+  headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link',
   headline_title: 'terrain map',
   headline_icon: 'fa-solid fa-satellite',
@@ -13458,7 +13489,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'nearby' : { // only used for headline display (to create multiple geo-location-based URLs)
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'nearby map',
   prop: '',
   type: 'link-split',
@@ -13468,13 +13499,13 @@ if ( valid( item.found_in_taxon ) ){
   text: 'nearby map',
   section: 'location-geography',
   rank: 2,
-  headline_create: 'valid( item.lat )',
+  headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link-split',
   headline_rank: 122,
 },
 
 'streetquiz' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'street quiz',
   prop: '',
   type: 'link',
@@ -13591,7 +13622,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'wikimapia_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Wikimapia map',
   prop: '',
   type: 'url',
@@ -13604,7 +13635,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'f4_map' : {
-  create_condition: 'valid( item.lat ) && ! valid( item.iso2 ) && checkTag( item, 0, "location") && ! checkTag( item, 1, ["road","waterbody"] )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2") && ! valid( item.iso2 ) && checkTag( item, 0, "location") && ! checkTag( item, 1, ["road","waterbody"] )',
   title: 'F4 map',
   prop: '',
   type: 'link',
@@ -13621,7 +13652,7 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'map_buildings' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: '3D buildings map',
   prop: '',
   type: 'link',
@@ -16137,7 +16168,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'opentrees' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'OpenTrees',
   prop: '',
   type: 'link',
@@ -16150,7 +16181,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'mapillary_default' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Mapillary streetview',
   prop: '',
   type: 'url',
@@ -16218,7 +16249,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'streetview' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'streetview',
   prop: '',
   type: 'url',
@@ -16259,7 +16290,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'panorama_cities' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: '360cities panorama photo',
   prop: '',
   type: 'url',
@@ -16285,7 +16316,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'architizer' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Architizer',
   prop: '',
   type: 'url',
@@ -16354,7 +16385,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'map_shade' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: '3D shade map',
   prop: '',
   type: 'link',
@@ -16367,7 +16398,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'urban_history_4d_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Urban History 4D - historical 3D map with photos',
   prop: '',
   type: 'link',
@@ -16380,7 +16411,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'open_etymology_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Open Etymology Map: Etymology of streetnames and points of interest based on OpenStreetMap and Wikidata',
   prop: '',
   type: 'link',
@@ -16394,7 +16425,7 @@ if ( valid( item.found_in_taxon ) ){
 
 /*
 'time_machine_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Time Machine - historical 3D map',
   prop: '',
   type: 'link',
@@ -16423,7 +16454,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'openrailway_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Open Railway Map',
   prop: '',
   type: 'link',
@@ -16463,7 +16494,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'openinfra_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Open Infrastructure map',
   prop: '',
   type: 'url',
@@ -16489,7 +16520,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'osm_live_waste_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'OpenStreetMap live waste map',
   prop: '',
   type: 'link',
@@ -16515,7 +16546,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'gpsjam_map' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'GPS interference map',
   prop: '',
   type: 'link',
@@ -16593,7 +16624,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'osm_routing' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'OpenStreetMap routing',
   prop: '',
   type: 'link',
@@ -16640,7 +16671,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'geosearch_query' : {
-  create_condition: 'valid( [ item.lat, explore.geosearch ] )',
+  create_condition: 'valid( [ item.lat, explore.geosearch ] ) && onAstronomicalBody( item, "Q2")',
   title: 'nearby search - 250m',
   prop: '',
   type: 'code',
@@ -16735,7 +16766,7 @@ if ( valid( item.found_in_taxon ) ){
 */
 
 'openweathermap_geolocation' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Open Weather Map',
   prop: '',
   type: 'link',
@@ -16761,7 +16792,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'earth_nullschool_wind' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Earth Nullschool: wind',
   prop: '',
   type: 'link',
@@ -16777,7 +16808,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'earth_nullschool_particulates' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'Earth Nullschool: particulates',
   prop: '',
   type: 'link',
@@ -21120,7 +21151,7 @@ if ( valid( item.found_in_taxon ) ){
 'ebird_quiz_search_inline' : {
   value: 'ebird-quiz-search:${item.title}:true:${item.lat}:${item.lon}', // FIXME: lat/lon values are not passed
   title: 'nearby eBird hotspot quizzes',
-  render_condition: 'valid( item.lat )',
+  render_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   prop: '0',
   type: 'rest-json',
   mv: true,
@@ -23862,18 +23893,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'space launch vehicle',
   section: ['main'],
   rank: [50375],
-  auto: true,
-},
-
-'located_on_astronomical_body' : {
-  title: 'Located on astronomical body',
-  prop: '376',
-  type: 'wikipedia-qid',
-  mv: true,
-  icon: 'fa-regular fa-circle',
-  text: 'located on astronomical body',
-  section: ['main'],
-  rank: [50376],
   auto: true,
 },
 
