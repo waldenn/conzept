@@ -16370,7 +16370,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'light_pollution' : {
-  create_condition: 'valid( item.lat )',
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   title: 'light pollution map',
   prop: '',
   type: 'link',
@@ -16656,7 +16656,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'wikiloc' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Wikiloc - worldwide hiking trails',
   prop: '',
   type: 'url',
@@ -16683,7 +16683,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'lonely_planet' : {
-  create_condition: true,
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'LoneLy Planet',
   prop: '',
   type: 'link',
@@ -16696,7 +16696,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'tripadvisor_search' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Tripadvisor',
   prop: '',
   type: 'link',
@@ -16709,7 +16709,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'travelocity_search' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Travelocity',
   prop: '',
   type: 'link',
@@ -16722,7 +16722,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'booking_search' : {
-  create_condition: '${item.countries.length} > 0 && checkTag( item, 0, "location")',
+  create_condition: '${item.countries.length} > 0 && checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Booking.com search',
   prop: '',
   type: 'link',
@@ -16819,7 +16819,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'timeanddate_weather' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'TimeAndDate',
   prop: '',
   type: 'url',
@@ -16858,7 +16858,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'airbnb_search' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Airbnb search',
   prop: '',
   type: 'url',
@@ -16871,7 +16871,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'google_flights' : {
-  create_condition: 'checkTag( item, 0, "location")',
+  create_condition: 'checkTag( item, 0, "location") && onAstronomicalBody( item, "Q2")',
   title: 'Google Flights',
   prop: '',
   type: 'url',
