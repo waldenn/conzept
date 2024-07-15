@@ -70,13 +70,16 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
       * INPUT: PDF URL + user language -> RAG LLM UI
       * What about "plain text" inputs?
 
-  * See also:
+  * Related projects:
     * [[https://github.com/abi/secret-llama|secret-llama]]
     * [[https://github.com/danny-avila/LibreChat|LibreChat]]
     * [[https://github.com/xenova/transformers.js/|Transformer.js]] (various)
     * [[https://github.com/nico-martin/ask-my-pdf|ask-my-pdf]] (pdf)
     * [[https://github.com/jacoblee93/fully-local-pdf-chatbot|pdf-chatbot]] (pdf)
     * [[https://github.com/reorproject/reor|reor]] (notes)
+
+  * See also:
+    * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]"
 
 ==== backend AI ====
 

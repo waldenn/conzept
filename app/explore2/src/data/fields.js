@@ -13298,24 +13298,25 @@ if ( valid( item.found_in_taxon ) ){
 'ground_level_360_degree_view' : {
   title: 'Ground level 360 degree view',
   prop: '5282',
-  type: 'url',
+  type: 'link',
+    /*
+    // TODO: these sites can be embedded
+    wd.claims.P5282[0].includes('matterport') ||
+    wd.claims.P5282[0].includes('360stories') ||
+    wd.claims.P5282[0].includes('zygote') ||
+    wd.claims.P5282[0].includes('museobilbao') ||
+    wd.claims.P5282[0].includes('openglobus.org') ||
+    wd.claims.P5282[0].includes('openanatomy') ){
+    */
   mv: false,
   url: '${ item.ground_level_360_degree_view }',
   icon: 'fa-solid fa-vr-cardboard',
   text: 'virtual view',
   section: ['media-image','main'],
   rank: [22,1023],
-  /*
-  // NOTE: these sites can be embedded
-  wd.claims.P5282[0].includes('matterport') ||
-  wd.claims.P5282[0].includes('360stories') ||
-  wd.claims.P5282[0].includes('zygote') ||
-  wd.claims.P5282[0].includes('museobilbao') ||
-  wd.claims.P5282[0].includes('openanatomy') ){
-  */
   headline_create: 'valid( item.ground_level_360_degree_view )',
   // FIXME: headline_trigger: 'if ( { item.ground_level_360_degree_view.includes("matterport") ){ item.headline_type = "link" }',
-  headline_type: 'url',
+  headline_type: 'link',
   headline_rank: 600,
 },
 
@@ -13602,20 +13603,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: 12,
 },
 
-'f4map_map' : {
-  create_condition: 'valid( item.lat ) && ! valid( item.iso2 ) && checkTag( item, 0, "location") && ! checkTag( item, 1, ["road"] )',
-  title: 'F4map 3D map',
+'f4_map' : {
+  create_condition: 'valid( item.lat ) && ! valid( item.iso2 ) && checkTag( item, 0, "location") && ! checkTag( item, 1, ["road","waterbody"] )',
+  title: 'F4 map',
   prop: '',
   type: 'link',
   mv: false,
   url: 'https://demo.f4map.com/#lat=${item.lat}&lon=${item.lon}&zoom=16', // &camera.theta=80&camera.phi=-141.234',
   icon: 'fa-solid fa-mountain-city',
-  text: 'F4map 3D map',
+  text: 'F4 map',
   section: 'location-geography',
-  rank: 13.1,
-  headline_create: 'valid( item.f4map_map )',
+  rank: 13.7,
+  headline_create: 'valid( item.f4_map )',
   headline_type: 'link',
-  headline_rank: 122,
+  headline_rank: 124,
 },
 
 /*

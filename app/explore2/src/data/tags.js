@@ -67,6 +67,10 @@ var conzept_tags = {
         text : "watercourse",
         icon : ["fa-solid fa-water"],
       },
+      "waterbody" : {
+        text : "waterbody",
+        icon : ["fa-solid fa-water"],
+      },
       "road" : {
         text : "road",
         icon : ["fa-solid fa-road"],

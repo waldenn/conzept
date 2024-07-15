@@ -1123,24 +1123,6 @@ async function setWikidataPromise( item, wd, single, target_pane, callback ){
 
       }
 
-      if ( valid( wd.claims.P5282 ) ){ // virtual tour URLs
-
-        if (  wd.claims.P5282[0].includes('matterport') ||
-              wd.claims.P5282[0].includes('360stories') ||
-              wd.claims.P5282[0].includes('zygote') ||
-              wd.claims.P5282[0].includes('museobilbao') ||
-              wd.claims.P5282[0].includes('openanatomy') ){ // these sites can be embedded
-
-          item.virtual_tour_embed = wd.claims.P5282[0];
-
-        }
-        else {
-
-          item.virtual_tour_nonembed =  wd.claims.P5282[0];
-
-        }
-      }
-
       if ( valid( wd.claims.P963 ) ){ // streaming media URLs
 
         if ( valid( wd.claims.P963[0] ) ){
@@ -2453,24 +2435,6 @@ async function setWikidata( item, wd, single, target_pane, callback ){
         item.end_date  = wd.claims.P2032[0];
       }
 
-    }
-
-    if ( valid( wd.claims.P5282 ) ){ // virtual tour URLs
-
-      if (  wd.claims.P5282[0].includes('matterport') ||
-            wd.claims.P5282[0].includes('360stories') ||
-            wd.claims.P5282[0].includes('zygote') ||
-            wd.claims.P5282[0].includes('museobilbao') ||
-            wd.claims.P5282[0].includes('openanatomy') ){ // these sites can be embedded
-
-        item.virtual_tour_embed = wd.claims.P5282[0];
-
-      }
-      else {
-
-        item.virtual_tour_nonembed =  wd.claims.P5282[0];
-
-      }
     }
 
     if ( valid( wd.claims.P963 ) ){ // streaming media URLs
