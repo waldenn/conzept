@@ -71,9 +71,10 @@ let app = {
 
 	lat:			    getParameterByName( 'lat' ) || '',
 	lon:			    getParameterByName( 'lon' ) || '',
-	qid:			    getParameterByName( 'qid' ) || '', // may also be a list!
+	qid:			    getParameterByName( 'qid' ) || '',  // may also be a list!
 	title:		    getParameterByName( 'title' ) || '',
 	bbox:			    getParameterByName( 'bbox' ) || undefined,
+	gbif:			    getParameterByName( 'gbif' ) || '', // GBIF taxon ID
 
 	language:     '',
 	osm_id:       [],
@@ -93,6 +94,8 @@ let app = {
 }
 
 window.app = app;
+
+$('#title').html( app.title );
 
 const osm = new XYZ("OSM", {
   isBaseLayer: true,
@@ -180,7 +183,7 @@ async function init(){
 
   }
 
-  app.language= getParameterByName( 'l' ) || 'en';
+  app.language  = getParameterByName( 'l' ) || 'en';
 	app.osm_id[0]	= getParameterByName( 'osm_id' ) || ''; // OSM object ID
 
   //console.log( app );
@@ -211,6 +214,7 @@ async function init(){
   */
 
   app.markerLayer = new og.layer.Vector("Markers", {
+    //? iconSrc: "/assets/icons/mark.svg",
     //clampToGround: true,
   })
 
@@ -295,7 +299,7 @@ async function init(){
     url: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
     visibility: false,
     attribution: 'Data @ OpenStreetMap France contributors, ODbL',
-    iconSrc: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/4/9/5.png",
+    iconSrc: "/assets/icons/bicycle.svg",
   });
 
   const opensea = new XYZ("Nautic", {
@@ -303,7 +307,7 @@ async function init(){
     url: "https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png",
     visibility: false,
     attribution: 'Data @ OpenStreetMap contributors, ODbL',
-    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+    iconSrc: "/assets/icons/ship.svg",
   });
 
   const openrailway = new XYZ("Railway", {
@@ -311,7 +315,7 @@ async function init(){
     url: "https://a.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
     visibility: false,
     attribution: 'Data @ OpenStreetMap contributors, ODbL',
-    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+    iconSrc: "/assets/icons/train.svg",
   });
 
   const hiking = new XYZ("Hiking", {
@@ -319,8 +323,22 @@ async function init(){
     url: "https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png",
     visibility: false,
     attribution: 'Data @ OpenStreetMap contributors, ODbL',
-    //iconSrc: "http://tiles.openseamap.org/seamark/4/9/5.png",
+    iconSrc: "/assets/icons/hiking.svg",
   });
+
+  let gbif = '';
+
+  if ( valid( app.gbif ) ){
+
+    gbif = new XYZ("GBIF", {
+      isBaseLayer: false,
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=square&squareSize=48&srs=EPSG:3857&style=purpleYellow.poly&taxonKey=${app.gbif}`, // gbifId
+      visibility: true,
+      attribution: 'Data @ GBIF',
+      iconSrc: "/assets/icons/gbif.png",
+    });
+
+  }
 
   const sat = new XYZ("sat", {
     iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
@@ -378,29 +396,39 @@ async function init(){
     attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
   });
 
+  let layers = [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, opensea, openrailway, hiking ];
+
+  if ( valid( app.gbif) ){
+
+    layers.push( gbif );
+
+  }
+
+  layers.push( app.markerLayer );
+
   app.globus = new Globe({
 
-    target:       "globus",
-    name:         "Earth",
-    terrain:      new GlobusRgbTerrain(),
-    //terrain:      new GlobusTerrain(),
-    resourcesSrc: "./node_modules/@openglobus/og/lib/@openglobus/res",
-    fontsSrc:     "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
-    autoActivated: true,
-    viewExtent: app.view_extent,
-    layers: [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, opensea, openrailway, hiking, app.markerLayer, /* sat1, sat2, sat3, mapbox_light, mapbox_dark */ ]
-
+    target:         "globus",
+    name:           "Earth",
+    terrain:        new GlobusRgbTerrain(),
+    resourcesSrc:   "./node_modules/@openglobus/og/lib/@openglobus/res",
+    fontsSrc:       "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
+    autoActivated:  true,
+    viewExtent:     app.view_extent,
+    layers:         layers,
   });
 
   app.globus.planet.addControl(new control.LayerSwitcher());
 
 	let myPopup = new og.Popup({
-		planet: app.globus.planet,
-		offset: [0, -400],
+
+		planet:     app.globus.planet,
+		offset:     [0, -400],
 		visibility: false,
+
 	});
 
-  app.globus.planet.lightEnabled  = true; // OpenGlobus bug?: setting this to "false" causes OSM-map not to render!
+  app.globus.planet.lightEnabled  = false; // OpenGlobus bug?: setting this to "false" causes OSM-map not to render!
   app.globus.renderer.gamma       = 0.20;
   app.globus.renderer.exposure    = 3.50;
 

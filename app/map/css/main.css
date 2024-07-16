@@ -1,5 +1,7 @@
-body {
-  font-family: 'Quicksand';
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: "Hind", sans-serif !important;
 }
 
 .og-popup-content-wrapper, .og-popup-tip {
@@ -12,4 +14,16 @@ body {
 
   min-height: 400px;
   max-height: 60vh; 
+}
+
+#title {
+  position: absolute;
+  top: .8em;
+  left: 45%;
+  z-index: 9999;
+  color: black;
+  font-weight: bold;
+  background: #fbfaf991;
+  padding: 0px 0.3em;
+  border-radius: 0.3em;
 }
