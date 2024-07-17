@@ -340,8 +340,7 @@ async function init(){
 
   }
 
-  const sat = new XYZ("sat", {
-    iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
+  const sat_bing = new XYZ("Sat-Bing", {
     subdomains: ['t0', 't1', 't2', 't3'],
     url: "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
     isBaseLayer: true,
@@ -358,45 +357,19 @@ async function init(){
     ambient: "rgb(90,90,90)",
     diffuse: "rgb(350,350,350)",
     shininess: 20,
-    nightTextureCoefficient: 2.7
+    nightTextureCoefficient: 4.7,
+    iconSrc: "https://ecn.t0.tiles.virtualearth.net/tiles/a120.jpeg?n=z&g=7146",
   });
 
-  const sat1 = new og.layer.XYZ("Satellite (Esri)", {
+  const sat_esri = new XYZ("Sat-Esri", {
     isBaseLayer: true,
     url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     visibility: false,
-    attribution: `© Esri`,
+    attribution: 'Data @ Esri',
+    iconSrc: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/4/9/5",
   });
 
-  const sat2 = new og.layer.XYZ("Satellite (Mapbox without labels)", {
-    isBaseLayer: true,
-    url: "//api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-    visibility: false,
-    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
-  });
-
-  const sat3 = new og.layer.XYZ("Satellite (Mapbox with labels)", {
-    isBaseLayer: true,
-    url: "//api.mapbox.com/styles/v1/mapbox/satellite-streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-    visibility: false,
-    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
-  });
-
-  const mapbox_dark = new og.layer.XYZ("MapBox Dark", {
-    isBaseLayer: true,
-    url: "//api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-    visibility: false,
-    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
-  });
-
-  var mapbox_light = new og.layer.XYZ("MapBox Light", {
-    isBaseLayer: true,
-    url: "//api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY29uemVwdCIsImEiOiJja2N6bHpwZmEwMmlhMnpvMThqaGFodHk1In0.9laZu8QUMwZM4mpzq1x9GA",
-    visibility: false,
-    attribution: `© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>`
-  });
-
-  let layers = [ osm, osm_french, osm_german, opentopo, sat, osm_cycle, opensea, openrailway, hiking ];
+  let layers = [ osm, osm_french, osm_german, sat_bing, sat_esri, opentopo, osm_cycle, opensea, openrailway, hiking ];
 
   if ( valid( app.gbif) ){
 
