@@ -517,7 +517,7 @@ function showPresentation( item, type ){
 
 		else if ( type === 'organism' ){
 
-			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "/app/response/gbif-map.php?l=${language}&t=${title_enc}&id=${item.gbif_id}" ) ) )\n` ); }
+			if ( valid( item.gbif_id ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-binoculars' title='GBIF observations'></i></h3>"\n    ( show \'link \'( "/app/map/index.html?l=${language}&title=${title_enc}&gbif=${item.gbif_id}" ) ) )\n` ); }
 
 			slides.push( commons_slide );
 
