@@ -332,7 +332,8 @@ async function init(){
 
     gbif = new XYZ("GBIF", {
       isBaseLayer: false,
-      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=square&squareSize=48&srs=EPSG:3857&style=purpleYellow.poly&taxonKey=${app.gbif}`, // gbifId
+      // see: https://api.gbif.org/v2/map/debug/ol/#
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=hex&hexPerTile=113&srs=EPSG:3857&style=classic.poly&taxonKey=${app.gbif}`,
       visibility: true,
       attribution: 'Data @ GBIF',
       iconSrc: "/assets/icons/gbif.png",
