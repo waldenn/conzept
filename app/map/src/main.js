@@ -97,6 +97,19 @@ window.app = app;
 
 $('#title').html( app.title );
 
+if ( app.gbif.includes(',') ){ // list of GBIF ID's
+
+  app.gbif = app.gbif.split(',');
+
+}
+else { // single GBIF ID
+
+  app.gbif = [ app.gbif ];
+
+}
+
+console.log( app.gbif );
+
 const osm = new XYZ("OSM", {
   isBaseLayer: true,
   url: "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -326,22 +339,6 @@ async function init(){
     iconSrc: "/assets/icons/hiking.svg",
   });
 
-  let gbif = '';
-
-  if ( valid( app.gbif ) ){
-
-    gbif = new XYZ("GBIF", {
-      isBaseLayer: false,
-      // see: https://api.gbif.org/v2/map/debug/ol/#
-      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=hex&hexPerTile=113&srs=EPSG:3857&style=classic.poly&taxonKey=${app.gbif}`,
-      //url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=square&squareSize=8&srs=EPSG:3857&style=scaled.circles&taxonKey=${app.gbif}`,
-      visibility: true,
-      attribution: 'Data @ GBIF',
-      iconSrc: "/assets/icons/gbif.png",
-    });
-
-  }
-
   const sat_bing = new XYZ("Sat-Bing", {
     subdomains: ['t0', 't1', 't2', 't3'],
     url: "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
@@ -373,11 +370,31 @@ async function init(){
 
   let layers = [ osm, osm_french, osm_german, sat_bing, sat_esri, opentopo, osm_cycle, opensea, openrailway, hiking ];
 
-  if ( valid( app.gbif) ){
+  let gbif = [];
 
-    layers.push( gbif );
+  const gbif_styles = [ 'classic.poly', 'blue.marker', 'purpleWhite.poly', 'orange.marker', 'green2.poly', 'iNaturalist.poly', 'purpleYellow.poly', 'red.poly' ];
 
-  }
+  app.gbif.forEach( ( l, index ) => {
+
+    let style = gbif_styles[ Math.floor( Math.random() * gbif_styles.length ) ];
+
+    if ( app.gbif.length === 1 ){
+      style = 'iNaturalist.poly';
+    }
+
+    layers.push( ( new XYZ("GBIF " + app.gbif, {
+
+      isBaseLayer: false,
+      // see: https://api.gbif.org/v2/map/debug/ol/#
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=hex&hexPerTile=113&srs=EPSG:3857&style=${ style }&taxonKey=${ l }`,
+      //url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=square&squareSize=8&srs=EPSG:3857&style=scaled.circles&taxonKey=${ l }`,
+      visibility: true,
+      attribution: 'Data @ GBIF',
+      iconSrc: "/assets/icons/gbif.png",
+
+    }) ) );
+
+  });
 
   layers.push( app.markerLayer );
 
