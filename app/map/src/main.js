@@ -334,6 +334,7 @@ async function init(){
       isBaseLayer: false,
       // see: https://api.gbif.org/v2/map/debug/ol/#
       url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=hex&hexPerTile=113&srs=EPSG:3857&style=classic.poly&taxonKey=${app.gbif}`,
+      //url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=square&squareSize=8&srs=EPSG:3857&style=scaled.circles&taxonKey=${app.gbif}`,
       visibility: true,
       attribution: 'Data @ GBIF',
       iconSrc: "/assets/icons/gbif.png",
