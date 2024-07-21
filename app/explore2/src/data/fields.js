@@ -13665,6 +13665,19 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+'usa_government_search' : {
+  create_condition: 'checkLC( "en", "US" )',
+  title: 'USA Search.gov',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://find.search.gov/search?utf8=%E2%9C%93&affiliate=usasearch&query=${title_quoted}',
+  icon: 'fa-solid fa-flag-usa',
+  text: 'Search.gov',
+  section: 'government-general',
+  rank: 910,
+},
+
 'country_l1_subdivisions_query' : {
   create_condition: 'valid( item.iso2 ) && valid ( countries[ "${ item.qid }" ] )',
   create_trigger: 'item.l1 = countries[ "${ item.qid }" ]?.l1 || "" ',

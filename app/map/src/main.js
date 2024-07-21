@@ -3,7 +3,6 @@
 import {
   Globe,
   GlobusRgbTerrain,
-  //GlobusTerrain,
   XYZ,
   LonLat,
   Popup,
@@ -23,46 +22,6 @@ import {
     https://openglobus.org/api/
 
 */
-
-/*
-let sat = new XYZ("sat", {
-
-  subdomains:     ['t0', 't1', 't2', 't3'],
-  url:            "https://ecn.{s}.tiles.virtualearth.net/tiles/a{quad}.jpeg?n=z&g=7146",
-  isBaseLayer:    true,
-  maxNativeZoom:  19,
-  defaultTextures:[{color: "#001522"}, {color: "#E4E6F3"}],
-  attribution:    `<div style="transform: scale(0.8); margin-top:-2px;"><a href="http://www.bing.com" target="_blank"><img style="position: relative; top: 2px;" title="Bing Imagery" src="https://sandbox.openglobus.org/bing_maps_credit.png"></a> © 2021 Microsoft Corporation</div>`,
-
-  urlRewrite: function (s, u) {
-
-    return utils.stringTemplate(u, {
-
-      's':    this._getSubdomain(),
-      'quad': toQuadKey(s.tileX, s.tileY, s.tileZoom)
-
-    });
-  },
-
-  specular: [0.00063, 0.00055, 0.00032],
-  ambient: "rgb(90,90,90)",
-  diffuse: "rgb(350,350,350)",
-  shininess: 20,
-  nightTextureCoefficient: 2.7
-
-});
-*/
-
-/*
-document.getElementById("btnOSM").onclick = function () {
-  osm.setVisibility(true);
-};
-
-document.getElementById("btnMQS").onclick = function () {
-  sat.setVisibility(true);
-};
-*/
-
 
 let app = {
 	globus:	      undefined,
@@ -89,7 +48,7 @@ let app = {
   outline:      0.77,
   outline_color:'rgba(255,255,255,.1)',
 
-  colors: [ 'red', 'black', 'orange', 'cyan', 'pink' ],
+  colors: [ 'red', 'black', 'orange', 'cyan', 'pink', 'yellow' ],
 
 }
 
@@ -107,8 +66,6 @@ else { // single GBIF ID
   app.gbif = [ app.gbif ];
 
 }
-
-console.log( app.gbif );
 
 const osm = new XYZ("OSM", {
   isBaseLayer: true,
@@ -200,21 +157,6 @@ async function init(){
 	app.osm_id[0]	= getParameterByName( 'osm_id' ) || ''; // OSM object ID
 
   //console.log( app );
-
-  /*
-  const osm = new og.layer.XYZ("OpenStreetMap", { 
-    isBaseLayer: true, 
-    //url: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
-    //url: "https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png",
-    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
-    visibility: true, 
-    attribution: 'Data @ OpenStreetMap contributors, ODbL', 
-    ambient:  [0.80, 0.80, 0.80],
-    diffuse:  [0.40, 0.40, 0.40],
-    specular: [0, 0, 0],
-    //shininess: 100,
-   });
-  */
 
   /*
   const osmbuildings = new og.layer.XYZ("OpenStreetMap buildings", { 
@@ -372,22 +314,26 @@ async function init(){
 
   let gbif = [];
 
-  const gbif_styles = [ 'classic.poly', 'blue.marker', 'purpleWhite.poly', 'orange.marker', 'green2.poly', 'iNaturalist.poly', 'purpleYellow.poly', 'red.poly' ];
+  let gbif_styles = [ 'classic.poly', 'purpleWhite.poly', 'green.poly', 'green2.poly', 'iNaturalist.poly', 'purpleWhite.poly', 'purpleYellow.poly', 'red.poly' ];
+
 
   app.gbif.forEach( ( l, index ) => {
 
-    let style = gbif_styles[ Math.floor( Math.random() * gbif_styles.length ) ];
+    const pos = Math.floor( Math.random() * gbif_styles.length );
 
-    if ( app.gbif.length === 1 ){
+    gbif_styles = gbif_styles.splice( pos, 1);
+
+    let style = gbif_styles[ pos ];
+
+    if ( app.gbif.length === 1 || ! valid( style ) ){
       style = 'iNaturalist.poly';
     }
 
-    layers.push( ( new XYZ("GBIF " + app.gbif, {
+    layers.push( ( new XYZ("GBIF " + l, {
 
       isBaseLayer: false,
       // see: https://api.gbif.org/v2/map/debug/ol/#
-      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?bin=hex&hexPerTile=113&srs=EPSG:3857&style=${ style }&taxonKey=${ l }`,
-      //url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=square&squareSize=8&srs=EPSG:3857&style=scaled.circles&taxonKey=${ l }`,
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=hex&hexPerTile=17&srs=EPSG:3857&style=${ style }&taxonKey=${ l }`,
       visibility: true,
       attribution: 'Data @ GBIF',
       iconSrc: "/assets/icons/gbif.png",
@@ -902,8 +848,6 @@ function toQuadKey(x, y, z) {
     return index;
 }
 
-
-
 document.toggleFullscreen = function() {
 
   if (screenfull.enabled) {
@@ -920,8 +864,6 @@ document.toggleFullscreen = function() {
 $(document).keydown(function(event) {
   
   let key = (event.keyCode ? event.keyCode : event.which);
-  
-  //console.log( event, key );
   
   if ( key == '70' ){ // "f"
   
