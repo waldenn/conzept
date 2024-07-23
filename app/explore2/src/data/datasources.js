@@ -1166,6 +1166,71 @@ const datasources = {
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
   },
 
+  /*
+  'bhl': {
+    active:                 false,
+    name:                   'Biodiversity Heritage Library',
+    set:                    'science',
+    description:            'biodiversity literature - BETA',
+    tag:                    'science',
+    qid:                    'Q172266',
+    protocol:               'rest',
+    endpoint:               'https://www.biodiversitylibrary.org/api3',
+                            // see:
+                            //  https://www.biodiversitylibrary.org/docs/api3.html
+                            //  https://www.biodiversitylibrary.org/docs/api3/PublicationSearch.html
+                            //  https://www.biodiversitylibrary.org/docs/api3/GetPartMetadata.html
+    format:                 'json',
+    connect:                'json',
+    headers:                '',
+    pagesize:               `${explore.datasource_page_size}`,
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                              'date-desc'       : '',
+                              'date-asc'        : '',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'text' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+    url:                    '${datasources.bhl.endpoint}?op=PublicationSearch&searchterm=${term}&searchtype=C&page=${explore.page}&pageSize=${datasources.bhl.pagesize}&format=json&apikey=19fe2e68-1fa4-482d-8480-a6def4e7a82c',
+    icon:                   '<img class="datasource-icon" alt="BHL datasource" src="/assets/icons/bhl.png" alt="BHL logo">',
+    icon_invert:            true,
+    color:                  '#78b578',
+    display_url:            '',
+    code_autocomplete:      'autocompleteBHL( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsBHL( topicResults, struct, index ) );',
+    code_resolve:           'resolveBHL( result, renderObject )',
+    code_render_mark:       'renderMarkBHL( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.bhl.endpoint}?op=PublicationSearch&searchterm=${term}&searchtype=C&page=1&pageSize=${datasources.bhl.autocomplete_limit}&format=json&apikey=19fe2e68-1fa4-482d-8480-a6def4e7a82c',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
+  },
+  */
+
   // re-enable once API-support for page-sizing is working
   /*
   'ror': {

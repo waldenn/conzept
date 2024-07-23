@@ -2350,7 +2350,7 @@ conzept_fields = {
   icon: 'fa-solid fa-binoculars',
   text: 'occurence map',
   section: ['location-ecology', 'science-biology','main'],
-  rank: [10, 400,7900],
+  rank: [10, 400, 40],
 },
 
 'taxon_name' : {
@@ -4174,6 +4174,19 @@ conzept_fields = {
   text: 'My Mooc',
   section: 'education-courses',
   rank: 125,
+},
+
+'moocable' : {
+  create_condition: true,
+  title: 'Moocable',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://moocable.com/library?search=${title_}&limit_start=1',
+  icon: 'fa-solid fa-graduation-cap',
+  text: 'Moocable',
+  section: 'education-courses',
+  rank: 126,
 },
 
 'edx' : {
@@ -12592,7 +12605,7 @@ if ( valid( item.found_in_taxon ) ){
   section: ['science-biology','main'],
   rank: [49, 1889],
   headline_create: 'valid( item.taxon_entitree )',
-  headline_rank: 330,
+  headline_rank: 42,
 },
 
 'taxon_graph' : {
@@ -12671,7 +12684,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'checkTag( item, 0, ["organism"] )', 
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
-  headline_rank: 250,
+  headline_rank: 43,
 },
 
 /* FIXME

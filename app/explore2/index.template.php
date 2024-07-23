@@ -214,6 +214,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/arxiv/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/doaj/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
+  <!--script src="../app/explore2/dist/datasources/bhl/index.js?vCONZEPT_VERSION"></script-->
   <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
 
   <!-- business -->

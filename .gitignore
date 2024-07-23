@@ -13,6 +13,7 @@ app/iiif-ng/
 app/iptv*
 app/citation/
 app/explore2/src/datasources/iptv/
+app/speaker-diarization
 presentations
 
 app/ai-graph/

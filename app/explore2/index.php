@@ -214,6 +214,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/arxiv/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/doaj/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?v0.51.4836"></script>
+  <!--script src="../app/explore2/dist/datasources/bhl/index.js?v0.51.4836"></script-->
   <script src="../app/explore2/dist/datasources/ror/index.js?v0.51.4836"></script>
 
   <!-- business -->
