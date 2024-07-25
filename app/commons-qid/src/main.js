@@ -229,7 +229,10 @@ function getImages(qNum, offset) {
                 class: 'elem',
                 href : images[i].thumb,
                 tabindex : "0",
-              }).attr( 'data-lcl-txt', caption );
+              }).attr({
+                'title': txt,
+                'data-lcl-txt': caption,
+              });
 
               a_elem.append( img_elem );
 

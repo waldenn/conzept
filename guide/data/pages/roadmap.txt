@@ -35,22 +35,26 @@ Conzept's current vision for frontend [[explore>Large language model|LLM AI]], i
 
   * **Semantic search** - Due to using clear graph "entities" (regardless of language), the semantic web context is __often more rigid / safe / predictable / cheaper / faster / multi-lingual / correct / precise__, than Vector-based searches.
 
-  * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute/time.
+  * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute.
 
 If one starts with a more semantic grounding for LLM functions, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention.
 
-See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to combine topics, categorize the topics and also preface context to each topic, for the LLM prompt (in a multi-lingual way).
+See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to:
+  * Categorize the topics based on their bookmark meta-data. Based on the main and sub-tag and other special data-attributes.
+  * Combine multiple topics for a specific LLM-prompt. Eg. show a combined organism occurence map (for each topic with a GBIF ID). 
+  * Make the LLM-prompting multi-lingual.
 
-  * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]**
-    * **Conzept integration is a work in progress** (to replace the current, simple AI chat app)
-      * Current status: Self-hosting is working, TODO: URL parameter context ([[https://github.com/mlc-ai/web-llm-chat/issues/48|issue]])
-    * Features:
+  * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]** will be the main Conzept LLM AI app integration in the future.
+    * This integration is a **work in progress** (to replace the current, simple AI chat app)
+      * Current status: Self-hosting is working, TODOs:
+        * Get a laptop with support for WebGPU and enough VRAM to run good models.
+        * URL parameter context ([[https://github.com/mlc-ai/web-llm-chat/issues/48|issue]])
+    * Most required features:
       * Fully client-side
-      * Multi-model
-      * WebGPU based
-      * Multi-lingual (partly supported, open issues: [[https://github.com/mlc-ai/web-llm-chat/issues/46|parameter support]])
-      * Multi-modal (not yet supported)
-      * Application goals: Initially mainly focussed on text (and later other modalities, such as PDFs, audio and images).
+      * WebGPU based (too slow otherwise)
+      * Multi-model (so both smaller/slower and larger/faster systems can be supported)
+      * Multi-modal (Not yet supported! Later other modalities, such as PDFs, audio and images should be usable.).
+      * Multi-lingual (partly supported, open issues: [[https://github.com/mlc-ai/web-llm-chat/issues/46|parameter support]], ...)
     * Code:
       * [[https://github.com/mlc-ai/web-llm-chat|repo]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]] (core framework)
@@ -63,7 +67,7 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
       * Flexibility and freedom how and where to use these AI models in the future.
 
   * Furthermore the combination of: [[https://www.promptingguide.ai/techniques/rag|Retrieval Augmented Generation]] (RAG), a vector DB, and a LLM model, can also utilize the extra meta-data from a more grounded understanding of a topic .
-    * Candidate RAG tools:
+    * Candidate expiriment RAG tools:
       * [[https://github.com/nico-martin/ask-my-pdf|Ask-my-PDF]] (RAG + Vector DB + LLM QA)
       * [[https://github.com/poloclub/mememo|Mememo]] (RAG + Vector DB)
     * Research how to integrate a (frontend) RAG-tool with Conzept
@@ -79,7 +83,8 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * [[https://github.com/reorproject/reor|reor]] (notes)
 
   * See also:
-    * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]"
+    * [[explore>Category theory]] with [[https://conze.pt/explore/%22category%20theory%22%20LLM?l=en&ds=science&t=string&batchsize=5&s=true#|LLMs]]
+    * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]" ("The biggest lesson that can be read from 70 years of AI research is general methods that leverage computation are ultimately the most effective")
 
 ==== backend AI ====
 
@@ -93,20 +98,20 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
 
 [{{::typesense_features.jpg?direct|[[https://typesense.org/docs/overview/features.html|Typesense features]]}}]
 
-  * **Allow admins to create custom API-endpoints, for use as datasources** (from text, JSON, CSV or RDF). (work in progress)
+  * **Allow admins to create custom API-endpoints, for use as datasources** (from JSON or CSV). (work in progress)
     * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
       * [[https://github.com/typesense|repo]]
       * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
 
-    * Allow both for **keyword** queries and **[[https://typesense.org/docs/26.0/api/vector-search.html|vector]]-based** queries (using a self-hosted LLM model).
+    * Allow both for (quoted) **keyword / phrase** queries and **[[https://typesense.org/docs/26.0/api/vector-search.html|vector]]-based** queries (using a self-hosted LLM model).
 
-    * Research Conzept integration, regarding:
-      * The data-workflow (data files, insert/update/index scripts), for mulitple self-hosted datasources.
-      * Add the Typesense-server + setup steps to the Conzept Docker install.
+    * Conzept integration milestones:
+      - Experiment with Typesense data import and search.
+      - Design the Conzept data-workflow (data files, insert/update/index scripts), for multiple self-hosted datasources.
+      - Add the Typesense-server + setup steps to the Conzept Docker install.
+      - Create an IPTV datasource using the Typesense-server as an example.
 
-    * Experiment: Create an IPTV datasource using the Typesense-server.
-
-  * Open issues:
+  * Open questions:
     * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
 
 ==== frontend search ====
@@ -151,7 +156,7 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
   * Implement **json-proxy support for HTTP header Authorization** (using the key from settings.conf)
     * To check: That the used header (on the frontend) is working for eg. "CourtListener"
 
-  * **Indepent active/autocomplete/search toggles per datasource**. Eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
+  * **Independent active/autocomplete/search toggles per datasource**. Eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
     * datasource is active (boolean toggle)
       * datasource autocomplete (boolean toggle)
       * datasource searching (boolean toggle)

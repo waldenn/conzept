@@ -2334,9 +2334,8 @@ conzept_fields = {
   headline_create: 'valid( item.gbif_id )',
   headline_type: 'link',
   headline_url: '${explore.base}/app/map/index.html?l=${explore.language}&title=${title_enc}&gbif=${item.gbif_id}',
-  //headline_url: '${explore.base}/app/response/gbif-map.php?l=${explore.language}&t=${title_enc}&id=${item.gbif_id}',
   headline_icon: 'fa-solid fa-binoculars',
-  headline_rank: 275,
+  headline_rank: 40,
 },
 
 'gbif_occurence_map' : {
@@ -5442,7 +5441,7 @@ conzept_fields = {
   section: ['science-biology','main'],
   rank: [650,8860],
   headline_create: 'valid( item.ncbi ) && ! checkTag( item, 1, [ "bird", "insect", "amphibian", "fish", "reptile", "plant" ] ) && ! valid( [ item.bugguide, item.fishbase_species, item.wrms ] )', // exclude a lot, because micro-organisms are well supported on NCBI
-  headline_rank: 46,
+  headline_rank: 41,
 },
 
 'lccn' : {
@@ -12684,7 +12683,7 @@ if ( valid( item.found_in_taxon ) ){
   headline_create: 'checkTag( item, 0, ["organism"] )', 
   headline_type: 'code',
   headline_code: 'openInline( &quot;${ encodeURIComponent( item.title ) }&quot;,&quot;${ "mv-" + args.id }&quot;,&quot;${ v.title.replace(/ /g, "_" ) }&quot;)',
-  headline_rank: 43,
+  headline_rank: 45,
 },
 
 /* FIXME

@@ -21,6 +21,10 @@
     * URL parameter IO (iso2 language, search-string, ID, ...)
     * Event-handling (other view triggers, key-bindings, fullscreening, ...)
 
+  * [[https://www.wikidata.org/wiki/Wikidata:Lists/SPARQL_endpoints|List of SPARQL endpoints]]
+
+  * ? [[https://github.com/clariah-grlc-sustainability/nosparql-query-builder|nosparql-query-builder]]
+
   * ? [[https://github.com/sebferre/sparklis|Sparklis]] / [[https://github.com/epoz/shmarql|shmarql]] -> needs CORS-issue workaround
     * [[http://www.irisa.fr/LIS/ferre/sparklis/examples.html|NLP query examples]]
     * sparql-endpoint testing: [[https://conze.pt/explore/?l=en&t=&s=true&query={%22conditions%22:[{%22propertyId%22:%22P5305%22,%22propertyDataType%22:%22url%22,%22propertyValueRelation%22:%22regardless-of-value%22,%22referenceRelation%22:%22regardless%22,%22value%22:%22%22,%22subclasses%22:false,%22conditionRelation%22:null,%22negate%22:false}],%22limit%22:10,%22useLimit%22:true,%22omitLabels%22:false}|query all endpoints]] (note: some endpoints are dead) -> then open "sparql explorer 2" in the main-section 

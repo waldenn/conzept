@@ -281,12 +281,12 @@ function getImages() {
                 //console.log( image_qids[ j ] );
 
                 images.push({
-                  'name': pages[image]['title'].replace('File:', ''),
-                  'thumb': pages[image]['imageinfo']['0']['thumburl'],
-                  'width': pages[image]['imageinfo']['0']['thumbwidth'],
+                  'name':   pages[image]['title'].replace('File:', ''),
+                  'thumb':  pages[image]['imageinfo']['0']['thumburl'],
+                  'width':  pages[image]['imageinfo']['0']['thumbwidth'],
                   'height': pages[image]['imageinfo']['0']['thumbheight'],
-                  'page': pages[image]['imageinfo']['0']['descriptionurl'],
-                  'qid': image_qids[ j ],
+                  'page':   pages[image]['imageinfo']['0']['descriptionurl'],
+                  'qid':    image_qids[ j ],
                 });
 
               }
@@ -320,6 +320,7 @@ function getImages() {
                 href : images[i].thumb,
                 tabindex : "0",
               }).attr( {
+                 'title'        : txt,
                  'data-qid'     : images[i].qid,
                  'data-lcl-txt' : caption,
               } );
