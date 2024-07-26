@@ -1419,10 +1419,21 @@ function openBookmark( event, newtab ) {
       let qid         = valid( node.qid )? node.qid : '';
       let gid         = valid( node.gid )? node.gid : '';
 
+      let url         = '';
       let url_format  = datasources[ node.datasource ].display_url;
-      let url         = eval(`\`${ url_format }\``);
 
-      console.log( url );
+      if ( gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
+
+        url = gid;
+
+      }
+      else {
+
+        url = eval(`\`${ url_format }\``);
+
+      }
+
+      //console.log( url );
 
       if ( newtab ){
 
@@ -9663,6 +9674,12 @@ function exploreBookmark(event, id) {
 
   let datasource = valid( node.datasource ) ? node.datasource : '';
 
+  // clear "datasource set", because bookmarks only relate to one "datasource"
+  explore.datasource_set            = '';
+  explore.datasource_set_selection  = '';
+  setActiveDatasourceSet();
+  $('#search-in').val('');
+
   if ( valid( datasource ) ){
 
     updateActiveDatasources( [ datasource ]  );
@@ -9673,6 +9690,7 @@ function exploreBookmark(event, id) {
     updateActiveDatasources( [ 'wikipedia' ]  ); // fallback
 
   }
+
   
 
   handleClick({ 
@@ -10592,8 +10610,18 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
       // Note: "qid" and "gid" were already defined above.
       let language    = language_;
 
-      let url_format  = datasources[ datasource ].display_url;
-      link_           = eval(`\`${ url_format }\``);
+      if ( gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
+
+        link_  = gid;
+
+      }
+      else { // create datasource URL
+
+        let url_format  = datasources[ datasource ].display_url;
+        link_           = eval(`\`${ url_format }\``);
+
+      }
+
 
     }
 

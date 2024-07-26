@@ -914,7 +914,7 @@ const datasources = {
     icon:                   '<img class="datasource-icon" alt="OpenAlex logo" src="/assets/icons/openalex.svg" alt="OpenAlex logo">',
     icon_invert:            true,
     color:                  '#cbdff7',
-    display_url:            '${url}',
+    display_url:            'https://openalex.org/works/${gid}', // '${url}',
     code_autocomplete:      'autocompleteOpenAlex( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsOpenAlex( topicResults, struct, index ) );',
     code_resolve:           'resolveOpenAlex( result, renderObject )',
