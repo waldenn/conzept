@@ -10114,6 +10114,30 @@ function exportSelectedBookmarkTopics( output, b ){
 
 }
 
+function exportSelectedBookmarkGBIF( output, b ){
+
+  //console.log( 'data: ',  b );
+
+  if ( valid( [ b.gbif, b.selected ] ) ){
+
+    output.push( b.gbif );
+
+  }
+
+  if ( valid( b.children ) ){
+
+    b.children.forEach(( b2, index ) => {
+
+      exportSelectedBookmarkGBIF( output, b2 );
+
+    });
+
+  }
+
+}
+
+
+
 function exportBookmarkQids( output, b ){
 
   //console.log( 'data: ',  b );
@@ -10301,6 +10325,38 @@ function runBookmarkAction( action ){
       language  : explore.language,
       qid       : '',
       url       : encodeURI( `https://openlibrary.org/search?q=${ topics.join(', ') }&language=${explore.lang3}` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
+  else if ( action.startsWith( 'gbif-map' ) ){
+
+    let gbif_list = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkGBIF( gbif_list, b );
+
+      });
+
+    }
+
+    console.log( gbif_list );
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : topics.join(', '),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${title_enc}&gbif=${ gbif_list.join(', ') }` ),
       tag       : '',
       languages : '',
       custom    : '',
@@ -10545,6 +10601,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     let datasource  = '';
     let tags        = '';
     let images      = [];
+    let gbif        = '';
 
     let type        = explore.type;
 
@@ -10576,6 +10633,12 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     if ( event.data?.data?.gid ){
 
       gid = event.data.data.gid;
+
+    }
+
+    if ( event.data?.data?.gbif ){
+
+      gbif = event.data.data.gbif;
 
     }
 
@@ -10708,6 +10771,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
         geo:          geo_,
         qid:          qid,
         gid:          gid,
+        gbif:         gbif,
         selected:     false,
         datasource:   datasource,
         images:       images,
@@ -10730,6 +10794,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
           geo:        geo_,
           qid:        qid,
           gid:        gid,
+          gbif:       gbif,
           tags:       tags,
           selected:   false,
           datasource: datasource,

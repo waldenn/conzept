@@ -915,6 +915,8 @@ $settings_html = '
 
                       <div class="bookmark-action"><a class="" title="show bookmark locations on a 3D map" aria-label="show bookmark locations on a 3D map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map3d&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map3d">3D location map</span></span></a></div>
 
+                      <div class="bookmark-action"><a class="" title="show bookmark GBIF occurence map" aria-label="show bookmark GBIF occurence map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;gbif-map&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-gbif-map">GBIF map</span></span></a></div>
+
                       <div class="bookmark-action"><a class="" title="show bookmark images" aria-label="show bookmark images" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-image&quot;)"><span class="icon"><i class="fa-regular fa-images fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-images">images</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="search Bing" aria-label="search Bing" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">web search</span></span></a></div>

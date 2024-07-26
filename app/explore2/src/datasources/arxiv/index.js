@@ -144,7 +144,7 @@ function processResultsArxiv( topicResults, struct, index ){
           source:       source,
 					title:        stripHtml( title ),
 					description:  desc,
-					gid:          gid,
+					gid:          doc_url, //gid,
 					display_url:  doc_url,
 					thumb:        img,
           start_date:   $(this).find('published').text(),
