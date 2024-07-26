@@ -1540,7 +1540,7 @@ function setupDatasourceSet(){
 
 function setActiveDatasourceSet(){
 
-  console.log( 'setActiveDatasourceSet()' );
+  //console.log( 'setActiveDatasourceSet()' );
     
   if ( datasource_sets.includes( explore.datasource_set_selection ) ){ // valid set
 
@@ -1553,7 +1553,7 @@ function setActiveDatasourceSet(){
 
     }
 
-    console.log( '  ...1: ', explore.datasources );
+    //console.log( '  ...1: ', explore.datasources );
 
     explore.datasource_selection = datasource_set_map[ explore.datasource_set ].join();
 
@@ -1576,7 +1576,7 @@ function setActiveDatasourceSet(){
     setParameter( 'd', '', explore.hash );
     setParameter( 'ds', '', explore.hash );
 
-    console.log( '  ...2: ', explore.datasources );
+    //console.log( '  ...2: ', explore.datasources );
 
     //setActiveDatasources();
 
@@ -10643,6 +10643,8 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
 
     }
 
+    // FIXME: global-view-bookmarking temporarily disabled, to design a better workflow for this bookmark action.
+    //
     // modify data based on action-context
     if ( bookmark_current_view ){
 

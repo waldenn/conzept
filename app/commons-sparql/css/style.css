@@ -249,6 +249,10 @@ a {
   border-radius: 1.3em !important;
 }
 
+#lcl_title {
+  display: none;
+}
+
 #lcl_descr {
   text-align: center !important;
   font-size: larger !important;

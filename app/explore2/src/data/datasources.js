@@ -245,7 +245,7 @@ const datasources = {
     icon:                   '<img class="datasource-icon" alt="Wikiquote datasource" src="/assets/icons/wikiquote.svg" alt="Wikiquote logo">',
     color:                  '#069',
     icon_invert:            false,
-    display_url:            '',
+    display_url:            'https://${explore.language}.wikiquote.org/wiki/${term}',
     code_data_collect:      'my_promises.push( processResultsWikiquote( topicResults, struct, index ) );', // FIXME: invert control (see next line)
     code_autocomplete:      'autocompleteWikiquote( r, dataset )',
     code_resolve:           'resolveWikiquote( result, renderObject )',
@@ -365,7 +365,7 @@ const datasources = {
     icon:                   '<img class="datasource-icon" alt="Open Library datasource" src="/assets/icons/openlibrary.svg" alt="Open Library logo">',
     icon_invert:            true,
     color:                  '#e1dcc5',
-    display_url:            '',
+    display_url:            'https://openlibrary.org${gid}',
     code_autocomplete:      'autocompleteOpenLibrary( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsOpenLibrary( topicResults, struct, index ) );',
     code_resolve:           'resolveOpenLibrary( result, renderObject )',
