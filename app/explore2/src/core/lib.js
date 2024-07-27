@@ -10358,7 +10358,7 @@ function runBookmarkAction( action ){
       title     : '', // gbif_list.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${title_enc}&gbif=${ gbif_list.join(',') }` ),
+      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${ gbif_list.join(', ') }&gbif=${ gbif_list.join(',') }` ),
       tag       : '',
       languages : '',
       custom    : '',

@@ -19751,6 +19751,8 @@ if ( valid( item.found_in_taxon ) ){
   text: 'mark',
   section: 'main',
   rank: 8,
+  headline_create: 'valid( item.mark )',
+  headline_rank: 37,
 },
 
 'ai_chat' : {
@@ -19766,7 +19768,6 @@ if ( valid( item.found_in_taxon ) ){
   section: ['main'],
   rank: [9],
   headline_create: 'valid( explore.openai_enabled )',
-  //headline_create: 'valid( item.ai_chat ) && checkPersona( ["student","academic"] )',
   headline_rank: 650,
   headline_type: 'link-split',
 },
