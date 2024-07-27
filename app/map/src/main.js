@@ -32,7 +32,7 @@ let app = {
 	lon:			    getParameterByName( 'lon' ) || '',
 	qid:			    getParameterByName( 'qid' ) || '',  // may also be a list!
 	title:		    getParameterByName( 'title' ) || '',
-  titles:       [];
+  titles:       [],
 	bbox:			    getParameterByName( 'bbox' ) || undefined,
 	gbif:			    getParameterByName( 'gbif' ) || '', // GBIF taxon ID
 
@@ -55,20 +55,33 @@ let app = {
 
 window.app = app;
 
-$('#title').html( app.title );
+let title_html = [];
 
 if ( app.gbif.includes(',') ){ // list of GBIF ID's
 
   app.gbif    = app.gbif.split(',');
   app.titles  = app.title.split(',');
 
+  $.each( app.gbif, function ( i, id ) {
+
+		title_html.push( `<span id="${id}">${app.titles[i]}</span>` );
+
+	});
+
 }
-else { // single GBIF ID
+else if ( typeof app.gbif === 'string' ){ // single GBIF ID
 
   app.gbif    = [ app.gbif ];
   app.titles  = [ app.title ];
 
+  title_html.push( `<span id="${app.gbif}">${app.title}</span>` );
+
 }
+else {
+  title_html.push( app.title );
+}
+
+$('#title').html( title_html.join(', ') );
 
 const osm = new XYZ("OSM", {
   isBaseLayer: true,
@@ -317,14 +330,14 @@ async function init(){
 
   let gbif = [];
 
-  let gbif_styles = [ 'classic.poly', 'purpleWhite.poly', 'green.poly', 'green2.poly', 'iNaturalist.poly', 'purpleWhite.poly', 'purpleYellow.poly', 'red.poly' ];
 
+  let gbif_styles = [ 'classic.poly', 'purpleWhite.poly', 'green.poly', 'iNaturalist.poly', ]; //'purpleYellow.poly' ];
 
-  app.gbif.forEach( ( l, index ) => {
+  let gbif_style_colors = [ 'yellow', 'purple', 'green', '#cb0c6e' ];
+
+  app.gbif.forEach( ( id, index ) => {
 
     const pos = Math.floor( Math.random() * gbif_styles.length );
-
-    gbif_styles = gbif_styles.splice( pos, 1);
 
     let style = gbif_styles[ pos ];
 
@@ -332,11 +345,23 @@ async function init(){
       style = 'iNaturalist.poly';
     }
 
+		let title_sel = `#${id}`;
+
+    console.log( style, pos, gbif_style_colors[ pos ] );
+
+		$( title_sel ).css({
+			"text-decoration" : "underline",
+			"text-decoration-thickness" : "0.5em",
+ 			"text-decoration-color" : `${ gbif_style_colors[ pos ] }`,
+		});
+
+    //gbif_styles.splice( pos, 1);
+
     layers.push( ( new XYZ( app.titles[index], {
 
       isBaseLayer: false,
       // see: https://api.gbif.org/v2/map/debug/ol/#
-      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=hex&hexPerTile=17&srs=EPSG:3857&style=${ style }&taxonKey=${ l }`,
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=hex&hexPerTile=17&srs=EPSG:3857&style=${ style }&taxonKey=${ id }`,
       visibility: true,
       attribution: 'Data @ GBIF',
       iconSrc: "/assets/icons/gbif.png",
