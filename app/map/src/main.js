@@ -32,6 +32,7 @@ let app = {
 	lon:			    getParameterByName( 'lon' ) || '',
 	qid:			    getParameterByName( 'qid' ) || '',  // may also be a list!
 	title:		    getParameterByName( 'title' ) || '',
+  titles:       [];
 	bbox:			    getParameterByName( 'bbox' ) || undefined,
 	gbif:			    getParameterByName( 'gbif' ) || '', // GBIF taxon ID
 
@@ -58,12 +59,14 @@ $('#title').html( app.title );
 
 if ( app.gbif.includes(',') ){ // list of GBIF ID's
 
-  app.gbif = app.gbif.split(',');
+  app.gbif    = app.gbif.split(',');
+  app.titles  = app.title.split(',');
 
 }
 else { // single GBIF ID
 
-  app.gbif = [ app.gbif ];
+  app.gbif    = [ app.gbif ];
+  app.titles  = [ app.title ];
 
 }
 
@@ -329,7 +332,7 @@ async function init(){
       style = 'iNaturalist.poly';
     }
 
-    layers.push( ( new XYZ("GBIF " + l, {
+    layers.push( ( new XYZ( app.titles[index], {
 
       isBaseLayer: false,
       // see: https://api.gbif.org/v2/map/debug/ol/#

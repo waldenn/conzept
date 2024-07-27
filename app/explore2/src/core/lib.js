@@ -10122,7 +10122,7 @@ function exportSelectedBookmarkGBIF( output, b ){
 
   if ( valid( [ b.gbif, b.selected ] ) ){
 
-    output.push( b.gbif );
+    output[ b.gbif ] = b.name;
 
   }
 
@@ -10137,8 +10137,6 @@ function exportSelectedBookmarkGBIF( output, b ){
   }
 
 }
-
-
 
 function exportBookmarkQids( output, b ){
 
@@ -10336,7 +10334,8 @@ function runBookmarkAction( action ){
   }
   else if ( action.startsWith( 'gbif-map' ) ){
 
-    let gbif_list = []; // list of topics
+    // TODO: get list of titles
+    let gbif_obj = {}; // list of topics
 
     const obj = $('#tree').tree('getTree');
 
@@ -10344,13 +10343,11 @@ function runBookmarkAction( action ){
 
       obj.children.forEach(( b, index ) => {
 
-        exportSelectedBookmarkGBIF( gbif_list, b );
+        exportSelectedBookmarkGBIF( gbif_obj, b );
 
       });
 
     }
-
-    //console.log( gbif_list );
 
     handleClick({ 
       id        : 'n1-0',
@@ -10358,7 +10355,7 @@ function runBookmarkAction( action ){
       title     : '', // gbif_list.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${ gbif_list.join(', ') }&gbif=${ gbif_list.join(',') }` ),
+      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${ Object.values( gbif_obj ).join(', ') }&gbif=${ Object.keys( gbif_obj ).join(',') }` ),
       tag       : '',
       languages : '',
       custom    : '',
