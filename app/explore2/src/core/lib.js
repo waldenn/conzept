@@ -7165,6 +7165,7 @@ function addTopics( source, list, parent_node_id ){
       item          : item,
       custom        : custom,
       source        : source,
+      gbif_id       : valid( item.gbif_id )? item.gbif_id : '',
     }
 
     const html_result_list = createItemHtml( args );
@@ -7406,6 +7407,7 @@ async function renderType( args ){
 				tags:       valid( tags )? tags : [ tag ],
 				datasource: datasource,
 				gid:        gid,
+        gbif:       gbif_id,
 			}
 		}
 
@@ -7741,7 +7743,7 @@ async function handleClick( args ) {
 
   let ids           = '';             // any other needed type-specific identifiers
   let custom        = args.custom;    // any other data needed (eg. iso2-country-code, ...)
-  let gbif_id       = '';             // used for rendering the GBIF occurence map
+  let gbif_id       = valid( args.gid )? args.gid : ''; // used for rendering the GBIF occurence map
   let panelwidth    = args.panelwidth // used for setting the left link-split panel width
 
   // get current topic ID, to set the topic-cursor
@@ -10348,15 +10350,15 @@ function runBookmarkAction( action ){
 
     }
 
-    console.log( gbif_list );
+    //console.log( gbif_list );
 
     handleClick({ 
       id        : 'n1-0',
       type      : 'link',
-      title     : topics.join(', '),
+      title     : '', // gbif_list.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${title_enc}&gbif=${ gbif_list.join(', ') }` ),
+      url       : encodeURI( `${explore.base}/app/map/index.html?l=${explore.language}&title=${title_enc}&gbif=${ gbif_list.join(',') }` ),
       tag       : '',
       languages : '',
       custom    : '',
