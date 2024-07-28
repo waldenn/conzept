@@ -210,7 +210,7 @@ function processResultsBHL( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  desc, //  + '<br/><br/>' + creators.join(', '),
-					gid:          gid,
+					gid:          url,
 					display_url:  url ,
 					thumb:        '', // 'https://BHL.org/services/img/' + obj.identifier,
           start_date:   start_date,

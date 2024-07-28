@@ -115,7 +115,7 @@ function processResultsSnomed( topicResults, struct, index ){
           source:       source,
 					title:        obj.title,
 					description:  valid( obj.description )? obj.description : '',
-					gid:          obj.identifier,
+					gid:          url, // obj.identifier,
 					display_url:  url,
 					thumb:        'https://snomed.org/services/img/' + obj.identifier,
           start_date:   start_date,

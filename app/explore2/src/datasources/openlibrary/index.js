@@ -161,7 +161,7 @@ function processResultsOpenLibrary( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  creators.join(', '),
-					gid:          gid,
+					gid:          url,
 					display_url:  url ,
 
 					thumb:        thumb,

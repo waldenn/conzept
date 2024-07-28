@@ -347,8 +347,6 @@ async function init(){
 
 		let title_sel = `#${id}`;
 
-    console.log( style, pos, gbif_style_colors[ pos ] );
-
 		$( title_sel ).css({
 			"text-decoration" : "underline",
 			"text-decoration-thickness" : "0.5em",

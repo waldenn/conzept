@@ -115,7 +115,7 @@ function processResultsPeerTube( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  '<div>' + duration + channel + '</div><br/>' + description,
-					gid:          gid,
+					gid:          url,
           qid:          '',
 					display_url:  url,
           thumb:        thumb,

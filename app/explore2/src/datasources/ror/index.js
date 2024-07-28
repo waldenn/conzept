@@ -124,13 +124,13 @@ function processResultsROR( topicResults, struct, index ){
 
 				// fill fields
 				let item = {
-          source: source,
-					title: org.names[0].value,
-					gid: gid,         // datasource global-ID
-					display_url: url, // link to render for each topic
-					qid: qid,
-          countries: [],
-          tags: [],
+          source:       source,
+					title:        org.names[0].value,
+					gid:          url,         // datasource global-ID
+					display_url:  url, // link to render for each topic
+					qid:          qid,
+          countries:    [],
+          tags:         [],
 				};
 
         let country_qids = [];

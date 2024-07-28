@@ -120,7 +120,7 @@ function processResultsDOAJ( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  ' ' + description + '<br/></br>' + author,
-					gid:          gid,
+					gid:          url,
 					display_url:  url,
 					issn_link:    issn_link,
 					thumb:        '',

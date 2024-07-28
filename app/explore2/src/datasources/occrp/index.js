@@ -260,7 +260,7 @@ function processResultsOCCRP( topicResults, struct, index ){
           source:       source,
 					title:        valid( title )? title : gid,
 					description:  desc,
-					gid:          gid,
+					gid:          url, // gid,
           web_url:      url,
 					display_url:  '', // not viewable, due to CORS restriction
 					thumb:        '',

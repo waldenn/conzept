@@ -106,7 +106,7 @@ function processResultsWikiquote( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  description,
-					gid:          gid,
+					gid:          url,
           qid:          '',
 					display_url:  url,
           thumb:        thumb,

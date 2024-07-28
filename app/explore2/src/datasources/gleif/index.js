@@ -89,7 +89,7 @@ function processResultsGleif( topicResults, struct, index ){
           source: source,
 					title: company.attributes.entity.legalName.name,
 					lei: company.attributes.lei,
-					gid: company.attributes.lei,  // datasource global-ID
+					gid: url, //company.attributes.lei,  // datasource global-ID
 					display_url: url,             // link to render for each topic
 					qid: qid,
           countries: [],

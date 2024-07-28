@@ -264,7 +264,7 @@ function processResultsEU( topicResults, struct, index ){
           source:             source,
 					title:              title,
 					description:        desc,
-					gid:                gid,
+					gid:                url,
 					display_url:        url,
 					start_date:	        start_date,
 					web_url:            url,

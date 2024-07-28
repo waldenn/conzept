@@ -205,7 +205,7 @@ function processResultsCommons( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  ' ' + description, // `<details class="plain" style="line-height: 100% !important; list-style: none; font-weight: normal;"><summary>license</summary><p>${license_name}</p></details>` + ' ',
-					gid:          gid,
+					gid:          url,
 					display_url:  url, // url may get overidden later
 					thumb:        thumb,
           start_date:   start_date,

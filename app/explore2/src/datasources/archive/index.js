@@ -246,7 +246,7 @@ function processResultsArchive( topicResults, struct, index ){
           source:       source,
 					title:        obj.title,
 					description:  desc + '<br/><br/>' + highlightTerms( creators.join(', ') ),
-					gid:          obj.identifier,
+					gid:          url , // gid
 					display_url:  url ,
 
           document_language:    document_language,

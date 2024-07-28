@@ -163,7 +163,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
           source:       source,
 					title:        valid( obj.biblio?.title )? obj.biblio.title : '---',
 					description:  creators.join(', ') + '<br/><br/>' + desc,
-					gid:          valid( obj.work_ident )? obj.work_ident : '---',
+					gid:          url, // valid( obj.work_ident )? obj.work_ident : '---',
 					display_url:  url,
 					thumb:        img,
           start_date:   valid( obj.biblio?.release_year )? ( obj.biblio.release_year ).toString() : '',

@@ -84,8 +84,8 @@ function processResultsCourtListener( topicResults, struct, index ){
 
       $.each( topicResults.results, function( i, obj ){
 
-        let gid         = valid( obj.id )? obj.id : '';
         let url         = valid( obj.absolute_url )? 'https://www.courtlistener.com' + obj.absolute_url : '';
+        let gid         = url; //valid( obj.id )? obj.id : '';
         let title       = valid( obj.caseName )? obj.caseName : '';
 
         let maintag     = 'work';

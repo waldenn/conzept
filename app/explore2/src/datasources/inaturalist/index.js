@@ -169,7 +169,7 @@ async function processResultsInaturalist(topicResults, struct, index) {
             //description: desc, // not visible with Wikidata transformation
             description_custom: desc,
             qid: '',
-            gid: valid( obj.id) ? obj.id : '---',
+            gid: url, //valid( obj.id) ? obj.id : '---',
             display_url: url,
             thumb: img, // not showing the iNaturalist image (but the Wikidata thumb)!
             start_date: '',

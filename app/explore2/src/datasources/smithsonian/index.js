@@ -258,7 +258,7 @@ function processResultsSmithsonian( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  `${ desc }<br/> ${ physical_info }<br/> <div>${ topics.join(', ' ) }</div><br/> <div>${ authors.join(', ') }</div><br/> ${library}`,
-					gid:          gid,
+					gid:          display_url,
 					display_url:  display_url, // url,
 					web_url:      display_url, // url,
 					thumb:        thumb,

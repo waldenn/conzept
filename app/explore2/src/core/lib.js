@@ -1422,7 +1422,7 @@ function openBookmark( event, newtab ) {
       let url         = '';
       let url_format  = datasources[ node.datasource ].display_url;
 
-      if ( gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
+      if ( typeof gid === 'string' && gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
 
         url = gid;
 
@@ -10672,7 +10672,7 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
       // Note: "qid" and "gid" were already defined above.
       let language    = language_;
 
-      if ( gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
+      if ( typeof gid === 'string' && gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
 
         link_  = gid;
 

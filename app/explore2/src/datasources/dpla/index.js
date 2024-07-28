@@ -374,7 +374,7 @@ function processResultsDPLA( topicResults, struct, index ){
           source:       source,
 					title:        title.substring(0,150),
 					description:  ' ' + description + '<br/></br>' + author,
-					gid:          gid,
+					gid:          url,
 					display_url:  url,
 					thumb:        thumb,
           start_date:   start_date,

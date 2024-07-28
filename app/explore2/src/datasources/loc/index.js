@@ -333,7 +333,7 @@ function processResultsLoC( topicResults, struct, index ){
           source:       source,
 					title:        title.substring(0,150),
 					description:  ' ' + description + '<br/></br>' + author,
-					gid:          gid,
+					gid:          url, // gid,
 					display_url:  url,
           audio_link:   audio_link,
           video_link:   video_link,

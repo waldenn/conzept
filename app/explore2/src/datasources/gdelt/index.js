@@ -156,7 +156,7 @@ function processResultsGDELT( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  desc,
-					gid:          gid,
+					gid:          url,
           web_url:      url,
 					display_url:  url, // maybe not viewable, due to CORS restriction
 					thumb:        thumb,

@@ -157,7 +157,7 @@ function processResultsHarvard( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  description,
-					gid:          gid,
+					gid:          url,
 					display_url:  url, // url may get overidden later
 					thumb:        thumb,
           start_date:   start_date,

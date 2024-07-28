@@ -120,7 +120,7 @@ function processResultsMarginalia( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  `<b>${domain}</b><br/><br/>${description}`,
-					gid:          gid,
+					gid:          url,
 					display_url:  url,
 					thumb:        thumb,
           start_date:   start_date,

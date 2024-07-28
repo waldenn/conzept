@@ -232,7 +232,7 @@ function processResultsEuropeana( topicResults, struct, index ){
           source:       source,
 					title:        title,
 					description:  description,
-					gid:          obj.id,
+					gid:          url, // obj.id,
 					display_url:  url,
 					thumb:        valid( obj.edmPreview )? obj.edmPreview[0] : '',
           start_date:   start_date,
