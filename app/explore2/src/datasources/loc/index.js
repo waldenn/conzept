@@ -372,6 +372,7 @@ function processResultsLoC( topicResults, struct, index ){
 
             if ( subtag === 'image' ){
               item.display_url  = encodeURIComponent( iiif_viewer_url );
+              item.gid          = encodeURIComponent( iiif_viewer_url );
             }
 
           }

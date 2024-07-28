@@ -186,6 +186,7 @@ function processResultsHarvard( topicResults, struct, index ){
 
 						item.iiif         = iiif_viewer_url;
 						item.display_url  = encodeURIComponent( iiif_viewer_url );
+            item.gid          = encodeURIComponent( iiif_viewer_url );
 
 					}
 

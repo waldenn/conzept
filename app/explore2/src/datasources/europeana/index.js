@@ -295,6 +295,7 @@ function processResultsEuropeana( topicResults, struct, index ){
 						//console.log( iiif_viewer_url );
 
 						item.iiif = iiif_viewer_url;
+            item.gid  = encodeURIComponent( iiif_viewer_url );
 
 					}
 
@@ -304,12 +305,14 @@ function processResultsEuropeana( topicResults, struct, index ){
 					console.log( obj.edmIsShownBy );
 
 					item.audio_link = obj.edmIsShownBy[0].replace('http://','https://');
+          item.gid  = encodeURIComponent( item.audio_link );
 
         }
 				else if ( obj.type === '3D' && valid( obj.edmIsShownBy ) ){
 
 					//console.log( obj.edmIsShownAt );
 					item.model_view_url = obj.edmIsShownAt[0];
+          item.gid  = encodeURIComponent( item.model_view_url );
 
         }
 
