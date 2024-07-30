@@ -223,7 +223,17 @@ function processResultsEuropeana( topicResults, struct, index ){
 
         if ( valid( obj.dataProvider ) ){
 
-          description += ' - ' + obj.dataProvider.join(', ');
+          let provider_html = '';
+
+          $.each( obj.dataProvider, function( k, provider ){
+
+            const isLastElement = ( k === obj.dataProvider.length -1 );
+
+            provider_html += '<a href="javascript:void(0)" class="mv-extra-icon" title="explore provider" aria-label="explore provider" role="button"' + setOnClick( Object.assign({}, {}, { type: 'explore', title: encodeURIComponent( provider ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-retweet" style="position:relative;"></i></span> ' + provider + '</a>' + ( valid( !isLastElement )? ', &nbsp;' : '' );
+
+          });
+
+          description += ' - ' + provider_html;
 
         }
 

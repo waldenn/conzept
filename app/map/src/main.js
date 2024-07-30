@@ -340,9 +340,11 @@ async function init(){
     const pos = Math.floor( Math.random() * gbif_styles.length );
 
     let style = gbif_styles[ pos ];
+    let color = gbif_style_colors[ pos ];
 
-    if ( app.gbif.length === 1 || ! valid( style ) ){
+    if ( app.gbif.length === 1 ){
       style = 'iNaturalist.poly';
+      color = '#cb0c6e';
     }
 
 		let title_sel = `#${id}`;
@@ -350,7 +352,7 @@ async function init(){
 		$( title_sel ).css({
 			"text-decoration" : "underline",
 			"text-decoration-thickness" : "0.5em",
- 			"text-decoration-color" : `${ gbif_style_colors[ pos ] }`,
+ 			"text-decoration-color" : `${ color }`,
 		});
 
     //gbif_styles.splice( pos, 1);

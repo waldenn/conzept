@@ -19736,7 +19736,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'explore',
   section: 'main',
   rank: 1,
-  headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  headline_create: true, // 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
   headline_rank: 35,
 },
 
