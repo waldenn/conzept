@@ -10300,6 +10300,42 @@ function runBookmarkAction( action ){
     });
 
   }
+  else if ( action.startsWith( 'conzept-search' ) ){
+
+    const datasource_set = action.replace('conzept-search-', '');
+
+    console.log( datasource_set );
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    //console.log( topics );
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : topics.join(', '),
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `${explore.base}/explore/${ topics.join(', ') }?l=${explore.language}&ds=${datasource_set}&t=string&singleuse=true` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
   else if ( action.startsWith( 'openlibrary' ) ){
 
     let topics = []; // list of topics

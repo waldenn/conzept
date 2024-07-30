@@ -896,14 +896,33 @@ $settings_html = '
                   <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-media">media</span></summary>
                     <div class="frontpage-grid-container">
 
+                      <div class="bookmark-action"><a class="" title="Conzept reference datasources search" aria-label="Conzept reference datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-reference&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">reference search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept culture datasources search" aria-label="Conzept culture datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-culture&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">culture search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept science datasources search" aria-label="Conzept science datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-science&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">science search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept business datasources search" aria-label="Conzept business datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-business&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">business search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept legal datasources search" aria-label="Conzept legal datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-legal&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">legal search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept news datasources search" aria-label="Conzept news datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-news&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">news search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept media datasources search" aria-label="Conzept media datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-media&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">media search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="Conzept web datasources search" aria-label="Conzept web datasources search" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-conzept-search-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">web search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="search Bing" aria-label="search Bing" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">Bing search</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="show bookmark images" aria-label="show bookmark images" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-image&quot;)"><span class="icon"><i class="fa-regular fa-images fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-images">images</span></span></a></div>
+
                       <div class="bookmark-action"><a class="" title="show bookmark videos" aria-label="show bookmark videos" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;video&quot;)"><span class="icon"><i class="fa-solid fa-video fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-video">video</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="search the Open Library" aria-label="search the Open Library" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;openlibrary&quot;)"><span class="icon"><i class="fa-brands fa-mizuni fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-openlibrary">Open Library</span></span></a></div>
 
-
                       <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
 
-                      <div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div>
+                      <!--div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div-->
 
                       <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
 
@@ -916,10 +935,6 @@ $settings_html = '
                       <div class="bookmark-action"><a class="" title="show bookmark locations on a 3D map" aria-label="show bookmark locations on a 3D map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map3d&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map3d">3D location map</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="show bookmark GBIF occurence map" aria-label="show bookmark GBIF occurence map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;gbif-map&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-gbif-map">GBIF map</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="show bookmark images" aria-label="show bookmark images" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-image&quot;)"><span class="icon"><i class="fa-regular fa-images fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-images">images</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="search Bing" aria-label="search Bing" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-web&quot;)"><span class="icon"><i class="fa-brands fa-searchengin fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-web-search">web search</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="Gapminder country linechart" aria-label="Gapminder country linechart" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-gapminder-linechart&quot;)"><span class="icon"><i class="fa-solid fa-chart-line fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-gapminder-country-trend">country trend</span></span></a></div>
 

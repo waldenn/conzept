@@ -11,6 +11,7 @@ app/explore2/tools/json-proxy.json
 app/radio/
 app/iiif-ng/
 app/iptv*
+app/chat/tmp
 app/citation/
 app/explore2/src/datasources/iptv/
 app/speaker-diarization
