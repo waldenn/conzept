@@ -366,10 +366,18 @@ function showPresentation( item, type ){
 		let commons_sparql_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Commons paintings</h3><h3><i class='fa-solid fa-paintbrush'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "${commons_sparql_slide_url}" ) ) )\n`;
 
 		let openalex_search_slide       = '';
+    let orcid_publications_slide    = '';
 
     if ( valid( item.openalex?.startsWith("C") ) ){ // concept
 
       openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n`;
+
+    }
+    else if ( type === 'person' && valid( item.orcid ) ){
+
+      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OpenAlex author</h3><h3><i class='fa-regular fa-newspaper'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?page=1&filter=language%3A${language}%20en,authorships.author.orcid%3A${item.orcid}&group_by=publication_year,open_access.is_oa,authorships.institutions.lineage,type" ) ) )\n`;
+
+      orcid_publications_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>ORCID publications</h3><h3><i class='fa-regular fa-newspaper'></i></h3>"\n    ( show \'link \'( "${explore.base}/app/orcid/?id=${item.orcid}&t=${item.title}" ) ) )\n`;
 
     }
     else {
@@ -775,6 +783,7 @@ function showPresentation( item, type ){
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
 
+      slides.push( orcid_publications_slide );
 			slides.push( openalex_search_slide );
 			slides.push( science_search_slide );
 			slides.push( scholia_slide );
