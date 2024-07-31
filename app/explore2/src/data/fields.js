@@ -13938,7 +13938,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-globe',
   text: 'similar country HDI',
   section: ['location-demography', 'government-general'],
-  rank: [105, 5010],
+  rank: [105, 6000],
 },
 
 'worldpopulationreview_country_en' : {
@@ -19254,6 +19254,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'US datasets',
   section: ['media-datasets-general','government-general'],
   rank: [201, 5010],
+},
+
+'usaspending' : {
+  create_condition: 'checkLC("","US")',
+  title: 'USAspending.gov',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.usaspending.gov/keyword_search/${title_quoted}',
+  icon: 'fa-solid fa-flag-usa',
+  text: 'USAspending',
+  section: ['government-general'],
+  rank: [5015],
 },
 
 'us_census_search' : {
