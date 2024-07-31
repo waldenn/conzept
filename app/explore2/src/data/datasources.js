@@ -305,6 +305,7 @@ const datasources = {
     icon:                   '<img class="datasource-icon" alt="Internet Archive datasource" src="/assets/icons/archive.svg" alt="Internet Archive logo">',
     icon_invert:            true,
     color:                  '#333',
+    // "Habsburg monarchy, World War I" --> 
     display_url:            'https://archive.org/details/${gid}/?q=${ setQuotes( term ) }&autoplay=1',
     // TODO: search_url:    'https://archive.org/search?query=${term}&language%3A"${ wp_languages[ explore.language ].name }"',
     code_autocomplete:      'autocompleteArchive( r, dataset )',

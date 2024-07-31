@@ -10328,7 +10328,7 @@ function runBookmarkAction( action ){
       title     : topics.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `${explore.base}/explore/${ topics.join(', ') }?l=${explore.language}&ds=${datasource_set}&t=string&singleuse=true` ),
+      url       : encodeURI( `${explore.base}/explore/${ setQuotes( topics ) }?l=${explore.language}&ds=${datasource_set}&t=string&singleuse=true` ),
       tag       : '',
       languages : '',
       custom    : '',
