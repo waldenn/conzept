@@ -92,7 +92,7 @@ function processResultsArxiv( topicResults, struct, index ){
         let url           = $( $(this).find('link')[1] ).attr('href');
         let doc_url       = $( $(this).find('link')[1] ).attr('href');
         doc_url		        = doc_url.replace('/abs/', '/pdf/');
-        const comment_url = doc_url.replace('/arxiv/', '/alphaxiv/');
+        const comment_url = doc_url.replace('arxiv.org', 'alphaxiv.org');
 
         let desc          = $(this).find('summary').text();
 

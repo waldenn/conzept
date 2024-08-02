@@ -3647,8 +3647,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://haveibeentrained.com/?search_text=${title_quoted}',
-  //icon: 'fa-brands fa-searchengin',
+  url: 'https://haveibeentrained.com/search/TEXT?search_text=${title_quoted}',
   icon: 'fa-regular fa-images',
   text: 'HIBT',
   section: ['media-image'],
@@ -8284,6 +8283,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 89,
 },
 
+  /*
 'openbase' : {
   create_condition: true,
   title: 'OpenBase search',
@@ -8296,6 +8296,7 @@ if ( valid( item.found_in_taxon ) ){
   section: 'media-software',
   rank: 80,
 },
+*/
 
 'dates' : {
   create_condition: false, // TODO: fix code first
@@ -9310,6 +9311,21 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 40,
   headline_type: 'link',
   headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&qid=${item.outline}&tutor=${explore.tutor}#${explore.hash}',
+},
+
+'main_wikimedia_portal' : {
+  title: 'main Wikimedia portal',
+  prop: '1151',
+  type: 'wikipedia-qid',
+  mv: true, // TODO: research why making this 'false' fails to load the Portal page
+  icon: 'fa-solid fa-file-word',
+  text: 'portal',
+  section: ['library-general','main'],
+  rank: [13,1312],
+  headline_create: 'valid( item.main_wikimedia_portal )',
+  headline_rank: 41,
+  headline_type: 'link',
+  headline_url: '${explore.base}/app/wikipedia/?t=${title}&l=${explore.language}&voice=${explore.voice_code}&rate=${explore.voice_rate}&pitch=${explore.voice_pitch}&qid=${item.main_wikimedia_portal}&tutor=${explore.tutor}#${explore.hash}',
 },
 
 'highway_system' : {
@@ -10509,17 +10525,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'archive at',
   section: ['library-general','main'],
   rank: [400,1300],
-},
-
-'main_wikimedia_portal' : {
-  title: 'main Wikimedia portal',
-  prop: '1151',
-  type: 'wikipedia-qid',
-  mv: true, // TODO: research why making this 'false' fails to load the Portal page
-  icon: 'fa-solid fa-file-word',
-  text: 'portal',
-  section: ['library-general','main'],
-  rank: [1300,301],
 },
 
 'bibliography' : {
@@ -12019,24 +12024,24 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikiquote' : {
   default_value: '',
-  title: 'wikiQuote',
+  title: 'Wikiquote',
   prop: '',
   type: 'link',
   mv: false,
   icon: 'fa-solid fa-quote-right',
-  text: 'wQuote topic',
+  text: 'Wikiquote topic',
   section: ['library-general','main'],
   rank: [91,303],
 },
 
 'wikiversity' : {
   default_value: '',
-  title: 'wikiVersity',
+  title: 'Wikiversity',
   prop: '',
   type: 'url',
   mv: false,
   icon: 'fa-solid fa-landmark-dome',
-  text: 'Wiki Versity',
+  text: 'Wikiversity',
   section: ['education-assistance','main'],
   rank: [20,304],
   headline_create: 'valid( item.wikiversity )',
@@ -12047,24 +12052,24 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikibooks' : {
   default_value: '',
-  title: 'wikiBooks',
+  title: 'Wikibooks',
   prop: '',
   type: 'link',
   mv: false,
   icon: 'fa-brands fa-leanpub',
-  text: 'wBooks',
+  text: 'Wikibooks',
   section: ['library-general','main'],
   rank: [1310,302],
 },
 
 'wikinews' : {
   default_value: '',
-  title: 'wikiNews',
+  title: 'Wikinews',
   prop: '',
   type: 'link',
   mv: false,
   icon: 'fa-regular fa-newspaper',
-  text: 'wikiNews',
+  text: 'Wikinews',
   section: ['news-general','main'],
   rank: [20,304],
 },
@@ -12147,12 +12152,12 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikisource' : {
   default_value: '',
-  title: 'wikiSource item',
+  title: 'Wikisource item',
   prop: '',
   type: 'link',
   mv: false,
   icon: 'fa-solid fa-scroll',
-  text: 'wSource topic',
+  text: 'Wikisource topic',
   section: ['library-general','main'],
   rank: [81,1160],
 },
@@ -14254,7 +14259,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://archive.org/details/image?and[]=${title_quoted}',
+  url: 'https://archive.org/details/image?tab=collection&query=${title_quoted}',
   icon: 'fa-solid fa-camera',
   text: 'Archive',
   section: 'media-image',
@@ -20598,26 +20603,26 @@ if ( valid( item.found_in_taxon ) ){
 
 'wikisource_inline' : {
   value: 'wikisource:${item.title}:true',
-  title: 'wikiSource',
+  title: 'Wikisource',
   prop: '0',
   type: 'rest-json',
   mv: true,
   url: '',
   icon: 'fa-solid fa-scroll',
-  text: 'wSource search',
+  text: 'Wikisource search',
   section: 'library-general',
   rank: 80,
 },
 
 'wikiquote_inline' : {
   value: 'wikiquote:${item.title}:true',
-  title: 'wikiQuote search',
+  title: 'Wikiquote search',
   prop: '0',
   type: 'rest-json',
   mv: true,
   url: '',
   icon: 'fa-solid fa-quote-right',
-  text: 'wQuote search',
+  text: 'Wikiquote search',
   section: 'library-general',
   rank: 90,
 },
