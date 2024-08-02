@@ -345,7 +345,7 @@ function showPresentation( item, type ){
 
 		// frequently used ready-made slides
 		let video_slide                 = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-solid fa-video' title='videos'></i></h3>"\n    ( show \'link \'( "/app/video/?l=${explore.language}#/search/%22${ title_enc }%22" ) ) )\n`;
-		let open_library_meta_slide     = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (meta-data)<h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search?q=${title}&language=${explore.lang3}" ) ) )\n`;
+		let open_library_meta_slide     = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (metadata)<h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search?q=${title}&language=${explore.lang3}" ) ) )\n`;
 		let open_library_fulltext_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Open Library (fulltext)</h3><h3><i class='fa-solid fa-book-open' title='books'></i></h3>"\n    ( show \'link \'( "https://openlibrary.org/search/inside?q=${title}&language=${explore.lang3}&has_fulltext=true" ) ) )\n`;
 		let libretext_chemistry         = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>LibreText</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://chem.libretexts.org/Special:Search?query=${ title }&type=wiki&classifications=article%3Atopic-category%2Carticle%3Atopic-guide" ) ) )\n`;
 		let oer_commons_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>OER Commons</h3><h3><i class='fa-solid fa-person-chalkboard'></i></h3>"\n    ( show \'link \'( "https://www.oercommons.org/search?f.search=${title}&f.language=${language}" ) ) )\n`;
@@ -473,7 +473,7 @@ function showPresentation( item, type ){
     */
 
 		// note: we need to set the initial-language again before the next slide (since the previous "simple-language" slide might have changed the language)
-		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h4>(Wikipedia)</h4>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
+		slides.push( `  ( slide "${ item.title } ${ sub_name } ${ desc } <h3>${ dating }</h3> <h3><i class='fa-brands fa-wikipedia-w' title='Wikipedia'></i></h3>"\n    ( show \'topic \'( ${ item.qid } ${ language }  ) ) ) \n` );
 
     // Wikiversity is no longer embeddable, could we render it via Mediawiki API rendering?
 		//if ( valid( item.wikiversity ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikiversity</h3>"\n    ( show \'link \'( "${ item.wikiversity }" ) ) )\n` ); }
@@ -1533,7 +1533,7 @@ async function setupLispEnv(){
         });
 
 
-        // apply slide meta-data
+        // apply slide metadata
         //console.log('meta now: ', meta );
 
         let options = {};
