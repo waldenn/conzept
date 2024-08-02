@@ -92,6 +92,7 @@ function processResultsArxiv( topicResults, struct, index ){
         let url           = $( $(this).find('link')[1] ).attr('href');
         let doc_url       = $( $(this).find('link')[1] ).attr('href');
         doc_url		        = doc_url.replace('/abs/', '/pdf/');
+        comment_url		    = doc_url.replace('/arxiv/', '/alphaxiv/');
 
         let desc          = $(this).find('summary').text();
 
@@ -136,6 +137,12 @@ function processResultsArxiv( topicResults, struct, index ){
         if ( valid( doi ) ){
 
           desc += `<br/><br/><small>${ doi }</small>`; 
+
+        }
+
+        if ( valid( comment_url ) ){
+
+          desc += `<br/><br/><a onclick="openInFrame( &quot;${comment_url}&quot; )" href="javascript:void(0)" title="alphaXiv comments" aria-label="alphaXiv comments" aria-role="button"><i class="fa-regular fa-comments"></i></a>`; 
 
         }
 

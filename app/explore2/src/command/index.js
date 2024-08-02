@@ -370,7 +370,7 @@ function showPresentation( item, type ){
 
     if ( valid( item.openalex?.startsWith("C") ) ){ // concept
 
-      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n`;
+      openalex_search_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>OpenAlex concept</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex topic-related works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=concepts.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n`;
 
     }
     else if ( type === 'person' && valid( item.orcid ) ){
@@ -432,7 +432,7 @@ function showPresentation( item, type ){
 		//let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
 
 		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${ title_enc }&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
-		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>arXiv</h3> <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
+		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
 
     //let quiz_location_slide         = `  ( slide "${ item.title } ${ sub_name } <h3></h3> <h3>location quiz</h3> <h3><i class='fa-solid fa-puzzle-piece' title='guess the location'></i></h3>"\n    ( show \'link \'( "/app/quiz/location/?${ item.qid }" ) ) )\n`;
 
@@ -453,8 +453,8 @@ function showPresentation( item, type ){
     // Geo-location requirement
 		if ( valid( item.lat ) ){
 
-			street_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
-			nearby_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>nearby map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link-split \'( "/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${language}&layers=wikipedia" ) ) )\n`;
+			street_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>streetmap</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map/?l=${explore.language}&bbox=${getBoundingBox(item.lon, item.lat, 0.05 )}&lat=${item.lat}&lon=${item.lon}&osm_id=${ valid( item.osm_relation_id )? item.osm_relation_id : '' }&qid=${item.qid}&title=${title_enc}" ) ) )\n`;
+			nearby_map_slide  = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>nearby map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link-split \'( "/app/nearby/#lat=${item.lat}&lng=${item.lon}&zoom=17&interface_language=${language}&layers=wikipedia" ) ) )\n`;
 
 			//satellite_map     = `  ( slide "${ item.title } ${ sub_name } <h3>satellite map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "/app/map3d/?lat=${item.lat}&lon=${item.lon}" ) ) )\n`;
 
@@ -483,12 +483,12 @@ function showPresentation( item, type ){
 
       if ( item.openalex.startsWith("A") ){ // author
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex institution works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.institutions.lineage%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
 
       }
       else if ( item.openalex.startsWith("I") ){ // institution
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>OpenAlex</h3> <h3><i class='fa-regular fa-newspaper' title='OpenAlex author works'></i></h3>"\n    ( show \'link \'( "https://openalex.org/works?sort=cited_by_count%3Adesc&column=display_name,publication_year,type,open_access.is_oa,cited_by_count&page=1&filter=authorships.author.id%3A${ item.openalex },language%3A${language}%2Ben" ) ) )\n` );
 
       }
 
@@ -546,14 +546,14 @@ function showPresentation( item, type ){
 
       if ( checkTag( item, 1, ["art-movement"] ) ){
 
-        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
+        slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>Open Art Browser</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "https://openartbrowser.org/en/movement/${item.qid}?tab=artworks&page=0" ) ) )\n` );
 
       }
 
 			slides.push( commons_time_music_slide );
 
 			//slides.push( europeana_time_music_slide );
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
 			slides.push( linkgraph_slide );
@@ -618,7 +618,7 @@ function showPresentation( item, type ){
 			//  example: NL-language -> "Germany"-article-presentation -> culture-article does not exist in Dutch!
 			//if ( valid( item.culture ) ){ slides.push( `  ( slide "${ item.title } <h3><i class='fa-solid fa-hand-holding-heart' title='culture'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) ) ( show \'link \'( "/app/wikipedia/?t=&l=${language}&qid=${ item.culture }&dir=ltr" ) ) )\n` ); }
 
-			if ( valid( item.wikivoyage ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Wikivoyage</h3><h3><i class='fa-solid fa-plane-departure' title='travel information'></i></h3>"\n    ( show \'link \'( "${ item.wikivoyage }" ) ) )\n` ); }
+			if ( valid( item.wikivoyage ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>Wikivoyage</h3><h3><i class='fa-solid fa-plane-departure' title='travel information'></i></h3>"\n    ( show \'link \'( "${ item.wikivoyage }" ) ) )\n` ); }
 
 			slides.push( street_map_slide );
 			slides.push( nearby_map_slide );
@@ -643,13 +643,13 @@ function showPresentation( item, type ){
 
 		  if ( valid( item.iso2 ) ){ // country
 
-			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>Gapminder stats</h3><h3><i class='fa-solid fa-chart-line' title='Gapminder stats'></i></h3>"\n    ( show \'link \'( "https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@=${ countries[ item.qid ].iso3.toLowerCase() };;;;;;;;&encoding$selected$data$filter$markers@=${ countries[ item.qid ].iso3.toLowerCase() };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v" ) ) )\n` );
+			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>Gapminder stats</h3><h3><i class='fa-solid fa-chart-line' title='Gapminder stats'></i></h3>"\n    ( show \'link \'( "https://www.gapminder.org/tools/#$model$markers$line$data$filter$dimensions$geo$/$or@$country$/$in@=${ countries[ item.qid ].iso3.toLowerCase() };;;;;;;;&encoding$selected$data$filter$markers@=${ countries[ item.qid ].iso3.toLowerCase() };;;;&y$data$concept=pop&space@=geo&=time;;&scale$type:null&domain:null&zoomed:null;;;;;;&chart-type=linechart&url=v" ) ) )\n` );
 
       }
 
 		  if ( valid( item.lat ) ){
 
-			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
+			  slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>railway map</h3><h3><i class='fa-solid fa-train' title='railway map'></i></h3>"\n    ( show \'link \'( "https://www.openrailwaymap.org/?style=standard&lat=${item.lat}&lon=${item.lon}&zoom=11" ) ) )\n` );
 
 			  //slides.push( `  ( slide "${ item.title } <h3>infrastructure map</h3><h3><i class='fa-regular fa-map' title='map'></i></h3>"\n    ( show \'link \'( "https://openinframap.org/#8/${item.lat}/${item.lon}" ) ) )\n` );
 
@@ -701,11 +701,11 @@ function showPresentation( item, type ){
     }
 		else if ( type === 'organization' ){
 
-			if ( valid( item.subsidiary_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>subsidiaries</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P355/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.parent_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>parent</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P749/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.has_parts_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>has parts</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P527/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.subsidiary_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3> <h3>subsidiaries</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P355/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.parent_organization_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>parent</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P749/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.has_parts_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>has parts</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P527/${item.qid}" ) ) )\n` ); }
 
 			if ( valid( item.lat ) ){ slides.push( nearby_map_slide  ) };
 			//if ( valid( item.lat ) ){ slides.push( street_map_slide  ) };
@@ -738,15 +738,15 @@ function showPresentation( item, type ){
 		}
 		else if ( type === 'person' ){
 
-			if ( valid( item.nobility_familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name }<h3>nobility family tree</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.nobility_family_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>nobility family</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P53/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>family</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.nobility_familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>nobility family tree</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.nobility_family_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>nobility family</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P53/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>family</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
 
-			if ( valid( item.relatives_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>relatives</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P1038/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.relatives_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>relatives</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P1038/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
 
       if ( valid( item.is_painter ) && validAny( [ item.ulan_artist, item.rkd_artist, item.rijksmuseum_authority_id ] ) ){
 
@@ -777,8 +777,8 @@ function showPresentation( item, type ){
 			slides.push( linkgraph_slide );
 
 			// TODO: requires language-article check: if ( valid( item.place_of_birth ) ){ slides.push( `  ( slide "${ item.title } <h3>place of birth</h3><h3><i class='fa-solid fa-map-pin' title='place of birth'></i></h3>"\n    ( show \'link \'( "" ) ) )\n` ); }
-			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
-			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
+			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
+			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
@@ -791,15 +791,15 @@ function showPresentation( item, type ){
 		}
 		else if ( type === 'group' ){
 
-			if ( valid( item.nobility_familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>nobility family tree</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.nobility_family_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>nobility family</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P53/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>family</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.nobility_familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>nobility family tree</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.nobility_family_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>nobility family</h3><h3><i class='fa-solid fa-crown' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P53/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.familytree_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>family</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/all/${item.qid}" ) ) )\n` ); }
 
-			if ( valid( item.relatives_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>relatives</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P1038/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
-			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.relatives_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>relatives</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P1038/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.member_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>member of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P463/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.part_of_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P361/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.author_entitree ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>part of</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P50/${item.qid}" ) ) )\n` ); }
 
 			slides.push( commons_slide );
 
@@ -807,8 +807,8 @@ function showPresentation( item, type ){
 
 			slides.push( linkgraph_slide );
 
-			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } <h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
-			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } <h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
+			if ( valid( item.wikiquote ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>quotes</h3><h3><i class='fa-solid fa-quote-right' title='quotes'></i></h3>"\n    ( show \'link \'( "${item.wikiquote}" ) ) )\n` ); }
+			if ( valid( item.wikisource ) ){ slides.push( `  ( slide "${ item.title } <h3>${ dating }</h3><h3>WikiSource</h3><h3><i class='fa-solid fa-scroll' title='WikiSource'></i></h3>"\n    ( show \'link \'( "${item.wikisource}" ) ) )\n` ); }
 
 			slides.push( open_library_meta_slide );
 			slides.push( open_library_fulltext_slide );
@@ -863,7 +863,7 @@ function showPresentation( item, type ){
 
 			}
 
-			if ( valid( item.significant_event_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>significant events</h3><h3><i class='fa-solid fa-sitemap' title='significant event tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P793/${item.qid}" ) ) )\n` ); }
+			if ( valid( item.significant_event_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>significant events</h3><h3><i class='fa-solid fa-sitemap' title='significant event tree'></i></h3>"\n    ( show \'link-split \'( "${explore.base}/app/tree/${language}/P793/${item.qid}" ) ) )\n` ); }
 
 		  if ( language === 'en' && valid( item.wikipedia_timeline ) ){ slides.push( timeline_slide ); }
 
@@ -889,7 +889,7 @@ function showPresentation( item, type ){
     // common end slides
     slides.push( ai_chat_slide );
 
-	  if ( valid( item.inaturalist_taxa ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3><i class='fa-solid fa-puzzle-piece' title='taxon location quiz'></i></h3>"\n    ( show \'link \'( "/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}" ) ) )\n` ); }
+	  if ( valid( item.inaturalist_taxa ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3><i class='fa-solid fa-puzzle-piece' title='taxon location quiz'></i></h3>"\n    ( show \'link \'( "/app/quiz/location-nature/index.html?taxon_id=${item.inaturalist_taxa}" ) ) )\n` ); }
 
     slides.push( similar_slide );
 

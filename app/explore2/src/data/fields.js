@@ -1645,6 +1645,18 @@ conzept_fields = {
   rank: [20,8201],
 },
 
+'alphaXiv' : {
+  title: 'alphaXiv - arXiv document comments',
+  prop: '',
+  type: 'link',
+  url: 'https://alphaxiv.org/${item.arxiv_id}',
+  mv: false,
+  icon: 'fa-solid fa-subscript',
+  text: 'alphaXiv',
+  section: ['science-open-journals','main'],
+  rank: [20.5,8201.5],
+},
+
 'grin_url' : {
   title: 'Germplasm Resource Information Network (GRIN)',
   prop: '1421',
@@ -5301,7 +5313,20 @@ conzept_fields = {
   icon: 'fa-brands fa-reddit',
   text: 'Reddit stats',
   section: ['social'],
-  rank: [26.3],
+  rank: [26.31],
+},
+
+'subreddit_stats' : {
+  create_condition: 'valid( item.reddit )',
+  title: 'SubReddit forum statistics',
+  prop: '',
+  type: 'link',
+  url: 'https://subredditstats.com/r/${item.reddit}',
+  mv: false,
+  icon: 'fa-brands fa-reddit',
+  text: 'SubReddit stats',
+  section: ['social'],
+  rank: [26.32],
 },
 
 'reddit_search' : {

@@ -3206,11 +3206,15 @@ details[open].conf summary ~ * {
 .topic-description.formula {
   margin-top: .5rem;
   border: 1px solid #00000047;
-  width: max-content;
+  /*width: max-content;*/
   padding: 0.5rem 0.5rem;
   border-radius: 0.3rem;
   max-width: 96%;
-  overflow-x: hidden;
+  overflow-x: auto;
+}
+
+.formula {
+  overflow: auto;
 }
 
 .medialinks {
