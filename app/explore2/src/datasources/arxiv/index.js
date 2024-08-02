@@ -118,6 +118,12 @@ function processResultsArxiv( topicResults, struct, index ){
         let tts_link            = doc_url;
         let pdf_link            = doc_url;
 
+        if ( valid( comment_url ) ){
+
+          desc += `&nbsp;<a onclick="openInFrame( &quot;${comment_url}&quot; )" href="javascript:void(0)" title="alphaXiv comments" aria-label="alphaXiv comments" aria-role="button"><i class="fa-regular fa-comments"></i></a>`; 
+
+        }
+
         $(this).find('author').each( function( j ){
 
           const author_name       = $(this).text().trim();
@@ -137,12 +143,6 @@ function processResultsArxiv( topicResults, struct, index ){
         if ( valid( doi ) ){
 
           desc += `<br/><br/><small>${ doi }</small>`; 
-
-        }
-
-        if ( valid( comment_url ) ){
-
-          desc += `<br/><br/><a onclick="openInFrame( &quot;${comment_url}&quot; )" href="javascript:void(0)" title="alphaXiv comments" aria-label="alphaXiv comments" aria-role="button"><i class="fa-regular fa-comments"></i></a>`; 
 
         }
 
