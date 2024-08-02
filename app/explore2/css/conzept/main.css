@@ -3214,7 +3214,8 @@ details[open].conf summary ~ * {
 }
 
 .formula {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .medialinks {

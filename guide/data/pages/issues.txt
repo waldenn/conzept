@@ -57,6 +57,10 @@
 
   * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
 
+===== state syncing =====
+
+  * Sync (ImmortalDB) state across tabs, after each data change. (work in progress)
+
 ===== bookmarking =====
 
   * BUG: Update bookmarking system to handle datasource selection (originally only build for links / wikipedia).
