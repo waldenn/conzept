@@ -365,6 +365,7 @@ async function init(){
       visibility: true,
       attribution: 'Data @ GBIF',
       iconSrc: "/assets/icons/gbif.png",
+      opacity: 0.6,
 
     }) ) );
 

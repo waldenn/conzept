@@ -1643,6 +1643,8 @@ conzept_fields = {
   text: 'arXiv',
   section: ['science-open-journals','main'],
   rank: [20,8201],
+  headline_create: 'valid( item.arxiv_id ) && activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  headline_rank: 251,
 },
 
 'alphaXiv' : {

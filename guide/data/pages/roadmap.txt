@@ -31,30 +31,30 @@
       * Add AI-entries (text + TTS) in the presentation table-of-contents
 
 
-Conzept's current vision for frontend [[explore>Large language model|LLM AI]], is to enhance and combine the strengths of these two search contexts: 
+Conzept's current vision for frontend [[explore>Large language model|LLM]], is to enhance and combine the strengths of these two search contexts: 
 
   * **Semantic search** - Due to using clear graph "entities" (regardless of language), the semantic web context is __often more rigid / safe / predictable / cheaper / faster / multi-lingual / correct / precise__, than Vector-based searches.
 
-  * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute.
+  * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute and can/will hallucinate.
 
-If one starts with a more semantic grounding for LLM functions, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention.
+If one starts with a more semantic and [[explore>Neuro-symbolic AI|neuro-symbolic]] grounding for LLM functions, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention.
 
-See the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to:
+See also the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to:
   * Categorize the topics based on their bookmark meta-data. Based on the main and sub-tag and other special data-attributes.
   * Combine multiple topics for a specific LLM-prompt. Eg. show a combined organism occurence map (for each topic with a GBIF ID). 
   * Make the LLM-prompting multi-lingual.
 
-  * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]** will be the main Conzept LLM AI app integration in the future.
+  * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]** will be the main Conzept LLM app integration in the future.
     * This integration is a **work in progress** (to replace the current, simple AI chat app)
       * Current status: Self-hosting is working, TODOs:
         * Get a laptop with support for WebGPU and enough VRAM to run good models.
-        * URL parameter context ([[https://github.com/mlc-ai/web-llm-chat/issues/48|issue]])
+        * URL parameter context (system + user prompt)
     * Most required features:
-      * Fully client-side
-      * WebGPU based (too slow otherwise)
-      * Multi-model (so both smaller/slower and larger/faster systems can be supported)
-      * Multi-modal (Not yet supported! Later other modalities, such as PDFs, audio and images should be usable.).
-      * Multi-lingual (partly supported, open issues: [[https://github.com/mlc-ai/web-llm-chat/issues/46|parameter support]], ...)
+     * Fully client-side
+      * ✓ WebGPU based (too slow otherwise)
+      * ✓ Multi-lingual ([[https://github.com/mlc-ai/web-llm-chat/issues/48|support added]], but may still need some locale data)
+      * ✓ Multi-model (so both smaller/slower and larger/faster systems can be supported)
+      * ❌ Multi-modal (Not yet supported! Later other modalities, such as PDFs, audio and images should be usable.).
     * Code:
       * [[https://github.com/mlc-ai/web-llm-chat|repo]]
       * [[https://github.com/mlc-ai/web-llm|web-llm]] (core framework)
@@ -83,7 +83,9 @@ See the "structured LLM prompt" screenshot on the right, for an experiment of th
     * [[https://github.com/reorproject/reor|reor]] (notes)
 
   * See also:
+    * [[explore>Symbolic artificial intelligence|Symbolic AI]]
     * [[explore>Category theory]] with [[https://conze.pt/explore/%22category%20theory%22%20LLM?l=en&ds=science&t=string&batchsize=5&s=true#|LLMs]]
+    * "[[https://garymarcus.substack.com/p/alphaproof-alphageometry-chatgpt?publication_id=888615|AlphaProof, AlphaGeometry, ChatGPT, and why the future of AI is neurosymbolic]]"
     * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]" ("The biggest lesson that can be read from 70 years of AI research is general methods that leverage computation are ultimately the most effective")
 
 ==== backend AI ====

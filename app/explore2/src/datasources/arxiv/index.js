@@ -78,6 +78,25 @@ function processResultsArxiv( topicResults, struct, index ){
 
       };
 
+			// dynamically add an extra Conzept field (only active with this datasource)
+			conzept_fields[ 'alphaxiv' ] = {
+				create_condition: 'activeOnDatasources( [ "arxiv" ], item.source )',
+				title: 'alphaXiv - Arxiv paper comments',
+				prop: '',
+				type: 'link',
+				mv: false,
+				url: '${item.comment_link}',
+				icon: 'fa-regular fa-comments',
+				text: 'alphaXiv',
+				section: ['science-open-journals','main'],
+				rank: [20.1, 8201.1],
+				headline_create: 'valid( item.alphaxiv )',
+				headline_rank: 251.1,
+			};
+
+			// re-index this new field
+			conzept_field_names = Object.entries( conzept_fields );
+
 			$( topicResults ).find('entry').each( function( index ){
 
    			let title = $(this).find('title').text() || '';
@@ -92,7 +111,7 @@ function processResultsArxiv( topicResults, struct, index ){
         let url           = $( $(this).find('link')[1] ).attr('href');
         let doc_url       = $( $(this).find('link')[1] ).attr('href');
         doc_url		        = doc_url.replace('/abs/', '/pdf/');
-        const comment_url = doc_url.replace('arxiv.org', 'alphaxiv.org');
+        const comment_link= doc_url.replace('arxiv.org', 'alphaxiv.org');
 
         let desc          = $(this).find('summary').text();
 
@@ -118,11 +137,13 @@ function processResultsArxiv( topicResults, struct, index ){
         let tts_link            = doc_url;
         let pdf_link            = doc_url;
 
-        if ( valid( comment_url ) ){
+				/*
+        if ( valid( comment_link ) ){
 
           desc += `&nbsp;<a onclick="openInFrame( &quot;${comment_url}&quot; )" href="javascript:void(0)" title="alphaXiv comments" aria-label="alphaXiv comments" aria-role="button"><i class="fa-regular fa-comments"></i></a>`; 
 
         }
+				*/
 
         $(this).find('author').each( function( j ){
 
@@ -160,6 +181,7 @@ function processResultsArxiv( topicResults, struct, index ){
           document_voice_code:  document_voice_code,
           pdf_tts_link: tts_link,
           pdf_link:     pdf_link,
+					comment_link:	comment_link,
 
 					qid:          '',
           countries:    [],
@@ -838,3 +860,4 @@ const arxiv_categories = [
 		    }
 ]
 */
+
