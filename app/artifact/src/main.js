@@ -5,6 +5,7 @@ const app = {
   user_prompt:          getParameterByName('prompt'),
   language:             getParameterByName('l') || 'en',
   supported_languages:  [ 'en', 'fr', 'nl' ],
+  url:                  '',
 
 };
 
@@ -67,12 +68,18 @@ form.addEventListener('submit', function (e) {
 form.addEventListener('keydown', function (e) {
   if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      saveToLocalStorage();
+      $('#loader').show();
+      $('#download').hide();
       form.dispatchEvent(new Event('submit'));
   }
 });
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  $('#loader').show();
+  $('#download').hide();
 
   const prompt = form.prompt.value;
   // empty prompt
@@ -158,6 +165,7 @@ form.addEventListener('submit', async (e) => {
       renderGeneratedHtml(responseText);
 
       $('#loader').hide();
+      $('#download').show();
 
       openTab('tab-app');
 
@@ -172,6 +180,7 @@ form.addEventListener('submit', async (e) => {
 
 
 });
+
 
 const htmlWrapper = `
 <!DOCTYPE html>
@@ -215,7 +224,7 @@ const jsxCode = document.getElementById('jsx-code').textContent;
 const compiledCode = Babel.transform(jsxCode, { presets: ['react'] }).code;
 
 // Log the compiled JavaScript code to the console
-console.log(compiledCode);
+//console.log(compiledCode);
 
 // Create a new script element and execute the compiled code
 const script = document.createElement('script');
@@ -242,6 +251,7 @@ function renderGeneratedHtml(appHtml) {
 
   // Create a temporary URL for the Blob
   const url = URL.createObjectURL(blob);
+  app.url   = url;
 
   // Get the iframe element and set its src to the temporary URL
   const iframeElem = document.querySelector('iframe');
@@ -251,6 +261,17 @@ function renderGeneratedHtml(appHtml) {
   iframeElem.onload = () => {
       // URL.revokeObjectURL(url);
   };
+
+}
+
+function downloadApp(){
+
+  const link = document.createElement("a");
+  link.href = app.url;
+  let filename = $('#prompt').val().replace(' ', '_');
+  link.download = `${filename}.html`;
+  link.click();
+
 }
 
 $(document).ready(function(){
@@ -258,6 +279,7 @@ $(document).ready(function(){
   if ( valid( app.user_prompt ) ){
 
     $('#loader').show();
+    $('#download').hide();
 
     $('#prompt').val( app.user_prompt );
 
