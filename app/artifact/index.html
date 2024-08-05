@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+    <!-- conzept resources -->
+    <link href="/assets/fonts/podcastfont/css/PodcastFont.css?v202306131635" rel="stylesheet" type="text/css"><link href="/assets/fonts/fontawesome/css/all.min.css?v6.5.1" rel="stylesheet" type="text/css"><link href="/app/explore2/dist/css/conzept/common.css?v0.51.4836" rel="stylesheet" type="text/css"> <script src="/app/explore2/dist/core/env.js?v0.51.4836"></script><script src="/app/explore2/dist/core/utils.js?v0.51.4836"></script><script src="/app/explore2/node_modules/jquery/dist/jquery.min.js?v3.6.0"></script><a href="javascript:void(0)" id="fullscreenToggle" onclick="document.toggleFullscreen()" class="global-actions"><i id="fullscreenIcon" title="fullscreen toggle" class="fas fa-expand"></i></a><script>document.toggleFullscreen = function() { if (screenfull.enabled) { screenfull.toggle(); } return 0; };</script><script src="/app/explore2/libs/TinyGesture.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css?v0.005" type="text/css"/>
+
+    <meta name="viewport" content="initial-scale=0.75">
+    <title>Conzept OpenArtifacts</title>
+</head>
+
+<body>
+
+  <div class="container">
+      <div class="tabs">
+          <div class='logo'> OpenArtifacts</div>
+          <button class="tab-btn current" id="button-tab-form" onclick="openTab('tab-form')">Form</button>
+          <button class="tab-btn" id="button-tab-code" onclick="openTab('tab-code')">Code</button>
+          <button class="tab-btn" id="button-tab-app" onclick="openTab('tab-app')">App</button>
+      </div>
+
+      <div class="tab-section current" id="tab-form">
+          <form id="api-form">
+              <div class="form-group" style="display:none;">
+                  <label for="api-endpoint">API Endpoint:</label>
+                  <input type="text" id="api-endpoint" name="api-endpoint" value="https://api.openai.com/v1/chat/completions">
+              </div>
+              <div class="form-group" style="display:none;">
+                  <label for="api-key">API key:</label>
+                  <input type="password" id="key" name="api-key" value="" placeholder="sk-xxx-yyyyyyyzzzzzzzz" />
+              </div>
+              <div class="form-group">
+                  <label for="model-name">Model Name:</label>
+                  <input type="text" id="model-name" name="model-name" value="gpt-4o">
+              </div>
+              <div class="form-group">
+                  <label for="prompt">App description:</label>
+                  <textarea id="prompt" name="prompt" rows="4" placeholder="Describe your front-end app in a few sentences"></textarea>
+              </div>
+              <div class="form-group">
+                <button id="submit" type="submit">Submit</button> &nbsp;<span id="loader" style="display:none;">creating artifact...</span>
+              </div>
+          </form>
+          <div class="credits">
+              by <a href="https://x.com/mayfer">murat</a><br />
+              clone on <a href="https://github.com/mayfer/open-artifacts">github</a>
+          </div>
+      </div>
+      <div class="tab-section" id="tab-code">
+          <pre id="code"></pre>
+      </div>
+      <div class="tab-section" id="tab-app">
+          <iframe></iframe>
+      </div>
+  </div>
+
+  <script src="./src/main.js?v0.51.4836"></script>
+
+    <script>
+    // keyboard control
+    $('body').keydown(function(event) {
+
+      if ( $(event.target).is( 'input, select, button' ) ){
+
+        return;
+
+      }
+
+      let key = (event.keyCode ? event.keyCode : event.which);
+
+      if ( key == '70' ){ // "f"
+
+        document.toggleFullscreen();
+
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

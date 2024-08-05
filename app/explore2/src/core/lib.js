@@ -2081,6 +2081,9 @@ function setupSearch() {
             else if ( explore.q.startsWith( '!doi' ) ){ 
               console.log('DOI query detected');
             }
+            else if ( explore.q.startsWith( '!code' ) ){ 
+              console.log('code query detected');
+            }
 
           }
 
@@ -2364,7 +2367,27 @@ function setupSearch() {
           });
 
         }
-        if ( explore.q.startsWith( '!doi' ) ){ // DOI command
+        else if ( explore.q.startsWith( '!code' ) ){ // code command
+
+          explore.q = explore.q.trim().charAt(0).toUpperCase() + explore.q.slice(1);
+
+          const m = explore.q.replace( '!code ', '' );
+
+          handleClick({ 
+            id        : 'n1-0',
+            type      : 'link',
+            title     : m,
+            language  : explore.language,
+            qid       : '',
+            url       : encodeURI( `${explore.base}/app/code/?prompt=${m}&l=${explore.language}` ),
+            tag       : '',
+            languages : '',
+            custom    : '',
+            target_pane : 'p1',
+          });
+
+        }
+        else if ( explore.q.startsWith( '!doi' ) ){ // DOI command
 
           explore.q   = explore.q.trim();
           const doi   = explore.q.replace( '!doi ', '' );

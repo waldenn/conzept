@@ -1,0 +1,146 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+span#loader {
+  margin-top: 0.4em;
+}
+
+.logo {
+  font-size: 30px;
+  margin-bottom: 3px;
+  padding-right: 10px;
+}
+
+.credits {
+  text-align: right;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+a, a:visited {
+  color: #105c64;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+iframe {
+  width: calc(100% - 20px);
+  height: calc(100% - 30px);
+  margin: 9px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-group {
+  display: flex;
+  align-items: top;
+  margin-bottom: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.form-group label {
+  width: 150px;
+  margin-right: 10px;
+  margin-top: 3px;
+  text-align: right;
+}
+
+.form-group input,
+.form-group textarea {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.form-group textarea {
+  resize: vertical;
+  font-size: 14px;
+  color: #000;
+}
+
+.form-group button {
+  margin-left: 160px;
+  /* Ensure it aligns with the input fields */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+
+.tab-section {
+  display: none;
+  height: 100%;
+}
+
+.tab-section.current {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  justify-content: left;
+  border-bottom: 1px solid #ccc;
+  padding: 0 50px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  background-color: #f1f1f1;
+}
+
+.tab-btn {
+  padding: 0px 20px;
+  font-size: 15px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #e3e2e1;
+  cursor: pointer;
+  margin-right: 2px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.tab-btn.current {
+  background-color: #fff;
+  border-bottom: none;
+  position: relative;
+  top: 1px;
+}
+
+#tab-code pre {
+  margin: 10px;
+  padding: 10px;
+
+  width: calc(100% - 40px);
+  height: calc(100% - 50px);
+  overflow: auto;
+  
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#tab-form {
+  padding: 20px;
+}
