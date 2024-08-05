@@ -328,48 +328,11 @@ async function init(){
 
   let layers = [ osm, osm_french, osm_german, sat_bing, sat_esri, opentopo, osm_cycle, opensea, openrailway, hiking ];
 
-  let gbif = [];
+  if ( valid( app.gbif[0] ) ){
 
+    addGBIFLayer();
 
-  let gbif_styles = [ 'classic.poly', 'purpleWhite.poly', 'green.poly', 'iNaturalist.poly', ]; //'purpleYellow.poly' ];
-
-  let gbif_style_colors = [ 'yellow', 'purple', 'green', '#cb0c6e' ];
-
-  app.gbif.forEach( ( id, index ) => {
-
-    const pos = Math.floor( Math.random() * gbif_styles.length );
-
-    let style = gbif_styles[ pos ];
-    let color = gbif_style_colors[ pos ];
-
-    if ( app.gbif.length === 1 ){
-      style = 'iNaturalist.poly';
-      color = '#cb0c6e';
-    }
-
-		let title_sel = `#${id}`;
-
-		$( title_sel ).css({
-			"text-decoration" : "underline",
-			"text-decoration-thickness" : "0.5em",
- 			"text-decoration-color" : `${ color }`,
-		});
-
-    //gbif_styles.splice( pos, 1);
-
-    layers.push( ( new XYZ( app.titles[index], {
-
-      isBaseLayer: false,
-      // see: https://api.gbif.org/v2/map/debug/ol/#
-      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=hex&hexPerTile=17&srs=EPSG:3857&style=${ style }&taxonKey=${ id }`,
-      visibility: true,
-      attribution: 'Data @ GBIF',
-      iconSrc: "/assets/icons/gbif.png",
-      opacity: 0.6,
-
-    }) ) );
-
-  });
+  }
 
   layers.push( app.markerLayer );
 
@@ -454,6 +417,54 @@ async function init(){
     getQids();
 
   }
+
+}
+
+
+function addGBIFLayer(){
+
+  let gbif = [];
+
+  let gbif_styles = [ 'classic.poly', 'purpleWhite.poly', 'green.poly', 'iNaturalist.poly', ]; //'purpleYellow.poly' ];
+
+  let gbif_style_colors = [ 'yellow', 'purple', 'green', '#cb0c6e' ];
+
+
+  app.gbif.forEach( ( id, index ) => {
+
+    const pos = Math.floor( Math.random() * gbif_styles.length );
+
+    let style = gbif_styles[ pos ];
+    let color = gbif_style_colors[ pos ];
+
+    if ( app.gbif.length === 1 ){
+      style = 'iNaturalist.poly';
+      color = '#cb0c6e';
+    }
+
+    let title_sel = `#${id}`;
+
+    $( title_sel ).css({
+      "text-decoration" : "underline",
+      "text-decoration-thickness" : "0.5em",
+      "text-decoration-color" : `${ color }`,
+    });
+
+    //gbif_styles.splice( pos, 1);
+
+    layers.push( ( new XYZ( app.titles[index], {
+
+      isBaseLayer: false,
+      // see: https://api.gbif.org/v2/map/debug/ol/#
+      url: `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?bin=hex&hexPerTile=17&srs=EPSG:3857&style=${ style }&taxonKey=${ id }`,
+      visibility: true,
+      attribution: 'Data @ GBIF',
+      iconSrc: "/assets/icons/gbif.png",
+      opacity: 0.6,
+
+    }) ) );
+
+  });
 
 }
 

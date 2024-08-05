@@ -627,7 +627,7 @@ function showPresentation( item, type ){
 			//if ( valid( item.lat ) ){ slides.push( street_map_slide ) };
 
 			slides.push( commons_country_music_slide );
-      slides.push( culture_images_search_slide );
+      slides.push( culture_search_slide );
 
 			//slides.push( europeana_country_music_slide );
 			//slides.push( bing_images_slide );
@@ -755,7 +755,7 @@ function showPresentation( item, type ){
 
         slides.push( commons_sparql_slide );
 
-        slides.push( culture_images_search_slide );
+        //slides.push( culture_images_search_slide );
 
         //slides.push( rijksmuseum_search_slide );
 
@@ -768,9 +768,9 @@ function showPresentation( item, type ){
 
 			  slides.push( commons_slide );
 
-        slides.push( culture_images_search_slide );
-
       }
+
+      slides.push( culture_search_slide );
 
 			slides.push( video_slide );
 

@@ -17108,7 +17108,6 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://archive.org/details/movies?and[]=mediatype%3A${title_quoted}',
   url: 'https://archive.org/details/movies?tab=collection&query=${title_quoted}',
   icon: 'fa-solid fa-video',
   text: 'Archive.org',

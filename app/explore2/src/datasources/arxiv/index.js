@@ -79,23 +79,21 @@ function processResultsArxiv( topicResults, struct, index ){
       };
 
 			// dynamically add an extra Conzept field (only active with this datasource)
-			conzept_fields[ 'alphaxiv' ] = {
-				create_condition: 'activeOnDatasources( [ "arxiv" ], item.source )',
-				title: 'alphaXiv - Arxiv paper comments',
-				prop: '',
-				type: 'link',
-				mv: false,
-				url: '${item.comment_link}',
-				icon: 'fa-regular fa-comments',
-				text: 'alphaXiv',
-				section: ['science-open-journals','main'],
-				rank: [20.1, 8201.1],
-				headline_create: 'valid( item.alphaxiv )',
-				headline_rank: 251.1,
-			};
-
-			// re-index this new field
-			conzept_field_names = Object.entries( conzept_fields );
+      addConzeptField( 'alphaxiv', {
+          create_condition: 'activeOnDatasources( [ "arxiv" ], item.source )',
+          title: 'alphaXiv - Arxiv paper comments',
+          prop: '',
+          type: 'link',
+          mv: false,
+          url: '${item.comment_link}',
+          icon: 'fa-regular fa-comments',
+          text: 'alphaXiv',
+          section: ['science-open-journals','main'],
+          rank: [20.1, 8201.1],
+          headline_create: 'valid( item.alphaxiv )',
+          headline_rank: 251.1,
+        }
+      );
 
 			$( topicResults ).find('entry').each( function( index ){
 

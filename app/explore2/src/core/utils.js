@@ -2521,6 +2521,16 @@ function onAstronomicalBody( item, qid ){
 
 }
 
+// dynamically add a Conzept field
+function addConzeptField( name, definition ){
+
+  conzept_fields[ name ] = definition;
+
+  // re-index this new field
+  conzept_field_names = Object.entries( conzept_fields );
+
+}
+
 /*
 // TODO useful in eg. https://docs.openalex.org/api-entities/geo/regions
 function getContinentFromCountry( country_iso2 ){
