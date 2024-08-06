@@ -117,9 +117,11 @@ const stopEle     = document.getElementById("stopChat");
 const sendBtnEle  = document.getElementById("sendbutton");
 const textarea    = document.getElementById("chatinput");
 
+/*
 const startSpeakingEle	= document.getElementById("startSpeaking");
 const pauseSpeakingEle	= document.getElementById("pauseSpeaking");
 const stopSpeakingEle	= document.getElementById("stopSpeaking");
+*/
 
 if ( app.my_string.charAt(0) === '[' ){ // check if message is a JSON stringified array
 
@@ -1539,8 +1541,7 @@ const loadAction = (bool) => {
 
 			if ( valid( app.data[ app.data.length - 1 ].content ) ){
 
-				//startSpeaking( app.data[ app.data.length - 1 ].content );
-    				parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( app.data[ app.data.length - 1 ].content ) } }, '*' );
+    		parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( app.data[ app.data.length - 1 ].content ) } }, '*' );
 
 			}
 
@@ -1658,9 +1659,9 @@ const genFunc = function() {
 sendBtnEle.onclick = genFunc;
 stopEle.onclick = stopLoading;
 
-startSpeakingEle.onclick = startSpeaking();
-pauseSpeakingEle.onclick = pauseSpeaking();
-stopSpeakingEle.onclick = stopSpeaking();
+//startSpeakingEle.onclick = startSpeaking();
+//pauseSpeakingEle.onclick = pauseSpeaking();
+//stopSpeakingEle.onclick = stopSpeaking();
 
 document.getElementById("clearConv").onclick = () => {
 
@@ -1923,7 +1924,9 @@ function setupSpeechRecognition(){
 
 function pauseSpeaking(){
 
-  explore.synth_paused = true;
+	// FIXME
+  //explore.synth_paused = true;
+
   //explore.synth.pause();
 
   parentref.postMessage({ event_id: 'pause-speaking', data: { } }, '*' );
@@ -1973,6 +1976,7 @@ function resumeSpeaking(){
 
 }
 
+/*
 function startSpeaking( text ){
 
   parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
@@ -2034,3 +2038,5 @@ function startSpeaking( text ){
   parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
 
 }
+*/
+

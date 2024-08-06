@@ -466,8 +466,8 @@ pre a {
   height: 47px;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: 3px;
-  background-color: orange;
+  border-radius: 2em;
+  background-color: #706a5f;
   border: none;
   padding: 0;
   color: #fff;

@@ -9233,7 +9233,7 @@ function receiveMessage(event){
 
       let text  = event.data.data.text;
 
-      console.log('speak text: ', text );
+      //console.log('speak text: ', text );
       stopSpeaking(); // stop global window speaking
       startSpeaking( text );
 

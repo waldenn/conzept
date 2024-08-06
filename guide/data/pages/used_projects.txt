@@ -56,6 +56,7 @@ This is a list of the various software projects integrated into Conzept (called 
   - **[[https://conze.pt/explore/Diademodon%20tetragonus%20Seeley,%201894?l=en&d=smithsonian3D&t=link&u=https%3A%2F%2Fconze.pt%2Fapp%2F3D%2F%23model%3Dhttps%253A%252F%252F3d-api.si.edu%252Fcontent%252Fdocument%252F3d_package%253A6758ddb3-2eea-49ad-89e2-a2973e7143eb%252Fresources%252Fusnm-v-00023352-diademodon-tetragonus-150k-4096-gltf.zip&s=true#|3D]]** - 3D model viewer ([[https://github.com/kovacsv/Online3DViewer|github]], [[https://github.com/kovacsv/Online3DViewer/blob/master/LICENSE.md|MIT]])
   - **[[|tech news]]** - Tech News app ([[https://github.com/benwinding/ycombinato|github]], [[https://github.com/benwinding/ycombinato/blob/main/LICENSE|MIT]])
   - **[[https://conze.pt/explore/Austria?l=en&ds=reference&t=link&batchsize=5&i=Q40&u=%2Fapp%2Ftv%2Fbuild%2Findex.html%23%2Fchannels%3Fcountry%3DAT&c=48,14&theme=lattice&s=true#|TV]]** - IPTV TV app ([[https://github.com/shriram-k/iptv-viewer|github]], [[https://github.com/shriram-k/iptv-viewer/blob/master/LICENSE|MIT]])
+  -  **[[https://conze.pt/explore/!code%20smart%20table%20with%20filters%20for%20meme%20images?l=en&ds=reference&t=link&batchsize=5&u=%2Fapp%2Fartifact%2F%3Fprompt%3Dsmart%2520table%2520with%2520filters%2520for%2520meme%2520images%26l%3Den&s=true#|Artifact]]** - OpenArtifacts: AI artifact/code generation. ([[https://github.com/mayfer/open-artifacts/issues/1|?]])
 
 ===== sidebar widgets =====
 
