@@ -1257,7 +1257,7 @@ const streamGen = async(long) => {
   let dataSlice = [];
 
   //console.log( 'data: ', app.data, systemRole, app.tutor_prompt );
-  console.log( 'app.data[0]: ', app.data[0] );
+  //console.log( 'app.data[0]: ', app.data[0] );
 
   // FIXME: somewhere before this code there is a bug removing the "app.data[0]" object
   if ( !valid( app.data[0] )  ) {
