@@ -407,7 +407,7 @@ function showPresentation( item, type ){
 
     if ( valid( explore.openai_enabled ) ){
 
-      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "/app/chat/?m=${ title }&l=${explore.language}&t=examinator&autospeak=${explore.autospeak}" ) ) )\n`;
+      ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "/app/chat/?m=${ title }&l=${explore.language}&t=examinator" ) ) )\n`;
       //ai_chat_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>AI chat</h3><h3><i class='fa-solid fa-wand-sparkles' title='AI chat'></i></h3>"\n    ( show \'link-split \'( "/app/chat/?m=${ title }&l=${explore.language}&t=${ getTutor( item ) }" ) ) )\n`;
 
     }

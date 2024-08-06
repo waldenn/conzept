@@ -9227,6 +9227,33 @@ function receiveMessage(event){
 		togglePanel2();
 
   }
+  else if ( event.data.event_id === 'start-speaking' ){
+
+    if ( valid( event.data.data.text ) ){
+
+      let text  = event.data.data.text;
+
+      console.log('speak text: ', text );
+      stopSpeaking(); // stop global window speaking
+      startSpeaking( text );
+
+    }
+
+  }
+  else if ( event.data.event_id === 'pause-speaking' ){
+
+    console.log('pause speaking' );
+
+    pauseSpeaking();
+
+  }
+  else if ( event.data.event_id === 'resume-speaking' ){
+
+    console.log('resume speaking' );
+
+    pauseSpeaking();
+
+  }
   else if ( event.data.event_id === 'stop-parent-speaking' ){
 
     $('#tts-article').remove(); // stop iframe-article speaking

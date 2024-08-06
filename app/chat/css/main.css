@@ -441,7 +441,7 @@ pre a {
   background: #f9f9f9;
   color: #24292f;
   font-weight: bold;
-  height: 47px;
+  height: 47px !important;
   font-size: 1rem;
   max-height: 200px;
   padding: 13px 0 13px 16px;

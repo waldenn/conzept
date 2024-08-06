@@ -65,6 +65,7 @@
     "swiper": "^7.3.0",
     "tinygesture": "^3.0.0",
     "urijs": "^1.19.7",
-    "web-share-wrapper": "^0.2.2"
+    "web-share-wrapper": "^0.2.2",
+    "wikibase-sdk": "^10.1.0"
   }
 }

@@ -20,11 +20,11 @@ const app = {
 
   recognition:     			[],
 
-	tts_enabled  	: false,
+  tts_enabled  	: false,
   synth_paused  : false,
   tts_removals  : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
   autospeak     : getParameterByName('autospeak') || false,
-	synth					: window.speechSynthesis || undefined,
+  //synth					: window.speechSynthesis || undefined,
 
   voice_code    : getParameterByName('voice') || '',
   voice_rate    : getParameterByName('rate')  || '1',
@@ -82,7 +82,6 @@ $(document).ready(function(){
       explore.voice_code = ( explore.voice_code === null || explore.voice_code === undefined ) ? '' : explore.voice_code;
 
     }
-
 
     darkmode = await db.get('darkmode');
     darkmode = ( darkmode == null || darkmode == 'false' ) ? false : true;
@@ -657,7 +656,8 @@ const mdOptionEvent = function(ev) {
 
 			if( valid( app.data[ idx ].content ) ){
 
-				startSpeaking( app.data[ idx ].content );
+				//startSpeaking( app.data[ idx ].content );
+    				parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( app.data[ idx ].content ) } }, '*' );
 
 			}
 
@@ -1539,7 +1539,8 @@ const loadAction = (bool) => {
 
 			if ( valid( app.data[ app.data.length - 1 ].content ) ){
 
-				startSpeaking( app.data[ app.data.length - 1 ].content );
+				//startSpeaking( app.data[ app.data.length - 1 ].content );
+    				parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( app.data[ app.data.length - 1 ].content ) } }, '*' );
 
 			}
 
@@ -1923,17 +1924,19 @@ function setupSpeechRecognition(){
 function pauseSpeaking(){
 
   explore.synth_paused = true;
-  explore.synth.pause();
+  //explore.synth.pause();
+
+  parentref.postMessage({ event_id: 'pause-speaking', data: { } }, '*' );
 
 }
 
 function stopSpeaking(){
 
-  if ( valid( explore.synth ) ){
+  //if ( valid( explore.synth ) ){
 
-    explore.synth.cancel();
+    //explore.synth.cancel();
 
-  }
+  //}
 
   // also stop parent-frame speaking (if needed)
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
@@ -1964,12 +1967,9 @@ function cleanText( text ){
 
 function resumeSpeaking(){
 
-  if ( valid( explore.synth ) ){
+  explore.synth_paused = false;
 
-    explore.synth_paused = false;
-    explore.synth.resume();
-
-  }
+  parentref.postMessage({ event_id: 'resume-speaking', data: { } }, '*' );
 
 }
 
@@ -1977,7 +1977,7 @@ function startSpeaking( text ){
 
   parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
 
-  if ( ! valid( explore.synth ) ){ return 1; }
+  //if ( ! valid( explore.synth ) ){ return 1; }
 
   if ( explore.synth_paused ){
 
@@ -1986,21 +1986,13 @@ function startSpeaking( text ){
     return 0;
 
   }
-  else if ( explore.synth.speaking ){ // something else is currently speaking
-
-    if ( explore.firstVisit === true ){ // but dont stop it upon first visit
-
-      //console.log( 'other speaker active upon first visit');
-      explore.firstVisit = false;
-      //return 0;
-
-    }
+  //else if ( explore.synth.speaking ){ // something else is currently speaking
 
     //console.log('already speaking, so cancelling first');
-    stopSpeaking();
+    //stopSpeaking();
     //parentref.postMessage({ event_id: 'stop-parent-speaking', data: { } }, '*' );
 
-  }
+  //}
 
   explore.synth_paused = false;
 
@@ -2021,23 +2013,24 @@ function startSpeaking( text ){
 
 	}
 
-  text = cleanText( text );
+  //text = cleanText( text );
 
 	//console.log( text );
 
-  let utterance   = new SpeechSynthesisUtterance( text );
+  //let utterance   = new SpeechSynthesisUtterance( text );
 
-	utterance.lang  = explore.voice_code;
-	utterance.rate  = explore.voice_rate;
-	utterance.pitch = explore.voice_pitch;
+	//utterance.lang  = explore.voice_code;
+	//utterance.rate  = explore.voice_rate;
+	//utterance.pitch = explore.voice_pitch;
 
 	//if ( explore.synth.speaking ){
 		// do nothing, already speaking
 	//}
 	//else {
-		explore.synth.speak( utterance );
+	//	explore.synth.speak( utterance );
 	//}
 
+	parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( text ) } }, '*' );
   parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
 
 }
