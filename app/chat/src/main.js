@@ -1535,7 +1535,7 @@ const loadAction = (bool) => {
 
 	if ( bool === false ){
 
-    if ( app.autospeak && app.data[ app.data.length - 1 ].role === "assistant") {
+    if ( valid( app.autospeak ) && app.data[ app.data.length - 1 ].role === "assistant") {
 
 			if ( valid( app.data[ app.data.length - 1 ].content ) ){
 
