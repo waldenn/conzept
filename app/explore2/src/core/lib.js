@@ -2379,7 +2379,7 @@ function setupSearch() {
             title     : m,
             language  : explore.language,
             qid       : '',
-            url       : encodeURI( `${explore.base}/app/code/?prompt=${m}&l=${explore.language}` ),
+            url       : encodeURI( `${explore.base}/app/artifact/?prompt=${m}&l=${explore.language}` ),
             tag       : '',
             languages : '',
             custom    : '',
@@ -3148,6 +3148,63 @@ function setupOptionBread(){
   })();
 
 }
+
+function setAutospeak(){
+
+  if ( explore.autospeak ){
+
+    $('#autospeak').prop('checked', true);
+
+    // TODO
+    //$('#app-menu-autospeak').text( explore.banana.i18n('app-menu-autospeak') );
+
+  }
+  else {
+
+    $('#autospeak').prop('checked', false);
+
+  }
+
+}
+
+function setupOptionAutospeak(){
+
+  (async () => {
+
+    explore.autospeak = await explore.db.get('autospeak');
+
+    explore.autospeak = ( explore.autospeak === null || explore.autospeak === 'false' ) ? false : true;
+
+    setAutospeak();
+
+    $('#autospeak').change(function() {
+
+      if ( $('#autospeak').prop('checked') ){
+
+        (async () => { await explore.db.set('autospeak', true); })();
+
+        explore.autospeak = true;
+
+        updateValueInPanes( 'autospeak', true );
+        setAutospeak();
+
+      }
+      else {
+
+        (async () => { await explore.db.set('autospeak', false); })();
+        explore.autospeak = false;
+
+        updateValueInPanes( 'autospeak', false );
+        setAutospeak();
+
+      }
+
+    })
+
+  })();
+
+}
+
 
 function setStructuredSearch(){
 
@@ -10472,7 +10529,7 @@ function runBookmarkAction( action ){
       title     : topics.join(', '),
       language  : explore.language,
       qid       : '',
-      url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${action}` ),
+      url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${action}&autospeak=${explore.autospeak}` ),
       tag       : '',
       languages : '',
       custom    : '',

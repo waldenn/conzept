@@ -20,9 +20,43 @@ const app = {
 
   recognition:     			[],
 
+	tts_enabled  	: false,
+  synth_paused  : false,
+  tts_removals  : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
+  autospeak     : getParameterByName('autospeak') || false,
+	synth					: window.speechSynthesis || undefined,
+
+  voice_code    : getParameterByName('voice') || '',
+  voice_rate    : getParameterByName('rate')  || '1',
+  voice_pitch   : getParameterByName('pitch') || '1',
+
+
 };
 
+let explore = app;
+
+let current_pane  = '';
+let parentref     = '';
+
+if ( detectMobile() ){
+
+	parentref = parent;
+
+}
+else { // desktop
+
+if ( window.parent.name === 'infoframeSplit2' || window.parent.name === 'infoframe_' ){ // request from secondary content iframe
+	parentref = parent;
+}
+else { // primary content frame
+	parentref = parent.top;
+}
+
+}
+
 $(document).ready(function(){
+
+	current_pane = getCurrentPane();
 
   if ( detectMobile() ){
 
@@ -41,6 +75,15 @@ $(document).ready(function(){
   (async () => {
 
     db = ImmortalDB.ImmortalDB;
+
+		if ( explore.voice_code === '' ){
+
+      explore.voice_code = await db.get('voice_code_selected');
+      explore.voice_code = ( explore.voice_code === null || explore.voice_code === undefined ) ? '' : explore.voice_code;
+
+    }
+
+
     darkmode = await db.get('darkmode');
     darkmode = ( darkmode == null || darkmode == 'false' ) ? false : true;
 
@@ -603,8 +646,27 @@ const mdOptionEvent = function(ev) {
         }
       }
     }
+    else if (id === "speakMd") {
+
+      idx = idx + 1;
+			//console.log('speak', idx, app.data[ idx ].content );
+
+			if( valid( app.data[ idx ].content ) ){
+
+				startSpeaking( app.data[ idx ].content );
+
+			}
+
+		}
+    else if (id === "pauseSpeakMd") {
+			pauseSpeaking();
+		}
+    else if (id === "stopSpeakMd") {
+			stopSpeaking();
+		}
 
   }
+
 }
 const moreOption = (ele) => {
   ele.classList.remove("moreOptionHidden");
@@ -625,13 +687,12 @@ const formatMdEle = (ele) => {
   let optionWidth = "63px"; // "96px" : "63px";
   mdOption.innerHTML += `<div class="moreOption" onmouseenter="moreOption(this)">
     <svg class="optionTrigger" width="16" height="16" role="img"><title>options</title><use xlink:href="#optionIcon" /></svg>
-    <div class="optionItems" style="width:${optionWidth};left:-${optionWidth}">`
-        + `<div data-id="delMd" class="optionItem" title="delete">
-        <svg width="20" height="20"><use xlink:href="#delIcon" /></svg>
-    </div>
-    <div data-id="copyMd" class="optionItem" title="copy">
-        <svg width="20" height="20"><use xlink:href="#copyIcon" /></svg>
-    </div></div></div>`;
+    <div class="optionItems" style="width:${optionWidth};left:-${optionWidth}">` + `<div data-id="delMd" class="optionItem" title="delete"> <svg width="20" height="20"><use xlink:href="#delIcon" /></svg> </div>
+    <div data-id="copyMd" class="optionItem" title="copy"> <svg width="20" height="20"><use xlink:href="#copyIcon" /></svg> </div>
+    <span data-id="speakMd" class="optionItem" title="start speaking"><i class="fa-solid fa-play"></i></span>&nbsp;
+    <span data-id="pauseSpeakMd" class="optionItem" title="pause speaking"><i class="fa-solid fa-pause"></i></span>&nbsp;
+    <span data-id="stopSpeakMd" class="optionItem" title="stop speaking"><i class="fa-solid fa-stop"></i></span>&nbsp;
+		</div></div>`;
 
   mdOption.onclick = mdOptionEvent;
 }
@@ -1463,6 +1524,20 @@ const loadAction = (bool) => {
   stopEle.style.display = bool ? "block" : "none";
   textInputEvent();
 
+	if ( bool === false ){
+
+    if ( app.autospeak && app.data[ app.data.length - 1 ].role === "assistant") {
+
+			if ( valid( app.data[ app.data.length - 1 ].content ) ){
+
+				startSpeaking( app.data[ app.data.length - 1 ].content );
+
+			}
+
+		}
+
+	}
+
 }
 
 const stopLoading = (abort = true) => {
@@ -1828,5 +1903,128 @@ function setupSpeechRecognition(){
 		//console.log('Your Browser does not support speech Recognition');
 
 	}
+
+}
+
+
+function pauseSpeaking(){
+
+  explore.synth_paused = true;
+  explore.synth.pause();
+
+}
+
+function stopSpeaking(){
+
+  if ( valid( explore.synth ) ){
+
+    explore.synth.cancel();
+
+  }
+
+  // also stop parent-frame speaking (if needed)
+  parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
+
+}
+
+function cleanText( text ){
+
+  if ( typeof text === undefined || typeof text === 'undefined' ){
+
+    return '';
+
+  }
+  else {
+
+    text = text.replace(/(\r\n|\n|\r|'|"|`|\(|\)|\[|\]|\*|#)/gm, '');
+
+    while (text != (text = text.replace(/\{[^\{\}]*\}/gm, ''))); // remove math-element-noise
+    //.replace(/ {displaystyle.*?} /gm, '');
+
+    //console.log( text );
+
+    return text;
+
+  }
+
+}
+
+function resumeSpeaking(){
+
+  if ( valid( explore.synth ) ){
+
+    explore.synth_paused = false;
+    explore.synth.resume();
+
+  }
+
+}
+
+function startSpeaking( text ){
+
+  parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
+
+  if ( ! valid( explore.synth ) ){ return 1; }
+
+  if ( explore.synth_paused ){
+
+    resumeSpeaking();
+
+    return 0;
+
+  }
+  else if ( explore.synth.speaking ){ // something else is currently speaking
+
+    if ( explore.firstVisit === true ){ // but dont stop it upon first visit
+
+      //console.log( 'other speaker active upon first visit');
+      explore.firstVisit = false;
+      //return 0;
+
+    }
+
+    //console.log('already speaking, so cancelling first');
+    stopSpeaking();
+    //parentref.postMessage({ event_id: 'stop-parent-speaking', data: { } }, '*' );
+
+  }
+
+  explore.synth_paused = false;
+
+  //console.log( text );
+
+	if ( typeof text === undefined || typeof text === 'undefined' || text === '' ){ // speak full article
+
+    text  = $('.mw-parser-output h2, h3, h4, h5, h6, p:not(table p), ul:not(table ul), li:not(table li), dl, dd').clone()
+          .find( explore.tts_removals ).remove()
+          .end().text()
+
+    //console.log( text );
+
+    text = $('h2:first').text() + text;
+
+	}
+	else { // speak article section
+
+	}
+
+  text = cleanText( text );
+
+	//console.log( text );
+
+  let utterance   = new SpeechSynthesisUtterance( text );
+
+	utterance.lang  = explore.voice_code;
+	utterance.rate  = explore.voice_rate;
+	utterance.pitch = explore.voice_pitch;
+
+	//if ( explore.synth.speaking ){
+		// do nothing, already speaking
+	//}
+	//else {
+		explore.synth.speak( utterance );
+	//}
+
+  parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
 
 }

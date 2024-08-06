@@ -798,8 +798,11 @@ pre a {
   border-color: rgba(0, 0, 0, .3);
 }
 
-.mdOption {
+.request .mdOption {
   display: none;
+}
+
+.mdOption {
   position: absolute;
   right: 5px;
   bottom: 0px;

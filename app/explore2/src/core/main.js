@@ -192,6 +192,7 @@ const explore_default = {
   voice_pitch         : 1.00,
   speakingNow         : 'false',
   speakingTitle       : '',
+  autospeak           : undefined,
 
   baseframe           : '#infoframe',   // desktop
 
@@ -406,6 +407,7 @@ $( document ).ready( function() {
     setupOptionTheme();
     setupOptionBread();
     setupOptionApiKeys();
+    setupOptionAutospeak();
     setupOptionStructuredSearch();
     setupOptionGeospatialSearch();
     setupOptionAIchat();
