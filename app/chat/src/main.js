@@ -118,6 +118,10 @@ const stopEle     = document.getElementById("stopChat");
 const sendBtnEle  = document.getElementById("sendbutton");
 const textarea    = document.getElementById("chatinput");
 
+const startSpeakingEle	= document.getElementById("startSpeaking");
+const pauseSpeakingEle	= document.getElementById("pauseSpeaking");
+const stopSpeakingEle	= document.getElementById("stopSpeaking");
+
 if ( app.my_string.charAt(0) === '[' ){ // check if message is a JSON stringified array
 
   //console.log( app.my_string, typeof app.my_string );
@@ -1522,6 +1526,11 @@ const loadAction = (bool) => {
   sendBtnEle.disabled = bool;
   sendBtnEle.className = bool ? " loading" : "loaded";
   stopEle.style.display = bool ? "block" : "none";
+
+  //startSpeakingEle.disabled = bool;
+  //pauseSpeakingEle.disabled = bool;
+  //stopSpeakingEle.disabled = bool;
+
   textInputEvent();
 
 	if ( bool === false ){
@@ -1647,6 +1656,10 @@ const genFunc = function() {
 
 sendBtnEle.onclick = genFunc;
 stopEle.onclick = stopLoading;
+
+startSpeakingEle.onclick = startSpeaking();
+pauseSpeakingEle.onclick = pauseSpeaking();
+stopSpeakingEle.onclick = stopSpeaking();
 
 document.getElementById("clearConv").onclick = () => {
 

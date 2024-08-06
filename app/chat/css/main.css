@@ -428,7 +428,7 @@ pre a {
 
 .bottom_wrapper .message_input_wrapper {
   border: none;
-  width: calc(100% - 200px);
+  width: calc(100% - 340px);
   position: relative;
   text-align: left;
 }
@@ -458,6 +458,40 @@ pre a {
   display: none;
   width: 0;
   height: 0;
+}
+
+.speechButtons {
+  /*display: none;*/
+  width: 40px;
+  height: 47px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: orange;
+  border: none;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  float: right;
+  position: absolute;
+  bottom: 10px;
+  cursor: not-allowed;
+}
+
+#startSpeaking {
+  right: 350px;
+}
+
+#pauseSpeaking {
+  right: 300px;
+}
+
+#stopSpeaking {
+  right: 250px;
 }
 
 #stopChat {

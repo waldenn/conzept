@@ -598,6 +598,15 @@ $settings_html = '
                     <label style="display:inline;" for="voice-pitch"><span id="app-menu-pitch"></span>: <span id="voicepitch"></span></label>
                     <input id="voice-pitch" type="range" min="0.5" max="1.5" step="0.01" value="1">
 
+                    <br/><br/>
+
+                    <label for="autospeak" style="display:none;">autospeak</label> 
+                    <label>
+                    <input type="checkbox" id="autospeak">
+                    <span class="lever"></span>
+                    <span id="app-menu-autospeak">autospeak</span>
+                    </label>
+
                   </span>
 
                 </div>

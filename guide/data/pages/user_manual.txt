@@ -386,7 +386,9 @@ Note that (un)selecting any individual datasources, while the datasource-set sel
 
 ==== voice ====
 
-  * Set **text-to-speech** settings (voice, speaking speed, speaking rate)
+  * Set **text-to-speech** settings (voice, speaking speed, speaking rate, auto-speak)
+
+  * The **autospeak** option, allows Conzept to signal to apps that their content can be spoken automatically.
 
 ===== keyboard shortcuts =====
 

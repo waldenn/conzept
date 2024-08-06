@@ -2,7 +2,7 @@
 
 async function setupAIChat(){
 
-  $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/chat/?l=${explore.language}&t=${explore.tutor}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
+  $('#ai-chat-container').html( `<iframe id="aichat" class="resized" title="AI chat" role="application" loading="lazy" style="min-height: 401px" src="https://${explore.host}/app/chat/?l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" width="95%" height="100%" loading="lazy">`);
 
 }
 
@@ -2359,7 +2359,7 @@ function setupSearch() {
             title     : m,
             language  : explore.language,
             qid       : '',
-            url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${explore.tutor}` ),
+            url       : encodeURI( `${explore.base}/app/chat/?m=${m}&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}` ),
             tag       : '',
             languages : '',
             custom    : '',
@@ -12332,7 +12332,7 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
               '<a href="javascript:void(0)" class="mv-extra-icon" title="images" aria-label="images" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( `https://www.bing.com/images/search?q=${title}&form=HDRSC2&setlang=${explore.language}&first=1` ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-regular fa-images" style="position:relative;"></i></span></a>' +
               '<a href="javascript:void(0)" class="mv-extra-icon" title="books" aria-label="books" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', title: encodeURIComponent( title_quoted ), url: encodeURI( 'https://openlibrary.org/search?q=' + title_quoted + '&mode=everything&language=' + explore.lang3 ), qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-mizuni" style="position:relative;"></i></span></a>' +
 
-              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
 
             '</span></li>' +
 

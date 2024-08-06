@@ -1124,7 +1124,7 @@ function gotoChat( newtab, t ){ // AI chat
 
   //console.log( 'tutor: ', explore.tutor );
 
-  const url = explore.base + '/app/chat/?m=' + encodeURIComponent( title ) + '&l=' + explore.language + '&t=' + tutor;
+  const url = explore.base + '/app/chat/?m=' + encodeURIComponent( title ) + '&l=' + explore.language + '&t=' + tutor + '&autospeak=' + explore.autospeak_global;
 
   if ( newtab ){ openInNewTab( url ); }
   else if ( explore.embedded ){ location.href = url; }

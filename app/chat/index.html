@@ -105,20 +105,20 @@
             </div>
             <div style="display:none;">
               <span>writing speed</span>
-              <input type="range" id="textSpeed" min="0" max="100" value="90" step="1" />
+              <input type="range" id="textSpeed" min="0" max="100" value="100" step="1" />
               <div class="selectDef">
                 <span>slow</span>
                 <span>fast</span>
               </div>
             </div>
 
-            <div>
-              <span class="inlineTitle">speaking</span>
+           <!--div>
+              <span class="inlineTitle">autospeak</span>
               <label class="switch-slide">
-                <input type="checkbox" id="speech" hidden />
-                <label for="speech" class="switch-slide-label"></label>
+                <input type="checkbox" id="autospeak" hidden />
+                <label for="autospeak" class="switch-slide-label"></label>
               </label>
-            </div>
+            </div-->
 
             <div>
               <span class="inlineTitle">continuous dialogue</span>
@@ -382,6 +382,10 @@
           </div>
 
           <span id="input-button-bar">
+
+            <button id="startSpeaking" class="speechButtons" onclick="startSpeaking()" title="start speaking"> <span id="center-icon"><i class="fa-solid fa-play"></i></span></button>
+            <button id="pauseSpeaking" class="speechButtons" onclick="pauseSpeaking()" title="pause speaking"> <span id="center-icon"><i class="fa-solid fa-pause"></i></span></button>
+            <button id="stopSpeaking"  class="speechButtons" onclick="stopSpeaking()" title="stop speaking"> <span id="center-icon"><i class="fa-solid fa-stop"></i></span></button>
 
             <button id="stopChat" title="stop chat">
               <span id="center-icon"><i class="fa-solid fa-stop"></i></span>

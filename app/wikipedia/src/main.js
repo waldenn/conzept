@@ -36,6 +36,7 @@ const explore_default = {
   voice_code   	: getParameterByName('voice') || '',
   voice_rate   	: getParameterByName('rate')  || '1',
   voice_pitch  	: getParameterByName('pitch') || '1',
+  autospeak_global : '',
 
   hash         	: location.hash.substring(1) || '',
 	qid						: getParameterByName('qid') || '',    // global identifier
@@ -149,6 +150,13 @@ $( document ).ready( function() {
 
       explore.voice_code = await explore.db.get('voice_code_selected');
       explore.voice_code = ( explore.voice_code === null || explore.voice_code === undefined ) ? '' : explore.voice_code;
+
+    }
+
+    if ( explore.autospeak_global === '' ){
+
+      explore.autospeak_global = await explore.db.get('autospeak');
+      explore.autospeak_global = ( explore.autospeak_global === null || explore.autospeak_global === undefined ) ? '' : explore.autospeak_global;
 
     }
 
