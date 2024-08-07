@@ -9819,7 +9819,7 @@ function exploreBookmark(event, id) {
 
 }
 
-function deselectAllBookmarks( event ){
+function deselectAllDatasources( event ){
 
   event.preventDefault();
 
