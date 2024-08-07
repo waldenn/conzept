@@ -397,6 +397,7 @@ $settings_html = '
               </summary>
 
               <div class="style-form">
+                &nbsp;<div id="datasources-deselect-all-container"><a class="" title="deselect all datasources" aria-label="deselect all datasources" role="button" href="javascript:void(0)" onclick="deselectAllDatasources( event )"><span id="app-guide-datasources-deselect-all">deselect all</span></span></a></div>
                 <span id="datasources-setting">...</span>
               </div>
 
@@ -891,6 +892,14 @@ $settings_html = '
                       <div class="bookmark-action"><a class="" title="find bookmark similarities" aria-label="find bookmark c similarities" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-similarity&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-similarities">similarities</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="find bookmark implications" aria-label="find bookmark implications" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-topic-implications&quot;)"><span class="icon"><i class="fa-solid fa-arrows-split-up-and-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-implications">implications</span></span></a></div>
                       <div class="bookmark-action"><a class="" title="explain bookmark history" aria-label="explain bookmark history" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;historian&quot;)"><span class="icon"><i class="fa-solid fa-clock-rotate-left fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-history">history</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
+
+                      <!--div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div-->
+
+                      <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
+
+
                       <div class="bookmark-action"><a class="" title="explain bookmark conceptology structure" aria-label="explain bookmark conceptology structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptologist&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology">conceptology (full)</span></span></a></div>
 
                       <!--div class="bookmark-action"><a class="" title="explain bookmark conceptology minimal structure" aria-label="explain bookmark conceptology minimal structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptologist-minimal&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology-minimal">conceptology (minimal)</span></span></a></div-->
@@ -928,12 +937,6 @@ $settings_html = '
                       <div class="bookmark-action"><a class="" title="show bookmark videos" aria-label="show bookmark videos" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;video&quot;)"><span class="icon"><i class="fa-solid fa-video fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-video">video</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="search the Open Library" aria-label="search the Open Library" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;openlibrary&quot;)"><span class="icon"><i class="fa-brands fa-mizuni fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-openlibrary">Open Library</span></span></a></div>
-
-                      <div class="bookmark-action"><a class="" title="recommended books" aria-label="recommended books" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-books&quot;)"><span class="icon"><i class="fa-solid fa-book-open fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-books">books</span></span></a></div>
-
-                      <!--div class="bookmark-action"><a class="" title="find bookmark recommended science articles" aria-label="find bookmark recommended science articles" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-science-articles&quot;)"><span class="icon"><i class="fa-solid fa-graduation-cap fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-recommended-science-articles">research</span></span></a></div-->
-
-                      <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="compare bookmarks as Wikidata topics" aria-label="compare bookmarks as Wikidata topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-compare&quot;)"><span class="icon"><i class="fa-solid fa-table-columns fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-compare-wikidata">Wikidata compare</span></span></a></div>
 

@@ -4337,6 +4337,7 @@ async function updateLocaleInterface(){
 
   $('#app-guide-bookmarks-selected').text( explore.banana.i18n('app-guide-bookmarks-selected') );
   $('#app-guide-bookmarks-deselect-all').text( explore.banana.i18n('app-guide-bookmarks-deselect-all') );
+  $('#app-guide-datasources-deselect-all').text( explore.banana.i18n('app-guide-bookmarks-deselect-all') );
 
   $('#app-guide-bookmark-conceptology').text( explore.banana.i18n('app-guide-bookmark-conceptology') );
   $('#app-guide-bookmark-implications').text( explore.banana.i18n('app-guide-bookmark-implications') );
@@ -9815,6 +9816,16 @@ function exploreBookmark(event, id) {
     custom    : '',
     target_pane : 'p1',
   });
+
+}
+
+function deselectAllBookmarks( event ){
+
+  event.preventDefault();
+
+  $('#search-in').val( '' );
+  setActiveDatasourceSet();
+  updateActiveDatasources( [] );
 
 }
 

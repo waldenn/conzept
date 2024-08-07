@@ -49,7 +49,9 @@ let app = {
   outline:      0.77,
   outline_color:'rgba(255,255,255,.1)',
 
-  colors: [ 'red', 'black', 'orange', 'cyan', 'pink', 'yellow' ],
+  colors:       [ 'red', 'black', 'orange', 'cyan', 'pink', 'yellow' ],
+
+  layers:       [],
 
 }
 
@@ -326,7 +328,7 @@ async function init(){
     iconSrc: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/4/9/5",
   });
 
-  let layers = [ osm, osm_french, osm_german, sat_bing, sat_esri, opentopo, osm_cycle, opensea, openrailway, hiking ];
+  app.layers = [ osm, osm_french, osm_german, sat_bing, sat_esri, opentopo, osm_cycle, opensea, openrailway, hiking ];
 
   if ( valid( app.gbif[0] ) ){
 
@@ -334,7 +336,7 @@ async function init(){
 
   }
 
-  layers.push( app.markerLayer );
+  app.layers.push( app.markerLayer );
 
   app.globus = new Globe({
 
@@ -345,7 +347,7 @@ async function init(){
     fontsSrc:       "./node_modules/@openglobus/og/lib/@openglobus/res/fonts",
     autoActivated:  true,
     viewExtent:     app.view_extent,
-    layers:         layers,
+    layers:         app.layers,
   });
 
   app.globus.planet.addControl(new control.LayerSwitcher());
@@ -452,7 +454,7 @@ function addGBIFLayer(){
 
     //gbif_styles.splice( pos, 1);
 
-    layers.push( ( new XYZ( app.titles[index], {
+    app.layers.push( ( new XYZ( app.titles[index], {
 
       isBaseLayer: false,
       // see: https://api.gbif.org/v2/map/debug/ol/#

@@ -1355,7 +1355,7 @@ const streamGen = async(long) => {
 
         if (res.status === 401) {
 
-          notyf.error("Error: Please enter a correct API key in the settings.")
+          notyf.error("Error: Please enter a correct API key in the Conzept settings tab.")
           $('#setDialog').show();
         }
         else if (res.status === 400) {
