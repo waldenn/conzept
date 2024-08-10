@@ -196,6 +196,10 @@ const sections = {
 				'icon' : 'fa-regular fa-sun',
 			},
 
+			'science-psychology': {
+				'icon' : 'fa-solid fa-head-side-virus',
+			},
+
     },
 
   },

@@ -1670,6 +1670,77 @@ const datasources = {
   },
 
   /*
+  'freesound': {
+    active:                 false,
+    name:                   'Freesound',
+    set:                    'media',
+    description:            'audio samples - BETA',
+    tag:                    'web',
+    qid:                    '',
+    protocol:               'rest',
+    endpoint:               'https://freesound.org/apiv2/search/text/?format=json&query=${term}&token=Jl0xAgxIXf9M2AyKWVgPL6N0h641JF0Hk8W0wYVa',  // see: https://freesound.org/docs/api/overview.html
+                //      https://freesound.org/apiv2/sounds/665531/?format=json
+                //        --> preview and download URLs
+                //      https://freesound.org/apiv2/apply
+                //      https://freesound.org/docs/api/resources_apiv2.html#sound-sound
+                //      geotag	string	(OPTIONAL) Geotag info: geotag=2.145677,3.22345,1
+    format:                 'json',
+    connect:                'json',
+    headers:                '',
+    pagesize:               `${explore.datasource_page_size}`,
+    sort_map:               {
+                              'none'            : '',
+                              'relevance-desc'  : '',
+                              'relevance-asc'   : '',
+                               // TODO: handle sortby with "-" as sort-order
+                               //   https://framagit.org/framasoft/peertube/search-index/-/blob/master/server/types/video.model.ts?ref_type=heads
+                               //   sort options: -createdAt, createdAt, -updatedAt, updatedAt, -originallyPublishedAt, originallyPublishedAt 
+                              'date-desc'       : '-publishedAt',
+                              'date-asc'        : 'publishedAt',
+                              'update-desc'     : '',
+                              'update-asc'      : '',
+                              'random'          : '',
+                              'citations-desc'  : '',
+                              'citations-asc'   : '',
+                              'title-desc'      : '',
+                              'title-asc'       : '',
+                              'distance-desc'   : '',
+                              'distance-asc'    : '',
+                            },
+    media:                  [ 'video' ],
+    filter_map:             {
+                              'none'            : '',
+                              'text'            : '',
+                              'image'           : '',
+                              'video'           : '',
+                              'audio'           : '',
+                              'data'            : '',
+                              '3D'              : '',
+                              'software'        : '',
+                              'archive'         : '',
+                              'entity'          : '',
+                            },
+                            // TODO: research the "publishedDateRange" parameter
+    url:                    '${datasources.peertube.endpoint}/?search=${term}&nsfw=false&languageOneOf[]=${explore.language}&start=${ (explore.page -1) * datasources.peertube.pagesize }&count=${datasources.peertube.pagesize}',
+    icon:                   '<img class="datasource-icon" alt="PeerTube logo" src="/assets/icons/peertube.svg" alt="PeerTube logo">',
+    icon_invert:            false,
+    color:                  '#ee9d1e99',
+    display_url:            '${url}',
+    code_autocomplete:      'autocompletePeerTube( r, dataset )',
+    code_data_collect:      'my_promises.push( processResultsPeerTube( topicResults, struct, index ) );',
+    code_resolve:           'resolvePeerTube( result, renderObject )',
+    code_render_mark:       'renderMarkPeerTube( inputs, source, q_, show_raw_results, id )',
+    autocomplete_active:    true,
+    autocomplete_protocol:  'json',
+    autocomplete_url:       '${datasources.peertube.endpoint}/?search=${term}&nsfw=false&languageOneOf[]=${explore.language}&start=0&count=${datasources.peertube.autocomplete_limit}',
+    autocomplete_format:    'json',
+    autocomplete_connect:   'json',
+    autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
+  },
+  */
+
+
+  /*
   'iptv': {
     active:                 false,
     name:                   'IPTV',

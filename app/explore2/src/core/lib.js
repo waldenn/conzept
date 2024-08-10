@@ -2530,8 +2530,6 @@ function setupSearch() {
       explore.filterby        = $('#filterby').val();
       explore.filterby_param  = $('#filterby').val();
 
-      setParameter( 'filterby', explore.filterby, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
@@ -2540,11 +2538,11 @@ function setupSearch() {
       explore.filterby        = '';
       explore.filterby_param  = '';
 
-      setParameter( 'filterby', explore.filterby, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
+
+    setParameter( 'filterby', explore.filterby, explore.hash );
 
   });
 
@@ -2559,8 +2557,6 @@ function setupSearch() {
       explore.geofilter        = $('#geofilter').val();
       explore.geofilter_param  = $('#geofilter').val();
 
-      setParameter( 'geofilter', explore.geofilter, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
@@ -2569,11 +2565,11 @@ function setupSearch() {
       explore.geofilter        = '';
       explore.geofilter_param  = '';
 
-      setParameter( 'geofilter', explore.geofilter, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
+
+    setParameter( 'geofilter', explore.geofilter, explore.hash );
 
   });
 
@@ -2586,8 +2582,6 @@ function setupSearch() {
       explore.sortby        = $('#sortby').val();
       explore.sortby_param  = $('#sortby').val();
 
-      setParameter( 'sortby', explore.sortby, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
     }
@@ -2596,12 +2590,11 @@ function setupSearch() {
       explore.sortby        = '';
       explore.sortby_param  = '';
 
-      setParameter( 'sortby', explore.sortby, explore.hash );
-
       $('a.submitSearch').trigger('click'); // trigger a new search
 
-
     }
+
+    setParameter( 'sortby', explore.sortby, explore.hash );
 
   });
 
@@ -2613,8 +2606,6 @@ function setupSearch() {
 
       explore.datemin        = $('#datemin').val();
       explore.datemin_param  = $('#datemin').val();
-
-      setParameter( 'datemin', explore.datemin, explore.hash );
 
       if ( valid( explore.datemax ) ){
 
@@ -2634,6 +2625,8 @@ function setupSearch() {
 
     }
 
+    setParameter( 'datemin', explore.datemin, explore.hash );
+
   });
 
   $('#datemax').on( 'change', function (e) {
@@ -2644,8 +2637,6 @@ function setupSearch() {
 
       explore.datemax        = $('#datemax').val();
       explore.datemax_param  = $('#datemax').val();
-
-      setParameter( 'datemax', explore.datemax, explore.hash );
 
       if ( valid( explore.datemin ) ){
 
@@ -2665,6 +2656,8 @@ function setupSearch() {
 
     }
 
+    setParameter( 'datemax', explore.datemax, explore.hash );
+
   });
 
   $('#batch-size').on( 'change', function (e) {
@@ -2673,6 +2666,8 @@ function setupSearch() {
 
     explore.batchsize       = parseInt( $('#batch-size').val() );
     explore.batchsize_param = explore.batchsize;
+
+    setParameter( 'batchsize', explore.batchsize, explore.hash );
 
     setBatchSize( explore.batchsize );
 
@@ -4274,6 +4269,7 @@ async function updateLocaleInterface(){
   $('#app-menu-fullscreen-active-pane').html( explore.banana.i18n('app-menu-fullscreen-active-pane') );
   $('#app-menu-toggle-sidebar').html( explore.banana.i18n('app-menu-toggle-sidebar') );
   $('#app-menu-bookmark-current-view').html( explore.banana.i18n('app-menu-bookmark-current-view') );
+
   $('#app-menu-add-bookmark').html( explore.banana.i18n('app-menu-add-bookmark') );
   $('#app-menu-add-bookmark-key').html( explore.banana.i18n('app-menu-add-bookmark') );
   $('#app-menu-add-bookmark-title').html( explore.banana.i18n('app-menu-add-bookmark-title') );
@@ -4319,7 +4315,6 @@ async function updateLocaleInterface(){
   $('#app-menu-reading-assistance').text( explore.banana.i18n('app-menu-reading-assistance') );
   $('#app-menu-visual-search').text( explore.banana.i18n('app-menu-visual-search') );
   $('#app-menu-bookmark-actions-media').text( explore.banana.i18n('app-menu-bookmark-actions-media') );
-  $('#app-menu-add-bookmark').text( explore.banana.i18n('app-menu-add-bookmark') );
   $('#app-menu-export-as').text( explore.banana.i18n('app-menu-export-as') );
   $('#app-menu-import-as').text( explore.banana.i18n('app-menu-import-as') );
   $('#app-menu-datasources').text( explore.banana.i18n('app-menu-datasources') );
@@ -9181,6 +9176,8 @@ function receiveMessage(event){
 
       }
 
+      setParameter( 'geofilter', explore.geofilter, explore.hash );
+
       updatePushState( explore.q, 'add' );
 
     }
@@ -9421,16 +9418,7 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'add-bookmark' ){
 
-    if ( event.data.data.language !== '' ){
-
-      addBookmark(event, 'clicked', false, event.data.data.language );
-
-    }
-    else {
-
-      addBookmark(event, 'clicked', false );
-
-    }
+    addBookmark(event, 'clicked' );
 
   }
   else if ( event.data.event_id === 'remove-bookmark' ){
@@ -10722,7 +10710,7 @@ function updateBookmarks(){ // TODO
 
 }
 
-function addBookmark( e, action_type, bookmark_current_view, lang ){
+function addBookmark( e, action_type ){
 
   // TODO: implement bookmark-removal (if this bookmark already exists)
   // removeBookmark( event, node.id )
@@ -10741,14 +10729,14 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
   }
   else {
 
-    let language_   = valid( lang )? lang : explore.language;
+    let language    = explore.language; // initial default
 
-    let link_       = $( explore.baseframe ).attr('src') || ''; // default link-data
+    let link        = $( explore.baseframe ).attr('src') || ''; // default link-data
 
-    let title_      = decodeURIComponent( explore.curr_title ) || explore.q || '';
-    //let display_    = title_ + ' (' + language_ +')';
+    let title       = decodeURIComponent( explore.curr_title ) || explore.q || '';
+    //let display    = title + ' (' + language_ +')';
 
-    let geo_        = '';
+    let geo         = '';
     let qid         = ''; // wikidata ID
     let gid         = ''; // general datasource ID
     let datasource  = '';
@@ -10758,17 +10746,23 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
 
     let type        = explore.type;
 
-    bookmark_current_view = valid( bookmark_current_view )? true : false;
+    //bookmark_current_view = valid( bookmark_current_view )? true : false;
 
     const video     = '\/video\/';
 
-    if ( link_.match( video, 'g') ){ // video link
+    if ( link.match( video, 'g') ){ // video link
       type = 'video';
     }
 
     if ( explore.custom?.lat ){ // we have a geo-coordinate
 
-      geo_ = explore.custom.lat + ';' + explore.custom.lon;
+      geo = explore.custom.lat + ';' + explore.custom.lon;
+
+    }
+
+    if ( event.data?.data?.language ){
+
+      language = event.data.data.language;
 
     }
 
@@ -10822,19 +10816,15 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     // override link-data for non-Wikipedia datasource items
     if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
 
-      // URL-substitution variables
-      // Note: "qid" and "gid" were already defined above.
-      let language    = language_;
-
       if ( typeof gid === 'string' && gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
 
-        link_  = gid;
+        link  = gid;
 
       }
       else { // create datasource URL
 
         let url_format  = datasources[ datasource ].display_url;
-        link_           = eval(`\`${ url_format }\``);
+        link           = eval(`\`${ url_format }\``);
 
       }
 
@@ -10843,13 +10833,13 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
 
     if ( type === 'string' || type === 'explore' || type === 'articles' || type === 'bookmark' || type === '' ){
 
-      link_     = title_;
+      link     = title;
       type      = 'string';
 
     }
     else if ( type === 'video'){
 
-      link_ = $( explore.baseframe )[0].contentWindow.location.href || '';
+      link = $( explore.baseframe )[0].contentWindow.location.href || '';
 
     }
     else if ( type === 'books' ){
@@ -10868,7 +10858,6 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
     // modify data based on action-context
     if ( action_type === 'extension' ){
 
-      // XXX
       const data = JSON.parse( decodeURIComponent( explore.custom ) );
 
       // URL, text-selection
@@ -10878,35 +10867,37 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
 
       explore.custom = ''; // reset custom value
 
-      title_    = data.text;
-      //display_  = data.text;
-      link_     = data.url + '#:~:text=' + data.text;
+      title     = data.text;
+      //display  = data.text;
+      link     = data.url + '#:~:text=' + data.text;
       type      = 'url';
 
-      //console.log( display_, link_ );
+      //console.log( display, link );
 
     }
 
     // FIXME: global-view-bookmarking temporarily disabled, to design a better workflow for this bookmark action.
     //
     // modify data based on action-context
+    /*
     if ( bookmark_current_view ){
 
-      link_ = valid( getParameterByName('u') )? getParameterByName('u') : '';
+      link = valid( getParameterByName('u') )? getParameterByName('u') : '';
 
-      if ( ! valid( link_ ) ){ // assume Wikipedia topic
+      if ( ! valid( link ) ){ // assume Wikipedia topic
 
-        link_ =  'https://' + explore.host + explore.base + '/app/wikipedia/?t=' + title_ + '&l=' + language_ + '&qid=' + qid + '#' + explore.hash;
+        link =  'https://' + explore.host + explore.base + '/app/wikipedia/?t=' + title + '&l=' + language_ + '&qid=' + qid + '#' + explore.hash;
 
       }
 
-      if ( ! link_.startsWith('http') ){ // make link fully-qualified
+      if ( ! link.startsWith('http') ){ // make link fully-qualified
 
-        link_ = 'https://' + explore.host + link_;
+        link = 'https://' + explore.host + link;
 
       }
 
     }
+    */
 
     if ( action_type === 'dropped' ){
 
@@ -10915,36 +10906,36 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
       const new_id = createBookmarkId();
 
       $('#tree').tree( 'appendNode', {
-        name:         title_,
-        //display:      display_,
-        url:          link_,
+        name:         title,
+        //display:      display,
+        url:          link,
         id:           new_id,
-        language:     language_,
+        language:     language,
         type:         type,
-        geo:          geo_,
+        geo:          geo,
         qid:          qid,
         gid:          gid,
         gbif:         gbif,
         selected:     false,
         datasource:   datasource,
         images:       images,
-      }, $('#tree').tree('getNodeById', parent_id  ) );
+      }, $('#tree').tree('getNodeById', parent_id ) );
 
     }
     else { // default bookmark add
 
-      if ( title_ !== '' && type !== '' ){
+      if ( title !== '' && type !== '' ){
 
         const new_id = createBookmarkId();
 
         $('#tree').tree( 'appendNode', {
-          name:       title_,
-          //display:    display_,
-          url:        link_,
+          name:       title,
+          //display:    display,
+          url:        link,
           id:         new_id,
-          language:   language_,
+          language:   language,
           type:       type,
-          geo:        geo_,
+          geo:        geo,
           qid:        qid,
           gid:        gid,
           gbif:       gbif,
@@ -10954,17 +10945,19 @@ function addBookmark( e, action_type, bookmark_current_view, lang ){
           images:     images,
         });
 
+        /*
         if ( !explore.isMobile ){
 
           $.toast({
             heading: '<span class="icon"><i class="fa-solid fa-bookmark" title="bookmarks"></i></span> &nbsp; bookmark added',
-            text: type + ' : ' + title_ ,
+            text: type + ' : ' + title ,
             hideAfter : 5000,
             showHideTransition: 'slide',
             icon: 'success'
           })
 
         }
+        */
 
         $('#tab-head-bookmarks').delay(100).fadeOut(500).fadeIn(300).fadeOut(500).fadeIn(300);
 

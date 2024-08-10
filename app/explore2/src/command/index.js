@@ -1001,6 +1001,11 @@ async function insertPresentationSections( title, qid, language ){
 
       }
 
+      // TODO: insert LISP presentation slides (minus the main Wikipedia article)
+      // $('.ace_layer.ace_text-layer').text()
+      //
+      // parse: slide-title, slide-call, slide-argument 
+
       insertRelatedPresentationTopics( qid );
 
     },

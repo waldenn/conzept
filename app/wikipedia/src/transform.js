@@ -1205,6 +1205,7 @@ function bookmarkToggle(){
     //console.log( 'add bookmark: ', title, explore.qid, 'tags: ', explore.tags );
 
     $('.icon .bookmark-icon').addClass('bookmarked');  
+
     window.parent.postMessage({ event_id: 'add-bookmark', data: {
       language:   explore.language,
       qid:        explore.qid,

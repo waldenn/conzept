@@ -227,6 +227,7 @@ $main_script = '
 
   <!-- media -->
   <script src="../app/explore2/dist/datasources/peertube/index.js?v0.51.4836"></script>
+  <!--script src="../app/explore2/dist/datasources/freesound/index.js?v0.51.4836"></script-->
 
   <!-- news -->
   <script src="../app/explore2/dist/datasources/gdelt/index.js?v0.51.4836"></script>
@@ -397,7 +398,7 @@ $settings_html = '
               </summary>
 
               <div class="style-form">
-                &nbsp;<div id="datasources-deselect-all-container"><a class="" title="deselect all datasources" aria-label="deselect all datasources" role="button" href="javascript:void(0)" onclick="deselectAllDatasources( event )"><span id="app-guide-datasources-deselect-all">deselect all</span></span></a></div>
+                &nbsp;<span id="datasources-deselect-all-container"><a class="" title="deselect all datasources" aria-label="deselect all datasources" role="button" href="javascript:void(0)" onclick="deselectAllDatasources( event )"><span id="app-guide-datasources-deselect-all">deselect all</span></a></span>
                 <span id="datasources-setting">...</span>
               </div>
 

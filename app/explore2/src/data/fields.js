@@ -13175,6 +13175,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [300,9190],
 },
 
+'open_encyclopedia_cognitive_science' : {
+  create_condition: true, // constrain by tag-filter?
+  title: 'Open Encyclopedia Cognitive Science search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://oecs.mit.edu/search?q=${title_quoted}',
+  icon: 'fa-solid fa-head-side-virus',
+  text: 'map',
+  section: ['science-psychology'],
+  rank: [110],
+},
+
 'geo_wikidata_mars' : {
   create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && onAstronomicalBody( item, "Q111")',
   render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
@@ -13185,8 +13198,8 @@ if ( valid( item.found_in_taxon ) ){
   url: '${explore.base}/app/mars-map/index.html?l=${explore.language}&lat=${item.lat}&lon=${item.lon}&dist=2000000&title=${ encodeURIComponent( item.title ) }',
   icon: 'fa-solid fa-globe-asia',
   text: 'Mars map',
-  section: ['location-geography','main'],
-  rank: [3,6350],
+  section: ['location-geography','science-astronomy','main'],
+  rank: [3,5,6350],
   headline_create: 'valid( item.geo_wikidata_mars )',
   headline_type: 'link',
   headline_rank: 123,
@@ -14294,6 +14307,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 200,
 },
 
+'rawpixel' : {
+  create_condition: true,
+  title: 'RawPixel (public domain)',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.rawpixel.com/search/${title_quoted}?page=1&path=1360.141&sort=curated',
+  icon: 'fa-solid fa-camera',
+  text: 'RawPixel PD',
+  section: 'media-image',
+  rank: 201,
+},
+
 'flickriver' : {
   create_condition: true,
   title: 'Flickriver - Flickr search engine',
@@ -14326,7 +14352,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'url',
   mv: false,
-  url: 'https://wordpress.org/openverse/search/image?q=${title_quoted}',
+  url: 'https://openverse.org/search/image?q={title_quoted}',
   icon: 'fa-brands fa-creative-commons',
   text: 'Creative Commons',
   section: 'media-image',
@@ -15006,6 +15032,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'SVG Repo',
   section: 'media-image',
   rank: 250,
+},
+
+'svgsilh' : {
+  create_condition: true,
+  title: 'SVG Silj',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://svgsilh.com/search/${title}-1.html',
+  icon: 'fa-solid fa-draw-polygon',
+  text: 'SVG Silh',
+  section: 'media-image',
+  rank: 251,
 },
 
 'iconsearch' : {
