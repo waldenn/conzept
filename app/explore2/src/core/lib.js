@@ -9198,6 +9198,8 @@ function receiveMessage(event){
 
     $('#geofilter').val('');
 
+    setParameter( 'geofilter', explore.geofilter, explore.hash );
+
     $('#geofilter-popover').hide();
 
     const geofilterButton   = document.getElementById( 'geofilter-button' );

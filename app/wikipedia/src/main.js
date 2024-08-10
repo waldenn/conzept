@@ -89,7 +89,10 @@ const explore_default = {
 
 	tts_enabled		: true,
 	synth_paused	: false,
-	tts_removals	: 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
+	tts_removals	: 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates, .navbox-block',
+
+  //Caribbean and South AmericaAtlanticEuropean watersLow Countries and GermanyFranceIrelandOrigins – List of battles1566–15721572–1576European waters1576–15791579–1588European watersTen Years, 1588–1598European waters1599–1609European watersTwelve Years' Truce, 1609–16211621–1648Peace – Aftermath – Historiography
+
   autospeak     : getParameterByName('autospeak') || false,
   autospeak_section : getParameterByName('autospeak_section') || '',
 
@@ -1577,7 +1580,7 @@ function startSpeaking( text ){
 
 	if ( typeof text === undefined || typeof text === 'undefined' || text === '' ){ // speak full article
 
-    text  = $('.mw-parser-output h2, h3, h4, h5, h6, p:not(table p), ul:not(table ul), li:not(table li), dl, dd').clone()
+    text  = $('.mw-parser-output h2, h3, h4, h5, h6, p:not(table p), ul:not(table ul), li:not(table li), dl:not(.navbox-block dl), dd:not(.navbox-block dd)').clone()
           .find( explore.tts_removals ).remove()
           .end().text()
 
