@@ -102,6 +102,7 @@ const wp_languages = {
     },
     "qid": "14196"
   },
+  /*
   "ak": {
     "name": "Akan",
     "namelocal": "Akan",
@@ -128,6 +129,7 @@ const wp_languages = {
     },
     "qid": "28026"
   },
+  */
   "als": {
     "name": "Alemannic",
     "namelocal": "",
@@ -3926,6 +3928,7 @@ const wp_languages = {
     },
     "qid": "9211"
   },
+  /*
   "lrc": {
     "name": "Northern Luri",
     "namelocal": "لۊری شومالی",
@@ -3951,6 +3954,7 @@ const wp_languages = {
       "seemore": ""
     }
   },
+  */
   "lt": {
     "name": "Lithuanian",
     "namelocal": "lietuvių",
