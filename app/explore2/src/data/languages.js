@@ -7605,5 +7605,980 @@ const wp_languages = {
    "templates": {
       "seemore": ""
     }
-  }
+  },
+  "dag": {
+    "name": "Dagbani",
+    "namelocal": "Dagbanli",
+    "script": "Latn",
+    "iso3": "dag",
+    "langcode": "",
+    "voice": "dag-GH",
+    "users": 58,
+    "title": "Wikipidia Dagbani",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "mad": {
+    "name": "Madurese",
+    "namelocal": "Madhurâ",
+    "script": "Latn",
+    "iso3": "mad",
+    "langcode": "",
+    "voice": "mad-ID",
+    "users": 43,
+    "title": "Wikipèḍia bhâsa Madhurâ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "zgh": {
+    "name": "Moroccan Amazigh",
+    "namelocal": "ⵉⵎⴰⵣⵉⵖⵏ ⵏ ⵍⵎⵖⵔⵉⴱ",
+    "script": "Tifinagh",
+    "iso3": "zgh",
+    "langcode": "",
+    "voice": "zgh-MA",
+    "users": 29,
+    "title": "ⵡⵉⴽⵉⴱⵉⴷⵢⴰ ⵜⴰⵎⴰⵣⵉⵖⵜ ⵜⴰⵏⴰⵡⴰⵢⵜ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "igl": {
+    "name": "Igala Wikipedia",
+    "namelocal": "Wikipídiya Igala",
+    "script": "Latn",
+    "iso3": "igl",
+    "langcode": "",
+    "voice": "igl-NG",
+    "users": 27,
+    "title": "Ígálà",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "dtp": {
+    "name": "Dusun",
+    "namelocal": "Dusun",
+    "script": "Latn",
+    "iso3": "dtp",
+    "langcode": "",
+    "voice": "dtp-MY",
+    "users": 26,
+    "title": "Wikipedia Dusun",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "kcg": {
+    "name": "Tyap",
+    "namelocal": "Atyap",
+    "script": "Latn",
+    "iso3": "kcg",
+    "langcode": "",
+    "voice": "kcg-NG",
+    "users": 24,
+    "title": "Wukipedia nTyap",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "nqo": {
+    "name": "N'Ko",
+    "namelocal": "ߒߞߏ",
+    "script": "Nkoo",
+    "iso3": "nqo",
+    "langcode": "",
+    "voice": "nqo",
+    "users": 22,
+    "title": "ߥߞߌߔߘߋߞߎ ߒߞߏ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "bew": {
+    "name": "Betawi",
+    "namelocal": "Betawi",
+    "script": "Latn",
+    "iso3": "bew",
+    "langcode": "btl", // ?
+    "voice": "btl-ID", // ?
+    "users": 21,
+    "title": "Wikipédi basa Betawi",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "dga": {
+    "name": "Dagaare",
+    "namelocal": "Dagaare",
+    "script": "Latn",
+    "iso3": "dga",
+    "langcode": "",
+    "voice": "dga",
+    "users": 21,
+    "title": "Dagaare Wikipiideɛ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "gpe": {
+    "name": "Ghanaian Pidgin English",
+    "namelocal": "Ghanaian Pidgin English",
+    "script": "Latn",
+    "iso3": "gpe",
+    "langcode": "",
+    "voice": "en-GH",
+    "users": 21,
+    "title": "Ghanaian Pidgin Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "bbc": {
+    "name": "Toba Batak Wikipedia",
+    "namelocal": "Wikipedia Batak Toba",
+    "script": "Latn",
+    "iso3": "bbc",
+    "langcode": "",
+    "voice": "bbc-ID",
+    "users": 18,
+    "title": "Toba Batak",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "kus": {
+    "name": "Kusaal",
+    "namelocal": "Kʋsaal",
+    "script": "Latn",
+    "iso3": "kus",
+    "langcode": "",
+    "voice": "kus-GH",
+    "users": 17,
+    "title": "Wikipiidia Kʋsaal",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "guw": {
+    "name": "Gun",
+    "namelocal": "Gungbe",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "ee-BJ",
+    "users": 16,
+    "title": "Gungbe Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "ami": {
+    "name": "Amis",
+    "namelocal": "Amis",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "ami",
+    "users": 15,
+    "title": "Wikipitiya 'Amis",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "pcm": {
+    "name": "Nigerian Pidgin",
+    "namelocal": "Naijá",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "pcm-NG",
+    "users": 15,
+    "title": "Naijá Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "fat": {
+    "name": "Fante",
+    "namelocal": "Fante",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "fat-GH",
+    "users": 14,
+    "title": "Fante Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "guc": {
+    "name": "Wayuu",
+    "namelocal": "Wayuu",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "guc",
+    "users": 14,
+    "title": "Wikipeetia süka wayuunaiki",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "tay": {
+    "name": "Atayal",
+    "namelocal": "Tayal",
+    "script": "Latn",
+    "iso3": "",
+    "langcode": "",
+    "voice": "aat",
+    "users": 13,
+    "title": "Wikibitia na Tayal",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "blk": {
+    "name": "Pa'O",
+    "namelocal": "အိုဝ်ႏဘာႏသာ",
+    "script": "Mymr",
+    "iso3": "blk",
+    "langcode": "",
+    "voice": "pao",
+    "users": 13,
+    "title": "ပအိုဝ်ႏဝီခီပီးဒီးယား",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "trv": {
+    "name": "Seediq",
+    "namelocal": "Seediq",
+    "script": "Latn",
+    "iso3": "trv",
+    "langcode": "",
+    "voice": "trv",
+    "users": 13,
+    "title": "Seediq Wikipidiya",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "pwn": {
+    "name": "Paiwan",
+    "namelocal": "Paiwan",
+    "script": "Latn",
+    "iso3": "pwm",
+    "langcode": "",
+    "voice": "pwn",
+    "users": 13,
+    "title": "wikipidiya nua pinayuanan",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "gur": {
+    "name": "Gurene",
+    "namelocal": "Gurenɛ",
+    "script": "Latn",
+    "iso3": "gur",
+    "langcode": "",
+    "voice": "gure",
+    "users": 11,
+    "title": "Gurenɛ Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "btm": {
+    "name": "Mandailing Batak",
+    "namelocal": "Mandailing",
+    "script": "Latn",
+    "iso3": "btm",
+    "langcode": "",
+    "voice": "xmd",
+    "users": 11,
+    "title": "Wikipedia Saro Mandailing",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "fon": {
+    "name": "Fon",
+    "namelocal": "Fon",
+    "script": "Latn",
+    "iso3": "fon",
+    "langcode": "",
+    "voice": "fon",
+    "users": 21,
+    "title": "Wikipedya ɖò Fɔngbemɛ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "tly": {
+    "name": "Talysh",
+    "namelocal": "Taliş",
+    "script": "Latn",
+    "iso3": "tly",
+    "langcode": "",
+    "voice": "tly",
+    "users": 25,
+    "title": "Tolyšə Vikipedijə",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "anp": {
+    "name": "Angika",
+    "namelocal": "अंगिका",
+    "script": "Deva",
+    "iso3": "anp",
+    "langcode": "",
+    "voice": "anp",
+    "users": 25,
+    "title": "विकिपीडिया",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "shi": {
+    "name": "Shilha",
+    "namelocal": "Tashelhiyt",
+    "script": "Latn",
+    "iso3": "shi",
+    "langcode": "",
+    "voice": "shi",
+    "users": 20,
+    "title": "Wikipidya taclḥiyt",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "mni": {
+    "name": "Meitei",
+    "namelocal": "ꯃꯩꯇꯩꯂꯣꯟ",
+    "script": "Mtei",
+    "iso3": "mni",
+    "langcode": "",
+    "voice": "mni",
+    "users": 20,
+    "title": "ꯃꯤꯇꯩꯂꯣꯟ ꯋꯤꯀꯤꯄꯦꯗꯤꯌꯥ",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "alt": {
+    "name": "Southern Altai",
+    "namelocal": "тÿштÿк алтай тил",
+    "script": "Cyrl",
+    "iso3": "alt",
+    "langcode": "",
+    "voice": "alt",
+    "users": 16,
+    "title": "Тӱштӱк алтай Википедия",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "avk": {
+    "name": "Kotava",
+    "namelocal": "Kotava",
+    "script": "Latn",
+    "iso3": "avk",
+    "langcode": "",
+    "voice": "avk",
+    "users": 20,
+    "title": "Wikipedia men Kotava",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "skr": {
+    "name": "Saraiki",
+    "namelocal": "سرائیکی",
+    "script": "Arab",
+    "iso3": "akr",
+    "langcode": "",
+    "voice": "skr",
+    "users": 20,
+    "title": "سرائیکی ویٖکیٖپیڈیا",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "smn": {
+    "name": "Inari Sámi",
+    "namelocal": "anarâškielâ aanaarsämikielâ",
+    "script": "Latn",
+    "iso3": "smn",
+    "langcode": "",
+    "voice": "smn",
+    "users": 16,
+    "title": "Anarâškielâlâš Wikipedia",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "lld": {
+    "name": "Ladin",
+    "namelocal": "Ladin",
+    "script": "Latn",
+    "iso3": "lld",
+    "langcode": "",
+    "voice": "lld-IT",
+    "users": 27,
+    "title": "Wikipedia per ladin",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "ary": {
+    "name": "Moroccan Arabic",
+    "namelocal": "العربية المغربية الدارجة",
+    "script": "Arab",
+    "iso3": "ary",
+    "langcode": "",
+    "voice": "ar-MA",
+    "users": 54,
+    "title": "ويكيبيديا المغربية",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "awa": {
+    "name": "Awadhi",
+    "namelocal": "अवधी",
+    "script": "Deva",
+    "iso3": "awa",
+    "langcode": "",
+    "voice": "awa",
+    "users": 19,
+    "title": "अवधी विकिपीडिया",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "ban": {
+    "name": "Balinese",
+    "namelocal": "Bhāṣa Bali",
+    "script": "Latn",
+    "iso3": "ban",
+    "langcode": "",
+    "voice": "ban",
+    "users": 70,
+    "title": "Wikipédia Basa Bali",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "hyw": {
+    "name": "Western Armenian",
+    "namelocal": "Արեւմտահայերէն Ուիքիփետիա",
+    "script": "Armn",
+    "iso3": "hyw",
+    "langcode": "",
+    "voice": "hy-AM",
+    "users": 42,
+    "title": "Արեւմտահայերէն Ուիքիփետիա",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "shn": {
+    "name": "Shan",
+    "namelocal": "ၵႂၢမ်းတႆး ",
+    "script": "Mymr",
+    "iso3": "shn",
+    "langcode": "",
+    "voice": "shn",
+    "users": 20,
+    "title": "ဝီႇၶီႇၽီးတီးယႃးတႆး",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
+  "kk": {
+    "name": "Kazakh",
+    "namelocal": "Qazaq",
+    "script": "Cyrl",
+    "iso3": "kaz",
+    "langcode": "",
+    "voice": "kk-KZ",
+    "users": 235,
+    "title": "Қазақша Уикипедия",
+    "librivox": "",
+    "isbn": "",
+    "namespaces": {
+      "talk": "Talk",
+      "category": "Category",
+      "portal": "Portal",
+      "book": "Book",
+      "special": "Special",
+    },
+    "articles": {
+       "current_events": ""
+    },
+   "templates": {
+      "seemore": ""
+    }
+  },
 }
