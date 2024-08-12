@@ -12212,7 +12212,8 @@ function stopSpeakingArticle(){
 
   explore.synth_paused = false;
 
-  stopSpeaking(); // stop global window speaking
+  // FIXME: allow stopping of speech in Chat AI app
+  //stopSpeaking(); // stop global window speaking
 
   const iframeEl = document.getElementById( 'tts-article' );
 

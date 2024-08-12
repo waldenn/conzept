@@ -1525,7 +1525,7 @@ function addSectionTTS(){
 			}
 			else {
 
-				text  = $(this).nextAll('p, h2, h3, h4, h5, h6, ul, li, dl, dd').clone()
+				text  = $(this).parent().nextAll('p, h2, h3, h4, h5, h6, ul, li, dl, dd').clone()
 						.find( explore.tts_removals ).remove()
 						.end().text();
 

@@ -1573,6 +1573,10 @@ li.notts a {
   background: none !important;
 }
 
+.mw-editsection {
+  display: none;
+}
+
 .missing-link {
   color: #ee0b0bd1;
 }
