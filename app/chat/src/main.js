@@ -117,12 +117,6 @@ const stopEle     = document.getElementById("stopChat");
 const sendBtnEle  = document.getElementById("sendbutton");
 const textarea    = document.getElementById("chatinput");
 
-/*
-const startSpeakingEle	= document.getElementById("startSpeaking");
-const pauseSpeakingEle	= document.getElementById("pauseSpeaking");
-const stopSpeakingEle	= document.getElementById("stopSpeaking");
-*/
-
 if ( app.my_string.charAt(0) === '[' ){ // check if message is a JSON stringified array
 
   //console.log( app.my_string, typeof app.my_string );
@@ -1529,9 +1523,12 @@ const loadAction = (bool) => {
   sendBtnEle.className = bool ? " loading" : "loaded";
   stopEle.style.display = bool ? "block" : "none";
 
-  //startSpeakingEle.disabled = bool;
-  //pauseSpeakingEle.disabled = bool;
-  //stopSpeakingEle.disabled = bool;
+  if ( valid( app.autospeak ) ){
+
+	  $('#pauseSpeaking').show();
+	  $('#stopSpeaking').show();
+	  
+  }
 
   textInputEvent();
 
@@ -1659,10 +1656,6 @@ const genFunc = function() {
 sendBtnEle.onclick = genFunc;
 stopEle.onclick = stopLoading;
 
-//startSpeakingEle.onclick = startSpeaking();
-//pauseSpeakingEle.onclick = pauseSpeaking();
-//stopSpeakingEle.onclick = stopSpeaking();
-
 document.getElementById("clearConv").onclick = () => {
 
   if (!loading && confirmAction("Clear the session?")) {
@@ -1770,6 +1763,7 @@ document.body.addEventListener("mousedown", event => {
 });
 
 const notyf = new Notyf({
+
   position: {
     x: 'center',
     y: 'top'
@@ -1783,9 +1777,16 @@ const notyf = new Notyf({
     background: '#e15b64',
     duration: 3000,
   }]
+
 });
 
 function setupSpeechRecognition(){
+
+  if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted
+
+	  return 1;
+
+	}
 
 	// Speech Recognition API: https://caniuse.com/speech-recognition
 	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1921,27 +1922,21 @@ function setupSpeechRecognition(){
 
 }
 
-
 function pauseSpeaking(){
-
-	// FIXME
-  //explore.synth_paused = true;
-
-  //explore.synth.pause();
 
   parentref.postMessage({ event_id: 'pause-speaking', data: { } }, '*' );
 
 }
 
+function resumeSpeaking(){
+
+  parentref.postMessage({ event_id: 'resume-speaking', data: { } }, '*' );
+
+}
+
 function stopSpeaking(){
 
-  //if ( valid( explore.synth ) ){
-
-    //explore.synth.cancel();
-
-  //}
-
-  // also stop parent-frame speaking (if needed)
+  // stop parent-frame speaking (if needed)
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
 
 }
@@ -1967,76 +1962,3 @@ function cleanText( text ){
   }
 
 }
-
-function resumeSpeaking(){
-
-  explore.synth_paused = false;
-
-  parentref.postMessage({ event_id: 'resume-speaking', data: { } }, '*' );
-
-}
-
-/*
-function startSpeaking( text ){
-
-  parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
-
-  //if ( ! valid( explore.synth ) ){ return 1; }
-
-  if ( explore.synth_paused ){
-
-    resumeSpeaking();
-
-    return 0;
-
-  }
-  //else if ( explore.synth.speaking ){ // something else is currently speaking
-
-    //console.log('already speaking, so cancelling first');
-    //stopSpeaking();
-    //parentref.postMessage({ event_id: 'stop-parent-speaking', data: { } }, '*' );
-
-  //}
-
-  explore.synth_paused = false;
-
-  //console.log( text );
-
-	if ( typeof text === undefined || typeof text === 'undefined' || text === '' ){ // speak full article
-
-    text  = $('.mw-parser-output h2, h3, h4, h5, h6, p:not(table p), ul:not(table ul), li:not(table li), dl, dd').clone()
-          .find( explore.tts_removals ).remove()
-          .end().text()
-
-    //console.log( text );
-
-    text = $('h2:first').text() + text;
-
-	}
-	else { // speak article section
-
-	}
-
-  //text = cleanText( text );
-
-	//console.log( text );
-
-  //let utterance   = new SpeechSynthesisUtterance( text );
-
-	//utterance.lang  = explore.voice_code;
-	//utterance.rate  = explore.voice_rate;
-	//utterance.pitch = explore.voice_pitch;
-
-	//if ( explore.synth.speaking ){
-		// do nothing, already speaking
-	//}
-	//else {
-	//	explore.synth.speak( utterance );
-	//}
-
-	parentref.postMessage({ event_id: 'start-speaking', data: { text: cleanText( text ) } }, '*' );
-  parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
-
-}
-*/
-

@@ -9242,8 +9242,6 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'pause-speaking' ){
 
-    console.log('pause speaking' );
-
     pauseSpeaking();
 
   }
@@ -9254,20 +9252,21 @@ function receiveMessage(event){
     pauseSpeaking();
 
   }
-  else if ( event.data.event_id === 'stop-parent-speaking' ){
-
-    $('#tts-article').remove(); // stop iframe-article speaking
-
-  }
   else if ( event.data.event_id === 'stop-all-speaking' ){
 
     stopSpeaking(); // stop global window speaking
-    $('#tts-article').remove(); // stop iframe-article speaking
+
+    $('#tts-article').remove(); // also stop embedded iframe-article speaking (if needed)
 
   }
   else if ( event.data.event_id === 'stop-all-audio' ){
 
     stopAllAudio();
+
+  }
+  else if ( event.data.event_id === 'stop-parent-speaking' ){ // stop article speaking
+
+    $('#tts-article').remove(); // stop iframe-article speaking
 
   }
   else if ( event.data.event_id === 'toggle-wander-mute' ){ // used by the "wander" video app to prevent permanent audio-muting
@@ -12098,11 +12097,13 @@ function pauseSpeaking(){
 
     if ( explore.synth.paused ){
 
+      console.log( 'resume speaking');
       explore.synth.resume();
 
     }
     else {
 
+      console.log( 'pause speaking');
       explore.synth.pause();
 
     }

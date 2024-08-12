@@ -280,6 +280,14 @@ function detectChrome(){
 
 }
 
+function detectMsEdge(){
+
+  const isMsEdge = navigator.userAgent.indexOf("Edg") > -1;
+
+  return isMsEdge;
+
+}
+
 function detectFirefox(){
 
   const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
