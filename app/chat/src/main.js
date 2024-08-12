@@ -21,10 +21,9 @@ const app = {
   recognition:     			[],
 
   tts_enabled  	: false,
-  synth_paused  : false,
+  tts_paused    : false,
   tts_removals  : 'table, sub, sup, style, .internal.hash, .rt-commentedText, .IPA, .catlink, .notts, #coordinates',
   autospeak     : getParameterByName('autospeak') || false,
-  //synth					: window.speechSynthesis || undefined,
 
   voice_code    : getParameterByName('voice') || '',
   voice_rate    : getParameterByName('rate')  || '1',
@@ -1926,6 +1925,15 @@ function pauseSpeaking(){
 
   parentref.postMessage({ event_id: 'pause-speaking', data: { } }, '*' );
 
+  app.tts_paused = valid( app.tts_paused )? false : true;
+
+  if ( app.tts_paused ){
+    $('#pauseSpeaking').html('<span id="center-icon"><i class="fa-solid fa-play"></i></span>');
+  }
+  else {
+    $('#pauseSpeaking').html('<span id="center-icon"><i class="fa-solid fa-pause"></i></span>');
+  }
+
 }
 
 function resumeSpeaking(){
@@ -1938,6 +1946,8 @@ function stopSpeaking(){
 
   // stop parent-frame speaking (if needed)
   parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
+
+  $('#pauseSpeaking').html('<span id="center-icon"><i class="fa-solid fa-play"></i></span>');
 
 }
 

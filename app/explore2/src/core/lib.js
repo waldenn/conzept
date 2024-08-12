@@ -12077,7 +12077,12 @@ function updateSidebar( title ){
 
 function pauseSpeaking(){
 
-  if ( explore.isChrome ){ // note: Chrome is broken for "synth.paused"
+  if ( ! valid( explore.synth?.speaking ) ){ // not speaking
+
+    return 1;
+
+  }
+  else if ( explore.isChrome ){ // note: Chrome is broken for "synth.paused"
 
     if ( explore.synth_paused ){
 
@@ -12095,16 +12100,16 @@ function pauseSpeaking(){
   }
   else {
 
-    if ( explore.synth.paused ){
+    if ( explore.synth_paused ){
 
-      console.log( 'resume speaking');
       explore.synth.resume();
+      explore.synth_paused = false;
 
     }
     else {
 
-      console.log( 'pause speaking');
       explore.synth.pause();
+      explore.synth_paused = true;
 
     }
 

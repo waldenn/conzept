@@ -479,6 +479,9 @@ pre a {
   float: right;
   position: absolute;
   bottom: 10px;
+}
+
+.speechButtons {
   cursor: not-allowed;
 }
 
