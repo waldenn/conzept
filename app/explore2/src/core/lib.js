@@ -12212,6 +12212,8 @@ function stopSpeakingArticle(){
 
   explore.synth_paused = false;
 
+  stopSpeaking(); // stop global window speaking
+
   const iframeEl = document.getElementById( 'tts-article' );
 
   if ( valid( iframeEl ) ){

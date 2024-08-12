@@ -794,6 +794,10 @@ const createConvEle = (className) => {
 }
 const activeChat = () => {
 
+  if ( !valid( app.chatsData[app.activeChatIdx] ) ){
+    app.activeChatIdx = 0;
+  }
+
   app.data = app.chatsData[app.activeChatIdx]["data"] || [];
 
   //console.log( app.data );
