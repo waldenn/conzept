@@ -12376,7 +12376,7 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
 
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
 
-              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button"' + setOnClick( Object.assign({}, args, { type: 'code', code: `makePresentation( "${explore.q}" )`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>' ) +
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button" onclick="makePresentation(&quot;' + `${encodeURIComponent( title )}` + '&quot;)"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>' ) +
 
             '</span></li>' +
 

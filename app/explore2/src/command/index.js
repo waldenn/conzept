@@ -224,7 +224,7 @@ function showPresentation( item, type ){
   let code      = '( presentation\n';
   let slides    = []; // code for each slide
 
-  let title_    = removebracesTitle( item.title );
+  let title_    = removebracesTitle( decodeURIComponent( item.title ) );
 	let title_enc = encodeURIComponent( item.title );
 	let title     = encodeURIComponent( quoteTitle( item.title ).replace( /"/g, '\"') );
 
@@ -952,6 +952,8 @@ function showPresentation( item, type ){
 }
 
 async function insertPresentationSections( title, qid, language ){
+
+  title = decodeURIComponent( title );
 
   //console.trace();
   //console.log( 'insertPresentationSections: ', title, qid, language );
