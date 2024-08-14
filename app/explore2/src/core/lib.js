@@ -274,7 +274,7 @@ function triggerQueryForm(){
 
         updateSidebar( explore.q );
 
-        // setup presentation TTS element FIXME: not yet working
+        // setup presentation TTS element
         if ( valid( explore.q ) ){
 
           const tts_start = document.getElementById( 'presentation-tts-start' );
@@ -12376,10 +12376,12 @@ $('#tab-topics').on('click', 'h6 > a', function(event) {
 
               ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="AI chat" aria-label="AI chat" role="button"' + setOnClick( Object.assign({}, args, { type: 'link-split', url: `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-wand-sparkles" style="position:relative;"></i></span></a>' ) +
 
+              ( explore.isMobile ? '' : '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button"' + setOnClick( Object.assign({}, args, { type: 'code', code: `makePresentation( "${explore.q}" )`, title: title, qid: '', language  : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>' ) +
+
             '</span></li>' +
 
             '<li><span class="mv-extra-buttons noindent audio-buttons">' +
-              '<a href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick="startSpeakingArticle( &apos;' + title + '&apos;, &apos;&apos;, &apos;' + explore.language + '&apos; )"> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
+              '<a href="javascript:void(0)" title="speak article" aria-label="speak article" role="button" onclick="stopSpeaking(); startSpeakingArticle( &apos;' + title + '&apos;, &apos;&apos;, &apos;' + explore.language + '&apos; )"> <span class="icon"><i class="fa-solid fa-play" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
               '<a href="javascript:void(0)" title="pause speaking" aria-label="pause speaking" role="button" onclick="pauseSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-pause" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
               '<a href="javascript:void(0)" title="stop speaking" aria-label="stop speaking" role="button" onclick="stopSpeakingArticle()"> <span class="icon"><i class="fa-solid fa-stop" style="position:relative;"><span class="subtext"></span></i></span> </a>' + 
             '</span></li>' +
