@@ -12810,7 +12810,7 @@ function getPresentationType( item ){
   let type  = '';
 
   // determine the "type" of the item, type options:
-  if      ( valid( item.pubchem ) ){ type = 'pubchem'; }
+  if ( checkTag( item, 0, 'substance') ){ type = 'substance'; }
   else if ( listed( item.instances, indicators.art_movement.value ) ){ type = 'art-movement'; }
   else if ( checkTag( item, 0, "cultural-concept") && !valid( item.presentation_art_movement ) ){ type = 'cultural-concept'; }
   else if ( checkTag( item, 0, 'work') ){ type = 'work'; }

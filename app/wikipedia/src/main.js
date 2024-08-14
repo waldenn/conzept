@@ -1507,8 +1507,12 @@ function stopSpeaking(){
 
   }
 
-  // also stop parent-frame speaking (if needed)
-  parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
+  if ( typeof parentref.postMessage  === "function"){
+
+    // also stop parent-frame speaking (if needed)
+    parentref.postMessage({ event_id: 'stop-all-speaking', data: { } }, '*' );
+    
+  }
 
 }
 
