@@ -63,6 +63,21 @@ function getVideoLink( args, label ){
 
 }
 
+function getPresentationLink( args, label, qid ){
+
+  if ( valid( qid ) ){
+
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button" onclick="makePresentation(&quot;' + `${encodeURIComponent( qid )}` + '&quot;)"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>'
+
+  }
+  else {
+
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button" onclick="makePresentation(&quot;' + `${encodeURIComponent( title )}` + '&quot;)"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>'
+
+  }
+
+}
+
 function getWanderLink( args, label ){
 
   return '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: label, language : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>';

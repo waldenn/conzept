@@ -311,8 +311,9 @@ function insertQidTopics( args, list ){
               wander_link:          encodeURIComponent( getWanderLink( args, label ) ),
               images_link:          encodeURIComponent( getImagesLink( args, label ) ),
               books_link:           encodeURIComponent( getBooksLink( args, label, qid ) ),
-              websearch_link:       encodeURIComponent( getWebsearchLink( args, label, qid ) ),
+              websearch_link:       '', //encodeURIComponent( getWebsearchLink( args, label, qid ) ),
               compare_link:         encodeURIComponent( getCompareLink( qid ) ),
+              presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
               website_link:         '', // getExternalWebsiteLink( url ) , getLocalWebsiteLink( args, url )
               custom_links:         '', // custom_links,
               raw_html:             '', // raw_html

@@ -94,6 +94,7 @@ async function fetchSparql( args, total_results, page, sortby ){
             books_link:           encodeURIComponent( getBooksLink( args, label ) ),
             websearch_link:       encodeURIComponent( getWebsearchLink( args, label ) ),
             compare_link:         encodeURIComponent( getCompareLink( qid ) ),
+            presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
             website_link:         '',
             custom_links:         '',
             raw_html:             '',

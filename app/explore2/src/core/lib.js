@@ -6621,6 +6621,7 @@ function insertQidTopics( args, list ){
               books_link:           encodeURIComponent( getBooksLink( args, label, qid ) ),
               websearch_link:       encodeURIComponent( getWebsearchLink( args, label, qid ) ),
               compare_link:         encodeURIComponent( getCompareLink( qid ) ),
+              presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
               website_link:         '', // getExternalWebsiteLink( url ) , getLocalWebsiteLink( args, url )
               custom_links:         '', // custom_links,
               raw_html:             '', // raw_html
@@ -6727,8 +6728,9 @@ async function insertMultiValuesHTML( args, obj, meta ){
           decodeURIComponent( v.wander_link ) +
           decodeURIComponent( v.images_link ) +
           decodeURIComponent( v.books_link ) +
-          decodeURIComponent( v.websearch_link ) +
-          decodeURIComponent( v.compare_link ) +
+          //decodeURIComponent( v.websearch_link ) +
+          //decodeURIComponent( v.compare_link ) +
+          ( valid( v.presentation_link )? decodeURIComponent( v.presentation_link ) : '' ) +
           decodeURIComponent( v.website_link ) +
         '</span>' +
 
