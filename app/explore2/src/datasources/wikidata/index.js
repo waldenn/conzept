@@ -313,7 +313,7 @@ function insertQidTopics( args, list ){
               books_link:           encodeURIComponent( getBooksLink( args, label, qid ) ),
               websearch_link:       '', //encodeURIComponent( getWebsearchLink( args, label, qid ) ),
               compare_link:         encodeURIComponent( getCompareLink( qid ) ),
-              presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
+              presentation_link:    encodeURIComponent( getPresentationLink( args, label, qid ) )
               website_link:         '', // getExternalWebsiteLink( url ) , getLocalWebsiteLink( args, url )
               custom_links:         '', // custom_links,
               raw_html:             '', // raw_html

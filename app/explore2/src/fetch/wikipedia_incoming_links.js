@@ -50,7 +50,7 @@ async function fetchInlinks( args, url ){
             books_link:           encodeURIComponent( getBooksLink( args, label ) ),
             websearch_link:       '', // encodeURIComponent( getWebsearchLink( args, label ) ),
             compare_link:         '',
-            presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
+            presentation_link:    encodeURIComponent( getPresentationLink( args, label, qid ) ),
             website_link:         '',
             custom_links:         '',
             raw_html:             '',

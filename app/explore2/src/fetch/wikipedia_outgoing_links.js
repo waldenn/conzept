@@ -47,7 +47,7 @@ async function fetchOutlinks( args, url ){
             images_link:          encodeURIComponent( getImagesLink( args, label ) ),
             books_link:           encodeURIComponent( getBooksLink( args, label ) ),
             websearch_link:       '', //encodeURIComponent( getWebsearchLink( args, label ) ),
-            presentation_link:    encodeURIComponent( getPresentationLink( qid ) ),
+            presentation_link:    encodeURIComponent( getPresentationLink( args, label, qid ) ),
             compare_link:         '',
             website_link:         '',
             custom_links:         '',

@@ -72,7 +72,7 @@ function getPresentationLink( args, label, qid ){
   }
   else {
 
-    return '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button" onclick="makePresentation(&quot;' + `${encodeURIComponent( title )}` + '&quot;)"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>'
+    return '<a href="javascript:void(0)" class="mv-extra-icon" title="show presentation" aria-label="show presentation" role="button" onclick="makePresentation(&quot;' + `${encodeURIComponent( label )}` + '&quot;)"> <span class="icon"><i class="fa-solid fa-chalkboard-user" style="position:relative;"></i></span></a>'
 
   }
 
