@@ -13448,7 +13448,7 @@ if ( valid( item.found_in_taxon ) ){
   section: '',
   rank: 1,
   //TODO?: ( tags[0] === 'work' && ! valid( item.is_written_work ) && !valid( item.openlibrary_id ) && tags[1] !== 'periodical' ) // show video for works, but not for some types of works
-  headline_create: 'checkTag( item, 0, ["location","time","organization","group","organism","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","music","symbol","art","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","monument"] )',
+  headline_create: 'checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","music","symbol","art","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","monument"] )',
   headline_type: 'link',
   headline_title: 'video',
   headline_icon: 'fa-solid fa-video',
@@ -13466,7 +13466,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'stream',
   section: ['media-video','main'],
   rank: [30, 30],
-  headline_create: 'valid( item.video_headline ) && checkPersona( [ "student", "streamer" ] )',
+  headline_create: 'checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","music","symbol","art","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","monument"] )', // checkPersona( [ "student", "streamer" ] ) 
   headline_type: 'wander',
   headline_icon: 'fa-solid fa-tv',
   headline_rank: 200.1,

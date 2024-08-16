@@ -686,7 +686,6 @@ $settings_html = '
                       <option value="tourist">tourist</option>
                       <option value="student">student</option>
                       <option value="academic">academic</option>
-                      <option value="streamer">streamer</option>
                     </select>
                   </span>
                 </div>

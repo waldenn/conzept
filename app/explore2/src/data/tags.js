@@ -332,6 +332,10 @@ var conzept_tags = {
         text : "monument",
         icon : ["fa-solid fa-monument"],
       },
+      "artificial-intelligence" : {
+        text : "artificial-intelligence",
+        icon : ["fa-solid fa-wand-sparkles"],
+      },
     },
   },
 
