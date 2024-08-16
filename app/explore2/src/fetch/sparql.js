@@ -108,7 +108,7 @@ async function fetchSparql( args, total_results, page, sortby ){
 
         let meta = {
 
-          source        : 'wikiData',
+          source        : 'Wikidata',
           link          : '',
           results_shown : Object.keys( obj ).length, 
           total_results : Object.keys( obj ).length, // FIXME: how the get the total results of this SPARQL query (without fetching all)?

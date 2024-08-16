@@ -3261,18 +3261,6 @@ conzept_fields = {
   headline_rank: 201,
 },
 
-'topical_video_stream' : { // FIXME not rendering for raw-search-strings, why?
-  create_condition: true,
-  title: 'topical YouTube video stream',
-  prop: '',
-  type: 'wander',
-  mv: false,
-  icon: 'fa-solid fa-video',
-  text: 'stream',
-  section: ['media-video','main'],
-  rank: [30, 30],
-},
-
 /*
 'wordmap' : {
   create_condition: false, // FIXME: D3.js error breaks app
@@ -8765,7 +8753,7 @@ if ( valid( item.found_in_taxon ) ){
 /* FIXME
 'wikidata_similar_map' : {
   create_condition: 'valid( item.instance_qid )',
-  title: 'wikiData info',
+  title: 'Wikidata info',
   prop: '',
   type: 'link',
   mv: false,
@@ -12683,7 +12671,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#PREFIX%20gas%3A%20%3Chttp%3A%2F%2Fwww.bigdata.com%2Frdf%2Fgas%23%3E%0A%0ASELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20%3Fpic%20%3FlinkTo%0AWHERE%0A%7B%0A%20%20SERVICE%20gas%3Aservice%20%7B%0A%20%20%20%20gas%3Aprogram%20gas%3AgasClass%20%22com.bigdata.rdf.graph.analytics.SSSP%22%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Ain%20wd%3A${item.qid}%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AtraversalDirection%20%22Reverse%22%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Aout%20%3Fitem%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3Aout1%20%3Fdepth%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AmaxIterations%203%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gas%3AlinkType%20wdt%3AP171%20.%0A%20%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP171%20%3FlinkTo%20%7D%0A%20%20OPTIONAL%20%7B%20%3Fitem%20wdt%3AP18%20%3Fpic%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7Bbd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22%20%7D%0A%7DLIMIT%20200%20%23defaultView%3AImageGrid',
   icon: 'fa-regular fa-images',
-  text: 'wikiData',
+  text: 'Wikidata',
   section: 'meta',
   rank: 100,
 },
@@ -13466,6 +13454,22 @@ if ( valid( item.found_in_taxon ) ){
   headline_icon: 'fa-solid fa-video',
   headline_url: '${explore.base}/app/video/?l=${explore.language}#/search/${title_quoted}',
   headline_rank: 200,
+},
+
+'topical_video_stream' : { // FIXME not rendering for raw-search-strings, why?
+  create_condition: true,
+  title: 'topical YouTube video stream',
+  prop: '',
+  type: 'wander',
+  mv: false,
+  icon: 'fa-solid fa-video',
+  text: 'stream',
+  section: ['media-video','main'],
+  rank: [30, 30],
+  headline_create: 'valid( item.video_headline ) && checkPersona( [ "student", "streamer" ] )',
+  headline_type: 'wander',
+  headline_icon: 'fa-solid fa-video',
+  headline_rank: 200.1,
 },
 
 'archive_video_game_headline' : { // only used for headline display
@@ -21055,7 +21059,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: true,
   url: '',
   icon: 'fa-solid fa-link',
-  text: 'wikiData inlinks',
+  text: 'Wikidata inlinks',
   section: 'meta',
   rank: 62,
 },
@@ -21486,7 +21490,7 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: '${explore.base}/app/wikidata/?q=${item.qid}&lang=${explore.language}&lang3=${explore.lang3}&tags=${ item.tags.join() }',
   icon: 'fa-solid fa-hockey-puck',
-  text: 'wikiData',
+  text: 'Wikidata',
   section: 'main',
   rank: 9,
 },

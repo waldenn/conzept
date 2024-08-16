@@ -7513,7 +7513,7 @@ async function renderType( args ){
     explore.vids_index = 0;
 
     let custom_param      = '';
-    let number_of_results = 10;
+    let number_of_results = 15;
 
     if ( custom === 'long' ){
       custom_param = '&videoDuration=long';
