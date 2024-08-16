@@ -733,9 +733,14 @@ function createItemHtml( args ){ // creates the HTML-card for each result
               headline_buttons.push({ name: name, string: '&nbsp;<span title="' + hover_title + '" class="nowrap"><i class="' + icon + '"></i>&#8239;' + '<span class="headline-symbol-value">' + o[name + '_display_value'] + '</span></span>', rank: v.headline_rank });
 
             }
-            else { // any non-link-type
+            else if ( v.headline_type === 'wander' ){
 
-              headline_buttonse.push({ name: name, string: '&nbsp;<span title="' + hover_title + '" class="nowrap"><i class="' + icon + '"></i>&#8239;' + o[name + '_display_value'] + '</span>', rank: v.headline_rank });
+              headline_buttons.push({ name: name, string: '<a href="javascript:void(0)" title="' + hover_title + '" aria-label="' + hover_title + '" role="button"' + setOnClick( Object.assign({}, args, { type: v.headline_type, url: '' } ) ) + '> <span class="icon"><i class="' + icon + '" style="position:relative;"></i></span> <span class="headline-link-text">' + link_text + '</span></a>', rank: v.headline_rank });
+
+            }
+            else { // any other non-link-type
+
+              headline_buttons.push({ name: name, string: '&nbsp;<span title="' + hover_title + '" class="nowrap"><i class="' + icon + '"></i>&#8239;' + o[name + '_display_value'] + '</span>', rank: v.headline_rank });
 
             }
 
