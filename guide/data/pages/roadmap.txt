@@ -18,6 +18,14 @@
 
 [{{::llm_000.jpg?direct|LLM reasoning over multiple topics (bookmark titles) (using OpenAI) }}]
 
+[{{::neuro_symbolic_ai_001.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
+
+[{{::neuro_symbolic_ai_002.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
+
+[{{::neuro_symbolic_ai_003.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
+
+[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
+
 [{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
 
   * Main frontend AI goals:
