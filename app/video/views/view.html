@@ -100,7 +100,7 @@
         <li><i class="fa fa-user"></i>&nbsp;&nbsp;<a href="#/user/{{video.snippet.channelId}}">{{video.snippet.channelTitle}}</a></li>
         <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{video.statistics.viewCount | number:0}} views</li>
         <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{video.snippet.publishedAt | date}}</li>
-        <li><a href="javascript:void(0)" class="bookmark-video-normal" style="" title="bookmark video"><i class="far fa-bookmark fa-2x"></i>&nbsp;&nbsp;bookmark</a></li>
+        <li><a href="javascript:void(0)" id="bookmark-video-normal" style="" title="bookmark video"><i class="far fa-bookmark fa-2x"></i>&nbsp;&nbsp;bookmark</a></li>
       </ul>
       <p class="hide-for-small description" ng-bind-html="video.snippet.description | htmlify"></p>
     </div>
