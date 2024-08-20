@@ -9796,8 +9796,6 @@ function exploreBookmark(event, id) {
 
   }
 
-  
-
   handleClick({ 
     id        : 'n1-0',
     type      : 'explore',
@@ -10755,11 +10753,10 @@ function addBookmark( e, action_type ){
 
     //bookmark_current_view = valid( bookmark_current_view )? true : false;
 
-    const video     = '\/video\/';
-
-    if ( link.match( video, 'g') ){ // video link
-      type = 'video';
-    }
+    //const video     = '\/video\/';
+    //if ( link.match( video, 'g') ){ // video link
+    //  type = 'video';
+    //}
 
     if ( explore.custom?.lat ){ // we have a geo-coordinate
 
@@ -10831,7 +10828,7 @@ function addBookmark( e, action_type ){
         title = event.data.data.title;
       }
 
-      type     = 'string';
+      type     = 'video';
 
     }
     else if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
