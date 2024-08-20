@@ -1,4 +1,4 @@
-====== roadmap ======
+q====== roadmap ======
 
 ===== general =====
 
@@ -18,26 +18,21 @@
 
 [{{::llm_000.jpg?direct|LLM reasoning over multiple topics (bookmark titles) (using OpenAI) }}]
 
+[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
+
 [{{::neuro_symbolic_ai_001.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
 
 [{{::neuro_symbolic_ai_002.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
 
 [{{::neuro_symbolic_ai_003.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
 
-[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
-
-[{{::llm_001.jpg?direct|experiment with [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]] (using OpenAI) }}]
-
   * Main frontend AI goals:
     * Topical question-answering
     * Topical quizzing & examination
     * Content summarization and Q&A of larger texts (including PDFs)
     * Bookmark-selection reasoning (over one or more topics)
-      * See also: [[https://x.com/conzept__/status/1805977214007025690|structured LLM output]]
-      * make this reasoning fully multi-lingual (currently only a few languages)
     * Presentation augmentation (combined with TTS)
-      * Add AI-entries (text + TTS) in the presentation table-of-contents
-
+    * LLM-using application parametrization/generation (which can use over one or more bookmark topics).
 
 Conzept's current vision for frontend [[explore>Large language model|LLM]], is to enhance and combine the strengths of these two search contexts: 
 
@@ -45,7 +40,7 @@ Conzept's current vision for frontend [[explore>Large language model|LLM]], is t
 
   * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute and can/will hallucinate.
 
-If one starts with a more semantic and [[explore>Neuro-symbolic AI|neuro-symbolic]] grounding for LLM functions, by using semantic "entities" (such as identifying Wikidata Qids for a topic), each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention.
+If one aims for a [[explore>Neuro-symbolic AI|neuro-symbolic]] ("NeSy") synthesis of LLM functions and semantic entities, each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention. Later vector embeddings + RAG could be used for: query answering / program writing / data retrieval.
 
 See also the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to:
   * Categorize the topics based on their bookmark meta-data. Based on the main and sub-tag and other special data-attributes.
@@ -53,10 +48,12 @@ See also the "structured LLM prompt" screenshot on the right, for an experiment 
   * Make the LLM-prompting multi-lingual.
 
   * **[[https://conze.pt/app/web-llm-chat/out/|web-llm-chat]]** will be the main Conzept LLM app integration in the future.
-    * This integration is a **work in progress** (to replace the current, simple AI chat app)
+    * This integration is a **work in progress** (to replace the current, simple [[https://conze.pt/explore/Neuro-symbolic%20AI?l=en&d=wikipedia&t=link-split&batchsize=5&i=Q113512183&u=%2Fapp%2Fchat%2F%3Fm%3DNeuro-symbolic%2520AI%26l%3Den%26t%3Dexaminator%26autospeak%3Dtrue&s=true#|AI chat app]])
       * Current status: Self-hosting is working, TODOs:
         * Get a laptop with support for WebGPU and enough VRAM to run good models.
         * URL parameter context (system + user prompt)
+        * Implement TTS speaking + SpeechInput (as implemented in the current AI chat app)
+        * Port over the current system-prompts + create an auto-translation pipeline for these
     * Most required features:
      * Fully client-side
       * ✓ WebGPU based (too slow otherwise)
@@ -95,6 +92,8 @@ See also the "structured LLM prompt" screenshot on the right, for an experiment 
     * [[explore>Category theory]] with [[https://conze.pt/explore/%22category%20theory%22%20LLM?l=en&ds=science&t=string&batchsize=5&s=true#|LLMs]]
     * "[[https://garymarcus.substack.com/p/alphaproof-alphageometry-chatgpt?publication_id=888615|AlphaProof, AlphaGeometry, ChatGPT, and why the future of AI is neurosymbolic]]"
     * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]" ("The biggest lesson that can be read from 70 years of AI research is general methods that leverage computation are ultimately the most effective")
+    * "[[https://situational-awareness.ai/from-gpt-4-to-agi/|Situational Awareness: The decade Ahead]]"
+    * "[[https://ia801205.us.archive.org/11/items/the-creative-act-a-way-of-being-by-rick-rubin/The%20Creative%20Act_%20A%20Way%20of%20Being%20by%20Rick%20Rubin.pdf|The Creative Act: A Way of Being]]"
 
 ==== backend AI ====
 

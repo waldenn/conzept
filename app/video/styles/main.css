@@ -244,6 +244,14 @@ body.dark .toogles-video h3{
   font-size: smaller;
 }
 
+#bookmark-video {
+  position: absolute;
+  right: 70%;
+  bottom: -0.3em;
+  z-index: 9999;
+  color: white;
+}
+
 #wander-to-previous {
   position: absolute;
   right: 55%;

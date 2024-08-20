@@ -648,11 +648,15 @@ $("#scroll-to-button").on("click", function () {
 
 function scrollTo(){
 
-  $('html').animate({
+  if ( valid( $('.highlight').offset() ) ){
 
-    scrollTop: $('.highlight').offset()?.top - ( window.innerHeight / 3 )
+    $('html').animate({
 
-  }, 1000);
+      scrollTop: $('.highlight').offset()?.top - ( window.innerHeight / 3 )
+
+    }, 1000);
+
+  }
 
 }
 
@@ -691,7 +695,7 @@ $( document ).ready( async function() {
     voices:               [],
 
     timerID:              '',
-    scroll_update_time:   7000,
+    scroll_update_time:   4000,
     auto_scroll_enabled:  false,
 
     utterance:            new SpeechSynthesisUtterance(),

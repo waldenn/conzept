@@ -10833,6 +10833,12 @@ function addBookmark( e, action_type ){
 
 
     }
+    else if ( event.data?.data?.url ){ // used by eg. the video app (YouTube)
+
+      link     = event.data.data.url;
+      type      = 'string';
+
+    }
 
     if ( type === 'string' || type === 'explore' || type === 'articles' || type === 'bookmark' || type === '' ){
 

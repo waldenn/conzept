@@ -58,11 +58,15 @@
           if ( goWide ){
 
             // show wander buttons
+
+            $('#bookmark-video').show();
             $('#wander-to-next').show();
             $('#wander-to-previous').show();
             $('#wander-youtube-terms').show();
 
           }
+
+          $('#bookmark-video').click(function(event) { window.top.postMessage({ event_id: 'add-bookmark', data: { language: getParameterByName('l'), qid: '', tags: [ 'work', 'video' ], url: 'https://conze.pt/app/video/?l=en&#/view/{{video.id}}', datasource: 'youtube' } }, '*' ) });
 
           $('#wander-to-next').click(function(event) { window.top.postMessage({ event_id: 'next-wander-video', data: {  } }, '*' ); });
           $('#wander-to-previous').click(function(event) { window.top.postMessage({ event_id: 'previous-wander-video', data: {  } }, '*' ); });
