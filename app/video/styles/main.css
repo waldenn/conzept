@@ -250,6 +250,7 @@ body.dark .toogles-video h3{
   bottom: -0.3em;
   z-index: 9999;
   color: white;
+  font-size: small !important;
 }
 
 #wander-to-previous {

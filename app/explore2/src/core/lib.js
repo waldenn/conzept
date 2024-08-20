@@ -945,7 +945,11 @@ function renderBookmarks(){
         }
         else { // real topic item
 
-          icon = '<small>' + datasources[ node.datasource ].icon + '</small><sub>' + node.language + '</sub> &nbsp;';
+          if ( valid( datasources[ node.datasource ].icon ) ){
+
+            icon = '<small>' + datasources[ node.datasource ].icon + '</small><sub>' + node.language + '</sub> &nbsp;';
+
+          }
 
         }
 
@@ -10817,7 +10821,16 @@ function addBookmark( e, action_type ){
     }
 
     // override link-data for non-Wikipedia datasource items
-    if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
+    if ( type === 'wander' ){ // used by eg. the video app (YouTube)
+
+      if ( event.data?.data?.url ){
+        link     = event.data.data.url;
+      }
+
+      type     = 'string';
+
+    }
+    else if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
 
       if ( typeof gid === 'string' && gid.startsWith('http') ){ // already in datasource-URL-format, so use that.
 
@@ -10831,12 +10844,6 @@ function addBookmark( e, action_type ){
 
       }
 
-
-    }
-    else if ( event.data?.data?.url ){ // used by eg. the video app (YouTube)
-
-      link     = event.data.data.url;
-      type      = 'string';
 
     }
 
