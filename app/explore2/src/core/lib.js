@@ -10753,11 +10753,6 @@ function addBookmark( e, action_type ){
 
     //bookmark_current_view = valid( bookmark_current_view )? true : false;
 
-    //const video     = '\/video\/';
-    //if ( link.match( video, 'g') ){ // video link
-    //  type = 'video';
-    //}
-
     if ( explore.custom?.lat ){ // we have a geo-coordinate
 
       geo = explore.custom.lat + ';' + explore.custom.lon;
@@ -10817,8 +10812,10 @@ function addBookmark( e, action_type ){
 
     }
 
+    const video_regex = '\/video\/';
+
     // override link-data for non-Wikipedia datasource items
-    if ( type === 'wander' ){ // used by eg. the video app (YouTube)
+    if ( type === 'wander' || link.match( video_regex, 'g' ) ){ // used by eg. the video app (YouTube)
 
       if ( event.data?.data?.url ){
         link = event.data.data.url;
@@ -10828,7 +10825,7 @@ function addBookmark( e, action_type ){
         title = event.data.data.title;
       }
 
-      type     = 'video';
+      type = 'video';
 
     }
     else if ( valid( datasources[ datasource ]) && datasource !== 'wikipedia' ){ // some other datasource title / ID
