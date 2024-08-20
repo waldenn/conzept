@@ -66,7 +66,7 @@
 
           }
 
-          $('#bookmark-video-normal, #bookmark-video-wander').click(function(event) { window.top.postMessage({ event_id: 'add-bookmark', data: { language: getParameterByName('l'), qid: '', title: {{video.snippet.title}}, tags: [ 'work', 'video' ], url: `https://${CONZEPT_HOSTNAME }${CONZEPT_WEB_BASE }/app/video/?l=en&#/view/{{video.id}}`, datasource: '' } }, '*' ) });
+          $('#bookmark-video-normal, #bookmark-video-wander').click(function(event) { window.top.postMessage({ event_id: 'add-bookmark', data: { language: getParameterByName('l'), qid: '', title: '{{video.snippet.title}}', tags: [ 'work', 'video' ], url: `https://${CONZEPT_HOSTNAME }${CONZEPT_WEB_BASE }/app/video/?l=en&#/view/{{video.id}}`, datasource: '' } }, '*' ) });
 
           $('#wander-to-next').click(function(event) { window.top.postMessage({ event_id: 'next-wander-video', data: {  } }, '*' ); });
           $('#wander-to-previous').click(function(event) { window.top.postMessage({ event_id: 'previous-wander-video', data: {  } }, '*' ); });
