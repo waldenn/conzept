@@ -66,7 +66,7 @@
 
           }
 
-          $('#bookmark-video').click(function(event) { window.top.postMessage({ event_id: 'add-bookmark', data: { language: getParameterByName('l'), qid: '', tags: [ 'work', 'video' ], url: 'https://conze.pt/app/video/?l=en&#/view/{{video.id}}', datasource: '' } }, '*' ) });
+          $('.bookmark-video').click(function(event) { window.top.postMessage({ event_id: 'add-bookmark', data: { language: getParameterByName('l'), qid: '', title: {{video.snippet.title}}, tags: [ 'work', 'video' ], url: `https://${CONZEPT_HOSTNAME }${CONZEPT_WEB_BASE }/app/video/?l=en&#/view/{{video.id}}`, datasource: '' } }, '*' ) });
 
           $('#wander-to-next').click(function(event) { window.top.postMessage({ event_id: 'next-wander-video', data: {  } }, '*' ); });
           $('#wander-to-previous').click(function(event) { window.top.postMessage({ event_id: 'previous-wander-video', data: {  } }, '*' ); });
@@ -100,6 +100,7 @@
         <li><i class="fa fa-user"></i>&nbsp;&nbsp;<a href="#/user/{{video.snippet.channelId}}">{{video.snippet.channelTitle}}</a></li>
         <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{video.statistics.viewCount | number:0}} views</li>
         <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{video.snippet.publishedAt | date}}</li>
+        <li><a href="javascript:void(0)" class="bookmark-video" style="" title="bookmark video"><i class="far fa-bookmark fa-2x"></i>&nbsp;&nbsp;bookmark</a></li>
       </ul>
       <p class="hide-for-small description" ng-bind-html="video.snippet.description | htmlify"></p>
     </div>

@@ -244,7 +244,7 @@ body.dark .toogles-video h3{
   font-size: smaller;
 }
 
-#bookmark-video {
+.bookmark-video {
   position: absolute;
   right: 70%;
   bottom: -0.3em;

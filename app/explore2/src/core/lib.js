@@ -10736,11 +10736,11 @@ function addBookmark( e, action_type ){
   }
   else {
 
-    let language    = explore.language; // initial default
+    let language    = explore.language; // default
 
-    let link        = $( explore.baseframe ).attr('src') || ''; // default link-data
+    let link        = $( explore.baseframe ).attr('src') || ''; // default
 
-    let title       = decodeURIComponent( explore.curr_title ) || explore.q || '';
+    let title       = decodeURIComponent( explore.curr_title ) || explore.q || ''; // default
     //let display    = title + ' (' + language_ +')';
 
     let geo         = '';
@@ -10824,7 +10824,11 @@ function addBookmark( e, action_type ){
     if ( type === 'wander' ){ // used by eg. the video app (YouTube)
 
       if ( event.data?.data?.url ){
-        link     = event.data.data.url;
+        link = event.data.data.url;
+      }
+
+      if ( event.data?.data?.title ){
+        title = event.data.data.title;
       }
 
       type     = 'string';
