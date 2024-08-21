@@ -10812,14 +10812,13 @@ function addBookmark( e, action_type ){
 
     }
 
+    // override link-data for non-Wikipedia datasource items
+
     const video_regex = '\/video\/';
 
-    // override link-data for non-Wikipedia datasource items
-    if ( type === 'wander' || link.match( video_regex, 'g' ) ){ // used by eg. the video app (YouTube)
+    if ( link.match( video_regex, 'g' ) ){ // video app URL
 
-      if ( event.data?.data?.url ){
-        link = event.data.data.url;
-      }
+      link = link.replace('/app/video/', `https://${CONZEPT_HOSTNAME}${CONZEPT_WEB_BASE}/app/video/`).replace('&wide=true&wander=true', ''); // generalize the video-URL
 
       if ( event.data?.data?.title ){
         title = event.data.data.title;
@@ -10851,11 +10850,11 @@ function addBookmark( e, action_type ){
       type      = 'string';
 
     }
-    else if ( type === 'video'){
+    //else if ( type === 'video'){
 
-      link = $( explore.baseframe )[0].contentWindow.location.href || '';
+      //link = $( explore.baseframe )[0].contentWindow.location.href || '';
 
-    }
+    //}
     else if ( type === 'books' ){
       type = 'book';
     }
