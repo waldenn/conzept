@@ -10818,7 +10818,8 @@ function addBookmark( e, action_type ){
 
     if ( link.match( video_regex, 'g' ) ){ // video app URL
 
-      link = link.replace('/app/video/', `https://${CONZEPT_HOSTNAME}${CONZEPT_WEB_BASE}/app/video/`).replace('&wide=true&wander=true', ''); // generalize the video-URL
+      // generalize the video URL
+      link = `https://${CONZEPT_HOSTNAME}${CONZEPT_WEB_BASE}/app/video/?l=${language}#/view/${gid}`;
 
       if ( event.data?.data?.title ){
         title = event.data.data.title;
