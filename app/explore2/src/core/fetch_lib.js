@@ -80,7 +80,7 @@ function getPresentationLink( args, label, qid ){
 
 function getWanderLink( args, label ){
 
-  return '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: label, language : explore.language } ) ) + '"> <span class="icon"><i class="fa-brands fa-youtube" style="position:relative;"></i></span></a>';
+  return '<a href="javascript:void(0)" class="mv-extra-icon" title="streaming video" aria-label="streaming video" role="button"' + setOnClick( Object.assign({}, args, { type: 'wander', title: label, language : explore.language } ) ) + '"> <span class="icon"><i class="fa-solid fa-tv" style="position:relative;"></i></span></a>';
 
 }
 

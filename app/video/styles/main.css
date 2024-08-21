@@ -283,7 +283,10 @@ body.dark .toogles-video h3{
   color: white;
 }
 
-#wander-to-previous:hover, #wander-to-next:hover {
+#wander-to-previous:hover,
+#wander-to-next:hover,
+#bookmark-video-normal,
+#bookmark-video-wander  {
   color: #f3acae;
 }
 

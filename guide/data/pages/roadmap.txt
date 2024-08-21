@@ -92,6 +92,7 @@ See also the "structured LLM prompt" screenshot on the right, for an experiment 
     * [[explore>Category theory]] with [[https://conze.pt/explore/%22category%20theory%22%20LLM?l=en&ds=science&t=string&batchsize=5&s=true#|LLMs]]
     * "[[https://garymarcus.substack.com/p/alphaproof-alphageometry-chatgpt?publication_id=888615|AlphaProof, AlphaGeometry, ChatGPT, and why the future of AI is neurosymbolic]]"
     * "[[http://www.incompleteideas.net/IncIdeas/BitterLesson.html|The Bitter Lesson]]" ("The biggest lesson that can be read from 70 years of AI research is general methods that leverage computation are ultimately the most effective")
+    * "[[https://huggingface.co/blog/apehex/tokenization-is-a-dead-weight|Tokenization Is A Dead Weight]]"
     * "[[https://situational-awareness.ai/from-gpt-4-to-agi/|Situational Awareness: The decade Ahead]]"
     * "[[https://ia801205.us.archive.org/11/items/the-creative-act-a-way-of-being-by-rick-rubin/The%20Creative%20Act_%20A%20Way%20of%20Being%20by%20Rick%20Rubin.pdf|The Creative Act: A Way of Being]]"
 
