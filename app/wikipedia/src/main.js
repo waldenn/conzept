@@ -19,6 +19,7 @@ window.klipse_settings = {
 
 let current_pane  = '';
 let parentref     = '';
+let utterance     = undefined;
 
 // main app state
 const explore_default = {
@@ -1549,7 +1550,7 @@ function resumeSpeaking(){
 
 }
 
-function startSpeaking( text ){
+function startSpeaking( text, cursor_start_index ){
 
   parentref.postMessage({ event_id: 'show-loader', data: { } }, '*' );
   
@@ -1601,11 +1602,13 @@ function startSpeaking( text ){
 
 	//console.log( text );
 
-  let utterance   = new SpeechSynthesisUtterance( text );
+  utterance = new SpeechSynthesisUtterance( text );
 
 	utterance.lang  = explore.voice_code;
 	utterance.rate  = explore.voice_rate;
 	utterance.pitch = explore.voice_pitch;
+
+  setUtteranceOnBoundary( text, cursor_start_index );
 
 	//if ( explore.synth.speaking ){
 		// do nothing, already speaking
@@ -1616,4 +1619,75 @@ function startSpeaking( text ){
 
   parentref.postMessage({ event_id: 'hide-loader', data: { } }, '*' );
 
+}
+
+function setUtteranceOnBoundary( text, cursor_start_index ){
+
+  if ( valid( cursor_start_index ) ){
+
+    console.log( 'cursor_start_index: ', cursor_start_index );
+
+  }
+
+  /*
+  // check if there is a speaking-cursor
+  if ( $('#speaking-cursor').length > 0 ){
+
+    console.log( 'existing speaking cursor found!' );
+  
+  }
+  else { // set the speaking-cursor to the first word (after the "startSpeaking"-button)
+
+    console.log( 'setting initial speaking cursor' );
+    //  $(this).parent().next('p, h2, h3, h4, h5, h6, ul, li, dl, dd').first()
+
+  }
+  */
+
+  // find the next matching word (from the speaking-cursor)
+  // highlight and mark that word as the new speaking-cursor
+  // WHEN speaking is stopped: clear all speaking-cursors
+
+  utterance.onboundary = function(event){
+
+    const word = getWordAt( text, event.charIndex);
+
+    //console.log( event.charIndex, word );
+
+    /*
+    var e = document.getElementById('textarea');
+    var word = getWordAt(e.value,event.charIndex);
+    // Show Speaking word : x
+    document.getElementById("word").innerHTML = word;
+    //Increase index of span to highlight
+    console.info(global_words[wordIndex]);
+
+    try{
+      document.getElementById("word_span_"+wordIndex).style.color = "blue";
+    }catch(e){}
+
+    wordIndex++;
+    */
+  };
+
+}
+
+// get the word of a string given the string and the index
+function getWordAt(str, pos) {
+
+  // Perform type conversions.
+  str = String(str);
+  pos = Number(pos) >>> 0;
+
+  // Search for the word's beginning and end.
+  const left = str.slice(0, pos + 1).search(/\S+$/),
+      right = str.slice(pos).search(/\s/);
+
+  // The last word in the string is a special case.
+  if (right < 0) {
+      return str.slice(left);
+  }
+
+  // Return the word, using the located bounds to extract it from the string.
+  return str.slice(left, right + pos);
 }

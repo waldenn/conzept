@@ -1514,11 +1514,13 @@ function addSectionTTS(){
 
       $('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
         '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-        '<span class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
+        '<span id="start-speaking-0" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
 
     );
 
 		$('.mw-parser-output h2, .mw-parser-output h3, .mw-parser-output h4').each(function(index, value) {
+
+      index = index + 1;
 			
 			if ( $(this).attr('id') === 'see_also'){
 				// do nothing
@@ -1536,7 +1538,7 @@ function addSectionTTS(){
 
 					$('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
             '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-            '<span class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
+            '<span  id="start-speaking-' + index + '" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
 
 	      );
 		
