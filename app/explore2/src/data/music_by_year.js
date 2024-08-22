@@ -14,9 +14,20 @@ const music_by_year = {
   ],
   */
 
+  1450: [
+    { url: 'https://dn720304.ca.archive.org/0/items/lp_a-treasury-of-gregorian-chant-vol-iii_monks-of-the-abbey-of-st-thomas/disc1/02.01.%20Sequence%20For%20Pentecost%20Sunday%20%28Mode%201%29.mp3', info: 'https://archive.org/details/lp_a-treasury-of-gregorian-chant-vol-iii_monks-of-the-abbey-of-st-thomas', country: 'Q183' },
+    { url: 'https://ia804605.us.archive.org/5/items/lp_a-treasury-of-gregorian-chant-vol-iii_monks-of-the-abbey-of-st-thomas/disc1/01.03.%20Communion%20For%20The%202nd%20Sunday%20In%20Lent%20%28Mode%205%29%3B%20Gradual%20For%20Maundy%20Thursday%20%28Mode%205%29%3B%20Sequence%20For%20Easter%20Sunday%20%28Mode%201%29.mp3', info: 'https://archive.org/details/lp_a-treasury-of-gregorian-chant-vol-iii_monks-of-the-abbey-of-st-thomas', country: 'Q183' },
+    { url: 'https://dn720303.ca.archive.org/0/items/lp_music-from-the-court-of-burgundy_guillaume-dufay-musica-reservata/disc1/01.02.%20Stropha%3A%20Vergene%20Bella%2C%20Che%20Di%20Sol%20Vestita.mp3', info: 'https://archive.org/details/lp_music-from-the-court-of-burgundy_guillaume-dufay-musica-reservata', country: 'Q183' },
+  ],
+
   1508: [
     { url: 'https://archive.org/download/06-anonymous-istampita-ghaetta_202005/09%20-%20DALZA%20-%20Calata%20alia%20Spagnola.mp3', info: 'https://archive.org/details/06-anonymous-istampita-ghaetta_202005', country: 'Q38' },
     { url: 'https://archive.org/download/06-anonymous-istampita-ghaetta_202005/15%20-%20SCHEIN%20-%20Allemande%20-%20Tripla%20%28from%20Suite%20No%203%20in%20A%29.mp3', info: 'https://archive.org/details/06-anonymous-istampita-ghaetta_202005', country: 'Q183' },
+  ],
+
+  1550: [
+    { url: 'https://ia903403.us.archive.org/34/items/lp_medieval-english-carols-and-italian-dances_new-york-pro-musica-noah-greenberg/disc1/01.02.%20Two%20Italian%20Dances%3A%20Saltarello%20-%20Istampita%20%22Palamento%22.mp3', info: 'https://archive.org/embed/lp_medieval-english-carols-and-italian-dances_new-york-pro-musica-noah-greenberg', country: 'Q183' },
+    { url: 'https://ia903403.us.archive.org/34/items/lp_medieval-english-carols-and-italian-dances_new-york-pro-musica-noah-greenberg/disc1/01.02.%20Two%20Italian%20Dances%3A%20Saltarello%20-%20Istampita%20%22Palamento%22.mp3', info: 'https://archive.org/embed/lp_medieval-english-carols-and-italian-dances_new-york-pro-musica-noah-greenberg', country: 'Q183' },
   ],
 
   1602: [
@@ -56,11 +67,18 @@ const music_by_year = {
   */
 
   1773: [
+    { url: 'https://dn720307.ca.archive.org/0/items/suske-quartet-mozart-string-quartet-no.-11-in-e-flat-major-01-k.-171-i.-adagio-allegro-assai-adagio/Suske%20Quartet%20%E2%80%94%20Mozart%20String%20Quartet%20No.%2011%20in%20E-Flat%20Major%2C%2002%20K.%20171_%20II.%20Menuetto.mp3', info: 'https://archive.org/details/suske-quartet-mozart-string-quartet-no.-11-in-e-flat-major-01-k.-171-i.-adagio-allegro-assai-adagio', country: 'Q40' },
     { url: 'https://imslp.eu/files/imglnks/euimg/c/c2/IMSLP563575-PMLP01556-Mozart_W.A.,_Symphony_No._30_in_D_Major,_K._202-_186b_(Joseph_Keilberth)_Telefunken_(1953).mp3', info: 'https://imslp.org/wiki/Symphony_No.30_in_D_major%2C_K.202%2F186b_(Mozart%2C_Wolfgang_Amadeus)', country: 'Q40' },
   ],
 
   1783: [
+    { url: 'https://ia903209.us.archive.org/13/items/01-allegro-maestoso/03%20rondo.mp3', info: 'https://archive.org/details/01-allegro-maestoso', country: 'Q40' },
+    { url: 'https://ia903209.us.archive.org/13/items/01-allegro-maestoso/04%20allegro.mp3', info: 'https://archive.org/details/01-allegro-maestoso', country: 'Q40' },
     { url: 'https://s9.cn.imslp.org/files/imglnks/usimg/f/fb/IMSLP127093-PMLP01849-Mozart_K._333_1st_mvt.mp3', info: 'https://imslp.org/wiki/Piano_Sonata_No.13_in_B-flat_major%2C_K.333%2F315c_(Mozart%2C_Wolfgang_Amadeus)', country: 'Q40' },
+  ],
+
+  1778: [
+    { url: 'https://archive.org/download/wolfgang-amadeus-mozart-melos-quartet-franz-beyer-string-quintet-no.-2-in-c-k.-515-01.-allegro/Wolfgang%20Amadeus%20Mozart%2C%20Melos%20Quartet%2C%20Franz%20Beyer%20%E2%80%94%20String%20Quintet%20No.2%20In%20C%2C%20K.515_%2002.%20Menuetto%20%28Allegretto%29.mp3', info: 'https://archive.org/embed/wolfgang-amadeus-mozart-melos-quartet-franz-beyer-string-quintet-no.-2-in-c-k.-515-01.-allegro', country: 'Q40' },
   ],
 
   1784: [
@@ -69,13 +87,13 @@ const music_by_year = {
   ],
 
   1816: [
-    //{ url: 'http://conquest.imslp.info/files/imglnks/usimg/e/e7/IMSLP65043-PMLP03144-1Allegro.mp3', info: 'https://imslp.org/wiki/Clarinet_Concerto_in_A_major%2C_K.622_(Mozart%2C_Wolfgang_Amadeus)', country: 'Q40' },
     { url: 'https://s9.imslp.org/files/imglnks/usimg/6/6a/IMSLP65045-PMLP03144-3Allegro.mp3', info: 'https://imslp.org/wiki/Clarinet_Concerto_in_A_major%2C_K.622_(Mozart%2C_Wolfgang_Amadeus)', country: 'Q40' },
-  ],
-
-  1816: [
     { url: 'https://vmirror.imslp.org/files/imglnks/usimg/3/31/IMSLP84964-PMLP173449-bishop_m1.mp3', info: 'https://imslp.org/wiki/String_Quartet_in_C_minor_(Bishop%2C_Henry_Rowley)', country: 'Q145' },
     { url: 'https://s9.imslp.org/files/imglnks/usimg/6/6f/IMSLP84966-PMLP173449-bishop_m3.mp3', info: 'https://imslp.org/wiki/String_Quartet_in_C_minor_(Bishop%2C_Henry_Rowley)', country: 'Q145' },
+  ],
+
+  1832: [
+    //{ url: 'https://ia804701.us.archive.org/16/items/Romantism_201704/Chopin%20-%20Etude%20no.%203%20in%20e%20%28%27Tristesse%27%29.mp3', info: 'https://archive.org/details/Romantism_201704/Chopin+-+Etude+no.+3+in+e+('Tristesse').mp3', country: 'Q142' },
   ],
 
   1862: [
@@ -89,6 +107,11 @@ const music_by_year = {
   1870: [
     { url: 'https://s9.imslp.org/files/imglnks/usimg/7/75/IMSLP277432-PMLP17351-07_-_Celeste_Aida_-_Aida.mp3', info: 'https://imslp.org/wiki/A%C3%AFda_(Verdi%2C_Giuseppe)', country: 'Q38' },
   ],
+
+  1886: [
+    { url: 'https://ia804701.us.archive.org/16/items/Romantism_201704/Brahms%20-%20Lullaby.mp3', info: 'https://archive.org/details/Romantism_201704/Brahms+-+Lullaby.mp3', country: 'Q183' },
+  ],
+
 
   1888: [
     { url: 'https://vmirror.imslp.org/files/imglnks/usimg/6/67/IMSLP419568-PMLP04215-Gymnopedie_N%C2%BA_1.mp3', info: 'https://imslp.org/wiki/3_Gymnop%C3%A9dies_(Satie%2C_Erik)', country: 'Q142' },

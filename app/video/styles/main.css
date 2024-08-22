@@ -285,8 +285,8 @@ body.dark .toogles-video h3{
 
 #wander-to-previous:hover,
 #wander-to-next:hover,
-#bookmark-video-normal,
-#bookmark-video-wander  {
+#bookmark-video-normal:hover,
+#bookmark-video-wander:hover  {
   color: #f3acae;
 }
 

@@ -245,7 +245,7 @@ $( document ).ready(function() {
 
         if ( valid( text ) && text.length > 10 ){
 
-          startSpeaking( text );
+          startSpeaking( text, 0 );
 
         }
 
@@ -254,7 +254,7 @@ $( document ).ready(function() {
     }
     else { // speak whole article
 
-      startSpeaking();
+      startSpeaking( '', 0 );
 
     }
 
@@ -1514,7 +1514,7 @@ function addSectionTTS(){
 
       $('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
         '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-        '<span id="start-speaking-0" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking()" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
+        '<span id="start-speaking-0" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( &quot;&quot;, 0 )" tabIndex="0"><i class="fa-solid fa-play"></i></span>' )
 
     );
 
@@ -1531,14 +1531,24 @@ function addSectionTTS(){
 						.find( explore.tts_removals ).remove()
 						.end().text();
 
-				text = $(this).text() + text;
+				text = $(this).text() + ' ' + text;
         text = cleanText( text );
+
+				// markup TTS words, to enable highlighting
+				/*
+				$(this).parent().nextAll('p, h2, h3, h4, h5, h6, ul, li, dl, dd')
+					.find( explore.tts_removals ).remove()
+					.end().text();
+
+				wrapWordsInSpan( $('body')[0] );
+
+				*/
 
 				$(this).append(
 
 					$('<span class="section-title-button stop-speaking" title="stop speaking" onclick="stopSpeaking()" tabIndex="0"><i class="fa-solid fa-stop"></i></span>&nbsp;' + 
             '<span class="section-title-button pause-speaking" title="pause speaking" onclick="pauseSpeaking()" tabIndex="0"><i class="fa-solid fa-pause"></i></span>' +
-            '<span  id="start-speaking-' + index + '" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( \'' + text + '\' )" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
+            '<span  id="start-speaking-' + index + '" class="section-title-button start-speaking" title="start speaking from here" onclick="startSpeaking( \'' + text + '\',' + index + ')" tabIndex="0"><i class="fa-solid fa-play"></i></span>')
 
 	      );
 		
@@ -1581,6 +1591,46 @@ function anchorPoints() {
 
 }
 */
+
+function wrapWordsInSpan( element, start_index ){
+
+	let wordIndex = 0;
+
+ 	function traverse( node ){
+
+		if (node.nodeType === Node.TEXT_NODE) {
+
+			const words = node.textContent.split(/\s+/).filter(word => word.length > 0);
+			const fragment = document.createDocumentFragment();
+
+			words.forEach((word, index) => {
+
+				// console.log( word, index );
+
+				const span = document.createElement('span');
+				span.textContent = word;
+				span.id = `word-${wordIndex++}`;
+				fragment.appendChild(span);
+
+				// Add a space between words, but not after the last one
+				//if (index < words.length - 1) {
+					fragment.appendChild(document.createTextNode('---'));
+				//}
+
+			});
+
+			node.parentNode.replaceChild(fragment, node);
+
+		}
+		else if (node.nodeType === Node.ELEMENT_NODE) {
+				node.childNodes.forEach(childNode => traverse(childNode));
+		}
+ 	}
+
+	traverse( element );
+
+}
+
 
 let
 minWordLength = 4,    // Minimum word length
@@ -1631,29 +1681,43 @@ function processNode( root ) {
 		//console.log( text );
 
 		for (let i = 0; i <= text.length; i++) {	// We use <= here because we want to include the last character in the loop
+
 			let cEng = i < text.length ? /[\p{Letter}\p{Mark}]/u.test(text[i]) : false;
 
 			if (i == text.length || eng !== cEng) {
+
 				// State flipped or end of string
 				if (eng && wLen >= minWordLength) {
+
 					let word = text.substring(wStart, wStart + wLen);
 					let numBold = Math.ceil(word.length * boldRatio);
 					let bt = word.substring(0, numBold), nt = word.substring(numBold);
 					insertTextBefore(bt, node, true);
 					insertTextBefore(nt, node, false);
-				} else if (wLen > 0) {
+
+				}
+        else if (wLen > 0) {
+
 					let word = text.substring(wStart, wStart + wLen);
 					insertTextBefore(word, node, false);
 				}
+
 				wStart = i;
 				wLen = 1;
 				eng = cEng;
-			} else {
-				wLen++;
+
 			}
+      else {
+
+				wLen++;
+
+			}
+
 		}
 
 		node.nodeValue = '';	// Can't remove the node (otherwise the tree walker will break) so just set it to empty
+
 	}
 
 };
+

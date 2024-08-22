@@ -1,4 +1,4 @@
-// © Copyright 2019-2021 J. Poulsen. All Rights Reserved.
+// © Copyright J. Poulsen. All Rights Reserved.
 
 'use strict';
 
@@ -1608,7 +1608,7 @@ function startSpeaking( text, cursor_start_index ){
 	utterance.rate  = explore.voice_rate;
 	utterance.pitch = explore.voice_pitch;
 
-  setUtteranceOnBoundary( text, cursor_start_index );
+  //setUtteranceOnBoundary( text, cursor_start_index );
 
 	//if ( explore.synth.speaking ){
 		// do nothing, already speaking
@@ -1625,7 +1625,7 @@ function setUtteranceOnBoundary( text, cursor_start_index ){
 
   if ( valid( cursor_start_index ) ){
 
-    console.log( 'cursor_start_index: ', cursor_start_index );
+    //console.log( 'cursor_start_index: ', cursor_start_index );
 
   }
 
@@ -1650,9 +1650,11 @@ function setUtteranceOnBoundary( text, cursor_start_index ){
 
   utterance.onboundary = function(event){
 
+    //const sid = getSentenceID( text, event.charIndex);
+
     const word = getWordAt( text, event.charIndex);
 
-    //console.log( event.charIndex, word );
+    //console.log( sid, event.charIndex, word );
 
     /*
     var e = document.getElementById('textarea');

@@ -1513,7 +1513,7 @@ async function setupLispEnv(){
 
             //console.log( 'insert html-audio: ', c[2] );
 
-            elements += '<audio controls src="' + data + '"></audio>';
+            elements += '<audio class="presentation-audio" controls src="' + data + '" onplay="$(&quot;.presentation-audio&quot;).prop(&quot;volume&quot;, 0.2 );"></audio>';
 
           }
           else if ( command === 'fragment' ){
@@ -1538,7 +1538,6 @@ async function setupLispEnv(){
           }
 
         });
-
 
         // apply slide metadata
         //console.log('meta now: ', meta );
