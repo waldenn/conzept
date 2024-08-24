@@ -1006,7 +1006,6 @@ function renderBookmarks(){
 
 					explore_button = '&nbsp;<a href="javascript:void(0)" aria-label="exploreBookmark" role="button" title="explore bookmark" onclick="exploreBookmark( event, &quot;' + node.id + '&quot;)" class="bookmark-explore" data-node-id="'+ node.id +'"><span class="icon"><i class="fa-solid fa-retweet"></i></span></a> ';
 
-
 				//}
 
 				if ( valid( node.geo ) ){ // has a geo-location
@@ -1334,7 +1333,17 @@ function openBookmark( event, newtab ) {
 
   setLanguage ( node.language );
 
+  // set datasource context
   let datasource = valid( node.datasource ) ? node.datasource : '';
+
+  setParameter( 'd', datasource, explore.hash );
+
+  // clear datasource-set context (bookmarks can only refer to one specific datasource)
+  setParameter( 'ds', '', explore.hash );
+  explore.datasource_set            = '';
+  explore.datasource_set_selection  = '';
+
+  $('#search-in').val('none');
 
   if ( valid( datasource ) ){
 

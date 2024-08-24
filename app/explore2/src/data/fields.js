@@ -13563,7 +13563,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 2,
   headline_create: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
   headline_type: 'link-split',
-  headline_rank: 122,
+  headline_rank: 130,
 },
 
 'streetquiz' : {
@@ -13707,9 +13707,9 @@ if ( valid( item.found_in_taxon ) ){
   text: 'F4 map',
   section: 'location-geography',
   rank: 13.7,
-  headline_create: 'valid( item.f4_map )',
-  headline_type: 'link',
-  headline_rank: 124,
+  //headline_create: 'valid( item.f4_map )',
+  //headline_type: 'link',
+  //headline_rank: 124,
 },
 
 /*
