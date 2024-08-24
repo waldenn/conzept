@@ -148,6 +148,7 @@ $main_script = '
 
   <script src="../app/explore2/libs/country_reverse_geocoding.js" async></script>
 
+  <!--script type="module" rel="modulepreload" src="../app/explore2/node_modules/wikibase-sdk/dist/src/wikibase-sdk.js"></script--> 
   <script src="../app/explore2/libs/wikibase-sdk.min.js"></script> <!-- no dist-bundle in the NPM-package: https://www.npmjs.com/package/wikibase-sdk -->
   <script src="../app/explore2/libs/s-express-beautify.js" async></script> <!-- no dist-bundle in the NPM -->
 

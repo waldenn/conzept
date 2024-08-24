@@ -134,11 +134,9 @@ async function init(){
   // bad: https://conze.pt/app/map/?l=en&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
   // bad: https://conze.pt/app/map/?l=en&bbox=4.9894,52.0908,5.0893999999999995,52.190799999999996&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
 
-  if ( valid( app.qid && app.qid.includes(',') ) ){
+  if ( valid( app.qid && app.qid.includes(',') ) ){ // Qid-string-list
 
     app.qid = app.qid.split(',') || [];
-
-    //console.log( 'qid: ', app.qid );
 
     app.qid.forEach( function( qid ) {
 
@@ -151,7 +149,7 @@ async function init(){
     });
 
   }
-  else if ( valid( app.qid ) ){
+  else if ( valid( app.qid ) ){ // single qid-string
 
     if ( app.qid.startsWith('Q') ){ // clean Qid
 
@@ -161,7 +159,6 @@ async function init(){
 
     let q = app.qid;
     app.qid = [ q ];
-    //console.log( app.qid );
 
     app.objects[ q ] = {
       title   : '',
@@ -223,11 +220,7 @@ async function init(){
 		const label = e.pickingObject.properties.title || '';
 		const qid		= e.pickingObject.properties.qid || '';
 
-		//console.log( 'picked: ', label, qid );
-
     const url = 'https://' + CONZEPT_HOSTNAME + CONZEPT_WEB_BASE + '/explore/' + encodeURIComponent( label ) + '?l=' + app.language + '&amp;t=string&amp;i=' + qid + '&amp;s=false&amp;embedded=true';
-
-    //console.log( url );
 
 		myPopup.setContent('<iframe class="inline-iframe resized" style="min-width: 400px; max-width: 60vw; min-height: 400px; max-height: 60vh; border:none;" src="' + url + '" allowvr="yes" allow="autoplay; fullscreen" allowfullscreen="" allow-downloads="" title="embedded widget: URL-content" role="application" width="100%" height="100%"></iframe>');
 
@@ -368,8 +361,6 @@ async function init(){
 
     if ( app.query.startsWith('[') ){ // list of query objects
 
-      //console.log( app.query );
-
       app.query = JSON.parse( app.query );
 
       $.each( app.query, function ( i, q ) {
@@ -388,9 +379,7 @@ async function init(){
     }
 
   }
-  else if ( app.osm_id.length === 1 && app.qid.length === 0 ){ // a single, custom OSM-ID was passed as a LIST
-
-    if ( valid( app.osm_id[0] ) ){
+  else if ( app.osm_id.length === 1 && valid( app.osm_id[0] ) && app.qid.length === 0 ){ // a single, custom OSM-ID was passed as a LIST
 
       app.objects[ app.qid[0] ] = {
         title   : app.title,
@@ -399,8 +388,6 @@ async function init(){
       };
 
       addOSM();
-
-    }
 
   }
   else if ( valid( app.osm_id ) ){ // a single, custom OSM-ID was passed as a STRING
@@ -414,11 +401,24 @@ async function init(){
     addOSM();
 
   }
-  else { // render multiple Qids
+  else if ( Array.isArray( app.qid ) && valid( app.qid[0] ) ){ // Qid list
 
     getQids();
 
   }
+	else {
+	
+	  // simple lat-lon point
+    if ( valid( app.lon ) ){
+
+			const distance = 1000;
+     	let viewPoi = new LonLat( parseFloat( app.lon ), parseFloat( app.lat ), distance - 100 );
+     	let ell = app.globus.planet.ellipsoid;
+     	app.globus.planet.camera.flyDistance(ell.lonLatToCartesian(viewPoi), distance );
+
+		}
+
+	}
 
 }
 
@@ -920,3 +920,4 @@ $().ready(function() {
   init();
 
 });
+

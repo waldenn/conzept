@@ -426,11 +426,6 @@ function showPresentation( item, type ){
 
 		//let archive_scholar_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3>  <h3>Archive Scholar</h3> <h3><i class='fa-regular fa-newspaper' title='Archive Scholar'></i></h3>"\n    ( show \'link \'( "/explore/${title}?l=${language}&d=archive_scholar&singleuse=true&s=true#" ) ) )\n`;
 
-		//let europeana_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3>  <h3>Europeana</h3> <h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'link \'( "/explore/${title}?l=${language}&d=europeana&t=string&singleuse=true&s=true#" ) ) )\n`;
-		//let europeana_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		//let europeana_time_music_slide    = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-image' title='Europeana images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;start:${start_date};end:${end_date}" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,videos,sounds,3ds" ) ) )\n`;
-		//let europeana_country_music_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Europeana</h3><h3><i class='fa-regular fa-images' title='images'></i></h3>"\n    ( show \'audio-query \'( "source:conzept;country:${ valid( item.country )? item.country : '' };" ) )\n    ( show \'link \'( "/app/europeana/?q=${ title }&l=${language}&t=images,sounds,texts,videos,3ds" ) ) )\n`;
-
 		let bing_images_slide           = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3>Bing images</h3><h3><i class='fa-regular fa-image' title='Bing images'></i></h3>"\n    ( show \'link \'( "https://www.bing.com/images/search?q=${ title_enc }&form=HDRSC2&setlang=${explore.language}&first=1" ) ) )\n`;
 		let arxiv_slide = `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-newspaper' title='science research'></i></h3>"\n    ( show \'link \'( "https://search.arxiv.org/?query=${title}&in=grp_math" ) ) )\n`; // note: only fulltext-search works for embedding the webpage
 
@@ -552,7 +547,6 @@ function showPresentation( item, type ){
 
 			slides.push( commons_time_music_slide );
 
-			//slides.push( europeana_time_music_slide );
 			if ( valid( item.influenced_by_entitree ) ){ slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3><h3>influence</h3><h3><i class='fa-solid fa-sitemap' title='tree'></i></h3>"\n    ( show \'link-split \'( "/app/tree/${language}/P737/${item.qid}" ) ) )\n` ); }
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
@@ -629,7 +623,6 @@ function showPresentation( item, type ){
 			slides.push( commons_country_music_slide );
       slides.push( culture_search_slide );
 
-			//slides.push( europeana_country_music_slide );
 			//slides.push( bing_images_slide );
 			slides.push( video_slide );
 
@@ -759,8 +752,6 @@ function showPresentation( item, type ){
 
         //slides.push( rijksmuseum_search_slide );
 
-        //slides.push( europeana_slide );
-
         //explore.datasources = sources; // reset datasources again to the original set
 
       }
@@ -871,7 +862,6 @@ function showPresentation( item, type ){
 	    slides.push( `  ( slide "${ item.title } ${ sub_name } <h3>${ dating }</h3> <h3><i class='fa-regular fa-image' title='Commons images'></i></h3>"\n    ( show \'link \'( "/app/commons-qid/?q=${ item.qid }" ) ) )\n` );
 
 			//slides.push( commons_time_music_slide );
-			//slides.push( europeana_time_music_slide );
 			slides.push( bing_images_slide );
 			slides.push( video_slide );
 
