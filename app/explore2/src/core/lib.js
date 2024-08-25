@@ -10808,6 +10808,13 @@ function addBookmark( e, action_type ){
 
       gid = event.data.data.gid;
 
+      if ( gid.startsWith('%22http') ){
+
+        gid = decodeURIComponent( gid );
+        gid = gid.trim().replaceAll( '"', '' ); // replaceAll( '^\"|\"$', '' );
+
+      }
+
     }
 
     if ( event.data?.data?.gbif ){
