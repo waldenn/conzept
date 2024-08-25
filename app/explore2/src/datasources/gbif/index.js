@@ -100,7 +100,7 @@ function processResultsGBIF( topicResults, struct, index ){
         let url           = eval(`\`${ datasources[ source ].display_url  }\``);
         let desc          = '';
         let subtag        = '';
-        let gbif_id       = '';
+        let gbif_id       = gid;
         let newtab        = false;
 
         let vernacular_name = '';

@@ -1154,7 +1154,7 @@ const datasources = {
     icon:                   '<img class="datasource-icon" alt="GBIF datasource" src="/assets/icons/gbif.png" alt="GBIF logo">',
     icon_invert:            false,
     color:                  '#78b578',
-    display_url:            'https://${explore.host}${explore.base}/app/response/gbif-map.php?l=${explore.language}&t=${title}&id=${gid}',
+    display_url:            'https://${explore.host}${explore.base}/app/map/index.html?l=${explore.language}&title=${title}&gbif=${gid}',
     code_autocomplete:      'autocompleteGBIF( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsGBIF( topicResults, struct, index ) );',
     code_resolve:           'resolveGBIF( result, renderObject )',

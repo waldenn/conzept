@@ -273,7 +273,7 @@ $sticky_html = '
 
       <div id="search-options" style="">&nbsp;
 
-        <span class="search-option-label"><span id="app-menu-search-in">search in</span>: </span><select id="search-in" class="browser-default"> <span id="search-in-icons"></span>
+        <span class="search-option-label"><span id="app-menu-search-in">search in</span>: </span><select id="search-in" class="browser-default">
           <option value="none" selected></option>
           <option value="reference" id="app-menu-search-in-option-reference">reference works</option>
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
@@ -286,6 +286,8 @@ $sticky_html = '
         </select>
 
         <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_in" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
+
+        <span id="app-menu-search-in-icons"></span>
 
         <span class="search-option-label"><span id="app-menu-filter-by">filter by</span>: </span><select id="filterby" class="browser-default">
           <option value="none" selected></option>
