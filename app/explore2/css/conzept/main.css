@@ -1093,6 +1093,15 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
   vertical-align: sub;
 }
 
+.datasource-list-icon.icon.small {
+  font-size: 0.7em;
+  width: fit-content !important;
+}
+
+#app-menu-search-in-icons {
+  margin-right: 0.5em;
+}
+
 .datasource-name {
   margin-left: 1.5em;
   font-weight: 500;

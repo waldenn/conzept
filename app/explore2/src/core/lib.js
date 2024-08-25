@@ -1720,6 +1720,8 @@ function activateDatasources(){
 
   explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
 
+  setDatasourceIcons();
+
   if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
 
       setParameter( 'd', explore.datasources.join(','), explore.hash );
@@ -1731,8 +1733,6 @@ function activateDatasources(){
 
   }
 
-  //`<span class="datasource-list-icon icon ${ valid( d.icon_invert )? 'invert' : '' }">${d.icon} </span>`;
-  //$('#app-tab-topics-title').after( `<div id="show_datasources"> ${ show_datasources_html } </div>`);
 
   // when "singleuse" is active, prevent permanently storing the datasources
   if ( ! valid( explore.singleuse ) ){
@@ -1742,6 +1742,23 @@ function activateDatasources(){
   }
 
   setupOptionActiveDatasources(); // update datasource toggles
+
+}
+
+function setDatasourceIcons(){
+
+  let icon_html = '';
+
+  // show icons
+  $.each( explore.datasources, function( index, source ){ // for each active datasource
+
+    let d = datasources[ source ];
+
+    icon_html += `<span class="datasource-list-icon icon small ${ valid( d.icon_invert )? 'invert' : '' }" title="${d.name}">${d.icon} </span>`;
+
+  });
+
+  $('#app-menu-search-in-icons').html( icon_html );
 
 }
 
@@ -1869,6 +1886,8 @@ async function toggleDatasource( source ) {
   });
 
   explore.datasources = [...new Set( explore.datasources )]; // remove any duplicates
+
+  setDatasourceIcons();
 
   if ( !valid( explore.datasource_set ) || explore.datasource_set === 'none' ){ // no datasource-set
 

@@ -273,7 +273,7 @@ $sticky_html = '
 
       <div id="search-options" style="">&nbsp;
 
-        <span class="search-option-label"><span id="app-menu-search-in">search in</span>: </span><select id="search-in" class="browser-default">
+        <span class="search-option-label"><span id="app-menu-search-in">search in</span>: </span><select id="search-in" class="browser-default"> <span id="search-in-icons"></span>
           <option value="none" selected></option>
           <option value="reference" id="app-menu-search-in-option-reference">reference works</option>
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
