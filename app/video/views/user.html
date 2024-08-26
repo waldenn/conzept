@@ -4,10 +4,10 @@
   <script src="https://apis.google.com/js/platform.js"></script>
   <h3><a id="title" target="_blank" href="https://youtube.com/channel/{{user.id}}">{{user.snippet.title}}</a></h3>
   <ul>
-    <li><i class="fa fa-eye"></i>&nbsp;&nbsp;{{user.statistics.viewCount | number:0}} views</li>
-    <li><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{{user.statistics.subscriberCount | number:0}} subscribers</li>
-    <li><i class="fa fa-calendar"></i>&nbsp;&nbsp;Joined {{user.snippet.publishedAt | date}}</li>
-    <li><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;<a href="https://youtube.com/channel/{{user.id}}" target="_blank">Subscribe</a></li>
+    <li>{{user.statistics.viewCount | number:0}} views</li>
+    <li>{{user.statistics.subscriberCount | number:0}} subscribers</li>
+    <li>Joined {{user.snippet.publishedAt | date}}</li>
+    <li><a href="https://youtube.com/channel/{{user.id}}" target="_blank">Subscribe</a></li>
   </ul>
   <p class="hide-for-small description" ng-bind-html="user.snippet.description | htmlify"></p>
   <ul class="vertical tabs">
