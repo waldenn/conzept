@@ -221,6 +221,7 @@ $main_script = '
   <!-- business -->
   <script src="../app/explore2/dist/datasources/gleif/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/eu/index.js?v0.51.4836"></script>
+  <script src="../app/explore2/dist/datasources/worldbank/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/occrp/index.js?v0.51.4836"></script>
 
   <!-- legal -->

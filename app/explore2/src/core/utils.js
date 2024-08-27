@@ -2502,6 +2502,28 @@ function getCountryFromLatLon( lat, lon ){
 
 }
 
+function getCountryNameFromISO( iso ){
+
+  let ret = '';
+
+  if ( valid( iso ) ){
+
+    Object.keys( countries ).forEach( (( qid ) => {
+
+      if ( countries[ qid ].iso2 === iso || countries[ qid ].iso3 === iso ){
+
+        ret = countries[ qid ].name;
+
+      }
+
+    }));
+
+  }
+
+  return ret;
+
+}
+
 function onAstronomicalBody( item, qid ){
 
   let ret = false; // default
