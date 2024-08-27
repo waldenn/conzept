@@ -1458,8 +1458,8 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.worldbank.pagesize}&os=${ (explore.page -1) * datasources.world_bank.pagesize }&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
-    // TODO: create extra "world bank name"(?) field in the country JSON, some countries have different names in their dataset! 
+    url:                    'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.world_bank.pagesize}&os=${ (explore.page -1) * datasources.world_bank.pagesize }&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
+    // TODO: create extra "world bank name"(?) field in the country JSON, some countries have a different country name in their data: https://www.worldbank.org/en/about/leadership/members
     icon:                   '<img class="datasource-icon" alt="World Bank datasource" src="/assets/icons/world_bank.svg" alt="World Bank logo">',
     icon_invert:            true,
     color:                  '#082b7a',
@@ -1470,7 +1470,7 @@ const datasources = {
     code_render_mark:       'renderMarkWorldBank( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.worldbank.autocomplete_limit}&os=0&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
+    autocomplete_url:       'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.world_bank.autocomplete_limit}&os=0&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,

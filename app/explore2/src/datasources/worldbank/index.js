@@ -82,8 +82,6 @@ function processResultsWorldBank( topicResults, struct, index ){
 
       $.each( topicResults.documents, function( i, obj ){
 
-        console.log( obj );
-
         // URL vars
         let gid         = obj.id;
         let qid         = '';
@@ -98,6 +96,9 @@ function processResultsWorldBank( topicResults, struct, index ){
         let start_date    = valid( obj.modified )? obj.modified : '';
         start_date        = valid( obj.docdt )? obj.docdt.split('T')[0] : '';
 
+        let tts_link    = url;
+        let pdf_link    = url;
+
         // description
         if ( valid( obj.abstracts	) ){
 
@@ -110,7 +111,6 @@ function processResultsWorldBank( topicResults, struct, index ){
               desc = desc.substring(0, explore.text_limit ) + ' (...)';
 
             }
-
 
           }
 
@@ -132,6 +132,11 @@ function processResultsWorldBank( topicResults, struct, index ){
 					gid:                url,
 					display_url:        url,
 					start_date:	        start_date,
+          //document_language:    document_language,
+          //document_voice_code:  document_voice_code,
+          pdf_tts_link: tts_link,
+          pdf_link:     pdf_link,
+
 					web_url:            url,
 					qid:                qid,
           countries:          [],
