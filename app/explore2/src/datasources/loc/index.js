@@ -137,7 +137,7 @@ function processResultsLoC( topicResults, struct, index ){
 
 				}
 
-        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : 'en';
+        let document_voice_code = explore.voice_code.startsWith( document_language )? explore.voice_code : 'en';
         let tts_link     	= '';
         let pdf_link     	= '';
 

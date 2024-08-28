@@ -48,7 +48,8 @@ const datasources = {
     url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=0|14&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}',
     //url:                    'https://${explore.language}.${datasources.wikipedia.endpoint}?action=query&format=${datasources.wikipedia.format}&srsearch=${term}&srnamespace=0|14&srlimit=${datasources.wikipedia.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&list=search&continue=-||&sroffset=${ (explore.page -1) * datasources.wikipedia.pagesize}&${ valid( [ geofilter_lat, geofilter_lon, geofilter_radius ] )? "srsearch=nearcoord%3A" + geofilter_radius / 1000 + "km%2C" + geofilter_lat + "%2C" + geofilter_lon : "" }',
     // SORTING: 
-    icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
+    icon:                   '<img class="datasource-icon" alt="Wikipedia datasource" src="/assets/icons/wikipedia.svg"></img>',
+    //icon:                   '<i class="fa-brands fa-wikipedia-w"></i>',
     color:                  '#00B1BB', // '#c8ccd16b',
     icon_invert:            false,
     display_url:            'https://${explore.host}${explore.base}/app/wikipedia/?q=${qid}&lang=${language}', // TODO
@@ -1458,7 +1459,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.pagesize}%26os=${ (explore.page -1) * datasources.world_bank.pagesize }%26sortBy=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin + "%26enddate=" + datemax : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
+    url:                    'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.pagesize}%26os=${ (explore.page -1) * datasources.world_bank.pagesize }%26sort=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin.split("T")[0] + "%26enddate=" + datemax.split("T")[0] : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
     // TODO: create extra "world bank name"(?) field in the country JSON, some countries have a different country name in their data: https://www.worldbank.org/en/about/leadership/members
     icon:                   '<img class="datasource-icon" alt="World Bank datasource" src="/assets/icons/world_bank.svg" alt="World Bank logo">',
     icon_invert:            true,
@@ -1470,7 +1471,7 @@ const datasources = {
     code_render_mark:       'renderMarkWorldBank( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.autocomplete_limit}%26os=0%26sortBy=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin + "%26enddate=" + datemax : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
+    autocomplete_url:       'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.autocomplete_limit}%26os=0%26sort=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin.split("T")[0] + "%26enddate=" + datemax.split("T")[0] : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,

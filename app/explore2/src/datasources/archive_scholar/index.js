@@ -125,7 +125,7 @@ function processResultsArchiveScholar( topicResults, struct, index ){
         let img           = '';
 
         let document_language   = explore.language;
-        let document_voice_code = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
+        let document_voice_code = explore.voice_code.startsWith( document_language )? explore.voice_code : '';
         let tts_link      = pdf_url;
 
         if ( valid( obj.fulltext ) ){

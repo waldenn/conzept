@@ -82,6 +82,11 @@ function processResultsWorldBank( topicResults, struct, index ){
 
       $.each( topicResults.documents, function( i, obj ){
 
+        // API bug ("facets" is part of the results)
+        if ( i === 'facets' ){
+          return true;
+        }
+
         // URL vars
         let gid         = obj.id;
         let qid         = '';
@@ -96,6 +101,8 @@ function processResultsWorldBank( topicResults, struct, index ){
         let start_date    = valid( obj.modified )? obj.modified : '';
         start_date        = valid( obj.docdt )? obj.docdt.split('T')[0] : '';
 
+        let document_language = explore.language; // default
+        let document_voice_code = explore.voice_code.startsWith( document_language )? explore.voice_code : explore.language;
         let tts_link    = url;
         let pdf_link    = url;
 
@@ -118,7 +125,7 @@ function processResultsWorldBank( topicResults, struct, index ){
 
         if ( valid( obj.subtopic ) ){
 
-          desc += '<br/><br/><div>' + obj.subtopic.replace(',', ', ') + '</div>';
+          desc += '<br/><br/><div>' + obj.subtopic.replaceAll(',', ', ') + '</div>';
 
         }
 
@@ -132,10 +139,10 @@ function processResultsWorldBank( topicResults, struct, index ){
 					gid:                url,
 					display_url:        url,
 					start_date:	        start_date,
-          //document_language:    document_language,
-          //document_voice_code:  document_voice_code,
-          pdf_tts_link: tts_link,
-          pdf_link:     pdf_link,
+          document_language:  document_language,
+          document_voice_code:  document_voice_code,
+          pdf_tts_link:       tts_link,
+          pdf_link:           pdf_link,
 
 					web_url:            url,
 					qid:                qid,

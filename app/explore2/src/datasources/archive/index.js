@@ -132,7 +132,7 @@ function processResultsArchive( topicResults, struct, index ){
 
         }
 
-        document_voice_code  = explore.voice_code_selected.startsWith( document_language )? explore.voice_code_selected : '';
+        document_voice_code  = explore.voice_code.startsWith( document_language )? explore.voice_code : '';
 
         if ( valid( obj.format ) ){
 
