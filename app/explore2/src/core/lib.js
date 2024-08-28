@@ -3907,6 +3907,13 @@ function setupLanguage(){
 
 				}
 
+        (async () => {
+
+          await explore.db.set('voice_code_selected', explore.voice_code );
+          await explore.db.set('voice_name_selected', explore.voice_name );
+
+        })();
+
         explore.language_script           = langobj.script;
         explore.langcode                  = langobj.langcode;
         explore.language_name             = langobj.name;
