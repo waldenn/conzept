@@ -16934,6 +16934,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 110,
 },
 
+'lightning_strikes_map' : {
+  create_condition: 'valid( item.lat ) && onAstronomicalBody( item, "Q2")',
+  title: 'Blitzortung.org - realtime lightning map',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://map.blitzortung.org/#${item.lon}/${item.lat}/10',
+  icon: 'fa-solid fa-bolt-lightning',
+  text: 'lightning map',
+  section: 'location-weather',
+  rank: 130,
+},
+
 'bookingcom_hotel' : {
   title: 'Bookingcom hotel',
   prop: '3607',
@@ -19293,6 +19306,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 163,
 },
 
+'oecd_data_explorer' : {
+  create_condition: true,
+  title: 'OECD Data Explorer - economic data search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://data-explorer.oecd.org/?tm=${title_quoted}',
+  icon: 'fa-solid fa-hockey-puck',
+  text: 'OECD',
+  section: 'media-datasets-general',
+  rank: 170,
+},
+
 'dataverse_harvard' : {
   create_condition: true,
   title: 'Harvard University dataverse',
@@ -19627,7 +19653,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-hockey-puck',
   text: 'Google',
   section: 'media-datasets-general',
-  rank: 170,
+  rank: 175,
 },
 
 'fair_sharing' : {

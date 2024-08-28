@@ -123,11 +123,37 @@ function processResultsWorldBank( topicResults, struct, index ){
 
         }
 
-        if ( valid( obj.subtopic ) ){
+        if ( valid( obj.owner ) ){
 
-          desc += '<br/><br/><div>' + obj.subtopic.replaceAll(',', ', ') + '</div>';
+          desc += '&nbsp; - <a href="javascript:void(0)" class="mv-extra-icon" title="explore owner" aria-label="explore owner" role="button"' + setOnClick( Object.assign({}, {}, { type: 'explore', title: '%22' + encodeURIComponent( obj.owner ) + '%22', qid: '', language  : explore.language } ) ) + '"><b>' + obj.owner + '</b></a>';
 
         }
+
+        if ( valid( obj.colti ) ){
+
+          desc += '<br/><br/><i class="fa-solid fa-lines-leaning"></i>&nbsp; <a href="javascript:void(0)" class="mv-extra-icon" title="explore series" aria-label="explore series" role="button"' + setOnClick( Object.assign({}, {}, { type: 'explore', title: '%22' + encodeURIComponent( obj.colti ) + '%22', qid: '', language  : explore.language } ) ) + '">' + obj.colti + '</a>';
+
+				}
+
+        if ( valid( obj.subtopic ) ){
+
+					let topic_html = '';
+
+					let topics = obj.subtopic.split(',');
+
+					$.each( topics, function( k, topic ){
+
+            const isLastElement = ( k === topics.length -1 );
+
+            topic_html += '<a href="javascript:void(0)" class="mv-extra-icon" title="explore topic" aria-label="explore topic" role="button"' + setOnClick( Object.assign({}, {}, { type: 'explore', title: '%22' + encodeURIComponent( topic ) + '%22', qid: '', language  : explore.language } ) ) + '">' + topic + '</a>' + ( valid( !isLastElement )? ', &nbsp;' : '' );
+
+          });
+
+					desc += '<br/><br/><div> <i class="fa-solid fa-diagram-project"></i>&nbsp; ' + topic_html + '</div>';
+
+				}
+
+        let owner       = valid( obj.owner )? obj.owner : '';;
 
         desc  = highlightTerms( desc );
 
@@ -212,3 +238,4 @@ function renderMarkWorldBank( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+
