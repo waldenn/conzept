@@ -9587,6 +9587,10 @@ function setLanguage( language ){
 
 async function afterLanguageUpdate(){
 
+  explore.voice_code_selected = explore.voice_code;
+  await explore.db.set('voice_code_selected', explore.voice_code );
+  await explore.db.set('voice_name_selected', '' ); // TODO: is it correct to reset the "voice name" here?
+
   // HTML page
   $('html').attr('lang', explore.language );
 
