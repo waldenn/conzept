@@ -1424,7 +1424,7 @@ const datasources = {
     description:            'International financial institution - BETA',
     qid:                    'Q7164',
     protocol:               'rest',
-    endpoint:               'https://search.worldbank.org/api/v2/wds', // see: https://documents.worldbank.org/en/publication/documents-reports/api
+    endpoint:               'https%3A%2F%2Fsearch.worldbank.org%2Fapi%2Fv2%2Fwds', // 'https://search.worldbank.org/api/v2/wds', // see: https://documents.worldbank.org/en/publication/documents-reports/api
     format:                 'json',
     connect:                'json',
     headers:                '',
@@ -1458,7 +1458,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.world_bank.pagesize}&os=${ (explore.page -1) * datasources.world_bank.pagesize }&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
+    url:                    'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.pagesize}%26os=${ (explore.page -1) * datasources.world_bank.pagesize }%26sortBy=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin + "%26enddate=" + datemax : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
     // TODO: create extra "world bank name"(?) field in the country JSON, some countries have a different country name in their data: https://www.worldbank.org/en/about/leadership/members
     icon:                   '<img class="datasource-icon" alt="World Bank datasource" src="/assets/icons/world_bank.svg" alt="World Bank logo">',
     icon_invert:            true,
@@ -1470,7 +1470,7 @@ const datasources = {
     code_render_mark:       'renderMarkWorldBank( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}?format=json&qterm=${term}&rows=${datasources.world_bank.autocomplete_limit}&os=0&sortBy=${ valid( sortby )? sortby : "" }&order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "&strdate=" + datemin + "&enddate=" + datemax : "" }${ valid( geofilter_country ) ? "&count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }&lang=${explore.language_name}',
+    autocomplete_url:       'https://${explore.host}${explore.base}/app/cors/raw/?url=${datasources.world_bank.endpoint}%3Fformat=json%26qterm=${term}%26rows=${datasources.world_bank.autocomplete_limit}%26os=0%26sortBy=${ valid( sortby )? sortby : "" }%26order=${ getSortDirection( source, "short" ) }${ valid( [ datemin, datemax ] )? "%26strdate=" + datemin + "%26enddate=" + datemax : "" }${ valid( geofilter_country ) ? "%26count_exact=" + getCountryNameFromISO( geofilter_country ) : "" }%26lang=${explore.language_name}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,

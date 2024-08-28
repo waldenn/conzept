@@ -104,7 +104,7 @@ function processResultsWorldBank( topicResults, struct, index ){
 
           if ( valid( obj.abstracts['cdata!'] ) ){
 
-            desc = obj.description['cdata!'];
+            desc = obj.abstracts['cdata!'];
 
             if ( desc.length > explore.text_limit ){
 
@@ -118,7 +118,7 @@ function processResultsWorldBank( topicResults, struct, index ){
 
         if ( valid( obj.subtopic ) ){
 
-          desc += '<br/><div>' + obj.subtopic.replace(',', ', ') + '</div>';
+          desc += '<br/><br/><div>' + obj.subtopic.replace(',', ', ') + '</div>';
 
         }
 
