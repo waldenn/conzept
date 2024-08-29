@@ -2104,18 +2104,7 @@ function setupSearch() {
 
           if ( explore.q.charAt(0) === '!' ){ // form-query-command
 
-            if ( explore.q.startsWith( '!graph' ) ){ 
-              console.log('graph query detected');
-            }
-            else if ( explore.q.startsWith( '!chat' ) ){ 
-              console.log('chat query detected');
-            }
-            else if ( explore.q.startsWith( '!doi' ) ){ 
-              console.log('DOI query detected');
-            }
-            else if ( explore.q.startsWith( '!code' ) ){ 
-              console.log('code query detected');
-            }
+         		console.log('form-query detected');
 
           }
 
@@ -2417,6 +2406,28 @@ function setupSearch() {
             custom    : '',
             target_pane : 'p1',
           });
+
+        }
+     		else if ( explore.q.startsWith( '!show' ) ){ // AI-search-show command
+
+          explore.q = explore.q.trim().charAt(0).toUpperCase() + explore.q.slice(1);
+
+          const m = explore.q.replace( '!show ', '' );
+
+					clearGraph();
+
+					$('#results').empty();
+					$('#total-results').empty();
+					$('#results-paging').hide();
+
+					$('#next' ).css( 'display', 'none' );
+					$('#scroll-end').hide();
+					$('#loader').hide();
+
+					explore.page = 1;
+					explore.totalRecords = 0;
+
+					aiSearch( m );
 
         }
         else if ( explore.q.startsWith( '!doi' ) ){ // DOI command
@@ -13135,3 +13146,180 @@ function cy_node_def( id, label, content, parent_node, rp ){
 
 //let intervalCytoscape = setInterval( updateCytoscapeLayout , 5000);
 // clearInterval( intervalCytoscape );
+
+async function aiSearch( prompt ){
+
+  try {
+
+		// TODO: why is this needed here again?
+    explore.api_key_openai = await explore.db.get('api_key_openai');
+
+    if ( !explore.openai_enabled ){
+
+      console.log('no OpenAI key found');
+
+      throw new Error( 'no OpenAI key found' );
+
+    }
+
+    const apiKey = explore.api_key_openai;
+
+    const apiUrl = 'https://api.openai.com/v1/chat/completions'; // 'https://api.openai.com/v1/structured-output';
+
+    const requestBody = {
+
+      model: 'gpt-4o-mini',
+			messages: [
+				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments.` },
+				{ role: 'user', content: prompt }
+			],
+      max_tokens: 500,
+      temperature: 0.1,
+			stream: false,
+			//object: "chat.completion",
+			/*
+			"usage": {
+				"completion_tokens": 17,
+				"prompt_tokens": 57,
+				"total_tokens": 74
+			}
+			*/
+    };
+
+    const response = await fetch( apiUrl, {
+
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+
+      body: JSON.stringify(requestBody)
+
+    });
+
+    if (!response.ok) {
+
+      throw new Error(`HTTP error! status: ${response.status}`);
+
+    }
+
+    const reply = await response.json();
+
+		if ( valid( reply?.choices[0] ) ){
+
+			let topics = reply.choices[0].message.content.split(';');
+
+			if ( topics.length > 0 ){
+
+				topics = topics.map( item => item.trim() );
+
+    		//console.log('topics: ', topics );
+
+				/*
+				topics.forEach(( title, index ) => {
+
+					title = title.trim();
+
+					const args = {
+						id            : 'n' + index,
+						language      : explore.language,
+						qid           : '',
+						pid           : '',
+						thumbnail     : '',
+						title         : title,
+						snippet       : '',
+						extra_classes : 'ai-entry',
+						item          : '',
+						source        : 'raw',
+					}
+
+					// set non-wikidata fields
+					let item_raw    = { qid : '' };
+					setWikidata( item_raw, [ ], true, 'p1' );
+					item_raw.title  = title;
+					item_raw.tags[0]= 'raw-query-string';
+
+					args.item = item_raw;
+
+					const raw_entry = createItemHtml( args );
+
+					if ( explore.page === 1 && explore.searchmode === 'string' ){
+						$('#results').append( raw_entry );
+					}
+
+      
+				});
+				*/
+
+				getWikidataQIDs( topics ).then( obj => {
+
+					let qids = [];
+
+					// fetch Wikidata-data for each topic with a Qid
+
+					Object.keys( obj ).forEach( title => {
+
+						const qid = obj[title];
+
+						if ( valid( obj[title] ) ){
+
+							 qids.push( qid );
+
+						}
+
+					});
+
+					//const command = "(show 'sidebar ( query ( '( Q1 Q2 ) ) ) )";
+					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
+
+					console.log( command );
+
+					runLISP( command );
+
+				});
+  
+			}
+
+		}
+
+    // display the results in the sidebar
+
+  }
+  catch (error) {
+
+    console.error('Error:', error);
+
+  }
+
+}
+
+async function getWikidataQIDs( titles ) {
+
+	const baseUrl = "https://www.wikidata.org/w/api.php";
+    
+ 	async function fetchQID(title) {
+
+		const url = `${baseUrl}?action=wbsearchentities&search=${encodeURIComponent(title)}&language=${explore.language}&format=json&type=item&origin=*`;
+ 		const response = await fetch(url);
+ 		const data = await response.json();
+
+ 		if (data.search && data.search.length > 0) {
+			return data.search[0].id; // Return the first QID found
+  	}
+
+ 		return null; // Return null if no QID found
+
+ 	}
+
+  // Iterate over all titles and fetch their QIDs
+	const qids = {};
+
+ 	for (const title of titles) {
+ 		qids[title] = await fetchQID(title);
+ 	}
+
+ 	return qids;
+
+}

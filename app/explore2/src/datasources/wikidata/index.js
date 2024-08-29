@@ -153,7 +153,8 @@ async function getQidFromTitle( title, language ) {
 
     }
 
-  } catch (error) {
+  }
+	catch (error) {
 
     return ''; //console.error( 'Error fetching Wikidata Qid data:', error.message, title, language );
 
@@ -436,6 +437,54 @@ function tryFallbackToQid(){
 
 }
 
+async function runSidebar( list ){
+
+  //console.log( 'runQuery: ', json, json_url );
+
+  let paging_mode = false; // show all results at once
+
+  explore.searchmode    = 'wikidata';
+  explore.query         = '';
+  explore.topic_cursor  = 'n1-1';
+	explore.totalRecords  = list.length;
+
+  explore.page = 1;
+
+  $('#pager').hide();
+
+	let sparql_data = '';
+
+	list.forEach( function( qid, index){
+
+		sparql_data += 'wd%3A' + qid + '%20';
+
+	});
+
+  explore.wikidata_query = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20' + sparql_data + '%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D';
+
+	//console.log( explore.wikidata_query );
+
+  updatePushState( explore.q , 'add' );
+
+  $('#blink').show();
+  $('#pager').hide();
+  $('#results-label' ).empty();
+  $('#total-results').empty();
+  $('#scroll-end').hide();
+  $('#results').empty();
+  clearGraph();
+
+	let topicResults = await fetchWikidataQuery();
+
+	topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
+
+	renderTopics( { 'wikidata' : { data: topicResults[0] } } );
+
+	$('#loader').hide();
+  $('.datasource-hits-label').html('');
+
+}
+
 async function runQuery( json, json_url ){
 
   //console.log( 'runQuery: ', json, json_url );
@@ -604,6 +653,8 @@ async function fetchWikidataQuery(){
 
         }
         else { // results found
+
+					//console.log( entities );
 
           let [ qids, topicResults ] = prepareWikidata( entities );
 

@@ -373,7 +373,7 @@ function isQid( title ){ // Wikidata Qid
 
   if ( valid( title ) ){
 
-    if ( title.startsWith('Q') && isNumeric( title.substring(1) ) ){
+    if ( title.toUpperCase().startsWith('Q') && isNumeric( title.substring(1) ) ){
 
       return true;
 

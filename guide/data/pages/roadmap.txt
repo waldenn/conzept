@@ -1,4 +1,4 @@
-q====== roadmap ======
+====== roadmap ======
 
 ===== general =====
 
@@ -27,12 +27,14 @@ q====== roadmap ======
 [{{::neuro_symbolic_ai_003.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
 
   * Main frontend AI goals:
+    * Topical expositions
     * Topical question-answering
     * Topical quizzing & examination
     * Content summarization and Q&A of larger texts (including PDFs)
-    * Bookmark-selection reasoning (over one or more topics)
+    * Bookmark-selection 'reasoning' (over one or more topics)
     * Presentation augmentation (combined with TTS)
-    * LLM-using application parametrization/generation (which can use over one or more bookmark topics).
+    * LLM-using application parametrization/generation, which can use over one or more bookmark topics. (artifict creation)
+
 
 Conzept's current vision for frontend [[explore>Large language model|LLM]], is to enhance and combine the strengths of these two search contexts: 
 

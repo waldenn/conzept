@@ -5,6 +5,11 @@ async function sparqlQueryCommand( args, view, list ){
   let conditions = args.toString();
   let sparql_conditions = [];
 
+	let sidebar_qids_enabled = false; // allows a list of Qids to be rendered in the sidebar
+	let sidebar_qids = [];
+
+	//console.log( args, view, list, conditions );
+
   let sparql_strings		= [];
   let sparql_filters		= [];
 
@@ -12,7 +17,31 @@ async function sparqlQueryCommand( args, view, list ){
 
   if ( view === 'sidebar' ){ // wikidata-structured-query URL
 
-    sparql_url  = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20%3Fitem';
+		// check if conditions are only a list of Qids 
+		if ( valid( conditions ) ){
+
+			let qids = conditions.toString().replace(/[()]/g, '').trim();
+
+			qids = qids.replace( /(\s+)/g, ',');
+			qids = qids.split(',');
+
+			//console.log( qids, qids.length );
+
+			sidebar_qids_enabled = qids.every( isQid );
+
+			if ( valid( sidebar_qids_enabled ) ){
+
+				sidebar_qids = qids;
+
+			}
+
+		}
+
+		if ( !valid( sidebar_qids_enabled ) ){
+
+    	sparql_url  = datasources.wikidata.endpoint + '?format=json&query=SELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%22.%20%7D%0A%20%20%3Fitem';
+
+		}
 
   }
   else { // Qid-fetching URL
@@ -108,8 +137,11 @@ async function sparqlQueryCommand( args, view, list ){
 
     // TODO: is an "ORDER BY" useful here?
     //  %20ORDER%20BY%20%3Fitem
-    sparql_url      += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
-    sparql_url_web  += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
+
+		if ( !valid( sidebar_qids_enabled ) ){
+    	sparql_url      += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
+    	sparql_url_web  += sparql_filters.join('') + '%7D%20OFFSET%200%20LIMIT%20' + datasources.wikidata.pagesize;
+		}
 
   }
   else {
@@ -122,14 +154,24 @@ async function sparqlQueryCommand( args, view, list ){
   //console.log( sparql_conditions );
   //console.log( sparql_query );
   //console.log( sparql_strings );
-  console.log( sparql_url );
-  console.log( sparql_url_web );
+
+  //console.log( sparql_url );
+  //console.log( sparql_url_web );
 
   if ( view === 'sidebar' ){ // show wikidata structured-search results
 
     let query_json = '';
 
-    runQuery( '', sparql_url  );
+		if ( !valid( sidebar_qids_enabled ) ){
+
+    	runQuery( '', sparql_url  );
+
+		}
+		else {
+
+			runSidebar( sidebar_qids );
+
+		}
 
   }
   else { // execute query (to fetch a list of Qids), then render the Qids as requested
@@ -169,6 +211,7 @@ async function sparqlQueryCommand( args, view, list ){
 
         });
 
+				console.log( view, list );
         renderShowCommand( view, list );
 
       },  

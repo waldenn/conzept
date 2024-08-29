@@ -14948,6 +14948,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 301,
 },
 
+'bluesky_search' : {
+  create_condition: true,
+  title: 'Bluesky search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://bsky.app/search?q=${title_quoted}',
+  icon: 'oma oma-black-butterfly',
+  text: 'Bluesky',
+  section: 'social',
+  rank: 302,
+},
+
 'linkedin_keywprd_search' : {
   create_condition: true,
   title: 'LinkedIn keyword search',
