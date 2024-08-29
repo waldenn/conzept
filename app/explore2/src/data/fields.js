@@ -5629,10 +5629,10 @@ conzept_fields = {
   text: 'Scholia work',
   section: 'science-search-tools',
   rank: 71,
-  headline_create: 'valid( item.scholia_work )',
-  headline_type: 'link',
-  headline_icon: 'fa-solid fa-graduation-cap',
-  headline_rank: 350,
+  //headline_create: 'valid( item.scholia_work )',
+  //headline_type: 'link',
+  //headline_icon: 'fa-solid fa-graduation-cap',
+  //headline_rank: 350,
 },
 
 'scholia_topic' : {

@@ -9587,9 +9587,14 @@ function setLanguage( language ){
 
 async function afterLanguageUpdate(){
 
+  // TTS settings
   explore.voice_code_selected = explore.voice_code;
   await explore.db.set('voice_code_selected', explore.voice_code );
-  await explore.db.set('voice_name_selected', '' ); // TODO: is it correct to reset the "voice name" here?
+
+  // clear any *user-selected* TTS-voice-name, after a language change
+  // TODO?: store language -> "voice name" associations
+  await explore.db.set('voice_name_selected', '' );
+  $('#voices').prop('selectedIndex', -1)
 
   // HTML page
   $('html').attr('lang', explore.language );
@@ -9597,13 +9602,11 @@ async function afterLanguageUpdate(){
   //TODO: do this via some JS API for ULS
   $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; <span title="' + explore.language_name + '" aria-label="' + explore.language_name + '" role="button">' + getNamefromLangCode2( explore.language ) + '</span>' );
 
+  // structured-query-builder
   updateQueryBuilder();
 
+  // datasources UI
   setupOptionActiveDatasources();
-
-  // update show-live-edits link
-  // TODO: call function (too avoid code duplication)
-  $('li#show-live-edits').html('<a href="https://wikistream.toolforge.org/#namespace=article&wiki=' + explore.language + '.wikipedia" target="infoframe" title="Wikipedia edits liveive" aria-label="Wikipedia edits live" role="button"><i class="fa-solid fa-edit"></i> &nbsp; Wikipedia edits live</a>');
 
 }
 
