@@ -466,13 +466,19 @@ async function runSidebar( list ){
 
   updatePushState( explore.q , 'add' );
 
+  clearGraph();
+
   $('#blink').show();
   $('#pager').hide();
   $('#results-label' ).empty();
-  $('#total-results').empty();
-  $('#scroll-end').hide();
+
   $('#results').empty();
-  clearGraph();
+  $('#total-results').empty();
+  $('#results-paging').hide();
+
+  $('#next' ).css( 'display', 'none' );
+  $('#scroll-end').hide();
+  $('#loader').hide();
 
 	let topicResults = await fetchWikidataQuery();
 
@@ -480,8 +486,10 @@ async function runSidebar( list ){
 
 	renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
-	$('#loader').hide();
+  $('#loader').hide();
   $('.datasource-hits-label').html('');
+  $('#results-paging').hide();
+  $('#blink').hide();
 
 }
 
