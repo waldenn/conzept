@@ -460,7 +460,7 @@ async function runSidebar( list ){
 
 	});
 
-  explore.wikidata_query = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20' + sparql_data + '%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%2Cen%22.%20%7D%0A%7D';
+  explore.wikidata_query = 'https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fitem%20%3FitemLabel%20%3FitemDescription%20WHERE%20%7B%0A%20%20VALUES%20%3Fitem%20%7B%20' + sparql_data + '%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22' + explore.language + '%2Cen%2Ces%2Cfr%2Cpt%2C%2Citde%2Cru%2Cja%2Czh%2Cnl%22.%20%7D%0A%7D';
 
 	//console.log( explore.wikidata_query );
 

@@ -3127,7 +3127,7 @@ async function highlightLISP(){
 
 }
 
-async function runLISP( code ) {
+async function runLISP( code ){
 
   "use strict";
 

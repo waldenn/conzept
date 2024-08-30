@@ -13209,49 +13209,14 @@ async function aiSearch( prompt ){
 
 		if ( valid( reply?.choices[0] ) ){
 
-			let topics = reply.choices[0].message.content.split(';');
+			let topics          = reply.choices[0].message.content.split(';');
+      let title_only_list = [];
 
 			if ( topics.length > 0 ){
 
 				topics = topics.map( item => item.trim() );
 
     		//console.log('topics: ', topics );
-
-				/*
-				topics.forEach(( title, index ) => {
-
-					title = title.trim();
-
-					const args = {
-						id            : 'n' + index,
-						language      : explore.language,
-						qid           : '',
-						pid           : '',
-						thumbnail     : '',
-						title         : title,
-						snippet       : '',
-						extra_classes : 'ai-entry',
-						item          : '',
-						source        : 'raw',
-					}
-
-					// set non-wikidata fields
-					let item_raw    = { qid : '' };
-					setWikidata( item_raw, [ ], true, 'p1' );
-					item_raw.title  = title;
-					item_raw.tags[0]= 'raw-query-string';
-
-					args.item = item_raw;
-
-					const raw_entry = createItemHtml( args );
-
-					if ( explore.page === 1 && explore.searchmode === 'string' ){
-						$('#results').append( raw_entry );
-					}
-
-      
-				});
-				*/
 
 				getWikidataQIDs( topics ).then( obj => {
 
@@ -13263,20 +13228,61 @@ async function aiSearch( prompt ){
 
 						const qid = obj[title];
 
-						if ( valid( obj[title] ) ){
+						if ( valid( qid ) ){ // title with Qid
 
 							 qids.push( qid );
 
 						}
+            else { // title-only
+
+              title_only_list.push( title );
+
+            }
 
 					});
 
-					//const command = "(show 'sidebar ( query ( '( Q1 Q2 ) ) ) )";
 					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
 
-					console.log( command );
+					//console.log( command );
 
 					runLISP( command );
+
+          console.log( 'TODO: implement append title-only topics: ', title_only_list, title_only_list.length, 'qid topics: ', Object.keys( obj ).length, 'total: ', title_only_list.length + Object.keys( obj ).length );
+
+          /*
+          title_only_list.forEach(( title, index ) => {
+
+            title = title.trim();
+
+            const args = {
+              id            : 'n' + index,
+              language      : explore.language,
+              qid           : '',
+              pid           : '',
+              thumbnail     : '',
+              title         : title,
+              snippet       : '',
+              extra_classes : 'ai-entry',
+              item          : '',
+              source        : 'raw',
+            }
+
+            // set non-wikidata fields
+            let item_raw    = { qid : '' };
+            setWikidata( item_raw, [ ], true, 'p1' );
+            item_raw.title  = title;
+            item_raw.tags[0]= 'raw-query-string';
+
+            args.item = item_raw;
+
+            const raw_entry = createItemHtml( args );
+
+            if ( explore.page === 1 && explore.searchmode === 'string' ){
+              $('#results').append( raw_entry );
+            }
+
+          });
+          */
 
 				});
   
