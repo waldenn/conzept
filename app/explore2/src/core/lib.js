@@ -6218,8 +6218,6 @@ async function insertMultiValues( args ){
         }
         else { // render a topic-list of Qid's 
 
-          //console.log('qid topics');
-
           // TODO: if there are more than 50 labels, split the resolving up into batches.
           insertQidTopics( args, args.list );
 
@@ -13242,11 +13240,6 @@ async function aiSearch( prompt ){
 					});
 
 					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
-
-					//console.log( command );
-          console.log( 'Qid topics: ', qids.length );
-          console.log( 'Title-only topics: ', title_only_list, title_only_list.length );
-          console.log( 'Total topics: ', qids.length + title_only_list.length  );
 
           explore.title_only_list = title_only_list; // data 'hack' to allow rendering these topics after runLISP()
 
