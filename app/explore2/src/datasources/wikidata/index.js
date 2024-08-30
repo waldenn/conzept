@@ -486,6 +486,50 @@ async function runSidebar( list ){
 
 	renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
+  // also check if we can add non-qid topics
+  if ( valid( explore.title_only_list ) ){
+
+    if ( explore.title_only_list.length > 0 ){
+
+      explore.title_only_list.forEach(( title, index ) => {
+
+        title = title.trim();
+
+        const args = {
+          id            : 'n-raw-' + index,
+          language      : explore.language,
+          qid           : '',
+          pid           : '',
+          thumbnail     : '',
+          title         : title,
+          snippet       : '',
+          extra_classes : 'ai-raw-entry',
+          item          : '',
+          source        : 'raw',
+        }
+
+        // set non-wikidata fields
+        let item_raw    = { qid : '' };
+        setWikidata( item_raw, [ ], true, 'p1' );
+        item_raw.title  = title;
+        item_raw.tags[0]= 'raw-query-string';
+
+        args.item = item_raw;
+
+        const raw_entry = createItemHtml( args );
+
+        if ( explore.page === 1 && explore.searchmode === 'string' ){
+          $('#results').append( raw_entry );
+        }
+
+      });
+
+    }
+
+  }
+
+  explore.title_only_list = '';
+
   $('#loader').hide();
   $('.datasource-hits-label').html('');
   $('#results-paging').hide();

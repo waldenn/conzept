@@ -13244,53 +13244,20 @@ async function aiSearch( prompt ){
 					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
 
 					//console.log( command );
+          console.log( 'Qid topics: ', qids.length );
+          console.log( 'Title-only topics: ', title_only_list, title_only_list.length );
+          console.log( 'Total topics: ', qids.length + title_only_list.length  );
 
+          explore.title_only_list = title_only_list; // data 'hack' to allow rendering these topics after runLISP()
+
+          // display the results in the sidebar
 					runLISP( command );
-
-          console.log( 'TODO: implement append title-only topics: ', title_only_list, title_only_list.length, 'qid topics: ', Object.keys( obj ).length, 'total: ', title_only_list.length + Object.keys( obj ).length );
-
-          /*
-          title_only_list.forEach(( title, index ) => {
-
-            title = title.trim();
-
-            const args = {
-              id            : 'n' + index,
-              language      : explore.language,
-              qid           : '',
-              pid           : '',
-              thumbnail     : '',
-              title         : title,
-              snippet       : '',
-              extra_classes : 'ai-entry',
-              item          : '',
-              source        : 'raw',
-            }
-
-            // set non-wikidata fields
-            let item_raw    = { qid : '' };
-            setWikidata( item_raw, [ ], true, 'p1' );
-            item_raw.title  = title;
-            item_raw.tags[0]= 'raw-query-string';
-
-            args.item = item_raw;
-
-            const raw_entry = createItemHtml( args );
-
-            if ( explore.page === 1 && explore.searchmode === 'string' ){
-              $('#results').append( raw_entry );
-            }
-
-          });
-          */
 
 				});
   
 			}
 
 		}
-
-    // display the results in the sidebar
 
   }
   catch (error) {
