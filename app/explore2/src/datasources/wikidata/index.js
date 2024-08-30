@@ -482,7 +482,19 @@ async function runSidebar( list ){
 
 	let topicResults = await fetchWikidataQuery();
 
-	topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
+  let raw_topics_count = 0;
+
+  if ( valid( explore.title_only_list ) ){
+
+    if ( explore.title_only_list.length > 0 ){
+
+      raw_topics_count = explore.title_only_list.length;
+
+    }
+
+  }
+
+	topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords + raw_topics_count;
 
 	renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
@@ -518,9 +530,7 @@ async function runSidebar( list ){
 
         const raw_entry = createItemHtml( args );
 
-        if ( explore.page === 1 && explore.searchmode === 'string' ){
-          $('#results').append( raw_entry );
-        }
+        $('#results').append( raw_entry );
 
       });
 
@@ -528,7 +538,7 @@ async function runSidebar( list ){
 
   }
 
-  explore.title_only_list = '';
+  explore.title_only_list = ''; // clear
 
   $('#loader').hide();
   $('.datasource-hits-label').html('');
