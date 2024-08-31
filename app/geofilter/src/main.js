@@ -208,7 +208,7 @@ function clickEvent( e ){
     //console.log( e.pickingObject.geometry.__id );
     const id = e.pickingObject.geometry.__id;
 
-    country       = window.countries[ id ].properties.postal;
+    country       = window.countries[ id ].properties.iso_a2;
     country_name  = window.countries[ id ].properties.name;
 
     //globe.planet.flyExtent( e.pickingObject.geometry.getExtent() );
@@ -322,7 +322,7 @@ function showTopics( loc, country, country_name ){
 
 function addCountryLayer() {
 
-  fetch("/app/explore2/assets/geojson/countries.json")
+  fetch("/app/explore2/assets/geojson/countries.json?v001")
 
     .then(r => {
 

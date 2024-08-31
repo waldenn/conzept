@@ -13180,8 +13180,6 @@ async function aiSearch( prompt ){
         geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
       }
 
-      console.log( 'iso: ', geofilter_country, 'name: ', getCountryNameFromISO( geofilter_country ) );
-
       geofilter_country_prompt = ` Limit the results to the country of ${ getCountryNameFromISO( geofilter_country ) }. `;
 
     }
@@ -13251,8 +13249,8 @@ async function aiSearch( prompt ){
 			if ( topics.length > 0 ){
 
         // set active datasource-set
-        explore.datasource_set            = 'references';
-        explore.datasource_set_selection  = 'references';
+        explore.datasource_set            = 'reference';
+        explore.datasource_set_selection  = 'reference';
 
         setParameter( 'd', '', explore.hash );
         setParameter( 'ds', explore.datasource_set, explore.hash );
