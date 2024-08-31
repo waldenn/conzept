@@ -1,19 +1,3 @@
-====== roadmap ======
-
-===== general =====
-
-  * Fix the items mentioned in **[[issues|issues]]**.
-
-  * **[[architecture|Architectural]] vision**
-    * Optimize the system for the user, to be: **accessible, in control, creative and fun.**
-    * Work towards creating more **data-defined software... do more with less code.** This makes the software more 'malleable' and open-ended, for various contexts: [[datasources]], [[field_customization|fields]] (apps and websites), languages, custom functions (text-to-speech, bookmarking, etc.).
-    * Improve and maintain **conceptual integrity** of how the various Conzept framework pieces fit together: [[datasources]], [[field customization|fields]], [[URL structure]], central configuration of common data across apps, easy intercommunication between apps, recursive Conzept views, 5D views (3D location + 1D time + 1D data-view).
-
-  * Get more **engagement and feedback** from users and software developers.
-    * What should and could be improved for them in the knowledge exploration and learning process?
-
-===== AI =====
-
 ==== frontend AI ====
 
 [{{::llm_000.jpg?direct|LLM reasoning over multiple topics (bookmark titles) (using OpenAI) }}]
@@ -27,11 +11,12 @@
 [{{::neuro_symbolic_ai_003.jpg?direct|Neuro-symbolic AI approach [[https://www.youtube.com/watch?v=4PuuziOgSU4|source]] }}]
 
   * Main frontend AI goals:
+    * [[https://conze.pt/explore/Retrieval-augmented%20generation?l=en&ds=reference|Retrieval-augmented generation]] (implemented, see [[https://conze.pt/explore/!show%20highest%20monuments%20in%20Southern%20Europe?l=en&ds=reference|example query]] - requires setting your OpenAI key)
     * Topical expositions
     * Topical question-answering
     * Topical quizzing & examination
     * Content summarization and Q&A of larger texts (including PDFs)
-    * Bookmark-selection 'reasoning' (over one or more topics)
+    * Bookmark-selection 'reasoning' over one or more topics (implemented, more to do)
     * Presentation augmentation (combined with TTS)
     * LLM-using application parametrization/generation, which can use over one or more bookmark topics. (artifict creation)
 
@@ -97,139 +82,4 @@ See also the "structured LLM prompt" screenshot on the right, for an experiment 
     * "[[https://huggingface.co/blog/apehex/tokenization-is-a-dead-weight|Tokenization Is A Dead Weight]]"
     * "[[https://situational-awareness.ai/from-gpt-4-to-agi/|Situational Awareness: The decade Ahead]]"
     * "[[https://ia801205.us.archive.org/11/items/the-creative-act-a-way-of-being-by-rick-rubin/The%20Creative%20Act_%20A%20Way%20of%20Being%20by%20Rick%20Rubin.pdf|The Creative Act: A Way of Being]]"
-
-==== backend AI ====
-
-LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesense**. (see below)
-
-===== search =====
-
-==== backend search ====
-
-[{{::typesense_logo.jpg?direct|[[https://typesense.org|Typesense]] logo}}]
-
-[{{::typesense_features.jpg?direct|[[https://typesense.org/docs/overview/features.html|Typesense features]]}}]
-
-  * **Allow admins to create custom API-endpoints, for use as datasources** (from JSON or CSV). (work in progress)
-    * [[https://typesense.org|Typesense]] (C++ based search-engine backend with LLM/Vector search support)
-      * [[https://github.com/typesense|repo]]
-      * [[https://typesense.org/docs/|docs]] ([[https://typesense.org/docs/26.0/api/|API spec]])
-
-    * Allow both for (quoted) **keyword / phrase** queries and **[[https://typesense.org/docs/26.0/api/vector-search.html|vector]]-based** queries (using a self-hosted LLM model).
-
-    * Conzept integration milestones:
-      - Experiment with Typesense data import and search.
-      - Design the Conzept data-workflow (data files, insert/update/index scripts), for multiple self-hosted datasources.
-      - Add the Typesense-server + setup steps to the Conzept Docker install.
-      - Create an IPTV datasource using the Typesense-server as an example.
-
-  * Open questions:
-    * Search-facets become possible for these Typesense-backed datasources (since we can view all results at once and extract the facets). Would it be a good idea to enable support for this when such a datasource is queried (and only that datasource)?
-
-==== frontend search ====
-
-  * Enhance temporal-range input (date-min, date-max) with an optional, **interactive date-range slider**.
-
-  * Research feasability to **allow datasource searches without a search-term**, but with one or more search filters.
-
-  * Research if it would be possible to **dynamically add datasource-specific filter-types** (only when a single datasource is active!).
-    * This would allow for more fine-grained search type-filters, finetuned to a particular datasource.
-    * Eg. for library/book datasources: Author, Title, Publisher, Genre, Topic, Resource-location, ISBN/Some-ID, Availability, Legal-rights, ...
-
-  * Consider adding **multi-select for datasource sets**.
-
-  * Consider adding a **new global filter: "people"** (which is quite common, and more specific than "entities").
-
-  * **Structured search** using SPARQL (beyond Wikidata)
-    * Ontology classes
-    * Ontology properties
-    * Autocompletion
-    * Multi-lingual labels
-    * Handle CORS issues
-
-  * Improve existing search modalities:
-    * ? Wikidata: Allow for filtering by raw-text-strings in "structured search" (currently not supported in the Wikidata-query-builder)
-    * Wikidata: Add **claim-support** to the Wikidata-data fetching (and support for claim-data in the field-definitions).
-
-  * **Speech-based search input**
-    * How to allow for multi-line text input?
-    * How to combine speech-input with search commands?
-
-  * **[[user_manual#search_commands|Search commands]]**
-    * Currently this is used a little for AI-chat and simple mathematical graph plotting.
-    * How could we combine this with multi-modal, client-side AI?
-    * What other search-commands are needed?
-
-  * **Improve existing datasources** (use more datasource meta-data, better content views, remove "BETA" label, etc.)
-
-  * Implement **async data-enriching in datasources** (work in progress)
-    * This would eg. allow 3rd-party datasources with a Wikidata Qid (or some other related ID with metadata) in their results, to be enriched.
-
-  * Implement **json-proxy support for HTTP header Authorization** (using the key from settings.conf)
-    * To check: That the used header (on the frontend) is working for eg. "CourtListener"
-
-  * **Independent active/autocomplete/search toggles per datasource**. Eg. to allow for searching Wikipedia concepts in other datasources). More control over how datasources are used, with toggle-switches for:
-    * datasource is active (boolean toggle)
-      * datasource autocomplete (boolean toggle)
-      * datasource searching (boolean toggle)
-
-===== presentation system =====
-
-  * Allow for **presentation to be build from Conzept fields**
-    * design reuirements: auto-positioning slides, handle the common start/end slides sets, ...
-
-  * Allow for extra Text-to-Speech (TTS) storylines around a topic (beyond Wikipedia and Wikidata information). 
-    * Related books, science articles (partly done), AI-generated summaries and other content, AI explain text selection, ...? 
-
-  * Allow for **bookmarking presentations**
-
-===== browser extension =====
-
-  * **Re-implement the Conzept extension** with [[https://developer.chrome.com/docs/extensions/mv3/intro/|Manifest v3]] support (MV3). This is a requirement for the Chrome extension store.
-    * Maybe look into using the [[https://github.com/PlasmoHQ/plasmo|Plasmo]] browser extension framework.
-    * Goal: Provide a right-click menu-option to search on Conzept (make it work in embedded iframes and perhaps PDFs too, if possible)
-
-===== bookmarks =====
-
-  * **Bookmarking**:
-    * Cross-tab bookmark state-syncing
-    * Allow for bookmarking presentations
-    * Bookmark edit mode -> then click on bookmark -> display bookmark edit modal -> save button
-    * Better generic data support, based on the "item data object"
-    * Add more input-formats:
-      * images (experimental support)
-      * drawings (using tldraw or excalidraw)
-      * speech-to-text transcript ([[https://github.com/LittlePath/live-transcript|webcomponent]])
-      * audio ([[https://github.com/LittlePath/audio-recorder|webcomponent]])
-      * video ([[https://github.com/LittlePath/video-recorder|webcomponent]])
-      * longer notes
-      * ? PDF
-    * Research better drag-and-drop support
-
-===== admin-dev workflows =====
-
-  * Improve the workflow for adding [[datasources]].
-    * There are some minor manual issues, when adding new datasources which can be automated/scripted away.
-    * The "datasources.js" function-calls can be cleanup in a few places.
-
-  * **Field-translation support**: Create a structure to store field-label translations (title and icon-title), both for Wikidata and non-Wikidata fields.
-    * Allow the [[adding_new_wikidata_properties|json2fields]] script to fetch and store property translations too.
-
-  * Add a **test-framework** -> start adding tests for the most essential / complex code parts
-
-  * How to detect if the field URL could be embedded (instead of opening a a new tab)? (run a headless browser loading an iframe with the URL, checking for CORS-errors?)
-
-===== performance =====
-
-  * Add **webworker-support** and move (more and more) non-UI functionality to these workers.
-    * Research: What would be a good incremental approach (and framework) for adding this?
-
-===== educational-support  =====
-
-  * **Collaborative & social learning** features:
-    * shared audio and chat (eg. [[https://github.com/lyricat/mornin.fm|p2p audio-chat]] and [[https://www.hyperhyperspace.org/|text-chat]] rooms for each topic)
-  * **Quizzing**: Auto-generated, [[https://fs.blog/spacing-effect/|spaced-repetition]]-based facts learning (for a certain topic / set of topics / topic-domain)
-  * **Experiencing / Simulating**: eg. play Chess positions (done), ...
-  * ? Note-taking integration  (eg.: [[https://bangle.io/|Bangle]], ...)
-  * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
 

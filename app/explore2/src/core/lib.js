@@ -13154,7 +13154,14 @@ async function aiSearch( prompt ){
 
     if ( !explore.openai_enabled ){
 
-      console.log('no OpenAI key found');
+      $.toast({
+        heading: 'Please set your OpenAI API key',
+        text: 'Go to the "settings" tab, and set your OpenAI key.',
+        hideAfter : 10000,
+        stack : 1,
+        showHideTransition: 'slide',
+        icon: 'error'
+      })
 
       throw new Error( 'no OpenAI key found' );
 
@@ -13167,21 +13174,19 @@ async function aiSearch( prompt ){
     const requestBody = {
 
       model: 'gpt-4o-mini',
+
 			messages: [
-				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments.` },
-				{ role: 'user', content: prompt }
+
+				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments. Try to output at least ten results, unless the user requested a specific number of results, or if there are no more results than the ones found for this query.` },
+
+				{ role: 'user', content: prompt },
+
 			],
-      max_tokens: 500,
+
+      max_tokens: 1000,
       temperature: 0.1,
 			stream: false,
-			//object: "chat.completion",
-			/*
-			"usage": {
-				"completion_tokens": 17,
-				"prompt_tokens": 57,
-				"total_tokens": 74
-			}
-			*/
+
     };
 
     const response = await fetch( apiUrl, {
@@ -13207,18 +13212,33 @@ async function aiSearch( prompt ){
 
 		if ( valid( reply?.choices[0] ) ){
 
+      // extract topic titles
 			let topics          = reply.choices[0].message.content.split(';');
+      topics              = [...new Set( topics )]; // make unique
+
       let title_only_list = [];
 
 			if ( topics.length > 0 ){
 
+        // set active datasource-set
+        explore.datasource_set            = 'references';
+        explore.datasource_set_selection  = 'references';
+
+        setParameter( 'd', '', explore.hash );
+        setParameter( 'ds', explore.datasource_set, explore.hash );
+
+        setActiveDatasourceSet();
+        updateActiveDatasources( explore.datasource_selection.split(',').map( d => d.trim() ) );
+
 				topics = topics.map( item => item.trim() );
 
-    		//console.log('topics: ', topics );
+    		console.log('topics: ', topics );
 
 				getWikidataQIDs( topics ).then( obj => {
 
 					let qids = [];
+
+          console.log( 'topic qids: ', object );
 
 					// fetch Wikidata-data for each topic with a Qid
 
@@ -13239,6 +13259,8 @@ async function aiSearch( prompt ){
 
 					});
 
+          qids = [...new Set( qids )]; // make unique
+
 					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
 
           explore.title_only_list = title_only_list; // data 'hack' to allow rendering these topics after runLISP()
@@ -13249,6 +13271,21 @@ async function aiSearch( prompt ){
 				});
   
 			}
+      else {
+
+          $.toast({
+            heading: 'no AI results found',
+            text: 'try rephrasing your "!show" command',
+            hideAfter : 5000,
+            stack : 1,
+            showHideTransition: 'slide',
+            icon: 'warning'
+          })
+
+          $('#blink').hide();
+
+
+      }
 
 		}
 
