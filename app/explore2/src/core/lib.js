@@ -13167,6 +13167,34 @@ async function aiSearch( prompt ){
 
     }
 
+    let geofilter_country_prompt  = '';
+
+    if ( valid( explore.geofilter ) ){
+
+      let geofilter_country = '';
+
+      if ( valid( explore.geofilter.split(';')[3] ) ){
+        geofilter_country = explore.geofilter.split(';')[3];
+      }
+      else {
+        geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
+      }
+
+      geofilter_country_prompt = ` When suitable for the query, also limit the results to the country of ${geofilter_country}. `;
+
+    }
+
+    let date_range_prompt  = '';
+
+    if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
+
+      datemin = new Date( explore.datemin ).toISOString();
+      datemax = new Date( explore.datemax ).toISOString();
+
+      date_range_prompt = ` When suitable for the query, also limit the results to the time between ${datemin.split("T")[0]} and ${datemax.split("T")[0]}. `;
+
+    }
+
     const apiKey = explore.api_key_openai;
 
     const apiUrl = 'https://api.openai.com/v1/chat/completions'; // 'https://api.openai.com/v1/structured-output';
@@ -13177,7 +13205,7 @@ async function aiSearch( prompt ){
 
 			messages: [
 
-				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments. Try to output at least ten results, unless the user requested a specific number of results, or if there are no more results than the ones found for this query.` },
+				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments. Try to output at least ${explore.batchsize} results, unless the user requested a specific number of results, or if there are no more results than the ones found for this query.${geofilter_country_prompt}${date_range_prompt}` },
 
 				{ role: 'user', content: prompt },
 
@@ -13238,7 +13266,7 @@ async function aiSearch( prompt ){
 
 					let qids = [];
 
-          console.log( 'topic qids: ', object );
+          console.log( 'topic qids: ', obj );
 
 					// fetch Wikidata-data for each topic with a Qid
 
