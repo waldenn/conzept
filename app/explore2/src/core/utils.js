@@ -2504,6 +2504,8 @@ function getCountryFromLatLon( lat, lon ){
 
 function getCountryNameFromISO( iso ){
 
+  iso = iso.toUpperCase();
+
   let ret = '';
 
   if ( valid( iso ) ){

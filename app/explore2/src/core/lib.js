@@ -13180,7 +13180,7 @@ async function aiSearch( prompt ){
         geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
       }
 
-      geofilter_country_prompt = ` When suitable for the query, also limit the results to the country of ${geofilter_country}. `;
+      geofilter_country_prompt = ` When suitable for the query, also limit the results to the country of ${ getCountryNameFromISO( geofilter_country ) }. `;
 
     }
 
