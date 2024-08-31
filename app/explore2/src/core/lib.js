@@ -13190,8 +13190,8 @@ async function aiSearch( prompt ){
 
     if ( valid( [ explore.datemin, explore.datemax ] ) ){ // date-range request
 
-      datemin = new Date( explore.datemin ).toISOString();
-      datemax = new Date( explore.datemax ).toISOString();
+      let datemin = new Date( explore.datemin ).toISOString();
+      let datemax = new Date( explore.datemax ).toISOString();
 
       date_range_prompt = ` Limit the results to the time between ${datemin.split("T")[0]} and ${datemax.split("T")[0]}. `;
 
