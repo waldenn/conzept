@@ -13156,7 +13156,7 @@ async function aiSearch( prompt ){
 
       $.toast({
         heading: 'Please set your OpenAI API key',
-        text: 'Go to the "settings" tab, and set your OpenAI key.',
+        text: 'Go to the "settings" tab --> "API keys", then set your OpenAI key.',
         hideAfter : 10000,
         stack : 1,
         showHideTransition: 'slide',
@@ -13180,7 +13180,9 @@ async function aiSearch( prompt ){
         geofilter_country = getCountryFromLatLon( geofilter_lat, geofilter_lon );
       }
 
-      geofilter_country_prompt = ` When suitable for the query, also limit the results to the country of ${ getCountryNameFromISO( geofilter_country ) }. `;
+      console.log( 'iso: ', geofilter_country, 'name: ', getCountryNameFromISO( geofilter_country ) );
+
+      geofilter_country_prompt = ` Limit the results to the country of ${ getCountryNameFromISO( geofilter_country ) }. `;
 
     }
 
@@ -13191,7 +13193,7 @@ async function aiSearch( prompt ){
       datemin = new Date( explore.datemin ).toISOString();
       datemax = new Date( explore.datemax ).toISOString();
 
-      date_range_prompt = ` When suitable for the query, also limit the results to the time between ${datemin.split("T")[0]} and ${datemax.split("T")[0]}. `;
+      date_range_prompt = ` Limit the results to the time between ${datemin.split("T")[0]} and ${datemax.split("T")[0]}. `;
 
     }
 
