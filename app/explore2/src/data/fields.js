@@ -7636,7 +7636,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'link-split',
   mv: false,
   url: '${explore.base}/app/query/embed.html?l=${explore.language}#SELECT%20DISTINCT%20%3Flanguage%20%3FlanguageLabel%20(SUM(%3Fpopulation)%20as%20%3Fsum_pop)%0AWHERE%20%0A%7B%0A%20%20%3Fitem%20wdt%3AP37%20%3Flanguage%20.%0A%20%20%3Fitem%20wdt%3AP1082%20%3Fpopulation%20.%20%0A%20%20%3Fitem%20wdt%3AP31%20wd%3AQ3624078%20.%20%0A%20%20%3Fitem%20wdt%3AP361*%20wd%3A${item.qid}%20.%20%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22${explore.language}%2Cen%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Flanguage%20%3FlanguageLabel%0A%23defaultView%3ABubbleChart%0A%23meta%3Acontinent%20languages%20sized%20by%20population',
-  icon: 'fa-solid fa-cubes-stacked',
+  icon: 'fa-solid fa-square-poll-vertical',
   text: 'lang. sizes',
   section: ['science-language','main'],
   rank: [10,7115],
@@ -18321,7 +18321,6 @@ if ( valid( item.found_in_taxon ) ){
   mv: false,
   url: 'https://ror.org/${item.ror_id}',
   icon: 'fa-brands fa-letterboxd',
-  //icon: 'fa-solid fa-cubes-stacked',
   text: 'ROR',
   section: ['library-identity', 'business', 'main'],
   rank: [26782, 55, 2010 ],
@@ -19884,7 +19883,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
   title: 'AI chat with tutor',
   prop: '',
   type: 'link-split',
@@ -20093,6 +20092,46 @@ if ( valid( item.found_in_taxon ) ){
   headline_icon: 'fa-solid fa-rainbow',
   headline_url: '${ getSimilarSparqlURL( item ) }',
   headline_rank: 650,
+},
+
+'super_topics_ai_headline' : {
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource )',
+  title: '',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: 'valid( explore.openai_enabled)', // '( checkTag( item, 0, ["time", "location", "person", "group", "organization", "work", "natural-concept", "cultural-concept", "meta-concept"] ) ) && valid( explore.openai_enabled) )',
+  headline_type: 'code',
+  headline_code: 'aiSearch( &quot;Show the most relevant general topics related to ${ encodeURIComponent( item.title ) }&quot;)',
+  headline_title: 'more general topics related to this topic (AI)',
+  headline_icon: 'fa-solid fa-shapes',
+  //headline_icon: 'fa-solid fa-cubes-stacked',
+  headline_rank: 651.1,
+},
+
+'subtopics_ai_headline' : {
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource )',
+  title: '',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: 'valid( explore.openai_enabled)', // '( checkTag( item, 0, ["time", "location", "person", "group", "organization", "work", "natural-concept", "cultural-concept", "meta-concept"] ) ) && valid( explore.openai_enabled) )',
+  headline_type: 'code',
+  headline_code: 'aiSearch( &quot;Show the most relevant subtopics related to ${ encodeURIComponent( item.title ) }&quot;)',
+  headline_title: 'more specific topics related to this topic (AI)',
+  headline_icon: 'fa-solid fa-shapes fa-rotate-180',
+  //headline_icon: 'fa-solid fa-cubes-stacked',
+  headline_rank: 651.2,
 },
 
 'similar_inline' : {
