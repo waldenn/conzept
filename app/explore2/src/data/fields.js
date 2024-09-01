@@ -19883,7 +19883,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
   title: 'AI chat with tutor',
   prop: '',
   type: 'link-split',
@@ -20107,7 +20107,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
   headline_create: 'valid( explore.openai_enabled)',
   headline_type: 'code',
-  headline_code: 'aiSearch( &quot;broader topics directly related to %22${ encodeURIComponent( item.title ) }%22${ valid( lowestTag( item ) )? "(" + lowestTag( item ) + ")" : "" }&quot;)',
+  headline_code: 'aiSearch( &quot;broader topics directly related to %22${ encodeURIComponent( item.title ) }%22${ valid( lowestTag( item ) )? " (" + lowestTag( item ).replaceAll("-", " ") + ")" : "" }&quot;)',
   headline_title: 'broader topics directly related to this topic (AI)',
   headline_icon: 'fa-solid fa-shapes',
   headline_rank: 651.1,
@@ -20126,7 +20126,7 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
   headline_create: 'valid( explore.openai_enabled)',
   headline_type: 'code',
-  headline_code: 'aiSearch( &quot;relevant subtopics directly related to %22${ encodeURIComponent( item.title )%22}${ valid( lowestTag( item ) )? "(" + lowestTag( item ) + ")" : "" }&quot;)',
+  headline_code: 'aiSearch( &quot;relevant subtopics directly related to %22${ encodeURIComponent( item.title )}%22${ valid( lowestTag( item ) )? " (" + lowestTag( item ).replaceAll("-", " ") + ")" : "" }&quot;)',
   headline_title: 'subtopics related to this topic (AI)',
   headline_icon: 'fa-solid fa-shapes fa-flip-vertical',
   headline_rank: 651.2,
