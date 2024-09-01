@@ -5921,7 +5921,7 @@ function addRawTopicCard( title ){
   let item_raw    = { qid : '' };
   setWikidata( item_raw, [ ], true, 'p1' );
   item_raw.title  = title;
-  item_raw.tags[0]= 'raw-query-string';
+  item_raw.tags[0]= 'raw';
 
   args.item = item_raw;
 
@@ -6902,7 +6902,7 @@ async function renderTopics( inputs ){
   let item_raw      = { qid : '' };
   setWikidata( item_raw, [ ], true, 'p1' );
   item_raw.title    = title;
- 	item_raw.tags[0]  = 'raw-query-string';
+ 	item_raw.tags[0]  = 'raw';
 
 	if ( args.id === 'n00' ){
 
@@ -13147,7 +13147,10 @@ function cy_node_def( id, label, content, parent_node, rp ){
 
 async function aiSearch( prompt ){
 
+
   try {
+
+    $('#blink').show();
 
 		// TODO: why is this needed here again?
     explore.api_key_openai = await explore.db.get('api_key_openai');
@@ -13166,6 +13169,10 @@ async function aiSearch( prompt ){
       throw new Error( 'no OpenAI key found' );
 
     }
+
+    // update search-input
+    $('#srsearch').val('!show ' + decodeURIComponent( prompt ) );
+    explore.q = getSearchValue();
 
     let geofilter_country_prompt  = '';
 

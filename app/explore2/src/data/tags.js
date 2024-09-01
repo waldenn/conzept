@@ -2,8 +2,8 @@ var conzept_tags = {
 
 // raw-query-string topic
 
-  "raw-query-string" : {
-    text : "raw-query-string",
+  "raw" : {
+    text : "raw",
     icon : [],
     //icon : ["fa-solid fa-pen"],
     sub : {

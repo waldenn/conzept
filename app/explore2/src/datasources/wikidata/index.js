@@ -521,10 +521,16 @@ async function runSidebar( list ){
         }
 
         // set non-wikidata fields
-        let item_raw    = { qid : '' };
+        let item_raw    = {
+          qid :         '',
+          display_url:  `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=professor&autospeak=${explore.autospeak}`,
+          type:         'link-split',
+        };
+
         setWikidata( item_raw, [ ], true, 'p1' );
+
         item_raw.title  = title;
-        item_raw.tags[0]= 'raw-query-string';
+        item_raw.tags[0]= 'raw';
 
         args.item = item_raw;
 

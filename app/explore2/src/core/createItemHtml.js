@@ -24,7 +24,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   //console.log( 'datasources: ', datasources, source );
 
   if ( source === 'raw' ){
-    source_icon = `<span class="article-title-icon" title="plain string topic"><span class="icon"><i class="fa-solid fa-pen"></i></span></span>`;
+    source_icon = `<span class="article-title-icon" title="plain string topic"><span class="icon"><i class="fa-solid fa-circle-notch"></i></span></span>`;
   }
   else {
 
@@ -997,6 +997,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   //console.log( 'args: ', args );
 
+  // FIXME: remove this?
   if ( args.id == 'n00' ){ // raw-search-string
 
     topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title_.replace(/:/g, ': ') ) + '</a>';

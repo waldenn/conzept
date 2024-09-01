@@ -20076,7 +20076,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'similar_headline' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || checkTag( item, 0, "raw")',
   title: '',
   prop: '',
   type: 'link',
@@ -20095,7 +20095,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'super_topics_ai_headline' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource )',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || checkTag( item, 0, "raw")',
   title: '',
   prop: '',
   type: 'link',
@@ -20107,8 +20107,8 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
   headline_create: 'valid( explore.openai_enabled)', // '( checkTag( item, 0, ["time", "location", "person", "group", "organization", "work", "natural-concept", "cultural-concept", "meta-concept"] ) ) && valid( explore.openai_enabled) )',
   headline_type: 'code',
-  headline_code: 'aiSearch( &quot;Show the most relevant general topics related to ${ encodeURIComponent( item.title ) }&quot;)',
-  headline_title: 'more general topics related to this topic (AI)',
+  headline_code: 'aiSearch( &quot;broader topics directly related to ${ encodeURIComponent( item.title ) }&quot;)',
+  headline_title: 'broader topics directly related to this topic (AI)',
   headline_icon: 'fa-solid fa-shapes',
   //headline_icon: 'fa-solid fa-cubes-stacked',
   headline_rank: 651.1,
@@ -20127,9 +20127,9 @@ if ( valid( item.found_in_taxon ) ){
   rank: 1,
   headline_create: 'valid( explore.openai_enabled)', // '( checkTag( item, 0, ["time", "location", "person", "group", "organization", "work", "natural-concept", "cultural-concept", "meta-concept"] ) ) && valid( explore.openai_enabled) )',
   headline_type: 'code',
-  headline_code: 'aiSearch( &quot;Show the most relevant subtopics related to ${ encodeURIComponent( item.title ) }&quot;)',
-  headline_title: 'more specific topics related to this topic (AI)',
-  headline_icon: 'fa-solid fa-shapes fa-rotate-180',
+  headline_code: 'aiSearch( &quot;relevant subtopics directly related to ${ encodeURIComponent( item.title ) }&quot;)',
+  headline_title: 'subtopics related to this topic (AI)',
+  headline_icon: 'fa-solid fa-shapes fa-rotate-vertical',
   //headline_icon: 'fa-solid fa-cubes-stacked',
   headline_rank: 651.2,
 },
