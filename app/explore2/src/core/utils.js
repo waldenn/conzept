@@ -73,6 +73,29 @@ function checkTag( item, level, name ){
 
 }
 
+function lowestTag( item ){
+
+  let r = ''; // default
+
+  if ( validAny( item.tags ) ){
+
+    if ( valid( item.tags[1] ) ){
+
+      r = item.tags[1];
+
+    }
+    else if ( valid( item.tags[0] ) ){
+
+      r = item.tags[0];
+
+    }
+
+  }
+
+  return r;
+
+}
+
 function activeOnDatasources( list, datasource ){
 
   let r = false; // default

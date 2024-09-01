@@ -518,6 +518,7 @@ async function runSidebar( list ){
           extra_classes : 'ai-raw-entry',
           item          : '',
           source        : 'raw',
+          type          : valid( explore.openai_enabled )? 'link-split' : 'link',
         }
 
         // set non-wikidata fields
