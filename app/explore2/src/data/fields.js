@@ -7781,6 +7781,19 @@ if ( valid( item.found_in_taxon ) ){
 //  Avesta:
 //    http://www.avesta.org
 
+'kerala_digital_archive' : {
+  create_condition: 'checkLC( "ml" )',
+  title: 'Kerala Digital Archive',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://gpura.org/main/search-results?query=${title_}',
+  icon: 'fa-brands fa-mizuni',
+  text: 'Kerala Digital Archive',
+  section: 'library-general',
+  rank: 119,
+},
+
 'hathi' : {
   // perhaps use the API in the future: https://www.hathitrust.org/documents/hathitrust-data-api-v2_20150526.pdf
   create_condition: true,
@@ -21699,6 +21712,20 @@ if ( valid( item.found_in_taxon ) ){
   text: 'policy URL',
   section: ['main'],
   rank: [99904],
+},
+
+'alle_burgen_id' : {
+  title: 'Alle Burgen ID',
+  prop: '12884',
+  type: 'link',
+  mv: false,
+  url: 'https://www.alleburgen.de/bd.php?id=${item.alle_burgen_id}',
+  icon: 'fa-solid fa-chess-rook',
+  text: 'Alle Burgen',
+  section: ['location-geography','library-history','main'],
+  rank: [10,20,6331],
+  headline_create: 'valid( item.alle_burgen_id )',
+  headline_rank: 130,
 },
 
 /* AUTOMATED FIELD INSERTIONS: Time */
