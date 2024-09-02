@@ -1020,9 +1020,10 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   // FIXME: remove this?
   if ( args.id == 'n00' ){ // raw-search-string
 
-    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '+-wikipedia.org&setlang=' + explore.language + '-' + explore.language, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title_.replace(/:/g, ': ') ) + '</a>';
+    topic_title = '<a href="javascript:void(0)" class="article-title linkblock sticky-title" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: valid( item.type )? item.type : 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title_.replace(/:/g, ': ') ) + '</a>';
 
-    item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
+    item.description = '';
+    //item.description = '(<span id="app-guide-string-search">' + explore.banana.i18n('app-guide-string-search') + '</span>)';
   }
 
   if ( valid( item.display_url ) ){
