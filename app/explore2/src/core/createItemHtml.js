@@ -808,8 +808,9 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     item          = {
 
-      dist:         '',
-      display_url:  raw_url,
+      type        : type_,
+      display_url : raw_url,
+      //dist        : '',
 
     };
 
@@ -929,7 +930,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( args.id == 'n00' ){ // raw-search-string topic 
 
-      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="Bing web search" aria-label="Bing web search" role="button"' + setOnClick( Object.assign({}, args, { type: 'link', url : 'https://www.bing.com/search?q=' + title + '&setlang=' + explore.language + '-' + explore.language } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;"></a>';
+      headline = '<a href="javascript:void(0)" class="article-title linkblock" style="margin-left: 3%;" tabindex="-1" title="raw topic search" aria-label="raw topic search" role="button"' + setOnClick( Object.assign({}, args, { type: valid( item.type )? item.type : 'link', url : item.display_url, } ) ) + '>' + tag_icon + ' <span style="font-weight: normal; font-size: smaller;"></a>';
 
     }
     else {
