@@ -20108,7 +20108,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'super_topics_ai_headline' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || checkTag( item, 0, "raw")',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || item.datasource === ""', // raw-topic
   title: '',
   prop: '',
   type: 'link',
@@ -20128,7 +20128,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'subtopics_ai_headline' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource )',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource ) || item.datasource === ""', // raw-topic
   title: '',
   prop: '',
   type: 'link',
@@ -21716,6 +21716,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'alle_burgen_id' : {
   title: 'Alle Burgen ID',
+  create_trigger: 'if ( ! tagSet( item.tags ) ){ setTags( item, [ "location", "castle" ] ) }',
   prop: '12884',
   type: 'link',
   mv: false,

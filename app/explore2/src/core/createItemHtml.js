@@ -788,10 +788,30 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   //  FIXME markup raw query, so it can be hidden if needed later
   if ( id === 'n00' ){
 
-    type_         = 'wikipedia-search';
+    let raw_url = '';
+
+    if ( valid( explore.openai_enabled ) ){
+
+      type_   = 'link-split';
+      raw_url = `${explore.base}/app/chat/?m=${title}&l=${explore.language}&t=professor&autospeak=${explore.autospeak}`;
+
+    }
+    else {
+
+      type_ = 'link';
+      raw_url = `https://www.bing.com/search?q=${title}&search=Submit+Query&form=QBLH&setlang=${explore.language}`;
+
+    }
+
     extra_classes = 'no-wikipedia-entry';
     hide          = 'display:none;';
-    item          = { dist: '' };
+
+    item          = {
+
+      dist:         '',
+      display_url:  raw_url,
+
+    };
 
   }
   else if ( explore.hide_datasource_results.includes( source ) ){
@@ -1019,7 +1039,7 @@ function createItemHtml( args ){ // creates the HTML-card for each result
     }
     else {
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: valid( item.type )? item.type : 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
 
     }
 

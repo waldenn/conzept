@@ -79,6 +79,10 @@ var conzept_tags = {
         text : "lighthouse",
         icon : ["fa-solid fa-tower-observation"],
       },
+      "castle" : {
+        text : "castle",
+        icon : ["fa-solid fa-chess-rook"],
+      },
       "itinerary" : {
         text : "itinerary",
         icon : ["fa-solid fa-shuffle"],

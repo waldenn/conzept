@@ -13259,6 +13259,8 @@ async function aiSearch( prompt ){
         explore.datasource_set            = 'reference';
         explore.datasource_set_selection  = 'reference';
 
+        $('#search-in').val( explore.datasource_set );
+
         setParameter( 'd', '', explore.hash );
         setParameter( 'ds', explore.datasource_set, explore.hash );
 
