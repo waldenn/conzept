@@ -20128,7 +20128,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'subtopics_ai_headline' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "raw" ], item.datasource ) || item.datasource === ""', // raw-topic
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || item.datasource === ""', // raw-topic
   title: '',
   prop: '',
   type: 'link',
@@ -20145,6 +20145,25 @@ if ( valid( item.found_in_taxon ) ){
   headline_title: 'subtopics related to this topic (AI)',
   headline_icon: 'fa-solid fa-vector-square',
   headline_rank: 651.2,
+},
+
+'recommendations_ai_headline' : {
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource )',
+  title: '',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '',
+  icon: '',
+  text: '',
+  section: '',
+  rank: 1,
+  headline_create: 'valid( explore.openai_enabled) && checkTag( item, 0, ["work"] )',
+  headline_type: 'code',
+  headline_code: 'aiSearch( &quot;recommendations for similar works as: %22${ encodeURIComponent( item.title )}%22${ valid( lowestTag( item ) )? " (" + lowestTag( item ).replaceAll("-", " ") + ")" : "" }&quot;)',
+  headline_title: 'recommendations similar works (AI)',
+  headline_icon: 'fa-solid fa-icons',
+  headline_rank: 651.9,
 },
 
 'similar_inline' : {
