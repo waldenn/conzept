@@ -13460,7 +13460,7 @@ if ( valid( item.found_in_taxon ) ){
   text: '',
   section: '',
   rank: 1,
-  headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","work","cultural-concept","natural-concept","meta-concept"] ) ',
+  headline_create: 'item.datasource === "" || activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","work","cultural-concept","natural-concept","meta-concept"] ) ',
   //headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","music","symbol","art","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","artificial-intelligence","monument"] )',
   headline_type: 'link',
   headline_title: 'video',
@@ -13479,7 +13479,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'stream',
   section: ['media-video','main'],
   rank: [30, 30],
-  headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","work","cultural-concept","natural-concept","meta-concept"] ) ',
+  headline_create: 'item.datasource === "" || activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","work","cultural-concept","natural-concept","meta-concept"] ) ',
   //headline_create: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkTag( item, 0, ["location","time","organization","group","organism","person","natural-type","substance","cultural-concept","natural-concept","meta-concept"] ) || checkTag( item, 1, ["geographical-structure","religion","museum","video-game","music","symbol","art","film","tv-series","filmmaker","actor","architect","musician","music-instrument","software","artificial-intelligence","monument"] )',
   headline_type: 'wander',
   headline_icon: 'fa-solid fa-tv',
@@ -18299,7 +18299,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'openalex_search' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata", "doaj", "ror", "gbif" ], item.datasource ) && ! checkTag(item, 1, [ "list", "disambiguation", "wikispecial" ])',
+  create_condition: 'item.datasource === "" || activeOnDatasources( [ "wikipedia", "wikidata", "doaj", "ror", "gbif" ], item.datasource ) && ! checkTag(item, 1, [ "list", "disambiguation", "wikispecial" ])',
   title: 'OpenAlex - science articles search',
   prop: '',
   type: 'link',
