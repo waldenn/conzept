@@ -13147,7 +13147,6 @@ function cy_node_def( id, label, content, parent_node, rp ){
 
 async function aiSearch( prompt ){
 
-
   try {
 
     $('#blink').show();
@@ -13269,13 +13268,13 @@ async function aiSearch( prompt ){
 
 				topics = topics.map( item => item.trim() );
 
-    		console.log('topics: ', topics );
+    		//console.log('topics: ', topics );
 
 				getWikidataQIDs( topics ).then( obj => {
 
 					let qids = [];
 
-          console.log( 'topic qids: ', obj );
+          //console.log( 'topic qids: ', obj );
 
 					// fetch Wikidata-data for each topic with a Qid
 
@@ -13296,14 +13295,43 @@ async function aiSearch( prompt ){
 
 					});
 
-          qids = [...new Set( qids )]; // make unique
-
-					const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
-
           explore.title_only_list = title_only_list; // data 'hack' to allow rendering these topics after runLISP()
 
-          // display the results in the sidebar
-					runLISP( command );
+          qids = [...new Set( qids )]; // make unique
+
+					if ( qids.length > 0 ){ // valid Qids
+
+						const command = "(show 'sidebar ( query ( '( " +  qids.join(' ') + " ) ) ) )";
+
+          	// display the results in the sidebar
+						runLISP( command );
+
+
+					}
+					else { // no Qids found
+
+						if ( explore.title_only_list.length > 0 ){ // valid title-only's
+
+							// render title-only topics
+							appendTitleOnlyTopics();
+
+						}
+						else { // no results found
+
+              $.toast({
+                heading: 'no AI results found',
+                text: 'try rephrasing your "!show" command',
+                hideAfter : 5000,
+                stack : 1,
+                showHideTransition: 'slide',
+                icon: 'warning'
+              })
+
+              $('#blink').hide();
+
+						}
+
+					}
 
 				});
   
@@ -13363,3 +13391,4 @@ async function getWikidataQIDs( titles ) {
  	return qids;
 
 }
+

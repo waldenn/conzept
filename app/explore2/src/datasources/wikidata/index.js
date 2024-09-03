@@ -499,6 +499,17 @@ async function runSidebar( list ){
 	renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 
   // also check if we can add non-qid topics
+	appendTitleOnlyTopics();
+
+  $('#loader').hide();
+  $('.datasource-hits-label').html('');
+  $('#results-paging').hide();
+  $('#blink').hide();
+
+}
+
+function appendTitleOnlyTopics(){
+
   if ( valid( explore.title_only_list ) ){
 
     if ( explore.title_only_list.length > 0 ){
@@ -545,14 +556,10 @@ async function runSidebar( list ){
 
   }
 
-  explore.title_only_list = ''; // clear
-
-  $('#loader').hide();
-  $('.datasource-hits-label').html('');
-  $('#results-paging').hide();
-  $('#blink').hide();
+  explore.title_only_list = ''; // reset
 
 }
+
 
 async function runQuery( json, json_url ){
 
@@ -970,3 +977,4 @@ function setWikidataQueryFilter(){
   return filter;
 
 }
+
