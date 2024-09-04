@@ -19896,13 +19896,12 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat' : {
-  create_condition: 'checkLC(["en","fr","nl"]) && activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && valid( item.tags[0] !== "" )', // main-tag should be set
+  create_condition: 'item.datasource === "" || ( activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && valid( item.tags[0] !== "" ) )',
   title: 'AI chat with tutor',
   prop: '',
   type: 'link-split',
   mv: false,
-  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=examinator&autospeak=${explore.autospeak}',
-  //url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${ getTutor( item ) }&autospeak=${explore.autospeak}',
+  url: '${explore.base}/app/chat/?m=${title_}&l=${explore.language}&t=${ item.datasource === ""? "professor" : "examinator" }&autospeak=${explore.autospeak}', // &t=${ getTutor( item ) }
   icon: 'fa-solid fa-wand-sparkles',
   text: 'AI chat',
   section: ['main'],
@@ -19913,7 +19912,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat_quiz' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkLC(["en","fr","nl"])',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || item.datasource === ""',
   title: 'AI quiz',
   prop: '',
   type: 'link-split',
@@ -19926,7 +19925,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'ai_chat_related_topics' : {
-  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && checkLC(["en","fr","nl"])',
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) || item.datasource === ""',
   title: 'AI: related topics',
   prop: '',
   type: 'link-split',

@@ -1,6 +1,6 @@
 const app = {
 
-  version:              'v0.011',
+  version:              'v0.012',
   chatsData:            [],
   activeChatIdx:        0,
 
@@ -8,7 +8,7 @@ const app = {
   tutor:                getParameterByName('t') || 'default',
   language:             getParameterByName('l') || 'en',
 
-  supported_languages:  [ 'en', 'fr', 'nl' ],
+  //supported_languages:  [ 'en', 'fr', 'nl' ],
 
   tutors:               [],
   tutor_label:          '',
@@ -821,7 +821,7 @@ const activeChat = () => {
 
       let obj = findObjectByKey( app.tutors, 'act', app.tutor );
 
-      systemEle.value = app.data[0].content = app.tutor_prompt = obj[0].prompt;
+      systemEle.value = app.data[0].content = app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt;
       app.tutor_label = obj[0].act_label;
 
     }
@@ -848,7 +848,7 @@ const activeChat = () => {
 
       let obj = findObjectByKey( app.tutors, 'act', app.tutor );
 
-      systemEle.value = app.data[0].content = app.tutor_prompt = obj[0].prompt;
+      systemEle.value = app.data[0].content = app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt;
       app.tutor_label = obj[0].act_label;
 
     }
@@ -1091,18 +1091,19 @@ const initSetting = () => {
 
         const obj = findObjectByKey( app.tutors, 'act', app.tutor );
         app.tutor_label   = obj[0].act_label;
-        app.tutor_prompt = obj[0].prompt; 
+        app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt; 
 
       }
 
     }
     else {
 
-      systemEle.value = "";
-      app.tutor_label = '';
-      app.tutor_prompt = '';
+      systemEle.value   = '';
+      app.tutor_label   = '';
+      app.tutor_prompt  = '';
 
     }
+
     systemEle.dispatchEvent(new Event("change"));
     systemEle.focus();
 
@@ -1327,7 +1328,8 @@ const streamGen = async(long) => {
     app.tutors = res;
 
     try {
-      apiHost = 'https://api.openai.com/'; // CONZEPT PATCH
+
+      apiHost = 'https://api.openai.com/';
 
       //console.log( 'requested: ', app.tutor, app.tutor_prompt, ' used: ', dataSlice[0].content );
 
@@ -1440,11 +1442,11 @@ const streamGen = async(long) => {
                     my_html = markupISBNs(my_html);
                     //my_html = markupYears(my_html);
 
-                    if ( app.language === 'en' ){
+                    //if ( app.language === 'en' ){
 
                       //my_html = markupCenturies(my_html);
 
-                    }
+                    //}
 
                     currentResEle.children[0].innerHTML = my_html;
 
@@ -1487,7 +1489,7 @@ const streamGen = async(long) => {
 
                 app.data.push({
                   role: "assistant",
-                  content: progressData
+                  content: progressData,
                 })
 
               }
@@ -1583,6 +1585,7 @@ const stopLoading = (abort = true) => {
     }
 
   }
+
   updateChats();
   controllerId = delayId = refreshIdx = void 0;
   autoVoiceIdx = 0;
@@ -1590,6 +1593,7 @@ const stopLoading = (abort = true) => {
   currentResEle = null;
   progressData = "";
   loadAction(false);
+
 }
 
 const generateText = async(message) => {
@@ -1627,10 +1631,14 @@ const generateText = async(message) => {
 };
 
 textarea.onkeydown = (e) => {
+
   if (e.keyCode === 13 && !e.shiftKey) {
+
     e.preventDefault();
     genFunc();
+
   }
+
 };
 
 const genFunc = function() {
@@ -1685,9 +1693,9 @@ setTimeout(() => {
 
 const preEle = document.getElementById("preSetSystem");
 
-if ( app.supported_languages.includes( app.language ) ){
+//if ( app.supported_languages.includes( app.language ) ){
 
-  fetch( `json/prompts-${ app.language }.json?${app.version}`, { signal: downRoleController.signal }).then(async(response) => {
+  fetch( `json/prompts-en.json?${app.version}`, { signal: downRoleController.signal }).then(async(response) => {
 
     let res = await response.json();
 
@@ -1714,13 +1722,13 @@ if ( app.supported_languages.includes( app.language ) ){
     // set chat mode title
     const obj         = findObjectByKey( app.tutors, 'act', app.tutor );
     app.tutor_label   = obj[0].act_label;
-    app.tutor_prompt  = obj[0].prompt; 
+    app.tutor_prompt  = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt; 
 
     $('#chat-title').text( app.tutor_label );
 
   }).catch(e => {})
 
-}
+//}
 
 document.toggleFullscreen = function() {
 

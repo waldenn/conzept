@@ -11872,20 +11872,6 @@ function getVoiceCode( lang2 ){
 	return voice_code;
 }
 
-function getNamefromLangCode2( lang2 ){
-
-  let name = '';
-
-  if ( explore.wp_languages.hasOwnProperty( lang2 ) ){
-
-    name = explore.wp_languages[ lang2 ].namelocal;
-
-  }
-
-  return name;
-
-}
-
 function getLatinNamefromLangCode2( lang2 ){
 
   let name = '';

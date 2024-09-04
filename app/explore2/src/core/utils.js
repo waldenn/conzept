@@ -1095,7 +1095,6 @@ function isEmptyObject(obj) {
 
 }
 
-
 function setOnMultiValueClick( args ){ // dynamically creates lists of "onclick"-strings 
 
   // remove unneeded data
@@ -1382,6 +1381,20 @@ function selectLanguageFrom( available_languages, fallback ) {
   }
 
   return language;
+
+}
+
+function getNamefromLangCode2( lang2 ){
+
+  let name = '';
+
+  if ( wp_languages.hasOwnProperty( lang2 ) ){
+
+    name = wp_languages[ lang2 ].namelocal;
+
+  }
+
+  return name;
 
 }
 
