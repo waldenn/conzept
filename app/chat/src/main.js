@@ -32,6 +32,8 @@ const app = {
 
 };
 
+console.log( app.language );
+
 let explore = app;
 
 let current_pane  = '';
@@ -821,7 +823,10 @@ const activeChat = () => {
 
       let obj = findObjectByKey( app.tutors, 'act', app.tutor );
 
-      systemEle.value = app.data[0].content = app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt;
+      app.tutor_prompt = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt;
+      systemEle.value = app.tutor_prompt;
+      app.data[0].content = app.tutor_prompt;
+
       app.tutor_label = obj[0].act_label;
 
     }
@@ -848,7 +853,10 @@ const activeChat = () => {
 
       let obj = findObjectByKey( app.tutors, 'act', app.tutor );
 
-      systemEle.value = app.data[0].content = app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt;
+      app.tutor_prompt = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt;
+      systemEle.value = app.tutor_prompt;
+      app.data[0].content = app.tutor_prompt;
+
       app.tutor_label = obj[0].act_label;
 
     }
@@ -1091,7 +1099,7 @@ const initSetting = () => {
 
         const obj = findObjectByKey( app.tutors, 'act', app.tutor );
         app.tutor_label   = obj[0].act_label;
-        app.tutor_prompt = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt; 
+        app.tutor_prompt = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt; 
 
       }
 
@@ -1321,7 +1329,7 @@ const streamGen = async(long) => {
   }
   */
 
-  fetch( `json/prompts-${ app.language }.json?${app.version}`, { }).then(async(response) => {
+  fetch( `json/prompts-en.json?${app.version}`, { }).then(async(response) => {
 
     let res = await response.json();
 
@@ -1332,6 +1340,7 @@ const streamGen = async(long) => {
       apiHost = 'https://api.openai.com/';
 
       //console.log( 'requested: ', app.tutor, app.tutor_prompt, ' used: ', dataSlice[0].content );
+      dataSlice[0].content = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + dataSlice[0].content;
 
       const res = await fetch(apiHost + API_URL, {
         method: "POST",
@@ -1722,7 +1731,7 @@ const preEle = document.getElementById("preSetSystem");
     // set chat mode title
     const obj         = findObjectByKey( app.tutors, 'act', app.tutor );
     app.tutor_label   = obj[0].act_label;
-    app.tutor_prompt  = `Always output responses in the ${ getNamefromLangCode2( app.language_name ) } language. ` + obj[0].prompt; 
+    app.tutor_prompt  = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt; 
 
     $('#chat-title').text( app.tutor_label );
 
@@ -1984,3 +1993,4 @@ function cleanText( text ){
   }
 
 }
+

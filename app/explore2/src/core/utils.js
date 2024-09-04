@@ -1384,7 +1384,21 @@ function selectLanguageFrom( available_languages, fallback ) {
 
 }
 
-function getNamefromLangCode2( lang2 ){
+function getEnglishNamefromLangCode2( lang2 ){
+
+  let name = '';
+
+  if ( wp_languages.hasOwnProperty( lang2 ) ){
+
+    name = wp_languages[ lang2 ].name;
+
+  }
+
+  return name;
+
+}
+
+function getNameLocalfromLangCode2( lang2 ){
 
   let name = '';
 

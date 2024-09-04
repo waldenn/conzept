@@ -4007,7 +4007,7 @@ function setupLanguage(){
 
       let languageName    = $.uls.data.getAutonym( l );
 
-      $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; ' + getNamefromLangCode2( explore.language ) );
+      $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; ' + getNameLocalfromLangCode2( explore.language ) );
 
       $('.submitSearch').click(); // do submit
 
@@ -9584,7 +9584,7 @@ function setLanguage( language ){
   (async () => { await explore.db.set('language', explore.language ); })();
 
   // set ULS-widget language display
-  explore.language_name = ( explore.language === 'en') ? 'English' : getNamefromLangCode2( explore.language )
+  explore.language_name = ( explore.language === 'en') ? 'English' : getNameLocalfromLangCode2( explore.language )
 
   updateLocaleNative();
 
@@ -9609,7 +9609,7 @@ async function afterLanguageUpdate(){
   $('html').attr('lang', explore.language );
 
   //TODO: do this via some JS API for ULS
-  $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; <span title="' + explore.language_name + '" aria-label="' + explore.language_name + '" role="button">' + getNamefromLangCode2( explore.language ) + '</span>' );
+  $( '.uls-trigger' ).html( '<span class="icon"><i class="fa-solid fa-caret-right"></i></span> &nbsp; <span title="' + explore.language_name + '" aria-label="' + explore.language_name + '" role="button">' + getNameLocalfromLangCode2( explore.language ) + '</span>' );
 
   // structured-query-builder
   updateQueryBuilder();
