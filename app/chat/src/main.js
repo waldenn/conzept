@@ -1,21 +1,20 @@
 const app = {
 
+  // user parameters
+  language:             getParameterByName('l') || 'en',
+  tutor:                getParameterByName('t') || 'default',
+  my_string:            getParameterByName('m') || '',
+
   version:              'v0.012',
   chatsData:            [],
   activeChatIdx:        0,
 
-  my_string:            getParameterByName('m') || '',
-  tutor:                getParameterByName('t') || 'default',
-  language:             getParameterByName('l') || 'en',
-
-  //supported_languages:  [ 'en', 'fr', 'nl' ],
-
   tutors:               [],
   tutor_label:          '',
+  tutor_icon:           'fa-regular fa-comments',
   tutor_prompt:         '',
 
   recing:               false,
-
   data:                 [],
 
   recognition:     			[],
@@ -31,8 +30,6 @@ const app = {
 
 
 };
-
-console.log( app.language );
 
 let explore = app;
 
@@ -67,11 +64,6 @@ $(document).ready(function(){
   }
 
   $('#clearConv').click();
-
-  //$('#clearChat').click();
-
-  // always clear the chat-history on the initial page load
-  //$('#clearConv').click();
 
   (async () => {
 
@@ -120,8 +112,6 @@ const textarea    = document.getElementById("chatinput");
 
 if ( app.my_string.charAt(0) === '[' ){ // check if message is a JSON stringified array
 
-  //console.log( app.my_string, typeof app.my_string );
-
   app.my_string = JSON.parse( app.my_string ).join(', ');
 
 }
@@ -163,14 +153,6 @@ function markupEntities( text ){
   //             ( lookback and prevent these cases from being used  )
 
   const regex = /(?<![\.\?\!:] |<\/p>\n<p>|<\/ol>\n<p>|<\/table>\n<p>|[\d-]{9,13}(\d|X)?|<li><a |<a |<\/a>|rel="noopener">|.+\/.+)[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö0-9\-\']*[A-ZÀ-Ü]+[0-9]*[7a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*(\sdegli\s|\sdella\s|\sdel\s|\sdes\s|\sdei\s|\sde\s|\sda\s|\sdi\s|\svan\s|\svon\s|\sof\s|\s的\s|\sà\s|\sam\s)*[A-Z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\'\-]*[A-ZÀ-Üa-z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\']*(?:\s+[A-ZÀ-Ü0-9]+[A-Za-z\'àáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*)*(\s[a-z]+:)*/gm;
-
-  //const regex = /(?<![\.\?\!:] |<\/p>\n<p>|<\/ol>\n<p>|<\/table>\n<p>|[\d-]{9,13}(\d|X)?|<li><a |<a |<\/a>|rel="noopener">|.+\/.+)[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö0-9\-\']*[A-ZÀ-Ü]+[0-9]*[7a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*(\sdegli\s|\sdella\s|\sdel\s|\sdes\s|\sdei\s|\sde\s|\sda\s|\sdi\s|\svan\s|\svon\s|\sof\s|\s的\s|\sà\s|\sam\s)*[A-Z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\'\-]*[A-ZÀ-Üa-z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\']*(?:\s+[A-ZÀ-Ü0-9]+[A-Za-z\'àáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*)*(\s[a-z]+:)*/gm;
-
-  //const regex = /(?<![\.\?\!:] |<\/p>\n<p>|<\/ol>\n<p>|<\/table>\n<p>|<li><a |<a |<\/a>|rel="noopener">|.+\/.+)[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö0-9\-\']*[A-ZÀ-Ü]+[0-9]*[7a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*(\sdegli\s|\sdella\s|\sdel\s|\sdes\s|\sdei\s|\sde\s|\sda\s|\sdi\s|\svan\s|\svon\s|\sof\s|\s的\s|\sà\s|\sam\s)*[A-Z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\'\-]*[A-ZÀ-Üa-z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\']*(?:\s+[A-ZÀ-Ü0-9]+[A-Za-z\'àáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*)*/gm;
-
- //<li> <a href="http://Origami.me" target="_blank" rel="noopener">Origami.me</a> - <a href="https://origami.me/" target="_blank" rel="noopener">https://origami.me/ </a> </li>
-
-  //const regex = /(?<![\.\?\!:] |<\/p>\n<p>|<\/ol>\n<p>|<\/table>\n<p>)[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö0-9\-\']*[A-ZÀ-Ü]+[0-9]*[7a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*(\sdegli\s|\sdella\s|\sdel\s|\sdes\s|\sdei\s|\sde\s|\sda\s|\sdi\s|\svan\s|\svon\s|\sof\s|\s的\s|\sà\s|\sam\s)*[A-Z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\'\-]*[A-ZÀ-Üa-z]*[a-zàáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\']*(?:\s+[A-ZÀ-Ü0-9]+[A-Za-z\'àáâãäåãæçèéêëìíîïñòóôõöøùúûüýÿßæœžščćđðéíóúýþö\-\']*)*/gm;
 
 	let i = 0;
 
@@ -279,17 +261,21 @@ function markupComplexWords( html ){
 
 	// TODO
 
-  // Use a regular expression to match all unmarked words in the HTML string
+  // use a regular expression to match all unmarked words in the html string
   const regex = /<a\b[^>]*>(.*?)<\/a>/gi;
   const unmarkedWords = html.match(regex) || [];
 
-  // Loop through the unmarked words and do something with each one
+  // go through the unmarked words and do something with each one
   unmarkedWords.forEach(word => {
-    // Check if the word is not marked up (i.e., it doesn't start with '<' or end with '>')
+
+    // check if the word is not marked up (i.e., it doesn't start with '<' or end with '>')
     if (word.charAt(0) !== '<' && word.charAt(word.length - 1) !== '>') {
-      // Do something with the unmarked word here
+
+      // do something with the unmarked word here
       console.log(word.length);
+
     }
+
   });
 
 	return html;
@@ -433,25 +419,18 @@ let loading = false;
 
 let presetRoleData = {
   "default": "You are a helpful assistant, try to answer concisely",
-  //"normal": "You are a helpful assistant, try to answer concisely",
-  //"cat": "You're a cat who ends every sentence with 'meow'",
-  //"emoji": "",
-  //"image": "When you need to send pictures, please generate them in markdown language, without backslashes or code boxes. When you need to use the unsplash API, follow the format, https://source.unsplash.com/960x640/? ＜English keywords >",
 };
 
-let modelVersion; // 模型版本
-let apiHost; // api反代地址
-let customAPIKey; // 自定义apiKey
-let systemRole; // 自定义系统角色
-let roleNature; // 角色性格
-let roleTemp; // 回答质量
-let enableCont; // 是否开启连续对话，默认开启，对话包含上下文信息。
-let enableLongReply; // 是否开启长回复，默认关闭，开启可能导致api费用增加。
+let modelVersion;
+let apiHost;
+let customAPIKey;
+let systemRole;
+let roleNature;
+let roleTemp;
+let enableCont;
+let enableLongReply;
 let longReplyFlag;
-let textSpeed; // 打字机速度，越小越快
-let voiceIns; // Audio or SpeechSynthesisUtterance
-let supportMSE = !!window.MediaSource; // 是否支持MSE（除了ios应该都支持）
-let voiceMIME = "audio/mpeg";
+let textSpeed;
 
 const scrollToBottom = () => {
 
@@ -828,6 +807,7 @@ const activeChat = () => {
       app.data[0].content = app.tutor_prompt;
 
       app.tutor_label = obj[0].act_label;
+      app.tutor_icon  = obj[0].act_icon;
 
     }
     else {
@@ -837,6 +817,7 @@ const activeChat = () => {
 
     }
 
+    $('#chat-icon').attr( 'class', `${ app.tutor_icon }  ` );
     $('#chat-title').text( app.tutor_label );
 
     localStorage.setItem("system", app.tutor ); // systemRole
@@ -858,6 +839,7 @@ const activeChat = () => {
       app.data[0].content = app.tutor_prompt;
 
       app.tutor_label = obj[0].act_label;
+      app.tutor_icon  = obj[0].act_icon;
 
     }
     else {
@@ -1031,58 +1013,84 @@ const initSetting = () => {
   modelEle.dispatchEvent(new Event("change"));
 
   const apiHostEle = document.getElementById("apiHostInput");
+
   let localApiHost = localStorage.getItem("APIHost");
+
   if (localApiHost) {
     apiHost = localApiHost;
     apiHostEle.value = localApiHost;
   }
+
   apiHostEle.onchange = () => {
     apiHost = apiHostEle.value;
     localStorage.setItem("APIHost", apiHost);
   }
+
   apiHostEle.dispatchEvent(new Event("change"));
+
   const keyEle = document.getElementById("keyInput");
-  let localKey = localStorage.getItem('_immortal|api_key_openai'); // CONZEPT PATCH
-  //let localKey = localStorage.getItem("APIKey");
+
+  let localKey = localStorage.getItem('_immortal|api_key_openai');
+
   if (localKey) {
     customAPIKey = localKey;
     keyEle.value = localKey;
   }
+
   keyEle.onchange = () => {
     customAPIKey = keyEle.value;
-    //localStorage.setItem("APIKey", customAPIKey);
   }
+
   keyEle.dispatchEvent(new Event("change"));
+
   if (systemRole === void 0) {
+
     let localSystem = localStorage.getItem("system");
+
     if (localSystem) {
-      systemRole = localSystem;
+
+      systemRole      = localSystem;
       systemEle.value = localSystem;
+
       app.data.unshift({
         role: "system",
-        content: systemRole
+        content: systemRole,
       });
+
       updateChats();
-    } else {
-      systemRole = systemEle.value;
+
     }
+    else {
+
+      systemRole = systemEle.value;
+
+    }
+
   }
+
   systemEle.onchange = () => {
+
     systemRole = systemEle.value;
     localStorage.setItem("system", systemRole);
+
     if (systemRole) {
+
       if (app.data[0] && app.data[0].role === "system") {
         app.data[0].content = systemRole;
-      } else {
+      }
+      else {
         app.data.unshift({
           role: "system",
           content: systemRole
         });
       }
-    } else if ( app.data[0] && app.data[0].role === "system") {
+    }
+    else if ( app.data[0] && app.data[0].role === "system") {
       app.data.shift();
     }
+
     updateChats();
+
   }
 
   const preEle = document.getElementById("preSetSystem");
@@ -1099,7 +1107,8 @@ const initSetting = () => {
 
         const obj = findObjectByKey( app.tutors, 'act', app.tutor );
         app.tutor_label   = obj[0].act_label;
-        app.tutor_prompt = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt; 
+        app.tutor_icon    = obj[0].act_icon;
+        app.tutor_prompt  = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt; 
 
       }
 
@@ -1117,59 +1126,82 @@ const initSetting = () => {
 
     app.tutor_label = $('#preSetSystem option:selected').text() || '';
 
-    $('#chat-title').text( app.tutor_label );
+    $('#chat-icon').attr( 'class', `${ app.tutor_icon }  ` );
+    $('#chat-title').html( app.tutor_label );
 
   }
 
   const topEle = document.getElementById("top_p");
+
   let localTop = localStorage.getItem("top_p");
+
   if (localTop) {
     roleNature = parseFloat(localTop);
    topEle.value = localTop;
   }
+
   topEle.oninput = () => {
     topEle.style.backgroundSize = (topEle.value - topEle.min) * 100 / (topEle.max - topEle.min) + "% 100%";
     roleNature = parseFloat(topEle.value);
     localStorage.setItem("top_p", topEle.value);
   }
+
   topEle.dispatchEvent(new Event("input"));
+
   const tempEle = document.getElementById("temp");
+
   let localTemp = localStorage.getItem("temp");
+
   if (localTemp) {
     roleTemp = parseFloat(localTemp);
     tempEle.value = localTemp;
   }
+
   tempEle.oninput = () => {
     tempEle.style.backgroundSize = (tempEle.value - tempEle.min) * 100 / (tempEle.max - tempEle.min) + "% 100%";
     roleTemp = parseFloat(tempEle.value);
     localStorage.setItem("temp", tempEle.value);
   }
+
   tempEle.dispatchEvent(new Event("input"));
+
   const speedEle = document.getElementById("textSpeed");
+
   let localSpeed = localStorage.getItem("textSpeed");
+
   if (localSpeed) {
     textSpeed = parseFloat(speedEle.min) + (speedEle.max - localSpeed);
     speedEle.value = localSpeed;
   }
+
   speedEle.oninput = () => {
     speedEle.style.backgroundSize = (speedEle.value - speedEle.min) * 100 / (speedEle.max - speedEle.min) + "% 100%";
     textSpeed = parseFloat(speedEle.min) + (speedEle.max - speedEle.value);
     localStorage.setItem("textSpeed", speedEle.value);
   }
+
   speedEle.dispatchEvent(new Event("input"));
+
   const contEle = document.getElementById("enableCont");
+
   let localCont = localStorage.getItem("enableCont");
+
   if (localCont) {
     enableCont = localCont === "true";
     contEle.checked = enableCont;
   }
+
   contEle.onchange = () => {
     enableCont = contEle.checked;
     localStorage.setItem("enableCont", enableCont);
   }
+
   contEle.dispatchEvent(new Event("change"));
+
   const longEle = document.getElementById("enableLongReply");
+
   let localLong = localStorage.getItem("enableLongReply");
+
   if (localLong) {
     enableLongReply = localLong === "true";
     longEle.checked = enableLongReply;
@@ -1178,7 +1210,9 @@ const initSetting = () => {
     enableLongReply = longEle.checked;
     localStorage.setItem("enableLongReply", enableLongReply);
   }
+
   longEle.dispatchEvent(new Event("change"));
+
 };
 
 initSetting();
@@ -1193,15 +1227,20 @@ const closeEvent = (ev) => {
     settingEle.classList.remove("showSetting");
   }
 }
+
 settingEle.onmousedown = () => {
+
   dialogEle.style.display = dialogEle.style.display === "block" ? "none" : "block";
+
   if (dialogEle.style.display === "block") {
     document.addEventListener("mousedown", closeEvent, true);
     settingEle.classList.add("showSetting");
-  } else {
+  }
+  else {
     document.removeEventListener("mousedown", closeEvent, true);
     settingEle.classList.remove("showSetting");
   }
+
 }
 
 let delayId;
@@ -1215,15 +1254,6 @@ const delay = () => {
 const confirmAction = (prompt) => {
 
  return true;
-
-  /*
-  if (window.confirm(prompt)) {
-      return true;
-  }
-  else {
-      return false;
-  }
-  */
 
 };
 
@@ -1267,9 +1297,6 @@ const streamGen = async(long) => {
   let idx = isRefresh ? refreshIdx : app.data.length;
 
   let dataSlice = [];
-
-  //console.log( 'data: ', app.data, systemRole, app.tutor_prompt );
-  //console.log( 'app.data[0]: ', app.data[0] );
 
   // FIXME: somewhere before this code there is a bug removing the "app.data[0]" object
   if ( !valid( app.data[0] )  ) {
@@ -1315,21 +1342,7 @@ const streamGen = async(long) => {
 
   //console.log( app.data, 'dataSlice: ', dataSlice );
 
-  //console.log('foo1', app.tutors, app.tutor, findObjectByKey( app.tutors, 'act', app.tutor ).length > 0 );
-
-  /*
-  if ( findObjectByKey( app.tutors, 'act', app.tutor ).length > 0 ){
-
-    let obj = findObjectByKey( app.tutors, 'act', app.tutor );
-
-    systemEle.value = app.data[0].content = app.tutor_prompt = obj[0].prompt;
-
-    console.log( app.tutor_prompt );
-
-  }
-  */
-
-  fetch( `json/prompts-en.json?${app.version}`, { }).then(async(response) => {
+  fetch( `json/prompts.json?${app.version}`, { }).then(async(response) => {
 
     let res = await response.json();
 
@@ -1339,10 +1352,10 @@ const streamGen = async(long) => {
 
       apiHost = 'https://api.openai.com/';
 
-      //console.log( 'requested: ', app.tutor, app.tutor_prompt, ' used: ', dataSlice[0].content );
       dataSlice[0].content = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + dataSlice[0].content;
 
       const res = await fetch(apiHost + API_URL, {
+
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -1353,6 +1366,7 @@ const streamGen = async(long) => {
           top_p: roleNature
         }),
         signal: controller.signal
+
       });
 
       clearTimeout(controllerId);
@@ -1389,9 +1403,7 @@ const streamGen = async(long) => {
       const reader = res.body.getReader();
       const readChunk = async() => {
 
-        return reader.read().then(async({
-          value, done
-        }) => {
+        return reader.read().then(async({ value, done }) => {
 
           if (!done) {
 
@@ -1451,16 +1463,7 @@ const streamGen = async(long) => {
                     my_html = markupISBNs(my_html);
                     //my_html = markupYears(my_html);
 
-                    //if ( app.language === 'en' ){
-
-                      //my_html = markupCenturies(my_html);
-
-                    //}
-
                     currentResEle.children[0].innerHTML = my_html;
-
-                    //currentResEle.children[0].innerHTML = md.render( progressData );
-                    //currentResEle.children[0].innerHTML = markupEntities( progressData );
 
                     if (!isRefresh) {
                       scrollToBottom();
@@ -1475,8 +1478,6 @@ const streamGen = async(long) => {
 
           }
           else {
-
-            //console.log('done');
 
             if (isRefresh) {
 
@@ -1494,8 +1495,6 @@ const streamGen = async(long) => {
               }
               else { // default: user asked for a short response
 
-                //console.log( progressData );
-
                 app.data.push({
                   role: "assistant",
                   content: progressData,
@@ -1510,7 +1509,9 @@ const streamGen = async(long) => {
             stopLoading(false);
 
           }
+
         });
+
       };
 
       await readChunk();
@@ -1704,7 +1705,7 @@ const preEle = document.getElementById("preSetSystem");
 
 //if ( app.supported_languages.includes( app.language ) ){
 
-  fetch( `json/prompts-en.json?${app.version}`, { signal: downRoleController.signal }).then(async(response) => {
+  fetch( `json/prompts.json?${app.version}`, { signal: downRoleController.signal }).then(async(response) => {
 
     let res = await response.json();
 
@@ -1731,8 +1732,10 @@ const preEle = document.getElementById("preSetSystem");
     // set chat mode title
     const obj         = findObjectByKey( app.tutors, 'act', app.tutor );
     app.tutor_label   = obj[0].act_label;
+    app.tutor_icon    = obj[0].act_icon;
     app.tutor_prompt  = `Always output responses in the ${ getEnglishNamefromLangCode2( app.language ) } language. ` + obj[0].prompt; 
 
+    $('#chat-icon').attr( 'class', `${ app.tutor_icon }  ` );
     $('#chat-title').text( app.tutor_label );
 
   }).catch(e => {})
@@ -1756,13 +1759,12 @@ $(document).keydown(function(event) {
 
   let key = (event.keyCode ? event.keyCode : event.which);
 
-  //console.log( event, key );
-
   if (key == '70') { // "f"
 
     if ($('textarea, input, select').is(':focus')) {
       // do nothing
-    } else {
+    }
+    else {
       document.toggleFullscreen();
     }
 
@@ -1802,7 +1804,7 @@ const notyf = new Notyf({
 
 function setupSpeechRecognition(){
 
-  if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted
+  if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted, so skip that action.
 
 	  return 1;
 
@@ -1855,11 +1857,10 @@ function setupSpeechRecognition(){
 			micIcon.classList.remove('fa-microphone-slash');
 			micIcon.classList.add('fa-microphone');
 			searchFormInput.focus();
-			//console.log('Speech recognition service disconnected');
 
 		}
 
-		// triggered when user stops talking
+		// trigger when user stops talking
 		app.recognition.addEventListener('result', resultOfSpeechRecognition);
 
 		function resultOfSpeechRecognition(event) {
@@ -1993,4 +1994,3 @@ function cleanText( text ){
   }
 
 }
-
