@@ -16606,6 +16606,20 @@ if ( valid( item.found_in_taxon ) ){
   rank: [20954],
 },
 
+'public_transport_map' : {
+  create_condition: 'valid( item.lat ) && checkTag( item, 1, ["railway_station" ])', // todo: add other station types (bus, metro, ...)
+  title: 'Public transport map',
+  type: 'link',
+  mv: false,
+  url: 'https://loom.cs.uni-freiburg.de/global#/geo/16/${item.lat}/${item.lon}',
+  icon: 'fa-solid fa-bus-simple',
+  text: 'public transport',
+  section: ['location-travel','location-geography'],
+  rank: [ 309, 274.0],
+  headline_create: 'valid( item.public_transport_map )',
+  headline_rank: 114,
+},
+
 'railway_station_connections_map' : {
   create_condition: 'valid( item.ibnr )',
   title: 'railway station connections map (local and long distance)',
