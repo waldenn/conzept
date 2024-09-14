@@ -16607,7 +16607,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'public_transport_map' : {
-  create_condition: 'valid( item.lat ) && checkTag( item, 1, ["railway_station" ])', // todo: add other station types (bus, metro, ...)
+  create_condition: 'valid( item.lat ) && checkTag( item, 1, ["railway-station", "metro-station", "bus-station", "tram-station" ])',
   title: 'Public transport map',
   type: 'link',
   mv: false,

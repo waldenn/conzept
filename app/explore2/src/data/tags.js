@@ -91,6 +91,18 @@ var conzept_tags = {
         text : "railway station",
         icon : ["fa-solid fa-train"],
       },
+      "tram-station" : {
+        text : "tram station",
+        icon : ["fa-solid fa-train-tram"],
+      },
+      "metro-station" : {
+        text : "metro station",
+        icon : ["fa-solid fa-train-subway"],
+      },
+      "bus-station" : {
+        text : "bus station",
+        icon : ["fa-solid fa-bus-simple"],
+      },
       "floral-region" : {
         text : "floral region",
         icon : ["fa-brands fa-pagelines"],
