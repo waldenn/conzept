@@ -16616,7 +16616,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'public transport',
   section: ['location-travel','location-geography'],
   rank: [ 309, 274.0],
-  headline_create: 'valid( item.public_transport_map )',
+  headline_create: 'valid( item.public_transport_tram_map )',
   headline_rank: 114,
 },
 
@@ -16630,7 +16630,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'railway map',
   section: ['location-travel','location-geography'],
   rank: [ 309, 274.0],
-  headline_create: 'valid( item.public_transport_map )',
+  headline_create: 'valid( item.public_transport_railway_map )',
   headline_rank: 114,
 },
 
@@ -16644,7 +16644,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'metro map',
   section: ['location-travel','location-geography'],
   rank: [ 309, 274.0],
-  headline_create: 'valid( item.public_transport_map )',
+  headline_create: 'valid( item.public_transport_metro_map )',
   headline_rank: 114,
 },
 
