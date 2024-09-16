@@ -1,0 +1,152 @@
+/* Add some custom CSS for the cards */
+.card {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Position the avatar and username in the top left of the card */
+.card-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#settings-icon {
+  cursor: pointer;
+  padding-left: 20px; 
+  opacity: 0.5; /* 50% transparency */
+}
+
+#settings-icon:hover {
+  opacity: 1; /* 100% opacity on hover */
+}
+
+.card-username {
+  position: absolute;
+  top: 10px;
+  left: 70px;
+}
+
+.card-text.text-right {
+    text-align: right;
+    margin-top: -20px !important;
+}
+
+/* Add padding to the card body to prevent overlay with avatar and username */
+.card-body {
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+/* Style the media image */
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-weight: normal;
+}
+
+.card-text {
+  margin-bottom: 1px !important;
+}
+
+.card {
+  font-size: 0.9em;  /* adjust this value to get the desired text size */
+}
+
+/* Remove indent of URLs */
+.invisible {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.hashtag {
+  margin-right: 0px !important; 
+  }
+
+/* Custom navbar styles */
+.navbar {
+  height: 50px;  /* reduce the height of the navbar */
+  background-color: rgb(227, 6, 19);
+  margin-bottom: 10px !important;
+  top: -10px !important;
+  padding-top: 14px !important;
+}
+
+.navbar-brand {
+  color: rgba(255, 255, 255, 0.8) !important;  /* change the text color */
+  margin: 0 auto;  /* center the brand name */
+  font-size: 0.9em;
+}
+
+.navbar-info {
+  color: rgba(255, 255, 255, 0.8) !important;  /* change the text color */
+  margin: 0 auto;  /* center the brand name */
+  font-size: 1.2em;
+  display: block !important;
+}
+
+.hashtag {
+  margin-right: 10px;  /* add space between the hashtags */
+}
+
+.col-sm-3 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+/* Set the background color of the body */
+body {
+  /*background-color: #cccccc;*/
+  background: #fbfaf9;
+  margin-top: 00px !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+@media (max-width: 1000px) {
+  .col-sm-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .navbar-brand {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .col-sm-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .navbar-brand {
+    display: none;
+  }
+}
+
+.avatar-img {
+  width: 50px;
+  height: 50px;
+}
+
+.container {
+  max-width: 2000px !important;
+  }
+
+.footer {
+    background-color: rgb(200, 200, 200);
+    color: #f2f2f2;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 2px !important; /* reduce padding-top to half */
+    padding-bottom: 2px !important; /* reduce padding-bottom to half */
+    font-size: 0.9em;
+}
