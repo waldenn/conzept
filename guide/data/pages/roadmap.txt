@@ -27,7 +27,7 @@ Conzept's current vision for frontend [[explore>Large language model|LLM]], is t
 
   * **Keyword / phrase based Vector-search** - this textual AI context is __often more flexible, fluid and creative__, than semantic-web style search context, but also requires a lot more compute and can/will hallucinate.
 
-If one aims for a [[explore>Neuro-symbolic AI|neuro-symbolic]] ("NeSy") synthesis of LLM functions and semantic entities, each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention. Later vector embeddings + RAG could be used for: query answering / program writing / data retrieval.
+If one aims for a [[explore>Neuro-symbolic AI|neuro-symbolic]] ("NeSy") synthesis of LLM functions and semantic entities, each topic can have a clear context, upon which you can start prompting the AI for the preferred action/intention.
 
 See also the "structured LLM prompt" screenshot on the right, for an experiment of this. No text was typed by the user, the user only selected a bookmark, to be used with some AI-based reasoning function. This makes it possible to:
   * Categorize the topics based on their bookmark meta-data. Based on the main and sub-tag and other special data-attributes.
@@ -39,8 +39,8 @@ See also the "structured LLM prompt" screenshot on the right, for an experiment 
       * Current status: Self-hosting is working, TODOs:
         * Get a laptop with support for WebGPU and enough VRAM to run good models.
         * URL parameter context (system + user prompt)
-        * Implement TTS speaking + SpeechInput (as implemented in the current AI chat app)
-        * Port over the current system-prompts + create an auto-translation pipeline for these
+        * Implement TTS and SpeechInput (as implemented in the current AI chat app)
+        * Port over the current system-prompts.
     * Most required features:
      * Fully client-side
       * ✓ WebGPU based (too slow otherwise)

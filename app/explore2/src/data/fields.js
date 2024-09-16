@@ -14858,6 +14858,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 13,
 },
 
+'mastowall' : {
+  create_condition: true,
+  title: 'Mastowall: Mastodon tagged posts',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/mastowall/index.html?hashtags=${title_}',
+  icon: 'fa-brands fa-mastodon',
+  text: 'Mastowall',
+  section: 'social',
+  rank: 14.0,
+},
+
 'telegram_channels' : {
   create_condition: true,
   title: 'Telegram Channels search',
@@ -16608,10 +16621,11 @@ if ( valid( item.found_in_taxon ) ){
 
 'public_transport_tram_map' : {
   create_condition: 'valid( item.lat ) && checkTag( item, 1, "tram-station" )',
-  title: 'Tram map',
+  title: 'Tram stops map',
   type: 'link',
   mv: false,
-  url: 'https://loom.cs.uni-freiburg.de/global#tram/geo/16/${item.lat}/${item.lon}',
+  url: 'https://loom.cs.uni-freiburg.de/global#subway-lightrail/geo/16/${item.lat}/${item.lon}',
+  //url: 'https://loom.cs.uni-freiburg.de/global#tram/geo/16/${item.lat}/${item.lon}',
   icon: 'fa-solid fa-train-tram',
   text: 'public transport',
   section: ['location-travel','location-geography'],
@@ -16622,12 +16636,12 @@ if ( valid( item.found_in_taxon ) ){
 
 'public_transport_railway_map' : {
   create_condition: 'valid( item.lat ) && checkTag( item, 1, "railway-station" )',
-  title: 'Railway map',
+  title: 'Railway stops map',
   type: 'link',
   mv: false,
   url: 'https://loom.cs.uni-freiburg.de/global#rail/geo/16/${item.lat}/${item.lon}',
   icon: 'fa-solid fa-train',
-  text: 'railway map',
+  text: 'railway stops map',
   section: ['location-travel','location-geography'],
   rank: [ 309, 274.0],
   headline_create: 'valid( item.public_transport_railway_map )',
@@ -16636,7 +16650,7 @@ if ( valid( item.found_in_taxon ) ){
 
 'public_transport_metro_map' : {
   create_condition: 'valid( item.lat ) && checkTag( item, 1, "metro-station" )',
-  title: 'Metro map',
+  title: 'Metro/Subway/Lightrail stops map',
   type: 'link',
   mv: false,
   url: 'https://loom.cs.uni-freiburg.de/global#subway-lightrail/geo/16/${item.lat}/${item.lon}',
@@ -21283,7 +21297,7 @@ if ( valid( item.found_in_taxon ) ){
   type: 'rest-json',
   mv: true,
   icon: 'fa-brands fa-mastodon',
-  text: 'Mastodon',
+  text: 'Mastodon instances',
   section: 'social',
   rank: 14.2,
   //headline_create: 'valid( item.mastodon )',

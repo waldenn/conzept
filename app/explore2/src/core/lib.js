@@ -10562,11 +10562,37 @@ function runBookmarkAction( action ){
     });
 
   }
-  else if ( explore.tutors.includes( action ) ){
+  else if ( action.startsWith( 'mastodon' ) ){
 
-    // collect bookmark titles
-    //const json = $('#tree').tree('toJson');
-    //console.log( json );
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : '',
+      language  : explore.language,
+      qid       : '',
+      url       : encodeURI( `${explore.base}/app/mastowall/index.html?hashtags=${ topics.join(',') }` ),
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
+  else if ( explore.tutors.includes( action ) ){
 
     let topics = []; // list of topics
 
@@ -13144,7 +13170,7 @@ async function aiSearch( prompt ){
 
       $.toast({
         heading: 'Please set your OpenAI API key',
-        text: 'Go to the "settings" tab --> "API keys", then set your OpenAI key.',
+        text: 'Go to the "settings" tab, open the "API keys" section and set your API key.',
         hideAfter : 10000,
         stack : 1,
         showHideTransition: 'slide',

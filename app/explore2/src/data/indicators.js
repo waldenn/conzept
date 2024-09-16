@@ -510,14 +510,6 @@ const indicators = {
       tags: 'if( !valid( item.has_only_subclass ) ){ setTags( item, [ "organization", "national-library" ] ) }',
   },
 
-  'bus_station': {
-      value: [
-        494829, 953806,
-      ],
-      trigger: '',
-      tags: 'if( !valid( item.has_only_subclass ) ){ setTags( item, [ "location", "bus-station" ] ) }',
-  },
-
   'metro_station': {
       value: [
         928830, 5503,
@@ -540,6 +532,14 @@ const indicators = {
       ],
       trigger: '',
       tags: 'if( !valid( item.has_only_subclass ) ){ setTags( item, [ "location", "railway-station" ] ) }',
+  },
+
+  'bus_station': {
+      value: [
+        494829, 953806,
+      ],
+      trigger: '',
+      tags: 'if( !valid( item.has_only_subclass ) ){ setTags( item, [ "location", "bus-station" ] ) }',
   },
 
   'museum': {

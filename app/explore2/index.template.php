@@ -947,6 +947,8 @@ $settings_html = '
 
                       <div class="bookmark-action"><a class="" title="show bookmark linkgraph relations" aria-label="show bookmark linkgraph relations" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-linkgraph&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-linkgraph-relations">linkgraph</span></span></a></div>
 
+                      <div class="bookmark-action"><a class="" title="show bookmark related Mastodon posts" aria-label="show bookmark related Mastodon posts" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;mastodon&quot;)"><span class="icon"><i class="fa-brands fa-mastodon fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-mastodon">Mastodon</span></span></a></div>
+
                       <div class="bookmark-action"><a class="" title="show bookmark locations on a map" aria-label="show bookmark locations on a map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map&quot;)"><span class="icon"><i class="fa-regular fa-map fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map">2D location map</span></span></a></div>
 
                       <div class="bookmark-action"><a class="" title="show bookmark locations on a 3D map" aria-label="show bookmark locations on a 3D map" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;command-map3d&quot;)"><span class="icon"><i class="fa-solid fa-globe-americas fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-location-map3d">3D location map</span></span></a></div>
