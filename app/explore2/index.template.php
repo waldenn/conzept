@@ -229,6 +229,7 @@ $main_script = '
 
   <!-- media -->
   <script src="../app/explore2/dist/datasources/peertube/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/sketchfab/index.js?vCONZEPT_VERSION"></script>
   <!--script src="../app/explore2/dist/datasources/freesound/index.js?vCONZEPT_VERSION"></script-->
 
   <!-- news -->
