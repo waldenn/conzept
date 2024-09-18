@@ -51,6 +51,7 @@ const explore_default = {
 	language_variant : getParameterByName('ws') || '',     // currently only used for the "zh"-language (TODO: make more general)
 
   firstVisit    : true,
+  firstVisitAI	: true,
 
 	// could we read these from storage?
   locale       	: getParameterByName('locale') || 'en',
@@ -103,6 +104,9 @@ const explore_default = {
 
   bookmarks     : [],
 
+  openai_enabled: false,
+	api_key_openai: '',
+
 }
 
 // merge the early and late explore-setting-objects into one final "explore" settings object
@@ -149,6 +153,19 @@ $( document ).ready( function() {
   (async () => {
 
     explore.db = ImmortalDB.ImmortalDB;
+
+    if ( explore.api_key_openai === '' ){
+
+      explore.api_key_openai = await explore.db.get('api_key_openai');
+      explore.api_key_openai = ( explore.api_key_openai === null || explore.api_key_openai === undefined ) ? '' : explore.api_key_openai;
+
+    	if ( valid( explore.api_key_openai ) ){ 
+
+     		explore.openai_enabled =  true;
+
+			}
+
+    }
 
     if ( explore.voice_code === '' ){
 
@@ -727,8 +744,20 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
                   }
                   else {
 
-                    console.log('Wikipedia app: no article found for: ', explore.language, explore.title );
-                    window.location.href = explore.base + '/pages/blank.html';
+                    //console.log('Wikipedia app: no article found for: ', explore.language, explore.title, explore.firstVisitAI );
+
+										if ( valid( explore.firstVisitAI ) && valid( explore.openai_enabled ) ){ // show AI chat as fallback (but only after first visits)
+
+											explore.firstVisitAI = false;
+                    	window.location.href = `${explore.base}/app/chat/?m=${ encodeURIComponent( explore.title ) }&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}`;
+
+										}
+										else {
+
+											explore.firstVisitAI = false;
+                    	window.location.href = explore.base + '/pages/blank.html';
+
+										}
 
                   }
 
