@@ -2,6 +2,8 @@
 
 function autocompleteSketchfab( results, dataset ){
 
+  datasources.sketchfab.cursor = ''; // reset cursor
+
   const source = 'sketchfab';
 
   let list = [];
@@ -26,7 +28,7 @@ function processResultsSketchfab( topicResults, struct, index ){
 
   const source = 'sketchfab';
 
-  console.log( topicResults );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
@@ -80,6 +82,8 @@ function processResultsSketchfab( topicResults, struct, index ){
 
       };
 
+      datasources.sketchfab.cursor = valid( topicResults?.cursors?.next )? topicResults.cursors.next : '';
+
       $.each( topicResults.results, function( i, model ){
 
         let gid         = valid( model.uid )? model.uid : '';
@@ -103,8 +107,6 @@ function processResultsSketchfab( topicResults, struct, index ){
           }
 
         }
-
-        console.log( 'thumb: ', thumb );
 
         let user        = '';
 

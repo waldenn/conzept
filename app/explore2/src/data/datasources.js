@@ -1773,7 +1773,8 @@ const datasources = {
                               'entity'          : '',
                             },
                             // TODO: "published_since": "Retrieves the models published after published_since (ISO 8601 format)" 
-    url:                    '${datasources.sketchfab.endpoint}?tags=${term}&count=${datasources.sketchfab.pagesize}&cursor=',
+    url:                    '${datasources.sketchfab.endpoint}?tags=${ term.toLowerCase().replaceAll( " ", "," ) }&count=${datasources.sketchfab.pagesize}&cursor=${datasources.sketchfab.cursor}',
+    cursor:                 '',
     icon:                   '<img class="datasource-icon" alt="Sketchfab logo" src="/assets/icons/sketchfab.svg" alt="Sketchfab logo">',
     icon_invert:            false,
     color:                  '#ee9d1e99',
@@ -1784,7 +1785,7 @@ const datasources = {
     code_render_mark:       'renderMarkSketchfab( inputs, source, q_, show_raw_results, id )',
     autocomplete_active:    true,
     autocomplete_protocol:  'json',
-    autocomplete_url:       '${datasources.sketchfab.endpoint}?tags=${term}&count=${datasources.sketchfab.autocomplete_limit}&cursor=',
+    autocomplete_url:       '${datasources.sketchfab.endpoint}?tags=${ term.toLowerCase().replaceAll( " ", "," ) }&count=${datasources.sketchfab.autocomplete_limit}',
     autocomplete_format:    'json',
     autocomplete_connect:   'json',
     autocomplete_limit:     `${explore.datasource_autocomplete_limit}`,
