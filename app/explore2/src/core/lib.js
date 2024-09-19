@@ -10483,14 +10483,16 @@ function runBookmarkAction( action ){
 
     if ( action === 'related' ){
 
-      aiSearch( `relevant topics related to: "${ encodeURIComponent( setQuotes( topics, true ) ) }` );
+      aiSearch( `relevant topics related to: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
     else if ( action === 'similar' ){
 
-      aiSearch( `similar topics to: "${ encodeURIComponent( setQuotes( topics, true ) ) }` );
+      aiSearch( `similar topics to: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
+
+    explore.tabsInstance.select('tab-topics');
 
   }
   else if ( action.startsWith( 'conzept-search' ) ){
