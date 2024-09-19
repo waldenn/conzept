@@ -13177,6 +13177,8 @@ async function aiSearch( prompt ){
         icon: 'error'
       })
 
+      $('#blink').hide();
+
       throw new Error( 'no OpenAI key found' );
 
     }
