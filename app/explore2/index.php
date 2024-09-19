@@ -886,8 +886,21 @@ $settings_html = '
                   <a class="doclink" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#bookmark_selection_actions" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
                 </summary>
 
-                <div id="bookmarks-actions-reasoning" class="noselect">
-                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-reasoning">reasoning</span></summary>
+                <div id="bookmarks-actions-sidebar" class="noselect">
+                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-sidebar">sidebar</span></summary>
+                    <div class="frontpage-grid-container">
+
+                      <div class="bookmark-action"><a class="" title="search for related topics" aria-label="search for related topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-related&quot;)"><span class="icon"><i class="fa-solid fa-diagram-project fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-related">related</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="search for similar topics" aria-label="search forsimilar topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-similar&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-related">similar</span></span></a></div>
+
+                    </div>
+                  </detail>
+                </div>
+
+
+                <div id="bookmarks-actions-chat" class="noselect">
+                  <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-chat">chat</span></summary>
                     <div class="frontpage-grid-container">
 
                       <div class="bookmark-action"><a class="" title="teach me about these bookmark topics" aria-label="teach me about these bookmark topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;professor&quot;)"><span class="icon"><i class="fa-solid fa-chalkboard-user fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-teach-topics">teach me</span></span></a></div>

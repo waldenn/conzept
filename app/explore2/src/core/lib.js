@@ -10463,6 +10463,36 @@ function runBookmarkAction( action ){
     });
 
   }
+  else if ( action.startsWith( 'conzept-sidebar' ) ){
+
+    action = action.replace('conzept-sidebar-', '');
+
+    let topics = []; // list of topics
+
+    const obj = $('#tree').tree('getTree');
+
+    if ( valid( obj.children ) ){
+
+      obj.children.forEach(( b, index ) => {
+
+        exportSelectedBookmarkTopics( topics, b );
+
+      });
+
+    }
+
+    if ( action === 'related' ){
+
+      aiSearch( `relevant topics related to: "${ encodeURIComponent( setQuotes( topics, true ) ) }` );
+
+    }
+    else if ( action === 'similar' ){
+
+      aiSearch( `similar topics to: "${ encodeURIComponent( setQuotes( topics, true ) ) }` );
+
+    }
+
+  }
   else if ( action.startsWith( 'conzept-search' ) ){
 
     const datasource_set = action.replace('conzept-search-', '');
@@ -13177,9 +13207,10 @@ async function aiSearch( prompt ){
         icon: 'error'
       })
 
-      explore.tabsInstance.select('tab-settings'); // go to the settings tab
-
       $('#blink').hide();
+
+      // FIXME: tab not opened, overruled by later tab-call?)
+      explore.tabsInstance.select('tab-settings'); // go to the settings tab
 
       throw new Error( 'no OpenAI key found' );
 
