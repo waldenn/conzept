@@ -1772,7 +1772,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.sketchfab.endpoint}?type=models&q=${term}&count=${datasources.sketchfab.pagesize}&cursor=${ (explore.page === 1)? '' : datasources.sketchfab.cursor}&sort_by=${ valid( sortby )? sortby : "" }',
+    url:                    '${datasources.sketchfab.endpoint}?type=models&q=${term}&count=${datasources.sketchfab.pagesize}&cursor=${ (explore.page > 1) ? datasources.sketchfab.cursor : "" }&sort_by=${ valid( sortby )? sortby : "" }',
     cursor:                 '',
     icon:                   '<img class="datasource-icon" alt="Sketchfab logo" src="/assets/icons/sketchfab.svg" alt="Sketchfab logo">',
     icon_invert:            false,
