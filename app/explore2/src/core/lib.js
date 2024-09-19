@@ -13177,6 +13177,8 @@ async function aiSearch( prompt ){
         icon: 'error'
       })
 
+      explore.tabsInstance.select('tab-settings'); // go to the settings tab
+
       $('#blink').hide();
 
       throw new Error( 'no OpenAI key found' );
