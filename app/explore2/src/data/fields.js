@@ -18355,7 +18355,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'openalex_search' : {
-  create_condition: 'item.datasource === "" || activeOnDatasources( [ "wikipedia", "wikidata", "doaj", "ror", "gbif" ], item.datasource ) && ! checkTag(item, 1, [ "list", "disambiguation", "wikispecial" ])',
+  create_condition: '( item.datasource === "" || activeOnDatasources( [ "wikipedia", "wikidata", "doaj", "ror", "gbif" ], item.datasource ) ) && ! checkTag(item, 1, [ "list", "disambiguation", "wikispecial" ])',
   title: 'OpenAlex - science articles search',
   prop: '',
   type: 'link',
@@ -18365,7 +18365,7 @@ if ( valid( item.found_in_taxon ) ){
   text: 'OpenAlex search',
   section: 'science-search-tools',
   rank: 58.9,
-  headline_create: '!valid( item.openalex )',
+  headline_create: '!valid( item.openalex ) && valid( item.openalex_search )',
   headline_type: 'link',
   headline_rank: 180,
 },

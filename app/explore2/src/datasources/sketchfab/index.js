@@ -120,16 +120,31 @@ function processResultsSketchfab( topicResults, struct, index ){
 
         }
 
+        let license = '';
+
+        if ( valid( model.license ) ){
+
+          if ( valid( model.license.label ) ){
+
+            license = `&nbsp;(© ${model.license.label})`;
+
+         }
+
+        }
+
+
+
         // TODO: license, 
 
 				// fill fields
 				let item = {
           source:       source,
 					title:        title,
-					description:  '<div>' + user + '</div><br/>' + description,
+					description:  '<div>' + user + '</div><br/>' + description + license,
 					gid:          url,
           qid:          '',
 					display_url:  url,
+          web_url:      url,
           thumb:        thumb,
           start_date:   start_date,
           countries:    [],
