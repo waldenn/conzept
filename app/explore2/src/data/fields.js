@@ -17348,7 +17348,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-video',
   text: 'PeerTube',
   section: 'media-video',
-  rank: 106,
+  rank: 62,
 },
 
 'odyssee' : {
@@ -17493,7 +17493,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-film',
   text: 'ARTE',
   section: 'media-video',
-  rank: 105,
+  rank: 109,
 },
 
 'videolectures_search' : {
