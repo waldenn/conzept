@@ -82,6 +82,7 @@ function processResultsSketchfab( topicResults, struct, index ){
 
       };
 
+      // set paging-cursor for the follow-up data fetches
       datasources.sketchfab.cursor = valid( topicResults?.cursors?.next )? topicResults.cursors.next : '';
 
       $.each( topicResults.results, function( i, model ){

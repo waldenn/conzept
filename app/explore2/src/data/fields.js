@@ -3604,6 +3604,19 @@ conzept_fields = {
   rank: [18.4],
 },
 
+'conzept_media_datasources_search' : {
+  create_condition: '! isEmbedded()',
+  title: 'Conzept media datasources search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/explore/${title_quoted}?l=${explore.language}&ds=media&t=string&singleuse=true',
+  icon: 'fa-brands fa-searchengin',
+  text: 'Conzept media',
+  section: ['main'],
+  rank: [18.5],
+},
+
 'bing' : {
   create_condition: true,
   title: 'Bing web search',
