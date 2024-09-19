@@ -17275,7 +17275,7 @@ if ( valid( item.found_in_taxon ) ){
   prop: '',
   type: 'link',
   mv: false,
-  url; 'https://euscreen.eu/euscreen-collections/search.html?activeType=video&query=water&sortDirection=up',
+  url: 'https://euscreen.eu/euscreen-collections/search.html?activeType=video&query=water&sortDirection=up',
   //url: 'https://euscreen.eu/collection-search-results/?search=${title_lowercase}',
   icon: 'fa-solid fa-video',
   text: 'EUscreen',
