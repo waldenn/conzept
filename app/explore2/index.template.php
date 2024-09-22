@@ -890,14 +890,17 @@ $settings_html = '
                   <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-sidebar">sidebar</span></summary>
                     <div class="frontpage-grid-container">
 
+                      <div class="bookmark-action"><a class="" title="search for educational topics" aria-label="search for educational topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-educate&quot;)"><span class="icon"><i class="fa-solid fa-chalkboard-user fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-educate">educate</span></span></a></div>
+
                       <div class="bookmark-action"><a class="" title="search for related topics" aria-label="search for related topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-related&quot;)"><span class="icon"><i class="fa-solid fa-diagram-project fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-related">related</span></span></a></div>
 
-                      <div class="bookmark-action"><a class="" title="search for similar topics" aria-label="search forsimilar topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-similar&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-related">similar</span></span></a></div>
+                      <div class="bookmark-action"><a class="" title="search for common topics" aria-label="search for common topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-commonality&quot;)"><span class="icon"><i class="fa-solid fa-arrows-to-circle fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-commonality">commonalities</span></span></a></div>
+
+                      <div class="bookmark-action"><a class="" title="search for similar topics" aria-label="search for similar topics" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-similar&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-related">similar</span></span></a></div>
 
                     </div>
                   </detail>
                 </div>
-
 
                 <div id="bookmarks-actions-chat" class="noselect">
                   <details class="frontpage" style="" closed=""><summary><span id="app-menu-bookmark-actions-chat">chat</span></summary>

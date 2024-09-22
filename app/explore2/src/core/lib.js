@@ -10491,6 +10491,16 @@ function runBookmarkAction( action ){
       aiSearch( `similar topics to: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
+    else if ( action === 'commonality' ){
+
+      aiSearch( `common topics of: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+
+    }
+    else if ( action === 'educate' ){
+
+      aiSearch( `Wikipedia topics that can help understand these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+
+    }
 
     explore.tabsInstance.select('tab-topics');
 

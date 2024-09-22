@@ -749,6 +749,7 @@ function renderWikiArticle( title, lang, hash_, languages, tags, qid, gbif_id, a
 										if ( valid( explore.firstVisitAI ) && valid( explore.openai_enabled ) ){ // show AI chat as fallback (but only after first visits)
 
 											explore.firstVisitAI = false;
+
                     	window.location.href = `${explore.base}/app/chat/?m=${ encodeURIComponent( explore.title ) }&l=${explore.language}&t=${explore.tutor}&autospeak=${explore.autospeak}`;
 
 										}
