@@ -516,7 +516,7 @@ function appendTitleOnlyTopics(){
 
       explore.title_only_list.forEach(( title, index ) => {
 
-        title = title.trim();
+        title = title.replaceAll('"', '').trim();
 
         const args = {
           id            : 'n-raw-' + index,

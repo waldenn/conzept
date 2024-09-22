@@ -13315,7 +13315,7 @@ async function aiSearch( prompt ){
         setActiveDatasourceSet();
         updateActiveDatasources( explore.datasource_selection.split(',').map( d => d.trim() ) );
 
-				topics = topics.map( item => item.trim() );
+				topics = topics.map( item => item.replaceAll('"', '').trim() );
 
     		//console.log('topics: ', topics );
 

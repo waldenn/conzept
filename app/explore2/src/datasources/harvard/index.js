@@ -105,10 +105,22 @@ function processResultsHarvard( topicResults, struct, index ){
         const license_link= '';
         let license_name  = '';
 
-        let img           = valid( obj.primaryimageurl )? obj.primaryimageurl : '';
-        let thumb         = img;
+        let img           = ''; //valid( obj.primaryimageurl )? obj.primaryimageurl : '';
+        let thumb         = ''; // img;
+
+        if ( valid( obj?.images ) ){
+
+          if ( valid( obj.images[0]) ){
+
+            img = 'https://ids.hvrd.art/ids/view/' + obj.images[0].idsid;
+            thumb = img;
+
+          }
+
+        }
 
 				const description_plain = description;
+
         let authors_plain       = '';
 
         // get authors

@@ -335,7 +335,10 @@ Bookmarks can also be added manually using the "add bookmark" form.
 
 [{{::bookmark_actions_001.jpg?direct|bookmark action (topics similarity example)}}]
 
-  * By selecting one or more bookmarks, and then clicking on one of the bookmark-selection-action buttons in the "**reasoning**" or "**media**" section, you can insert a list of topics into that action. The "reasoning" section contains various AI-related actions, and the "media" section contains various embedded apps.
+  * By selecting one or more bookmarks, and then clicking on one of the bookmark-selection-action buttons in the following detail-sections, you can insert a list of topics into that action and get back results:
+    * **Sidebar** - AI search rendering topics in the sidebar.
+    * **Chat** - AI chat about topics.
+    * **Media** - various embedded apps (non-AI)
 
 ===== settings =====
 
