@@ -4274,6 +4274,15 @@ async function updateLocaleInterface(){
   $('#app-menu-sort-by-option-distance-asc').html( explore.banana.i18n('app-menu-sort-by-option-distance-asc') );
   $('#app-menu-sort-by-option-distance-desc').html( explore.banana.i18n('app-menu-sort-by-option-distance-desc') );
 
+  $('#app-menu-batch-size').html( explore.banana.i18n('app-menu-batch-size') );
+  $('#app-menu-bookmark-actions-sidebar').html( explore.banana.i18n('app-menu-bookmark-actions-sidebar') );
+  $('#app-menu-bookmark-actions-chat').html( explore.banana.i18n('app-menu-bookmark-actions-chat') );
+
+  $('#app-guide-conzept-sidebar-educate').html( explore.banana.i18n('app-guide-conzept-sidebar-educate') );
+  $('#app-guide-conzept-sidebar-related').html( explore.banana.i18n('app-guide-bookmark-related-topics') );
+  $('#app-guide-conzept-sidebar-commonality').html( explore.banana.i18n('app-guide-bookmark-commonalities') );
+  $('#app-guide-conzept-sidebar-similarities').html( explore.banana.i18n('app-guide-bookmark-similarities') );
+
   $('#app-menu-upload-json').html( explore.banana.i18n('app-menu-upload-json') );
   $('#app-menu-actions').html( explore.banana.i18n('app-menu-actions') );
   $('#app-menu-background-audio').html( explore.banana.i18n('app-menu-background-audio') );
@@ -4394,6 +4403,10 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-quiz-topics').text( explore.banana.i18n('app-guide-bookmark-quiz-topics') );
   $('#app-guide-bookmark-teach-topics').text( explore.banana.i18n('app-guide-bookmark-teach-topics') );
   $('#app-guide-bookmark-gapminder-country-trend').text( explore.banana.i18n('app-guide-bookmark-gapminder-country-trend') );
+  $('#app-guide-bookmark-history').html( explore.banana.i18n('app-guide-bookmark-history') );
+  $('#app-guide-bookmark-related-websites').html( explore.banana.i18n('app-guide-bookmark-related-websites') );
+  $('#app-guide-bookmark-books').html( explore.banana.i18n('app-guide-bookmark-books') );
+
 
   $('#app-guide-ongoing-conflicts').text( explore.banana.i18n('app-guide-ongoing-conflicts') );
   $('#app-guide-conflict-map').text( explore.banana.i18n('app-guide-conflict-map') );

@@ -139,6 +139,9 @@
   "app-menu-new-search": "new search",
   "app-menu-structured-search": "structured search",
   "app-menu-geospatial-search": "geospatial search",
+  "app-menu-batch-size": "batch size",
+  "app-menu-bookmark-actions-sidebar": "sidebar",
+  "app-menu-bookmark-actions-chat": "chat",
 
   "app-section-main": "main",
   "app-section-info": "info",
@@ -210,6 +213,8 @@
   "app-section-society-events": "events",
   "app-section-society-shopping": "shopping",
 
+  "app-guide-conzept-sidebar-educate": "educational topics",
+
   "app-guide-bookmarks-selected": "selected",
   "app-guide-bookmarks-deselect-all": "deselect all",
   "app-guide-bookmark-teach-topics": "teach me",
@@ -220,6 +225,8 @@
   "app-guide-bookmark-similarities": "similarities",
   "app-guide-bookmark-implications": "implications",
   "app-guide-bookmark-history": "history",
+  "app-guide-bookmark-books": "books",
+  "app-guide-bookmark-related-websites": "related websites",
   "app-guide-bookmark-conceptology": "conceptology",
   "app-guide-bookmark-gapminder-country-trend": "country trend",
   "app-guide-see-more": "see more",
