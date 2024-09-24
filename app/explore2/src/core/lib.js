@@ -7512,7 +7512,12 @@ async function renderType( args ){
     }
     else {
 
-      if ( /^[^\s]+$/.test( title_nocat ) ){ // multiple words used
+      if ( /^[^\s]+$/.test( title_nocat ) ){ // single word
+
+        // do nothing
+
+      }
+      else { // multiple words used
 
         title_nocat = `"${title_nocat}"`; // add quoting
 
