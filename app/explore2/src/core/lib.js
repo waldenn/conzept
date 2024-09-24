@@ -7511,7 +7511,13 @@ async function renderType( args ){
       // do nothing
     }
     else {
-      title_nocat = `"${title_nocat}"`; // add quoting
+
+      if ( /^[^\s]+$/.test( title_nocat ) ){ // multiple words used
+
+        title_nocat = `"${title_nocat}"`; // add quoting
+
+      }
+
     }
 
     // prevent this duplicate (loop-causing) call from happening when the 'explore'-view is triggered by replace State()
@@ -9491,7 +9497,7 @@ function receiveMessage(event){
 
     if ( valid( event.data.data.title ) ){
 
-      addBookmark(event, 'clicked', title );
+      addBookmark(event, 'clicked', event.data.data.title );
 
     }
 
