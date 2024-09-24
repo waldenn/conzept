@@ -1207,6 +1207,7 @@ function bookmarkToggle(){
     $('.icon .bookmark-icon').addClass('bookmarked');  
 
     window.parent.postMessage({ event_id: 'add-bookmark', data: {
+      title:      title,
       language:   explore.language,
       qid:        explore.qid,
       tags:       explore.tags,
@@ -1429,7 +1430,13 @@ function setupKeys(){
   });
 
   keyboardJS.bind('alt+i', function(e) {
-    window.parent.postMessage({ event_id: 'add-bookmark', data: { } }, '*' );
+    window.parent.postMessage({ event_id: 'add-bookmark', data: { 
+      title:      title,
+      language:   explore.language,
+      qid:        explore.qid,
+      tags:       explore.tags,
+      datasource: 'wikipedia',
+    } }, '*' );
   });
 
   /*

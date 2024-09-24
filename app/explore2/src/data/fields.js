@@ -4139,7 +4139,7 @@ conzept_fields = {
   prop: '',
   type: 'link',
   mv: false,
-  url: 'https://explorer.opensyllabus.org/results-list/titles?size=50&findWorks=${title_quoted}',
+  url: 'https://analytics.opensyllabus.org/record/works?syllabus_query=${title_quoted}',
   icon: 'fa-brands fa-mizuni',
   text: 'Open Syllabus',
   section: 'education-assistance',

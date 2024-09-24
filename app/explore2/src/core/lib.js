@@ -7505,7 +7505,14 @@ async function renderType( args ){
     // TODO: make this work for secondary-iframes
 
     // remove "Category:" string when needed?
-    const title_nocat = removeCategoryFromTitle( title ); // TODO: also make this work for RTL-scripts
+    let title_nocat = removeCategoryFromTitle( title ); // TODO: also make this work for RTL-scripts
+
+    if ( title_nocat.startsWith( '"' ) || title_nocat.startsWith( '%22' ) ){
+      // do nothing
+    }
+    else {
+      title_nocat = `"${title_nocat}"`; // add quoting
+    }
 
     // prevent this duplicate (loop-causing) call from happening when the 'explore'-view is triggered by replace State()
     explore.type = 'string';
@@ -9482,7 +9489,11 @@ function receiveMessage(event){
   }
   else if ( event.data.event_id === 'add-bookmark' ){
 
-    addBookmark(event, 'clicked' );
+    if ( valid( event.data.data.title ) ){
+
+      addBookmark(event, 'clicked', title );
+
+    }
 
   }
   else if ( event.data.event_id === 'remove-bookmark' ){
@@ -10847,7 +10858,7 @@ function updateBookmarks(){ // TODO
 
 }
 
-function addBookmark( e, action_type ){
+function addBookmark( e, action_type, title_ ){
 
   // TODO: implement bookmark-removal (if this bookmark already exists)
   // removeBookmark( event, node.id )
@@ -10870,7 +10881,15 @@ function addBookmark( e, action_type ){
 
     let link        = $( explore.baseframe ).attr('src') || ''; // default
 
-    let title       = decodeURIComponent( explore.curr_title ) || explore.q || ''; // default
+    let title       = '';
+
+    if ( valid( title_ ) ){ // title argument was provided
+      title = title_;
+    }
+    else { // no title argument provided
+      title = decodeURIComponent( explore.curr_title ) || explore.q || ''; // default
+    }
+
     //let display    = title + ' (' + language_ +')';
 
     let geo         = '';
