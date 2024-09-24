@@ -560,7 +560,6 @@ function appendTitleOnlyTopics(){
 
 }
 
-
 async function runQuery( json, json_url ){
 
   //console.log( 'runQuery: ', json, json_url );
@@ -677,6 +676,23 @@ async function runWikidataQuery( paging_mode ){
               let topicResults = await fetchWikidataQuery();
 
               topicResults[0].value[0].source.data.query.searchinfo.totalhits = explore.totalRecords;
+
+              $.each( explore.datasources, function( index, source ){ // for each active datasource
+
+                let d = datasources[ source ];
+
+                if ( d.name === 'Wikidata' ){
+
+                  d.total = explore.totalRecords;
+
+                }
+                else {
+
+                  d.total = 0;
+
+                }
+
+              });
 
               renderTopics( { 'wikidata' : { data: topicResults[0] } } );
 

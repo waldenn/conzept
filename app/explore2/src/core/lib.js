@@ -4407,7 +4407,6 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-related-websites').html( explore.banana.i18n('app-guide-bookmark-related-websites') );
   $('#app-guide-bookmark-books').html( explore.banana.i18n('app-guide-bookmark-books') );
 
-
   $('#app-guide-ongoing-conflicts').text( explore.banana.i18n('app-guide-ongoing-conflicts') );
   $('#app-guide-conflict-map').text( explore.banana.i18n('app-guide-conflict-map') );
   $('#app-guide-news-economic-indicators').text( explore.banana.i18n('app-guide-news-economic-indicators') );

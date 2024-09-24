@@ -19,8 +19,12 @@ Overview of the Conzept settings:
 | **CONZEPT_AI_TUTORS** | List of supported AI-prompts |  |
 | **CONZEPT_COMMON_HTML_INCLUDE** | Common HTML-string which will be included in the [[used_projects#embedded_apps|embedded apps]] | ✔ |
 | **CONZEPT_COMMON_HTML_INCLUDE_NO_JQUERY** | Same as above, but without jQuery (some apps already include jQuery by themselves) | ✔ |
+| **CONZEPT_TRACKER_HTML_INCLUDE** | common tracker HTML string (BETA) |  |
+| **CONZEPT_PREVENT_COVER_FETCH** | Development-mode switch: Avoid fetching Wikipedia-covers during development-builds (BETA) | |
+| **CONZEPT_STAGING** | Development-mode switch: Avoid hitting CertBot request-limits (BETA) | |
 | **CONZEPT_YOUTUBE_API_KEY** | [[https://developers.google.com/youtube/v3/getting-started|YouTube API]] key |  |
-| **CONZEPT_TRACKER_HTML_INCLUDE** | common tracker HTML string |  |
-| **CONZEPT_PREVENT_COVER_FETCH** | Development-mode switch: Avoid fetching Wikipedia-covers during development-builds | |
-| **CONZEPT_STAGING** | Development-mode switch: Avoid hitting CertBot request-limits | |
-
+| **CONZEPT_MARGINALIA_API_KEY** | [[https://www.marginalia.nu/marginalia-search/api/|Marginalia API]] key | | |
+| **CONZEPT_SMITHSONIAN_API_KEY** | [[https://www.si.edu/openaccess/devtools|Smithsonian API]] key | | |
+| **CONZEPT_COURTLISTENER_API_KEY** | [[https://www.courtlistener.com/help/api/rest/|Court Listener API]] key | | |
+| **CONZEPT_OPENCITATIONS_API_KEY** | [[https://opencitations.net/index/api/v2|Open Citations API]] key | | |
+| **CONZEPT_BHL_API_KEY**** | [[https://about.biodiversitylibrary.org/tools-and-services/developer-and-data-tools/#APIs|BHL API]] key | | |
