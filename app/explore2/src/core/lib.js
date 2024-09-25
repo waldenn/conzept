@@ -4383,9 +4383,9 @@ async function updateLocaleInterface(){
   $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
 
   $('#app-menu-nearby-search').text( explore.banana.i18n('app-menu-nearby-search') );
+  $('#app-menu-nearby-search-title').text( explore.banana.i18n('app-menu-nearby-search') );
 
   $('#app-menu-geospatial-search').text( explore.banana.i18n('app-menu-geospatial-search') );
-  $('#app-menu-geospatial-search-title').text( explore.banana.i18n('app-menu-geospatial-search') );
 
   $('#app-menu-nature-location-quiz').text( explore.banana.i18n('app-menu-nature-location-quiz') );
 
