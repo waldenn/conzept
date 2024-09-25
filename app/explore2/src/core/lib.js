@@ -7049,7 +7049,7 @@ async function renderTopics( inputs ){
     }
 
     // show number-of-pages and the datasources
-    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
+    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span> <span title="show topic locations on a map" onclick="showTopicLocationsOnMap()"><i class="fa-solid fa-map-location-dot"></i></span>');
 
     //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 
@@ -7202,10 +7202,27 @@ async function renderTopics( inputs ){
 
 }
 
+async function showTopicLocationsOnMap(){
+
+  $( '.article-title' ).each(function() {
+
+    if ( valid( $( this ).data( 'geolocation' ) ) ){
+
+      console.log( $( this ).text(), $( this ).data( 'geolocation' ) );
+
+    }
+
+  });
+
+}
+
 function toggleDatasourceResults( source ){
 
   const sel_icon = `.datasource-hits[data-source="${ source }"]`;
-  const sel_results = `.entry.articles[data-source="${ source }"]`;                                                                                                                                                                                                   $( sel_results ).toggle();
+  const sel_results = `.entry.articles[data-source="${ source }"]`;
+
+  $( sel_results ).toggle();
+
   let visible = $( sel_results ).first().is( ':visible' );
 
   if ( visible ){
@@ -7269,7 +7286,7 @@ function addTopics( source, list, parent_node_id ){
 
     if ( valid( thumb ) ){
 
-        thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + decodeURIComponent( thumb ) + '" alt="" /></div>';
+      thumbnail = '<div class="summary-thumb"><img class="thumbnail" src="' + decodeURIComponent( thumb ) + '" alt="" /></div>';
 
     }
 

@@ -23,15 +23,6 @@ function createItemHtml( args ){ // creates the HTML-card for each result
   //console.log( args, qid, title );
   //console.log( 'datasources: ', datasources, source );
 
-  if ( source === 'raw' ){
-    source_icon = `<span class="article-title-icon" title="plain string topic"><span class="icon"><i class="fa-solid fa-circle-notch"></i></span></span>`;
-  }
-  else {
-
-    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} item"><span class="icon ${ valid( datasources[ source ].icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
-
-  }
-
   let headline_buttons  = []; // list of headline objects
   let headline_html     = ''; // processed headline content
   let headline          = ''; // final headline html (with some structure options)
@@ -1018,6 +1009,18 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
   //console.log( 'args: ', args );
 
+  if ( source === 'raw' ){
+    source_icon = `<span class="article-title-icon" title="plain string topic"><span class="icon"><i class="fa-solid fa-circle-notch"></i></span></span>`;
+  }
+  else {
+
+    source_icon = `<span class="article-title-icon" title="${ datasources[ source ].name} item"><span class="icon ${ valid( datasources[ source ].icon_invert )? 'invert' : '' }">${datasources[ source ].icon }</span></span>`;
+
+  }
+
+  // topic-card data-attributes
+  const data_attribute_geolocation = valid( item.lon )? `data-geolocation="${item.lon};${item.lat}"` : '';
+
   // FIXME: remove this?
   if ( args.id == 'n00' ){ // raw-search-string
 
@@ -1031,24 +1034,24 @@ function createItemHtml( args ){ // creates the HTML-card for each result
 
     if ( valid( item.newtab ) ){ // open link in a new tab
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" ${data_attribute_geolocation} aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
 
       // FIXME
-      //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
+      //topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" ${data_attribute_geolocation} aria-label="datasource item" role="button" onclick="openInNewTab( &quot;` + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( item.display_url ) ) + '&quot;)"> ' + title + source_icon + '</a>';
 
-      // encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
+      // encodeURIComponent( '<a href="javascript:void(0)" class="mv-extra-icon" title="opens in new tab" ${data_attribute_geolocation} aria-label="opens in new tab" role="button" onclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)" onauxclick="openInNewTab( &quot;' + JSON.parse( decodeURI( url ) ) + '&quot;)"> ' + decodeURIComponent( label ) + '</a>' + date + subtitle + subtitle2 + desc );
 
     }
     else {
 
-      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: valid( item.type )? item.type : 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
+      topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" ${data_attribute_geolocation} aria-label="datasource item" role="button"` + setOnClick( Object.assign({}, args, { type: valid( item.type )? item.type : 'link', url : item.display_url, current_pane: current_pane, target_pane: 'p1' } ) )  + '> ' + highlightTerms( title ) + source_icon + '</a>';
 
     }
 
   }
   else { // assume wikipedia / wikidata render
 
-    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" aria-label="wikipedia" role="button"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + highlightTerms( title.replace(/:/g, ': ') ) + source_icon + '</a>';
+    topic_title = `<a href="javascript:void(0)" class="article-title linkblock sticky-title ${bookmark_class}" ${data_attribute_geolocation} aria-label="wikipedia" role="button"` + setOnClick( Object.assign({}, args, { type: type_, current_pane: current_pane, target_pane: 'p1', gbif_id: item.gbif_id } ) )  + '>' + highlightTerms( title.replace(/:/g, ': ') ) + source_icon + '</a>';
 
   }
 
