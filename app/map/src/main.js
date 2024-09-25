@@ -69,7 +69,7 @@ if ( valid( app.list ) ){ // list of geolocation objects
 
   //console.log( app.list );
 
-  title_html.push( 'topic map' );
+  title_html.push( `topic map (${ app.list.length })` );
 
 }
 else if ( app.gbif.includes(',') ){ // list of GBIF ID's
@@ -156,7 +156,34 @@ async function init(){
 
     app.list.forEach( function( topic ) {
 
-			console.log( topic );
+			//console.log( topic );
+
+			// FIXME: Hacky  workaround to show first marker, otherwise
+      // the first topic marker circle is not shown!)
+			app.markerLayer.add(new og.Entity({
+
+        lonlat: [
+          parseFloat( 0 ),
+          parseFloat( 0 )
+        ],
+
+        label: {
+          text: '',
+          size: 0.1,
+          color: "black",
+          offsett: app.label_offset,
+        },
+
+        //billboard,
+
+        properties: {
+          title: '',
+          qid: '',
+        }
+
+
+			}));
+      // END OF HACK
 
 			app.markerLayer.add(new og.Entity({
 
@@ -965,5 +992,6 @@ $().ready(function() {
   init();
 
 });
+
 
 

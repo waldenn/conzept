@@ -7655,6 +7655,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [10,7115],
 },
 
+'intavia_search' : {
+  create_condition: true,
+  title: 'Intavia - Europe cultural history knowledge graph, ',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://intavia.acdh-dev.oeaw.ac.at/search?q=${title_quoted}', 
+  icon: 'fa-regular fa-clock',
+  text: 'Intavia',
+  section: ['library-history'],
+  rank: [198],
+},
+
 'archive_word_history' : {
   create_condition: true,
   title: 'Archive.org: timeline of term-usage in books',
