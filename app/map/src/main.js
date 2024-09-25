@@ -63,11 +63,11 @@ window.app = app;
 
 let title_html = [];
 
-if ( valid( app.list ){ // list of geolocation objects
+if ( valid( app.list ) ){ // list of geolocation objects
 
   app.list = JSON.parse( decodeURIComponent( app.list ) );
 
-  console.log( app.list );
+  //console.log( app.list );
 
   title_html.push( 'topic map' );
 
@@ -125,6 +125,11 @@ let billboard = {
 
 async function init(){
 
+  app.markerLayer = new og.layer.Vector("Markers", {
+    //? iconSrc: "/assets/icons/mark.svg",
+    //clampToGround: true,
+  })
+
   if ( valid( app.bbox ) ){
 
     app.bbox = app.bbox.split(',') || [];
@@ -147,7 +152,39 @@ async function init(){
   // bad: https://conze.pt/app/map/?l=en&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
   // bad: https://conze.pt/app/map/?l=en&bbox=4.9894,52.0908,5.0893999999999995,52.190799999999996&lat=7.1845&lon=125.4161&title=Pithecophaga%20jefferyi
 
-  if ( valid( app.qid && app.qid.includes(',') ) ){ // Qid-string-list
+  if ( valid( app.list ) ){ // list of topic-objects
+
+    app.list.forEach( function( topic ) {
+
+			console.log( topic );
+
+			app.markerLayer.add(new og.Entity({
+
+        lonlat: [
+          parseFloat( topic.geolocation.split(';')[0] ),
+          parseFloat( topic.geolocation.split(';')[1] )
+        ],
+
+        label: {
+          text: topic.title,
+          size: app.label_size,
+          color: "black",
+          offsett: app.label_offset,
+        },
+
+        billboard,
+
+        properties: {
+          title: topic.title,
+          qid: topic.qid,
+        }
+
+			}));
+
+		});
+
+	}
+ 	else if ( valid( app.qid && app.qid.includes(',') ) ){ // Qid-string-list
 
     app.qid = app.qid.split(',') || [];
 
@@ -195,11 +232,6 @@ async function init(){
     clampToGround: true,
    });
   */
-
-  app.markerLayer = new og.layer.Vector("Markers", {
-    //? iconSrc: "/assets/icons/mark.svg",
-    //clampToGround: true,
-  })
 
   if ( valid( app.lon ) ){
 
@@ -933,4 +965,5 @@ $().ready(function() {
   init();
 
 });
+
 
