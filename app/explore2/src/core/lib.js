@@ -4382,6 +4382,8 @@ async function updateLocaleInterface(){
   $('#app-menu-structured-search').text( explore.banana.i18n('app-menu-structured-search') );
   $('#app-menu-structured-search-title').text( explore.banana.i18n('app-menu-structured-search') );
 
+  $('#app-menu-nearby-search').text( explore.banana.i18n('app-menu-nearby-search') );
+
   $('#app-menu-geospatial-search').text( explore.banana.i18n('app-menu-geospatial-search') );
   $('#app-menu-geospatial-search-title').text( explore.banana.i18n('app-menu-geospatial-search') );
 
@@ -7512,12 +7514,12 @@ async function renderType( args ){
     }
     else {
 
-      if ( /^[^\s]+$/.test( title_nocat ) ){ // single word
+      if ( /^[^\s]+$/.test( title_nocat ) ){ // single word search
 
         // do nothing
 
       }
-      else { // multiple words used
+      else { // multiple words search
 
         title_nocat = `"${title_nocat}"`; // add quoting
 

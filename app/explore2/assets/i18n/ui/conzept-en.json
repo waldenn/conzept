@@ -138,8 +138,10 @@
   "app-menu-goto-previous-pane": "go to previous pane",
   "app-menu-new-search": "new search",
   "app-menu-structured-search": "structured search",
+  "app-menu-nearby-search": "nearby search",
   "app-menu-geospatial-search": "geospatial search",
   "app-menu-batch-size": "batch size",
+
   "app-menu-bookmark-actions-sidebar": "sidebar",
   "app-menu-bookmark-actions-chat": "chat",
 

@@ -425,11 +425,11 @@ $settings_html = '
                 </div>
 
                 <div id="geospatial-search-setting" class="switch">
-                  <label for="geospatial-search" style="display:none;">geospatial search</label> 
+                  <label for="geospatial-search" style="display:none;">nearby search</label> 
                   <label>
                   <input type="checkbox" id="geospatial-search">
                   <span class="lever"></span>
-                  <span id="app-menu-geospatial-search">geospatial search</span> (Wikidata)
+                  <span id="app-menu-nearby-search">nearby search</span> (Wikidata)
                   </label>
                   <br/>
                 </div>
