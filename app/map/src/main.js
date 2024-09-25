@@ -28,9 +28,13 @@ let app = {
 
 	query:		    getParameterByName( 'query' ) || '',
 
+	list:			    getParameterByName( 'list' ) || '',  // list of geo-location-objects
+
 	lat:			    getParameterByName( 'lat' ) || '',
 	lon:			    getParameterByName( 'lon' ) || '',
+
 	qid:			    getParameterByName( 'qid' ) || '',  // may also be a list!
+
 	title:		    getParameterByName( 'title' ) || '',
   titles:       [],
 	bbox:			    getParameterByName( 'bbox' ) || undefined,
@@ -59,7 +63,16 @@ window.app = app;
 
 let title_html = [];
 
-if ( app.gbif.includes(',') ){ // list of GBIF ID's
+if ( valid( app.list ){ // list of geolocation objects
+
+  app.list = JSON.parse( decodeURIComponent( app.list ) );
+
+  console.log( app.list );
+
+  title_html.push( 'topic map' );
+
+}
+else if ( app.gbif.includes(',') ){ // list of GBIF ID's
 
   app.gbif    = app.gbif.split(',');
   app.titles  = app.title.split(',');

@@ -7204,15 +7204,41 @@ async function renderTopics( inputs ){
 
 async function showTopicLocationsOnMap(){
 
+  let list = []; // list of geolocation-objects
+
   $( '.article-title' ).each(function() {
 
-    if ( valid( $( this ).data( 'geolocation' ) ) ){
+    let obj = {
 
-      console.log( 'title: ', $( this ).text(), 'qid: ', $( this ).data( 'qid' ), 'geolocation: ', $( this ).data( 'geolocation' ) );
+      title:        $( this ).text(),
+      qid:          valid( $( this ).data('qid') )? $( this ).data('qid') : '',
+      geolocation:  valid( $( this ).data('geolocation') )? $( this ).data('geolocation') : '',
 
     }
 
+    list.push( obj );
+
   });
+
+  console.log( 'list: ', list );
+  console.log( `url: ${explore.base}/app/map/?l=${explore.language}&list=${ encodeURIComponent( JSON.stringify( list ) ) }` );
+
+  if ( list.length > 0 ){
+
+    handleClick({ 
+      id        : 'n1-0',
+      type      : 'link',
+      title     : explore.q,
+      language  : explore.language,
+      qid       : '',
+      url       : `${explore.base}/app/map/?l=${explore.language}&list=${ encodeURIComponent( JSON.stringify( list ) ) }`,
+      tag       : '',
+      languages : '',
+      custom    : '',
+      target_pane : 'p1',
+    });
+
+  }
 
 }
 
