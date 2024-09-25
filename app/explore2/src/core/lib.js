@@ -7049,7 +7049,7 @@ async function renderTopics( inputs ){
     }
 
     // show number-of-pages and the datasources
-    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span> <span title="show topic locations on a map" onclick="showTopicLocationsOnMap()"><i class="fa-solid fa-map-location-dot"></i></span>');
+    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <a id="show-topic-locations" href="javascript:void(0)" title="show topic locations on a map" onclick="showTopicLocationsOnMap()"><i class="fa-solid fa-map-location-dot"></i></a> <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
 
     //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 
@@ -7208,20 +7208,24 @@ async function showTopicLocationsOnMap(){
 
   $( '.article-title' ).each(function() {
 
-    let obj = {
+    if ( valid( $( this ).data('geolocation') ) ){
 
-      title:        $( this ).text(),
-      qid:          valid( $( this ).data('qid') )? $( this ).data('qid') : '',
-      geolocation:  valid( $( this ).data('geolocation') )? $( this ).data('geolocation') : '',
+      let obj = {
+
+        title:        $( this ).text(),
+        qid:          valid( $( this ).data('qid') )? $( this ).data('qid') : '',
+        geolocation:  valid( $( this ).data('geolocation') )? $( this ).data('geolocation') : '',
+
+      }
+
+      list.push( obj );
 
     }
 
-    list.push( obj );
-
   });
 
-  console.log( 'list: ', list );
-  console.log( `url: ${explore.base}/app/map/?l=${explore.language}&list=${ encodeURIComponent( JSON.stringify( list ) ) }` );
+  //console.log( 'list: ', list );
+  //console.log( `url: ${explore.base}/app/map/?l=${explore.language}&list=${ encodeURIComponent( JSON.stringify( list ) ) }` );
 
   if ( list.length > 0 ){
 
