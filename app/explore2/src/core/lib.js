@@ -7208,7 +7208,7 @@ async function showTopicLocationsOnMap(){
 
     if ( valid( $( this ).data( 'geolocation' ) ) ){
 
-      console.log( $( this ).text(), $( this ).data( 'geolocation' ) );
+      console.log( 'title: ', $( this ).text(), 'qid: ', $( this ).data( 'qid' ), 'geolocation: ', $( this ).data( 'geolocation' ) );
 
     }
 
