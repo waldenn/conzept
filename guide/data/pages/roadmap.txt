@@ -193,7 +193,6 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
 ===== bookmarks =====
 
   * **Bookmarking**:
-    * Cross-tab bookmark state-syncing
     * Allow for bookmarking presentations
     * Bookmark edit mode -> then click on bookmark -> display bookmark edit modal -> save button
     * Better generic data support, based on the "item data object"

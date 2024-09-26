@@ -61,12 +61,6 @@
 
   * Sync (ImmortalDB) state across tabs, after each data change. (work in progress)
 
-===== bookmarking =====
-
-  * BUG: Update bookmarking system to handle datasource selection (originally only build for links / wikipedia).
-  * BUG: view boomark URL is wrong? It does not bookmark the search-query?
-  * BUG: "Villa Park" search --> bookmark view-URL --> quotes not stored in the bookmark ([[https://conze.pt/explore/%22Villa%20Park%22?l=en&d=wikipedia,wikidata,commons,openalex,arxiv&t=string&s=true#|example]])
-
 ===== datasources =====
 
   * Implement an async, meta-data result-augmentation workflow. This is used for API-results which need //multiple// data fetches.
