@@ -10897,12 +10897,7 @@ const writeToFile = (text, format, fileName) => {
 
 };
 
-function updateBookmarks(){ // TODO
-
-	return 0;
-
-	// remove old bookmark tree
-	//$('#tree').empty();
+function updateBookmarks(){
 
 	// get new bookmark data
 	(async () => {
@@ -10912,9 +10907,7 @@ function updateBookmarks(){ // TODO
 		explore.bookmarks = JSON.parse( explore.bookmarks );
 
     // render bookmarks again
-    $('#tree').tree('loadData', explore.bookmarks );
-
-    //renderBookmarks();
+    $('#tree').tree( 'loadData', explore.bookmarks );
 
 	})();
 
