@@ -10911,10 +10911,12 @@ function updateBookmarks(){ // TODO
 		explore.bookmarks = await explore.db.get('bookmarks');
 		explore.bookmarks = JSON.parse( explore.bookmarks );
 
-	})();
+    // render bookmarks again
+    $('#tree').tree('loadData', explore.bookmarks );
 
-	// render bookmarks again
-  renderBookmarks();
+    //renderBookmarks();
+
+	})();
 
 }
 
@@ -13361,7 +13363,7 @@ async function aiSearch( prompt ){
 
 			messages: [
 
-				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments. Try to output at least ${explore.batchsize} results, unless the user requested a specific number of results, or if there are no more results than the ones found for this query.${geofilter_country_prompt}${date_range_prompt}` },
+				{ role: 'system', content: `Output the results in the ${explore.language_name} language, separated by a semi-column. Only output plain text, without any other formatting. Only return the results requested, without any additional comments. Preferably use the matching Wikipedia or Wikidata titles in ${explore.language_name} of the results. Try to output at least ${explore.batchsize} results, unless the user requested a specific number of results, or if there are no more results than the ones found for this query.${geofilter_country_prompt}${date_range_prompt}` },
 
 				{ role: 'user', content: prompt },
 

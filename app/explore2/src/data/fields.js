@@ -7665,7 +7665,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-regular fa-clock',
   text: 'Intavia',
   section: ['library-history'],
-  rank: [198],
+  rank: [200],
 },
 
 'archive_word_history' : {
