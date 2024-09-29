@@ -13232,6 +13232,25 @@ if ( valid( item.found_in_taxon ) ){
   headline_rank: 123,
 },
 
+'geo_wikidata_moon' : {
+  create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && onAstronomicalBody( item, "Q405")',
+  render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined"',
+  title: 'Moon location map',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: '${explore.base}/app/moon-map/index.html?l=${explore.language}&lat=${item.lat}&lon=${item.lon}&dist=100000&title=${ encodeURIComponent( item.title ) }',
+  icon: 'fa-solid fa-globe-asia',
+  text: 'Moon map',
+  section: ['location-geography','science-astronomy','main'],
+  rank: [3,5,6350],
+  headline_create: 'valid( item.geo_wikidata_moon )',
+  headline_type: 'link',
+  headline_rank: 123,
+},
+
+
+
 'geo_wikidata' : {
   create_condition: 'activeOnDatasources( [ "wikipedia", "wikidata" ], item.datasource ) && onAstronomicalBody( item, "Q2")',
   render_condition: '"${item.lat}" !== "" && "${item.lat}" !== "undefined" && ! checkTag( item, 1, ["road", "itinerary", "watercourse" ] )', // FIXME
