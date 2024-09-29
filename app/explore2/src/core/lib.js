@@ -812,17 +812,15 @@ function init() {
 	// handle broadcast messages
 	explore.broadcast_channel.onmessage = (event) => {
 
-		console.log( 'broadcast message: ', event.data );
+		//console.log( 'broadcast message: ', event.data );
 
 		if ( event.data === 'update_bookmark_view' ){
 
-			// re-render bookmarks
-			updateBookmarks();
+			updateBookmarks(); // re-render bookmarks
 
 		}
 
 	};
-
 
   // simple number padding
   Number.prototype.pad = function(size) {
@@ -7862,7 +7860,7 @@ async function renderType( args ){
 
         if ( !explore.preventSliding ){
 
-          //explore.swiper.slideTo( 1 ); // ? TODO
+          explore.swiper.slideTo( 1 ); // ? TODO
 
         }
 
@@ -11986,7 +11984,7 @@ function markSentence( t, sid, inSideFrame ){
 
       if ( explore.swiper.activeIndex === 0 ){
 
-        //explore.swiper.slideTo( 1 ); // ? TODO
+        explore.swiper.slideTo( 1 ); // ? TODO
 
       }
 

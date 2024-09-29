@@ -1,9 +1,5 @@
 ====== issues ======
 
-===== browser-specifc =====
-
-  * only on Firefox: Clicking any datasources-toggle (in the bottom-halve) causes the element-height to reset.
-
 ===== keyboard navigation =====
 
   * **ULS language-selector** not reachable via the keyboard.
@@ -16,7 +12,17 @@
 
 ===== touch navigation =====
 
-  * TODO: Note all the core-app & embedded-app parts that fail for touch-interactions.
+  * TODO: List all the core-app & embedded-app parts that fail for touch-interactions.
+
+===== mobile usability =====
+
+  * The [[https://swiperjs.com|SwiperJS]] library - used for mobile swiping - is an older, somewhat broken version (page hangs occur between animations). The newer version breaks all rendering (for some reason). Todo: Figure out how to upgrade this library correctly.
+
+  * Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.
+
+  * The Apple iOS mobile browser needs more UX testing & fixing.
+
+  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
 
 =====  browser navigation =====
 
@@ -31,10 +37,11 @@
       * implement geospatial-search query URL serialization and loading
 
   * Add **persistent-linking to inline-views**
+    * Note: This issues is now much less important, with the implementation of datasources.
     * When clicked on headline/section fields, set the fragment-parameter in the URL
     * When a URL with a fragment is loaded, upon up the inline-view.
-    * Note: Make sure the used IDs are robust and durable.
-    * BUG: same ID used multiple times per page. Solution: add field-ID-name to current ID--> update all inline-field-handling code with this prepend:
+    * Make sure the used IDs are robust and durable.
+      * BUG: same ID used multiple times per page. Solution: add field-ID-name to current ID--> update all inline-field-handling code with this prepend:
     <code>
      for each topic-card:
        <details title="europeana_inline" id="europeana_inline_mv-n00"
@@ -47,20 +54,6 @@
     * Always reset the hash when needed (eg. when clicking on another topic) (partly fixed)
     * Scroll-position / section alignment issue for Wikipedia ([[https://conze.pt/app/wikipedia/?t=Benin%20City&l=en&voice=en-US&qid=320704&dir=ltr&embedded=#references|example]])
 
-===== mobile usability =====
-
-  * The [[https://swiperjs.com|SwiperJS]] library - used for mobile swiping - is an older, somewhat broken version (page hangs occur between animations). The newer version breaks all rendering (for some reason). Todo: Figure out how to upgrade this library correctly.
-
-  * Cold-startup time (upon first use) is very slow - sometimes more than 10-20 seconds on low-bandwidth networks.
-
-  * The Apple iOS mobile browser needs more UX testing & fixing.
-
-  * The Wikipedia-app needs a "Table of Content" system suited for mobile devices.
-
-===== state syncing =====
-
-  * Sync (ImmortalDB) state across tabs, after each data change. (work in progress)
-
 ===== datasources =====
 
   * Implement an async, meta-data result-augmentation workflow. This is used for API-results which need //multiple// data fetches.
@@ -68,6 +61,8 @@
 ===== search =====
 
   * Geospatial parameters should be re-applied to globe-map upon re-visits and zoomed-in when the globe-map is opened.
+
+  * Correctly highlight search-terms with //multiple// "quoted" phrases. 
 
 ===== docker =====
 
@@ -85,6 +80,4 @@
 
 ===== various =====
 
-  * Correctly highlight search-terms with multiple "quoted" phrases. 
-
-  * Safari/Webkit browsers: GBIF app: country-border-map transform is wrong. Other browser work fine.
+  * Upgrading the [[https://github.com/maxlath/wikibase-sdk/tree/main|wikibase-sdk]] library (with the new JS module structure) currently fails.

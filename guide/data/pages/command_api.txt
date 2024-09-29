@@ -93,13 +93,13 @@ Autocompletion of the Scheme-based command-language symbols (including the Wikid
     * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27compare%20%27(Q183%20Q55)%20)#|(show 'compare '(Q183 Q55) )]]'' (compare entities)
     * ''[[https://conze.pt/explore/?&t=&s=true&commands=(show%20%27gapminder-linechart%20%27(Q148%20Q668%20Q252)%20)#|(show 'gapminder-linechart '(Q148 Q668 Q252) )]]'' (Gapminder linechart of country trends)
 
-  * non-entity based show-commands:
+  * **non-entity based show-commands**:
     * ''[[https://conze.pt/explore/?&s=true&commands=(show 'link '( "https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis" ) )#|(show 'link '( "<web-URL>" ) )]]'' (open an iframe-embeddable-URL in the content pane)
     * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27url%20%27(%20%22https%3A%2F%2Fwww.law.cornell.edu%2Fconstitution%2Fthird_amendment%23%3A~%3Atext%3DNo%2520soldier%2Claw%22%20)%20)#|(show 'url '( "<web-URL>" ) )]]'' (open any URL in a new tab. note: this also allows for the one-time use of text-fragments on 3rd-party URLs)
     * ''[[https://conze.pt/explore/?s=true&commands=(%20show%20%27pdf%20%27(%20%22https%3A%2F%2Fwww.ohchr.org%2Fsites%2Fdefault%2Ffiles%2Fdocuments%2Fpublications%2Fguidingprinciplesbusinesshr_en.pdf%22)%20)#|(show 'pdf '( "<PDF-URL>") )]]''
     * ''[[https://conze.pt/explore/?s=true&commands=(%20show%20%27iiif%20%27(%22https%3A%2F%2Fwww.loc.gov%2Fitem%2F2021667604%2Fmanifest.json%22)%20)%0A#|(show 'iiif '("<IIIF-URL>") )]]'' 
     * ''[[https://conze.pt/explore/?&s=true&commands=(show%20%27audio%20%27(%20%22https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F00%2FCELLO_LIVE_PERFORMANCES_JOHN_MICHEL-J_S_Bach_Gamba_Sonata_in_g_1st_mvt.ogg%22%20)%20)%0A(show%20%27link%20%27(%20%22https%3A%2F%2Fen.m.wikiquote.org%2Fwiki%2FMiles_Davis%22%20)%20)%0A#|(show 'audio '( "<audio-file-URL>" ) )
-]]'' (background-play an audio file)
+]]'' (background-play an audio file) (NOTE: You can stop/start/pause the audio from the "audio"-menu in the "tools"-tab )
     * ''[[https://conze.pt/explore/?s=true&commands=(show%20%27audio-query%20%27(%20%22source%3Aconzept%3Bstart%3A1880%3Bend%3A1920%22%20)%20)#|(show 'audio-query '( "source:[conzept|archive.org|europeana];start:1880;end:1930" ) )]]'' (audio background-play filtered by a period)
       *  ''[[https://conze.pt/explore/?s=true&commands=(show%20%27audio-query%20%27(%20%22source%3Aconzept%3Bcountry%3AQ30%22%20)%20)#|(show 'audio-query '( "source:conzept;country:Q30" ) )
 ]]'' (audio background-play filtered by a country)
