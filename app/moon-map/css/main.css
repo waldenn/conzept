@@ -1,0 +1,32 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#globus button {
+  z-index: 9999 !important;
+}
+
+#hide-geosearch, #clear-geosearch, #radius {
+  float: left;
+  margin: 3px;
+}
+
+#hide-geosearch, #clear-geosearch {
+  padding: 0.5em;
+  margin-right: 1em;
+}
+
+#radius {
+  padding: 0.45em;
+}
+
+.prop-name {
+  min-width: fit-content;
+  display: inline-block;
+  min-width: 6em;
+}
+
+.prop-value {
+  font-weight: bold;
+}
