@@ -2606,6 +2606,12 @@ function onAstronomicalBody( item, qid ){
 
     if ( qid === "Q2" ){
 
+      if ( valid( item.lat ) ){ // with geo-location
+
+        $('#show-topic-locations').show(); // show map-results button
+
+      }
+
       ret = true;
 
     }

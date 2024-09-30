@@ -1,35 +1,35 @@
-'use strict';
-
 import {
-    Globe,
-    XYZ,
-    control,
-    RgbTerrain,
-    LonLat,
-    quadTreeStrategyType
+  Globe,
+  XYZ,
+  control,
+  RgbTerrain,
+  LonLat,
+  quadTreeStrategyType,
+  mars,
 } from "../node_modules/@openglobus/og/lib/@openglobus/og.esm.js";
 
-const osm = new XYZ("Mars-Viking", {
-    isBaseLayer: true,
-    //'url': "https://astro.arcgis.com/arcgis/rest/services/OnMars/MDIM/MapServer/tile/{z}/{y}/{x}?blankTile=false",
-    url: "https://terrain.openglobus.org/public/mars/sat/{z}/{x}/{y}.png",
-    'visibility': true,
-    maxNativeZoom: 8,
+const sat = new XYZ("Mars-Viking", {
+  isBaseLayer: true,
+  //'url': "https://astro.arcgis.com/arcgis/rest/services/OnMars/MDIM/MapServer/tile/{z}/{y}/{x}?blankTile=false",
+  url: "https://terrain.openglobus.org/mars/sat/{z}/{x}/{y}.png",
+  maxNativeZoom: 8,
 });
 
-var highResTerrain = new RgbTerrain("Mars", {
-    geoid: null,
-    maxZoom: 6,
-    url: "https://{s}.terrain.openglobus.org/public/mars/elv/{z}/{x}/{y}.png",
-    heightFactor: 5
+const highResTerrain = new RgbTerrain("Mars", {
+  geoidSrc: null,
+  maxZoom: 8,
+  maxNativeZoom: 8,
+  url: "https://{s}.terrain.openglobus.org/mars/dem/{z}/{x}/{y}.png",
+  heightFactor: 2
 });
 
 let globe = new Globe({
-    name: "mars",
-    quadTreeStrategyPrototype: quadTreeStrategyType.mars,
+    ellipsoid: mars,
+    name: "Mars",
+    quadTreeStrategyPrototype: quadTreeStrategyType.equi,
     target: "globus",
     terrain: highResTerrain,
-    layers: [osm],
+    layers: [sat],
     nightTextureSrc: null,
     specularTextureSrc: null
 });

@@ -14,28 +14,30 @@ import {
 
 const mountains = new Vector("Mountains", {
   fading: true,
-  minZoom: 4,
+  minZoom: 10,
   scaleByDistance: [0, 3500000, 3800000],
 });
 
 const craters = new Vector("Craters", {
   fading: true,
+  minZoom: 4,
   scaleByDistance: [0, 15000000, 25000000],
 });
 
 const lacus = new Vector("Lakes", {
   fading: true,
-  minZoom: 4
+  minZoom: 6,
 });
 
 const maria = new Vector("Seas And Oceans", {
   fading: true,
-  maxZoom: 8,
+  minZoom: 5,
   scaleByDistance: [0, 15000000, 25000000],
 });
 
 const vallis = new Vector("Valleys", {
   fading: true,
+  minZoom: 5,
   scaleByDistance: [0, 15000000, 25000000],
 });
 
