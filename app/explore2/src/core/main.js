@@ -165,6 +165,7 @@ const explore_default = {
   viewMode            : getParameterByName('v') || '' , // view modes: desktop / mobile / XR-VR / REST-JSON?
   click_on_sidebar_article : true,
   showMobileConsole   : false,
+  show_topic_locations_button: false,
   //droppingQuery     : false,
 
   // pre-calculated dates

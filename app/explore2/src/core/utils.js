@@ -2608,7 +2608,7 @@ function onAstronomicalBody( item, qid ){
 
       if ( valid( item.lat ) ){ // with geo-location
 
-        $('#show-topic-locations').show(); // show map-results button
+        explore.show_topic_locations_button = true; // show map-results button
 
       }
 

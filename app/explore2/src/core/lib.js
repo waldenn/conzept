@@ -7047,7 +7047,9 @@ async function renderTopics( inputs ){
     }
 
     // show number-of-pages and the datasources
-    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + '&nbsp; <a id="show-topic-locations" style="display:none;" href="javascript:void(0)" title="show topic locations on a map" onclick="showTopicLocationsOnMap()"><i class="fa-solid fa-map-location-dot"></i></a> <span id="datasources-used" style="white-space: nowrap;">' + datasources_used_html.join(' ')  + '</span>');
+    $('#total-results').html( '<b>' + num_of_results + '</b> <span id="app-topics-found">' + explore.banana.i18n('app-topics-found') + '</span>' + `&nbsp; <a id="show-topic-locations" style="${ valid( explore.show_topic_locations_button )? '' : 'display:none;' }" href="javascript:void(0)" title="show topic locations on a map" onclick="showTopicLocationsOnMap()"><i class="fa-solid fa-map-location-dot"></i></a> <span id="datasources-used" style="white-space: nowrap;">` + datasources_used_html.join(' ')  + '</span>');
+
+    explore.show_topic_locations_button = false; // reset to "false", to hide this button by default
 
     //console.log( 'searchmode: ', explore.searchmode, explore.totalRecords, combined_pagesize );
 
