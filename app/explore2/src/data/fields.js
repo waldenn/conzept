@@ -8169,19 +8169,6 @@ if ( valid( item.found_in_taxon ) ){
   rank: 21,
 },
 
-'grepapp' : {
-  create_condition: true,
-  title: 'Grep.App: GitHub code search',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://grep.app/search?q=${title_quoted}',
-  icon: 'fa-brands fa-github',
-  text: 'Grep App',
-  section: 'media-software',
-  rank: 50,
-},
-
 'gitlab_search' : {
   create_condition: true,
   title: 'GitLab search',
@@ -8192,7 +8179,33 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-brands fa-gitlab',
   text: 'GitLab',
   section: 'media-software',
+  rank: 25,
+},
+
+'sourcebot' : {
+  create_condition: true,
+  title: 'Sourcebot code search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://demo.sourcebot.dev/search?query=${title_quoted}',
+  icon: 'fa-solid fa-code',
+  text: 'Sourcebot',
+  section: 'media-software',
   rank: 60,
+},
+
+'grepapp' : {
+  create_condition: true,
+  title: 'Grep.App: GitHub code search',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://grep.app/search?q=${title_quoted}',
+  icon: 'fa-solid fa-code',
+  text: 'Grep App',
+  section: 'media-software',
+  rank: 62,
 },
 
 'searchcode' : {
@@ -8205,7 +8218,7 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-code',
   text: 'Search Code',
   section: 'media-software',
-  rank: 70,
+  rank: 65,
 },
 
 'archive_software' : {
@@ -15592,6 +15605,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 210,
 },
 
+'odin_search' : {
+  create_condition: 'checkTag( item, 1, "weapon-system")',
+  title: 'ODIN - weapon systems datasbase search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://odin.tradoc.army.mil/Search/All/${title_}',
+  icon: 'fa-solid fa-explosion',
+  text: 'ODIN',
+  section: ['main'],
+  rank: [10000],
+},
+
 'smithsonian' : {
   create_condition: true,
   title: 'Smithsonian',
@@ -19279,6 +19305,32 @@ if ( valid( item.found_in_taxon ) ){
   rank: 100,
 },
 
+'reuters_search' : {
+  create_condition: 'checkLC("en")',
+  title: 'Reuters news search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.reuters.com/site-search/?query=${title_quoted}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'Reuters',
+  section: 'news-general',
+  rank: 84,
+},
+
+'ap_news_search' : {
+  create_condition: 'checkLC("en")',
+  title: 'AP news search',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://apnews.com/search?q=${title_}&s=0',
+  icon: 'fa-regular fa-newspaper',
+  text: 'AP',
+  section: 'news-general',
+  rank: 86,
+},
+
 'google_news' : {
   create_condition: true,
   title: 'Google news',
@@ -20805,19 +20857,6 @@ if ( valid( item.found_in_taxon ) ){
   text: 'wikiNews',
   section: 'news-general',
   rank: 21,
-},
-
-'ap_news_search' : {
-  create_condition: 'checkLC("en")',
-  title: 'AP news search',
-  prop: '',
-  type: 'link',
-  mv: false,
-  url: 'https://apnews.com/search?q=${title_}&s=0',
-  icon: 'fa-regular fa-newspaper',
-  text: 'AP',
-  section: 'news-general',
-  rank: 29,
 },
 
 'euronews_english' : {

@@ -214,6 +214,10 @@ var conzept_tags = {
         text : "satellite",
         icon : ["fa-solid fa-satellite"],
       },
+      "weapon-system" : {
+        text : "weapon system",
+        icon : ["fa-solid fa-explosion"],
+      },
       "ship" : {
         text : "ship",
         icon : ["fa-solid fa-ship"],
