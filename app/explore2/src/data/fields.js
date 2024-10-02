@@ -14062,6 +14062,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: [105, 6000],
 },
 
+'country_military_strength' : {
+  create_condition: 'valid( item.iso2 )',
+  title: 'Country military strength (by globalfirepower.com)',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.globalfirepower.com/country-military-strength-detail.php?country_id=${title_dashed}',
+  icon: 'fa-solid fa-person-military-rifle',
+  text: 'Military strength',
+  section: ['location-demography', 'government-general'],
+  rank: [110, 6010],
+},
+
 'worldpopulationreview_country_en' : {
   create_condition: 'valid( item.iso2 ) && checkLC("en")',
   title: 'World Inequality Database',
@@ -15606,12 +15619,12 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'odin_search' : {
-  create_condition: 'checkTag( item, 1, "weapon-system")',
+  create_condition: 'checkTag( item, 1, ["weapon-system","personal-weapon"])',
   title: 'ODIN - weapon systems datasbase search',
   prop: '',
   type: 'url',
   mv: false,
-  url: 'https://odin.tradoc.army.mil/Search/All/${title_}',
+  url: 'https://odin.tradoc.army.mil/Search/All/${title_quoted}',
   icon: 'fa-solid fa-explosion',
   text: 'ODIN',
   section: ['main'],
