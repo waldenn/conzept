@@ -5176,7 +5176,7 @@ async function setDefaultDisplaySettings( cover, type ) {
 
   $( '#results' ).before().html( 
     '<div id="intro-box">' +
-      '<img title="Boston Public Library" alt="Boston Public Library" style="width: 100%; border-radius:0.2em;" src="' + explore.base + '/app/explore2/assets/images/front.jpg">' +
+      '<img title="Conzept front image" alt="Conzept front image" style="width: 100%; border-radius:0.2em;" src="' + explore.base + '/app/explore2/assets/images/front.jpg">' +
 
       '<p>' + 
         '<span id="app-guide-welcome-text"></span> &nbsp;' + 
