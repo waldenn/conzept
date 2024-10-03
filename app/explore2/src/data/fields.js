@@ -5486,7 +5486,7 @@ conzept_fields = {
 'icd' : {
   title: 'International Classification of Diseases',
   prop: '494',
-  type: 'link',
+  type: 'url',
   url: 'https://icd.who.int/browse10/2016/en#/${ encodeURIComponent( item.icd )}',
   mv: false,
   icon: 'fa-solid fa-laptop-medical',
@@ -9543,6 +9543,19 @@ if ( valid( item.found_in_taxon ) ){
 },
 */
 
+'tradingeconomics_country_indicators' : {
+  create_condition: 'valid( [ item.iso2 ] )',
+  title: 'TradingEconomics: country economic indicators',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://tradingeconomics.com/${title_dashed}/indicators',
+  icon: 'fa-solid fa-hand-holding-usd',
+  text: 'economic indicators',
+  section: ['business','main'],
+  rank: [11,7051],
+},
+
 'browse_country_companies' : {
   create_condition: 'valid( [ item.iso2, item.qid ] )',
   title: 'browse companies in this country',
@@ -13179,6 +13192,7 @@ if ( valid( item.found_in_taxon ) ){
 },
 
 'tdar_search' : {
+  create_condition: true,
   title: 'The Digital Archaeological Record (tDAR) search',
   prop: '',
   type: 'url',
@@ -13187,10 +13201,11 @@ if ( valid( item.found_in_taxon ) ){
   icon: 'fa-solid fa-archway',
   text: 'tDAR',
   section: 'science-archeology',
-  rank: 200,
+  rank: 120,
 },
 
 'plazi_search' : {
+  create_condition: true,
   title: 'Plazi treatments',
   prop: '',
   type: 'link',
@@ -13226,6 +13241,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'map',
   section: ['science-psychology'],
   rank: [110],
+},
+
+'icpsr_search' : {
+  create_condition: true,
+  title: 'ICPSR: social and behavioral research',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://www.icpsr.umich.edu/web/ICPSR/search/studies?q=${title_quoted}',
+  icon: 'fa-solid fa-people-group',
+  text: 'ICPSR',
+  section: ['science-sociology'],
+  rank: [100],
 },
 
 'geo_wikidata_mars' : {
@@ -17206,6 +17234,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'WebMD',
   section: 'science-medical',
   rank: 70,
+},
+
+'us_clinical_trials' : {
+  create_condition: true,
+  title: 'WebMD',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://clinicaltrials.gov/search?cond=${title_quoted}',
+  icon: 'fa-solid fa-laptop-medical',
+  text: 'Clinical Trials',
+  section: 'science-medical',
+  rank: 72,
 },
 
 'uscfd' : {

@@ -200,6 +200,10 @@ const sections = {
 				'icon' : 'fa-solid fa-head-side-virus',
 			},
 
+			'science-sociology': {
+				'icon' : 'fa-solid fa-people-group',
+			},
+
     },
 
   },

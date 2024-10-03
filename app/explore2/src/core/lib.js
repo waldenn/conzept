@@ -501,7 +501,7 @@ function triggerQueryForm(){
   }
   else if ( explore.q === '' && explore.type === 'bookmark' ){ // extension text-fragment bookmark-add request
 
-    addBookmark( new CustomEvent( 'build', { } ), 'extension' );
+    addBookmark( new CustomEvent( 'build', { } ), 'extension', title );
 
   }
   else if ( explore.type === 'compare' ){ // compare request  && explore.compares !== []
@@ -733,7 +733,8 @@ async function setupKeyboardCombos(){
 
   keyboardJS.bind('alt+i', function(e) {
     //e.preventRepeat();
-    addBookmark(event, 'clicked' );
+    // FIXME: can we get current title and datasource
+    //addBookmark(event, 'clicked' );
   });
 
   keyboardJS.bind('alt+r', function(e) {
@@ -7568,7 +7569,8 @@ async function renderType( args ){
       }
       else { // multiple words search
 
-        title_nocat = `"${title_nocat}"`; // add quoting
+        title_nocat = title_nocat.replace(/^([^(]+?)(\s*)?(\s*\(.*\))?$/, '"$1" $3'); // add quoting (but not around the terms in parentheses)
+        //title_nocat = `"${title_nocat}"`;
 
       }
 
@@ -7617,7 +7619,7 @@ async function renderType( args ){
 			}
 		}
 
-    addBookmark( event, 'clicked' );
+    addBookmark( event, 'clicked', title );
 
     // immediately modify items bookmark-icon
     if ( id !== '' ){
