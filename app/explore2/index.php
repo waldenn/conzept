@@ -898,6 +898,8 @@ $settings_html = '
 
                       <div class="bookmark-action"><a class="" title="similar topics for these bookmarks" aria-label="similar topics for these bookmarks" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-similar&quot;)"><span class="icon"><i class="fa-solid fa-rainbow fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-similarities">similarities</span></span></a></div>
 
+                      <div class="bookmark-action"><a class="" title="ontology topics for these bookmarks" aria-label="ontology topics for these bookmarks" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conzept-sidebar-ontology&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-conzept-sidebar-ontology">ontology</span></span></a></div>
+
                     </div>
                   </detail>
                 </div>

@@ -4398,6 +4398,7 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-conceptology').text( explore.banana.i18n('app-guide-bookmark-conceptology') );
   $('#app-guide-bookmark-implications').text( explore.banana.i18n('app-guide-bookmark-implications') );
   $('#app-guide-bookmark-similarities').text( explore.banana.i18n('app-guide-bookmark-similarities') );
+  $('#app-guide-bookmark-ontology').text( explore.banana.i18n('app-guide-bookmark-ontology') );
   $('#app-guide-bookmark-commonalities').text( explore.banana.i18n('app-guide-bookmark-commonalities') );
   $('#app-guide-bookmark-topic-differences').text( explore.banana.i18n('app-guide-bookmark-topic-differences') );
   $('#app-guide-bookmark-related-topics').text( explore.banana.i18n('app-guide-bookmark-related-topics') );
@@ -10583,7 +10584,12 @@ function runBookmarkAction( action ){
     }
     else if ( action === 'educate' ){
 
-      aiSearch( `Wikipedia topics that can help understand these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+      aiSearch( `Topics that can help understand these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+
+    }
+    else if ( action === 'ontology' ){
+
+      aiSearch( `Ontology of these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
 
