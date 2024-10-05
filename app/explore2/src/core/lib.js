@@ -10584,12 +10584,12 @@ function runBookmarkAction( action ){
     }
     else if ( action === 'educate' ){
 
-      aiSearch( `Topics that can help understand these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+      aiSearch( `topics that can help understand these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
     else if ( action === 'ontology' ){
 
-      aiSearch( `Ontology of these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
+      aiSearch( `ontology of these topics: ${ decodeURIComponent( setQuotes( topics, true ) ) }` );
 
     }
 

@@ -1,5 +1,6 @@
 *.swp
 settings.conf
+extension
 conzept-docker/
 .env
 node_modules
