@@ -217,7 +217,7 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
   <!--script src="../app/explore2/dist/datasources/bhl/index.js?vCONZEPT_VERSION"></script-->
 
-  <!-- taxonomy -->
+  <!-- species -->
   <script src="../app/explore2/dist/datasources/wikispecies/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
 
@@ -289,6 +289,7 @@ $sticky_html = '
           <option value="reference" id="app-menu-search-in-option-reference">reference works</option>
           <option value="culture" id="app-menu-search-in-option-culture">culture</option>
           <option value="science" id="app-menu-search-in-option-science">science</option>
+          <option value="species" id="app-menu-search-in-option-species">species</option>
           <option value="business" id="app-menu-search-in-option-business">business</option>
           <option value="legal" id="app-menu-search-in-option-legal">legal</option>
           <option value="news" id="app-menu-search-in-option-news">news</option>

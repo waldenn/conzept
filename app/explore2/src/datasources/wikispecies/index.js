@@ -90,10 +90,10 @@ function processResultsWikispecies( topicResults, struct, index ){
 
         let gid         = valid( obj.pageid )? obj.pageid : '';
         let title       = valid( obj.title )? obj.title : '';
-        let url         = valid( title )? `https://${explore.language}.m.wikispecies.org/wiki/${obj.title}` : '';
+        let url         = valid( title )? `https://${explore.language}.wikispecies.org/wiki/${obj.title}` : '';
 
-        let maintag     = 'work';
-        let subtag      = 'document';
+        let maintag     = 'organism';
+        let subtag      = '';
 
         let start_date  = '';
 
@@ -115,7 +115,7 @@ function processResultsWikispecies( topicResults, struct, index ){
           tags:         [],
 				};
 
-				item.tags[0]	= 'work';
+				item.tags[0]	= 'organism';
 				item.tags[1]	= subtag;
 
 				setWikidata( item, [ ], true, 'p' + explore.page );

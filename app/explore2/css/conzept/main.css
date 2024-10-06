@@ -1150,6 +1150,7 @@ mark, .highlight, li em, .mv-extra-desc > em, .mv-extra-desc > .searchmatch, det
 #datasources-setting .reference { background: #ffff002b; }
 #datasources-setting .culture { background: #d3570c2b; }
 #datasources-setting .science { background: #2ed30c2b; }
+#datasources-setting .species { background: #6e74ee8f; }
 #datasources-setting .business { background: #0c91d32b; }
 #datasources-setting .legal { background: #f3ddff96; }
 #datasources-setting .news { background: #9708e82b; }
