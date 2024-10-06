@@ -10,6 +10,7 @@ app/explore2/_next
 app/explore2/src/core/env.js
 app/explore2/tools/json-proxy.json
 app/radio/
+app/talk/
 app/iiif-ng/
 app/iptv*
 app/chat/tmp

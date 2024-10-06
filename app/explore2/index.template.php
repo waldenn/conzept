@@ -214,9 +214,12 @@ $main_script = '
   <script src="../app/explore2/dist/datasources/openalex/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/arxiv/index.js?vCONZEPT_VERSION"></script>
   <script src="../app/explore2/dist/datasources/doaj/index.js?vCONZEPT_VERSION"></script>
-  <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
-  <!--script src="../app/explore2/dist/datasources/bhl/index.js?vCONZEPT_VERSION"></script-->
   <script src="../app/explore2/dist/datasources/ror/index.js?vCONZEPT_VERSION"></script>
+  <!--script src="../app/explore2/dist/datasources/bhl/index.js?vCONZEPT_VERSION"></script-->
+
+  <!-- taxonomy -->
+  <script src="../app/explore2/dist/datasources/wikispecies/index.js?vCONZEPT_VERSION"></script>
+  <script src="../app/explore2/dist/datasources/gbif/index.js?vCONZEPT_VERSION"></script>
 
   <!-- business -->
   <script src="../app/explore2/dist/datasources/gleif/index.js?vCONZEPT_VERSION"></script>
@@ -272,6 +275,12 @@ $sticky_html = '
       <input id="srsearch" title="search input" type="search" enterkeyhint="search" autocomplete="off" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
+      <button id="start_button" onclick="startButton(event)"></button>
+
+      <div id="speech-results" style="display:none">
+        <span id="final_span" class="final"></span>
+        <span id="interim_span" class="interim"></span>
+      </div>
 
       <div id="search-options" style="">&nbsp;
 

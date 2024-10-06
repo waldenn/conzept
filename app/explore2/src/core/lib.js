@@ -4237,6 +4237,7 @@ async function updateLocaleInterface(){
   $('#app-menu-search-in-option-reference').html( explore.banana.i18n('app-menu-search-in-option-reference') );
   $('#app-menu-search-in-option-culture').html( explore.banana.i18n('app-menu-search-in-option-culture') );
   $('#app-menu-search-in-option-science').html( explore.banana.i18n('app-menu-search-in-option-science') );
+  $('#app-menu-search-in-option-taxonomy').html( explore.banana.i18n('app-menu-search-in-option-taxonomy') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
   $('#app-menu-search-in-option-legal').html( explore.banana.i18n('app-menu-search-in-option-legal') );
   $('#app-menu-search-in-option-news').html( explore.banana.i18n('app-menu-search-in-option-news') );
