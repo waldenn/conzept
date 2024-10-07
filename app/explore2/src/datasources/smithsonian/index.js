@@ -96,8 +96,9 @@ function processResultsSmithsonian( topicResults, struct, index ){
         let desc          = '';
         let physical_info = '';
         let start_date    = '';
-        let thumb 	  = '';
-        let img 	  = '';
+        let thumb 	      = '';
+        let img 	        = '';
+        let model_link    = '';
 
         let topics  	  	= [];
         let authors  	  	= [];
@@ -105,8 +106,8 @@ function processResultsSmithsonian( topicResults, struct, index ){
         let subtag        = '';
         let newtab        = false;
 
-	let license_link  = '';
-	let license_name  = '';
+        let license_link  = '';
+        let license_name  = '';
 
         const timestamp = valid( obj.timestamp )? obj.timestamp : ''; // Unix timestamp in seconds
 
@@ -144,22 +145,45 @@ function processResultsSmithsonian( topicResults, struct, index ){
 
           if ( valid( obj.content.descriptiveNonRepeating?.online_media ) ){
 
-		if ( valid( obj.content.descriptiveNonRepeating.online_media ) ){
+            if ( valid( obj.content.descriptiveNonRepeating.online_media ) ){
 
-			// TODO: handle multiple images
-			// console.log( obj.content.descriptiveNonRepeating.online_media );
+              // TODO: handle multiple images
 
-			if ( valid( obj.content.descriptiveNonRepeating.online_media.media[0]?.content ) ){
-            			img   = obj.content.descriptiveNonRepeating.online_media.media[0].content;
-				//console.log('image: ', img );
-			}
-			if ( valid( obj.content.descriptiveNonRepeating.online_media.media[0]?.thumbnail ) ){
-            			thumb = obj.content.descriptiveNonRepeating.online_media.media[0].thumbnail;
-				//console.log('thumb: ', thumb );
+              $.each( obj.content.descriptiveNonRepeating.online_media.media, function( media_index, media ){
 
-			}
+               	if ( media.type === '3d_voyager' ){
 
-		}
+          				if ( valid( media.resources ) ){
+
+										media.resources.forEach(( media_resource ) => {
+
+											if ( media_resource.url.endsWith( '_draco.glb' ) ){ // only use the web-optimized 3D format
+
+												display_url = `https://${explore.host}${explore.base}/app/3D/#model=${media_resource.url}`;
+												model_link = media_resource.url;
+												subtag = '3d-model';
+									
+											}
+										
+										});
+
+									}
+
+             		}
+
+              });
+
+              if ( valid( obj.content.descriptiveNonRepeating.online_media.media[0]?.content ) ){
+                img   = obj.content.descriptiveNonRepeating.online_media.media[0].content;
+                //console.log('image: ', img );
+              }
+              if ( valid( obj.content.descriptiveNonRepeating.online_media.media[0]?.thumbnail ) ){
+                thumb = obj.content.descriptiveNonRepeating.online_media.media[0].thumbnail;
+                //console.log('thumb: ', thumb );
+
+              }
+
+            }
 
           }
 
@@ -177,7 +201,11 @@ function processResultsSmithsonian( topicResults, struct, index ){
 								else if ( type === 'Books' ){ subtag = 'book'; }
 								else {
 
-									subtag = 'article';
+									if ( !valid( subtag ) ){
+
+										subtag = 'article';
+
+									}
 
 								}
 
@@ -217,16 +245,16 @@ function processResultsSmithsonian( topicResults, struct, index ){
 
     			$.each( obj.content.freetext.notes, function( n, note ){
 
-									if ( valid( note?.label === 'Summary' ) ){
+            if ( valid( note?.label === 'Summary' ) ){
 
-										desc += `<div>${ note.content }</div>`;
+              desc += `<div>${ note.content }</div>`;
 
-									}
-									else if ( valid( note?.label === 'Contents' ) ){
+            }
+            else if ( valid( note?.label === 'Contents' ) ){
 
-										desc += `<div>${ note.content }</div>`;
+              desc += `<div>${ note.content }</div>`;
 
-									}
+            }
 
 					})
 
@@ -262,6 +290,7 @@ function processResultsSmithsonian( topicResults, struct, index ){
 					display_url:  display_url, // url,
 					web_url:      display_url, // url,
 					thumb:        thumb,
+					model_link: model_link,
           start_date:   start_date,
 					qid:          '',
           countries:    [],
@@ -298,7 +327,6 @@ function processResultsSmithsonian( topicResults, struct, index ){
 
 				item.tags[0]	= 'work';
 				item.tags[1]	= subtag;
-
 
         result.source.data.query.search.push( item ); 
 

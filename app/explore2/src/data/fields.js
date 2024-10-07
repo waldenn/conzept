@@ -2818,25 +2818,23 @@ conzept_fields = {
   headline_rank: 251,
 },
 
-/*
-'3D_model_custom' : {
-  create_condition: 'valid( item.3D_model_link )',
+'model_custom' : {
+  create_condition: 'valid( item.model_link )',
   title: '3D model view',
   type: 'link',
-  url: '${ item.3D_model_link }',
+  url: '${ item.model_link }',
   mv: false,
   icon: 'fa-solid fa-cube',
   text: 'site',
   section: 'main',
   rank: 40,
-  headline_create: 'valid( item.3D_model_link )',
+  headline_create: 'valid( item.model_link )',
   headline_type: 'link',
-  headline_url: '${explore.base}/app/3D/#model=${ encodeURIComponent( "/app/cors/raw/?url=" + item.3D_model_link )}',
+  headline_url: 'https://${explore.host}${explore.base}/app/3D/#model=${ encodeURIComponent( "/app/cors/raw/?url=" + item.model_link )}',
   headline_title: '3D model view',
   headline_icon: 'fa-solid fa-cube',
   headline_rank: 285,
 },
-*/
 
 // TODO: implement claim-property access first to access this value
 /*

@@ -715,7 +715,7 @@ const datasources = {
                               'distance-desc'   : '',
                               'distance-asc'    : '',
                             },
-    media:                  [ 'text', 'image', 'audio' ], // 'video', '3D'
+    media:                  [ 'text', 'image', 'audio', '3D', 'video' ],
     filter_map:             {
                               'none'            : '', // 'Electronic+resource' (includes: "manuscripts, photographs, sound recordings, motion pictures, music, and maps.")
                               'text'            : 'Full+text+documents',
