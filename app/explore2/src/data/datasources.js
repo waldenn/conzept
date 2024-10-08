@@ -720,10 +720,10 @@ const datasources = {
                               'none'            : '', // 'Electronic+resource' (includes: "manuscripts, photographs, sound recordings, motion pictures, music, and maps.")
                               'text'            : 'Full+text+documents',
                               'image'           : 'Images',
-                              'video'           : 'Video+recordings', // FIXME: seems to not be correct
-                              'audio'           : 'Sound+recordings', // FIXME: seems to not be correct: no real audio avaiable!
+                              'video'           : 'Video+recordings', // FIXME
+                              'audio'           : 'Sound+recordings',
                               'data'            : '',
-                              '3D'              : '3D+Models',        // FIXME: seems to not be correct: picture of 3D object!
+                              '3D'              : '3D+mesh',        // alternative: "3D+Model"
                               'software'        : '',
                               'archive'         : '',
                               'entity'          : '',
@@ -1154,7 +1154,7 @@ const datasources = {
     url:                    '${datasources.gbif.endpoint}/search?verbose=true&rank=species&q=${term}&limit=${datasources.gbif.pagesize}&offset=${ (explore.page -1) * datasources.gbif.pagesize }&rank=SPECIES&isExtinct=false',
     icon:                   '<img class="datasource-icon" alt="GBIF datasource" src="/assets/icons/gbif.png" alt="GBIF logo">',
     icon_invert:            false,
-    color:                  '#6e74ee8f',
+    color:                  '#6e74ee73',
     display_url:            'https://${explore.host}${explore.base}/app/map/index.html?l=${explore.language}&title=${title}&gbif=${gid}',
     code_autocomplete:      'autocompleteGBIF( r, dataset )',
     code_data_collect:      'my_promises.push( processResultsGBIF( topicResults, struct, index ) );',
@@ -1170,7 +1170,7 @@ const datasources = {
 
   'wikispecies': {
     active:                 false,
-    name:                   'wikispecies',
+    name:                   'Wikispecies',
     set:                    'species',
     description:            'species info',
     tag:                    'quote',
@@ -1212,7 +1212,7 @@ const datasources = {
                             },
     url:                    'https://${explore.language}.${datasources.wikispecies.endpoint}?action=query&srlimit=${datasources.wikispecies.pagesize}&sroffset=${ (explore.page -1) * datasources.wikispecies.pagesize}&srsort=${ valid( sortby )? sortby : "relevance" }&format=json&list=search&redirects=1&srsearch=${term}&srnamespace=0&srenablerewrites=1',
     icon:                   '<img class="datasource-icon" alt="Wikispecies datasource" src="/assets/icons/wikispecies.svg" alt="Wikispecies logo">',
-    color:                  '#6e74ee8f',
+    color:                  '#6e74ee73',
     icon_invert:            true,
     display_url:            'https://${explore.language}.wikispecies.org/wiki/${term}',
     code_data_collect:      'my_promises.push( processResultsWikispecies( topicResults, struct, index ) );', // FIXME: invert control (see next line)

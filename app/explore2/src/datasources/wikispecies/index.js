@@ -90,7 +90,7 @@ function processResultsWikispecies( topicResults, struct, index ){
 
         let gid         = valid( obj.pageid )? obj.pageid : '';
         let title       = valid( obj.title )? obj.title : '';
-        let url         = valid( title )? `https://${explore.language}.wikispecies.org/wiki/${obj.title}` : '';
+        let url         = valid( title )? `https://species.m.wikimedia.org/wiki/${object.title}?uselang=${explore.language}` : '';
 
         let maintag     = 'organism';
         let subtag      = '';
