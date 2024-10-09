@@ -3892,13 +3892,13 @@ input:not([type]), input[type="text"]:not(.browser-default), input[type="passwor
   }
 
   #srsearch {
-    min-width: 60%;
+    min-width: 55%;
   }
 
   .submitSearch {
-    width: 15%;
-    max-width: 80px;
-    padding: 0.5rem 0.3rem;
+    width: 12%;
+    max-width: 70px;
+    padding: 0.1rem 0.1rem; /*padding: 0.5rem 0.3rem;*/
   }
 
   #clearSearch {
