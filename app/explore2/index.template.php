@@ -275,12 +275,10 @@ $sticky_html = '
       <input id="srsearch" title="search input" type="search" enterkeyhint="search" autocomplete="off" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
-      <button id="start_button" onclick="startButton(event)"></button>
 
-      <div id="speech-results" style="display:none">
-        <span id="final_span" class="final"></span>
-        <span id="interim_span" class="interim"></span>
-      </div>
+      <button id="speech-input" onclick="window.micBtnClick()" title="toggle speech input">
+        <span id="microphone-icon"><i class="fa-solid fa-microphone"></i></span>
+      </button>
 
       <div id="search-options" style="">&nbsp;
 
@@ -467,7 +465,7 @@ $settings_html = '
 
                 <div class="switch">
 
-                  <label style="display:inline;" for="openai_api_key">OpenAI:</label>
+                  <label style="display:inline;" for="openai_api_key">OpenAI &nbsp;("gpt-4o-mini" model):</label>
                   <input type="text" id="openai_api_key" class="validate apikey" name="openai_api_key" minlength="8" required />
 
                 </div>

@@ -1804,11 +1804,9 @@ const notyf = new Notyf({
 
 function setupSpeechRecognition(){
 
-  if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted, so skip that action.
-
-	  return 1;
-
-	}
+  //if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted, so skip that action.
+	  //return 1;
+	//}
 
 	// Speech Recognition API: https://caniuse.com/speech-recognition
 	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;

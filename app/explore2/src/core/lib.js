@@ -808,7 +808,7 @@ function init() {
     sparqlEndpoint: datasources.wikidata.endpoint,
   })
 
-	window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+	//window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 
 	// handle broadcast messages
 	explore.broadcast_channel.onmessage = (event) => {
@@ -13546,3 +13546,141 @@ async function getWikidataQIDs( titles ) {
 
 }
 
+function setupSpeechRecognition(){
+
+  //if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted, so skip that action.
+	  //return 1;
+	//}
+
+	// Speech Recognition API: https://caniuse.com/speech-recognition
+	const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+	if ( SpeechRecognition ) {
+
+		$('#speech-input').show();
+
+		explore.recognition							= new SpeechRecognition();
+		explore.recognition.continuous	= true;
+		explore.recognition.lang				= explore.language;
+
+		const micBtn = document.querySelector('#microphone-icon');
+		const micIcon = micBtn.firstElementChild;
+
+		window.micBtnClick = function(){
+
+			if( micIcon.classList.contains('fa-microphone') ){
+
+				explore.recognition.start();
+
+			}
+			else {
+
+				explore.recognition.stop();
+
+			}
+		}
+
+		explore.recognition.addEventListener('start', startSpeechRecognition );
+
+		function startSpeechRecognition(){
+
+			micIcon.classList.remove('fa-microphone');
+			micIcon.classList.add('fa-microphone-slash');
+			$('#srsearch').focus();
+
+		}
+
+		explore.recognition.addEventListener('end', endSpeechRecognition );
+
+		function endSpeechRecognition(){
+
+			micIcon.classList.remove('fa-microphone-slash');
+			micIcon.classList.add('fa-microphone');
+			$('#srsearch').focus();
+
+		}
+
+		// trigger when user stops talking
+		explore.recognition.addEventListener('result', resultOfSpeechRecognition);
+
+		function resultOfSpeechRecognition(event) {
+
+			const current			= event.resultIndex;
+			const transcript	= event.results[current][0].transcript; // latest spoken text
+
+			console.log( event.results );
+			
+			if (
+				transcript.toLowerCase().trim() === 'stop recording' ||
+				transcript.toLowerCase().trim() === 'stop'
+			){
+
+				explore.recognition.stop();
+
+			}
+			else if ( ! valid( $('#srsearch').val() ) ){ // user stopped speaking, insert spoken text
+
+				let spoken_text = '';
+
+				Object.entries( event.results ).forEach(([key, value]) => {
+
+					spoken_text += value[0].transcript;
+
+				});
+
+				//console.log( spoken_text );
+				$('#srsearch').val() = spoken_text.replace(/(\r\n|\n|\r)/gm, '');;
+
+			}
+			else {
+
+				if (
+					transcript.toLowerCase().trim() === 'go' ||
+					transcript.toLowerCase().trim() === 'ask' ||
+					transcript.toLowerCase().trim() === 'submit' ||
+					transcript.toLowerCase().trim() === 'search'
+				){
+
+					$('#srsearch').val( transcript );
+					explore.q = getSearchValue();
+					$('.submitSearch').click();
+
+				}
+				else if (
+					transcript.toLowerCase().trim() === 'reset input' ||
+					transcript.toLowerCase().trim() === 'reset' ||
+					transcript.toLowerCase().trim() === 'clear input' ||
+					transcript.toLowerCase().trim() === 'clear'
+				){
+
+  				$('#srsearch').val('');
+
+					explore.recognition.abort(); // reset speech input by stopping the API
+
+				}
+				else { // use spoken text
+
+					let spoken_text = '';
+
+					Object.entries( event.results ).forEach(([key, value]) => {
+
+						spoken_text += value[0].transcript;
+
+					});
+
+  				$('#srsearch').val( spoken_text.replace(/(\r\n|\n|\r)/gm, '') );
+
+				}
+
+			}
+
+		}
+		
+	}
+	else { // no speech recognition support
+
+		console.log('This browser does not support speech recognition.');
+
+	}
+
+}

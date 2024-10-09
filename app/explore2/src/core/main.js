@@ -409,6 +409,7 @@ $( document ).ready( function() {
     setupOptionBread();
     setupOptionApiKeys();
     setupOptionAutospeak();
+    setupSpeechRecognition();
     setupOptionStructuredSearch();
     setupOptionGeospatialSearch();
     setupOptionAIchat();
