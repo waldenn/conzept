@@ -13629,7 +13629,7 @@ function setupSpeechRecognition(){
 				});
 
 				//console.log( spoken_text );
-				$('#srsearch').val() = spoken_text.replace(/(\r\n|\n|\r)/gm, '');;
+				$('#srsearch').val( spoken_text.replace(/(\r\n|\n|\r)/gm, '') );
 
 			}
 			else {
