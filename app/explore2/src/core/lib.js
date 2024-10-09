@@ -13546,6 +13546,7 @@ async function getWikidataQIDs( titles ) {
 
 }
 
+
 function setupSpeechRecognition(){
 
   //if ( detectMsEdge() ){ // MS Edge currently crashes when SpeechInput is submitted, so skip that action.
@@ -13611,8 +13612,8 @@ function setupSpeechRecognition(){
 			console.log( event.results );
 			
 			if (
-				transcript.toLowerCase().trim() === 'stop recording' ||
-				transcript.toLowerCase().trim() === 'stop'
+				transcript.toLowerCase().trim() === 'stop recording.' ||
+				transcript.toLowerCase().trim() === 'stop.'
 			){
 
 				explore.recognition.stop();
@@ -13628,34 +13629,51 @@ function setupSpeechRecognition(){
 
 				});
 
+				let command_symbol = '';
+
+				if (	spoken_text.toLowerCase().startsWith('show ') || spoken_text.toLowerCase().startsWith('chat ') ){
+
+					command_symbol = '!';
+
+				}
+
 				//console.log( spoken_text );
-				$('#srsearch').val( spoken_text.replace(/(\r\n|\n|\r)/gm, '') );
+				$('#srsearch').val( command_symbol + spoken_text.replace(/(\r\n|\n|\r)/gm, '') );
 
 			}
 			else {
 
+				console.log( 'action? ', transcript.toLowerCase().trim() );
+
 				if (
-					transcript.toLowerCase().trim() === 'go' ||
-					transcript.toLowerCase().trim() === 'ask' ||
-					transcript.toLowerCase().trim() === 'submit' ||
-					transcript.toLowerCase().trim() === 'search'
+					transcript.toLowerCase().trim() === 'go.' ||
+					transcript.toLowerCase().trim() === 'ask.' ||
+					transcript.toLowerCase().trim() === 'submit.' ||
+					transcript.toLowerCase().trim() === 'search.'
 				){
 
-					$('#srsearch').val( transcript );
+					console.log( 'submit: "' + transcript.toLowerCase().trim() + '"');
+
+					//$('#srsearch').val( transcript );
 					explore.q = getSearchValue();
-					$('.submitSearch').click();
+					//$('.submitSearch').click();
+    			$('.submitSearch').trigger('click'); // synthetic trigger submit
 
 				}
 				else if (
-					transcript.toLowerCase().trim() === 'reset input' ||
-					transcript.toLowerCase().trim() === 'reset' ||
-					transcript.toLowerCase().trim() === 'clear input' ||
-					transcript.toLowerCase().trim() === 'clear'
+					transcript.toLowerCase().trim() === 'reset input.' ||
+					transcript.toLowerCase().trim() === 'reset.' ||
+					transcript.toLowerCase().trim() === 'clear input.' ||
+					transcript.toLowerCase().trim() === 'clear.'
 				){
+
+					console.log( 'clear: "' + transcript.toLowerCase().trim() + '"');
+
+					transcript = '';
 
   				$('#srsearch').val('');
 
-					explore.recognition.abort(); // reset speech input by stopping the API
+					//explore.recognition.abort(); // reset speech input by stopping the API
 
 				}
 				else { // use spoken text

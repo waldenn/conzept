@@ -2585,7 +2585,10 @@ h1 {
   background: #fbfaf9;
 }
 
-.btn-large.submitSearch:hover, .btn-small.submitSearch:hover, .btn.submitSearch:hover {
+.btn-large.submitSearch:hover,
+.btn-small.submitSearch:hover,
+.btn.submitSearch:hover,
+#speech-input:hover {
   background-color: #ee6e735c;
 }
 
@@ -2610,6 +2613,11 @@ h1 {
 #srsearch::placeholder {
   color: rgba(86, 82, 83, 0.67);
   font-size: smaller;
+}
+
+#speech-input {
+  vertical-align: middle;
+  margin-left: 0.5em;
 }
 
 #search-options {
