@@ -4092,6 +4092,66 @@ conzept_fields = {
   rank: 250,
 },
 
+// START OF NATIONAL ARCHIVES
+
+'us_national_archive' : {
+  create_condition: true,
+  title: 'US National Archive',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://search.archives.gov/search?affiliate=national-archives&query=${title_quoted}',
+  icon: 'fa-solid fa-archive',
+  text: 'US 🇺🇸',
+  section: 'library-national-archives',
+  rank: 10.1,
+},
+
+/*
+'de_national_archive' : {
+  create_condition: true,
+  title: 'DE National Archive',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.bundesarchiv.de/en/search/all/?q=${title_quoted}',
+  icon: 'fa-solid fa-archive',
+  text: 'DE 🇺🇸',
+  section: 'library-national-archives',
+  rank: 90.1,
+},
+*/
+
+
+
+'nl_national_archive' : {
+  create_condition: 'checkLC( ["en", "nl", "fr"] )',
+  title: 'NL National Archive',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.nationaalarchief.nl/onderzoeken/zoeken?activeTab=archives&searchTerm=${title_quoted}&sortering=relevantie&volgorde=aflopend&taal=${explore.language}',
+  icon: 'fa-solid fa-archive',
+  text: 'NL 🇳🇱',
+  section: 'library-national-archives',
+  rank: 102.1,
+},
+
+'nl_open_archives' : {
+  create_condition: 'checkLC( ["en", "nl", "fr", "de"] )',
+  title: 'NL Open Archives',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.openarchieven.nl/transcripties/zoek.php?q=${title_quoted}&lang=${explore.language}',
+  icon: 'fa-solid fa-archive',
+  text: 'NL 🇳🇱 Open Archives',
+  section: 'library-national-archives',
+  rank: 102.2,
+},
+
+// END OF NATIONAL ARCHIVES
+
 'classcentral' : {
   create_condition: true,
   title: 'Class central',

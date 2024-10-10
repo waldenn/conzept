@@ -103,6 +103,10 @@ const sections = {
 				'icon' : 'fa-solid fa-hourglass-half',
 			},
 
+			'library-national-archives': {
+				'icon' : 'fa-solid fa-box-archive',
+			},
+
 			'library-genealogy': {
 				'icon' : 'fa-solid fa-people-roof',
 			},

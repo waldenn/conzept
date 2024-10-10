@@ -7201,7 +7201,7 @@ async function renderTopics( inputs ){
 
   $('#loader').hide();
 
-  explore.preventSliding = false;
+  explore.preventSliding = true;
 
 }
 
