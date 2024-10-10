@@ -4122,8 +4122,6 @@ conzept_fields = {
 },
 */
 
-
-
 'nl_national_archive' : {
   create_condition: 'checkLC( ["en", "nl", "fr"] )',
   title: 'NL National Archive',
@@ -4135,19 +4133,6 @@ conzept_fields = {
   text: 'NL 🇳🇱',
   section: 'library-national-archives',
   rank: 102.1,
-},
-
-'nl_open_archives' : {
-  create_condition: 'checkLC( ["en", "nl", "fr", "de"] )',
-  title: 'NL Open Archives',
-  prop: '',
-  type: 'url',
-  mv: false,
-  url: 'https://www.openarchieven.nl/transcripties/zoek.php?q=${title_quoted}&lang=${explore.language}',
-  icon: 'fa-solid fa-archive',
-  text: 'NL 🇳🇱 Open Archives',
-  section: 'library-national-archives',
-  rank: 102.2,
 },
 
 // END OF NATIONAL ARCHIVES
@@ -19266,6 +19251,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'OpenArch 🇳🇱 🇧🇪',
   section: ['library-genealogy'],
   rank: [300],
+},
+
+'nl_open_archives' : {
+  create_condition: 'checkLC( ["en", "nl", "fr", "de"] )',
+  title: 'NL Open Archives',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://www.openarchieven.nl/transcripties/zoek.php?q=${title_quoted}&lang=${explore.language}',
+  icon: 'fa-solid fa-people-roof',
+  text: 'OpenArchives',
+  section: ['library-genealogy'],
+  rank: [305],
 },
 
 'nederlab' : {
