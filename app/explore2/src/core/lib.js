@@ -4401,6 +4401,7 @@ async function updateLocaleInterface(){
   $('#app-guide-bookmark-similarities').text( explore.banana.i18n('app-guide-bookmark-similarities') );
   $('#app-guide-bookmark-ontology').text( explore.banana.i18n('app-guide-bookmark-ontology') );
   $('#app-guide-bookmark-commonalities').text( explore.banana.i18n('app-guide-bookmark-commonalities') );
+  $('#app-guide-bookmark-concept-blend').text( explore.banana.i18n('app-guide-bookmark-concept-blend') );
   $('#app-guide-bookmark-topic-differences').text( explore.banana.i18n('app-guide-bookmark-topic-differences') );
   $('#app-guide-bookmark-related-topics').text( explore.banana.i18n('app-guide-bookmark-related-topics') );
   $('#app-guide-bookmark-quiz-topics').text( explore.banana.i18n('app-guide-bookmark-quiz-topics') );

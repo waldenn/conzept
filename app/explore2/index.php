@@ -933,12 +933,14 @@ $settings_html = '
 
                       <div class="bookmark-action"><a class="" title="find bookmark related websites" aria-label="find bookmark related websites" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;advisor-related-websites&quot;)"><span class="icon"><i class="fa-solid fa-link fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-related-websites">related websites</span></span></a></div>
 
-
                       <div class="bookmark-action"><a class="" title="explain bookmark conceptology structure" aria-label="explain bookmark conceptology structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptologist&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology">conceptology (full)</span></span></a></div>
+
 
                       <!--div class="bookmark-action"><a class="" title="explain bookmark conceptology minimal structure" aria-label="explain bookmark conceptology minimal structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptologist-minimal&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology-minimal">conceptology (minimal)</span></span></a></div-->
 
                       <!--div class="bookmark-action"><a class="" title="explain bookmark conceptology latency structure" aria-label="explain bookmark conceptology latency structure" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;conceptologist-latency&quot;)"><span class="icon"><i class="fa-solid fa-folder-tree fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-conceptology-latency">conceptology (latencies)</span></span></a></div-->
+
+                      <div class="bookmark-action"><a class="" title="blend bookmark topics into one concept" aria-label="blend bookmark topics into one concept" role="button" href="javascript:void(0)" onclick="runBookmarkAction(&quot;concept-blender&quot;)"><span class="icon"><i class="fa-regular fa-circle-dot fa-2x"></i></span><br><span class="frontpage-icon"><span id="app-guide-bookmark-concept-blend">concept blend</span></span></a></div>
 
                     </div>
                   </detail>

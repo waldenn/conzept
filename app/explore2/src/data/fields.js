@@ -5844,6 +5844,19 @@ conzept_fields = {
   rank: 320,
 },
 
+'koloniale_archieven' : {
+  create_condition: 'checkLC( "nl" )',
+  title: 'Koloniale archieven: VOC, WIC, SvS',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://dekok.xyz/htrsearch/results?query=${title_quoted}',
+  icon: 'fa-solid fa-ship',
+  text: 'NL Koloniale Archieven',
+  section: 'library-history',
+  rank: 330,
+},
+
 // see dataverse list: https://iqss.github.io/dataverse-installations/data/data.json
 
 'dataverse_iish' : {
