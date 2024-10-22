@@ -230,6 +230,9 @@ $main_script = '
   <!-- legal -->
   <script src="../app/explore2/dist/datasources/courtlistener/index.js?v0.51.4836"></script>
 
+  <!-- code -->
+  <script src="../app/explore2/dist/datasources/searchcode/index.js?v0.51.4836"></script>
+
   <!-- media -->
   <script src="../app/explore2/dist/datasources/peertube/index.js?v0.51.4836"></script>
   <script src="../app/explore2/dist/datasources/sketchfab/index.js?v0.51.4836"></script>
@@ -275,10 +278,12 @@ $sticky_html = '
       <input id="srsearch" title="search input" type="search" enterkeyhint="search" autocomplete="off" class="form-control searchbox" placeholder="search" aria-label="search" role="searchbox">
       <span id="clearSearch"><a class="link clear" title="clear search" aria-label="clear search" role="button" href="javascript:void(0)"><i class="fa-solid fa-times" w=""></i></a></span>
       <span id="submitSearch"><a title="submit search" class="waves-effect waves-light btn-small submitSearch" aria-label="submit search" role="button" tabindex="0"><i class="fa-solid fa-search"></i></a></span>
+      <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#string_search" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       <button id="speech-input" onclick="window.micBtnClick()" title="toggle speech input">
         <span id="microphone-icon"><i class="fa-solid fa-microphone"></i></span>
       </button>
+      <a class="doclink nofloat" target="infoframe" title="help" aria-label="help" href="/guide/user_manual#search_by_voice" onclick="resetIframe()"><i class="fa-regular fa-circle-question"></i></a>
 
       <div id="search-options" style="">&nbsp;
 
@@ -290,6 +295,7 @@ $sticky_html = '
           <option value="species" id="app-menu-search-in-option-species">species</option>
           <option value="business" id="app-menu-search-in-option-business">business</option>
           <option value="legal" id="app-menu-search-in-option-legal">legal</option>
+          <option value="code" id="app-menu-search-in-option-code">code</option>
           <option value="news" id="app-menu-search-in-option-news">news</option>
           <option value="media" id="app-menu-search-in-option-media">media</option>
           <option value="web" id="app-menu-search-in-option-web">web</option>

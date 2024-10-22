@@ -4240,6 +4240,7 @@ async function updateLocaleInterface(){
   $('#app-menu-search-in-option-taxonomy').html( explore.banana.i18n('app-menu-search-in-option-taxonomy') );
   $('#app-menu-search-in-option-business').html( explore.banana.i18n('app-menu-search-in-option-business') );
   $('#app-menu-search-in-option-legal').html( explore.banana.i18n('app-menu-search-in-option-legal') );
+  $('#app-menu-search-in-option-code').html( explore.banana.i18n('app-menu-search-in-option-code') );
   $('#app-menu-search-in-option-news').html( explore.banana.i18n('app-menu-search-in-option-news') );
   $('#app-menu-search-in-option-media').html( explore.banana.i18n('app-menu-search-in-option-media') );
   $('#app-menu-search-in-option-web').html( explore.banana.i18n('app-menu-search-in-option-web') );

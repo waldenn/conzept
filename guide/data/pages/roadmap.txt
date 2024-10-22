@@ -232,3 +232,4 @@ LLM/Vector/Hybrid **AI powered, [[#backend search|backend-search]] using Typesen
   * **Experiencing / Simulating**: eg. play Chess positions (done), ...
   * ? Note-taking integration  (eg.: [[https://bangle.io/|Bangle]], ...)
   * Better ways to indicate personal and professional interests (similar to the persona-tags setting)
+  * Better support for explaining formulas (explain and/or visualize this formula: "..." ): Redirect to the new AI-chat app with math + image support.

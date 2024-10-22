@@ -168,6 +168,14 @@ The results will be shown in the sidebar and the next results are loaded once yo
 
 If your search-string does not directly match any Wikipedia article, there will be a [[terms#topic_card|topic card]] created from that "raw" search-string. This card will however lack all the Wikidata-related [[terms#topic_fields|topic fields]].
 
+===== search by voice =====
+
+To search by voice, you click the microphone-button <html><i class="fas fa-microphone"></i>&nbsp;</html> next to the search-button. Then you can speak a phrase and upon ending the speaking, the search will be executed.
+
+The following [[#search_commands|search commands]] can also be accessed using your voice, by speaking that command as the first word:
+  * "show ..."
+  * "chat ..."
+
 ===== search options =====
 
 [{{ ::search_options_001.jpg?direct| search options ([[https://conze.pt/explore/geography?l=en&d=openlibrary&t=string&filterby=text&sortby=relevance-desc&datemin=2005-06-14&datemax=2006-01-01&theme=lattice&s=true#|link]]) }}]
@@ -189,6 +197,7 @@ The following categories are currently available:
   * Reference works
   * Culture (GLAM data)
   * Science
+  * Species
   * Business (including government and corruption data)
   * Legal
   * News
