@@ -19623,6 +19623,19 @@ if ( valid( item.found_in_taxon ) ){
   rank: 500,
 },
 
+'amazon_awd_data_marketplace' : {
+  create_condition: true,
+  title: 'Amazon AWS Data Marketplace',
+  prop: '',
+  type: 'url',
+  mv: false,
+  url: 'https://aws.amazon.com/marketplace/search/results?searchTerms=${title_quoted}',
+  icon: 'fa-solid fa-hockey-puck',
+  text: 'Amazon AWS',
+  section: 'media-datasets-general',
+  rank: 520,
+},
+
 'usa_facts' : {
   create_condition: 'checkLC("","US")',
   title: 'USA facts',
@@ -19971,6 +19984,19 @@ if ( valid( item.found_in_taxon ) ){
   text: 'wildlife',
   section: 'media-datasets-topical',
   rank: 20,
+},
+
+'academic_torrents' : {
+  create_condition: true,
+  title: 'Academic Torrents',
+  prop: '',
+  type: 'link',
+  mv: false,
+  url: 'https://academictorrents.com/browse.php?search=${title_quoted}',
+  icon: 'fa-regular fa-newspaper',
+  text: 'Academic Torrents',
+  section: ['media-datasets-topical','science-search-tools'],
+  rank: [22,167],
 },
 
 'hubmap' : {

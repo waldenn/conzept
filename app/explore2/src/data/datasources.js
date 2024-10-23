@@ -1709,7 +1709,7 @@ const datasources = {
                               'archive'         : '',
                               'entity'          : '',
                             },
-    url:                    '${datasources.searchcode.endpoint}?q=${ encodeURIComponent( term ) }&p=${explore.page}&per_page=${datasources.searchcode.pagesize}',
+    url:                    '${datasources.searchcode.endpoint}?q=${ encodeURIComponent( term ) }&p=${explore.page - 1 }&per_page=${datasources.searchcode.pagesize}',
     icon:                   '<img class="datasource-icon" alt="SearchCode logo" src="/assets/icons/searchcode.svg" alt="GDELT logo">',
     icon_invert:            true,
     color:                  '#0a602496',

@@ -24,7 +24,7 @@ function processResultsSearchCode( topicResults, struct, index ){
 
   const source = 'searchcode';
 
-  console.log( topicResults );
+  //console.log( topicResults );
 
   return new Promise(( resolve, reject ) => {
 
@@ -52,7 +52,7 @@ function processResultsSearchCode( topicResults, struct, index ){
     }
     else {
 
-      datasources[ source ].total = topicResults.results;
+      datasources[ source ].total = topicResults.total;
 
       // standard result structure (modelled after the Wikipedia API)
       let result = {
@@ -87,7 +87,7 @@ function processResultsSearchCode( topicResults, struct, index ){
 
       $.each( topicResults.results, function( i, obj ){
 
-        console.log( obj );
+        //console.log( obj );
 
         // URL vars
         let gid           = '';
@@ -97,6 +97,16 @@ function processResultsSearchCode( topicResults, struct, index ){
         let title         = valid( obj.name )? obj.name : '';
 
         let description   = valid( obj.filename )? obj.filename + '<br/><br/>' : '';
+
+        let code 	 				= '';
+
+				if ( valid( obj.lines ) ){
+
+					//console.log( Object.values( obj.lines ).join('<br/>') );
+					code = '<br><br>' + Object.values( obj.lines ).join('<br/>');
+
+				}
+
         let subtag        = 'software';
 
         let creators      = [];
@@ -119,7 +129,7 @@ function processResultsSearchCode( topicResults, struct, index ){
 				let item = {
           source:       source,
 					title:        title,
-					description:  `${description}`,
+					description:  `<b>${description}</b> ${code}`,
 					gid:          url,
 					display_url:  url,
 					thumb:        thumb,
@@ -179,3 +189,4 @@ function renderMarkSearchCode( inputs, source, q_, show_raw_results, id ){
   // TODO
 
 }
+
